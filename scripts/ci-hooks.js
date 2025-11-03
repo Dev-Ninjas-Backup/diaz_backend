@@ -20,6 +20,18 @@ function getStagedFiles() {
   return result.split('\n').filter((file) => file);
 }
 
+// Commit changes with a given message
+function autoCommit(message) {
+  try {
+    runCommand('git add .'); // stage all changes (lint/format fixes)
+    runCommand(`git commit -m "${message}"`);
+    console.info(chalk.green(emoji('✅') + ` Auto-commit done: "${message}"`));
+  } catch (error) {
+    console.error(chalk.red(emoji('❌') + ' Auto-commit failed.'));
+    console.error(chalk.red(error));
+  }
+}
+
 (async () => {
   const spinner = yoctoSpinner().start('Running CI checks on staged files...');
 
@@ -49,6 +61,9 @@ function getStagedFiles() {
       file.endsWith('.tsx'),
   );
 
+  let lintChangesApplied = false;
+  let formatChangesApplied = false;
+
   try {
     if (lintFiles.length > 0) {
       spinner.start('Running lint check...');
@@ -58,6 +73,7 @@ function getStagedFiles() {
       spinner.start('Applying lint fixes...');
       const fixResult = runCommand(`pnpm lint:fix -- ${lintFiles.join(' ')}`);
       spinner.success(chalk.green(emoji('⚙️') + ' Lint fixes applied!'));
+      lintChangesApplied = true;
 
       console.info(
         chalk.blue(emoji('💻') + ' Lint output:\n') + chalk.gray(lintResult),
@@ -67,27 +83,35 @@ function getStagedFiles() {
       );
     }
 
+    if(lintChangesApplied) {
+      spinner.start('Staging lint fixes...');
+      runCommand('git add .');
+      spinner.success(chalk.green(emoji('✅') + ' Lint fixes staged!'));
+    }
+
     if (formatFiles.length > 0) {
       spinner.start('Running format check...');
-      const formatResult = runCommand(
-        `pnpm format -- ${formatFiles.join(' ')}`,
-      );
+      const formatResult = runCommand(`pnpm format -- ${formatFiles.join(' ')}`);
       spinner.success(chalk.green(emoji('✅') + ' Format checks passed!'));
 
       spinner.start('Applying format fixes...');
-      const formatFixResult = runCommand(
-        `pnpm format:fix -- ${formatFiles.join(' ')}`,
-      );
+      const formatFixResult = runCommand(`pnpm format:fix -- ${formatFiles.join(' ')}`);
       spinner.success(chalk.green(emoji('⚙️') + ' Format fixes applied!'));
+      changesApplied = true;
 
       console.info(
-        chalk.blue(emoji('📝') + ' Format output:\n') +
-          chalk.gray(formatResult),
+        chalk.blue(emoji('📝') + ' Format output:\n') + chalk.gray(formatResult),
       );
       console.info(
         chalk.blue(emoji('🔧') + ' Format fix output:\n') +
           chalk.gray(formatFixResult),
       );
+    }
+
+    if(formatChangesApplied) {
+      spinner.start('Staging format fixes...');
+      runCommand('git add .');
+      spinner.success(chalk.green(emoji('✅') + ' Format fixes staged!'));
     }
 
     spinner.success(chalk.cyan(emoji('🚀') + ' All checks & fixes completed!'));
