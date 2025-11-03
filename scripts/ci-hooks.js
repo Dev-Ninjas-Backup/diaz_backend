@@ -83,7 +83,7 @@ function autoCommit(message) {
       );
     }
 
-    if(lintChangesApplied) {
+    if (lintChangesApplied) {
       spinner.start('Staging lint fixes...');
       runCommand('git add .');
       spinner.success(chalk.green(emoji('✅') + ' Lint fixes staged!'));
@@ -91,16 +91,21 @@ function autoCommit(message) {
 
     if (formatFiles.length > 0) {
       spinner.start('Running format check...');
-      const formatResult = runCommand(`pnpm format -- ${formatFiles.join(' ')}`);
+      const formatResult = runCommand(
+        `pnpm format -- ${formatFiles.join(' ')}`,
+      );
       spinner.success(chalk.green(emoji('✅') + ' Format checks passed!'));
 
       spinner.start('Applying format fixes...');
-      const formatFixResult = runCommand(`pnpm format:fix -- ${formatFiles.join(' ')}`);
+      const formatFixResult = runCommand(
+        `pnpm format:fix -- ${formatFiles.join(' ')}`,
+      );
       spinner.success(chalk.green(emoji('⚙️') + ' Format fixes applied!'));
-      changesApplied = true;
+      formatChangesApplied = true;
 
       console.info(
-        chalk.blue(emoji('📝') + ' Format output:\n') + chalk.gray(formatResult),
+        chalk.blue(emoji('📝') + ' Format output:\n') +
+          chalk.gray(formatResult),
       );
       console.info(
         chalk.blue(emoji('🔧') + ' Format fix output:\n') +
@@ -108,7 +113,7 @@ function autoCommit(message) {
       );
     }
 
-    if(formatChangesApplied) {
+    if (formatChangesApplied) {
       spinner.start('Staging format fixes...');
       runCommand('git add .');
       spinner.success(chalk.green(emoji('✅') + ' Format fixes staged!'));
