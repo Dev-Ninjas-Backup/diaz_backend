@@ -1,17 +1,22 @@
 model Boats {
   id String @id @default(uuid())
 
+  userId String
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+
   name        String
+  price       Float
   description String?
 
   // * Specifications
   buildYear Int
   make      String
+  model     String
 
-  model    String
-  fuelType String
-  class    String
-  material String
+  fuelType  BoatFuelType
+  class     BoatClass
+  material  BoatMaterial
+  condition BoatCondition
 
   length Float // total feet, e.g., 36.5 = 36'6"
   beam   Float // total feet
@@ -20,10 +25,6 @@ model Boats {
   enginesNumber Int
   cabinsNumber  Int
   headsNumber   Int
-
-  // * Basic Information
-  condition BoatCondition
-  price     Float
 
   // * Address Information
   city  String
@@ -37,28 +38,22 @@ model Boats {
   updatedAt DateTime @default(now()) @updatedAt
 
   engines BoatEngine[]
-  images BoatImage[]
+  images  BoatImage[]
 
   @@map("boats")
-}
-
-enum BoatCondition {
-  NEW
-  USED
-  REFURBISHED
-  DAMAGED
 }
 
 model BoatEngine {
   id String @id @default(uuid())
 
   hours      Int
-  make       String
   horsepower Int
 
-  model         String
-  fuelType      String
-  propellerType String
+  make  String
+  model String
+
+  fuelType      BoatFuelType
+  propellerType BoatPropellerType
 
   boatId String
   boat   Boats  @relation(fields: [boatId], references: [id], onDelete: Cascade)
@@ -70,13 +65,13 @@ model BoatEngine {
 }
 
 model BoatImage {
-  id         String   @id @default(uuid())
+  id String @id @default(uuid())
 
-  boatId     String
-  boat       Boats      @relation(fields: [boatId], references: [id], onDelete: Cascade)
-  
-  fileId     String
-  file       FileInstance @relation(fields: [fileId], references: [id], onDelete: Cascade)
+  boatId String
+  boat   Boats  @relation(fields: [boatId], references: [id], onDelete: Cascade)
+
+  fileId String
+  file   FileInstance @relation(fields: [fileId], references: [id], onDelete: Cascade)
 
   imageType BoatImageType
 
@@ -84,6 +79,51 @@ model BoatImage {
   updatedAt DateTime @default(now()) @updatedAt
 
   @@map("boat_images")
+}
+
+enum BoatCondition {
+  NEW
+  USED
+  REFURBISHED
+  DAMAGED
+}
+
+enum BoatFuelType {
+  GASOLINE
+  DIESEL
+  ELECTRIC
+  HYBRID
+  OTHER
+}
+
+enum BoatClass {
+  SAILBOAT
+  MOTORBOAT
+  YACHT
+  FISHING
+  PONTOON
+  SPEEDBOAT
+  CATAMARAN
+  OTHER
+}
+
+enum BoatMaterial {
+  FIBERGLASS
+  ALUMINUM
+  WOOD
+  STEEL
+  CARBON_FIBER
+  PLASTIC
+  OTHER
+}
+
+enum BoatPropellerType {
+  FIXED
+  FOLDING
+  FEATHERING
+  SURFACE_PIERCING
+  CONTROLLABLE_PITCH
+  OTHER
 }
 
 enum BoatImageType {

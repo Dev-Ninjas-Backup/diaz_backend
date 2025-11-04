@@ -12,6 +12,8 @@ model FileInstance {
   createdAt DateTime @default(now())
   updatedAt DateTime @default(now()) @updatedAt
 
+  boatImages BoatImage[]
+
   @@map("file_instances")
 }
 
