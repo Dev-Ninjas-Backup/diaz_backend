@@ -9,7 +9,7 @@ APP_IMAGE := $(DOCKER_USERNAME)/$(PACKAGE_NAME):$(PACKAGE_VERSION)
 # Compose file
 COMPOSE_FILE := compose.yaml
 
-.PHONY: help build up down restart logs clean push
+.PHONY: help build up down restart logs clean push  containers volumes networks images
 
 # Show available commands
 help:
@@ -21,6 +21,10 @@ help:
 	@echo "  make logs        Show logs of the app container"
 	@echo "  make clean       Remove containers, networks, volumes, and image"
 	@echo "  make push        Push the Docker image to Docker Hub"
+	@echo "  make containers  Show containers of current compose"
+	@echo "  make volumes     Show volumes of current compose"
+	@echo "  make networks    Show networks of current compose"
+	@echo "  make images      Show images of current compose"
 
 # Build the Docker image
 build:
