@@ -1,0 +1,92 @@
+model Boats {
+  id String @id @default(uuid())
+
+  name        String
+  description String?
+
+  // * Specifications
+  buildYear Int
+  make      String
+
+  model    String
+  fuelType String
+  class    String
+  material String
+
+  length Float // total feet, e.g., 36.5 = 36'6"
+  beam   Float // total feet
+  draft  Float // total feet
+
+  enginesNumber Int
+  cabinsNumber  Int
+  headsNumber   Int
+
+  // * Basic Information
+  condition BoatCondition
+  price     Float
+
+  // * Address Information
+  city  String
+  state String
+  zip   String
+
+  // * Extra details
+  extraDetails Json? // Stores array of { key, value }
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @default(now()) @updatedAt
+
+  engines BoatEngine[]
+  images BoatImage[]
+
+  @@map("boats")
+}
+
+enum BoatCondition {
+  NEW
+  USED
+  REFURBISHED
+  DAMAGED
+}
+
+model BoatEngine {
+  id String @id @default(uuid())
+
+  hours      Int
+  make       String
+  horsepower Int
+
+  model         String
+  fuelType      String
+  propellerType String
+
+  boatId String
+  boat   Boats  @relation(fields: [boatId], references: [id], onDelete: Cascade)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @default(now()) @updatedAt
+
+  @@map("boat_engines")
+}
+
+model BoatImage {
+  id         String   @id @default(uuid())
+
+  boatId     String
+  boat       Boats      @relation(fields: [boatId], references: [id], onDelete: Cascade)
+  
+  fileId     String
+  file       FileInstance @relation(fields: [fileId], references: [id], onDelete: Cascade)
+
+  imageType BoatImageType
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @default(now()) @updatedAt
+
+  @@map("boat_images")
+}
+
+enum BoatImageType {
+  COVER
+  GALLERY
+}

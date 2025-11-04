@@ -115,4 +115,10 @@ export class UtilsService {
 
     return username;
   }
+
+  formatFeet(feetDecimal: number) {
+    const feet = Math.floor(feetDecimal);
+    const inches = Math.round((feetDecimal - feet) * 12);
+    return `${feet}'${inches}"`;
+  }
 }
