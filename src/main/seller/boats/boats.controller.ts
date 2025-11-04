@@ -13,7 +13,7 @@ export class BoatsController {
 
   @ApiOperation({
     summary:
-      'Seller Onboarding with Boat Onboarding, returns payment secret for Stripe (Public)',
+      'Seller Onboarding with Boat Onboarding, returns payment secret for Stripe & preview data (Public)',
   })
   @Public()
   @Post('onboarding')

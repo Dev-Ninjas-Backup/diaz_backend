@@ -35,7 +35,7 @@ async function bootstrap() {
   // * set global prefix before all routes & swagger
   app.setGlobalPrefix('api');
 
-  // Swagger config with Bearer Auth
+  // * Swagger config with Bearer Auth
   const config = new DocumentBuilder()
     .setTitle('Diaz API')
     .setDescription('The Diaz API description')
