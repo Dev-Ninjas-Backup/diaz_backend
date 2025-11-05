@@ -15,7 +15,11 @@ import {
   ApiTags,
 } from '@nestjs/swagger';
 import * as multer from 'multer';
-import { SellerOnBoardingDto } from './dto/seller-on-boarding.dto';
+import {
+  BoatsInfoOnBoardingDto,
+  SellerInfoOnBoardingDto,
+  SellerOnBoardingDto,
+} from './dto/seller-on-boarding.dto';
 import { OnBoardingService } from './services/on-boarding.service';
 
 @ApiBearerAuth()
@@ -35,18 +39,22 @@ export class BoatsController {
     FileFieldsInterceptor(
       [
         { name: 'covers', maxCount: 5 },
-        { name: 'galleries', maxCount: 5 },
+        { name: 'galleries', maxCount: 70 },
       ],
       {
         storage: multer.memoryStorage(),
-        limits: { files: 10 },
+        limits: { files: 75 },
       },
     ),
   )
   @Public()
   @Post('onboarding')
   async completeOnBoarding(
-    @Body() data: SellerOnBoardingDto,
+    @Body()
+    data: {
+      boatInfo: BoatsInfoOnBoardingDto;
+      sellerInfo: SellerInfoOnBoardingDto;
+    },
     @UploadedFiles()
     files: {
       covers?: Express.Multer.File[];

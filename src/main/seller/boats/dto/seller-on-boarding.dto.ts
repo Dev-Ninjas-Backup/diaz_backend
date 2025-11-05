@@ -252,6 +252,18 @@ export class SellerOnBoardingDto {
   sellerInfo: SellerInfoOnBoardingDto;
 }
 
+export class SellerOnboardingBodyDto {
+  @ApiProperty({ type: BoatsInfoOnBoardingDto })
+  @ValidateNested()
+  @Type(() => BoatsInfoOnBoardingDto)
+  boatInfo: BoatsInfoOnBoardingDto;
+
+  @ApiProperty({ type: SellerInfoOnBoardingDto })
+  @ValidateNested()
+  @Type(() => SellerInfoOnBoardingDto)
+  sellerInfo: SellerInfoOnBoardingDto;
+}
+
 export class SellerOnboardingFilesDto {
   @ApiPropertyOptional({
     type: 'string',
