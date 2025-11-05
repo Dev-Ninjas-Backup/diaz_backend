@@ -2,8 +2,10 @@ import { BullModule } from '@nestjs/bullmq';
 import { CacheModule } from '@nestjs/cache-manager';
 import { MiddlewareConsumer, Module, NestModule } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
+import { EventEmitterModule } from '@nestjs/event-emitter';
 import { JwtModule } from '@nestjs/jwt';
 import { PassportModule } from '@nestjs/passport';
+import { ScheduleModule } from '@nestjs/schedule';
 import { ServeStaticModule } from '@nestjs/serve-static';
 import { join } from 'path';
 import { AppController } from './app.controller';
@@ -22,6 +24,12 @@ import { MainModule } from './main/main.module';
     CacheModule.register({
       isGlobal: true,
     }),
+
+    EventEmitterModule.forRoot({
+      global: true,
+    }),
+
+    ScheduleModule.forRoot(),
 
     ServeStaticModule.forRoot({
       rootPath: join(process.cwd(), 'uploads'),
