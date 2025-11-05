@@ -71,6 +71,32 @@ export class StripeService {
     return prices.data[0] ?? null;
   }
 
+  // Customer Management
+  async createCustomer({
+    email,
+    name,
+    userId,
+  }: {
+    email: string;
+    name: string;
+    userId: string;
+  }) {
+    const customer = await this.stripe.customers.create({
+      email,
+      name,
+      metadata: {
+        userId,
+        email,
+        name,
+        createdAt: new Date().toISOString(),
+      },
+    });
+
+    this.logger.log(`Created Stripe customer ${customer.id} for ${email}`);
+
+    return customer;
+  }
+
   // Coupons management
   async createStripeCoupon(
     discount: number,

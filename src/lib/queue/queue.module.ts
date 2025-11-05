@@ -2,6 +2,8 @@ import { QueueName } from '@/common/enum/queue-name.enum';
 import { BullModule } from '@nestjs/bullmq';
 import { Global, Module } from '@nestjs/common';
 import { QueueGateway } from './queue.gateway';
+import { ImageProcessingEventsService } from './services/image-processing-events.service';
+import { ImageProcessingService } from './worker/image-processing.service';
 
 @Global()
 @Module({
@@ -11,7 +13,11 @@ import { QueueGateway } from './queue.gateway';
       { name: QueueName.IMAGE_PROCESSING },
     ),
   ],
-  providers: [QueueGateway],
+  providers: [
+    QueueGateway,
+    ImageProcessingEventsService,
+    ImageProcessingService,
+  ],
   exports: [BullModule],
 })
 export class QueueModule {}
