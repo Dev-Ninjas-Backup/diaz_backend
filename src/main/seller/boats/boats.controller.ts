@@ -15,11 +15,9 @@ import {
   ApiTags,
 } from '@nestjs/swagger';
 import * as multer from 'multer';
-import {
-  BoatsInfoOnBoardingDto,
-  SellerInfoOnBoardingDto,
-  SellerOnBoardingDto,
-} from './dto/seller-on-boarding.dto';
+import { BoatsInfoOnBoardingDto } from './dto/boats-info.dto';
+import { SellerInfoOnBoardingDto } from './dto/seller-info.dto';
+import { SellerOnBoardingDto } from './dto/seller-on-boarding.dto';
 import { OnBoardingService } from './services/on-boarding.service';
 
 @ApiBearerAuth()

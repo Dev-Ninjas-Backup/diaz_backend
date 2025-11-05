@@ -9,8 +9,8 @@ import { UtilsService } from '@/lib/utils/utils.service';
 import { HttpStatus, Injectable, Logger } from '@nestjs/common';
 import { EventEmitter2 } from '@nestjs/event-emitter';
 import { BoatImageType } from '@prisma/client';
+import { BoatEngineDto } from '../dto/boats.dto';
 import {
-  BoatEngineDto,
   SellerOnboardingBodyDto,
   SellerOnboardingFilesDto,
 } from '../dto/seller-on-boarding.dto';
