@@ -1,4 +1,5 @@
 import { HandleError } from '@/common/error/handle-error.decorator';
+import { ParseJsonPipe } from '@/common/pipe/parse-json.pipe';
 import { successResponse, TResponse } from '@/common/utils/response.util';
 import { PrismaService } from '@/lib/prisma/prisma.service';
 import { StripeService } from '@/lib/stripe/stripe.service';
@@ -24,11 +25,16 @@ export class OnBoardingService {
     data: SellerOnboardingBodyDto,
     files: SellerOnboardingFilesDto,
   ): Promise<TResponse<any>> {
+    const parsePipe = new ParseJsonPipe();
+
+    const boatInfo = parsePipe.transform(data.boatInfo);
+    const sellerInfo = parsePipe.transform(data.sellerInfo);
+
     // TODO: Implement onboarding logic here
     return successResponse(
       {
-        boatInfo: JSON.parse(JSON.stringify(data.boatInfo)),
-        sellerInfo: JSON.parse(JSON.stringify(data.sellerInfo)),
+        boatInfo,
+        sellerInfo,
         covers: files.covers?.map((file) => file.originalname) || [],
         galleries: files.galleries?.map((file) => file.originalname) || [],
       },
