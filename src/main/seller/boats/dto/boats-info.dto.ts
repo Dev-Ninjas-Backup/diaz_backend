@@ -15,7 +15,11 @@ import {
   IsString,
   ValidateNested,
 } from 'class-validator';
-import { BoatEngineDto, ExtraDetailItemDto } from './boats.dto';
+import {
+  BoatDimensionsDto,
+  BoatEngineDto,
+  ExtraDetailItemDto,
+} from './boats.dto';
 
 export class BoatsInfoOnBoardingDto {
   @ApiProperty({ example: 'Sapphire', description: 'Boat display name' })
@@ -62,23 +66,10 @@ export class BoatsInfoOnBoardingDto {
   @IsEnum(BoatCondition)
   condition: BoatCondition;
 
-  @ApiProperty({
-    example: 36.5,
-    description: 'Length in feet (e.g. 36.5 = 36\'6")',
-  })
-  @Type(() => Number)
-  @IsNumber()
-  length: number;
-
-  @ApiProperty({ example: 12.5, description: 'Beam in feet' })
-  @Type(() => Number)
-  @IsNumber()
-  beam: number;
-
-  @ApiProperty({ example: 3.2, description: 'Draft in feet' })
-  @Type(() => Number)
-  @IsNumber()
-  draft: number;
+  @ApiProperty({ type: BoatDimensionsDto })
+  @ValidateNested()
+  @Type(() => BoatDimensionsDto)
+  boatDimensions: BoatDimensionsDto;
 
   @ApiProperty({ example: 2, description: 'Number of engines' })
   @Type(() => Number)

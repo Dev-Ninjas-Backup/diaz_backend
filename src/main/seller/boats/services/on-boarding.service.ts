@@ -31,6 +31,20 @@ export class OnBoardingService {
     data: SellerOnboardingBodyDto,
     files: SellerOnboardingFilesDto,
   ): Promise<TResponse<any>> {
+    //* Validate plan id
+    const plan = await this.prisma.subscriptionPlan.findUnique({
+      where: { id: data.planId },
+    });
+
+    if (!plan) {
+      throw new AppError(
+        HttpStatus.BAD_REQUEST,
+        'Invalid subscription plan ID',
+      );
+    }
+
+    this.logger.log(`Selected subscription plan: ${plan.title} (${plan.id})`);
+
     const parsePipe = new ParseJsonPipe();
 
     const boatInfo = parsePipe.transform(data.boatInfo);
@@ -68,6 +82,25 @@ export class OnBoardingService {
       },
     });
 
+    const {
+      lengthFeet,
+      lengthInches,
+      beamFeet,
+      beamInches,
+      draftFeet,
+      draftInches,
+    } = boatInfo.boatDimensions;
+
+    const decimalLength = this.utils.feetAndInchesToDecimal(
+      lengthFeet,
+      lengthInches,
+    );
+    const decimalBeam = this.utils.feetAndInchesToDecimal(beamFeet, beamInches);
+    const decimalDraft = this.utils.feetAndInchesToDecimal(
+      draftFeet,
+      draftInches,
+    );
+
     // * Create listing in the database
     const listing = await this.prisma.boats.create({
       data: {
@@ -81,9 +114,9 @@ export class OnBoardingService {
         class: boatInfo.boatClass,
         material: boatInfo.material,
         condition: boatInfo.condition,
-        length: boatInfo.length,
-        beam: boatInfo.beam,
-        draft: boatInfo.draft,
+        length: decimalLength,
+        beam: decimalBeam,
+        draft: decimalDraft,
         enginesNumber: boatInfo.enginesNumber,
         cabinsNumber: boatInfo.cabinsNumber,
         headsNumber: boatInfo.headsNumber,
@@ -116,6 +149,22 @@ export class OnBoardingService {
       `Created new seller user ${user.id} and boat listing ${listing.id}`,
     );
 
+    // * create Stripe payment intent
+    const paymentIntent = await this.stripe.createPaymentIntent({
+      userId: user.id,
+      email: user.email,
+      name: user.name,
+      planId: plan.id,
+      planTitle: plan.title,
+      priceCents: plan.price * 100, // * convert dollars to cents
+      stripeProductId: plan.stripeProductId,
+      stripePriceId: plan.stripePriceId,
+    });
+
+    this.logger.log(
+      `Created Stripe payment intent ${paymentIntent.id} for user ${user.id} and listing ${listing.id}`,
+    );
+
     if (files.covers && files.covers.length > 0) {
       // * Emit event to process cover image
       await this.eventEmitter.emitAsync(
@@ -140,6 +189,13 @@ export class OnBoardingService {
       );
     }
 
-    return successResponse(listing, 'Onboarding completed successfully');
+    return successResponse(
+      {
+        paymentIntentId: paymentIntent.id,
+        paymentIntentClientSecret: paymentIntent.client_secret,
+        listingPreview: listing,
+      },
+      'Onboarding completed successfully',
+    );
   }
 }

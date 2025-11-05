@@ -1,6 +1,6 @@
 import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
 import { Type } from 'class-transformer';
-import { ValidateNested } from 'class-validator';
+import { IsUUID, ValidateNested } from 'class-validator';
 import { BoatsInfoOnBoardingDto } from './boats-info.dto';
 import { SellerInfoOnBoardingDto } from './seller-info.dto';
 
@@ -32,9 +32,32 @@ export class SellerOnBoardingDto {
   @ValidateNested()
   @Type(() => SellerInfoOnBoardingDto)
   sellerInfo: SellerInfoOnBoardingDto;
+
+  @ApiProperty({
+    description: 'Subscription Plan Id',
+    example: '550e8400-e29b-41d4-a716-446655440000',
+  })
+  @IsUUID()
+  planId: string;
+}
+
+export class SellerOnboardingPlanDto {
+  @ApiProperty({
+    description: 'Subscription Plan Id',
+    example: '550e8400-e29b-41d4-a716-446655440000',
+  })
+  @IsUUID()
+  planId: string;
 }
 
 export class SellerOnboardingBodyDto {
+  @ApiProperty({
+    description: 'Subscription Plan Id',
+    example: '550e8400-e29b-41d4-a716-446655440000',
+  })
+  @IsUUID()
+  planId: string;
+
   @ApiProperty({ type: BoatsInfoOnBoardingDto })
   @ValidateNested()
   @Type(() => BoatsInfoOnBoardingDto)
