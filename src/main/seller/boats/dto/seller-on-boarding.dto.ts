@@ -223,7 +223,25 @@ export class SellerInfoOnBoardingDto {
 }
 
 export class SellerOnBoardingDto {
-  @ApiPropertyOptional({ type: BoatsInfoOnBoardingDto })
+  @ApiPropertyOptional({
+    type: 'string',
+    format: 'binary',
+    description:
+      'Cover Images to upload (multipart file). Use this field when uploading files.',
+    isArray: true,
+  })
+  covers?: Express.Multer.File[];
+
+  @ApiPropertyOptional({
+    type: 'string',
+    format: 'binary',
+    description:
+      'Gallery Images to upload (multipart file). Use this field when uploading files.',
+    isArray: true,
+  })
+  galleries?: Express.Multer.File[];
+
+  @ApiProperty({ type: BoatsInfoOnBoardingDto })
   @ValidateNested()
   @Type(() => BoatsInfoOnBoardingDto)
   boatInfo: BoatsInfoOnBoardingDto;

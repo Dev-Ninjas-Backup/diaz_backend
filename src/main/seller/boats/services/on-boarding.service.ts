@@ -24,8 +24,8 @@ export class OnBoardingService {
     data: SellerOnBoardingDto,
     files: SellerOnboardingFilesDto,
   ): Promise<TResponse<any>> {
-    this.logger.log('Completing onboarding with data: ' + JSON.stringify(data));
-    this.logger.log('Received files: ' + JSON.stringify(files));
+    // this.logger.log('Completing onboarding with data: ' + JSON.stringify(data));
+    // this.logger.log('Received files: ' + JSON.stringify(files));
     // Implement onboarding logic here
     return successResponse(null, 'Onboarding completed successfully');
   }

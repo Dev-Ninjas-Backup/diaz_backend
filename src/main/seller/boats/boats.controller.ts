@@ -1,5 +1,4 @@
 import { Public, ValidateAuth } from '@/common/jwt/jwt.decorator';
-import { TResponse } from '@/common/utils/response.util';
 import {
   Body,
   Controller,
@@ -16,10 +15,7 @@ import {
   ApiTags,
 } from '@nestjs/swagger';
 import * as multer from 'multer';
-import {
-  SellerOnBoardingDto,
-  SellerOnboardingFilesDto,
-} from './dto/seller-on-boarding.dto';
+import { SellerOnBoardingDto } from './dto/seller-on-boarding.dto';
 import { OnBoardingService } from './services/on-boarding.service';
 
 @ApiBearerAuth()
@@ -52,8 +48,11 @@ export class BoatsController {
   async completeOnBoarding(
     @Body() data: SellerOnBoardingDto,
     @UploadedFiles()
-    files: SellerOnboardingFilesDto,
-  ): Promise<TResponse<any>> {
+    files: {
+      covers?: Express.Multer.File[];
+      galleries?: Express.Multer.File[];
+    },
+  ) {
     return this.onBoardingService.completeOnBoarding(data, files);
   }
 }
