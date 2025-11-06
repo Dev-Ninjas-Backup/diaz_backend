@@ -92,6 +92,7 @@ export class OnBoardingService {
       },
     });
 
+    // * Create listing in the database
     const {
       lengthFeet,
       lengthInches,
@@ -111,7 +112,6 @@ export class OnBoardingService {
       draftInches,
     );
 
-    // * Create listing in the database
     const listing = await this.prisma.boats.create({
       data: {
         name: boatInfo.name,
@@ -176,6 +176,21 @@ export class OnBoardingService {
       `Created Stripe payment intent ${paymentIntent.id} for user ${user.id} and listing ${listing.id}`,
     );
 
+    // * Create a pending subscription record in the database
+    const subscription = await this.prisma.userSubscription.create({
+      data: {
+        user: { connect: { id: user.id } },
+        plan: { connect: { id: plan.id } },
+        stripeTransactionId: paymentIntent.id,
+        status: 'PENDING',
+      },
+    });
+
+    this.logger.log(
+      `Created pending subscription record for user ${user.id} with plan ${plan.id} and subscription ID ${subscription.id}`,
+    );
+
+    // * Emit event to process uploaded images
     if (files && files.length > 0) {
       const payload: ListingImageProcessPayload = {
         userId: user.id,

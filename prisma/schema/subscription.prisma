@@ -46,6 +46,7 @@ model UserSubscription {
   plan   SubscriptionPlan @relation(fields: [planId], references: [id], onDelete: Cascade)
 
   stripeTransactionId String @unique
+  stripeSubscriptionId String @unique
 
   status SubscriptionStatus @default(PENDING) // System-managed via Stripe webhooks
 
@@ -77,6 +78,7 @@ enum SubscriptionStatus {
   PENDING // Payment/checkout started but not completed
   INCOMPLETE // Checkout incomplete or failed (Stripe-specific)
   INCOMPLETE_EXPIRED // Checkout incomplete and expired
+  FAILED // Payment failed and subscription is no longer active
 }
 
 /// Promo codes table

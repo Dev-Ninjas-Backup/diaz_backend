@@ -34,6 +34,8 @@ model Boats {
   // * Extra details
   extraDetails Json? // Stores array of { key, value }
 
+  status BoatListingStatus @default(ACTIVE)
+
   createdAt DateTime @default(now())
   updatedAt DateTime @default(now()) @updatedAt
 
@@ -41,6 +43,15 @@ model Boats {
   images  BoatImage[]
 
   @@map("boats")
+}
+
+enum BoatListingStatus {
+  ONBOARDING_PENDING
+  DRAFT
+  PENDING
+  ACTIVE
+  INACTIVE
+  SOLD
 }
 
 model BoatEngine {
