@@ -3,7 +3,7 @@ import { Injectable, Logger } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { PlanType } from '@prisma/client';
 import Stripe from 'stripe';
-import { StripePaymentMetadata } from './stripe.types';
+import { PaymentMetadata } from './stripe.types';
 
 @Injectable()
 export class StripeService {
@@ -138,7 +138,7 @@ export class StripeService {
     return pi;
   }
 
-  async createPaymentIntent(metadata: StripePaymentMetadata) {
+  async createPaymentIntent(metadata: PaymentMetadata) {
     const userId = metadata.userId;
 
     const customer = await this.stripe.customers.list({

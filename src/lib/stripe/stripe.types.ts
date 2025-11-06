@@ -1,4 +1,5 @@
-export type StripePaymentMetadata = {
+export type PaymentMetadata = {
+  type: 'subscription' | 'onboarding_subscription';
   userId: string;
   email: string;
   name: string;

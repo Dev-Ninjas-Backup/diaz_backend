@@ -45,6 +45,21 @@ export class OnBoardingService {
 
     this.logger.log(`Selected subscription plan: ${plan.title} (${plan.id})`);
 
+    // * Validated total files number based on plan limit
+    const totalFiles =
+      (files.covers ? files.covers.length : 0) +
+      (files.galleries ? files.galleries.length : 0);
+    if (totalFiles > plan.picLimit) {
+      throw new AppError(
+        HttpStatus.BAD_REQUEST,
+        `You have exceeded the image upload limit for the selected plan (${plan.picLimit} images allowed)`,
+      );
+    }
+
+    this.logger.log(
+      `Total uploaded images: ${totalFiles} (Plan limit: ${plan.picLimit})`,
+    );
+
     const parsePipe = new ParseJsonPipe();
 
     const boatInfo = parsePipe.transform(data.boatInfo);
@@ -151,6 +166,7 @@ export class OnBoardingService {
 
     // * create Stripe payment intent
     const paymentIntent = await this.stripe.createPaymentIntent({
+      type: 'onboarding_subscription', // * onboarding subscription
       userId: user.id,
       email: user.email,
       name: user.name,
