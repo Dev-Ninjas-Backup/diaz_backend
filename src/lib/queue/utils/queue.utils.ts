@@ -20,7 +20,7 @@ export async function enqueueJobHelper(
       jobId,
     });
 
-    logger?.log?.(`✅ Successfully enqueued ${event} for key: ${uniqueKey}`);
+    logger?.log?.(`Successfully enqueued ${event} for key: ${uniqueKey}`);
   } catch (error) {
     logger?.error?.(
       `❌ Failed to enqueue ${event} for key: ${uniqueKey}`,
