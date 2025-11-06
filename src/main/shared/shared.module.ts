@@ -1,8 +1,9 @@
 import { Module } from '@nestjs/common';
 import { AuthModule } from './auth/auth.module';
 import { SubscriptionModule } from './subscription/subscription.module';
-
 @Module({
   imports: [SubscriptionModule, AuthModule],
+  controllers: [],
+  providers: [],
 })
 export class SharedModule {}
