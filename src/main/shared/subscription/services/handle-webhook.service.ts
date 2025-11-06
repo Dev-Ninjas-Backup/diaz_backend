@@ -62,68 +62,58 @@ export class HandleWebhookService {
     const metadata = paymentIntent.metadata as unknown as PaymentMetadata;
     const customerId = paymentIntent.customer as string;
 
-    // 1. Find subscription by transaction ID
     const subscription = await this.prisma.userSubscription.findUnique({
       where: { stripeTransactionId: transactionId },
-      include: {
-        user: true,
-        plan: true,
-      },
+      include: { user: true, plan: true },
     });
 
     if (!subscription) {
       this.logger.error(
-        `Subscription not found for paymentIntent ${transactionId}`,
+        `No subscription found for paymentIntent ${transactionId}`,
       );
       return;
     }
 
-    // 2. Idempotent check
     if (subscription.status === 'ACTIVE') {
       this.logger.log(`Subscription ${subscription.id} already active`);
       return;
     }
 
-    this.logger.log(
-      `Payment succeeded for subscription ${subscription.id} | metadata: ${JSON.stringify(metadata)}`,
-    );
+    this.logger.log(`Payment succeeded for subscription ${subscription.id}`);
 
     try {
+      const now = new Date();
+      const planEnd = this.utils.addMonthsToDate(
+        now,
+        subscription.plan.billingPeriodMonths,
+      );
+
       await this.prisma.$transaction([
-        // Update subscription
         this.prisma.userSubscription.update({
           where: { id: subscription.id },
           data: {
             status: 'ACTIVE',
-            paidAt: new Date(),
-            planStartedAt: new Date(),
-            planEndedAt: this.utils.addMonthsToDate(
-              new Date(),
-              subscription.plan.billingPeriodMonths,
-            ),
+            paidAt: now,
+            planStartedAt: now,
+            planEndedAt: planEnd,
           },
         }),
-
-        // Update user info
         this.prisma.user.update({
           where: { id: subscription.userId },
           data: {
-            currentPlan: {
-              connect: { id: subscription.planId },
-            },
+            currentPlan: { connect: { id: subscription.planId } },
             currentPlanStatus: 'ACTIVE',
             stripeCustomerId: customerId,
           },
         }),
       ]);
 
-      // 3. If this was part of onboarding — optionally create a Stripe Subscription for recurring billing
+      // Handle onboarding case
       if (metadata.type === 'onboarding_subscription') {
         this.logger.log(
-          `Onboarding paymentIntent succeeded for user ${subscription.userId}`,
+          `Handling onboarding payment for user ${subscription.userId}`,
         );
 
-        // create real Stripe subscription for future recurring payments
         try {
           const stripeSub = await this.stripeService.createSubscription({
             customerId,
@@ -131,28 +121,32 @@ export class HandleWebhookService {
             metadata,
           });
 
-          this.logger.log(`Created Stripe subscription ${stripeSub.id}`);
-
-          // Save to DB
           await this.prisma.userSubscription.update({
             where: { id: subscription.id },
             data: {
               stripeSubscriptionId: stripeSub.id,
               status: 'ACTIVE',
-              paidAt: new Date(),
+              paidAt: now,
             },
           });
-        } catch (stripeErr) {
-          this.logger.error(
-            `Failed to create Stripe subscription for user ${subscription.userId}`,
-            stripeErr,
+
+          await this.prisma.boats.updateMany({
+            where: {
+              userId: subscription.userId,
+              status: 'ONBOARDING_PENDING',
+            },
+            data: { status: 'ACTIVE' },
+          });
+
+          this.logger.log(
+            `Created recurring Stripe subscription ${stripeSub.id}`,
           );
+        } catch (stripeErr) {
+          this.logger.error(`Stripe subscription creation failed`, stripeErr);
         }
       }
 
-      this.logger.log(
-        `Payment succeeded and updated DB for subscription ${subscription.id}`,
-      );
+      this.logger.log(`Subscription ${subscription.id} activated successfully`);
     } catch (err) {
       this.logger.error(
         `Failed to update subscription ${subscription.id}`,
