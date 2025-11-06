@@ -1,9 +1,16 @@
+import { QueueEventsEnum } from '@/common/enum/queue-events.enum';
 import { QueueName } from '@/common/enum/queue-name.enum';
 import { PrismaService } from '@/lib/prisma/prisma.service';
+import { S3Service } from '@/lib/s3/s3.service';
 import { OnWorkerEvent, Processor, WorkerHost } from '@nestjs/bullmq';
 import { Logger } from '@nestjs/common';
+import { BoatImageType } from '@prisma/client';
 import { Job } from 'bullmq';
-import { ListingImageProcessPayload } from '../interface/image-process.payload';
+import {
+  ListingImageProcessPayload,
+  QueueFile,
+} from '../interface/image-process.payload';
+import { NotificationPayload } from '../interface/queue.payload';
 import { QueueGateway } from '../queue.gateway';
 
 @Processor(QueueName.IMAGE_PROCESSING, { concurrency: 5 })
@@ -13,26 +20,95 @@ export class ImageProcessingService extends WorkerHost {
   constructor(
     private readonly gateway: QueueGateway,
     private readonly prisma: PrismaService,
+    private readonly s3: S3Service,
   ) {
     super();
   }
 
   async process(job: Job<ListingImageProcessPayload>): Promise<void> {
     const payload = job.data;
-    this.logger.log(`Processing job for Listing ${payload.listingId}`);
+    const listingId = payload.listingId;
+
+    this.logger.log(
+      `Start processing job ${job.id} for listing ${listingId}, total files=${payload.files?.length}`,
+    );
+
+    const files: QueueFile[] = payload.files;
+
+    if (!files || files.length === 0) {
+      const msg = `Job ${job.id} contains no files to process for listing ${listingId}`;
+      this.logger.warn(msg);
+      throw new Error(msg);
+    }
 
     try {
-      this.logger.log(`Job ${job.id} processed successfully.`);
+      for (let i = 0; i < files.length; i++) {
+        const file = files[i];
+        const imageType =
+          file.type === 'COVER' ? BoatImageType.COVER : BoatImageType.GALLERY;
+
+        this.logger.log(
+          `Uploading file ${i + 1} of ${files.length} (${file.type}) for job ${job.id}, listing ${listingId}`,
+        );
+
+        let uploadResult;
+        try {
+          uploadResult = await this.s3.uploadFileByPath(file.path);
+        } catch (error) {
+          this.logger.error(
+            `Failed to upload file ${file.originalName} for job ${job.id}, listing ${listingId}: ${
+              (error as Error).message
+            }`,
+            (error as Error).stack,
+          );
+          throw error;
+        }
+
+        await this.prisma.boatImage.create({
+          data: {
+            boatId: listingId,
+            imageType,
+            fileId: uploadResult.id,
+          },
+        });
+
+        this.logger.log(
+          `Successfully processed file ${file.originalName} (${file.type}) for job ${job.id}, listing ${listingId}`,
+        );
+      }
+
+      this.logger.log(
+        `Completed processing job ${job.id} for listing ${listingId}`,
+      );
+
+      const notificationPayload: NotificationPayload = {
+        title: 'Image Processing',
+        message: 'All images processed successfully',
+        createdAt: new Date(),
+        type: QueueEventsEnum.NOTIFICATION,
+        meta: {
+          performedBy: payload.userId,
+          recordId: listingId,
+          recordType: 'Boats',
+        },
+      };
+
+      // Notify via WebSocket
+      this.gateway.notifySingleUser(
+        payload.userId,
+        QueueEventsEnum.NOTIFICATION,
+        notificationPayload,
+      );
     } catch (err) {
       this.logger.error(
-        `Failed to process job ${job.id}: ${err?.message}`,
-        err?.stack,
+        `Failed to process job ${job.id} for listing ${listingId}: ${(err as Error).message}`,
+        (err as Error).stack,
       );
-      throw err; // let BullMQ retry/backoff handle it
+      // rethrow so BullMQ handles retry/backoff according to your queue config
+      throw err;
     }
   }
 
-  // Optional job lifecycle events
   @OnWorkerEvent('completed')
   onCompleted(job: Job) {
     this.logger.log(`Job ${job.id} completed`);

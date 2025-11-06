@@ -4,16 +4,14 @@ import { HandleError } from '@/common/error/handle-error.decorator';
 import { ParseJsonPipe } from '@/common/pipe/parse-json.pipe';
 import { successResponse, TResponse } from '@/common/utils/response.util';
 import { PrismaService } from '@/lib/prisma/prisma.service';
+import { ListingImageProcessPayload } from '@/lib/queue/interface/image-process.payload';
 import { StripeService } from '@/lib/stripe/stripe.service';
 import { UtilsService } from '@/lib/utils/utils.service';
 import { HttpStatus, Injectable, Logger } from '@nestjs/common';
 import { EventEmitter2 } from '@nestjs/event-emitter';
 import { BoatImageType } from '@prisma/client';
 import { BoatEngineDto } from '../dto/boats.dto';
-import {
-  SellerOnboardingBodyDto,
-  SellerOnboardingFilesDto,
-} from '../dto/seller-on-boarding.dto';
+import { SellerOnboardingBodyDto } from '../dto/seller-on-boarding.dto';
 
 @Injectable()
 export class OnBoardingService {
@@ -29,7 +27,7 @@ export class OnBoardingService {
   @HandleError('Failed to complete onboarding', 'Boats')
   async completeOnBoarding(
     data: SellerOnboardingBodyDto,
-    files: SellerOnboardingFilesDto,
+    files: { path: string; type: BoatImageType; originalName: string }[],
   ): Promise<TResponse<any>> {
     //* Validate plan id
     const plan = await this.prisma.subscriptionPlan.findUnique({
@@ -46,10 +44,7 @@ export class OnBoardingService {
     this.logger.log(`Selected subscription plan: ${plan.title} (${plan.id})`);
 
     // * Validated total files number based on plan limit
-    const totalFiles =
-      (files.covers ? files.covers.length : 0) +
-      (files.galleries ? files.galleries.length : 0);
-    if (totalFiles > plan.picLimit) {
+    if (files.length > plan.picLimit) {
       throw new AppError(
         HttpStatus.BAD_REQUEST,
         `You have exceeded the image upload limit for the selected plan (${plan.picLimit} images allowed)`,
@@ -57,7 +52,7 @@ export class OnBoardingService {
     }
 
     this.logger.log(
-      `Total uploaded images: ${totalFiles} (Plan limit: ${plan.picLimit})`,
+      `Total uploaded images: ${files.length} (Plan limit: ${plan.picLimit})`,
     );
 
     const parsePipe = new ParseJsonPipe();
@@ -97,6 +92,7 @@ export class OnBoardingService {
       },
     });
 
+    // * Create listing in the database
     const {
       lengthFeet,
       lengthInches,
@@ -116,7 +112,6 @@ export class OnBoardingService {
       draftInches,
     );
 
-    // * Create listing in the database
     const listing = await this.prisma.boats.create({
       data: {
         name: boatInfo.name,
@@ -181,27 +176,32 @@ export class OnBoardingService {
       `Created Stripe payment intent ${paymentIntent.id} for user ${user.id} and listing ${listing.id}`,
     );
 
-    if (files.covers && files.covers.length > 0) {
+    // * Create a pending subscription record in the database
+    const subscription = await this.prisma.userSubscription.create({
+      data: {
+        user: { connect: { id: user.id } },
+        plan: { connect: { id: plan.id } },
+        stripeTransactionId: paymentIntent.id,
+        status: 'PENDING',
+      },
+    });
+
+    this.logger.log(
+      `Created pending subscription record for user ${user.id} with plan ${plan.id} and subscription ID ${subscription.id}`,
+    );
+
+    // * Emit event to process uploaded images
+    if (files && files.length > 0) {
+      const payload: ListingImageProcessPayload = {
+        userId: user.id,
+        listingId: listing.id,
+        files: files,
+      };
+
       // * Emit event to process cover image
       await this.eventEmitter.emitAsync(
         QueueEventsEnum.COVER_IMAGE_PROCESSING,
-        {
-          listingId: listing.id,
-          imageType: BoatImageType.COVER,
-          imageFile: files.covers,
-        },
-      );
-    }
-
-    if (files.galleries && files.galleries.length > 0) {
-      // * Emit event to process gallery images
-      await this.eventEmitter.emitAsync(
-        QueueEventsEnum.GALLERY_IMAGE_PROCESSING,
-        {
-          listingId: listing.id,
-          imageType: BoatImageType.GALLERY,
-          imageFiles: files.galleries,
-        },
+        payload,
       );
     }
 
