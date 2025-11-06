@@ -3,6 +3,7 @@ import { Injectable, Logger } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { PlanType } from '@prisma/client';
 import Stripe from 'stripe';
+import { PaymentMetadata } from './stripe.types';
 
 @Injectable()
 export class StripeService {
@@ -71,6 +72,32 @@ export class StripeService {
     return prices.data[0] ?? null;
   }
 
+  // Customer Management
+  async createCustomer({
+    email,
+    name,
+    userId,
+  }: {
+    email: string;
+    name: string;
+    userId: string;
+  }) {
+    const customer = await this.stripe.customers.create({
+      email,
+      name,
+      metadata: {
+        userId,
+        email,
+        name,
+        createdAt: new Date().toISOString(),
+      },
+    });
+
+    this.logger.log(`Created Stripe customer ${customer.id} for ${email}`);
+
+    return customer;
+  }
+
   // Coupons management
   async createStripeCoupon(
     discount: number,
@@ -102,6 +129,56 @@ export class StripeService {
       );
       return null;
     }
+  }
+
+  // Payment Intent Management
+  async retrievePaymentIntent(paymentIntentId: string) {
+    const pi = await this.stripe.paymentIntents.retrieve(paymentIntentId);
+    this.logger.log(`Retrieved PaymentIntent ${paymentIntentId}`);
+    return pi;
+  }
+
+  async createPaymentIntent(metadata: PaymentMetadata) {
+    const userId = metadata.userId;
+
+    const customer = await this.stripe.customers.list({
+      email: metadata.email,
+    });
+
+    let customerId: string;
+
+    if (customer.data.length > 0) {
+      customerId = customer.data[0].id;
+      this.logger.log(
+        `Found existing Stripe customer ${customerId} for user ${userId}`,
+      );
+    } else {
+      const newCustomer = await this.createCustomer({
+        email: metadata.email,
+        name: metadata.name,
+        userId,
+      });
+      customerId = newCustomer.id;
+    }
+
+    const intent = await this.stripe.paymentIntents.create(
+      {
+        amount: metadata.priceCents,
+        currency: 'usd',
+        customer: customerId,
+        receipt_email: metadata.email,
+        automatic_payment_methods: {
+          enabled: true,
+        },
+        metadata,
+      },
+      {
+        idempotencyKey: `pi_${metadata.userId}_${metadata.planId}`,
+      },
+    );
+
+    this.logger.log(`Created payment intent ${intent.id}`);
+    return intent;
   }
 
   // Webhook Utility
