@@ -4,6 +4,7 @@ import { HandleError } from '@/common/error/handle-error.decorator';
 import { ParseJsonPipe } from '@/common/pipe/parse-json.pipe';
 import { successResponse, TResponse } from '@/common/utils/response.util';
 import { PrismaService } from '@/lib/prisma/prisma.service';
+import { ListingImageProcessPayload } from '@/lib/queue/interface/image-process.payload';
 import { StripeService } from '@/lib/stripe/stripe.service';
 import { UtilsService } from '@/lib/utils/utils.service';
 import { HttpStatus, Injectable, Logger } from '@nestjs/common';
@@ -182,26 +183,32 @@ export class OnBoardingService {
     );
 
     if (files.covers && files.covers.length > 0) {
+      const payload: ListingImageProcessPayload = {
+        userId: user.id,
+        listingId: listing.id,
+        imageType: BoatImageType.COVER,
+        imageFiles: files.covers,
+      };
+
       // * Emit event to process cover image
       await this.eventEmitter.emitAsync(
         QueueEventsEnum.COVER_IMAGE_PROCESSING,
-        {
-          listingId: listing.id,
-          imageType: BoatImageType.COVER,
-          imageFile: files.covers,
-        },
+        payload,
       );
     }
 
     if (files.galleries && files.galleries.length > 0) {
+      const payload: ListingImageProcessPayload = {
+        userId: user.id,
+        listingId: listing.id,
+        imageType: BoatImageType.GALLERY,
+        imageFiles: files.galleries,
+      };
+
       // * Emit event to process gallery images
       await this.eventEmitter.emitAsync(
         QueueEventsEnum.GALLERY_IMAGE_PROCESSING,
-        {
-          listingId: listing.id,
-          imageType: BoatImageType.GALLERY,
-          imageFiles: files.galleries,
-        },
+        payload,
       );
     }
 
