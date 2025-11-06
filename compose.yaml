@@ -30,7 +30,7 @@ services:
       NODE_ENV: production
       DATABASE_URL: postgresql://postgres:postgres@db:5432/${PACKAGE_NAME}_db
 
-      REDIS_HOST: redis
+      REDIS_HOST: redis-master
       REDIS_PORT: 6379
 
       BASE_URL: http://0.0.0.0:5051/api
