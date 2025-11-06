@@ -1,7 +1,8 @@
 import { UserResponseDto } from '@/common/dto/user-response.dto';
 import { ENVEnum } from '@/common/enum/env.enum';
+import { AppError } from '@/common/error/handle-error.app';
 import { JWTPayload } from '@/common/jwt/jwt.interface';
-import { Injectable } from '@nestjs/common';
+import { HttpStatus, Injectable } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { JwtService } from '@nestjs/jwt';
 import * as bcrypt from 'bcrypt';
@@ -114,5 +115,18 @@ export class UtilsService {
     }
 
     return username;
+  }
+
+  formatFeet(feetDecimal: number) {
+    const feet = Math.floor(feetDecimal);
+    const inches = Math.round((feetDecimal - feet) * 12);
+    return `${feet}'${inches}"`;
+  }
+
+  feetAndInchesToDecimal(feet: number, inches: number): number {
+    if (feet < 0 || inches < 0 || inches >= 12) {
+      throw new AppError(HttpStatus.BAD_REQUEST, 'Invalid feet/inches values');
+    }
+    return feet + inches / 12;
   }
 }
