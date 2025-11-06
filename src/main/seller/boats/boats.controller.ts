@@ -2,7 +2,6 @@ import { FileType, MulterService } from '@/lib/multer/multer.service';
 import {
   Body,
   Controller,
-  Get,
   Post,
   UploadedFiles,
   UseInterceptors,
@@ -26,12 +25,6 @@ export class BoatsController {
     private readonly onBoardingService: OnBoardingService,
     private readonly boatsService: BoatsService,
   ) {}
-
-  @ApiOperation({ summary: 'Get all boat subscription plans' })
-  @Get('plans')
-  async getAllPlans() {
-    return this.boatsService.getAllPlans();
-  }
 
   @ApiOperation({
     summary:

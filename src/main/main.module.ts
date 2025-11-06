@@ -4,7 +4,7 @@ import { AuthModule } from './auth/auth.module';
 import { SellerModule } from './seller/seller.module';
 import { SharedModule } from './shared/shared.module';
 @Module({
-  imports: [AuthModule, AdminModule, SellerModule, SharedModule],
+  imports: [AuthModule, SharedModule, AdminModule, SellerModule],
   controllers: [],
   providers: [],
 })
