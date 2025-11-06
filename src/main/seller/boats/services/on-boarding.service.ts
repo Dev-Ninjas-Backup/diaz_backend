@@ -11,10 +11,7 @@ import { HttpStatus, Injectable, Logger } from '@nestjs/common';
 import { EventEmitter2 } from '@nestjs/event-emitter';
 import { BoatImageType } from '@prisma/client';
 import { BoatEngineDto } from '../dto/boats.dto';
-import {
-  SellerOnboardingBodyDto,
-  SellerOnboardingFilesDto,
-} from '../dto/seller-on-boarding.dto';
+import { SellerOnboardingBodyDto } from '../dto/seller-on-boarding.dto';
 
 @Injectable()
 export class OnBoardingService {
@@ -30,7 +27,7 @@ export class OnBoardingService {
   @HandleError('Failed to complete onboarding', 'Boats')
   async completeOnBoarding(
     data: SellerOnboardingBodyDto,
-    files: SellerOnboardingFilesDto,
+    files: { path: string; type: BoatImageType; originalName: string }[],
   ): Promise<TResponse<any>> {
     //* Validate plan id
     const plan = await this.prisma.subscriptionPlan.findUnique({
@@ -47,10 +44,7 @@ export class OnBoardingService {
     this.logger.log(`Selected subscription plan: ${plan.title} (${plan.id})`);
 
     // * Validated total files number based on plan limit
-    const totalFiles =
-      (files.covers ? files.covers.length : 0) +
-      (files.galleries ? files.galleries.length : 0);
-    if (totalFiles > plan.picLimit) {
+    if (files.length > plan.picLimit) {
       throw new AppError(
         HttpStatus.BAD_REQUEST,
         `You have exceeded the image upload limit for the selected plan (${plan.picLimit} images allowed)`,
@@ -58,7 +52,7 @@ export class OnBoardingService {
     }
 
     this.logger.log(
-      `Total uploaded images: ${totalFiles} (Plan limit: ${plan.picLimit})`,
+      `Total uploaded images: ${files.length} (Plan limit: ${plan.picLimit})`,
     );
 
     const parsePipe = new ParseJsonPipe();
@@ -182,32 +176,16 @@ export class OnBoardingService {
       `Created Stripe payment intent ${paymentIntent.id} for user ${user.id} and listing ${listing.id}`,
     );
 
-    if (files.covers && files.covers.length > 0) {
+    if (files && files.length > 0) {
       const payload: ListingImageProcessPayload = {
         userId: user.id,
         listingId: listing.id,
-        imageType: BoatImageType.COVER,
-        imageFiles: files.covers,
+        files: files,
       };
 
       // * Emit event to process cover image
       await this.eventEmitter.emitAsync(
         QueueEventsEnum.COVER_IMAGE_PROCESSING,
-        payload,
-      );
-    }
-
-    if (files.galleries && files.galleries.length > 0) {
-      const payload: ListingImageProcessPayload = {
-        userId: user.id,
-        listingId: listing.id,
-        imageType: BoatImageType.GALLERY,
-        imageFiles: files.galleries,
-      };
-
-      // * Emit event to process gallery images
-      await this.eventEmitter.emitAsync(
-        QueueEventsEnum.GALLERY_IMAGE_PROCESSING,
         payload,
       );
     }

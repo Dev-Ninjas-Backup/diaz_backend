@@ -6,7 +6,10 @@ import { OnWorkerEvent, Processor, WorkerHost } from '@nestjs/bullmq';
 import { Logger } from '@nestjs/common';
 import { BoatImageType } from '@prisma/client';
 import { Job } from 'bullmq';
-import { ListingImageProcessPayload } from '../interface/image-process.payload';
+import {
+  ListingImageProcessPayload,
+  QueueFile,
+} from '../interface/image-process.payload';
 import { NotificationPayload } from '../interface/queue.payload';
 import { QueueGateway } from '../queue.gateway';
 
@@ -25,36 +28,35 @@ export class ImageProcessingService extends WorkerHost {
   async process(job: Job<ListingImageProcessPayload>): Promise<void> {
     const payload = job.data;
     const listingId = payload.listingId;
-    const imageType = payload.imageType as BoatImageType;
 
     this.logger.log(
-      `Start processing job ${job.id} for listing ${listingId}, type=${imageType}`,
+      `Start processing job ${job.id} for listing ${listingId}, total files=${payload.files?.length}`,
     );
 
-    const files = payload.imageFiles;
+    const files: QueueFile[] = payload.files;
 
     if (!files || files.length === 0) {
       const msg = `Job ${job.id} contains no files to process for listing ${listingId}`;
       this.logger.warn(msg);
-      // Throw so BullMQ marks failed and any retry/backoff can occur
       throw new Error(msg);
     }
 
     try {
       for (let i = 0; i < files.length; i++) {
         const file = files[i];
+        const imageType =
+          file.type === 'COVER' ? BoatImageType.COVER : BoatImageType.GALLERY;
+
         this.logger.log(
-          `Uploading file ${i + 1} of ${files.length} for job ${job.id}, listing ${listingId}`,
+          `Uploading file ${i + 1} of ${files.length} (${file.type}) for job ${job.id}, listing ${listingId}`,
         );
 
         let uploadResult;
-
-        // Upload to S3
         try {
-          uploadResult = await this.s3.uploadFile(file);
+          uploadResult = await this.s3.uploadFileByPath(file.path);
         } catch (error) {
           this.logger.error(
-            `Failed to upload file ${i + 1} of ${files.length} for job ${job.id}, listing ${listingId}: ${
+            `Failed to upload file ${file.originalName} for job ${job.id}, listing ${listingId}: ${
               (error as Error).message
             }`,
             (error as Error).stack,
@@ -62,26 +64,26 @@ export class ImageProcessingService extends WorkerHost {
           throw error;
         }
 
-        // Save file record in DB
         await this.prisma.boatImage.create({
           data: {
             boatId: listingId,
-            imageType: imageType,
+            imageType,
             fileId: uploadResult.id,
           },
         });
 
         this.logger.log(
-          `Successfully processed file ${i + 1} of ${files.length} for job ${job.id}, listing ${listingId}`,
+          `Successfully processed file ${file.originalName} (${file.type}) for job ${job.id}, listing ${listingId}`,
         );
       }
+
       this.logger.log(
         `Completed processing job ${job.id} for listing ${listingId}`,
       );
 
       const notificationPayload: NotificationPayload = {
         title: 'Image Processing',
-        message: 'Image processing completed successfully',
+        message: 'All images processed successfully',
         createdAt: new Date(),
         type: QueueEventsEnum.NOTIFICATION,
         meta: {

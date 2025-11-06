@@ -52,6 +52,7 @@ services:
       "
     volumes:
       - files-data:/app/uploads
+      - temp-data:/app/tmp
     healthcheck:
       test: ['CMD', 'curl', '-f', 'http://0.0.0.0:5051/api/health']
       interval: 30s
@@ -122,6 +123,7 @@ services:
 volumes:
   db_data:
   files-data:
+  temp-data:
   caddy_data:
   caddy_config:
 

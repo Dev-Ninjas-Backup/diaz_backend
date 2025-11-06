@@ -1,4 +1,4 @@
-import { Public } from '@/common/jwt/jwt.decorator';
+import { FileType, MulterService } from '@/lib/multer/multer.service';
 import {
   Body,
   Controller,
@@ -9,7 +9,7 @@ import {
 } from '@nestjs/common';
 import { FileFieldsInterceptor } from '@nestjs/platform-express';
 import { ApiBody, ApiConsumes, ApiOperation, ApiTags } from '@nestjs/swagger';
-import * as multer from 'multer';
+import { BoatImageType } from '@prisma/client';
 import { BoatsInfoOnBoardingDto } from './dto/boats-info.dto';
 import { SellerInfoOnBoardingDto } from './dto/seller-info.dto';
 import {
@@ -19,8 +19,6 @@ import {
 import { BoatsService } from './services/boats.service';
 import { OnBoardingService } from './services/on-boarding.service';
 
-// @ApiBearerAuth()
-// @ValidateAuth()
 @ApiTags('Seller -- Boats')
 @Controller('boats')
 export class BoatsController {
@@ -47,13 +45,14 @@ export class BoatsController {
         { name: 'covers', maxCount: 5 },
         { name: 'galleries', maxCount: 70 },
       ],
-      {
-        storage: multer.memoryStorage(),
-        limits: { files: 75 },
-      },
+      new MulterService().createMultipleFileOptions({
+        destinationFolder: './temp',
+        prefix: 'boat_onboarding',
+        fileType: FileType.IMAGE,
+        maxFileCount: 75,
+      }),
     ),
   )
-  @Public()
   @Post('onboarding')
   async completeOnBoarding(
     @Body()
@@ -68,6 +67,18 @@ export class BoatsController {
       galleries?: Express.Multer.File[];
     },
   ) {
-    return this.onBoardingService.completeOnBoarding(data, files);
+    const mappedFiles = [
+      ...(files.covers || []).map((file) => ({
+        path: file.path,
+        type: BoatImageType.COVER,
+        originalName: file.originalname,
+      })),
+      ...(files.galleries || []).map((file) => ({
+        path: file.path,
+        type: BoatImageType.GALLERY,
+        originalName: file.originalname,
+      })),
+    ];
+    return this.onBoardingService.completeOnBoarding(data, mappedFiles);
   }
 }

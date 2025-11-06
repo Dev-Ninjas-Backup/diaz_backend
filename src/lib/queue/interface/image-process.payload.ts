@@ -1,8 +1,13 @@
 import { BoatImageType } from '@prisma/client';
 
+export interface QueueFile {
+  path: string; // temp file path
+  type: BoatImageType; // track which category
+  originalName: string; // original file name
+}
+
 export interface ListingImageProcessPayload {
   userId: string;
   listingId: string;
-  imageType: BoatImageType;
-  imageFiles: Express.Multer.File[];
+  files: QueueFile[];
 }
