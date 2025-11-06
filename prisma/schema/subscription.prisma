@@ -45,8 +45,8 @@ model UserSubscription {
   planId String
   plan   SubscriptionPlan @relation(fields: [planId], references: [id], onDelete: Cascade)
 
-  stripeTransactionId String @unique
-  stripeSubscriptionId String @unique
+  stripeTransactionId String @unique // Stripe payment intent or checkout session id while onboarding
+  stripeSubscriptionId String? @unique
 
   status SubscriptionStatus @default(PENDING) // System-managed via Stripe webhooks
 
