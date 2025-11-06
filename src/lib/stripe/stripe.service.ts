@@ -98,6 +98,32 @@ export class StripeService {
     return customer;
   }
 
+  async retrieveCustomer(customerId: string) {
+    const customer = await this.stripe.customers.retrieve(customerId);
+
+    this.logger.log(`Retrieved Stripe customer ${customer.id}`);
+
+    return customer;
+  }
+
+  async getCustomerByEmail(email: string) {
+    const customers = await this.stripe.customers.list({
+      limit: 1,
+      email,
+    });
+
+    if (customers.data.length === 0) {
+      this.logger.log(`No Stripe customer found for email ${email}`);
+      return null;
+    }
+
+    this.logger.log(
+      `Found Stripe customer ${customers.data[0].id} for email ${email}`,
+    );
+
+    return customers.data[0];
+  }
+
   // Coupons management
   async createStripeCoupon(
     discount: number,
@@ -179,6 +205,52 @@ export class StripeService {
 
     this.logger.log(`Created payment intent ${intent.id}`);
     return intent;
+  }
+
+  // Subscription Management
+  async retrieveSubscription(subscriptionId: string) {
+    const subscription =
+      await this.stripe.subscriptions.retrieve(subscriptionId);
+
+    this.logger.log(`Retrieved Stripe subscription ${subscription.id}`);
+
+    return subscription;
+  }
+
+  async cancelSubscription(subscriptionId: string) {
+    const subscription =
+      await this.stripe.subscriptions.retrieve(subscriptionId);
+
+    await this.stripe.subscriptions.update(subscription.id, {
+      cancel_at_period_end: true,
+    });
+
+    this.logger.log(
+      `Canceled Stripe subscription ${subscription.id} for user ${subscription.metadata.userId}`,
+    );
+  }
+
+  async createSubscription({
+    customerId,
+    priceId,
+    metadata,
+  }: {
+    customerId: string;
+    priceId: string;
+    metadata: PaymentMetadata;
+  }) {
+    const subscription = await this.stripe.subscriptions.create({
+      customer: customerId,
+      items: [{ price: priceId }],
+      metadata,
+      expand: ['latest_invoice.payment_intent'],
+    });
+
+    this.logger.log(
+      `Created Stripe subscription ${subscription.id} for user ${metadata.userId}`,
+    );
+
+    return subscription;
   }
 
   // Webhook Utility

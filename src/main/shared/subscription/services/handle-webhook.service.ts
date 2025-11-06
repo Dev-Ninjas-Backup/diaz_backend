@@ -2,6 +2,8 @@ import { AppError } from '@/common/error/handle-error.app';
 import { HandleError } from '@/common/error/handle-error.decorator';
 import { PrismaService } from '@/lib/prisma/prisma.service';
 import { StripeService } from '@/lib/stripe/stripe.service';
+import { PaymentMetadata } from '@/lib/stripe/stripe.types';
+import { UtilsService } from '@/lib/utils/utils.service';
 import { Injectable, Logger } from '@nestjs/common';
 import Stripe from 'stripe';
 
@@ -12,6 +14,7 @@ export class HandleWebhookService {
   constructor(
     private readonly stripeService: StripeService,
     private readonly prisma: PrismaService,
+    private readonly utils: UtilsService,
   ) {}
 
   @HandleError('Failed to handle Stripe webhook', 'Subscription')
@@ -45,6 +48,8 @@ export class HandleWebhookService {
         );
         break;
 
+      // Handle other event types for future continuous subscription management
+
       default:
         this.logger.log(`Unhandled Stripe event type: ${event.type}`);
     }
@@ -54,9 +59,16 @@ export class HandleWebhookService {
     paymentIntent: Stripe.PaymentIntent,
   ) {
     const transactionId = paymentIntent.id;
+    const metadata = paymentIntent.metadata as unknown as PaymentMetadata;
+    const customerId = paymentIntent.customer as string;
 
+    // 1. Find subscription by transaction ID
     const subscription = await this.prisma.userSubscription.findUnique({
       where: { stripeTransactionId: transactionId },
+      include: {
+        user: true,
+        plan: true,
+      },
     });
 
     if (!subscription) {
@@ -66,32 +78,81 @@ export class HandleWebhookService {
       return;
     }
 
-    // Idempotent check
+    // 2. Idempotent check
     if (subscription.status === 'ACTIVE') {
       this.logger.log(`Subscription ${subscription.id} already active`);
       return;
     }
 
+    this.logger.log(
+      `Payment succeeded for subscription ${subscription.id} | metadata: ${JSON.stringify(metadata)}`,
+    );
+
     try {
       await this.prisma.$transaction([
+        // Update subscription
         this.prisma.userSubscription.update({
           where: { id: subscription.id },
-          data: { status: 'ACTIVE', paidAt: new Date() },
+          data: {
+            status: 'ACTIVE',
+            paidAt: new Date(),
+            planStartedAt: new Date(),
+            planEndedAt: this.utils.addMonthsToDate(
+              new Date(),
+              subscription.plan.billingPeriodMonths,
+            ),
+          },
         }),
+
+        // Update user info
         this.prisma.user.update({
           where: { id: subscription.userId },
           data: {
             currentPlan: {
-              connect: {
-                id: subscription.planId,
-              },
+              connect: { id: subscription.planId },
             },
             currentPlanStatus: 'ACTIVE',
+            stripeCustomerId: customerId,
           },
         }),
       ]);
 
-      this.logger.log(`Payment succeeded for subscription ${subscription.id}`);
+      // 3. If this was part of onboarding — optionally create a Stripe Subscription for recurring billing
+      if (metadata.type === 'onboarding_subscription') {
+        this.logger.log(
+          `Onboarding paymentIntent succeeded for user ${subscription.userId}`,
+        );
+
+        // create real Stripe subscription for future recurring payments
+        try {
+          const stripeSub = await this.stripeService.createSubscription({
+            customerId,
+            priceId: metadata.stripePriceId,
+            metadata,
+          });
+
+          this.logger.log(`Created Stripe subscription ${stripeSub.id}`);
+
+          // Save to DB
+          await this.prisma.userSubscription.update({
+            where: { id: subscription.id },
+            data: {
+              stripeSubscriptionId: stripeSub.id,
+              status: 'ACTIVE',
+              paidAt: new Date(),
+            },
+          });
+        } catch (stripeErr) {
+          this.logger.error(
+            `Failed to create Stripe subscription for user ${subscription.userId}`,
+            stripeErr,
+          );
+        }
+      }
+
+      this.logger.log(
+        `Payment succeeded and updated DB for subscription ${subscription.id}`,
+      );
     } catch (err) {
       this.logger.error(
         `Failed to update subscription ${subscription.id}`,
@@ -118,7 +179,7 @@ export class HandleWebhookService {
     try {
       await this.prisma.userSubscription.update({
         where: { id: subscription.id },
-        data: { status: 'CANCELED', failedAt: new Date() },
+        data: { status: 'FAILED', failedAt: new Date() },
       });
       this.logger.warn(`Payment failed for subscription ${subscription.id}`);
     } catch (err) {
