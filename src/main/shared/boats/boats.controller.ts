@@ -10,6 +10,7 @@ export class BoatsController {
   ) {}
 
   async getAllBoats(@Query() query: any) {
+    console.log(query);
     return this.getBoatsService.getAllBoats();
   }
 }
