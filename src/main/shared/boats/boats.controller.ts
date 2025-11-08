@@ -1,9 +1,10 @@
 import { Controller, Get, Param, Query } from '@nestjs/common';
-import { ApiOperation } from '@nestjs/swagger';
+import { ApiOperation, ApiTags } from '@nestjs/swagger';
 import { BoatsService } from './services/boats.service';
 import { GetBoatsService } from './services/get-boats.service';
 import { GetAllBoatsAIServerDto } from './dto/get-all-boats-ai-server.dto';
 
+@ApiTags('Shared -- Boats')
 @Controller('boats')
 export class BoatsController {
   constructor(
