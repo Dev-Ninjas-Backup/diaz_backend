@@ -1,4 +1,5 @@
-import { Controller, Query } from '@nestjs/common';
+import { Controller, Get, Param, Query } from '@nestjs/common';
+import { ApiOperation } from '@nestjs/swagger';
 import { BoatsService } from './services/boats.service';
 import { GetBoatsService } from './services/get-boats.service';
 
@@ -9,8 +10,15 @@ export class BoatsController {
     private readonly getBoatsService: GetBoatsService,
   ) {}
 
+  @ApiOperation({ summary: 'Get all boats For AI Server' })
+  @Get()
   async getAllBoats(@Query() query: any) {
-    console.log(query);
     return this.getBoatsService.getAllBoats();
+  }
+
+  @ApiOperation({ summary: 'Get single boat details' })
+  @Get(':boatId/details')
+  async getSingleBoatDetails(@Param('boatId') boatId: string) {
+    return this.boatsService.getSingleBoatDetails(boatId);
   }
 }
