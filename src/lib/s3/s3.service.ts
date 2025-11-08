@@ -225,6 +225,9 @@ export class S3Service {
       },
     });
 
+    // Delete file from disk
+    fs.unlinkSync(filePath);
+
     return fileRecord;
   }
 
