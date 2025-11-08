@@ -48,18 +48,6 @@ export class HandleWebhookService {
         );
         break;
 
-      case 'payment_intent.succeeded':
-        await this.handlePaymentIntentSucceeded(
-          event.data.object as Stripe.PaymentIntent,
-        );
-        break;
-
-      case 'payment_intent.payment_failed':
-        await this.handlePaymentIntentFailed(
-          event.data.object as Stripe.PaymentIntent,
-        );
-        break;
-
       case 'customer.subscription.updated':
         await this.handleCustomerSubscriptionUpdated(
           event.data.object as Stripe.Subscription,
@@ -75,13 +63,6 @@ export class HandleWebhookService {
       case 'invoice.paid':
       case 'invoice.payment_succeeded':
         await this.handleInvoicePaid(event.data.object as Stripe.Invoice);
-        break;
-
-      case 'invoice.overdue':
-      case 'invoice.payment_failed':
-        await this.handleInvoicePaymentFailed(
-          event.data.object as Stripe.Invoice,
-        );
         break;
 
       default:
@@ -121,23 +102,7 @@ export class HandleWebhookService {
         paymentMethodId,
       });
 
-      const now = new Date();
-      const planEnd = this.utils.addMonthsToDate(
-        now,
-        subscription.plan.billingPeriodMonths,
-      );
-
       await this.prisma.$transaction([
-        this.prisma.userSubscription.update({
-          where: { id: subscription.id },
-          data: {
-            stripeSubscriptionId: stripeSub.id,
-            status: 'ACTIVE',
-            paidAt: now,
-            planStartedAt: now,
-            planEndedAt: planEnd,
-          },
-        }),
         this.prisma.user.update({
           where: { id: subscription.userId },
           data: {
@@ -156,7 +121,7 @@ export class HandleWebhookService {
       ]);
 
       this.logger.log(
-        `Subscription ${subscription.id} activated successfully via SetupIntent`,
+        `Subscription ${subscription.id} activated successfully via SetupIntent for stripe subscription ${stripeSub.id}`,
       );
     } catch (err) {
       this.logger.error(
@@ -273,23 +238,75 @@ export class HandleWebhookService {
     });
   }
 
-  private async handlePaymentIntentSucceeded(invoice: Stripe.PaymentIntent) {
-    this.logger.log(`payment_intent.succeeded: ${invoice.id}`);
-    this.logger.log(JSON.stringify(invoice, null, 2));
-  }
-
-  private async handlePaymentIntentFailed(invoice: Stripe.PaymentIntent) {
-    this.logger.log(`payment_intent.failed: ${invoice.id}`);
-    this.logger.log(JSON.stringify(invoice, null, 2));
-  }
-
   private async handleInvoicePaid(invoice: Stripe.Invoice) {
-    this.logger.log(`invoice.paid: ${invoice.id}`);
-    this.logger.log(JSON.stringify(invoice, null, 2));
-  }
+    this.logger.log(`invoice.${invoice.status}: ${invoice.id}`);
 
-  private async handleInvoicePaymentFailed(invoice: Stripe.Invoice) {
-    this.logger.log(`invoice.payment_failed: ${invoice.id}`);
-    this.logger.log(JSON.stringify(invoice, null, 2));
+    // Extract subscription info safely
+    const subDetails = invoice.parent?.subscription_details;
+    const subscriptionId = subDetails?.subscription as string | undefined;
+    const metadata = subDetails?.metadata as PaymentMetadata | undefined;
+
+    if (!subscriptionId || !metadata) {
+      this.logger.warn(
+        `Invoice ${invoice.id} has no subscription details — skipping.`,
+      );
+      return;
+    }
+
+    const { userId, planId } = metadata;
+
+    // Fetch local subscription
+    const localSubscription = await this.prisma.userSubscription.findFirst({
+      where: {
+        OR: [
+          { stripeSubscriptionId: subscriptionId },
+          { userId: userId, planId: planId },
+        ],
+      },
+      include: { plan: true },
+    });
+
+    if (!localSubscription) {
+      this.logger.error(
+        `No matching local subscription found for Stripe subscription ${subscriptionId}`,
+      );
+      return;
+    }
+
+    const now = new Date();
+    const planEnd = this.utils.addMonthsToDate(
+      now,
+      localSubscription.plan.billingPeriodMonths || 1,
+    );
+
+    // Run updates in transaction
+    await this.prisma.$transaction([
+      this.prisma.userSubscription.update({
+        where: { id: localSubscription.id },
+        data: {
+          status: 'ACTIVE',
+          paidAt: now,
+          planStartedAt: now,
+          planEndedAt: planEnd,
+          stripeSubscriptionId: subscriptionId,
+        },
+      }),
+
+      this.prisma.invoice.create({
+        data: {
+          stripeInvoiceId: invoice.id,
+          userId: userId,
+          subscriptionId: localSubscription.id,
+          amount: invoice.total,
+          currency: invoice.currency,
+          status: 'PAID',
+          paidAt: now,
+        },
+      }),
+    ]);
+
+    this.logger.log(
+      `Subscription ${localSubscription.id} activated via invoice ${invoice.id} (Stripe subscription ${subscriptionId})`,
+    );
   }
 }
