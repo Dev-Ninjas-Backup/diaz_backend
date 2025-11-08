@@ -29,39 +29,36 @@ export class HandleWebhookService {
       // 2. Process the event
       await this.handleEvent(event);
     } catch (error) {
-      this.logger.error('Webhook signature verification failed', error);
+      this.logger.error('Webhook  failed', error);
       throw new AppError(400, 'Invalid webhook signature');
     }
   }
 
   private async handleEvent(event: Stripe.Event) {
     switch (event.type) {
-      case 'payment_intent.succeeded':
-        await this.handlePaymentIntentSucceeded(
-          event.data.object as Stripe.PaymentIntent,
+      case 'setup_intent.succeeded':
+        await this.handleSetupIntentSucceeded(
+          event.data.object as Stripe.SetupIntent,
         );
         break;
 
-      case 'payment_intent.payment_failed':
-        await this.handlePaymentIntentFailed(
-          event.data.object as Stripe.PaymentIntent,
+      case 'setup_intent.setup_failed':
+        await this.handleSetupIntentFailed(
+          event.data.object as Stripe.SetupIntent,
         );
         break;
-
-      // Handle other event types for future continuous subscription management
 
       default:
         this.logger.log(`Unhandled Stripe event type: ${event.type}`);
     }
   }
 
-  private async handlePaymentIntentSucceeded(
-    paymentIntent: Stripe.PaymentIntent,
-  ) {
-    const transactionId = paymentIntent.id;
-    const metadata = paymentIntent.metadata as unknown as PaymentMetadata;
-    const customerId = paymentIntent.customer as string;
+  private async handleSetupIntentSucceeded(setupIntent: Stripe.SetupIntent) {
+    const transactionId = setupIntent.id;
+    const metadata = setupIntent.metadata as unknown as PaymentMetadata;
+    const customerId = setupIntent.customer as string;
 
+    // Find pending subscription created during onboarding
     const subscription = await this.prisma.userSubscription.findUnique({
       where: { stripeTransactionId: transactionId },
       include: { user: true, plan: true },
@@ -69,19 +66,25 @@ export class HandleWebhookService {
 
     if (!subscription) {
       this.logger.error(
-        `No subscription found for paymentIntent ${transactionId}`,
+        `No subscription found for SetupIntent ${transactionId}`,
       );
       return;
     }
 
-    if (subscription.status === 'ACTIVE') {
-      this.logger.log(`Subscription ${subscription.id} already active`);
-      return;
-    }
-
-    this.logger.log(`Payment succeeded for subscription ${subscription.id}`);
+    this.logger.log(
+      `SetupIntent succeeded for subscription ${subscription.id}`,
+    );
 
     try {
+      const paymentMethodId = setupIntent.payment_method as string;
+
+      const stripeSub = await this.stripeService.createSubscription({
+        customerId,
+        priceId: metadata.stripePriceId,
+        metadata,
+        paymentMethodId,
+      });
+
       const now = new Date();
       const planEnd = this.utils.addMonthsToDate(
         now,
@@ -92,6 +95,7 @@ export class HandleWebhookService {
         this.prisma.userSubscription.update({
           where: { id: subscription.id },
           data: {
+            stripeSubscriptionId: stripeSub.id,
             status: 'ACTIVE',
             paidAt: now,
             planStartedAt: now,
@@ -106,58 +110,29 @@ export class HandleWebhookService {
             stripeCustomerId: customerId,
           },
         }),
+        this.prisma.boats.updateMany({
+          where: {
+            userId: subscription.userId,
+            status: 'ONBOARDING_PENDING',
+          },
+          data: { status: 'ACTIVE' },
+        }),
       ]);
 
-      // Handle onboarding case
-      if (metadata.type === 'onboarding_subscription') {
-        this.logger.log(
-          `Handling onboarding payment for user ${subscription.userId}`,
-        );
-
-        try {
-          const stripeSub = await this.stripeService.createSubscription({
-            customerId,
-            priceId: metadata.stripePriceId,
-            metadata,
-          });
-
-          await this.prisma.userSubscription.update({
-            where: { id: subscription.id },
-            data: {
-              stripeSubscriptionId: stripeSub.id,
-              status: 'ACTIVE',
-              paidAt: now,
-            },
-          });
-
-          await this.prisma.boats.updateMany({
-            where: {
-              userId: subscription.userId,
-              status: 'ONBOARDING_PENDING',
-            },
-            data: { status: 'ACTIVE' },
-          });
-
-          this.logger.log(
-            `Created recurring Stripe subscription ${stripeSub.id}`,
-          );
-        } catch (stripeErr) {
-          this.logger.error(`Stripe subscription creation failed`, stripeErr);
-        }
-      }
-
-      this.logger.log(`Subscription ${subscription.id} activated successfully`);
+      this.logger.log(
+        `Subscription ${subscription.id} activated successfully via SetupIntent`,
+      );
     } catch (err) {
       this.logger.error(
-        `Failed to update subscription ${subscription.id}`,
+        `Failed to create subscription for SetupIntent ${transactionId}`,
         err,
       );
       throw err;
     }
   }
 
-  private async handlePaymentIntentFailed(paymentIntent: Stripe.PaymentIntent) {
-    const transactionId = paymentIntent.id;
+  private async handleSetupIntentFailed(setupIntent: Stripe.SetupIntent) {
+    const transactionId = setupIntent.id;
 
     const subscription = await this.prisma.userSubscription.findUnique({
       where: { stripeTransactionId: transactionId },
@@ -165,7 +140,7 @@ export class HandleWebhookService {
 
     if (!subscription) {
       this.logger.error(
-        `Subscription not found for failed paymentIntent ${transactionId}`,
+        `Subscription not found for failed SetupIntent ${transactionId}`,
       );
       return;
     }
@@ -175,7 +150,9 @@ export class HandleWebhookService {
         where: { id: subscription.id },
         data: { status: 'FAILED', failedAt: new Date() },
       });
-      this.logger.warn(`Payment failed for subscription ${subscription.id}`);
+      this.logger.warn(
+        `SetupIntent failed for subscription ${subscription.id}`,
+      );
     } catch (err) {
       this.logger.error(
         `Failed to update failed subscription ${subscription.id}`,

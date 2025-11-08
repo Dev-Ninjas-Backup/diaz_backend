@@ -159,29 +159,25 @@ export class OnBoardingService {
       `Created new seller user ${user.id} and boat listing ${listing.id}`,
     );
 
-    // * create Stripe payment intent
-    const paymentIntent = await this.stripe.createPaymentIntent({
-      type: 'onboarding_subscription', // * onboarding subscription
+    // create a SetupIntent
+    const setupIntent = await this.stripe.createSetupIntent({
+      type: 'onboarding_subscription',
       userId: user.id,
       email: user.email,
       name: user.name,
       planId: plan.id,
       planTitle: plan.title,
-      priceCents: plan.price * 100, // * convert dollars to cents
+      priceCents: plan.price * 100,
       stripeProductId: plan.stripeProductId,
       stripePriceId: plan.stripePriceId,
     });
 
-    this.logger.log(
-      `Created Stripe payment intent ${paymentIntent.id} for user ${user.id} and listing ${listing.id}`,
-    );
-
-    // * Create a pending subscription record in the database
+    // persist setup intent id so you can reconcile later
     const subscription = await this.prisma.userSubscription.create({
       data: {
         user: { connect: { id: user.id } },
         plan: { connect: { id: plan.id } },
-        stripeTransactionId: paymentIntent.id,
+        stripeTransactionId: setupIntent.id, // store the SetupIntent id
         status: 'PENDING',
       },
     });
@@ -207,8 +203,8 @@ export class OnBoardingService {
 
     return successResponse(
       {
-        paymentIntentId: paymentIntent.id,
-        paymentIntentClientSecret: paymentIntent.client_secret,
+        paymentIntentId: setupIntent.id,
+        paymentIntentClientSecret: setupIntent.client_secret,
         listingPreview: listing,
       },
       'Onboarding completed successfully',
