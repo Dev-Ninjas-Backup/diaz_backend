@@ -25,7 +25,7 @@ export class OnBoardingService {
   ) {}
 
   @HandleError('Failed to complete onboarding', 'Boats')
-  async completeOnBoarding(
+  async sellerOnBoarding(
     data: SellerOnboardingBodyDto,
     files: { path: string; type: BoatImageType; originalName: string }[],
   ): Promise<TResponse<any>> {
@@ -206,8 +206,74 @@ export class OnBoardingService {
         paymentIntentId: setupIntent.id,
         paymentIntentClientSecret: setupIntent.client_secret,
         listingPreview: listing,
+        userId: user.id,
       },
       'Onboarding completed successfully',
+    );
+  }
+
+  @HandleError('Failed to get subscription confirmation', 'Onboarding')
+  async getSubscriptionConfirmation(userId: string) {
+    // Fetch the latest subscription for this user
+    const subscription = await this.prisma.userSubscription.findFirst({
+      where: { userId },
+      orderBy: { createdAt: 'desc' },
+      include: {
+        plan: true,
+        user: { select: { id: true, email: true, name: true } },
+      },
+    });
+
+    if (!subscription) {
+      throw new AppError(
+        HttpStatus.NOT_FOUND,
+        'No subscription found for this user',
+      );
+    }
+
+    // Compute if subscription is active
+    const isActive = subscription.status === 'ACTIVE';
+
+    // Fetch associated boat listings (if any)
+    const listing = await this.prisma.boats.findFirst({
+      where: { userId },
+      select: {
+        id: true,
+        name: true,
+        status: true,
+      },
+    });
+
+    // Compose confirmation payload
+    const result = {
+      user: {
+        id: subscription.user.id,
+        name: subscription.user.name,
+        email: subscription.user.email,
+      },
+      subscription: {
+        id: subscription.id,
+        planTitle: subscription.plan.title,
+        status: subscription.status,
+        startedAt: subscription.planStartedAt,
+        endsAt: subscription.planEndedAt,
+      },
+      listing: listing
+        ? {
+            id: listing.id,
+            name: listing.name,
+            status: listing.status,
+          }
+        : null,
+      message: isActive
+        ? 'Your subscription is active. Welcome aboard!'
+        : 'Your subscription is still pending. Please wait for confirmation.',
+    };
+
+    // Return final response
+    return successResponse(
+      result,
+      'Subscription confirmation fetched successfully',
     );
   }
 }

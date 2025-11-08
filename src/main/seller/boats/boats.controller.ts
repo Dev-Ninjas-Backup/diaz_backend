@@ -2,6 +2,8 @@ import { FileType, MulterService } from '@/lib/multer/multer.service';
 import {
   Body,
   Controller,
+  Get,
+  Param,
   Post,
   UploadedFiles,
   UseInterceptors,
@@ -18,7 +20,7 @@ import {
 import { BoatsService } from './services/boats.service';
 import { OnBoardingService } from './services/on-boarding.service';
 
-@ApiTags('Seller -- Boats')
+@ApiTags('Seller -- Onboarding & Boats')
 @Controller('boats')
 export class BoatsController {
   constructor(
@@ -47,7 +49,7 @@ export class BoatsController {
     ),
   )
   @Post('onboarding')
-  async completeOnBoarding(
+  async sellerOnBoarding(
     @Body()
     data: {
       planId: SellerOnboardingPlanDto['planId'];
@@ -72,6 +74,12 @@ export class BoatsController {
         originalName: file.originalname,
       })),
     ];
-    return this.onBoardingService.completeOnBoarding(data, mappedFiles);
+    return this.onBoardingService.sellerOnBoarding(data, mappedFiles);
+  }
+
+  @ApiOperation({ summary: 'Get Boat Subscription Confirmation' })
+  @Get('subscription-confirmation/:userId')
+  async getSubscriptionConfirmation(@Param('userId') userId: string) {
+    return this.onBoardingService.getSubscriptionConfirmation(userId);
   }
 }
