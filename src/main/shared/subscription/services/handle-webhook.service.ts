@@ -48,6 +48,18 @@ export class HandleWebhookService {
         );
         break;
 
+      case 'payment_intent.succeeded':
+        await this.handlePaymentIntentSucceeded(
+          event.data.object as Stripe.PaymentIntent,
+        );
+        break;
+
+      case 'payment_intent.payment_failed':
+        await this.handlePaymentIntentFailed(
+          event.data.object as Stripe.PaymentIntent,
+        );
+        break;
+
       case 'customer.subscription.updated':
         await this.handleCustomerSubscriptionUpdated(
           event.data.object as Stripe.Subscription,
@@ -60,15 +72,12 @@ export class HandleWebhookService {
         );
         break;
 
-      case 'invoice.finalized':
-        await this.handleInvoiceFinalized(event.data.object as Stripe.Invoice);
-        break;
-
       case 'invoice.paid':
       case 'invoice.payment_succeeded':
         await this.handleInvoicePaid(event.data.object as Stripe.Invoice);
         break;
 
+      case 'invoice.overdue':
       case 'invoice.payment_failed':
         await this.handleInvoicePaymentFailed(
           event.data.object as Stripe.Invoice,
@@ -264,18 +273,23 @@ export class HandleWebhookService {
     });
   }
 
-  private async handleInvoiceFinalized(invoice: Stripe.Invoice) {
-    this.logger.log(`invoice.finalized: ${invoice.id}`);
-    this.logger.log(invoice);
+  private async handlePaymentIntentSucceeded(invoice: Stripe.PaymentIntent) {
+    this.logger.log(`payment_intent.succeeded: ${invoice.id}`);
+    this.logger.log(JSON.stringify(invoice, null, 2));
+  }
+
+  private async handlePaymentIntentFailed(invoice: Stripe.PaymentIntent) {
+    this.logger.log(`payment_intent.failed: ${invoice.id}`);
+    this.logger.log(JSON.stringify(invoice, null, 2));
   }
 
   private async handleInvoicePaid(invoice: Stripe.Invoice) {
     this.logger.log(`invoice.paid: ${invoice.id}`);
-    this.logger.log(invoice);
+    this.logger.log(JSON.stringify(invoice, null, 2));
   }
 
   private async handleInvoicePaymentFailed(invoice: Stripe.Invoice) {
     this.logger.log(`invoice.payment_failed: ${invoice.id}`);
-    this.logger.log(invoice);
+    this.logger.log(JSON.stringify(invoice, null, 2));
   }
 }
