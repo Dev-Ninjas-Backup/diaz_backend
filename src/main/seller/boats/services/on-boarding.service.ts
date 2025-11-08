@@ -25,7 +25,7 @@ export class OnBoardingService {
   ) {}
 
   @HandleError('Failed to complete onboarding', 'Boats')
-  async completeOnBoarding(
+  async sellerOnBoarding(
     data: SellerOnboardingBodyDto,
     files: { path: string; type: BoatImageType; originalName: string }[],
   ): Promise<TResponse<any>> {
@@ -159,29 +159,25 @@ export class OnBoardingService {
       `Created new seller user ${user.id} and boat listing ${listing.id}`,
     );
 
-    // * create Stripe payment intent
-    const paymentIntent = await this.stripe.createPaymentIntent({
-      type: 'onboarding_subscription', // * onboarding subscription
+    // create a SetupIntent
+    const setupIntent = await this.stripe.createSetupIntent({
+      type: 'onboarding_subscription',
       userId: user.id,
       email: user.email,
       name: user.name,
       planId: plan.id,
       planTitle: plan.title,
-      priceCents: plan.price * 100, // * convert dollars to cents
+      priceCents: plan.price * 100,
       stripeProductId: plan.stripeProductId,
       stripePriceId: plan.stripePriceId,
     });
 
-    this.logger.log(
-      `Created Stripe payment intent ${paymentIntent.id} for user ${user.id} and listing ${listing.id}`,
-    );
-
-    // * Create a pending subscription record in the database
+    // persist setup intent id so you can reconcile later
     const subscription = await this.prisma.userSubscription.create({
       data: {
         user: { connect: { id: user.id } },
         plan: { connect: { id: plan.id } },
-        stripeTransactionId: paymentIntent.id,
+        stripeTransactionId: setupIntent.id, // store the SetupIntent id
         status: 'PENDING',
       },
     });
@@ -207,11 +203,77 @@ export class OnBoardingService {
 
     return successResponse(
       {
-        paymentIntentId: paymentIntent.id,
-        paymentIntentClientSecret: paymentIntent.client_secret,
+        paymentIntentId: setupIntent.id,
+        paymentIntentClientSecret: setupIntent.client_secret,
         listingPreview: listing,
+        userId: user.id,
       },
       'Onboarding completed successfully',
+    );
+  }
+
+  @HandleError('Failed to get subscription confirmation', 'Onboarding')
+  async getSubscriptionConfirmation(userId: string) {
+    // Fetch the latest subscription for this user
+    const subscription = await this.prisma.userSubscription.findFirst({
+      where: { userId },
+      orderBy: { createdAt: 'desc' },
+      include: {
+        plan: true,
+        user: { select: { id: true, email: true, name: true } },
+      },
+    });
+
+    if (!subscription) {
+      throw new AppError(
+        HttpStatus.NOT_FOUND,
+        'No subscription found for this user',
+      );
+    }
+
+    // Compute if subscription is active
+    const isActive = subscription.status === 'ACTIVE';
+
+    // Fetch associated boat listings (if any)
+    const listing = await this.prisma.boats.findFirst({
+      where: { userId },
+      select: {
+        id: true,
+        name: true,
+        status: true,
+      },
+    });
+
+    // Compose confirmation payload
+    const result = {
+      user: {
+        id: subscription.user.id,
+        name: subscription.user.name,
+        email: subscription.user.email,
+      },
+      subscription: {
+        id: subscription.id,
+        planTitle: subscription.plan.title,
+        status: subscription.status,
+        startedAt: subscription.planStartedAt,
+        endsAt: subscription.planEndedAt,
+      },
+      listing: listing
+        ? {
+            id: listing.id,
+            name: listing.name,
+            status: listing.status,
+          }
+        : null,
+      message: isActive
+        ? 'Your subscription is active. Welcome aboard!'
+        : 'Your subscription is still pending. Please wait for confirmation.',
+    };
+
+    // Return final response
+    return successResponse(
+      result,
+      'Subscription confirmation fetched successfully',
     );
   }
 }

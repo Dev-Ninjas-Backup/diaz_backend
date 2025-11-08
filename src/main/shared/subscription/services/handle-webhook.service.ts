@@ -29,39 +29,53 @@ export class HandleWebhookService {
       // 2. Process the event
       await this.handleEvent(event);
     } catch (error) {
-      this.logger.error('Webhook signature verification failed', error);
+      this.logger.error('Webhook  failed', error);
       throw new AppError(400, 'Invalid webhook signature');
     }
   }
 
   private async handleEvent(event: Stripe.Event) {
     switch (event.type) {
-      case 'payment_intent.succeeded':
-        await this.handlePaymentIntentSucceeded(
-          event.data.object as Stripe.PaymentIntent,
+      case 'setup_intent.succeeded':
+        await this.handleSetupIntentSucceeded(
+          event.data.object as Stripe.SetupIntent,
         );
         break;
 
-      case 'payment_intent.payment_failed':
-        await this.handlePaymentIntentFailed(
-          event.data.object as Stripe.PaymentIntent,
+      case 'setup_intent.setup_failed':
+        await this.handleSetupIntentFailed(
+          event.data.object as Stripe.SetupIntent,
         );
         break;
 
-      // Handle other event types for future continuous subscription management
+      case 'customer.subscription.updated':
+        await this.handleCustomerSubscriptionUpdated(
+          event.data.object as Stripe.Subscription,
+        );
+        break;
+
+      case 'customer.subscription.deleted':
+        await this.handleCustomerSubscriptionDeleted(
+          event.data.object as Stripe.Subscription,
+        );
+        break;
+
+      case 'invoice.paid':
+      case 'invoice.payment_succeeded':
+        await this.handleInvoicePaid(event.data.object as Stripe.Invoice);
+        break;
 
       default:
         this.logger.log(`Unhandled Stripe event type: ${event.type}`);
     }
   }
 
-  private async handlePaymentIntentSucceeded(
-    paymentIntent: Stripe.PaymentIntent,
-  ) {
-    const transactionId = paymentIntent.id;
-    const metadata = paymentIntent.metadata as unknown as PaymentMetadata;
-    const customerId = paymentIntent.customer as string;
+  private async handleSetupIntentSucceeded(setupIntent: Stripe.SetupIntent) {
+    const transactionId = setupIntent.id;
+    const metadata = setupIntent.metadata as unknown as PaymentMetadata;
+    const customerId = setupIntent.customer as string;
 
+    // Find pending subscription created during onboarding
     const subscription = await this.prisma.userSubscription.findUnique({
       where: { stripeTransactionId: transactionId },
       include: { user: true, plan: true },
@@ -69,35 +83,26 @@ export class HandleWebhookService {
 
     if (!subscription) {
       this.logger.error(
-        `No subscription found for paymentIntent ${transactionId}`,
+        `No subscription found for SetupIntent ${transactionId}`,
       );
       return;
     }
 
-    if (subscription.status === 'ACTIVE') {
-      this.logger.log(`Subscription ${subscription.id} already active`);
-      return;
-    }
-
-    this.logger.log(`Payment succeeded for subscription ${subscription.id}`);
+    this.logger.log(
+      `SetupIntent succeeded for subscription ${subscription.id}`,
+    );
 
     try {
-      const now = new Date();
-      const planEnd = this.utils.addMonthsToDate(
-        now,
-        subscription.plan.billingPeriodMonths,
-      );
+      const paymentMethodId = setupIntent.payment_method as string;
+
+      const stripeSub = await this.stripeService.createSubscription({
+        customerId,
+        priceId: metadata.stripePriceId,
+        metadata,
+        paymentMethodId,
+      });
 
       await this.prisma.$transaction([
-        this.prisma.userSubscription.update({
-          where: { id: subscription.id },
-          data: {
-            status: 'ACTIVE',
-            paidAt: now,
-            planStartedAt: now,
-            planEndedAt: planEnd,
-          },
-        }),
         this.prisma.user.update({
           where: { id: subscription.userId },
           data: {
@@ -106,58 +111,29 @@ export class HandleWebhookService {
             stripeCustomerId: customerId,
           },
         }),
+        this.prisma.boats.updateMany({
+          where: {
+            userId: subscription.userId,
+            status: 'ONBOARDING_PENDING',
+          },
+          data: { status: 'ACTIVE' },
+        }),
       ]);
 
-      // Handle onboarding case
-      if (metadata.type === 'onboarding_subscription') {
-        this.logger.log(
-          `Handling onboarding payment for user ${subscription.userId}`,
-        );
-
-        try {
-          const stripeSub = await this.stripeService.createSubscription({
-            customerId,
-            priceId: metadata.stripePriceId,
-            metadata,
-          });
-
-          await this.prisma.userSubscription.update({
-            where: { id: subscription.id },
-            data: {
-              stripeSubscriptionId: stripeSub.id,
-              status: 'ACTIVE',
-              paidAt: now,
-            },
-          });
-
-          await this.prisma.boats.updateMany({
-            where: {
-              userId: subscription.userId,
-              status: 'ONBOARDING_PENDING',
-            },
-            data: { status: 'ACTIVE' },
-          });
-
-          this.logger.log(
-            `Created recurring Stripe subscription ${stripeSub.id}`,
-          );
-        } catch (stripeErr) {
-          this.logger.error(`Stripe subscription creation failed`, stripeErr);
-        }
-      }
-
-      this.logger.log(`Subscription ${subscription.id} activated successfully`);
+      this.logger.log(
+        `Subscription ${subscription.id} activated successfully via SetupIntent for stripe subscription ${stripeSub.id}`,
+      );
     } catch (err) {
       this.logger.error(
-        `Failed to update subscription ${subscription.id}`,
+        `Failed to create subscription for SetupIntent ${transactionId}`,
         err,
       );
       throw err;
     }
   }
 
-  private async handlePaymentIntentFailed(paymentIntent: Stripe.PaymentIntent) {
-    const transactionId = paymentIntent.id;
+  private async handleSetupIntentFailed(setupIntent: Stripe.SetupIntent) {
+    const transactionId = setupIntent.id;
 
     const subscription = await this.prisma.userSubscription.findUnique({
       where: { stripeTransactionId: transactionId },
@@ -165,7 +141,7 @@ export class HandleWebhookService {
 
     if (!subscription) {
       this.logger.error(
-        `Subscription not found for failed paymentIntent ${transactionId}`,
+        `Subscription not found for failed SetupIntent ${transactionId}`,
       );
       return;
     }
@@ -175,7 +151,9 @@ export class HandleWebhookService {
         where: { id: subscription.id },
         data: { status: 'FAILED', failedAt: new Date() },
       });
-      this.logger.warn(`Payment failed for subscription ${subscription.id}`);
+      this.logger.warn(
+        `SetupIntent failed for subscription ${subscription.id}`,
+      );
     } catch (err) {
       this.logger.error(
         `Failed to update failed subscription ${subscription.id}`,
@@ -183,5 +161,152 @@ export class HandleWebhookService {
       );
       throw err;
     }
+  }
+
+  private async handleCustomerSubscriptionUpdated(
+    subscription: Stripe.Subscription,
+  ) {
+    const stripeSubId = subscription.id;
+    this.logger.log(
+      `customer.subscription.updated: ${stripeSubId} status=${subscription.status}`,
+    );
+
+    const local = await this.prisma.userSubscription.findUnique({
+      where: { stripeSubscriptionId: stripeSubId },
+      include: { plan: true },
+    });
+
+    if (!local) {
+      this.logger.warn(
+        `No local subscription found for stripe subscription ${stripeSubId}`,
+      );
+      return;
+    }
+
+    const updates: any = {};
+
+    // Map stripe->local status
+    if (subscription.status === 'active') updates.status = 'ACTIVE';
+    else if (subscription.status === 'past_due') updates.status = 'PAST_DUE';
+    else if (
+      subscription.status === 'canceled' ||
+      subscription.status === 'incomplete_expired' ||
+      subscription.status === 'unpaid' ||
+      subscription.status === 'incomplete'
+    )
+      updates.status = 'CANCELED';
+
+    // Update cancel_at or planEndedAt if present
+    if (subscription.cancel_at)
+      updates.planEndedAt = new Date(subscription.cancel_at * 1000);
+    if (subscription.ended_at)
+      updates.planEndedAt = new Date(subscription.ended_at * 1000);
+
+    if (Object.keys(updates).length) {
+      await this.prisma.userSubscription.update({
+        where: { id: local.id },
+        data: updates,
+      });
+    }
+  }
+
+  private async handleCustomerSubscriptionDeleted(
+    subscription: Stripe.Subscription,
+  ) {
+    const stripeSubId = subscription.id;
+    this.logger.log(`customer.subscription.deleted: ${stripeSubId}`);
+
+    const local = await this.prisma.userSubscription.findUnique({
+      where: { stripeSubscriptionId: stripeSubId },
+    });
+
+    if (!local) {
+      this.logger.warn(
+        `No local subscription found for deleted stripe subscription ${stripeSubId}`,
+      );
+      return;
+    }
+
+    await this.prisma.userSubscription.update({
+      where: { id: local.id },
+      data: {
+        status: 'CANCELED',
+        planEndedAt: subscription.ended_at
+          ? new Date(subscription.ended_at * 1000)
+          : local.planEndedAt,
+      },
+    });
+  }
+
+  private async handleInvoicePaid(invoice: Stripe.Invoice) {
+    this.logger.log(`invoice.${invoice.status}: ${invoice.id}`);
+
+    // Extract subscription info safely
+    const subDetails = invoice.parent?.subscription_details;
+    const subscriptionId = subDetails?.subscription as string | undefined;
+    const metadata = subDetails?.metadata as PaymentMetadata | undefined;
+
+    if (!subscriptionId || !metadata) {
+      this.logger.warn(
+        `Invoice ${invoice.id} has no subscription details — skipping.`,
+      );
+      return;
+    }
+
+    const { userId, planId } = metadata;
+
+    // Fetch local subscription
+    const localSubscription = await this.prisma.userSubscription.findFirst({
+      where: {
+        OR: [
+          { stripeSubscriptionId: subscriptionId },
+          { userId: userId, planId: planId },
+        ],
+      },
+      include: { plan: true },
+    });
+
+    if (!localSubscription) {
+      this.logger.error(
+        `No matching local subscription found for Stripe subscription ${subscriptionId}`,
+      );
+      return;
+    }
+
+    const now = new Date();
+    const planEnd = this.utils.addMonthsToDate(
+      now,
+      localSubscription.plan.billingPeriodMonths || 1,
+    );
+
+    // Run updates in transaction
+    await this.prisma.$transaction([
+      this.prisma.userSubscription.update({
+        where: { id: localSubscription.id },
+        data: {
+          status: 'ACTIVE',
+          paidAt: now,
+          planStartedAt: now,
+          planEndedAt: planEnd,
+          stripeSubscriptionId: subscriptionId,
+        },
+      }),
+
+      this.prisma.invoice.create({
+        data: {
+          stripeInvoiceId: invoice.id,
+          userId: userId,
+          subscriptionId: localSubscription.id,
+          amount: invoice.total,
+          currency: invoice.currency,
+          status: 'PAID',
+          paidAt: now,
+        },
+      }),
+    ]);
+
+    this.logger.log(
+      `Subscription ${localSubscription.id} activated via invoice ${invoice.id} (Stripe subscription ${subscriptionId})`,
+    );
   }
 }

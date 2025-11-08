@@ -193,10 +193,9 @@ export class StripeService {
         currency: 'usd',
         customer: customerId,
         receipt_email: metadata.email,
-        automatic_payment_methods: {
-          enabled: true,
-        },
+        automatic_payment_methods: { enabled: true },
         metadata,
+        setup_future_usage: 'off_session',
       },
       {
         idempotencyKey: `pi_${metadata.userId}_${metadata.planId}`,
@@ -205,6 +204,62 @@ export class StripeService {
 
     this.logger.log(`Created payment intent ${intent.id}`);
     return intent;
+  }
+
+  // Setup Intent Management
+  async createSetupIntent(metadata: PaymentMetadata) {
+    try {
+      // 1) find or create customer
+      const existing = await this.stripe.customers.list({
+        email: metadata.email,
+        limit: 1,
+      });
+      let customerId: string;
+
+      if (existing.data && existing.data.length > 0) {
+        customerId = existing.data[0].id;
+        this.logger.log(
+          `Found existing Stripe customer ${customerId} for user ${metadata.userId}`,
+        );
+      } else {
+        const newCustomer = await this.createCustomer({
+          email: metadata.email,
+          name: metadata.name,
+          userId: metadata.userId,
+        });
+        customerId = newCustomer.id;
+        this.logger.log(
+          `Created new Stripe customer ${customerId} for user ${metadata.userId}`,
+        );
+      }
+
+      // 2) create SetupIntent (no charge — collects & attaches payment method for future use)
+      const setupIntent = await this.stripe.setupIntents.create(
+        {
+          customer: customerId,
+          payment_method_types: ['card'],
+          usage: 'off_session', // important for subscriptions / future off-session charges
+          metadata: {
+            ...metadata,
+            customerId,
+          },
+        },
+        {
+          idempotencyKey: `si_${metadata.userId}_${metadata.planId ?? 'no-plan'}`,
+        },
+      );
+
+      this.logger?.log(
+        `Created SetupIntent ${setupIntent.id} for customer ${customerId}`,
+      );
+      return setupIntent; // contains id and client_secret
+    } catch (err) {
+      this.logger?.error(
+        'createSetupIntent failed',
+        (err as any)?.message ?? err,
+      );
+      throw err; // bubble up to caller so your HandleError decorator / logger handles it
+    }
   }
 
   // Subscription Management
@@ -234,14 +289,17 @@ export class StripeService {
     customerId,
     priceId,
     metadata,
+    paymentMethodId,
   }: {
     customerId: string;
     priceId: string;
     metadata: PaymentMetadata;
+    paymentMethodId: string;
   }) {
     const subscription = await this.stripe.subscriptions.create({
       customer: customerId,
       items: [{ price: priceId }],
+      default_payment_method: paymentMethodId,
       metadata,
       expand: ['latest_invoice.payment_intent'],
     });
