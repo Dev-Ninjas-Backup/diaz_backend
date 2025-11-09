@@ -2,7 +2,7 @@ import { HandleError } from '@/common/error/handle-error.decorator';
 import { PrismaService } from '@/lib/prisma/prisma.service';
 import { Injectable } from '@nestjs/common';
 import { BoatEngine, Boats } from '@prisma/client';
-import { GetAllBoatsAIServerDto } from '../dto/get-all-boats-ai-server.dto';
+import { GetAllBoatsCustomDto } from '../dto/get-all-boats-custom.dto';
 
 @Injectable()
 export class GetBoatsService {
@@ -141,7 +141,7 @@ export class GetBoatsService {
   }
 
   @HandleError('Failed to get boats', 'Boats')
-  async getAllBoats(options?: GetAllBoatsAIServerDto) {
+  async getAllBoats(options?: GetAllBoatsCustomDto) {
     const page = Math.max(Number(options?.page) || 1, 1);
     const limit = Math.max(Number(options?.limit) || 0, 0);
 

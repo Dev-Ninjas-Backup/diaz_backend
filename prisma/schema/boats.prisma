@@ -39,6 +39,9 @@ model Boats {
   createdAt DateTime @default(now())
   updatedAt DateTime @default(now()) @updatedAt
 
+  // * Media
+  videoURL String?
+
   engines BoatEngine[]
   images  BoatImage[]
 

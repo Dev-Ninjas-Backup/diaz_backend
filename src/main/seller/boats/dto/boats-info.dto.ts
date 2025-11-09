@@ -13,6 +13,7 @@ import {
   IsNumber,
   IsOptional,
   IsString,
+  IsUrl,
   ValidateNested,
 } from 'class-validator';
 import {
@@ -122,4 +123,13 @@ export class BoatsInfoOnBoardingDto {
   @ValidateNested({ each: true })
   @Type(() => BoatEngineDto)
   engines?: BoatEngineDto[];
+
+  // Media
+  @ApiPropertyOptional({
+    description: 'Video URL for the boat',
+    example: 'https://www.youtube.com/watch?v=8eZu8K5W0mM',
+  })
+  @IsOptional()
+  @IsUrl()
+  videoURL?: string;
 }
