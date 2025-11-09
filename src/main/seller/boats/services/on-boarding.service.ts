@@ -133,6 +133,7 @@ export class OnBoardingService {
         city: boatInfo.city,
         state: boatInfo.state,
         zip: boatInfo.zip,
+        videoURL: boatInfo?.videoURL?.trim() || '',
         user: {
           connect: { id: user.id },
         },
