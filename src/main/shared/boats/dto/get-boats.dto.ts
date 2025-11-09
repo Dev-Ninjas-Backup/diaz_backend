@@ -1,12 +1,16 @@
+import { BoatsSourceEnum } from '@/common/enum/boats-source.enum';
 import { ApiPropertyOptional } from '@nestjs/swagger';
 import { Type } from 'class-transformer';
-import { IsIn, IsInt, IsOptional, Max, Min } from 'class-validator';
+import { IsEnum, IsInt, IsOptional, Max, Min } from 'class-validator';
 
 export class GetBoatsDto {
-  @ApiPropertyOptional({ default: 'inventory', enum: ['inventory', 'service'] })
+  @ApiPropertyOptional({
+    default: BoatsSourceEnum.inventory,
+    enum: BoatsSourceEnum,
+  })
   @IsOptional()
-  @IsIn(['inventory', 'service'])
-  source?: 'inventory' | 'service' = 'inventory';
+  @IsEnum(BoatsSourceEnum)
+  source?: BoatsSourceEnum = BoatsSourceEnum.inventory;
 
   @ApiPropertyOptional({
     default: 1,

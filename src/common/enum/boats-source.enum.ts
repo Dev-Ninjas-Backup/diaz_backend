@@ -1,5 +1,5 @@
 export enum BoatsSourceEnum {
-  SERVICE_BOATS = 'SERVICE_BOATS',
-  API_BOATS = 'API_BOATS',
-  CUSTOM_BOATS = 'CUSTOM_BOATS',
+  inventory = 'inventory',
+  service = 'service',
+  custom = 'custom',
 }

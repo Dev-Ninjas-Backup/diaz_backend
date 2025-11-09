@@ -1,8 +1,10 @@
+import { BoatsSourceEnum } from '@/common/enum/boats-source.enum';
 import { ENVEnum } from '@/common/enum/env.enum';
 import {
   successPaginatedResponse,
   TPaginatedResponse,
 } from '@/common/utils/response.util';
+import { GetBoatsService } from '@/main/shared/boats/services/get-boats.service';
 import { Injectable, Logger } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import axios from 'axios';
@@ -17,7 +19,10 @@ export class BoatsGroupService {
   private readonly serviceBoatsKey: string;
   private readonly serviceBoatsBaseUrl: string;
 
-  constructor(private readonly config: ConfigService) {
+  constructor(
+    private readonly config: ConfigService,
+    private readonly getBoatsService: GetBoatsService,
+  ) {
     this.apiBoatsKey = this.config.getOrThrow<string>(ENVEnum.API_BOATS_KEY);
     this.apiBoatsBaseUrl = `https://api.boats.com/inventory/search?key=${this.apiBoatsKey}&sort=LastModificationDate|desc`;
     this.serviceBoatsKey = this.config.getOrThrow<string>(
@@ -125,8 +130,8 @@ export class BoatsGroupService {
 
   // * Get boats from Inventory API
   private async getInventoryBoats(
-    page: number = 1,
-    limit: number = 20,
+    page: number,
+    limit: number,
   ): Promise<TPaginatedResponse<Boat>> {
     const query = this.getFieldsQuery();
     const url = `${this.apiBoatsBaseUrl}&${query}&page=${page}&limit=${limit}`;
@@ -145,9 +150,15 @@ export class BoatsGroupService {
     );
   }
 
-  /**
-   * Get boats from Service API
-   */
+  private async getBoatsFromDatabase(
+    page: number,
+    limit: number,
+  ): Promise<TPaginatedResponse<Boat>> {
+    // return await this.getBoatsService.getAllBoats({ page, limit });
+    return successPaginatedResponse([], { page, limit, total: 0 });
+  }
+
+  // * Get boats from Service API
   private async getServiceBoats(
     page: number = 1,
     limit: number = 20,
@@ -172,16 +183,27 @@ export class BoatsGroupService {
     );
   }
 
-  // * Public unified helper to fetch boats from either source
+  // * Public unified helper to fetch boats from all sources
   public async getBoats(
-    source: 'inventory' | 'service' = 'inventory',
+    source: BoatsSourceEnum = BoatsSourceEnum.inventory,
     page: number = 1,
     limit: number = 20,
   ) {
-    if (source === 'inventory') {
-      return this.getInventoryBoats(page, limit);
-    } else {
-      return this.getServiceBoats(page, limit);
+    switch (source) {
+      case BoatsSourceEnum.inventory:
+        return this.getInventoryBoats(page, limit);
+
+      case BoatsSourceEnum.service:
+        return this.getServiceBoats(page, limit);
+
+      case BoatsSourceEnum.custom:
+        return this.getBoatsFromDatabase(page, limit);
+
+      default:
+        this.logger.warn(
+          `Unknown boats source "${source}". Falling back to database source.`,
+        );
+        return this.getBoatsFromDatabase(page, limit);
     }
   }
 }
