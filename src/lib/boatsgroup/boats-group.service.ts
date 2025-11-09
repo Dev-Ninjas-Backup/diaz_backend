@@ -32,7 +32,7 @@ export class BoatsGroupService {
   }
 
   // * Get boats from Inventory API
-  private getFieldsQuery(): string {
+  private getAllFieldsQuery(): string {
     const fields = [
       'Source',
       'DocumentID',
@@ -128,13 +128,101 @@ export class BoatsGroupService {
     return qs.stringify({ fields }, { arrayFormat: 'comma' });
   }
 
+  private getFieldsQuery(): string {
+    const fields = [
+      'DocumentID',
+      'SalesStatus',
+      'CoOpIndicator',
+      'NumberOfEngines',
+      'Owner',
+      'SalesRep',
+      'CompanyName',
+      'Office',
+      'LastModificationDate',
+      'ItemReceivedDate',
+      'Price',
+      'PriceHideInd',
+      'BoatLocation',
+      'BoatCityNameNoCaseAlnumOnly',
+      'MakeString',
+      'MakeStringExact',
+      'MakeStringNoCaseAlnumOnly',
+      'ModelYear',
+      'SaleClassCode',
+      'Model',
+      'ModelExact',
+      'ModelNoCaseAlnumOnly',
+      'BoatCategoryCode',
+      'BoatName',
+      'BoatNameNoCaseAlnumOnly',
+      'BuilderName',
+      'DesignerName',
+      'CruisingSpeedMeasure',
+      'PropellerCruisingSpeed',
+      'MaximumSpeedMeasure',
+      'RangeMeasure',
+      'BridgeClearanceMeasure',
+      'BeamMeasure',
+      'FreeBoardMeasure',
+      'CabinHeadroomMeasure',
+      'WaterTankCountNumeric',
+      'WaterTankCapacityMeasure',
+      'WaterTankMaterialCode',
+      'FuelTankCountNumeric',
+      'FuelTankCapacityMeasure',
+      'FuelTankMaterialCode',
+      'HoldingTankCountNumeric',
+      'HoldingTankCapacityMeasure',
+      'HoldingTankMaterialCode',
+      'DryWeightMeasure',
+      'BallastWeightMeasure',
+      'DisplacementMeasure',
+      'DisplacementTypeCode',
+      'TotalEnginePowerQuantity',
+      'DriveTypeCode',
+      'BoatKeelCode',
+      'ConvertibleSaloonIndicator',
+      'WindlassTypeCode',
+      'DeadriseMeasure',
+      'ElectricalCircuitMeasure',
+      'TrimTabsIndicator',
+      'HeadsCountNumeric',
+      'CabinsCountNumeric',
+      'BoatHullMaterialCode',
+      'BoatHullID',
+      'StockNumber',
+      'NominalLength',
+      'LengthOverall',
+      'ListingTitle',
+      'MaxDraft',
+      'TaxStatusCode',
+      'IMTTimeStamp',
+      'HasBoatHullID',
+      'IsAvailableForPls',
+      'NormNominalLength',
+      'NormPrice',
+      'OptionActiveIndicator',
+      'Engines',
+      'Service',
+      'GeneralBoatDescription',
+      'BoatClassCode',
+      'BoatClassCodeNoCaseAlnumOnly',
+      'AdditionalDetailDescription',
+      'TotalEngineHoursNumeric',
+    ];
+
+    return qs.stringify({ fields }, { arrayFormat: 'comma' });
+  }
+
   // * Get boats from Inventory API
   private async getInventoryBoats(
     page: number,
     limit: number,
   ): Promise<TPaginatedResponse<Boat>> {
     const query = this.getFieldsQuery();
-    const url = `${this.apiBoatsBaseUrl}&${query}&page=${page}&limit=${limit}`;
+    const start = (page - 1) * limit;
+
+    const url = `${this.apiBoatsBaseUrl}&${query}&start=${start}&rows=${limit}`;
 
     const { data } = await axios.get(url);
     this.logger.log(`Boats found successfully from Inventory API: ${data}`);
@@ -150,21 +238,15 @@ export class BoatsGroupService {
     );
   }
 
-  private async getBoatsFromDatabase(
-    page: number,
-    limit: number,
-  ): Promise<TPaginatedResponse<Boat>> {
-    // return await this.getBoatsService.getAllBoats({ page, limit });
-    return successPaginatedResponse([], { page, limit, total: 0 });
-  }
-
   // * Get boats from Service API
   private async getServiceBoats(
     page: number = 1,
     limit: number = 20,
   ): Promise<TPaginatedResponse<Boat>> {
     const query = this.getFieldsQuery();
-    const url = `${this.serviceBoatsBaseUrl}&${query}&page=${page}&limit=${limit}`;
+    const start = (page - 1) * limit;
+
+    const url = `${this.serviceBoatsBaseUrl}&${query}&start=${start}&rows=${limit}`;
 
     const { data } = await axios.get(url);
 
@@ -181,6 +263,15 @@ export class BoatsGroupService {
       },
       'Boats found successfully from Service API',
     );
+  }
+
+  // * Get boats from Database
+  private async getBoatsFromDatabase(
+    page: number,
+    limit: number,
+  ): Promise<TPaginatedResponse<Boat>> {
+    // return await this.getBoatsService.getAllBoats({ page, limit });
+    return successPaginatedResponse([], { page, limit, total: 0 });
   }
 
   // * Public unified helper to fetch boats from all sources
