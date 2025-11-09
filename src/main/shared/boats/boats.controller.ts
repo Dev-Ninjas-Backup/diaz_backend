@@ -1,26 +1,26 @@
 import { Controller, Get, Param, Query } from '@nestjs/common';
 import { ApiOperation, ApiTags } from '@nestjs/swagger';
-import { BoatsService } from './services/boats.service';
+import { GetAllBoatsCustomDto } from './dto/get-all-boats-custom.dto';
 import { GetBoatsService } from './services/get-boats.service';
-import { GetAllBoatsAIServerDto } from './dto/get-all-boats-ai-server.dto';
+import { GetSingleBoatService } from './services/get-single-boat.service';
 
 @ApiTags('Shared -- Boats')
 @Controller('boats')
 export class BoatsController {
   constructor(
-    private readonly boatsService: BoatsService,
+    private readonly getSingleBoatService: GetSingleBoatService,
     private readonly getBoatsService: GetBoatsService,
   ) {}
 
-  @ApiOperation({ summary: 'Get all boats For AI Server' })
+  @ApiOperation({ summary: 'Get all custom boats' })
   @Get()
-  async getAllBoats(@Query() query: GetAllBoatsAIServerDto) {
+  async getAllBoats(@Query() query: GetAllBoatsCustomDto) {
     return this.getBoatsService.getAllBoats(query);
   }
 
-  @ApiOperation({ summary: 'Get single boat details' })
+  @ApiOperation({ summary: 'Get single custom boat details' })
   @Get(':boatId/details')
   async getSingleBoatDetails(@Param('boatId') boatId: string) {
-    return this.boatsService.getSingleBoatDetails(boatId);
+    return this.getSingleBoatService.getSingleBoatDetails(boatId);
   }
 }

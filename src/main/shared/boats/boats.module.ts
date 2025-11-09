@@ -1,10 +1,10 @@
 import { Module } from '@nestjs/common';
 import { BoatsController } from './boats.controller';
-import { BoatsService } from './services/boats.service';
 import { GetBoatsService } from './services/get-boats.service';
+import { GetSingleBoatService } from './services/get-single-boat.service';
 
 @Module({
   controllers: [BoatsController],
-  providers: [BoatsService, GetBoatsService],
+  providers: [GetSingleBoatService, GetBoatsService],
 })
 export class BoatsModule {}
