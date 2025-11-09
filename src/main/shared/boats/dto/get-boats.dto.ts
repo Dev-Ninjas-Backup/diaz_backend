@@ -1,4 +1,5 @@
 import { BoatsSourceEnum } from '@/common/enum/boats-source.enum';
+import { FieldPreset } from '@/lib/boatsgroup/interface/boats-fields.interface';
 import { ApiPropertyOptional } from '@nestjs/swagger';
 import { Type } from 'class-transformer';
 import { IsEnum, IsInt, IsOptional, Max, Min } from 'class-validator';
@@ -32,4 +33,12 @@ export class GetBoatsDto {
   @Min(1)
   @Max(100)
   limit?: number = 50;
+
+  @ApiPropertyOptional({
+    default: FieldPreset.minimal,
+    enum: FieldPreset,
+  })
+  @IsOptional()
+  @IsEnum(FieldPreset)
+  fields?: FieldPreset = FieldPreset.minimal;
 }

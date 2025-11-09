@@ -4,11 +4,17 @@ import {
   successPaginatedResponse,
   TPaginatedResponse,
 } from '@/common/utils/response.util';
+import { GetBoatsDto } from '@/main/shared/boats/dto/get-boats.dto';
 import { GetBoatsService } from '@/main/shared/boats/services/get-boats.service';
 import { Injectable, Logger } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import axios from 'axios';
 import qs from 'query-string';
+import {
+  BOAT_FIELD_KEYS,
+  BoatFieldKey,
+  FieldPreset,
+} from './interface/boats-fields.interface';
 import { Boat } from './interface/boats.interface';
 
 @Injectable()
@@ -31,201 +37,67 @@ export class BoatsGroupService {
     this.serviceBoatsBaseUrl = `https://services.boats.com/pls/boats/search?key=${this.serviceBoatsKey}&sort=LastModificationDate|desc`;
   }
 
-  // * Get boats from Inventory API
-  private getAllFieldsQuery(): string {
-    const fields = [
-      'Source',
+  // * Get minimal fields
+  private getMinimalFields(): BoatFieldKey[] {
+    return [
       'DocumentID',
-      'SalesStatus',
-      'CoOpIndicator',
-      'NumberOfEngines',
-      'Owner',
-      'SalesRep',
-      'CompanyName',
-      'Office',
-      'LastModificationDate',
-      'ItemReceivedDate',
-      'OriginalPrice',
       'Price',
-      'PriceHideInd',
-      'EmbeddedVideoPresent',
-      'Image360PhotoPresent',
-      'ImmersiveTourPresent',
       'BoatLocation',
       'BoatCityNameNoCaseAlnumOnly',
       'MakeString',
-      'MakeStringExact',
-      'MakeStringNoCaseAlnumOnly',
       'ModelYear',
-      'SaleClassCode',
       'Model',
-      'ModelExact',
-      'ModelNoCaseAlnumOnly',
-      'BoatCategoryCode',
-      'BoatName',
-      'BoatNameNoCaseAlnumOnly',
-      'BuilderName',
-      'DesignerName',
-      'CruisingSpeedMeasure',
-      'PropellerCruisingSpeed',
-      'MaximumSpeedMeasure',
-      'RangeMeasure',
-      'BridgeClearanceMeasure',
       'BeamMeasure',
-      'FreeBoardMeasure',
-      'CabinHeadroomMeasure',
-      'WaterTankCountNumeric',
-      'WaterTankCapacityMeasure',
-      'WaterTankMaterialCode',
-      'FuelTankCountNumeric',
-      'FuelTankCapacityMeasure',
-      'FuelTankMaterialCode',
-      'HoldingTankCountNumeric',
-      'HoldingTankCapacityMeasure',
-      'HoldingTankMaterialCode',
-      'DryWeightMeasure',
-      'BallastWeightMeasure',
-      'DisplacementMeasure',
-      'DisplacementTypeCode',
+      'MaxDraft',
+      'TotalEngineHoursNumeric',
       'TotalEnginePowerQuantity',
-      'DriveTypeCode',
-      'BoatKeelCode',
-      'ConvertibleSaloonIndicator',
-      'WindlassTypeCode',
-      'DeadriseMeasure',
-      'ElectricalCircuitMeasure',
-      'TrimTabsIndicator',
-      'HeadsCountNumeric',
-      'CabinsCountNumeric',
-      'BoatHullMaterialCode',
-      'BoatHullID',
-      'StockNumber',
       'NominalLength',
       'LengthOverall',
-      'ListingTitle',
-      'MaxDraft',
-      'TaxStatusCode',
-      'IMTTimeStamp',
-      'HasBoatHullID',
-      'IsAvailableForPls',
-      'NormNominalLength',
-      'NormPrice',
-      'OptionActiveIndicator',
-      'Engines',
-      'Service',
+      'LastModificationDate',
       'GeneralBoatDescription',
-      'Videos',
-      'BoatClassCode',
-      'EmbeddedVideo',
-      'BoatClassCodeNoCaseAlnumOnly',
       'AdditionalDetailDescription',
-      'ExternalLink',
-      'Images',
-      'Marketing',
-      'TotalEngineHoursNumeric',
+      'Engines',
     ];
-
-    return qs.stringify({ fields }, { arrayFormat: 'comma' });
   }
 
-  private getFieldsQuery(): string {
-    const fields = [
-      'DocumentID',
-      'SalesStatus',
-      'CoOpIndicator',
-      'NumberOfEngines',
-      'Owner',
-      'SalesRep',
-      'CompanyName',
-      'Office',
-      'LastModificationDate',
-      'ItemReceivedDate',
-      'Price',
-      'PriceHideInd',
-      'BoatLocation',
-      'BoatCityNameNoCaseAlnumOnly',
-      'MakeString',
-      'MakeStringExact',
-      'MakeStringNoCaseAlnumOnly',
-      'ModelYear',
-      'SaleClassCode',
-      'Model',
-      'ModelExact',
-      'ModelNoCaseAlnumOnly',
-      'BoatCategoryCode',
-      'BoatName',
-      'BoatNameNoCaseAlnumOnly',
-      'BuilderName',
-      'DesignerName',
-      'CruisingSpeedMeasure',
-      'PropellerCruisingSpeed',
-      'MaximumSpeedMeasure',
-      'RangeMeasure',
-      'BridgeClearanceMeasure',
-      'BeamMeasure',
-      'FreeBoardMeasure',
-      'CabinHeadroomMeasure',
-      'WaterTankCountNumeric',
-      'WaterTankCapacityMeasure',
-      'WaterTankMaterialCode',
-      'FuelTankCountNumeric',
-      'FuelTankCapacityMeasure',
-      'FuelTankMaterialCode',
-      'HoldingTankCountNumeric',
-      'HoldingTankCapacityMeasure',
-      'HoldingTankMaterialCode',
-      'DryWeightMeasure',
-      'BallastWeightMeasure',
-      'DisplacementMeasure',
-      'DisplacementTypeCode',
-      'TotalEnginePowerQuantity',
-      'DriveTypeCode',
-      'BoatKeelCode',
-      'ConvertibleSaloonIndicator',
-      'WindlassTypeCode',
-      'DeadriseMeasure',
-      'ElectricalCircuitMeasure',
-      'TrimTabsIndicator',
-      'HeadsCountNumeric',
-      'CabinsCountNumeric',
-      'BoatHullMaterialCode',
-      'BoatHullID',
-      'StockNumber',
-      'NominalLength',
-      'LengthOverall',
-      'ListingTitle',
-      'MaxDraft',
-      'TaxStatusCode',
-      'IMTTimeStamp',
-      'HasBoatHullID',
-      'IsAvailableForPls',
-      'NormNominalLength',
-      'NormPrice',
-      'OptionActiveIndicator',
-      'Engines',
-      'Service',
-      'GeneralBoatDescription',
-      'BoatClassCode',
-      'BoatClassCodeNoCaseAlnumOnly',
-      'AdditionalDetailDescription',
-      'TotalEngineHoursNumeric',
-    ];
+  // * Build fields query
+  private buildFieldsQuery(fields?: FieldPreset): string {
+    let fieldsToUse: BoatFieldKey[];
 
-    return qs.stringify({ fields }, { arrayFormat: 'comma' });
+    switch (fields) {
+      case 'all':
+        fieldsToUse = [...BOAT_FIELD_KEYS];
+        break;
+
+      case 'minimal':
+        fieldsToUse = this.getMinimalFields();
+        break;
+
+      default:
+        this.logger.log(
+          `Unknown fields preset: ${fields}, using default fields preset`,
+        );
+        fieldsToUse = this.getMinimalFields();
+        break;
+    }
+
+    return qs.stringify({ fields: fieldsToUse }, { arrayFormat: 'comma' });
   }
 
   // * Get boats from Inventory API
   private async getInventoryBoats(
     page: number,
     limit: number,
+    fields: FieldPreset = FieldPreset.minimal,
   ): Promise<TPaginatedResponse<Boat>> {
-    const query = this.getFieldsQuery();
+    const query = this.buildFieldsQuery(fields);
+
     const start = (page - 1) * limit;
 
     const url = `${this.apiBoatsBaseUrl}&${query}&start=${start}&rows=${limit}`;
 
     const { data } = await axios.get(url);
-    this.logger.log(`Boats found successfully from Inventory API: ${data}`);
+    this.logger.log(`Boats found successfully from Inventory API`);
 
     return successPaginatedResponse(
       data.results ?? [],
@@ -242,17 +114,18 @@ export class BoatsGroupService {
   private async getServiceBoats(
     page: number = 1,
     limit: number = 20,
+    fields: FieldPreset = FieldPreset.minimal,
   ): Promise<TPaginatedResponse<Boat>> {
-    const query = this.getFieldsQuery();
+    const query = this.buildFieldsQuery(fields);
     const start = (page - 1) * limit;
 
     const url = `${this.serviceBoatsBaseUrl}&${query}&start=${start}&rows=${limit}`;
 
     const { data } = await axios.get(url);
 
-    const boatsData = data.data ?? [];
+    const boatsData = data.data ?? data;
 
-    this.logger.log(`Boats found successfully from Service API: ${boatsData}`);
+    this.logger.log(`Boats found successfully from Service API`);
 
     return successPaginatedResponse(
       boatsData.results ?? [],
@@ -269,32 +142,37 @@ export class BoatsGroupService {
   private async getBoatsFromDatabase(
     page: number,
     limit: number,
+    fields: FieldPreset = FieldPreset.minimal,
   ): Promise<TPaginatedResponse<Boat>> {
-    // return await this.getBoatsService.getAllBoats({ page, limit });
+    this.logger.warn(
+      `Boats source "custom" is not implemented yet. Falling back to database source.`,
+      fields,
+    );
     return successPaginatedResponse([], { page, limit, total: 0 });
   }
 
   // * Public unified helper to fetch boats from all sources
-  public async getBoats(
-    source: BoatsSourceEnum = BoatsSourceEnum.inventory,
-    page: number = 1,
-    limit: number = 20,
-  ) {
+  public async getBoats({
+    source = BoatsSourceEnum.inventory,
+    page = 1,
+    limit = 20,
+    fields = FieldPreset.minimal,
+  }: GetBoatsDto): Promise<TPaginatedResponse<Boat>> {
     switch (source) {
       case BoatsSourceEnum.inventory:
-        return this.getInventoryBoats(page, limit);
+        return this.getInventoryBoats(page, limit, fields);
 
       case BoatsSourceEnum.service:
-        return this.getServiceBoats(page, limit);
+        return this.getServiceBoats(page, limit, fields);
 
       case BoatsSourceEnum.custom:
-        return this.getBoatsFromDatabase(page, limit);
+        return this.getBoatsFromDatabase(page, limit, fields);
 
       default:
         this.logger.warn(
           `Unknown boats source "${source}". Falling back to database source.`,
         );
-        return this.getBoatsFromDatabase(page, limit);
+        return this.getBoatsFromDatabase(page, limit, fields);
     }
   }
 }

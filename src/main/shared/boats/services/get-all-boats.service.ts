@@ -11,8 +11,13 @@ export class GetAllBoatsService {
 
   @HandleError('Failed to get boats')
   async getBoats(query: GetBoatsDto): Promise<TPaginatedResponse<Boat>> {
-    const { source, page = 1, limit = 50 } = query;
+    const { source, page = 1, limit = 50, fields } = query;
 
-    return await this.boatsGroupService.getBoats(source, page, limit);
+    return await this.boatsGroupService.getBoats({
+      source,
+      page,
+      limit,
+      fields,
+    });
   }
 }
