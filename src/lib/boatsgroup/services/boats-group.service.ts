@@ -5,7 +5,6 @@ import {
   TPaginatedResponse,
 } from '@/common/utils/response.util';
 import { GetBoatsDto } from '@/main/shared/boats/dto/get-boats.dto';
-import { GetBoatsService } from '@/main/shared/boats/services/get-boats.service';
 import { Injectable, Logger } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import axios from 'axios';
@@ -14,8 +13,9 @@ import {
   BOAT_FIELD_KEYS,
   BoatFieldKey,
   FieldPreset,
-} from './interface/boats-fields.interface';
-import { Boat } from './interface/boats.interface';
+} from '../interface/boats-fields.interface';
+import { Boat } from '../interface/boats.interface';
+import { GetAllCustomBoatsService } from './get-all-custom-boats.service';
 
 @Injectable()
 export class BoatsGroupService {
@@ -27,7 +27,7 @@ export class BoatsGroupService {
 
   constructor(
     private readonly config: ConfigService,
-    private readonly getBoatsService: GetBoatsService,
+    private readonly getAllCustomBoatsService: GetAllCustomBoatsService,
   ) {
     this.apiBoatsKey = this.config.getOrThrow<string>(ENVEnum.API_BOATS_KEY);
     this.apiBoatsBaseUrl = `https://api.boats.com/inventory/search?key=${this.apiBoatsKey}&sort=LastModificationDate|desc`;
@@ -41,14 +41,16 @@ export class BoatsGroupService {
   private getMinimalFields(): BoatFieldKey[] {
     return [
       'DocumentID',
+      'ListingTitle',
       'Price',
       'BoatLocation',
       'BoatCityNameNoCaseAlnumOnly',
+      'FuelTankCapacityMeasure',
+      'FuelTankCountNumeric',
       'MakeString',
       'ModelYear',
       'Model',
       'BeamMeasure',
-      'MaxDraft',
       'TotalEngineHoursNumeric',
       'TotalEnginePowerQuantity',
       'NominalLength',
@@ -57,6 +59,18 @@ export class BoatsGroupService {
       'GeneralBoatDescription',
       'AdditionalDetailDescription',
       'Engines',
+    ];
+  }
+
+  private getSearchFields(): BoatFieldKey[] {
+    return [
+      ...this.getMinimalFields(),
+      'Owner',
+      'SalesRep',
+      'CompanyName',
+      'Office',
+      'NumberOfEngines',
+      'MaxDraft',
     ];
   }
 
@@ -73,11 +87,15 @@ export class BoatsGroupService {
         fieldsToUse = this.getMinimalFields();
         break;
 
+      case 'search':
+        fieldsToUse = this.getSearchFields();
+        break;
+
       default:
         this.logger.log(
           `Unknown fields preset: ${fields}, using default fields preset`,
         );
-        fieldsToUse = this.getMinimalFields();
+        fieldsToUse = this.getSearchFields();
         break;
     }
 
@@ -144,11 +162,11 @@ export class BoatsGroupService {
     limit: number,
     fields: FieldPreset = FieldPreset.minimal,
   ): Promise<TPaginatedResponse<Boat>> {
-    this.logger.warn(
-      `Boats source "custom" is not implemented yet. Falling back to database source.`,
+    return await this.getAllCustomBoatsService.getAllBoats({
+      page,
+      limit,
       fields,
-    );
-    return successPaginatedResponse([], { page, limit, total: 0 });
+    });
   }
 
   // * Public unified helper to fetch boats from all sources

@@ -95,4 +95,5 @@ export type BoatFieldKey = (typeof BOAT_FIELD_KEYS)[number];
 export enum FieldPreset {
   all = 'all',
   minimal = 'minimal',
+  search = 'search',
 }

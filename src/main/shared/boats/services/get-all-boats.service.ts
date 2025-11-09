@@ -1,7 +1,7 @@
 import { HandleError } from '@/common/error/handle-error.decorator';
 import { TPaginatedResponse } from '@/common/utils/response.util';
-import { BoatsGroupService } from '@/lib/boatsgroup/boats-group.service';
 import { Boat } from '@/lib/boatsgroup/interface/boats.interface';
+import { BoatsGroupService } from '@/lib/boatsgroup/services/boats-group.service';
 import { Injectable } from '@nestjs/common';
 import { GetBoatsDto } from '../dto/get-boats.dto';
 
