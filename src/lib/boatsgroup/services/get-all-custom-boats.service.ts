@@ -6,8 +6,12 @@ import {
 import { PrismaService } from '@/lib/prisma/prisma.service';
 import { GetBoatsDto } from '@/main/shared/boats/dto/get-boats.dto';
 import { Injectable } from '@nestjs/common';
-import { BoatEngine, Boats } from '@prisma/client';
-import { Boat } from '../interface/boats.interface';
+import { BoatEngine, BoatImage, Boats, FileInstance } from '@prisma/client';
+import {
+  BoatFromBoatsGroup,
+  Engine,
+  Image,
+} from '../interface/boats.interface';
 
 @Injectable()
 export class GetAllCustomBoatsService {
@@ -36,20 +40,23 @@ export class GetAllCustomBoatsService {
     }
   }
 
-  private mapEngineToOutput(engine: any) {
-    return {
+  private mapEngineToOutput(engine: BoatEngine): Engine {
+    const mappedEngine: Engine = {
       Make: engine.make ?? null,
       Model: engine.model ?? null,
-      DriveTransmissionDescription: null,
+      DriveTransmissionDescription: '', // Assign a default value
       Fuel: engine.fuelType ?? null,
-      EnginePower:
-        engine.horsepower != null ? `${engine.horsepower}|horsepower` : null,
-      Type: null,
+      EnginePower: engine.horsepower.toString() ?? null,
+      Type: engine.fuelType ?? null,
       PropellerType: engine.propellerType ?? null,
-      Year: null,
+      Year: undefined,
       Hours: engine.hours ?? null,
-      BoatEngineLocationCode: null,
+      BoatEngineLocationCode: undefined,
+      EngineCount: undefined,
+      PropellerMaterial: engine.propellerType ?? null,
+      PropellerBladeCountNumeric: undefined,
     };
+    return mappedEngine;
   }
 
   private extractDescriptions(boat: any) {
@@ -99,9 +106,32 @@ export class GetAllCustomBoatsService {
     };
   }
 
-  private transformBoat(boat: Boats & { engines: BoatEngine[] }) {
-    const mappedEngines = Array.isArray(boat.engines)
-      ? boat.engines.map((e: BoatEngine) => this.mapEngineToOutput(e))
+  private formatImages(images: BoatImage & { file: FileInstance }): Image {
+    const mappedImages: Image = {
+      Priority: images.imageType === 'GALLERY' ? 1 : 2,
+      Caption: undefined,
+      Uri: images.file?.url ?? null,
+      LastModifiedDateTime: images?.file
+        ? new Date(images.file.updatedAt).toISOString()
+        : undefined,
+      ThumbnailUri: images?.file?.url ?? null,
+    };
+
+    return mappedImages;
+  }
+
+  private transformBoat(
+    boat: Boats & {
+      engines: BoatEngine[];
+      images: (BoatImage & { file: FileInstance })[];
+    },
+  ): BoatFromBoatsGroup {
+    const mappedEngines: Engine[] = Array.isArray(boat.engines)
+      ? boat.engines.map((e: any) => this.mapEngineToOutput(e))
+      : [];
+
+    const mappedImages: Image[] = Array.isArray(boat.images)
+      ? boat.images.map((i: any) => this.formatImages(i))
       : [];
 
     const totalHp =
@@ -112,38 +142,60 @@ export class GetAllCustomBoatsService {
           )
         : null;
 
+    const totalEngineHours =
+      Array.isArray(boat.engines) && boat.engines.length > 0
+        ? boat.engines.reduce(
+            (s: number, en: any) => s + (Number(en.hours) || 0),
+            0,
+          )
+        : null;
+
     const { general, additional } = this.extractDescriptions(boat);
 
-    return {
+    const result: BoatFromBoatsGroup = {
+      Source: 'custom',
       DocumentID: boat.id,
-      OriginalPrice: boat.price != null ? `${boat.price} USD` : null,
-      Price: boat.price != null ? `${Number(boat.price).toFixed(2)} USD` : null,
+      OriginalPrice: boat.price != null ? `${boat.price} USD` : undefined,
+      Price:
+        boat.price != null ? `${Number(boat.price).toFixed(2)} USD` : undefined,
       BoatLocation: {
-        BoatCityName: boat.city ?? null,
+        BoatCityName: boat.city ?? undefined,
         BoatCountryID: 'US',
-        BoatStateCode: boat.state ?? null,
+        BoatStateCode: boat.state ?? undefined,
       },
-      BoatCityNameNoCaseAlnumOnly:
-        this.sanitizeCityNameForKey(boat.city) ?? null,
-      MakeString: boat.make ?? null,
-      ModelYear: boat.buildYear ?? null,
-      Model: boat.model ?? null,
-      BeamMeasure: this.formatFeet(boat.beam),
-      TotalEnginePowerQuantity: totalHp != null ? `${totalHp} hp` : null,
-      NominalLength: this.formatFeet(boat.length),
-      LengthOverall: this.formatFeet(boat.length),
-      ListingTitle: boat.name ?? null,
-      MaxDraft: this.formatFeet(boat.draft),
-      Engines: mappedEngines,
-      GeneralBoatDescription: general,
-      AdditionalDetailDescription: additional,
+      MakeString: boat.make ?? undefined,
+      ModelYear: boat.buildYear ?? undefined,
+      Model: boat.model ?? undefined,
+      BeamMeasure: this.formatFeet(boat.beam) ?? undefined,
+      TotalEnginePowerQuantity: totalHp != null ? `${totalHp} hp` : undefined,
+      NominalLength: this.formatFeet(boat.length) ?? undefined,
+      LengthOverall: this.formatFeet(boat.length) ?? undefined,
+      ListingTitle: boat.name ?? undefined,
+      MaxDraft: this.formatFeet(boat.draft) ?? undefined,
+      Engines: mappedEngines?.length ? mappedEngines : undefined,
+      GeneralBoatDescription: general.length ? general : undefined,
+      AdditionalDetailDescription: additional.length ? additional : undefined,
+      TotalEngineHoursNumeric: totalEngineHours ?? undefined,
+      NumberOfEngines: boat.engines?.length ?? undefined,
+      HeadsCountNumeric: boat.headsNumber ?? undefined,
+      CabinsCountNumeric: boat.cabinsNumber ?? undefined,
+      BoatHullMaterialCode: boat.material ?? undefined,
+      SaleClassCode: boat.condition ?? undefined,
+      BoatName: boat.name ?? undefined,
+      Videos: boat.videoURL ? { url: [boat.videoURL] } : undefined,
+      Images: mappedImages.length ? mappedImages : undefined,
     };
+
+    return result;
   }
 
   @HandleError('Failed to get boats', 'Boats')
-  async getAllBoats(options?: GetBoatsDto): Promise<TPaginatedResponse<Boat>> {
-    const page = Math.max(Number(options?.page) || 1, 1);
-    const limit = Math.max(Number(options?.limit) || 0, 0);
+  async getAllBoats(
+    options?: GetBoatsDto,
+  ): Promise<TPaginatedResponse<BoatFromBoatsGroup>> {
+    const page = Math.max(Number(options?.page ?? 1), 1);
+    // sensible default when limit omitted or <= 0
+    const limit = Math.max(Number(options?.limit ?? 20), 1);
 
     const skip = (page - 1) * limit;
 
@@ -154,6 +206,11 @@ export class GetAllCustomBoatsService {
         skip,
         include: {
           engines: true,
+          images: {
+            include: {
+              file: true,
+            },
+          },
         },
         orderBy: { updatedAt: 'desc' },
       }),
@@ -162,7 +219,7 @@ export class GetAllCustomBoatsService {
     const transformed = boats.map((boat) => this.transformBoat(boat));
 
     return successPaginatedResponse(
-      [],
+      transformed,
       {
         page,
         limit,

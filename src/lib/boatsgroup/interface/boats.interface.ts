@@ -9,12 +9,24 @@ export interface Engine {
   Year?: number;
   Hours?: number;
   BoatEngineLocationCode?: string;
+  EngineCount?: number;
+  PropellerMaterial?: string;
+  PropellerBladeCountNumeric?: number;
 }
 
-export interface Boat {
+export interface Image {
+  Priority?: number;
+  Caption?: string;
+  Uri?: string;
+  LastModifiedDateTime?: string;
+  ThumbnailUri?: string;
+}
+
+export interface BoatFromBoatsGroup {
   // Basic Info
   Source?: string;
   DocumentID?: string;
+  ListingTitle?: string;
   SalesStatus?: string;
   CoOpIndicator?: boolean;
   NumberOfEngines?: number;
@@ -24,13 +36,14 @@ export interface Boat {
   Model?: string;
   ModelExact?: string;
   ModelYear?: number;
+  BuilderName?: string;
+  DesignerName?: string;
+  StockNumber?: string;
   SaleClassCode?: string;
   BoatCategoryCode?: string;
   BoatClassCode?: string[];
-  BuilderName?: string;
-  DesignerName?: string;
-  ListingTitle?: string;
-  StockNumber?: string;
+  BoatType?: string;
+  NormNominalLength?: number;
 
   // Price & Sales
   OriginalPrice?: string;
@@ -38,6 +51,9 @@ export interface Boat {
   NormPrice?: number;
   PriceHideInd?: boolean;
   OptionActiveIndicator?: boolean;
+  CurrencyCode?: string;
+  ForSaleIndicator?: boolean;
+  SoldIndicator?: boolean;
 
   // Dimensions
   NominalLength?: string;
@@ -52,11 +68,20 @@ export interface Boat {
   DryWeightMeasure?: string;
   DeadriseMeasure?: string;
 
+  // Performance
+  CruisingSpeedMeasure?: string;
+  MaximumSpeedMeasure?: string;
+  RangeMeasure?: string;
+  MaxSpeedKnots?: number;
+  CruisingSpeedKnots?: number;
+  RangeMiles?: number;
+
   // Engine info
   TotalEnginePowerQuantity?: string;
   DriveTypeCode?: string;
   Engines?: Engine[];
   TotalEngineHoursNumeric?: number;
+  FuelType?: string;
 
   // Tanks
   WaterTankCountNumeric?: number;
@@ -72,9 +97,13 @@ export interface Boat {
   // Cabins & Heads
   HeadsCountNumeric?: number;
   CabinsCountNumeric?: number;
+  SingleBerths?: number;
+  DoubleBerths?: number;
+  TwinBerths?: number;
 
   // Hull & Extras
   BoatHullMaterialCode?: string;
+  BoatHullColorPrimary?: string;
   BoatHullID?: string;
   HasBoatHullID?: boolean;
   ConvertibleSaloonIndicator?: boolean;
@@ -83,12 +112,27 @@ export interface Boat {
   ImmersiveTourPresent?: boolean;
   EmbeddedVideoPresent?: boolean;
   Image360PhotoPresent?: boolean;
+  KeelTypeCode?: string;
+  HullShapeCode?: string;
+  SteeringTypeCode?: string;
+  TrimTabsTypeCode?: string;
+  NavigationLightsIndicator?: boolean;
+
+  // Performance Equipment / Electrical
+  GeneratorMake?: string;
+  GeneratorPower?: string;
+  ShorePowerIndicator?: boolean;
+  BatteryCount?: number;
 
   // Location
   BoatLocation?: {
     BoatCityName?: string;
     BoatCountryID?: string;
     BoatStateCode?: string;
+    Latitude?: number;
+    Longitude?: number;
+    MarinaName?: string;
+    Slip?: string;
   };
 
   // Dealer / Owner
@@ -99,6 +143,8 @@ export interface Boat {
     PartyId?: string;
     Name?: string;
     Message?: string;
+    Phone?: string;
+    Email?: string;
   };
   CompanyName?: string;
   Office?: {
@@ -111,14 +157,13 @@ export interface Boat {
     Phone?: string;
     Name?: string;
   };
+  Dealer?: {
+    Name?: string;
+    Website?: string;
+  };
 
   // Media
-  Images?: {
-    Priority?: number;
-    Caption?: string;
-    Uri?: string;
-    LastModifiedDateTime?: string;
-  }[];
+  Images?: Image[];
   Videos?: {
     title?: string[];
     desc?: string[];
@@ -126,10 +171,13 @@ export interface Boat {
     url?: string[];
   };
   EmbeddedVideo?: string[];
+  VirtualTourUrl?: string;
+  YouTubeUrl?: string;
 
   // Description / Marketing
   GeneralBoatDescription?: string[];
   AdditionalDetailDescription?: string[];
+  EquipmentList?: string[];
   ExternalLink?: {
     Uri?: string;
     Text?: string;
@@ -144,9 +192,20 @@ export interface Boat {
     PublicationID?: string;
     MarketingID?: string;
   }[];
+  Tags?: string[];
+  FeaturedListingIndicator?: boolean;
 
-  // Dates
+  // System / Meta
   ItemReceivedDate?: string;
   LastModificationDate?: string;
   IMTTimeStamp?: string;
+  SourceSystemID?: string;
+  Version?: string;
+
+  // Service Flags
+  PremiumListingIndicator?: boolean;
+  SponsoredListingIndicator?: boolean;
+  CallRecordingIndicator?: boolean;
+  LeadTrackingIndicator?: boolean;
+  HasVideoIndicator?: boolean;
 }

@@ -14,7 +14,7 @@ import {
   BoatFieldKey,
   FieldPreset,
 } from '../interface/boats-fields.interface';
-import { Boat } from '../interface/boats.interface';
+import { BoatFromBoatsGroup } from '../interface/boats.interface';
 import { GetAllCustomBoatsService } from './get-all-custom-boats.service';
 
 @Injectable()
@@ -44,7 +44,6 @@ export class BoatsGroupService {
       'ListingTitle',
       'Price',
       'BoatLocation',
-      'BoatCityNameNoCaseAlnumOnly',
       'FuelTankCapacityMeasure',
       'FuelTankCountNumeric',
       'MakeString',
@@ -67,6 +66,7 @@ export class BoatsGroupService {
       ...this.getMinimalFields(),
       'Owner',
       'SalesRep',
+      'Dealer',
       'CompanyName',
       'Office',
       'NumberOfEngines',
@@ -107,7 +107,7 @@ export class BoatsGroupService {
     page: number,
     limit: number,
     fields: FieldPreset = FieldPreset.minimal,
-  ): Promise<TPaginatedResponse<Boat>> {
+  ): Promise<TPaginatedResponse<BoatFromBoatsGroup>> {
     const query = this.buildFieldsQuery(fields);
 
     const start = (page - 1) * limit;
@@ -133,7 +133,7 @@ export class BoatsGroupService {
     page: number = 1,
     limit: number = 20,
     fields: FieldPreset = FieldPreset.minimal,
-  ): Promise<TPaginatedResponse<Boat>> {
+  ): Promise<TPaginatedResponse<BoatFromBoatsGroup>> {
     const query = this.buildFieldsQuery(fields);
     const start = (page - 1) * limit;
 
@@ -161,7 +161,7 @@ export class BoatsGroupService {
     page: number,
     limit: number,
     fields: FieldPreset = FieldPreset.minimal,
-  ): Promise<TPaginatedResponse<Boat>> {
+  ): Promise<TPaginatedResponse<BoatFromBoatsGroup>> {
     return await this.getAllCustomBoatsService.getAllBoats({
       page,
       limit,
@@ -175,7 +175,7 @@ export class BoatsGroupService {
     page = 1,
     limit = 20,
     fields = FieldPreset.minimal,
-  }: GetBoatsDto): Promise<TPaginatedResponse<Boat>> {
+  }: GetBoatsDto): Promise<TPaginatedResponse<BoatFromBoatsGroup>> {
     switch (source) {
       case BoatsSourceEnum.inventory:
         return this.getInventoryBoats(page, limit, fields);
