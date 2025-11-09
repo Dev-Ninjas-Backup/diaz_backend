@@ -1,4 +1,5 @@
 import { Module } from '@nestjs/common';
+import { BoatsGroupModule } from './boatsgroup/boats-group.module';
 import { FileModule } from './file/file.module';
 import { MailModule } from './mail/mail.module';
 import { MulterModule } from './multer/multer.module';
@@ -20,6 +21,7 @@ import { UtilsModule } from './utils/utils.module';
     MulterModule,
     StripeModule,
     S3BucketModule,
+    BoatsGroupModule,
   ],
   exports: [],
   providers: [],
