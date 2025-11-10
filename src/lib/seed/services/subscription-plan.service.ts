@@ -1,5 +1,5 @@
 import { PrismaService } from '@/lib/prisma/prisma.service';
-import { couponSeedData, planSeedData } from '@/lib/stripe/stripe.data';
+import { couponSeedData, planSeedData } from '@/lib/seed/data/stripe.data';
 import { StripeService } from '@/lib/stripe/stripe.service';
 import { Injectable, Logger, OnModuleInit } from '@nestjs/common';
 
