@@ -1,49 +1,30 @@
 import { BoatSpecificationType } from '@prisma/client';
+import { BOAT_MAKES_SEED } from './boat-makes.data';
+import { BOAT_MODELS_SEED } from './boat-models.data';
 
 export const BOAT_SPECIFICATIONS_SEED: Record<BoatSpecificationType, string[]> =
   {
-    [BoatSpecificationType.MAKE]: [
-      'Yamaha',
-      'Suzuki',
-      'Mercury',
-      'Honda',
-      'Volvo Penta',
-      'Caterpillar',
-      'MAN',
-      'Perkins',
-      'Yanmar',
-      'Evinrude',
-    ],
+    [BoatSpecificationType.MAKE]: BOAT_MAKES_SEED,
 
-    [BoatSpecificationType.MODEL]: [
-      'F150',
-      'F200',
-      'V8 4.3L',
-      'D4-300',
-      'IPS 600',
-      'C12',
-      'M 635',
-      'X100',
-      'Sport 250',
-      'Cruiser 380',
-    ],
+    [BoatSpecificationType.MODEL]: BOAT_MODELS_SEED,
 
     [BoatSpecificationType.ENGINE_TYPE]: [
+      'Electric',
       'Inboard',
-      'Outboard',
       'Inboard/Outboard',
-      'Jet Drive',
-      'Pod Drive',
-      'Electric Motor',
-      'Hybrid',
+      'Other',
+      'Outboard',
+      'Outboard 2S',
+      'Outboard 4S',
+      'V-Drive',
     ],
 
     [BoatSpecificationType.FUEL_TYPE]: [
-      'Gasoline',
       'Diesel',
       'Electric',
-      'Hybrid',
+      'Gas / Petrol',
       'LPG',
+      'Other',
     ],
 
     [BoatSpecificationType.CLASS]: [
@@ -74,16 +55,19 @@ export const BOAT_SPECIFICATIONS_SEED: Record<BoatSpecificationType, string[]> =
     ],
 
     [BoatSpecificationType.PROP_TYPE]: [
-      'Fixed Pitch',
-      'Feathering',
-      'Surface Piercing',
-      'Ducted (Jet)',
+      '2 Blade',
+      '3 Blade',
+      '4 Blade',
+      '5 Blade',
+      '6 Blade',
     ],
 
     [BoatSpecificationType.PROP_MATERIAL]: [
-      'Bronze',
-      'Stainless Steel',
+      'Alloy',
       'Aluminum',
-      'Composite',
+      'Bronze',
+      'Nibril',
+      'Other',
+      'Stainless Steel',
     ],
   };
