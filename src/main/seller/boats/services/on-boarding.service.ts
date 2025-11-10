@@ -58,7 +58,9 @@ export class OnBoardingService {
     const parsePipe = new ParseJsonPipe();
 
     const boatInfo = parsePipe.transform(data.boatInfo);
+    this.logger.log('boatInfo: ', boatInfo);
     const sellerInfo = parsePipe.transform(data.sellerInfo);
+    this.logger.log('sellerInfo: ', sellerInfo);
 
     // * Validate unique username
     const existingUser = await this.prisma.user.findUnique({
