@@ -7,7 +7,6 @@ const makeFieldKeys = <T extends readonly (keyof BoatFromBoatsGroup)[]>(
 
 export const BOAT_FIELD_KEYS = makeFieldKeys([
   // Basic Info
-  'Source',
   'DocumentID',
   'ListingTitle',
   'SalesStatus',
@@ -25,18 +24,14 @@ export const BOAT_FIELD_KEYS = makeFieldKeys([
   'SaleClassCode',
   'BoatCategoryCode',
   'BoatClassCode',
-  'BoatType',
   'NormNominalLength',
 
   // Price & Sales
   'OriginalPrice',
   'Price',
   'NormPrice',
-  'CurrencyCode',
   'PriceHideInd',
   'OptionActiveIndicator',
-  'ForSaleIndicator',
-  'SoldIndicator',
 
   // Dimensions
   'NominalLength',
@@ -55,16 +50,11 @@ export const BOAT_FIELD_KEYS = makeFieldKeys([
   'CruisingSpeedMeasure',
   'MaximumSpeedMeasure',
   'RangeMeasure',
-  'CruisingSpeedKnots',
-  'MaxSpeedKnots',
-  'RangeMiles',
 
   // Engine info
   'TotalEnginePowerQuantity',
   'DriveTypeCode',
   'Engines',
-  'TotalEngineHoursNumeric',
-  'FuelType',
 
   // Tanks
   'WaterTankCountNumeric',
@@ -80,32 +70,14 @@ export const BOAT_FIELD_KEYS = makeFieldKeys([
   // Cabins & Heads
   'HeadsCountNumeric',
   'CabinsCountNumeric',
-  'SingleBerths',
-  'DoubleBerths',
-  'TwinBerths',
 
   // Hull & Extras
   'BoatHullMaterialCode',
-  'BoatHullColorPrimary',
   'BoatHullID',
   'HasBoatHullID',
   'ConvertibleSaloonIndicator',
   'TrimTabsIndicator',
   'WindlassTypeCode',
-  'KeelTypeCode',
-  'HullShapeCode',
-  'SteeringTypeCode',
-  'TrimTabsTypeCode',
-  'NavigationLightsIndicator',
-  'PremiumListingIndicator',
-  'SponsoredListingIndicator',
-  'FeaturedListingIndicator',
-
-  // Generator / Electrical
-  'GeneratorMake',
-  'GeneratorPower',
-  'BatteryCount',
-  'ShorePowerIndicator',
 
   // Location
   'BoatLocation',
@@ -115,14 +87,11 @@ export const BOAT_FIELD_KEYS = makeFieldKeys([
   'SalesRep',
   'CompanyName',
   'Office',
-  'Dealer',
 
   // Media
   'Images',
   'Videos',
   'EmbeddedVideo',
-  'VirtualTourUrl',
-  'YouTubeUrl',
   'EmbeddedVideoPresent',
   'Image360PhotoPresent',
   'ImmersiveTourPresent',
@@ -130,22 +99,12 @@ export const BOAT_FIELD_KEYS = makeFieldKeys([
   // Description / Marketing
   'GeneralBoatDescription',
   'AdditionalDetailDescription',
-  'EquipmentList',
   'ExternalLink',
-  'Marketing',
-  'Tags',
 
   // System / Meta
   'ItemReceivedDate',
   'LastModificationDate',
   'IMTTimeStamp',
-  'SourceSystemID',
-  'Version',
-
-  // Service Flags
-  'LeadTrackingIndicator',
-  'CallRecordingIndicator',
-  'HasVideoIndicator',
 ] as const);
 
 export type BoatFieldKey = (typeof BOAT_FIELD_KEYS)[number];

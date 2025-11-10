@@ -5,8 +5,9 @@ import {
 } from '@/common/utils/response.util';
 import { PrismaService } from '@/lib/prisma/prisma.service';
 import { GetBoatsDto } from '@/main/shared/boats/dto/get-boats.dto';
-import { Injectable } from '@nestjs/common';
+import { Injectable, Logger } from '@nestjs/common';
 import { BoatEngine, BoatImage, Boats, FileInstance } from '@prisma/client';
+import { FieldPreset } from '../interface/boats-fields.interface';
 import {
   BoatFromBoatsGroup,
   Engine,
@@ -15,7 +16,51 @@ import {
 
 @Injectable()
 export class GetAllCustomBoatsService {
+  private readonly logger = new Logger(GetAllCustomBoatsService.name);
+
   constructor(private readonly prisma: PrismaService) {}
+
+  @HandleError('Failed to get boats', 'Boats')
+  async getAllBoats(
+    options?: GetBoatsDto,
+  ): Promise<TPaginatedResponse<BoatFromBoatsGroup>> {
+    const page = Math.max(Number(options?.page ?? 1), 1);
+    // sensible default when limit omitted or <= 0
+    const limit = Math.max(Number(options?.limit ?? 20), 1);
+
+    const skip = (page - 1) * limit;
+
+    const [total, boats] = await this.prisma.$transaction([
+      this.prisma.boats.count(),
+      this.prisma.boats.findMany({
+        take: limit,
+        skip,
+        include: {
+          engines: true,
+          images: {
+            include: {
+              file: true,
+            },
+          },
+        },
+        orderBy: { updatedAt: 'desc' },
+      }),
+    ]);
+
+    const transformed = boats.map((boat) =>
+      this.transformBoat(boat, options?.fields),
+    );
+
+    return successPaginatedResponse(
+      transformed,
+      {
+        page,
+        limit,
+        total,
+      },
+      'Boats found successfully',
+    );
+  }
 
   private formatFeet(value: number | null | undefined): string | null {
     if (value === null || value === undefined || Number.isNaN(value))
@@ -23,11 +68,6 @@ export class GetAllCustomBoatsService {
     const fixed =
       Math.round(value) === value ? `${value}` : `${+value.toFixed(2)}`;
     return `${fixed} ft`;
-  }
-
-  private sanitizeCityNameForKey(name?: string | null): string | null {
-    if (!name) return null;
-    return name.replace(/[^a-z0-9]/gi, '').toLowerCase();
   }
 
   private parseExtraDetails(extraDetails: any): any {
@@ -52,9 +92,6 @@ export class GetAllCustomBoatsService {
       Year: undefined,
       Hours: engine.hours ?? null,
       BoatEngineLocationCode: undefined,
-      EngineCount: undefined,
-      PropellerMaterial: engine.propellerType ?? null,
-      PropellerBladeCountNumeric: undefined,
     };
     return mappedEngine;
   }
@@ -114,7 +151,6 @@ export class GetAllCustomBoatsService {
       LastModifiedDateTime: images?.file
         ? new Date(images.file.updatedAt).toISOString()
         : undefined,
-      ThumbnailUri: images?.file?.url ?? null,
     };
 
     return mappedImages;
@@ -125,7 +161,10 @@ export class GetAllCustomBoatsService {
       engines: BoatEngine[];
       images: (BoatImage & { file: FileInstance })[];
     },
+    fields: FieldPreset = FieldPreset.minimal,
   ): BoatFromBoatsGroup {
+    this.logger.log(`Transforming boat ${boat.id} with fields ${fields}`);
+
     const mappedEngines: Engine[] = Array.isArray(boat.engines)
       ? boat.engines.map((e: any) => this.mapEngineToOutput(e))
       : [];
@@ -142,18 +181,9 @@ export class GetAllCustomBoatsService {
           )
         : null;
 
-    const totalEngineHours =
-      Array.isArray(boat.engines) && boat.engines.length > 0
-        ? boat.engines.reduce(
-            (s: number, en: any) => s + (Number(en.hours) || 0),
-            0,
-          )
-        : null;
-
     const { general, additional } = this.extractDescriptions(boat);
 
     const result: BoatFromBoatsGroup = {
-      Source: 'custom',
       DocumentID: boat.id,
       OriginalPrice: boat.price != null ? `${boat.price} USD` : undefined,
       Price:
@@ -175,7 +205,6 @@ export class GetAllCustomBoatsService {
       Engines: mappedEngines?.length ? mappedEngines : undefined,
       GeneralBoatDescription: general.length ? general : undefined,
       AdditionalDetailDescription: additional.length ? additional : undefined,
-      TotalEngineHoursNumeric: totalEngineHours ?? undefined,
       NumberOfEngines: boat.engines?.length ?? undefined,
       HeadsCountNumeric: boat.headsNumber ?? undefined,
       CabinsCountNumeric: boat.cabinsNumber ?? undefined,
@@ -187,45 +216,5 @@ export class GetAllCustomBoatsService {
     };
 
     return result;
-  }
-
-  @HandleError('Failed to get boats', 'Boats')
-  async getAllBoats(
-    options?: GetBoatsDto,
-  ): Promise<TPaginatedResponse<BoatFromBoatsGroup>> {
-    const page = Math.max(Number(options?.page ?? 1), 1);
-    // sensible default when limit omitted or <= 0
-    const limit = Math.max(Number(options?.limit ?? 20), 1);
-
-    const skip = (page - 1) * limit;
-
-    const [total, boats] = await this.prisma.$transaction([
-      this.prisma.boats.count(),
-      this.prisma.boats.findMany({
-        take: limit,
-        skip,
-        include: {
-          engines: true,
-          images: {
-            include: {
-              file: true,
-            },
-          },
-        },
-        orderBy: { updatedAt: 'desc' },
-      }),
-    ]);
-
-    const transformed = boats.map((boat) => this.transformBoat(boat));
-
-    return successPaginatedResponse(
-      transformed,
-      {
-        page,
-        limit,
-        total,
-      },
-      'Boats found successfully',
-    );
   }
 }
