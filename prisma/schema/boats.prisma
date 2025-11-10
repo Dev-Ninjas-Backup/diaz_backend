@@ -6,10 +6,10 @@ model Boats {
 
   name        String
   price       Float
+  buildYear   Int
   description String?
 
   // * Specifications
-  buildYear Int
   make      String
   model     String
   fuelType  String
@@ -97,4 +97,27 @@ model BoatImage {
 enum BoatImageType {
   COVER
   GALLERY
+}
+
+model BoatSpecification {
+  id String @id @default(uuid())
+
+  type BoatSpecificationType
+  name String
+  meta Json?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @default(now()) @updatedAt
+
+  @@unique([type, name])
+  @@map("boat_specifications")
+}
+
+enum BoatSpecificationType {
+  MAKE
+  MODEL
+  FUEL_TYPE
+  CLASS
+  MATERIAL
+  CONDITION
 }
