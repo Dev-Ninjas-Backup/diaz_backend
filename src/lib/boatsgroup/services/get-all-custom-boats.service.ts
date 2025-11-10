@@ -7,6 +7,7 @@ import { PrismaService } from '@/lib/prisma/prisma.service';
 import { GetBoatsDto } from '@/main/shared/boats/dto/get-boats.dto';
 import { Injectable, Logger } from '@nestjs/common';
 import { BoatEngine, BoatImage, Boats, FileInstance } from '@prisma/client';
+import { getBoatFieldsByPreset } from '../helpers/boat-field-presets';
 import { FieldPreset } from '../interface/boats-fields.interface';
 import {
   BoatFromBoatsGroup,
@@ -84,9 +85,10 @@ export class GetAllCustomBoatsService {
     const mappedEngine: Engine = {
       Make: engine.make ?? null,
       Model: engine.model ?? null,
-      DriveTransmissionDescription: '', // Assign a default value
+      DriveTransmissionDescription: '',
       Fuel: engine.fuelType ?? null,
-      EnginePower: engine.horsepower.toString() ?? null,
+      EnginePower:
+        engine.horsepower != null ? String(engine.horsepower) : undefined,
       Type: engine.fuelType ?? null,
       PropellerType: engine.propellerType ?? null,
       Year: undefined,
@@ -156,6 +158,22 @@ export class GetAllCustomBoatsService {
     return mappedImages;
   }
 
+  private applyFieldPreset(
+    obj: BoatFromBoatsGroup,
+    fields: FieldPreset = FieldPreset.minimal,
+  ): BoatFromBoatsGroup {
+    if (fields === FieldPreset.all) return obj;
+
+    const allowed = getBoatFieldsByPreset(fields);
+    const filtered: Record<string, unknown> = {};
+
+    for (const key of allowed) {
+      filtered[key] = obj[key];
+    }
+
+    return filtered as BoatFromBoatsGroup;
+  }
+
   private transformBoat(
     boat: Boats & {
       engines: BoatEngine[];
@@ -163,8 +181,6 @@ export class GetAllCustomBoatsService {
     },
     fields: FieldPreset = FieldPreset.minimal,
   ): BoatFromBoatsGroup {
-    this.logger.log(`Transforming boat ${boat.id} with fields ${fields}`);
-
     const mappedEngines: Engine[] = Array.isArray(boat.engines)
       ? boat.engines.map((e: any) => this.mapEngineToOutput(e))
       : [];
@@ -213,8 +229,12 @@ export class GetAllCustomBoatsService {
       BoatName: boat.name ?? undefined,
       Videos: boat.videoURL ? { url: [boat.videoURL] } : undefined,
       Images: mappedImages.length ? mappedImages : undefined,
+      LastModificationDate: boat.updatedAt?.toISOString() ?? undefined,
+      NormPrice: boat.price ?? undefined,
+      NormNominalLength: boat.length ?? undefined,
     };
 
-    return result;
+    // apply chosen fields preset before returning
+    return this.applyFieldPreset(result, fields);
   }
 }

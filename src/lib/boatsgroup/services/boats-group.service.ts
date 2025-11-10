@@ -9,11 +9,8 @@ import { Injectable, Logger } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import axios from 'axios';
 import qs from 'query-string';
-import {
-  BOAT_FIELD_KEYS,
-  BoatFieldKey,
-  FieldPreset,
-} from '../interface/boats-fields.interface';
+import { getBoatFieldsByPreset } from '../helpers/boat-field-presets';
+import { FieldPreset } from '../interface/boats-fields.interface';
 import { BoatFromBoatsGroup } from '../interface/boats.interface';
 import { GetAllCustomBoatsService } from './get-all-custom-boats.service';
 
@@ -37,65 +34,9 @@ export class BoatsGroupService {
     this.serviceBoatsBaseUrl = `https://services.boats.com/pls/boats/search?key=${this.serviceBoatsKey}&sort=LastModificationDate|desc`;
   }
 
-  // * Get minimal fields
-  private getMinimalFields(): BoatFieldKey[] {
-    return [
-      'DocumentID',
-      'ListingTitle',
-      'Price',
-      'BoatLocation',
-      'FuelTankCapacityMeasure',
-      'FuelTankCountNumeric',
-      'MakeString',
-      'ModelYear',
-      'Model',
-      'BeamMeasure',
-      'TotalEnginePowerQuantity',
-      'NominalLength',
-      'LengthOverall',
-      'LastModificationDate',
-      'GeneralBoatDescription',
-      'AdditionalDetailDescription',
-      'Engines',
-    ];
-  }
-
-  private getSearchFields(): BoatFieldKey[] {
-    return [
-      ...this.getMinimalFields(),
-      'Owner',
-      'SalesRep',
-      'CompanyName',
-      'Office',
-      'NumberOfEngines',
-      'MaxDraft',
-    ];
-  }
-
   // * Build fields query
   private buildFieldsQuery(fields?: FieldPreset): string {
-    let fieldsToUse: BoatFieldKey[];
-
-    switch (fields) {
-      case 'all':
-        fieldsToUse = [...BOAT_FIELD_KEYS];
-        break;
-
-      case 'minimal':
-        fieldsToUse = this.getMinimalFields();
-        break;
-
-      case 'search':
-        fieldsToUse = this.getSearchFields();
-        break;
-
-      default:
-        this.logger.log(
-          `Unknown fields preset: ${fields}, using default fields preset`,
-        );
-        fieldsToUse = this.getSearchFields();
-        break;
-    }
+    const fieldsToUse = getBoatFieldsByPreset(fields);
 
     return qs.stringify({ fields: fieldsToUse }, { arrayFormat: 'comma' });
   }
