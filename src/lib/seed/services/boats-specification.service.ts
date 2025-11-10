@@ -1,41 +1,77 @@
+import { PrismaService } from '@/lib/prisma/prisma.service';
 import { Injectable, Logger, OnModuleInit } from '@nestjs/common';
+import { BoatSpecificationType, DataInsertSource } from '@prisma/client';
+import { BOAT_SPECIFICATIONS_SEED } from '../data/boat-specifications.data';
 
 @Injectable()
 export class BoatsSpecificationService implements OnModuleInit {
   private readonly logger = new Logger(BoatsSpecificationService.name);
 
-  async onModuleInit() {
-    this.logger.log('Seeding Boats Specification Data');
+  constructor(private readonly prisma: PrismaService) {}
 
-    this.seedMakeData();
-    this.seedModelData();
-    this.seedFoulTypeData();
-    this.seedClassData();
-    this.seedMaterialData();
-    this.seedConditionData();
+  async onModuleInit(): Promise<void> {
+    this.logger.log('[INIT] Boat Specifications Seeding Started');
+    try {
+      await this.seedAll();
+      this.logger.log(
+        '[DONE] Boat Specifications Seeding Completed Successfully',
+      );
+    } catch (error) {
+      this.logger.error(
+        '[FAILED] Boat Specifications Seeding Failed',
+        error as any,
+      );
+    }
   }
 
-  private seedMakeData() {
-    this.logger.log('Seeding Boats Specification Data');
+  private async seedAll(): Promise<void> {
+    for (const [type, names] of Object.entries(BOAT_SPECIFICATIONS_SEED) as [
+      BoatSpecificationType,
+      string[],
+    ][]) {
+      await this.seedByType(type, names);
+    }
   }
 
-  private seedModelData() {
-    this.logger.log('Seeding Boats Specification Data');
-  }
+  private async seedByType(
+    type: BoatSpecificationType,
+    items: string[],
+  ): Promise<void> {
+    this.logger.log(`[SEED] ${type} (${items.length} items)`);
 
-  private seedFoulTypeData() {
-    this.logger.log('Seeding Boats Specification Data');
-  }
+    for (const rawName of items) {
+      const name = rawName?.toString().trim();
+      if (!name) continue;
 
-  private seedClassData() {
-    this.logger.log('Seeding Boats Specification Data');
-  }
+      try {
+        const existing = await this.prisma.boatSpecification.findFirst({
+          where: { type, name },
+        });
 
-  private seedMaterialData() {
-    this.logger.log('Seeding Boats Specification Data');
-  }
+        if (existing) {
+          this.logger.log(
+            `[EXIST] ${type} → "${name}" already exists, skipping...`,
+          );
+          continue;
+        }
 
-  private seedConditionData() {
-    this.logger.log('Seeding Boats Specification Data');
+        await this.prisma.boatSpecification.create({
+          data: {
+            type,
+            name,
+            source: DataInsertSource.SYSTEM,
+            isDeleted: false,
+          },
+        });
+
+        this.logger.log(`[CREATED] ${type} → "${name}" inserted.`);
+      } catch (error) {
+        this.logger.error(
+          `[ERROR] Failed to create ${type} → "${name}": ${(error as any)?.message ?? error}`,
+        );
+      }
+    }
+
+    this.logger.log(`[COMPLETE] ${type} seeding done`);
   }
 }
