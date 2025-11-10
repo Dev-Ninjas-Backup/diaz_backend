@@ -20,7 +20,7 @@ model Boats {
   propType     String?
   propMaterial String?
 
-  // * Features Specifications
+  // * Features
   electronics         String[]
   insideEquipment     String[]
   outsideEquipment    String[]

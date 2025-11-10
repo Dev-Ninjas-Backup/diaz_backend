@@ -60,6 +60,24 @@ export class BoatsInfoOnBoardingDto {
   @IsString()
   condition: string;
 
+  @ApiPropertyOptional({ example: 'Propeller', description: 'Engine type' })
+  @IsOptional()
+  @IsString()
+  engineType?: string;
+
+  @ApiPropertyOptional({ example: 'Propeller', description: 'Propeller type' })
+  @IsOptional()
+  @IsString()
+  propType?: string;
+
+  @ApiPropertyOptional({
+    example: 'Aluminium',
+    description: 'Propeller material',
+  })
+  @IsOptional()
+  @IsString()
+  propMaterial?: string;
+
   @ApiProperty({ type: BoatDimensionsDto })
   @ValidateNested()
   @Type(() => BoatDimensionsDto)

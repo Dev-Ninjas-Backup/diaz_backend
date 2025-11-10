@@ -29,7 +29,7 @@ enum BoatSpecificationType {
 model BoatFeature {
   id String @id @default(uuid())
 
-  type BoatFeatureSpecificationType
+  type BoatFeatureType
   name String
   meta Json?
 
@@ -42,7 +42,7 @@ model BoatFeature {
   @@map("boat_features")
 }
 
-enum BoatFeatureSpecificationType {
+enum BoatFeatureType {
   ELECTRONICS
   INSIDE_EQUIPMENT
   OUTSIDE_EQUIPMENT

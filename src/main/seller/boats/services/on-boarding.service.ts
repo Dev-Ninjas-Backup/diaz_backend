@@ -29,6 +29,10 @@ export class OnBoardingService {
     data: SellerOnboardingBodyDto,
     files: { path: string; type: BoatImageType; originalName: string }[],
   ): Promise<TResponse<any>> {
+    if (!data.planId || !data.boatInfo || !data.sellerInfo) {
+      throw new AppError(HttpStatus.BAD_REQUEST, 'Invalid request body');
+    }
+
     //* Validate plan id
     const plan = await this.prisma.subscriptionPlan.findUnique({
       where: { id: data.planId },
@@ -58,107 +62,112 @@ export class OnBoardingService {
     const parsePipe = new ParseJsonPipe();
 
     const boatInfo = parsePipe.transform(data.boatInfo);
+    this.logger.log('Boat Info: ', boatInfo);
     const sellerInfo = parsePipe.transform(data.sellerInfo);
+    this.logger.log('Seller Info: ', sellerInfo);
 
     // * Validate unique username
-    const existingUser = await this.prisma.user.findUnique({
-      where: { username: sellerInfo.username },
-    });
+    const [existingUser, existingEmail] = await Promise.all([
+      this.prisma.user.findUnique({ where: { username: sellerInfo.username } }),
+      this.prisma.user.findUnique({ where: { email: sellerInfo.email } }),
+    ]);
+
     if (existingUser) {
       throw new AppError(HttpStatus.CONFLICT, 'Username already exists');
     }
 
-    // * Validate unique email
-    const existingEmail = await this.prisma.user.findUnique({
-      where: { email: sellerInfo.email },
-    });
     if (existingEmail) {
       throw new AppError(HttpStatus.CONFLICT, 'Email already exists');
     }
 
-    // * Create user in the database
-    const user = await this.prisma.user.create({
-      data: {
-        username: sellerInfo.username,
-        password: await this.utils.hash(sellerInfo.password),
-        role: 'SELLER',
-        email: sellerInfo.email,
-        phone: sellerInfo.phone,
-        name: sellerInfo.name,
-        country: sellerInfo.country,
-        city: sellerInfo.city,
-        state: sellerInfo.state,
-        zip: sellerInfo.zip,
-      },
+    // * Begin transaction
+    const result = await this.prisma.$transaction(async (tx) => {
+      // * Create user
+      const user = await tx.user.create({
+        data: {
+          username: sellerInfo.username,
+          password: await this.utils.hash(sellerInfo.password),
+          role: 'SELLER',
+          email: sellerInfo.email,
+          phone: sellerInfo.phone,
+          name: sellerInfo.name,
+          country: sellerInfo.country,
+          city: sellerInfo.city,
+          state: sellerInfo.state,
+          zip: sellerInfo.zip,
+        },
+      });
+
+      const {
+        lengthFeet,
+        lengthInches,
+        beamFeet,
+        beamInches,
+        draftFeet,
+        draftInches,
+      } = boatInfo.boatDimensions;
+
+      const decimalLength = this.utils.feetAndInchesToDecimal(
+        lengthFeet,
+        lengthInches,
+      );
+      const decimalBeam = this.utils.feetAndInchesToDecimal(
+        beamFeet,
+        beamInches,
+      );
+      const decimalDraft = this.utils.feetAndInchesToDecimal(
+        draftFeet,
+        draftInches,
+      );
+
+      // * Create listing
+      const listing = await tx.boats.create({
+        data: {
+          name: boatInfo.name,
+          price: boatInfo.price,
+          description: boatInfo?.description?.trim() || '',
+          buildYear: boatInfo.buildYear,
+          make: boatInfo.make,
+          model: boatInfo.model,
+          fuelType: boatInfo.fuelType,
+          class: boatInfo.boatClass,
+          material: boatInfo.material,
+          condition: boatInfo.condition,
+          engineType: boatInfo?.engineType?.trim() || '',
+          propType: boatInfo?.propType?.trim() || '',
+          propMaterial: boatInfo?.propMaterial?.trim() || '',
+          length: decimalLength,
+          beam: decimalBeam,
+          draft: decimalDraft,
+          enginesNumber: boatInfo.enginesNumber,
+          cabinsNumber: boatInfo.cabinsNumber,
+          headsNumber: boatInfo.headsNumber,
+          city: boatInfo.city,
+          state: boatInfo.state,
+          zip: boatInfo.zip,
+          videoURL: boatInfo?.videoURL?.trim() || '',
+          user: { connect: { id: user.id } },
+          engines: boatInfo.engines?.length
+            ? {
+                createMany: {
+                  data: boatInfo.engines.map((engine: BoatEngineDto) => ({
+                    ...engine,
+                  })),
+                },
+              }
+            : undefined,
+          extraDetails: boatInfo.extraDetails ?? [],
+        },
+        include: {
+          engines: true,
+          user: { select: { id: true, username: true, email: true } },
+        },
+      });
+
+      return { user, listing };
     });
 
-    // * Create listing in the database
-    const {
-      lengthFeet,
-      lengthInches,
-      beamFeet,
-      beamInches,
-      draftFeet,
-      draftInches,
-    } = boatInfo.boatDimensions;
-
-    const decimalLength = this.utils.feetAndInchesToDecimal(
-      lengthFeet,
-      lengthInches,
-    );
-    const decimalBeam = this.utils.feetAndInchesToDecimal(beamFeet, beamInches);
-    const decimalDraft = this.utils.feetAndInchesToDecimal(
-      draftFeet,
-      draftInches,
-    );
-
-    const listing = await this.prisma.boats.create({
-      data: {
-        name: boatInfo.name,
-        price: boatInfo.price,
-        description: boatInfo?.description?.trim() || '',
-        buildYear: boatInfo.buildYear,
-        make: boatInfo.make,
-        model: boatInfo.model,
-        fuelType: boatInfo.fuelType,
-        class: boatInfo.boatClass,
-        material: boatInfo.material,
-        condition: boatInfo.condition,
-        length: decimalLength,
-        beam: decimalBeam,
-        draft: decimalDraft,
-        enginesNumber: boatInfo.enginesNumber,
-        cabinsNumber: boatInfo.cabinsNumber,
-        headsNumber: boatInfo.headsNumber,
-        city: boatInfo.city,
-        state: boatInfo.state,
-        zip: boatInfo.zip,
-        videoURL: boatInfo?.videoURL?.trim() || '',
-        user: {
-          connect: { id: user.id },
-        },
-        engines: boatInfo.engines?.length
-          ? {
-              createMany: {
-                data: boatInfo.engines.map((engine: BoatEngineDto) => ({
-                  ...engine,
-                })),
-              },
-            }
-          : undefined,
-        extraDetails: boatInfo.extraDetails ?? [],
-      },
-      include: {
-        engines: true,
-        user: {
-          select: { id: true, username: true, email: true },
-        },
-      },
-    });
-
-    this.logger.log(
-      `Created new seller user ${user.id} and boat listing ${listing.id}`,
-    );
+    const { user, listing } = result;
 
     // create a SetupIntent
     const setupIntent = await this.stripe.createSetupIntent({
@@ -192,7 +201,7 @@ export class OnBoardingService {
       const payload: ListingImageProcessPayload = {
         userId: user.id,
         listingId: listing.id,
-        files: files,
+        files,
       };
 
       // * Emit event to process cover image
