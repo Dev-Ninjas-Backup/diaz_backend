@@ -1,9 +1,10 @@
 import { Global, Module } from '@nestjs/common';
-import { BoatsGroupService } from './boats-group.service';
+import { BoatsGroupService } from './services/boats-group.service';
+import { GetAllCustomBoatsService } from './services/get-all-custom-boats.service';
 
 @Global()
 @Module({
-  providers: [BoatsGroupService],
+  providers: [BoatsGroupService, GetAllCustomBoatsService],
   exports: [BoatsGroupService],
 })
 export class BoatsGroupModule {}
