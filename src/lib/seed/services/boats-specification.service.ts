@@ -1,6 +1,7 @@
 import { PrismaService } from '@/lib/prisma/prisma.service';
 import { Injectable, Logger, OnModuleInit } from '@nestjs/common';
 import { BoatSpecificationType, DataInsertSource } from '@prisma/client';
+import { BOAT_MAKES_WITH_CODE } from '../data/boat-makes.data';
 import { BOAT_SPECIFICATIONS_SEED } from '../data/boat-specifications.data';
 
 @Injectable()
@@ -17,10 +18,7 @@ export class BoatsSpecificationService implements OnModuleInit {
         '[DONE] Boat Specifications Seeding Completed Successfully',
       );
     } catch (error) {
-      this.logger.error(
-        '[FAILED] Boat Specifications Seeding Failed',
-        error as any,
-      );
+      this.logger.error('[FAILED] Boat Specifications Seeding Failed:', error);
     }
   }
 
@@ -37,6 +35,8 @@ export class BoatsSpecificationService implements OnModuleInit {
     type: BoatSpecificationType,
     items: string[],
   ): Promise<void> {
+    if (!items?.length) return;
+
     this.logger.log(`[SEED] ${type} (${items.length} items)`);
 
     for (const rawName of items) {
@@ -55,12 +55,22 @@ export class BoatsSpecificationService implements OnModuleInit {
           continue;
         }
 
+        let meta: Record<string, any> | undefined;
+
+        if (type === BoatSpecificationType.MAKE) {
+          const metaData = BOAT_MAKES_WITH_CODE.find(
+            (m) => m.name.toLowerCase() === name.toLowerCase(),
+          );
+          if (metaData) meta = metaData;
+        }
+
         await this.prisma.boatSpecification.create({
           data: {
             type,
             name,
             source: DataInsertSource.SYSTEM,
             isDeleted: false,
+            ...(meta && { meta }),
           },
         });
 
