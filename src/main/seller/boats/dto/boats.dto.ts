@@ -1,7 +1,6 @@
-import { BoatFuelType, BoatPropellerType } from '@/common/enum/boats.enums';
 import { ApiProperty } from '@nestjs/swagger';
 import { Type } from 'class-transformer';
-import { IsEnum, IsInt, IsString, Max, Min } from 'class-validator';
+import { IsInt, IsString, Max, Min } from 'class-validator';
 
 export class BoatDimensionsDto {
   @ApiProperty({ example: 36, description: 'Length feet part' })
@@ -77,11 +76,11 @@ export class BoatEngineDto {
   @IsString()
   model: string;
 
-  @ApiProperty({ enum: BoatFuelType })
-  @IsEnum(BoatFuelType)
-  fuelType: BoatFuelType;
+  @ApiProperty({ example: 'Mercury', description: 'Engine make/manufacturer' })
+  @IsString()
+  fuelType: string;
 
-  @ApiProperty({ enum: BoatPropellerType })
-  @IsEnum(BoatPropellerType)
-  propellerType: BoatPropellerType;
+  @ApiProperty({ example: 12, description: 'Boat class' })
+  @IsString()
+  propellerType: string;
 }

@@ -1,14 +1,7 @@
-import {
-  BoatClass,
-  BoatCondition,
-  BoatFuelType,
-  BoatMaterial,
-} from '@/common/enum/boats.enums';
 import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
 import { Type } from 'class-transformer';
 import {
   IsArray,
-  IsEnum,
   IsInt,
   IsNumber,
   IsOptional,
@@ -51,21 +44,21 @@ export class BoatsInfoOnBoardingDto {
   @IsString()
   model: string;
 
-  @ApiProperty({ enum: BoatFuelType })
-  @IsEnum(BoatFuelType)
-  fuelType: BoatFuelType;
+  @ApiProperty({ example: 'Mercury', description: 'Engine make/manufacturer' })
+  @IsString()
+  fuelType: string;
 
-  @ApiProperty({ enum: BoatClass })
-  @IsEnum(BoatClass)
-  boatClass: BoatClass;
+  @ApiProperty({ example: 12, description: 'Boat class' })
+  @IsString()
+  boatClass: string;
 
-  @ApiProperty({ enum: BoatMaterial })
-  @IsEnum(BoatMaterial)
-  material: BoatMaterial;
+  @ApiProperty({ example: 'Aluminium', description: 'Boat material' })
+  @IsString()
+  material: string;
 
-  @ApiProperty({ enum: BoatCondition })
-  @IsEnum(BoatCondition)
-  condition: BoatCondition;
+  @ApiProperty({ example: 'New', description: 'Boat condition' })
+  @IsString()
+  condition: string;
 
   @ApiProperty({ type: BoatDimensionsDto })
   @ValidateNested()
