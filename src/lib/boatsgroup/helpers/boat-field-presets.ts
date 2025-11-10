@@ -21,6 +21,7 @@ const MINIMAL_FIELDS: BoatFieldKey[] = [
   'GeneralBoatDescription',
   'AdditionalDetailDescription',
   'Engines',
+  'Images',
 ];
 
 const SEARCH_FIELDS: BoatFieldKey[] = [

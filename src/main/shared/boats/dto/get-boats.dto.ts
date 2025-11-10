@@ -31,7 +31,7 @@ export class GetBoatsDto {
   @Type(() => Number)
   @IsInt()
   @Min(1)
-  @Max(100)
+  @Max(550)
   limit?: number = 50;
 
   @ApiPropertyOptional({
