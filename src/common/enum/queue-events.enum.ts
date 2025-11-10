@@ -10,7 +10,6 @@ export enum QueueEventsEnum {
   MESSAGES = 'queue:messages',
 
   // === Image processing events ===
-  ONBOARDING_IMAGE_PROCESSING = 'queue:onboarding_image_processing',
-  COVER_IMAGE_PROCESSING = 'queue:cover_image_processing',
-  GALLERY_IMAGE_PROCESSING = 'queue:gallery_image_processing',
+  LISTING_IMAGE_PROCESSING = 'queue:listing_image_processing',
+  ADOPT_BOATS_SPECIFICATION = 'queue:adopt_boats_specification',
 }

@@ -18,36 +18,6 @@ export class MailService {
       auth: { user, pass },
     });
   }
-  // constructor(private configService: ConfigService) {
-  //   const clientId = this.configService.getOrThrow<string>(
-  //     ENVEnum.OAUTH_CLIENT_ID,
-  //   );
-  //   const clientSecret = this.configService.getOrThrow<string>(
-  //     ENVEnum.OAUTH_CLIENT_SECRET,
-  //   );
-  //   const refreshToken = this.configService.getOrThrow<string>(
-  //     ENVEnum.OAUTH_REFRESH_TOKEN,
-  //   );
-  //   const user = this.configService.getOrThrow<string>(
-  //     ENVEnum.OAUTH_GMAIL_USER,
-  //   );
-
-  //   this.fromEmail = user;
-
-  //   const oauth2Client = new google.auth.OAuth2(clientId, clientSecret);
-  //   oauth2Client.setCredentials({ refresh_token: refreshToken });
-
-  //   this.transporter = nodemailer.createTransport({
-  //     service: 'gmail',
-  //     auth: {
-  //       type: 'OAuth2',
-  //       user,
-  //       clientId,
-  //       clientSecret,
-  //       refreshToken,
-  //     },
-  //   });
-  // }
 
   public async sendMail({
     to,

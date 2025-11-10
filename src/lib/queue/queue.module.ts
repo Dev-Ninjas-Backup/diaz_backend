@@ -11,6 +11,7 @@ import { ImageProcessingService } from './worker/image-processing.service';
     BullModule.registerQueue(
       { name: QueueName.NOTIFICATION },
       { name: QueueName.IMAGE_PROCESSING },
+      { name: QueueName.ADOPT_BOATS_SPECIFICATION },
     ),
   ],
   providers: [

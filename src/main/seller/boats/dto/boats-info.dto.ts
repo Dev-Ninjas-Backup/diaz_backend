@@ -1,10 +1,10 @@
-import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
 import {
   BoatClass,
   BoatCondition,
   BoatFuelType,
   BoatMaterial,
-} from '@prisma/client';
+} from '@/common/enum/boats.enums';
+import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
 import { Type } from 'class-transformer';
 import {
   IsArray,

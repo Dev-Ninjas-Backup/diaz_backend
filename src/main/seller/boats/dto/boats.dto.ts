@@ -1,5 +1,5 @@
+import { BoatFuelType, BoatPropellerType } from '@/common/enum/boats.enums';
 import { ApiProperty } from '@nestjs/swagger';
-import { BoatFuelType, BoatPropellerType } from '@prisma/client';
 import { Type } from 'class-transformer';
 import { IsEnum, IsInt, IsString, Max, Min } from 'class-validator';
 

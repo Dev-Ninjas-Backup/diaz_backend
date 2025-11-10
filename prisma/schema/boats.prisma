@@ -12,11 +12,10 @@ model Boats {
   buildYear Int
   make      String
   model     String
-
-  fuelType  BoatFuelType
-  class     BoatClass
-  material  BoatMaterial
-  condition BoatCondition
+  fuelType  String
+  class     String
+  material  String
+  condition String
 
   length Float // total feet, e.g., 36.5 = 36'6"
   beam   Float // total feet
@@ -66,8 +65,8 @@ model BoatEngine {
   make  String
   model String
 
-  fuelType      BoatFuelType
-  propellerType BoatPropellerType
+  fuelType      String
+  propellerType String
 
   boatId String
   boat   Boats  @relation(fields: [boatId], references: [id], onDelete: Cascade)
@@ -93,51 +92,6 @@ model BoatImage {
   updatedAt DateTime @default(now()) @updatedAt
 
   @@map("boat_images")
-}
-
-enum BoatCondition {
-  NEW
-  USED
-  REFURBISHED
-  DAMAGED
-}
-
-enum BoatFuelType {
-  GASOLINE
-  DIESEL
-  ELECTRIC
-  HYBRID
-  OTHER
-}
-
-enum BoatClass {
-  SAILBOAT
-  MOTORBOAT
-  YACHT
-  FISHING
-  PONTOON
-  SPEEDBOAT
-  CATAMARAN
-  OTHER
-}
-
-enum BoatMaterial {
-  FIBERGLASS
-  ALUMINUM
-  WOOD
-  STEEL
-  CARBON_FIBER
-  PLASTIC
-  OTHER
-}
-
-enum BoatPropellerType {
-  FIXED
-  FOLDING
-  FEATHERING
-  SURFACE_PIERCING
-  CONTROLLABLE_PITCH
-  OTHER
 }
 
 enum BoatImageType {

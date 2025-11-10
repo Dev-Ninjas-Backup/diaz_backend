@@ -197,7 +197,7 @@ export class OnBoardingService {
 
       // * Emit event to process cover image
       await this.eventEmitter.emitAsync(
-        QueueEventsEnum.COVER_IMAGE_PROCESSING,
+        QueueEventsEnum.LISTING_IMAGE_PROCESSING,
         payload,
       );
     }
