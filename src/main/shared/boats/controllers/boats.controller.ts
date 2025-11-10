@@ -1,9 +1,9 @@
 import { Controller, Get, Param, Query } from '@nestjs/common';
 import { ApiOperation, ApiTags } from '@nestjs/swagger';
-import { GetAllBoatsCustomDto } from './dto/get-all-boats-custom.dto';
-import { GetBoatsDto } from './dto/get-boats.dto';
-import { GetAllBoatsService } from './services/get-all-boats.service';
-import { GetCustomBoatsService } from './services/get-custom-boats.service';
+import { GetAllBoatsCustomDto } from '../dto/get-all-boats-custom.dto';
+import { GetBoatsDto } from '../dto/get-boats.dto';
+import { GetAllBoatsService } from '../services/get-all-boats.service';
+import { GetCustomBoatsService } from '../services/get-custom-boats.service';
 
 @ApiTags('Shared -- Boats')
 @Controller('boats')
