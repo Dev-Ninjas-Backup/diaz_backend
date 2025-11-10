@@ -9,49 +9,59 @@ export class BoatsFeatureService implements OnModuleInit {
 
   constructor(private readonly prisma: PrismaService) {}
 
-  async onModuleInit(): Promise<void> {
-    this.logger.log('Seeding Boats Feature Data...');
+  async onModuleInit() {
+    this.logger.log('[INIT] Boat Features Seeding Started');
     try {
       await this.seedAll();
-      this.logger.log('Boats Feature seeding completed.');
-    } catch (err) {
-      this.logger.error('Boats Feature seeding failed', err);
+      this.logger.log('[DONE] Boat Features Seeding Completed Successfully');
+    } catch (error) {
+      this.logger.error('[FAILED] Boat Features Seeding Failed', error);
     }
   }
 
-  private async seedAll(): Promise<void> {
+  private async seedAll() {
     for (const [type, names] of Object.entries(BOAT_FEATURES_SEED) as [
       BoatFeatureType,
       string[],
     ][]) {
-      await this.seedType(type, names);
+      await this.seedByType(type, names);
     }
   }
 
-  private async seedType(
-    type: BoatFeatureType,
-    names: string[],
-  ): Promise<void> {
-    if (!names?.length) return;
-    this.logger.log(`Seeding ${type} (${names.length} items)`);
+  private async seedByType(type: BoatFeatureType, features: string[]) {
+    this.logger.log(`[SEED] ${type} (${features.length} items)`);
 
-    for (const name of names) {
-      const trimmed = name.trim();
-      if (!trimmed) continue;
+    for (const featureName of features) {
+      const name = featureName.trim();
+      if (!name) continue;
 
-      const exists = await this.prisma.boatFeature.findFirst({
-        where: { type, name: trimmed },
+      const existing = await this.prisma.boatFeature.findFirst({
+        where: { type, name },
       });
 
-      if (!exists) {
+      if (existing) {
+        this.logger.log(
+          `[EXIST] ${type} → "${name}" already exists, skipping...`,
+        );
+        continue;
+      }
+
+      try {
         await this.prisma.boatFeature.create({
           data: {
             type,
-            name: trimmed,
+            name,
             source: DataInsertSource.SYSTEM,
           },
         });
+        this.logger.log(`[CREATED] ${type} → "${name}" successfully inserted.`);
+      } catch (error) {
+        this.logger.error(
+          `[ERROR] Failed to create ${type} → "${name}": ${(error as any).message}`,
+        );
       }
     }
+
+    this.logger.log(`[COMPLETE] ${type} seeding done`);
   }
 }
