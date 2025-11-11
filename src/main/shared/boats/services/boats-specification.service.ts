@@ -1,7 +1,11 @@
 import { HandleError } from '@/common/error/handle-error.decorator';
+import {
+  autoCompleteResponse,
+  TAutoCompleteResponse,
+} from '@/common/utils/response.util';
 import { PrismaService } from '@/lib/prisma/prisma.service';
 import { Injectable } from '@nestjs/common';
-import { Prisma } from '@prisma/client';
+import { BoatSpecificationType, Prisma } from '@prisma/client';
 import { GetBoatSpecificationsDto } from '../dto/get-boat-specifications.dto';
 
 @Injectable()
@@ -11,7 +15,7 @@ export class BoatsSpecificationService {
   @HandleError('Failed to fetch boat specifications')
   async getSpecificationsByType(
     params: GetBoatSpecificationsDto,
-  ): Promise<any> {
+  ): Promise<TAutoCompleteResponse<BoatSpecificationType>> {
     const { type, search, limit = 20 } = params;
 
     const where: Prisma.BoatSpecificationWhereInput = {
@@ -22,7 +26,7 @@ export class BoatsSpecificationService {
     if (search) {
       where.name = {
         contains: search,
-        mode: 'insensitive', // * case-insensitive search
+        mode: 'insensitive',
       };
     }
 
@@ -38,22 +42,11 @@ export class BoatsSpecificationService {
 
     const names = items.map((i) => i.name);
 
-    if (!names?.length) {
-      return {
-        success: true,
-        message: `No ${type} specifications found ${search ? `for ${search}` : ''}`,
-        type,
-        count: 0,
-        items: [],
-      };
-    }
-
-    return {
-      success: true,
-      message: `Successfully fetched ${type} specifications ${search ? `for ${search}` : ''}`,
+    return autoCompleteResponse(
       type,
-      count: total,
-      items: names,
-    };
+      total,
+      names,
+      `Successfully fetched ${type} specifications ${search ? `for ${search}` : ''}`,
+    );
   }
 }

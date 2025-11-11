@@ -1,9 +1,9 @@
 import { Controller, Get, Query } from '@nestjs/common';
 import { ApiOperation, ApiTags } from '@nestjs/swagger';
+import { GetBoatFeaturesDto } from '../dto/get-boat-features.dto';
 import { GetBoatSpecificationsDto } from '../dto/get-boat-specifications.dto';
 import { BoatsFeatureService } from '../services/boats-feature.service';
 import { BoatsSpecificationService } from '../services/boats-specification.service';
-import { GetBoatFeaturesDto } from '../services/get-boat-features.dto';
 
 @ApiTags('Shared -- Boats Specification & Features')
 @Controller('boats')
