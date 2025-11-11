@@ -37,6 +37,15 @@ export class GetAllCustomBoatsService {
         take: limit,
         skip,
         include: {
+          user: {
+            select: {
+              id: true,
+              name: true,
+              email: true,
+              avatarUrl: true,
+              phone: true,
+            },
+          },
           engines: true,
           images: {
             include: {
@@ -83,16 +92,16 @@ export class GetAllCustomBoatsService {
 
   private mapEngineToOutput(engine: BoatEngine): Engine {
     const mappedEngine: Engine = {
-      Make: engine.make ?? null,
-      Model: engine.model ?? null,
-      DriveTransmissionDescription: '',
-      Fuel: engine.fuelType ?? null,
+      Make: engine.make ?? undefined,
+      Model: engine.model ?? undefined,
+      DriveTransmissionDescription: undefined,
+      Fuel: engine.fuelType ?? undefined,
       EnginePower:
         engine.horsepower != null ? String(engine.horsepower) : undefined,
-      Type: engine.fuelType ?? null,
-      PropellerType: engine.propellerType ?? null,
+      Type: engine.fuelType ?? undefined,
+      PropellerType: engine.propellerType ?? undefined,
       Year: undefined,
-      Hours: engine.hours ?? null,
+      Hours: engine.hours ?? undefined,
       BoatEngineLocationCode: undefined,
     };
     return mappedEngine;
@@ -176,6 +185,13 @@ export class GetAllCustomBoatsService {
 
   private transformBoat(
     boat: Boats & {
+      user: {
+        id: string;
+        name: string;
+        email: string;
+        phone: string | null;
+        avatarUrl?: string | null;
+      };
       engines: BoatEngine[];
       images: (BoatImage & { file: FileInstance })[];
     },
@@ -199,39 +215,163 @@ export class GetAllCustomBoatsService {
 
     const { general, additional } = this.extractDescriptions(boat);
 
+    // parsed extra details helper
+    const parsedExtra = this.parseExtraDetails(boat.extraDetails) ?? {};
+
+    // sanitize boat.city to alnum-only lowercase for BoatCityNameNoCaseAlnumOnly
+    const cityAlnum =
+      boat.city && typeof boat.city === 'string'
+        ? boat.city.replace(/[^a-z0-9]/gi, '').toLowerCase()
+        : undefined;
+
+    // class codes array
+    const classCodes =
+      typeof boat.class === 'string'
+        ? boat.class
+            .split(',')
+            .map((s) => s.trim())
+            .filter(Boolean)
+        : undefined;
+
+    // Office object: prefer explicit office info in extraDetails, fallback to user/contact data
+    const office = parsedExtra.office ?? {
+      PostalAddress:
+        parsedExtra.postalAddress ??
+        (boat.city || boat.state || boat.zip
+          ? `${boat.city ?? ''}${boat.state ? ', ' + boat.state : ''}${
+              boat.zip ? ' ' + boat.zip : ''
+            }`
+          : undefined),
+      City: parsedExtra.city ?? boat.city ?? undefined,
+      State: parsedExtra.state ?? boat.state ?? undefined,
+      PostCode: parsedExtra.postCode ?? boat.zip ?? undefined,
+      Country: parsedExtra.country ?? 'US',
+      Email: parsedExtra.email ?? boat.user?.email ?? undefined,
+      Phone: parsedExtra.phone ?? boat.user?.phone ?? undefined,
+      Name: parsedExtra.officeName ?? boat.user?.name ?? undefined,
+    };
+
     const result: BoatFromBoatsGroup = {
+      // basic mapping
       DocumentID: boat.id,
+      SalesStatus: boat.status ?? undefined,
+      CoOpIndicator: parsedExtra.coOpIndicator ?? false,
+      NumberOfEngines: boat.engines?.length ?? undefined,
+      Owner: { PartyId: boat.userId ?? undefined },
+      SalesRep: parsedExtra.salesRep
+        ? {
+            PartyId: parsedExtra.salesRep.partyId ?? undefined,
+            Name: parsedExtra.salesRep.name ?? undefined,
+            Message: parsedExtra.salesRep.message ?? undefined,
+          }
+        : undefined,
+      CompanyName: parsedExtra.companyName ?? boat.user?.name ?? undefined,
+      Office: office,
+      LastModificationDate: boat.updatedAt?.toISOString() ?? undefined,
+      ItemReceivedDate:
+        parsedExtra.itemReceivedDate ??
+        (boat.createdAt ? boat.createdAt.toISOString() : undefined),
+
+      // Pricing
       OriginalPrice: boat.price != null ? `${boat.price} USD` : undefined,
       Price:
         boat.price != null ? `${Number(boat.price).toFixed(2)} USD` : undefined,
+      PriceHideInd: parsedExtra.priceHideInd ?? undefined,
+      NormPrice: boat.price ?? undefined,
+
+      // Media presence flags
+      EmbeddedVideoPresent: Boolean(boat.videoURL),
+      Image360PhotoPresent: parsedExtra.image360Present ?? false,
+      ImmersiveTourPresent: parsedExtra.immersiveTourPresent ?? false,
+      Videos: boat.videoURL ? { url: [boat.videoURL] } : undefined,
+
+      // Location
       BoatLocation: {
         BoatCityName: boat.city ?? undefined,
-        BoatCountryID: 'US',
+        BoatCountryID: parsedExtra.country ?? 'US',
         BoatStateCode: boat.state ?? undefined,
       },
+      BoatCityNameNoCaseAlnumOnly: cityAlnum,
+
+      // Make / Model
       MakeString: boat.make ?? undefined,
+      MakeStringExact: boat.make ?? undefined,
+      MakeStringNoCaseAlnumOnly: boat.make
+        ? String(boat.make)
+            .replace(/[^a-z0-9]/gi, '')
+            .toLowerCase()
+        : undefined,
       ModelYear: boat.buildYear ?? undefined,
+      SaleClassCode: boat.condition ?? undefined,
       Model: boat.model ?? undefined,
+      ModelExact: boat.model ?? undefined,
+      ModelNoCaseAlnumOnly: boat.model
+        ? String(boat.model)
+            .replace(/[^a-z0-9]/gi, '')
+            .toLowerCase()
+        : undefined,
+      BoatName: boat.name ?? undefined,
+      BoatNameNoCaseAlnumOnly: boat.name
+        ? String(boat.name)
+            .replace(/[^a-z0-9]/gi, '')
+            .toLowerCase()
+        : undefined,
+      BuilderName: boat.make ?? undefined,
+      DesignerName: parsedExtra.designerName ?? undefined,
+
+      // Measurements (best-effort — many are not stored directly; use extra details where possible)
+      CruisingSpeedMeasure: parsedExtra.cruisingSpeed ?? undefined,
+      PropellerCruisingSpeed: parsedExtra.propCruisingSpeed ?? undefined,
+      MaximumSpeedMeasure: parsedExtra.maxSpeed ?? undefined,
+      RangeMeasure: parsedExtra.range ?? undefined,
+      BridgeClearanceMeasure: parsedExtra.bridgeClearance ?? undefined,
       BeamMeasure: this.formatFeet(boat.beam) ?? undefined,
+      FreeBoardMeasure: parsedExtra.freeBoard ?? undefined,
+      CabinHeadroomMeasure: parsedExtra.cabinHeadroom ?? undefined,
+      WaterTankCountNumeric: parsedExtra.waterTankCount ?? undefined,
+      WaterTankCapacityMeasure: parsedExtra.waterTankCapacity ?? undefined,
+      WaterTankMaterialCode: parsedExtra.waterTankMaterial ?? undefined,
+      FuelTankCountNumeric: parsedExtra.fuelTankCount ?? undefined,
+      FuelTankCapacityMeasure: parsedExtra.fuelTankCapacity ?? undefined,
+      FuelTankMaterialCode: parsedExtra.fuelTankMaterial ?? undefined,
+      HoldingTankCountNumeric: parsedExtra.holdingTankCount ?? undefined,
+      HoldingTankCapacityMeasure: parsedExtra.holdingTankCapacity ?? undefined,
+      HoldingTankMaterialCode: parsedExtra.holdingTankMaterial ?? undefined,
+      DryWeightMeasure: parsedExtra.dryWeight ?? undefined,
+      BallastWeightMeasure: parsedExtra.ballastWeight ?? undefined,
+      DisplacementMeasure: parsedExtra.displacement ?? undefined,
+      DisplacementTypeCode: parsedExtra.displacementType ?? undefined,
       TotalEnginePowerQuantity: totalHp != null ? `${totalHp} hp` : undefined,
+      DriveTypeCode: boat.engineType ?? boat.propType ?? undefined,
+      BoatKeelCode: parsedExtra.keelCode ?? undefined,
+      ConvertibleSaloonIndicator: parsedExtra.convertibleSaloon ?? undefined,
+      WindlassTypeCode: parsedExtra.windlassType ?? undefined,
+      DeadriseMeasure: parsedExtra.deadrise ?? undefined,
+      ElectricalCircuitMeasure: parsedExtra.electricalCircuit ?? undefined,
+      TrimTabsIndicator: parsedExtra.trimTabs ?? undefined,
+      HeadsCountNumeric: boat.headsNumber ?? undefined,
+      CabinsCountNumeric: boat.cabinsNumber ?? undefined,
+      BoatHullMaterialCode: boat.material ?? undefined,
+      BoatHullID: parsedExtra.boatHullId ?? undefined,
+      StockNumber: parsedExtra.stockNumber ?? undefined,
       NominalLength: this.formatFeet(boat.length) ?? undefined,
       LengthOverall: this.formatFeet(boat.length) ?? undefined,
       ListingTitle: boat.name ?? undefined,
       MaxDraft: this.formatFeet(boat.draft) ?? undefined,
+      TaxStatusCode: parsedExtra.taxStatus ?? undefined,
+      IMTTimeStamp: boat.updatedAt?.toISOString() ?? undefined,
+      HasBoatHullID: Boolean(parsedExtra.boatHullId ?? parsedExtra.hullId),
+      IsAvailableForPls: parsedExtra.isAvailableForPls ?? undefined,
+      NormNominalLength: boat.length ?? undefined,
+      OptionActiveIndicator: parsedExtra.optionActiveIndicator ?? undefined,
+
+      // Engine & descriptions & media
       Engines: mappedEngines?.length ? mappedEngines : undefined,
       GeneralBoatDescription: general.length ? general : undefined,
       AdditionalDetailDescription: additional.length ? additional : undefined,
-      NumberOfEngines: boat.engines?.length ?? undefined,
-      HeadsCountNumeric: boat.headsNumber ?? undefined,
-      CabinsCountNumeric: boat.cabinsNumber ?? undefined,
-      BoatHullMaterialCode: boat.material ?? undefined,
-      SaleClassCode: boat.condition ?? undefined,
-      BoatName: boat.name ?? undefined,
-      Videos: boat.videoURL ? { url: [boat.videoURL] } : undefined,
+      ExternalLink: parsedExtra.externalLinks ?? undefined,
       Images: mappedImages.length ? mappedImages : undefined,
-      LastModificationDate: boat.updatedAt?.toISOString() ?? undefined,
-      NormPrice: boat.price ?? undefined,
-      NormNominalLength: boat.length ?? undefined,
+      BoatClassCode: classCodes,
     };
 
     // apply chosen fields preset before returning

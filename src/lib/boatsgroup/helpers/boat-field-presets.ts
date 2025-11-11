@@ -18,6 +18,7 @@ const MINIMAL_FIELDS: BoatFieldKey[] = [
   'NominalLength',
   'LengthOverall',
   'LastModificationDate',
+  'ItemReceivedDate',
   'GeneralBoatDescription',
   'AdditionalDetailDescription',
   'Engines',
