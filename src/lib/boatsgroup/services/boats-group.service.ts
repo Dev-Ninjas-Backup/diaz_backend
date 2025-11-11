@@ -2,9 +2,14 @@ import { BoatsSourceEnum } from '@/common/enum/boats-source.enum';
 import { ENVEnum } from '@/common/enum/env.enum';
 import {
   successPaginatedResponse,
+  successResponse,
   TPaginatedResponse,
+  TResponse,
 } from '@/common/utils/response.util';
-import { GetBoatsDto } from '@/main/shared/boats/dto/get-boats.dto';
+import {
+  GetBoatsDto,
+  GetSingleBoatDto,
+} from '@/main/shared/boats/dto/get-boats.dto';
 import { Injectable, Logger } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import axios from 'axios';
@@ -67,6 +72,23 @@ export class BoatsGroupService {
     );
   }
 
+  private async getSingleInventoryBoat(
+    boatId: string,
+    fields: FieldPreset = FieldPreset.minimal,
+  ): Promise<TResponse<BoatFromBoatsGroup>> {
+    const query = this.buildFieldsQuery(fields);
+
+    const url = `${this.apiBoatsBaseUrl}&${query}&DocumentID=${boatId}`;
+
+    const { data } = await axios.get(url);
+
+    const boat = data.results?.[0];
+
+    this.logger.log(`Boat found successfully from Inventory API`);
+
+    return successResponse(boat, 'Boat found successfully from Inventory API');
+  }
+
   // * Get boats from Service API
   private async getServiceBoats(
     page: number = 1,
@@ -95,19 +117,6 @@ export class BoatsGroupService {
     );
   }
 
-  // * Get boats from Database
-  private async getBoatsFromDatabase(
-    page: number,
-    limit: number,
-    fields: FieldPreset = FieldPreset.minimal,
-  ): Promise<TPaginatedResponse<BoatFromBoatsGroup>> {
-    return await this.getAllCustomBoatsService.getAllBoats({
-      page,
-      limit,
-      fields,
-    });
-  }
-
   // * Public unified helper to fetch boats from all sources
   public async getBoats({
     source = BoatsSourceEnum.inventory,
@@ -123,13 +132,48 @@ export class BoatsGroupService {
         return this.getServiceBoats(page, limit, fields);
 
       case BoatsSourceEnum.custom:
-        return this.getBoatsFromDatabase(page, limit, fields);
+        return this.getAllCustomBoatsService.getAllBoats({
+          page,
+          limit,
+          fields,
+        });
 
       default:
         this.logger.warn(
           `Unknown boats source "${source}". Falling back to database source.`,
         );
-        return this.getBoatsFromDatabase(page, limit, fields);
+        return this.getAllCustomBoatsService.getAllBoats({
+          page,
+          limit,
+          fields,
+        });
+    }
+  }
+
+  public async getSingleBoat(
+    boatId: string,
+    query: GetSingleBoatDto,
+  ): Promise<TResponse<BoatFromBoatsGroup>> {
+    switch (query.source) {
+      case BoatsSourceEnum.inventory:
+        return await this.getSingleInventoryBoat(boatId, query.fields);
+
+      // case BoatsSourceEnum.service:
+      //   return await this.getServiceBoats(1, 1, query.fields).then(
+      //     (response) => response.data[0],
+      //   );
+
+      case BoatsSourceEnum.custom:
+        return await this.getAllCustomBoatsService.getSingleBoat(boatId);
+
+      default:
+        this.logger.warn(
+          `Unknown boats source "${query.source}". Falling back to database source.`,
+        );
+        return await this.getAllCustomBoatsService.getSingleBoat(
+          boatId,
+          query.fields,
+        );
     }
   }
 }

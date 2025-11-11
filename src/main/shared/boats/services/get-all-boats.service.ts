@@ -3,7 +3,7 @@ import { TPaginatedResponse } from '@/common/utils/response.util';
 import { BoatFromBoatsGroup } from '@/lib/boatsgroup/interface/boats.interface';
 import { BoatsGroupService } from '@/lib/boatsgroup/services/boats-group.service';
 import { Injectable } from '@nestjs/common';
-import { GetBoatsDto } from '../dto/get-boats.dto';
+import { GetBoatsDto, GetSingleBoatDto } from '../dto/get-boats.dto';
 
 @Injectable()
 export class GetAllBoatsService {
@@ -21,5 +21,10 @@ export class GetAllBoatsService {
       limit,
       fields,
     });
+  }
+
+  @HandleError('Failed to get single boat')
+  async getSingleBoat(boatId: string, query: GetSingleBoatDto) {
+    return await this.boatsGroupService.getSingleBoat(boatId, query);
   }
 }

@@ -1,7 +1,9 @@
 import { HandleError } from '@/common/error/handle-error.decorator';
 import {
   successPaginatedResponse,
+  successResponse,
   TPaginatedResponse,
+  TResponse,
 } from '@/common/utils/response.util';
 import { PrismaService } from '@/lib/prisma/prisma.service';
 import { GetBoatsDto } from '@/main/shared/boats/dto/get-boats.dto';
@@ -70,6 +72,37 @@ export class GetAllCustomBoatsService {
       },
       'Boats found successfully',
     );
+  }
+
+  @HandleError('Failed to get boat', 'Boats')
+  async getSingleBoat(
+    boatId: string,
+    fields: FieldPreset = FieldPreset.minimal,
+  ): Promise<TResponse<BoatFromBoatsGroup>> {
+    const boat = await this.prisma.boats.findUniqueOrThrow({
+      where: { id: boatId },
+      include: {
+        user: {
+          select: {
+            id: true,
+            name: true,
+            email: true,
+            avatarUrl: true,
+            phone: true,
+          },
+        },
+        engines: true,
+        images: {
+          include: {
+            file: true,
+          },
+        },
+      },
+    });
+
+    const transformed = this.transformBoat(boat, fields);
+
+    return successResponse(transformed, 'Boat found successfully');
   }
 
   private formatFeet(value: number | null | undefined): string | null {
