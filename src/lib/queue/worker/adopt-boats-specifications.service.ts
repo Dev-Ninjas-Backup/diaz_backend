@@ -9,9 +9,9 @@ import {
 } from '../interface/adopt-boats-data.payload';
 import { QueueGateway } from '../queue.gateway';
 
-@Processor(QueueName.ADOPT_BOATS_DATA, { concurrency: 5 })
-export class AdoptBoatsDataService extends WorkerHost {
-  private readonly logger = new Logger(AdoptBoatsDataService.name);
+@Processor(QueueName.ADOPT_BOATS_SPECIFICATIONS, { concurrency: 5 })
+export class AdoptBoatsSpecificationsService extends WorkerHost {
+  private readonly logger = new Logger(AdoptBoatsSpecificationsService.name);
 
   constructor(
     private readonly gateway: QueueGateway,
@@ -21,7 +21,7 @@ export class AdoptBoatsDataService extends WorkerHost {
   }
 
   async process(job: Job<AdoptBoatsSpecification | AdoptBoatsFeatures>) {
-    this.logger.log(`Processing job ${job.id}`);
+    this.logger.log(`Processing job Specification ${job.id}`);
     this.logger.log(job.data);
 
     this.logger.log(`Job ${job.id} completed`);

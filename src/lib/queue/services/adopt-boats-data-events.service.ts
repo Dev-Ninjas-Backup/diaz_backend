@@ -15,14 +15,16 @@ export class AdoptBoatsDataEventsService {
   private readonly logger = new Logger(AdoptBoatsDataEventsService.name);
 
   constructor(
-    @InjectQueue(QueueName.ADOPT_BOATS_DATA)
-    private readonly queue: Queue,
+    @InjectQueue(QueueName.ADOPT_BOATS_FEATURES)
+    private readonly featureQueue: Queue,
+    @InjectQueue(QueueName.ADOPT_BOATS_SPECIFICATIONS)
+    private readonly specificationQueue: Queue,
   ) {}
 
   @OnEvent(QueueEventsEnum.ADOPT_BOATS_FEATURES)
   async handleAdoptBoatsFeatures(payload: AdoptBoatsFeatures) {
     await enqueueJobHelper(
-      this.queue,
+      this.featureQueue,
       QueueEventsEnum.ADOPT_BOATS_FEATURES,
       payload,
       payload.listingId,
@@ -33,7 +35,7 @@ export class AdoptBoatsDataEventsService {
   @OnEvent(QueueEventsEnum.ADOPT_BOATS_SPECIFICATION)
   async handleAdoptBoatsSpecification(payload: AdoptBoatsSpecification) {
     await enqueueJobHelper(
-      this.queue,
+      this.specificationQueue,
       QueueEventsEnum.ADOPT_BOATS_SPECIFICATION,
       payload,
       payload.listingId,
