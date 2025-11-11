@@ -97,6 +97,55 @@ export class BoatsInfoOnBoardingDto {
   @IsInt()
   headsNumber: number;
 
+  // * Features
+  @ApiProperty({
+    example: ['GPS', 'Radio', 'Autopilot'],
+    description: 'List of electronic features',
+  })
+  @IsArray()
+  @IsString({ each: true })
+  electronics: string[];
+
+  @ApiProperty({
+    example: ['Air Conditioning', 'Heating'],
+    description: 'List of inside equipment features',
+  })
+  @IsArray()
+  @IsString({ each: true })
+  insideEquipment: string[];
+
+  @ApiProperty({
+    example: ['Cockpit Cushions', 'Davit(s)'],
+    description: 'List of outside equipment features',
+  })
+  @IsArray()
+  @IsString({ each: true })
+  outsideEquipment: string[];
+
+  @ApiProperty({
+    example: ['Generator', 'Shore Power Inlet'],
+    description: 'List of electrical equipment features',
+  })
+  @IsArray()
+  @IsString({ each: true })
+  electricalEquipment: string[];
+
+  @ApiProperty({
+    example: ['Bimini Top', 'Hard Top'],
+    description: 'List of cover features',
+  })
+  @IsArray()
+  @IsString({ each: true })
+  covers: string[];
+
+  @ApiProperty({
+    example: ['Jacuzzi', 'Pool', 'Wine Cellar'],
+    description: 'List of additional equipment features',
+  })
+  @IsArray()
+  @IsString({ each: true })
+  additionalEquipment: string[];
+
   // Address
   @ApiProperty({
     example: 'Miami',

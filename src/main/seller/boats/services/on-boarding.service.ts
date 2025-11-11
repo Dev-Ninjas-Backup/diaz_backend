@@ -145,6 +145,12 @@ export class OnBoardingService {
           city: boatInfo.city,
           state: boatInfo.state,
           zip: boatInfo.zip,
+          electronics: boatInfo.electronics,
+          insideEquipment: boatInfo.insideEquipment,
+          outsideEquipment: boatInfo.outsideEquipment,
+          electricalEquipment: boatInfo.electricalEquipment,
+          covers: boatInfo.covers,
+          additionalEquipment: boatInfo.additionalEquipment,
           videoURL: boatInfo?.videoURL?.trim() || '',
           user: { connect: { id: user.id } },
           engines: boatInfo.engines?.length
