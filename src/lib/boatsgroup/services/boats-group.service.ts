@@ -117,6 +117,23 @@ export class BoatsGroupService {
     );
   }
 
+  private async getSingleServiceBoat(
+    boatId: string,
+    fields: FieldPreset = FieldPreset.minimal,
+  ): Promise<TResponse<BoatFromBoatsGroup>> {
+    const query = this.buildFieldsQuery(fields);
+
+    const url = `${this.serviceBoatsBaseUrl}&${query}&DocumentID=${boatId}`;
+
+    const { data } = await axios.get(url);
+
+    const boat = data.data?.results?.[0];
+
+    this.logger.log(`Boat found successfully from Service API`);
+
+    return successResponse(boat, 'Boat found successfully from Service API');
+  }
+
   // * Public unified helper to fetch boats from all sources
   public async getBoats({
     source = BoatsSourceEnum.inventory,
@@ -158,10 +175,8 @@ export class BoatsGroupService {
       case BoatsSourceEnum.inventory:
         return await this.getSingleInventoryBoat(boatId, query.fields);
 
-      // case BoatsSourceEnum.service:
-      //   return await this.getServiceBoats(1, 1, query.fields).then(
-      //     (response) => response.data[0],
-      //   );
+      case BoatsSourceEnum.service:
+        return await this.getSingleServiceBoat(boatId, query.fields);
 
       case BoatsSourceEnum.custom:
         return await this.getAllCustomBoatsService.getSingleBoat(boatId);
