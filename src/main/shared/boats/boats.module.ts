@@ -1,6 +1,7 @@
 import { Module } from '@nestjs/common';
 import { BoatsSpecificationController } from './controllers/boats-specification.controller';
 import { BoatsController } from './controllers/boats.controller';
+import { BoatsFeatureService } from './services/boats-feature.service';
 import { BoatsSpecificationService } from './services/boats-specification.service';
 import { GetAllBoatsService } from './services/get-all-boats.service';
 import { GetCustomBoatsService } from './services/get-custom-boats.service';
@@ -11,6 +12,7 @@ import { GetCustomBoatsService } from './services/get-custom-boats.service';
     GetCustomBoatsService,
     GetAllBoatsService,
     BoatsSpecificationService,
+    BoatsFeatureService,
   ],
 })
 export class BoatsModule {}
