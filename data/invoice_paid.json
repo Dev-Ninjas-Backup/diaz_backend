@@ -1,0 +1,169 @@
+{
+  "id": "in_1SRKfYQNJ9V9C9o5RI5SVz5r",
+  "object": "invoice",
+  "account_country": "US",
+  "account_name": "New business sandbox",
+  "account_tax_ids": null,
+  "amount_due": 2999,
+  "amount_overpaid": 0,
+  "amount_paid": 2999,
+  "amount_remaining": 0,
+  "amount_shipping": 0,
+  "application": null,
+  "attempt_count": 1,
+  "attempted": true,
+  "auto_advance": false,
+  "automatic_tax": {
+    "disabled_reason": null,
+    "enabled": false,
+    "liability": null,
+    "provider": null,
+    "status": null
+  },
+  "automatically_finalizes_at": null,
+  "billing_reason": "subscription_create",
+  "collection_method": "charge_automatically",
+  "created": 1762641100,
+  "currency": "usd",
+  "custom_fields": null,
+  "customer": "cus_TO6sKJeG0Ws6SC",
+  "customer_address": null,
+  "customer_email": "sajib.codes6@gmail.com",
+  "customer_name": "Sajib Hossen",
+  "customer_phone": null,
+  "customer_shipping": null,
+  "customer_tax_exempt": "none",
+  "customer_tax_ids": [],
+  "default_payment_method": null,
+  "default_source": null,
+  "default_tax_rates": [],
+  "description": null,
+  "discounts": [],
+  "due_date": null,
+  "effective_at": 1762641100,
+  "ending_balance": 0,
+  "footer": null,
+  "from_invoice": null,
+  "hosted_invoice_url": "https://invoice.stripe.com/i/acct_1RlFNRQNJ9V9C9o5/test_YWNjdF8xUmxGTlJRTko5VjlDOW81LF9UTzZ0ZExxMGFST25ISWNteDZsWjZ6dlNzNFZjQXBmLDE1MzE4MTkwMw0200LjhKKlOU?s=ap",
+  "invoice_pdf": "https://pay.stripe.com/invoice/acct_1RlFNRQNJ9V9C9o5/test_YWNjdF8xUmxGTlJRTko5VjlDOW81LF9UTzZ0ZExxMGFST25ISWNteDZsWjZ6dlNzNFZjQXBmLDE1MzE4MTkwMw0200LjhKKlOU/pdf?s=ap",
+  "issuer": {
+    "type": "self"
+  },
+  "last_finalization_error": null,
+  "latest_revision": null,
+  "lines": {
+    "object": "list",
+    "data": [
+      {
+        "id": "il_1SRKfYQNJ9V9C9o5dwxqPIC8",
+        "object": "line_item",
+        "amount": 2999,
+        "currency": "usd",
+        "description": "1 × Diamond Elite Brokerage (at $29.99 / month)",
+        "discount_amounts": [],
+        "discountable": true,
+        "discounts": [],
+        "invoice": "in_1SRKfYQNJ9V9C9o5RI5SVz5r",
+        "livemode": false,
+        "metadata": {
+          "planTitle": "Diamond Elite Brokerage",
+          "type": "onboarding_subscription",
+          "userId": "0d8b35e1-fbdd-4926-b322-acf0ae15156f",
+          "planId": "e5fd73ff-7586-401e-b608-acebbc9381c4",
+          "priceCents": "2999",
+          "customerId": "cus_TO6sKJeG0Ws6SC",
+          "stripeProductId": "prod_TGFLM9vPM4iUzF",
+          "stripePriceId": "price_1SJiqVQNJ9V9C9o5KJH1ZSco",
+          "email": "sajib.codes6@gmail.com",
+          "name": "Sajib Hossen"
+        },
+        "parent": {
+          "invoice_item_details": null,
+          "subscription_item_details": {
+            "invoice_item": null,
+            "proration": false,
+            "proration_details": {
+              "credited_items": null
+            },
+            "subscription": "sub_1SRKfYQNJ9V9C9o5hR5gaFty",
+            "subscription_item": "si_TO6tnmor0OBxks"
+          },
+          "type": "subscription_item_details"
+        },
+        "period": {
+          "end": 1765233100,
+          "start": 1762641100
+        },
+        "pretax_credit_amounts": [],
+        "pricing": {
+          "price_details": {
+            "price": "price_1SJiqVQNJ9V9C9o5KJH1ZSco",
+            "product": "prod_TGFLM9vPM4iUzF"
+          },
+          "type": "price_details",
+          "unit_amount_decimal": "2999"
+        },
+        "quantity": 1,
+        "taxes": []
+      }
+    ],
+    "has_more": false,
+    "total_count": 1,
+    "url": "/v1/invoices/in_1SRKfYQNJ9V9C9o5RI5SVz5r/lines"
+  },
+  "livemode": false,
+  "metadata": {},
+  "next_payment_attempt": null,
+  "number": "O9LVPV0W-0001",
+  "on_behalf_of": null,
+  "parent": {
+    "quote_details": null,
+    "subscription_details": {
+      "metadata": {
+        "planTitle": "Diamond Elite Brokerage",
+        "type": "onboarding_subscription",
+        "userId": "0d8b35e1-fbdd-4926-b322-acf0ae15156f",
+        "planId": "e5fd73ff-7586-401e-b608-acebbc9381c4",
+        "priceCents": "2999",
+        "customerId": "cus_TO6sKJeG0Ws6SC",
+        "stripeProductId": "prod_TGFLM9vPM4iUzF",
+        "stripePriceId": "price_1SJiqVQNJ9V9C9o5KJH1ZSco",
+        "email": "sajib.codes6@gmail.com",
+        "name": "Sajib Hossen"
+      },
+      "subscription": "sub_1SRKfYQNJ9V9C9o5hR5gaFty"
+    },
+    "type": "subscription_details"
+  },
+  "payment_settings": {
+    "default_mandate": null,
+    "payment_method_options": null,
+    "payment_method_types": null
+  },
+  "period_end": 1762641100,
+  "period_start": 1762641100,
+  "post_payment_credit_notes_amount": 0,
+  "pre_payment_credit_notes_amount": 0,
+  "receipt_number": null,
+  "rendering": null,
+  "shipping_cost": null,
+  "shipping_details": null,
+  "starting_balance": 0,
+  "statement_descriptor": null,
+  "status": "paid",
+  "status_transitions": {
+    "finalized_at": 1762641100,
+    "marked_uncollectible_at": null,
+    "paid_at": 1762641100,
+    "voided_at": null
+  },
+  "subtotal": 2999,
+  "subtotal_excluding_tax": 2999,
+  "test_clock": null,
+  "total": 2999,
+  "total_discount_amounts": [],
+  "total_excluding_tax": 2999,
+  "total_pretax_credit_amounts": [],
+  "total_taxes": [],
+  "webhooks_delivered_at": null
+}

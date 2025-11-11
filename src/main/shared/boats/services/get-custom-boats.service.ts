@@ -87,6 +87,8 @@ export class GetCustomBoatsService {
       url: img.file?.url ?? null,
       mimeType: img.file?.mimeType ?? null,
       imageType: img.imageType,
+      createdAt: img.createdAt,
+      updatedAt: img.updatedAt,
     }));
 
     const coverImages = formattedImages.filter(
@@ -105,36 +107,100 @@ export class GetCustomBoatsService {
         }
       : null;
 
+    // Ensure feature arrays are always arrays (avoid null)
+    const electronics = Array.isArray(boat.electronics) ? boat.electronics : [];
+    const insideEquipment = Array.isArray(boat.insideEquipment)
+      ? boat.insideEquipment
+      : [];
+    const outsideEquipment = Array.isArray(boat.outsideEquipment)
+      ? boat.outsideEquipment
+      : [];
+    const electricalEquipment = Array.isArray(boat.electricalEquipment)
+      ? boat.electricalEquipment
+      : [];
+    const covers = Array.isArray(boat.covers) ? boat.covers : [];
+    const additionalEquipment = Array.isArray(boat.additionalEquipment)
+      ? boat.additionalEquipment
+      : [];
+
     return {
+      // basic
       id: boat.id,
+      userId: boat.userId,
+      owner,
+
+      // main info
       name: boat.name,
       price: boat.price,
-      description: boat.description,
+      description: boat.description ?? null,
       buildYear: boat.buildYear,
+
+      // specifications
       make: boat.make,
       model: boat.model,
       fuelType: boat.fuelType,
       class: boat.class,
       material: boat.material,
       condition: boat.condition,
+      engineType: boat.engineType ?? null,
+      propType: boat.propType ?? null,
+      propMaterial: boat.propMaterial ?? null,
+
+      // feature lists
+      electronics,
+      insideEquipment,
+      outsideEquipment,
+      electricalEquipment,
+      covers,
+      additionalEquipment,
+
+      // numeric dimensions
       length: boat.length,
       beam: boat.beam,
       draft: boat.draft,
+
+      boatDimensions: {
+        lengthFeet: this.decimalToFeetAndInches(boat.length).feet,
+        lengthInches: this.decimalToFeetAndInches(boat.length).inches,
+        beamFeet: this.decimalToFeetAndInches(boat.beam).feet,
+        beamInches: this.decimalToFeetAndInches(boat.beam).inches,
+        draftFeet: this.decimalToFeetAndInches(boat.draft).feet,
+        draftInches: this.decimalToFeetAndInches(boat.draft).inches,
+      },
+
       enginesNumber: boat.enginesNumber,
       cabinsNumber: boat.cabinsNumber,
       headsNumber: boat.headsNumber,
+
+      // address
       city: boat.city,
       state: boat.state,
       zip: boat.zip,
-      videoURL: boat.videoURL,
-      extraDetails: boat.extraDetails,
+
+      // extra details
+      extraDetails: boat.extraDetails ?? null,
+
+      // status & media
       status: boat.status,
-      createdAt: boat.createdAt,
-      updatedAt: boat.updatedAt,
-      owner,
+      videoURL: boat.videoURL ?? null,
+
+      // relations
       engines: boat.engines ?? [],
       coverImages,
       galleryImages,
+
+      // timestamps
+      createdAt: boat.createdAt,
+      updatedAt: boat.updatedAt,
     };
+  }
+
+  private decimalToFeetAndInches(decimalValue: number | null) {
+    if (decimalValue == null || isNaN(decimalValue)) {
+      return { feet: 0, inches: 0 };
+    }
+    const feet = Math.floor(decimalValue);
+    const inches = Math.round((decimalValue - feet) * 12);
+    return { feet, inches };
   }
 }

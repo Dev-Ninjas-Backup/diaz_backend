@@ -1,4 +1,7 @@
-import { FieldPreset } from '../interface/boats-fields.interface';
+import {
+  BOAT_FIELD_KEYS,
+  FieldPreset,
+} from '../interface/boats-fields.interface';
 import { BoatFromBoatsGroup } from '../interface/boats.interface';
 
 export type BoatFieldKey = keyof BoatFromBoatsGroup;
@@ -18,6 +21,7 @@ const MINIMAL_FIELDS: BoatFieldKey[] = [
   'NominalLength',
   'LengthOverall',
   'LastModificationDate',
+  'ItemReceivedDate',
   'GeneralBoatDescription',
   'AdditionalDetailDescription',
   'Engines',
@@ -34,19 +38,12 @@ const SEARCH_FIELDS: BoatFieldKey[] = [
   'MaxDraft',
 ];
 
-const ALL_FIELDS: BoatFieldKey[] = Object.keys(
-  {} as BoatFromBoatsGroup,
-) as BoatFieldKey[];
-
-/**
- * Get field keys based on preset type.
- */
 export function getBoatFieldsByPreset(
   preset: FieldPreset = FieldPreset.minimal,
 ): BoatFieldKey[] {
   switch (preset) {
     case FieldPreset.all:
-      return ALL_FIELDS;
+      return [...BOAT_FIELD_KEYS];
     case FieldPreset.search:
       return SEARCH_FIELDS;
     case FieldPreset.minimal:

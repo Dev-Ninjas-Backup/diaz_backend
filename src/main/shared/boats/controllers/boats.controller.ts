@@ -1,7 +1,7 @@
 import { Controller, Get, Param, Query } from '@nestjs/common';
 import { ApiOperation, ApiTags } from '@nestjs/swagger';
 import { GetAllBoatsCustomDto } from '../dto/get-all-boats-custom.dto';
-import { GetBoatsDto } from '../dto/get-boats.dto';
+import { GetBoatsDto, GetSingleBoatDto } from '../dto/get-boats.dto';
 import { GetAllBoatsService } from '../services/get-all-boats.service';
 import { GetCustomBoatsService } from '../services/get-custom-boats.service';
 
@@ -29,5 +29,14 @@ export class BoatsController {
   @Get('all')
   async getBoats(@Query() query: GetBoatsDto) {
     return this.getAllBoatsService.getBoats(query);
+  }
+
+  @ApiOperation({ summary: 'Get single boat from all sources' })
+  @Get(':boatId/all')
+  async getSingleBoat(
+    @Param('boatId') boatId: string,
+    @Query() query: GetSingleBoatDto,
+  ) {
+    return this.getAllBoatsService.getSingleBoat(boatId, query);
   }
 }

@@ -4,7 +4,7 @@ import { ApiPropertyOptional } from '@nestjs/swagger';
 import { Type } from 'class-transformer';
 import { IsEnum, IsInt, IsOptional, Max, Min } from 'class-validator';
 
-export class GetBoatsDto {
+export class BoatSourceDto {
   @ApiPropertyOptional({
     default: BoatsSourceEnum.inventory,
     enum: BoatsSourceEnum,
@@ -12,7 +12,19 @@ export class GetBoatsDto {
   @IsOptional()
   @IsEnum(BoatsSourceEnum)
   source?: BoatsSourceEnum = BoatsSourceEnum.inventory;
+}
 
+export class BoatFieldsDto extends BoatSourceDto {
+  @ApiPropertyOptional({
+    default: FieldPreset.minimal,
+    enum: FieldPreset,
+  })
+  @IsOptional()
+  @IsEnum(FieldPreset)
+  fields?: FieldPreset = FieldPreset.minimal;
+}
+
+export class GetBoatsDto extends BoatFieldsDto {
   @ApiPropertyOptional({
     default: 1,
     description: 'Page number, starting from 1',
@@ -33,12 +45,6 @@ export class GetBoatsDto {
   @Min(1)
   @Max(100)
   limit?: number = 50;
-
-  @ApiPropertyOptional({
-    default: FieldPreset.minimal,
-    enum: FieldPreset,
-  })
-  @IsOptional()
-  @IsEnum(FieldPreset)
-  fields?: FieldPreset = FieldPreset.minimal;
 }
+
+export class GetSingleBoatDto extends BoatFieldsDto {}

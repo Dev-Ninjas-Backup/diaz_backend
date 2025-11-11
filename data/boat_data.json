@@ -1,0 +1,28 @@
+[
+  {
+    "DocumentID": 7817198,
+    "OriginalPrice": "84999 USD",
+    "Price": "84999.00 USD",
+    "BoatLocation": {
+      "BoatCityName": "Stuart",
+      "BoatCountryID": "US",
+      "BoatStateCode": "FL"
+    },
+    "BoatCityNameNoCaseAlnumOnly": "Stuart",
+    "MakeString": "Skimmer Skiff",
+    "ModelYear": 2021,
+    "Model": "16 Skiff",
+    "BeamMeasure": null,
+    "TotalEnginePowerQuantity": null,
+    "NominalLength": "16 ft",
+    "LengthOverall": null,
+    "ListingTitle": "New Build",
+    "MaxDraft": null,
+    "Engines": [],
+    "GeneralBoatDescription": [""],
+    "AdditionalDetailDescription": [
+      "Disclaimer: The Company offers the details of this vessel in good faith but cannot guarantee or warrant the accuracy of this information nor warrant the condition of the vessel."
+    ],
+    "Link": "https://development.jupitermarinesales.com/search-listing/7817198"
+  }
+]
