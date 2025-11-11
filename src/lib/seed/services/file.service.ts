@@ -1,9 +1,9 @@
-import { Injectable, Logger } from '@nestjs/common';
+import { Injectable, Logger, OnModuleInit } from '@nestjs/common';
 import * as fs from 'fs';
 import * as path from 'path';
 
 @Injectable()
-export class FileService {
+export class FileService implements OnModuleInit {
   private readonly logger = new Logger(FileService.name);
 
   async onModuleInit() {

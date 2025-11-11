@@ -16,6 +16,14 @@ export type TPaginatedResponse<T = unknown> = {
   };
 };
 
+export type TAutoCompleteResponse<T extends string | number> = {
+  success: boolean;
+  message: string;
+  type: T;
+  count: number;
+  items: string[];
+};
+
 export const successResponse = <T>(
   data: T,
   message = 'Request Success',
@@ -43,6 +51,19 @@ export const successPaginatedResponse = <T>(
     total: metaData.total,
     totalPage: Math.ceil(metaData.total / metaData.limit),
   },
+});
+
+export const autoCompleteResponse = <T extends string | number>(
+  type: T,
+  count: number,
+  items: string[],
+  message = `Request Success for ${type}`,
+): TAutoCompleteResponse<T> => ({
+  success: true,
+  message,
+  type,
+  count,
+  items,
 });
 
 export const errorResponse = <T>(

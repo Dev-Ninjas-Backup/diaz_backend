@@ -1,14 +1,7 @@
 import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
-import {
-  BoatClass,
-  BoatCondition,
-  BoatFuelType,
-  BoatMaterial,
-} from '@prisma/client';
 import { Type } from 'class-transformer';
 import {
   IsArray,
-  IsEnum,
   IsInt,
   IsNumber,
   IsOptional,
@@ -51,21 +44,39 @@ export class BoatsInfoOnBoardingDto {
   @IsString()
   model: string;
 
-  @ApiProperty({ enum: BoatFuelType })
-  @IsEnum(BoatFuelType)
-  fuelType: BoatFuelType;
+  @ApiProperty({ example: 'Mercury', description: 'Engine make/manufacturer' })
+  @IsString()
+  fuelType: string;
 
-  @ApiProperty({ enum: BoatClass })
-  @IsEnum(BoatClass)
-  boatClass: BoatClass;
+  @ApiProperty({ example: 12, description: 'Boat class' })
+  @IsString()
+  boatClass: string;
 
-  @ApiProperty({ enum: BoatMaterial })
-  @IsEnum(BoatMaterial)
-  material: BoatMaterial;
+  @ApiProperty({ example: 'Aluminium', description: 'Boat material' })
+  @IsString()
+  material: string;
 
-  @ApiProperty({ enum: BoatCondition })
-  @IsEnum(BoatCondition)
-  condition: BoatCondition;
+  @ApiProperty({ example: 'New', description: 'Boat condition' })
+  @IsString()
+  condition: string;
+
+  @ApiPropertyOptional({ example: 'Propeller', description: 'Engine type' })
+  @IsOptional()
+  @IsString()
+  engineType?: string;
+
+  @ApiPropertyOptional({ example: 'Propeller', description: 'Propeller type' })
+  @IsOptional()
+  @IsString()
+  propType?: string;
+
+  @ApiPropertyOptional({
+    example: 'Aluminium',
+    description: 'Propeller material',
+  })
+  @IsOptional()
+  @IsString()
+  propMaterial?: string;
 
   @ApiProperty({ type: BoatDimensionsDto })
   @ValidateNested()
@@ -85,6 +96,55 @@ export class BoatsInfoOnBoardingDto {
   @ApiProperty({ example: 2, description: 'Number of heads/bathrooms' })
   @IsInt()
   headsNumber: number;
+
+  // * Features
+  @ApiProperty({
+    example: ['GPS', 'Radio', 'Autopilot'],
+    description: 'List of electronic features',
+  })
+  @IsArray()
+  @IsString({ each: true })
+  electronics: string[];
+
+  @ApiProperty({
+    example: ['Air Conditioning', 'Heating'],
+    description: 'List of inside equipment features',
+  })
+  @IsArray()
+  @IsString({ each: true })
+  insideEquipment: string[];
+
+  @ApiProperty({
+    example: ['Cockpit Cushions', 'Davit(s)'],
+    description: 'List of outside equipment features',
+  })
+  @IsArray()
+  @IsString({ each: true })
+  outsideEquipment: string[];
+
+  @ApiProperty({
+    example: ['Generator', 'Shore Power Inlet'],
+    description: 'List of electrical equipment features',
+  })
+  @IsArray()
+  @IsString({ each: true })
+  electricalEquipment: string[];
+
+  @ApiProperty({
+    example: ['Bimini Top', 'Hard Top'],
+    description: 'List of cover features',
+  })
+  @IsArray()
+  @IsString({ each: true })
+  covers: string[];
+
+  @ApiProperty({
+    example: ['Jacuzzi', 'Pool', 'Wine Cellar'],
+    description: 'List of additional equipment features',
+  })
+  @IsArray()
+  @IsString({ each: true })
+  additionalEquipment: string[];
 
   // Address
   @ApiProperty({

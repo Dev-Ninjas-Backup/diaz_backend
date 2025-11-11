@@ -16,22 +16,11 @@ export class ImageProcessingEventsService {
     private readonly queue: Queue,
   ) {}
 
-  @OnEvent(QueueEventsEnum.COVER_IMAGE_PROCESSING)
-  async handleCoverImageProcessing(payload: ListingImageProcessPayload) {
+  @OnEvent(QueueEventsEnum.LISTING_IMAGE_PROCESSING)
+  async handleListingImageProcessing(payload: ListingImageProcessPayload) {
     await enqueueJobHelper(
       this.queue,
-      QueueEventsEnum.COVER_IMAGE_PROCESSING,
-      payload,
-      payload.listingId,
-      this.logger,
-    );
-  }
-
-  @OnEvent(QueueEventsEnum.GALLERY_IMAGE_PROCESSING)
-  async handleGalleryImageProcessing(payload: ListingImageProcessPayload) {
-    await enqueueJobHelper(
-      this.queue,
-      QueueEventsEnum.GALLERY_IMAGE_PROCESSING,
+      QueueEventsEnum.LISTING_IMAGE_PROCESSING,
       payload,
       payload.listingId,
       this.logger,

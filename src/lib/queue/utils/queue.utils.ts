@@ -9,7 +9,7 @@ export async function enqueueJobHelper(
   logger?: Logger,
 ) {
   const jobId = `${event}:${uniqueKey}`;
-  logger?.log?.(`Enqueuing ${event} for key: ${uniqueKey}`);
+  logger?.log?.(`Enqueuing ${event} for jobId: ${jobId}`);
 
   try {
     await queue.add(event, payload, {
@@ -20,10 +20,10 @@ export async function enqueueJobHelper(
       jobId,
     });
 
-    logger?.log?.(`Successfully enqueued ${event} for key: ${uniqueKey}`);
+    logger?.log?.(`Successfully enqueued ${event} for jobId: ${jobId}`);
   } catch (error) {
     logger?.error?.(
-      `❌ Failed to enqueue ${event} for key: ${uniqueKey}`,
+      `Failed to enqueue ${event} for jobId: ${jobId}, error: ${error.message}`,
       error.stack,
     );
   }

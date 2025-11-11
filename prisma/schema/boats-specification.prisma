@@ -1,0 +1,61 @@
+model BoatSpecification {
+  id String @id @default(uuid())
+
+  type BoatSpecificationType
+  name String
+  meta Json?
+
+  source DataInsertSource @default(USER)
+
+  isDeleted Boolean @default(false)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @default(now()) @updatedAt
+
+  @@unique([type, name])
+  @@map("boat_specifications")
+}
+
+enum BoatSpecificationType {
+  MAKE
+  MODEL
+  ENGINE_TYPE
+  FUEL_TYPE
+  CLASS
+  MATERIAL
+  CONDITION
+  PROP_TYPE
+  PROP_MATERIAL
+}
+
+model BoatFeature {
+  id String @id @default(uuid())
+
+  type BoatFeatureType
+  name String
+  meta Json?
+
+  source DataInsertSource @default(USER)
+
+  isDeleted Boolean @default(false)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @default(now()) @updatedAt
+
+  @@unique([type, name])
+  @@map("boat_features")
+}
+
+enum BoatFeatureType {
+  ELECTRONICS
+  INSIDE_EQUIPMENT
+  OUTSIDE_EQUIPMENT
+  ELECTRICAL_EQUIPMENT
+  COVERS
+  ADDITIONAL_EQUIPMENT
+}
+
+enum DataInsertSource {
+  USER // added by user during listing
+  SYSTEM // added by system
+}

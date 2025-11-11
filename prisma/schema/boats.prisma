@@ -6,18 +6,29 @@ model Boats {
 
   name        String
   price       Float
+  buildYear   Int
   description String?
 
   // * Specifications
-  buildYear Int
-  make      String
-  model     String
+  make         String
+  model        String
+  fuelType     String
+  class        String
+  material     String
+  condition    String
+  engineType   String?
+  propType     String?
+  propMaterial String?
 
-  fuelType  BoatFuelType
-  class     BoatClass
-  material  BoatMaterial
-  condition BoatCondition
+  // * Features
+  electronics         String[]
+  insideEquipment     String[]
+  outsideEquipment    String[]
+  electricalEquipment String[]
+  covers              String[]
+  additionalEquipment String[]
 
+  // numeric dimensions
   length Float // total feet, e.g., 36.5 = 36'6"
   beam   Float // total feet
   draft  Float // total feet
@@ -26,12 +37,12 @@ model Boats {
   cabinsNumber  Int
   headsNumber   Int
 
-  // * Address Information
+  // Address
   city  String
   state String
   zip   String
 
-  // * Extra details
+  // Extra details
   extraDetails Json? // Stores array of { key, value }
 
   status BoatListingStatus @default(ACTIVE)
@@ -39,9 +50,10 @@ model Boats {
   createdAt DateTime @default(now())
   updatedAt DateTime @default(now()) @updatedAt
 
-  // * Media
+  // Media
   videoURL String?
 
+  // Relations
   engines BoatEngine[]
   images  BoatImage[]
 
@@ -66,8 +78,8 @@ model BoatEngine {
   make  String
   model String
 
-  fuelType      BoatFuelType
-  propellerType BoatPropellerType
+  fuelType      String
+  propellerType String
 
   boatId String
   boat   Boats  @relation(fields: [boatId], references: [id], onDelete: Cascade)
@@ -93,51 +105,6 @@ model BoatImage {
   updatedAt DateTime @default(now()) @updatedAt
 
   @@map("boat_images")
-}
-
-enum BoatCondition {
-  NEW
-  USED
-  REFURBISHED
-  DAMAGED
-}
-
-enum BoatFuelType {
-  GASOLINE
-  DIESEL
-  ELECTRIC
-  HYBRID
-  OTHER
-}
-
-enum BoatClass {
-  SAILBOAT
-  MOTORBOAT
-  YACHT
-  FISHING
-  PONTOON
-  SPEEDBOAT
-  CATAMARAN
-  OTHER
-}
-
-enum BoatMaterial {
-  FIBERGLASS
-  ALUMINUM
-  WOOD
-  STEEL
-  CARBON_FIBER
-  PLASTIC
-  OTHER
-}
-
-enum BoatPropellerType {
-  FIXED
-  FOLDING
-  FEATHERING
-  SURFACE_PIERCING
-  CONTROLLABLE_PITCH
-  OTHER
 }
 
 enum BoatImageType {
