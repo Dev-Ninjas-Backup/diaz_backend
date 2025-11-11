@@ -5,6 +5,6 @@ import { GetAllCustomBoatsService } from './services/get-all-custom-boats.servic
 @Global()
 @Module({
   providers: [BoatsGroupService, GetAllCustomBoatsService],
-  exports: [BoatsGroupService],
+  exports: [BoatsGroupService, GetAllCustomBoatsService],
 })
 export class BoatsGroupModule {}
