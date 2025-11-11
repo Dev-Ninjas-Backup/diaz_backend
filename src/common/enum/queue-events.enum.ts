@@ -12,4 +12,5 @@ export enum QueueEventsEnum {
   // === Image processing events ===
   LISTING_IMAGE_PROCESSING = 'queue:listing_image_processing',
   ADOPT_BOATS_SPECIFICATION = 'queue:adopt_boats_specification',
+  ADOPT_BOATS_FEATURES = 'queue:adopt_boats_features',
 }
