@@ -19,10 +19,18 @@
 * [ ] Create boats by seller from dashboard
 * [ ] Exploring Elasticsearch for searching and implementing with open ai sdk
 
-## 📅 Date: 2025-11-10
+## 📅 Date: 2025-11-10 <--> 2025-11-11
 
 ### Tasks
 
-* [ ] Boats Specification Seeding
-* [ ] Boats Specification Get Endpoints Seeding
-* [ ] New Boats Specification Storing
+* [X] Boats Specification Seeding
+* [X] Boats Specification Get Endpoints Seeding
+* [X] New Boats Specification Storing
+
+## 📅 Date: 2025-11-12
+
+### Tasks
+
+* [ ] Get sellers own boats
+* [ ] Create boats by seller from dashboard
+* [ ] Exploring Elasticsearch for searching and implementing with open ai sdk
