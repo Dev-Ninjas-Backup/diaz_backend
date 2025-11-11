@@ -1,3 +1,4 @@
+import { BoatsSourceEnum } from '@/common/enum/boats-source.enum';
 import { HandleError } from '@/common/error/handle-error.decorator';
 import {
   successPaginatedResponse,
@@ -7,7 +8,7 @@ import {
 } from '@/common/utils/response.util';
 import { PrismaService } from '@/lib/prisma/prisma.service';
 import { GetBoatsDto } from '@/main/shared/boats/dto/get-boats.dto';
-import { Injectable, Logger } from '@nestjs/common';
+import { Injectable } from '@nestjs/common';
 import { BoatEngine, BoatImage, Boats, FileInstance } from '@prisma/client';
 import { getBoatFieldsByPreset } from '../helpers/boat-field-presets';
 import { FieldPreset } from '../interface/boats-fields.interface';
@@ -19,14 +20,14 @@ import {
 
 @Injectable()
 export class GetAllCustomBoatsService {
-  private readonly logger = new Logger(GetAllCustomBoatsService.name);
-
   constructor(private readonly prisma: PrismaService) {}
 
   @HandleError('Failed to get boats', 'Boats')
   async getAllBoats(
     options?: GetBoatsDto,
-  ): Promise<TPaginatedResponse<BoatFromBoatsGroup>> {
+  ): Promise<
+    TPaginatedResponse<BoatFromBoatsGroup & { Source: BoatsSourceEnum }>
+  > {
     const page = Math.max(Number(options?.page ?? 1), 1);
     // sensible default when limit omitted or <= 0
     const limit = Math.max(Number(options?.limit ?? 20), 1);
@@ -63,8 +64,15 @@ export class GetAllCustomBoatsService {
       this.transformBoat(boat, options?.fields),
     );
 
+    const boatsWithSource = transformed.map((boat) => {
+      return {
+        ...boat,
+        Source: BoatsSourceEnum.custom,
+      };
+    });
+
     return successPaginatedResponse(
-      transformed,
+      boatsWithSource,
       {
         page,
         limit,
@@ -78,7 +86,7 @@ export class GetAllCustomBoatsService {
   async getSingleBoat(
     boatId: string,
     fields: FieldPreset = FieldPreset.minimal,
-  ): Promise<TResponse<BoatFromBoatsGroup>> {
+  ): Promise<TResponse<BoatFromBoatsGroup & { Source: BoatsSourceEnum }>> {
     const boat = await this.prisma.boats.findUniqueOrThrow({
       where: { id: boatId },
       include: {
@@ -102,7 +110,13 @@ export class GetAllCustomBoatsService {
 
     const transformed = this.transformBoat(boat, fields);
 
-    return successResponse(transformed, 'Boat found successfully');
+    return successResponse(
+      {
+        ...transformed,
+        Source: BoatsSourceEnum.custom,
+      },
+      'Boat found successfully',
+    );
   }
 
   private formatFeet(value: number | null | undefined): string | null {

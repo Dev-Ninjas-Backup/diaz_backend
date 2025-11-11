@@ -1,6 +1,6 @@
 import { BoatsSourceEnum } from '@/common/enum/boats-source.enum';
 import { HandleError } from '@/common/error/handle-error.decorator';
-import { TPaginatedResponse } from '@/common/utils/response.util';
+import { TPaginatedResponse, TResponse } from '@/common/utils/response.util';
 import { BoatFromBoatsGroup } from '@/lib/boatsgroup/interface/boats.interface';
 import { BoatsGroupService } from '@/lib/boatsgroup/services/boats-group.service';
 import { GetAllCustomBoatsService } from '@/lib/boatsgroup/services/get-all-custom-boats.service';
@@ -19,7 +19,9 @@ export class GetAllBoatsService {
   @HandleError('Failed to get boats')
   async getBoats(
     query: GetBoatsDto,
-  ): Promise<TPaginatedResponse<BoatFromBoatsGroup>> {
+  ): Promise<
+    TPaginatedResponse<BoatFromBoatsGroup & { Source: BoatsSourceEnum }>
+  > {
     const { source, page = 1, limit = 50, fields } = query;
 
     switch (source) {
@@ -49,7 +51,10 @@ export class GetAllBoatsService {
   }
 
   @HandleError('Failed to get single boat')
-  async getSingleBoat(boatId: string, query: GetSingleBoatDto) {
+  async getSingleBoat(
+    boatId: string,
+    query: GetSingleBoatDto,
+  ): Promise<TResponse<BoatFromBoatsGroup & { Source: BoatsSourceEnum }>> {
     switch (query.source) {
       case BoatsSourceEnum.inventory:
         return await this.boatsGroupService.getSingleInventoryBoat(

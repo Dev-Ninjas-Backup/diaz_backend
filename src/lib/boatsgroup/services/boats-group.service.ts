@@ -1,3 +1,4 @@
+import { BoatsSourceEnum } from '@/common/enum/boats-source.enum';
 import { ENVEnum } from '@/common/enum/env.enum';
 import { AppError } from '@/common/error/handle-error.app';
 import {
@@ -42,7 +43,9 @@ export class BoatsGroupService {
     page: number,
     limit: number,
     fields: FieldPreset = FieldPreset.minimal,
-  ): Promise<TPaginatedResponse<BoatFromBoatsGroup>> {
+  ): Promise<
+    TPaginatedResponse<BoatFromBoatsGroup & { Source: BoatsSourceEnum }>
+  > {
     const query = this.buildFieldsQuery(fields);
 
     const start = (page - 1) * limit;
@@ -51,8 +54,15 @@ export class BoatsGroupService {
 
     const { data } = await axios.get(url);
 
+    const boats = data.results?.map((boat: BoatFromBoatsGroup) => {
+      return {
+        ...boat,
+        Source: BoatsSourceEnum.inventory,
+      };
+    });
+
     return successPaginatedResponse(
-      data.results ?? [],
+      boats ?? [],
       {
         page,
         limit,
@@ -65,7 +75,7 @@ export class BoatsGroupService {
   async getSingleInventoryBoat(
     boatId: string,
     fields: FieldPreset = FieldPreset.minimal,
-  ): Promise<TResponse<BoatFromBoatsGroup>> {
+  ): Promise<TResponse<BoatFromBoatsGroup & { Source: BoatsSourceEnum }>> {
     const query = this.buildFieldsQuery(fields);
 
     const url = `${this.apiBoatsBaseUrl}&${query}&DocumentID=${boatId}`;
@@ -78,7 +88,13 @@ export class BoatsGroupService {
       throw new AppError(HttpStatus.NOT_FOUND, 'Boat not found');
     }
 
-    return successResponse(boat, 'Boat found successfully from Inventory API');
+    return successResponse(
+      {
+        ...boat,
+        Source: BoatsSourceEnum.inventory,
+      },
+      'Boat found successfully from Inventory API',
+    );
   }
 
   // * Get boats from Service API
@@ -86,7 +102,9 @@ export class BoatsGroupService {
     page: number = 1,
     limit: number = 20,
     fields: FieldPreset = FieldPreset.minimal,
-  ): Promise<TPaginatedResponse<BoatFromBoatsGroup>> {
+  ): Promise<
+    TPaginatedResponse<BoatFromBoatsGroup & { Source: BoatsSourceEnum }>
+  > {
     const query = this.buildFieldsQuery(fields);
     const start = (page - 1) * limit;
 
@@ -96,8 +114,15 @@ export class BoatsGroupService {
 
     const boatsData = data.data ?? data;
 
+    const boats = boatsData.results?.map((boat: BoatFromBoatsGroup) => {
+      return {
+        ...boat,
+        Source: BoatsSourceEnum.service,
+      };
+    });
+
     return successPaginatedResponse(
-      boatsData.results ?? [],
+      boats ?? [],
       {
         page,
         limit,
@@ -110,7 +135,7 @@ export class BoatsGroupService {
   async getSingleServiceBoat(
     boatId: string,
     fields: FieldPreset = FieldPreset.minimal,
-  ): Promise<TResponse<BoatFromBoatsGroup>> {
+  ): Promise<TResponse<BoatFromBoatsGroup & { Source: BoatsSourceEnum }>> {
     const query = this.buildFieldsQuery(fields);
 
     const url = `${this.serviceBoatsBaseUrl}&${query}&DocumentID=${boatId}`;
@@ -123,6 +148,12 @@ export class BoatsGroupService {
       throw new AppError(HttpStatus.NOT_FOUND, 'Boat not found');
     }
 
-    return successResponse(boat, 'Boat found successfully from Service API');
+    return successResponse(
+      {
+        ...boat,
+        Source: BoatsSourceEnum.service,
+      },
+      'Boat found successfully from Service API',
+    );
   }
 }
