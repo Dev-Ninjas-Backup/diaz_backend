@@ -6,9 +6,9 @@ import {
 import { BoatFromBoatsGroup } from '@/lib/boatsgroup/interface/boats.interface';
 import { BoatsGroupService } from '@/lib/boatsgroup/services/boats-group.service';
 import { GetAllCustomBoatsService } from '@/lib/boatsgroup/services/get-all-custom-boats.service';
+import { Injectable } from '@nestjs/common';
 import { DateTime } from 'luxon';
 import { GetMergedBoatsDto } from '../dto/get-boats.dto';
-import { Injectable } from '@nestjs/common';
 
 @Injectable()
 export class GetAllBoatsMergedService {
@@ -17,60 +17,161 @@ export class GetAllBoatsMergedService {
     private readonly boatsGroupService: BoatsGroupService,
   ) {}
 
+  private parseDateMillis(dateStr?: string) {
+    if (!dateStr) return 0;
+    let dt = DateTime.fromISO(dateStr, { zone: 'utc' });
+    if (!dt.isValid) {
+      dt = DateTime.fromFormat(dateStr, 'yyyy-MM-dd', { zone: 'utc' });
+    }
+    return dt.isValid ? dt.toMillis() : 0;
+  }
+
   @HandleError('Failed to get boats')
   async getMergedBoats(
     query: GetMergedBoatsDto,
   ): Promise<TPaginatedResponse<BoatFromBoatsGroup>> {
     const { page = 1, limit = 50, fields } = query;
 
-    // Merged fetch (all sources)
-    const [inventoryRes, serviceRes, customRes] = await Promise.all([
-      this.boatsGroupService.getInventoryBoats(page, limit, fields),
-      this.boatsGroupService.getServiceBoats(page, limit, fields),
-      this.getAllCustomBoatsService.getAllBoats({ page, limit, fields }),
-    ]);
+    // Config: how many items to fetch per source when refilling a buffer
+    const BATCH_SIZE = Math.max(5, Math.ceil(limit / 3)); // you can tune this
 
-    // Combine all boats
-    const allBoats = [
-      ...inventoryRes.data,
-      ...serviceRes.data,
-      ...customRes.data,
+    // Create fetcher functions for each source
+    const fetchers: {
+      fetchPage: (
+        p: number,
+        l: number,
+      ) => Promise<{ data: BoatFromBoatsGroup[]; metadata: { total: number } }>;
+      page: number;
+      buffer: BoatFromBoatsGroup[];
+      exhausted: boolean;
+      total: number;
+    }[] = [
+      {
+        fetchPage: (p, l) =>
+          this.boatsGroupService.getInventoryBoats(p, l, fields),
+        page: 1,
+        buffer: [],
+        exhausted: false,
+        total: 0,
+      },
+      {
+        fetchPage: (p, l) =>
+          this.boatsGroupService.getServiceBoats(p, l, fields),
+        page: 1,
+        buffer: [],
+        exhausted: false,
+        total: 0,
+      },
+      {
+        fetchPage: (p, l) =>
+          this.getAllCustomBoatsService.getAllBoats({
+            page: p,
+            limit: l,
+            fields,
+          }),
+        page: 1,
+        buffer: [],
+        exhausted: false,
+        total: 0,
+      },
     ];
 
-    const total =
-      inventoryRes.metadata.total +
-      serviceRes.metadata.total +
-      customRes.metadata.total;
+    // helper to fetch and refill buffer for a source index
+    const refill = async (idx: number) => {
+      const src = fetchers[idx];
+      if (src.exhausted) return;
+      const res = await src.fetchPage(src.page, BATCH_SIZE);
+      src.page += 1;
+      src.buffer.push(...res.data);
+      src.total = res.metadata?.total ?? src.total;
+      if (!res.data || res.data.length < BATCH_SIZE) {
+        src.exhausted = true; // no more data
+      }
+    };
 
-    // Sort by last modification date
-    const sortedBoats = allBoats.sort((a, b) => {
-      const parseDate = (dateStr?: string) => {
-        if (!dateStr) return 0;
+    // initially refill each source once
+    await Promise.all(fetchers.map((_, i) => refill(i)));
 
-        // Try parsing as ISO (full timestamp)
-        let dt = DateTime.fromISO(dateStr, { zone: 'utc' });
-        if (!dt.isValid) {
-          // fallback: parse as plain date
-          dt = DateTime.fromFormat(dateStr, 'yyyy-MM-dd', { zone: 'utc' });
+    const merged: BoatFromBoatsGroup[] = [];
+    // Merge until we have enough or all sources exhausted
+    while (merged.length < limit) {
+      // ensure each buffer has at least one item if possible
+      const refillPromises = fetchers.map((s, i) =>
+        s.buffer.length === 0 && !s.exhausted ? refill(i) : Promise.resolve(),
+      );
+      await Promise.all(refillPromises);
+
+      // pick the best head across buffers
+      let bestIdx = -1;
+      let bestDate = -1;
+      for (let i = 0; i < fetchers.length; i++) {
+        const head = fetchers[i].buffer[0];
+        if (!head) continue;
+        const ts = this.parseDateMillis(head.LastModificationDate);
+        if (ts > bestDate) {
+          bestDate = ts;
+          bestIdx = i;
         }
+      }
 
-        return dt.isValid ? dt.toMillis() : 0;
-      };
+      if (bestIdx === -1) {
+        // nothing left in any source
+        break;
+      }
 
-      const aDate = parseDate(a?.LastModificationDate);
-      const bDate = parseDate(b?.LastModificationDate);
+      // take the head from best source
+      const item = fetchers[bestIdx].buffer.shift()!;
+      merged.push(item);
+    }
 
-      return bDate - aDate; // newest first
-    });
+    // compute total as sum of totals from sources
+    const total = fetchers.reduce((acc, s) => acc + (s.total ?? 0), 0);
+
+    // Now we have 'limit' newest items across sources; apply the requested 'page'
+    // (we fetched the first 'limit' of the *global* first page). For arbitrary page > 1,
+    // you can either:
+    //  - compute offset = (page-1)*limit and keep pulling until you have offset+limit items (more requests), OR
+    //  - restrict merged endpoint to only support cursor/nextToken for better efficiency.
+    const offset = (page - 1) * limit;
+    let dataToReturn: BoatFromBoatsGroup[];
+
+    if (offset === 0) {
+      dataToReturn = merged.slice(0, limit);
+    } else {
+      // naive: if user requested later pages, we need to fetch more until we cover offset+limit
+      const needed = offset + limit;
+      while (merged.length < needed) {
+        // try to refill and continue merging
+        const refillPromises2 = fetchers.map((s, i) =>
+          s.buffer.length === 0 && !s.exhausted ? refill(i) : Promise.resolve(),
+        );
+        await Promise.all(refillPromises2);
+
+        let bestIdx = -1;
+        let bestDate = -1;
+        for (let i = 0; i < fetchers.length; i++) {
+          const head = fetchers[i].buffer[0];
+          if (!head) continue;
+          const ts = this.parseDateMillis(head.LastModificationDate);
+          if (ts > bestDate) {
+            bestDate = ts;
+            bestIdx = i;
+          }
+        }
+        if (bestIdx === -1) break;
+        merged.push(fetchers[bestIdx].buffer.shift()!);
+      }
+      dataToReturn = merged.slice(offset, offset + limit);
+    }
 
     return successPaginatedResponse(
-      sortedBoats,
+      dataToReturn,
       {
         page,
-        limit: sortedBoats.length,
+        limit: dataToReturn.length,
         total,
       },
-      'Request Success',
+      'Boats merged successfully.',
     );
   }
 }
