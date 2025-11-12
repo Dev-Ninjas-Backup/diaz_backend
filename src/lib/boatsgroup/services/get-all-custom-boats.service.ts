@@ -66,8 +66,8 @@ export class GetAllCustomBoatsService {
 
     const boatsWithSource = transformed.map((boat) => {
       return {
-        ...boat,
         Source: BoatsSourceEnum.custom,
+        ...boat,
       };
     });
 
@@ -112,8 +112,8 @@ export class GetAllCustomBoatsService {
 
     return successResponse(
       {
-        ...transformed,
         Source: BoatsSourceEnum.custom,
+        ...transformed,
       },
       'Boat found successfully',
     );

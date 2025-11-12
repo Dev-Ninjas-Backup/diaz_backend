@@ -56,8 +56,8 @@ export class BoatsGroupService {
 
     const boats = data.results?.map((boat: BoatFromBoatsGroup) => {
       return {
-        ...boat,
         Source: BoatsSourceEnum.inventory,
+        ...boat,
       };
     });
 
@@ -90,8 +90,8 @@ export class BoatsGroupService {
 
     return successResponse(
       {
-        ...boat,
         Source: BoatsSourceEnum.inventory,
+        ...boat,
       },
       'Boat found successfully from Inventory API',
     );
@@ -116,8 +116,8 @@ export class BoatsGroupService {
 
     const boats = boatsData.results?.map((boat: BoatFromBoatsGroup) => {
       return {
-        ...boat,
         Source: BoatsSourceEnum.service,
+        ...boat,
       };
     });
 
@@ -150,8 +150,8 @@ export class BoatsGroupService {
 
     return successResponse(
       {
-        ...boat,
         Source: BoatsSourceEnum.service,
+        ...boat,
       },
       'Boat found successfully from Service API',
     );
