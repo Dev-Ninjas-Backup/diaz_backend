@@ -23,10 +23,12 @@ import { BoatsInfoOnBoardingDto } from './dto/boats-info.dto';
 import { GetOwnBoatsDto } from './dto/get-own-boats.dto';
 import { SellerInfoOnBoardingDto } from './dto/seller-info.dto';
 import {
+  BoatListingDto,
   SellerOnBoardingDto,
   SellerOnboardingPlanDto,
 } from './dto/seller-on-boarding.dto';
 import { BoatsService } from './services/boats.service';
+import { CreateListingService } from './services/create-listing.service';
 import { OnBoardingService } from './services/on-boarding.service';
 
 @ApiTags('Seller -- Onboarding & Boats')
@@ -37,6 +39,7 @@ export class BoatsController {
   constructor(
     private readonly onBoardingService: OnBoardingService,
     private readonly boatsService: BoatsService,
+    private readonly createListingService: CreateListingService,
   ) {}
 
   @ApiOperation({
@@ -112,5 +115,50 @@ export class BoatsController {
     @Param('boatId') boatId: string,
   ) {
     return this.boatsService.getSingleBoat(userId, boatId);
+  }
+
+  @ApiOperation({ summary: 'Create Boat Listing' })
+  @ApiConsumes('multipart/form-data')
+  @ApiBody({ type: BoatListingDto })
+  @UseInterceptors(
+    FileFieldsInterceptor(
+      [
+        { name: 'covers', maxCount: 5 },
+        { name: 'galleries', maxCount: 70 },
+      ],
+      new MulterService().createMultipleFileOptions({
+        destinationFolder: './temp',
+        prefix: 'boat_listing',
+        fileType: FileType.IMAGE,
+        maxFileCount: 75,
+      }),
+    ),
+  )
+  @Post('create-listing')
+  async createListing(
+    @GetUser('sub') userId: string,
+    @Body()
+    data: {
+      boatInfo: BoatsInfoOnBoardingDto;
+    },
+    @UploadedFiles()
+    files: {
+      covers?: Express.Multer.File[];
+      galleries?: Express.Multer.File[];
+    },
+  ) {
+    const mappedFiles = [
+      ...(files.covers || []).map((file) => ({
+        path: file.path,
+        type: BoatImageType.COVER,
+        originalName: file.originalname,
+      })),
+      ...(files.galleries || []).map((file) => ({
+        path: file.path,
+        type: BoatImageType.GALLERY,
+        originalName: file.originalname,
+      })),
+    ];
+    return this.createListingService.createListing(userId, data, mappedFiles);
   }
 }
