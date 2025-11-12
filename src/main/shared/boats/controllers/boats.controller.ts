@@ -1,7 +1,12 @@
 import { Controller, Get, Param, Query } from '@nestjs/common';
 import { ApiOperation, ApiTags } from '@nestjs/swagger';
 import { GetAllBoatsCustomDto } from '../dto/get-all-boats-custom.dto';
-import { GetBoatsDto, GetSingleBoatDto } from '../dto/get-boats.dto';
+import {
+  GetBoatsDto,
+  GetMergedBoatsDto,
+  GetSingleBoatDto,
+} from '../dto/get-boats.dto';
+import { GetAllBoatsMergedService } from '../services/get-all-boats-merged.servcie';
 import { GetAllBoatsService } from '../services/get-all-boats.service';
 import { GetCustomBoatsService } from '../services/get-custom-boats.service';
 
@@ -11,6 +16,7 @@ export class BoatsController {
   constructor(
     private readonly getCustomBoatsService: GetCustomBoatsService,
     private readonly getAllBoatsService: GetAllBoatsService,
+    private readonly getAllBoatsMergedService: GetAllBoatsMergedService,
   ) {}
 
   @ApiOperation({ summary: 'Get all custom boats' })
@@ -38,5 +44,11 @@ export class BoatsController {
     @Query() query: GetSingleBoatDto,
   ) {
     return this.getAllBoatsService.getSingleBoat(boatId, query);
+  }
+
+  @ApiOperation({ summary: 'Get all merged boats from all sources' })
+  @Get('merged/all-sources')
+  async getMergedBoats(@Query() query: GetMergedBoatsDto) {
+    return this.getAllBoatsMergedService.getMergedBoats(query);
   }
 }

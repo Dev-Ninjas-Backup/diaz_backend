@@ -1,3 +1,4 @@
+import { PaginationDto } from '@/common/dto/pagination.dto';
 import { BoatsSourceEnum } from '@/common/enum/boats-source.enum';
 import { FieldPreset } from '@/lib/boatsgroup/interface/boats-fields.interface';
 import { ApiPropertyOptional } from '@nestjs/swagger';
@@ -48,3 +49,13 @@ export class GetBoatsDto extends BoatFieldsDto {
 }
 
 export class GetSingleBoatDto extends BoatFieldsDto {}
+
+export class GetMergedBoatsDto extends PaginationDto {
+  @ApiPropertyOptional({
+    default: FieldPreset.minimal,
+    enum: FieldPreset,
+  })
+  @IsOptional()
+  @IsEnum(FieldPreset)
+  fields?: FieldPreset = FieldPreset.minimal;
+}
