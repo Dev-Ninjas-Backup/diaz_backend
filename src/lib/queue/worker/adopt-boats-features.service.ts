@@ -44,7 +44,7 @@ export class AdoptBoatsFeaturesService extends WorkerHost {
           });
 
           if (existing) {
-            this.logger.log(`[EXIST] ${type} → "${name}" already exists`);
+            // this.logger.log(`[EXIST] ${type} → "${name}" already exists`);
             continue;
           }
 

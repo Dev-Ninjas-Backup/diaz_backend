@@ -46,9 +46,9 @@ export class AdoptBoatsSpecificationsService extends WorkerHost {
         });
 
         if (existing) {
-          this.logger.log(
-            `[EXIST] ${key.toUpperCase()} → "${value}" already exists`,
-          );
+          // this.logger.log(
+          //   `[EXIST] ${key.toUpperCase()} → "${value}" already exists`,
+          // );
           continue;
         }
 

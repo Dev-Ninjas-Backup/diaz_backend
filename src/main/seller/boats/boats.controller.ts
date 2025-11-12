@@ -1,5 +1,6 @@
 import { GetUser, Public, ValidateAuth } from '@/common/jwt/jwt.decorator';
 import { FileType, MulterService } from '@/lib/multer/multer.service';
+import { QueueFile } from '@/lib/queue/interface/image-process.payload';
 import {
   Body,
   Controller,
@@ -77,7 +78,7 @@ export class BoatsController {
       galleries?: Express.Multer.File[];
     },
   ) {
-    const mappedFiles = [
+    const mappedFiles: QueueFile[] = [
       ...(files.covers || []).map((file) => ({
         path: file.path,
         type: BoatImageType.COVER,
@@ -147,7 +148,7 @@ export class BoatsController {
       galleries?: Express.Multer.File[];
     },
   ) {
-    const mappedFiles = [
+    const mappedFiles: QueueFile[] = [
       ...(files.covers || []).map((file) => ({
         path: file.path,
         type: BoatImageType.COVER,
