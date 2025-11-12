@@ -149,6 +149,7 @@ export class OnBoardingService {
           city: boatInfo.city,
           state: boatInfo.state,
           zip: boatInfo.zip,
+          status: 'ONBOARDING_PENDING',
           electronics: boatInfo.electronics || [],
           insideEquipment: boatInfo.insideEquipment || [],
           outsideEquipment: boatInfo.outsideEquipment || [],

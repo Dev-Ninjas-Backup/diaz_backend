@@ -1,3 +1,4 @@
+import { GetUser, Public, ValidateAuth } from '@/common/jwt/jwt.decorator';
 import { FileType, MulterService } from '@/lib/multer/multer.service';
 import {
   Body,
@@ -5,13 +6,21 @@ import {
   Get,
   Param,
   Post,
+  Query,
   UploadedFiles,
   UseInterceptors,
 } from '@nestjs/common';
 import { FileFieldsInterceptor } from '@nestjs/platform-express';
-import { ApiBody, ApiConsumes, ApiOperation, ApiTags } from '@nestjs/swagger';
+import {
+  ApiBearerAuth,
+  ApiBody,
+  ApiConsumes,
+  ApiOperation,
+  ApiTags,
+} from '@nestjs/swagger';
 import { BoatImageType } from '@prisma/client';
 import { BoatsInfoOnBoardingDto } from './dto/boats-info.dto';
+import { GetOwnBoatsDto } from './dto/get-own-boats.dto';
 import { SellerInfoOnBoardingDto } from './dto/seller-info.dto';
 import {
   SellerOnBoardingDto,
@@ -21,7 +30,9 @@ import { BoatsService } from './services/boats.service';
 import { OnBoardingService } from './services/on-boarding.service';
 
 @ApiTags('Seller -- Onboarding & Boats')
-@Controller('boats')
+@ApiBearerAuth()
+@ValidateAuth()
+@Controller('boats/seller')
 export class BoatsController {
   constructor(
     private readonly onBoardingService: OnBoardingService,
@@ -48,6 +59,7 @@ export class BoatsController {
       }),
     ),
   )
+  @Public()
   @Post('onboarding')
   async sellerOnBoarding(
     @Body()
@@ -77,9 +89,28 @@ export class BoatsController {
     return this.onBoardingService.sellerOnBoarding(data, mappedFiles);
   }
 
-  @ApiOperation({ summary: 'Get Boat Subscription Confirmation' })
+  @ApiOperation({ summary: 'Get Boat Subscription Confirmation (Public)' })
+  @Public()
   @Get('subscription-confirmation/:userId')
   async getSubscriptionConfirmation(@Param('userId') userId: string) {
     return this.onBoardingService.getSubscriptionConfirmation(userId);
+  }
+
+  @ApiOperation({ summary: 'Get Own Boats' })
+  @Get('get-own-boats')
+  async getOwnBoats(
+    @GetUser('sub') userId: string,
+    @Query() query: GetOwnBoatsDto,
+  ) {
+    return this.boatsService.getOwnBoats(userId, query);
+  }
+
+  @ApiOperation({ summary: 'Get Boat Details' })
+  @Get('get-own-boats/:boatId')
+  async getSingleBoat(
+    @GetUser('sub') userId: string,
+    @Param('boatId') boatId: string,
+  ) {
+    return this.boatsService.getSingleBoat(userId, boatId);
   }
 }

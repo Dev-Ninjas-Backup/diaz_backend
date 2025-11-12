@@ -80,7 +80,7 @@ export class GetCustomBoatsService {
     );
   }
 
-  private formatBoat(boat: any) {
+  public formatBoat(boat: any) {
     const formattedImages = (boat.images ?? []).map((img: any) => ({
       id: img.id,
       fileId: img.fileId,
