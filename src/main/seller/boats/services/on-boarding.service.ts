@@ -37,7 +37,7 @@ export class OnBoardingService {
       throw new AppError(HttpStatus.BAD_REQUEST, 'Invalid request body');
     }
 
-    //* Validate plan id
+    // * Validate plan id
     const plan = await this.prisma.subscriptionPlan.findUnique({
       where: { id: data.planId },
     });
@@ -193,7 +193,7 @@ export class OnBoardingService {
       stripePriceId: plan.stripePriceId,
     });
 
-    // persist setup intent id so you can reconcile later
+    // persist setup intent id
     const subscription = await this.prisma.userSubscription.create({
       data: {
         user: { connect: { id: user.id } },
