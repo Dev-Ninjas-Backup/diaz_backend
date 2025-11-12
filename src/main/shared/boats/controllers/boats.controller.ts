@@ -6,7 +6,7 @@ import {
   GetMergedBoatsDto,
   GetSingleBoatDto,
 } from '../dto/get-boats.dto';
-import { GetAllBoatsMergedService } from '../services/get-all-boats-merged.servcie';
+import { GetAllBoatsMergedService } from '../services/get-all-boats-merged.service';
 import { GetAllBoatsService } from '../services/get-all-boats.service';
 import { GetCustomBoatsService } from '../services/get-custom-boats.service';
 
