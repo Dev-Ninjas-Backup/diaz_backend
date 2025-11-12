@@ -93,7 +93,7 @@ export class BoatsController {
   @Public()
   @Get('subscription-confirmation/:userId')
   async getSubscriptionConfirmation(@Param('userId') userId: string) {
-    return this.onBoardingService.getSubscriptionConfirmation(userId);
+    return this.boatsService.getSubscriptionConfirmation(userId);
   }
 
   @ApiOperation({ summary: 'Get Own Boats' })
