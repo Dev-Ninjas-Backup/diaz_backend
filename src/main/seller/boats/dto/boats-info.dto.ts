@@ -136,7 +136,7 @@ export class BoatsInfoOnBoardingDto {
   })
   @IsArray()
   @IsString({ each: true })
-  covers: string[];
+  coversEquipment: string[];
 
   @ApiProperty({
     example: ['Jacuzzi', 'Pool', 'Wine Cellar'],

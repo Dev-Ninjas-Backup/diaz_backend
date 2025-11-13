@@ -1,31 +1,25 @@
-import { QueueEventsEnum } from '@/common/enum/queue-events.enum';
 import { AppError } from '@/common/error/handle-error.app';
 import { HandleError } from '@/common/error/handle-error.decorator';
 import { ParseJsonPipe } from '@/common/pipe/parse-json.pipe';
 import { successResponse, TResponse } from '@/common/utils/response.util';
 import { PrismaService } from '@/lib/prisma/prisma.service';
-import {
-  AdoptBoatsFeatures,
-  AdoptBoatsSpecification,
-} from '@/lib/queue/interface/adopt-boats-data.payload';
-import { ListingImageProcessPayload } from '@/lib/queue/interface/image-process.payload';
 import { StripeService } from '@/lib/stripe/stripe.service';
 import { UtilsService } from '@/lib/utils/utils.service';
 import { HttpStatus, Injectable, Logger } from '@nestjs/common';
-import { EventEmitter2 } from '@nestjs/event-emitter';
 import { BoatImageType } from '@prisma/client';
-import { BoatEngineDto } from '../dto/boats.dto';
 import { SellerOnboardingBodyDto } from '../dto/seller-on-boarding.dto';
+import { BoatListingHelperService } from './boat-listing-helper.service';
 
 @Injectable()
 export class OnBoardingService {
   private readonly logger = new Logger(OnBoardingService.name);
+  private readonly parsePipe = new ParseJsonPipe();
 
   constructor(
     private readonly prisma: PrismaService,
     private readonly utils: UtilsService,
     private readonly stripe: StripeService,
-    private readonly eventEmitter: EventEmitter2,
+    private readonly boatListingHelper: BoatListingHelperService,
   ) {}
 
   @HandleError('Failed to complete onboarding', 'Boats')
@@ -37,9 +31,50 @@ export class OnBoardingService {
       throw new AppError(HttpStatus.BAD_REQUEST, 'Invalid request body');
     }
 
-    //* Validate plan id
+    // Validate plan
+    const plan = await this.validatePlan(data.planId);
+    this.boatListingHelper.validateImageLimit(files.length, plan.picLimit);
+
+    // Parse data
+    const boatInfo = this.boatListingHelper.parseBoatInfo(data.boatInfo);
+    const sellerInfo = this.parsePipe.transform(data.sellerInfo);
+    this.logger.log('Seller Info: ', sellerInfo);
+
+    // Validate uniqueness
+    await this.validateUserUniqueness(sellerInfo.username, sellerInfo.email);
+
+    // Create user and listing
+    const result = await this.createUserAndListing(sellerInfo, boatInfo);
+    const { user, listing } = result;
+
+    // Create subscription setup intent
+    const setupIntent = await this.createSubscriptionSetupIntent(user, plan);
+
+    // Persist subscription
+    await this.createPendingSubscription(user.id, plan.id, setupIntent.id);
+
+    // Emit all events
+    await this.boatListingHelper.emitAllBoatEvents(
+      user.id,
+      listing.id,
+      boatInfo,
+      files,
+    );
+
+    return successResponse(
+      {
+        paymentIntentId: setupIntent.id,
+        paymentIntentClientSecret: setupIntent.client_secret,
+        listingPreview: listing,
+        userId: user.id,
+      },
+      'Onboarding completed successfully',
+    );
+  }
+
+  private async validatePlan(planId: string) {
     const plan = await this.prisma.subscriptionPlan.findUnique({
-      where: { id: data.planId },
+      where: { id: planId },
     });
 
     if (!plan) {
@@ -50,30 +85,13 @@ export class OnBoardingService {
     }
 
     this.logger.log(`Selected subscription plan: ${plan.title} (${plan.id})`);
+    return plan;
+  }
 
-    // * Validated total files number based on plan limit
-    if (files.length > plan.picLimit) {
-      throw new AppError(
-        HttpStatus.BAD_REQUEST,
-        `You have exceeded the image upload limit for the selected plan (${plan.picLimit} images allowed)`,
-      );
-    }
-
-    this.logger.log(
-      `Total uploaded images: ${files.length} (Plan limit: ${plan.picLimit})`,
-    );
-
-    const parsePipe = new ParseJsonPipe();
-
-    const boatInfo = parsePipe.transform(data.boatInfo);
-    this.logger.log('Boat Info: ', boatInfo);
-    const sellerInfo = parsePipe.transform(data.sellerInfo);
-    this.logger.log('Seller Info: ', sellerInfo);
-
-    // * Validate unique username
+  private async validateUserUniqueness(username: string, email: string) {
     const [existingUser, existingEmail] = await Promise.all([
-      this.prisma.user.findUnique({ where: { username: sellerInfo.username } }),
-      this.prisma.user.findUnique({ where: { email: sellerInfo.email } }),
+      this.prisma.user.findUnique({ where: { username } }),
+      this.prisma.user.findUnique({ where: { email } }),
     ]);
 
     if (existingUser) {
@@ -83,10 +101,10 @@ export class OnBoardingService {
     if (existingEmail) {
       throw new AppError(HttpStatus.CONFLICT, 'Email already exists');
     }
+  }
 
-    // * Begin transaction
-    const result = await this.prisma.$transaction(async (tx) => {
-      // * Create user
+  private async createUserAndListing(sellerInfo: any, boatInfo: any) {
+    return await this.prisma.$transaction(async (tx) => {
       const user = await tx.user.create({
         data: {
           username: sellerInfo.username,
@@ -102,72 +120,12 @@ export class OnBoardingService {
         },
       });
 
-      const {
-        lengthFeet,
-        lengthInches,
-        beamFeet,
-        beamInches,
-        draftFeet,
-        draftInches,
-      } = boatInfo.boatDimensions;
-
-      const decimalLength = this.utils.feetAndInchesToDecimal(
-        lengthFeet,
-        lengthInches,
-      );
-      const decimalBeam = this.utils.feetAndInchesToDecimal(
-        beamFeet,
-        beamInches,
-      );
-      const decimalDraft = this.utils.feetAndInchesToDecimal(
-        draftFeet,
-        draftInches,
-      );
-
-      // * Create listing
       const listing = await tx.boats.create({
-        data: {
-          name: boatInfo.name,
-          price: boatInfo.price,
-          description: boatInfo?.description?.trim() || '',
-          buildYear: boatInfo.buildYear,
-          make: boatInfo.make,
-          model: boatInfo.model,
-          fuelType: boatInfo.fuelType,
-          class: boatInfo.boatClass,
-          material: boatInfo.material,
-          condition: boatInfo.condition,
-          engineType: boatInfo?.engineType?.trim() || '',
-          propType: boatInfo?.propType?.trim() || '',
-          propMaterial: boatInfo?.propMaterial?.trim() || '',
-          length: decimalLength,
-          beam: decimalBeam,
-          draft: decimalDraft,
-          enginesNumber: boatInfo.enginesNumber,
-          cabinsNumber: boatInfo.cabinsNumber,
-          headsNumber: boatInfo.headsNumber,
-          city: boatInfo.city,
-          state: boatInfo.state,
-          zip: boatInfo.zip,
-          electronics: boatInfo.electronics || [],
-          insideEquipment: boatInfo.insideEquipment || [],
-          outsideEquipment: boatInfo.outsideEquipment || [],
-          electricalEquipment: boatInfo.electricalEquipment || [],
-          covers: boatInfo.covers || [],
-          additionalEquipment: boatInfo.additionalEquipment || [],
-          videoURL: boatInfo?.videoURL?.trim() || '',
-          user: { connect: { id: user.id } },
-          engines: boatInfo.engines?.length
-            ? {
-                createMany: {
-                  data: boatInfo.engines.map((engine: BoatEngineDto) => ({
-                    ...engine,
-                  })),
-                },
-              }
-            : undefined,
-          extraDetails: boatInfo.extraDetails ?? [],
-        },
+        data: this.boatListingHelper.buildBoatCreateData(
+          boatInfo,
+          user.id,
+          'ONBOARDING_PENDING',
+        ),
         include: {
           engines: true,
           user: { select: { id: true, username: true, email: true } },
@@ -176,11 +134,10 @@ export class OnBoardingService {
 
       return { user, listing };
     });
+  }
 
-    const { user, listing } = result;
-
-    // create a SetupIntent
-    const setupIntent = await this.stripe.createSetupIntent({
+  private async createSubscriptionSetupIntent(user: any, plan: any) {
+    return await this.stripe.createSetupIntent({
       type: 'onboarding_subscription',
       userId: user.id,
       email: user.email,
@@ -191,142 +148,26 @@ export class OnBoardingService {
       stripeProductId: plan.stripeProductId,
       stripePriceId: plan.stripePriceId,
     });
+  }
 
-    // persist setup intent id so you can reconcile later
+  private async createPendingSubscription(
+    userId: string,
+    planId: string,
+    setupIntentId: string,
+  ) {
     const subscription = await this.prisma.userSubscription.create({
       data: {
-        user: { connect: { id: user.id } },
-        plan: { connect: { id: plan.id } },
-        stripeTransactionId: setupIntent.id, // store the SetupIntent id
+        user: { connect: { id: userId } },
+        plan: { connect: { id: planId } },
+        stripeTransactionId: setupIntentId,
         status: 'PENDING',
       },
     });
 
     this.logger.log(
-      `Created pending subscription record for user ${user.id} with plan ${plan.id} and subscription ID ${subscription.id}`,
+      `Created pending subscription record for user ${userId} with plan ${planId} and subscription ID ${subscription.id}`,
     );
 
-    // * Emit event to process uploaded images
-    if (files && files.length > 0) {
-      const payload: ListingImageProcessPayload = {
-        userId: user.id,
-        listingId: listing.id,
-        files,
-      };
-
-      await this.eventEmitter.emitAsync(
-        QueueEventsEnum.LISTING_IMAGE_PROCESSING,
-        payload,
-      );
-    }
-
-    // * Emit events to adopt new data of specification and features
-    const adoptBoatsSpecificationPayload: AdoptBoatsSpecification = {
-      listingId: listing.id,
-      make: boatInfo.make,
-      model: boatInfo.model,
-      fuelType: boatInfo.fuelType,
-      class: boatInfo.boatClass,
-      material: boatInfo.material,
-      condition: boatInfo.condition,
-      engineType: boatInfo.engineType,
-      propType: boatInfo.propType,
-      propMaterial: boatInfo.propMaterial,
-    };
-
-    await this.eventEmitter.emitAsync(
-      QueueEventsEnum.ADOPT_BOATS_SPECIFICATION,
-      adoptBoatsSpecificationPayload,
-    );
-
-    const adoptBoatsFeaturesPayload: AdoptBoatsFeatures = {
-      listingId: listing.id,
-      electronics: boatInfo.electronics,
-      insideEquipment: boatInfo.insideEquipment,
-      outsideEquipment: boatInfo.outsideEquipment,
-      electricalEquipment: boatInfo.electricalEquipment,
-      covers: boatInfo.covers,
-      additionalEquipment: boatInfo.additionalEquipment,
-    };
-
-    await this.eventEmitter.emitAsync(
-      QueueEventsEnum.ADOPT_BOATS_FEATURES,
-      adoptBoatsFeaturesPayload,
-    );
-
-    return successResponse(
-      {
-        paymentIntentId: setupIntent.id,
-        paymentIntentClientSecret: setupIntent.client_secret,
-        listingPreview: listing,
-        userId: user.id,
-      },
-      'Onboarding completed successfully',
-    );
-  }
-
-  @HandleError('Failed to get subscription confirmation', 'Onboarding')
-  async getSubscriptionConfirmation(userId: string) {
-    // Fetch the latest subscription for this user
-    const subscription = await this.prisma.userSubscription.findFirst({
-      where: { userId },
-      orderBy: { createdAt: 'desc' },
-      include: {
-        plan: true,
-        user: { select: { id: true, email: true, name: true } },
-      },
-    });
-
-    if (!subscription) {
-      throw new AppError(
-        HttpStatus.NOT_FOUND,
-        'No subscription found for this user',
-      );
-    }
-
-    // Compute if subscription is active
-    const isActive = subscription.status === 'ACTIVE';
-
-    // Fetch associated boat listings (if any)
-    const listing = await this.prisma.boats.findFirst({
-      where: { userId },
-      select: {
-        id: true,
-        name: true,
-        status: true,
-      },
-    });
-
-    // Compose confirmation payload
-    const result = {
-      user: {
-        id: subscription.user.id,
-        name: subscription.user.name,
-        email: subscription.user.email,
-      },
-      subscription: {
-        id: subscription.id,
-        planTitle: subscription.plan.title,
-        status: subscription.status,
-        startedAt: subscription.planStartedAt,
-        endsAt: subscription.planEndedAt,
-      },
-      listing: listing
-        ? {
-            id: listing.id,
-            name: listing.name,
-            status: listing.status,
-          }
-        : null,
-      message: isActive
-        ? 'Your subscription is active. Welcome aboard!'
-        : 'Your subscription is still pending. Please wait for confirmation.',
-    };
-
-    // Return final response
-    return successResponse(
-      result,
-      'Subscription confirmation fetched successfully',
-    );
+    return subscription;
   }
 }

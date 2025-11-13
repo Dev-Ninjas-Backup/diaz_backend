@@ -24,6 +24,7 @@
 ### Tasks
 
 * [X] Boats Specification Seeding
+* [X] Get single boat from different source from single endpoint
 * [X] Boats Specification Get Endpoints Seeding
 * [X] New Boats Specification Storing
 
@@ -31,6 +32,6 @@
 
 ### Tasks
 
-* [ ] Get sellers own boats
+* [X] Get sellers own boats
+* [X] Get Boats from different source in merged endpoint
 * [ ] Create boats by seller from dashboard
-* [ ] Exploring Elasticsearch for searching and implementing with open ai sdk

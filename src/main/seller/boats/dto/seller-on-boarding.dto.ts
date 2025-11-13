@@ -88,3 +88,10 @@ export class SellerOnboardingFilesDto {
   })
   galleries?: Express.Multer.File[];
 }
+
+export class BoatListingDto extends SellerOnboardingFilesDto {
+  @ApiProperty({ type: BoatsInfoOnBoardingDto })
+  @ValidateNested()
+  @Type(() => BoatsInfoOnBoardingDto)
+  boatInfo: BoatsInfoOnBoardingDto;
+}

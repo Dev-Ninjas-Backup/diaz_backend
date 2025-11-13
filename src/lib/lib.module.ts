@@ -3,6 +3,7 @@ import { BoatsGroupModule } from './boatsgroup/boats-group.module';
 import { FileModule } from './file/file.module';
 import { MailModule } from './mail/mail.module';
 import { MulterModule } from './multer/multer.module';
+import { PaywallCheckModule } from './paywall/paywall-check.module';
 import { PrismaModule } from './prisma/prisma.module';
 import { QueueModule } from './queue/queue.module';
 import { S3BucketModule } from './s3/s3.module';
@@ -22,6 +23,7 @@ import { UtilsModule } from './utils/utils.module';
     StripeModule,
     S3BucketModule,
     BoatsGroupModule,
+    PaywallCheckModule,
   ],
   exports: [],
   providers: [],
