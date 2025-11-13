@@ -56,6 +56,13 @@ export class UpdateListingService {
     // Validate image limit
     this.boatListingHelper.validateImageLimit(totalFiles, plan.picLimit);
 
+    // Sync Boats Engines
+    await this.boatListingHelper.syncBoatsEngines(
+      boatId,
+      listing.engines,
+      boatInfo?.engines ?? [],
+    );
+
     // Emit all events
     await this.boatListingHelper.emitAllBoatEvents(
       user.id,
