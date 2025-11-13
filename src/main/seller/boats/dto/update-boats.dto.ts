@@ -1,10 +1,10 @@
 import { ApiProperty, ApiPropertyOptional, PartialType } from '@nestjs/swagger';
 import { Type } from 'class-transformer';
 import { IsArray, IsOptional, IsUUID, ValidateNested } from 'class-validator';
-import { BoatsInfoOnBoardingDto } from './boats-info.dto';
-import { SellerOnboardingFilesDto } from './seller-on-boarding.dto';
+import { BoatsInfoDto } from './boats-info.dto';
+import { BoatListingFilesDto, UpdateBoatEngineDto } from './boats.dto';
 
-export class UpdateListingDto extends BoatsInfoOnBoardingDto {
+export class UpdateListingDto extends BoatsInfoDto {
   @ApiProperty({
     type: 'array',
     example: [
@@ -16,13 +16,23 @@ export class UpdateListingDto extends BoatsInfoOnBoardingDto {
   @IsArray()
   @IsUUID('4', { each: true })
   imagesToDelete: string[];
+
+  @ApiPropertyOptional({
+    type: [UpdateBoatEngineDto],
+    description: 'Optional inline engine objects',
+  })
+  @IsOptional()
+  @IsArray()
+  @ValidateNested({ each: true })
+  @Type(() => UpdateBoatEngineDto)
+  engines?: UpdateBoatEngineDto[];
 }
 
 export class UpdateListingDtoWithImagesDto extends PartialType(
   UpdateListingDto,
 ) {}
 
-export class UpdateListingDtoWithFilesDto extends SellerOnboardingFilesDto {
+export class UpdateListingDtoWithFilesDto extends BoatListingFilesDto {
   @ApiPropertyOptional({ type: UpdateListingDtoWithImagesDto })
   @IsOptional()
   @ValidateNested()

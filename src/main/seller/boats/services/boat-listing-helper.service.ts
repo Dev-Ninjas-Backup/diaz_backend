@@ -13,7 +13,7 @@ import { UtilsService } from '@/lib/utils/utils.service';
 import { HttpStatus, Injectable, Logger } from '@nestjs/common';
 import { EventEmitter2 } from '@nestjs/event-emitter';
 import { BoatImageType, BoatListingStatus, Prisma } from '@prisma/client';
-import { BoatsInfoOnBoardingDto } from '../dto/boats-info.dto';
+import { CreateBoatsInfoDto } from '../dto/boats-info.dto';
 import { BoatEngineDto } from '../dto/boats.dto';
 import { UpdateListingDtoWithImagesDto } from '../dto/update-boats.dto';
 
@@ -28,7 +28,7 @@ export class BoatListingHelperService {
   ) {}
 
   // Parse boat info
-  parseBoatInfo(boatInfoJson: BoatsInfoOnBoardingDto): BoatsInfoOnBoardingDto {
+  parseBoatInfo(boatInfoJson: CreateBoatsInfoDto): CreateBoatsInfoDto {
     const boatInfo = this.parsePipe.transform(boatInfoJson);
     this.logger.log('Boat Info parsed successfully');
     return boatInfo;
@@ -44,7 +44,7 @@ export class BoatListingHelperService {
   }
 
   // Convert boat dimensions
-  convertDimensions(boatDimensions: BoatsInfoOnBoardingDto['boatDimensions']) {
+  convertDimensions(boatDimensions: CreateBoatsInfoDto['boatDimensions']) {
     const {
       lengthFeet,
       lengthInches,
@@ -63,7 +63,7 @@ export class BoatListingHelperService {
 
   // Build boat create data
   buildBoatCreateData(
-    boatInfo: BoatsInfoOnBoardingDto,
+    boatInfo: CreateBoatsInfoDto,
     userId: string,
     status: BoatListingStatus,
   ): Prisma.BoatsCreateInput {
@@ -159,7 +159,7 @@ export class BoatListingHelperService {
   // Emit boat specification adoption event
   async emitBoatSpecificationEvent(
     listingId: string,
-    boatInfo: BoatsInfoOnBoardingDto | UpdateListingDtoWithImagesDto,
+    boatInfo: CreateBoatsInfoDto | UpdateListingDtoWithImagesDto,
   ): Promise<void> {
     const payload: AdoptBoatsSpecification = {
       listingId,
@@ -187,7 +187,7 @@ export class BoatListingHelperService {
   // Emit boat features adoption event
   async emitBoatFeaturesEvent(
     listingId: string,
-    boatInfo: BoatsInfoOnBoardingDto | UpdateListingDtoWithImagesDto,
+    boatInfo: CreateBoatsInfoDto | UpdateListingDtoWithImagesDto,
   ): Promise<void> {
     const payload: AdoptBoatsFeatures = {
       listingId,
@@ -211,7 +211,7 @@ export class BoatListingHelperService {
   async emitAllBoatEvents(
     userId: string,
     listingId: string,
-    boatInfo: BoatsInfoOnBoardingDto | UpdateListingDtoWithImagesDto,
+    boatInfo: CreateBoatsInfoDto | UpdateListingDtoWithImagesDto,
     files: QueueFile[],
   ): Promise<void> {
     await Promise.all([
