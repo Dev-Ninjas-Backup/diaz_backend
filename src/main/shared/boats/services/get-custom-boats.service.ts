@@ -178,7 +178,7 @@ export class GetCustomBoatsService {
       zip: boat.zip,
 
       // extra details
-      extraDetails: boat.extraDetails ?? null,
+      extraDetails: this.safeParseJson(boat.extraDetails, {}) ?? null,
 
       // status & media
       status: boat.status,
@@ -202,5 +202,16 @@ export class GetCustomBoatsService {
     const feet = Math.floor(decimalValue);
     const inches = Math.round((decimalValue - feet) * 12);
     return { feet, inches };
+  }
+
+  safeParseJson<T>(value: any, fallback: T): T {
+    try {
+      if (typeof value === 'string') {
+        return JSON.parse(value);
+      }
+      return value ?? fallback;
+    } catch {
+      return fallback;
+    }
   }
 }

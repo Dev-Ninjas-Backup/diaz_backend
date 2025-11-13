@@ -7,6 +7,7 @@ import {
   AdoptBoatsSpecification,
 } from '@/lib/queue/interface/adopt-boats-data.payload';
 import {
+  ListingImageDeletePayload,
   ListingImageProcessPayload,
   QueueFile,
 } from '@/lib/queue/interface/image-process.payload';
@@ -277,6 +278,25 @@ export class BoatListingHelperService {
     );
 
     this.logger.log(`Emitted boat features event for listing ${listingId}`);
+  }
+
+  async emitBoatImageDeleteEvent(
+    userId: string,
+    listingId: string,
+    imagesToDelete: string[],
+  ): Promise<void> {
+    const payload: ListingImageDeletePayload = {
+      userId,
+      listingId,
+      imagesToDelete,
+    };
+
+    await this.eventEmitter.emitAsync(
+      QueueEventsEnum.LISTING_IMAGE_DELETING,
+      payload,
+    );
+
+    this.logger.log(`Emitted boat image delete event for listing ${listingId}`);
   }
 
   // Emit all boat events

@@ -71,9 +71,13 @@ export class UpdateListingService {
       files,
     );
 
-    this.logger.log(
-      `[UPDATE LISTING] boatId: ${boatId}. boatInfo: ${JSON.stringify(boatInfo, null, 2)} FILES: ${files.length}`,
-    );
+    if (boatInfo?.imagesToDelete && boatInfo.imagesToDelete.length > 0) {
+      await this.boatListingHelper.emitBoatImageDeleteEvent(
+        user.id,
+        listing.id,
+        boatInfo?.imagesToDelete ?? [],
+      );
+    }
 
     return successResponse(null, 'Successfully updated boat listing');
   }
