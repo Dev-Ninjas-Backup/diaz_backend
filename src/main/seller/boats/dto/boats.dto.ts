@@ -1,6 +1,14 @@
-import { ApiProperty } from '@nestjs/swagger';
+import { ApiProperty, ApiPropertyOptional, PartialType } from '@nestjs/swagger';
 import { Type } from 'class-transformer';
-import { IsInt, IsString, Max, Min } from 'class-validator';
+import {
+  IsInt,
+  IsString,
+  IsUUID,
+  Max,
+  Min,
+  ValidateNested,
+} from 'class-validator';
+import { CreateBoatsInfoDto } from './boats-info.dto';
 
 export class BoatDimensionsDto {
   @ApiProperty({ example: 36, description: 'Length feet part' })
@@ -83,4 +91,41 @@ export class BoatEngineDto {
   @ApiProperty({ example: 12, description: 'Boat class' })
   @IsString()
   propellerType: string;
+}
+
+export class UpdateBoatEngineDto extends PartialType(BoatEngineDto) {
+  @ApiProperty({
+    type: 'string',
+    example: '550e8400-e29b-41d4-a716-446655440000',
+    description: 'UUId of engine to delete',
+  })
+  @IsUUID()
+  id: string;
+}
+
+export class BoatListingFilesDto {
+  @ApiPropertyOptional({
+    type: 'string',
+    format: 'binary',
+    description:
+      'Cover Images to upload (multipart file). Use this field when uploading files.',
+    isArray: true,
+  })
+  covers?: Express.Multer.File[];
+
+  @ApiPropertyOptional({
+    type: 'string',
+    format: 'binary',
+    description:
+      'Gallery Images to upload (multipart file). Use this field when uploading files.',
+    isArray: true,
+  })
+  galleries?: Express.Multer.File[];
+}
+
+export class BoatListingDto extends BoatListingFilesDto {
+  @ApiProperty({ type: CreateBoatsInfoDto })
+  @ValidateNested()
+  @Type(() => CreateBoatsInfoDto)
+  boatInfo: CreateBoatsInfoDto;
 }

@@ -5,8 +5,8 @@ import { PaywallCheckService } from '@/lib/paywall/paywall-check.service';
 import { PrismaService } from '@/lib/prisma/prisma.service';
 import { QueueFile } from '@/lib/queue/interface/image-process.payload';
 import { HttpStatus, Injectable, Logger } from '@nestjs/common';
-import { BoatListingDto } from '../dto/seller-on-boarding.dto';
 import { BoatListingHelperService } from './boat-listing-helper.service';
+import { BoatListingDto } from '../dto/boats.dto';
 
 @Injectable()
 export class CreateListingService {

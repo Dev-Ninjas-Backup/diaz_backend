@@ -6,6 +6,7 @@ import { AdoptBoatsDataEventsService } from './services/adopt-boats-data-events.
 import { ImageProcessingEventsService } from './services/image-processing-events.service';
 import { AdoptBoatsFeaturesService } from './worker/adopt-boats-features.service';
 import { AdoptBoatsSpecificationsService } from './worker/adopt-boats-specifications.service';
+import { ImageDeletingService } from './worker/image-deleting.service';
 import { ImageProcessingService } from './worker/image-processing.service';
 
 @Global()
@@ -14,6 +15,7 @@ import { ImageProcessingService } from './worker/image-processing.service';
     BullModule.registerQueue(
       { name: QueueName.NOTIFICATION },
       { name: QueueName.IMAGE_PROCESSING },
+      { name: QueueName.IMAGE_DELETING },
       { name: QueueName.ADOPT_BOATS_SPECIFICATIONS },
       { name: QueueName.ADOPT_BOATS_FEATURES },
     ),
@@ -22,6 +24,7 @@ import { ImageProcessingService } from './worker/image-processing.service';
     QueueGateway,
     ImageProcessingEventsService,
     ImageProcessingService,
+    ImageDeletingService,
     AdoptBoatsDataEventsService,
     AdoptBoatsFeaturesService,
     AdoptBoatsSpecificationsService,

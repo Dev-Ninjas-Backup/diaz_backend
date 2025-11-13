@@ -11,3 +11,9 @@ export interface ListingImageProcessPayload {
   listingId: string;
   files: QueueFile[];
 }
+
+export interface ListingImageDeletePayload {
+  userId: string;
+  listingId: string;
+  imagesToDelete: string[];
+}

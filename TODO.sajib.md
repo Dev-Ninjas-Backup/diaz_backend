@@ -34,4 +34,17 @@
 
 * [X] Get sellers own boats
 * [X] Get Boats from different source in merged endpoint
-* [ ] Create boats by seller from dashboard
+* [X] Create boats by seller from dashboard
+
+## 📅 Date: 2025-11-13
+
+### Tasks
+
+* [X] Update A Existing boats by seller
+* [ ] Google Merchant Center and Boats data uploading to it exploring
+
+## 📅 Date: 2025-11-14
+
+### Tasks
+
+* [ ] Exploring Elasticsearch for searching and implementing with open ai sdk

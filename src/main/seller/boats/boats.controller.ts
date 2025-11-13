@@ -21,11 +21,11 @@ import {
   ApiTags,
 } from '@nestjs/swagger';
 import { BoatImageType } from '@prisma/client';
-import { BoatsInfoOnBoardingDto } from './dto/boats-info.dto';
+import { CreateBoatsInfoDto } from './dto/boats-info.dto';
+import { BoatListingDto } from './dto/boats.dto';
 import { GetOwnBoatsDto } from './dto/get-own-boats.dto';
 import { SellerInfoOnBoardingDto } from './dto/seller-info.dto';
 import {
-  BoatListingDto,
   SellerOnBoardingDto,
   SellerOnboardingPlanDto,
 } from './dto/seller-on-boarding.dto';
@@ -76,7 +76,7 @@ export class BoatsController {
     @Body()
     data: {
       planId: SellerOnboardingPlanDto['planId'];
-      boatInfo: BoatsInfoOnBoardingDto;
+      boatInfo: CreateBoatsInfoDto;
       sellerInfo: SellerInfoOnBoardingDto;
     },
     @UploadedFiles()
@@ -147,7 +147,7 @@ export class BoatsController {
     @GetUser('sub') userId: string,
     @Body()
     data: {
-      boatInfo: BoatsInfoOnBoardingDto;
+      boatInfo: CreateBoatsInfoDto;
     },
     @UploadedFiles()
     files: {
@@ -189,6 +189,7 @@ export class BoatsController {
   )
   @Patch('update-listing/:boatId')
   async updateListingDto(
+    @GetUser('sub') userId: string,
     @Param('boatId') boatId: string,
     @UploadedFiles()
     files: {
@@ -197,7 +198,7 @@ export class BoatsController {
     },
     @Body()
     data: {
-      boatInfo: UpdateListingDtoWithImagesDto;
+      boatInfo?: UpdateListingDtoWithImagesDto;
     },
   ) {
     const mappedFiles: QueueFile[] = [
@@ -213,9 +214,10 @@ export class BoatsController {
       })),
     ];
     return this.updateListingService.updateListing(
+      userId,
       boatId,
-      data.boatInfo,
       mappedFiles,
+      data?.boatInfo,
     );
   }
 }

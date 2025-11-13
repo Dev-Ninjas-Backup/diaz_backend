@@ -6,13 +6,17 @@ import {
   TResponse,
 } from '@/common/utils/response.util';
 import { PrismaService } from '@/lib/prisma/prisma.service';
+import { UtilsService } from '@/lib/utils/utils.service';
 import { Injectable } from '@nestjs/common';
 import { BoatImage } from '@prisma/client';
 import { GetAllBoatsCustomDto } from '../dto/get-all-boats-custom.dto';
 
 @Injectable()
 export class GetCustomBoatsService {
-  constructor(private readonly prisma: PrismaService) {}
+  constructor(
+    private readonly prisma: PrismaService,
+    private readonly utils: UtilsService,
+  ) {}
 
   @HandleError('Failed to get boat details', 'Boats')
   async getSingleBoat(boatId: string): Promise<TResponse<any>> {
@@ -178,7 +182,7 @@ export class GetCustomBoatsService {
       zip: boat.zip,
 
       // extra details
-      extraDetails: boat.extraDetails ?? null,
+      extraDetails: this.utils.safeParseJson(boat.extraDetails, {}) ?? null,
 
       // status & media
       status: boat.status,

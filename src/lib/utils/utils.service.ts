@@ -135,4 +135,15 @@ export class UtilsService {
     result.setMonth(result.getMonth() + months);
     return result;
   }
+
+  safeParseJson<T>(value: any, fallback: T): T {
+    try {
+      if (typeof value === 'string') {
+        return JSON.parse(value);
+      }
+      return value ?? fallback;
+    } catch {
+      return fallback;
+    }
+  }
 }

@@ -15,7 +15,7 @@ import {
   ExtraDetailItemDto,
 } from './boats.dto';
 
-export class BoatsInfoOnBoardingDto {
+export class BoatsInfoDto {
   @ApiProperty({ example: 'Sapphire', description: 'Boat display name' })
   @IsString()
   name: string;
@@ -78,7 +78,7 @@ export class BoatsInfoOnBoardingDto {
   @IsString()
   propMaterial?: string;
 
-  @ApiProperty({ type: BoatDimensionsDto })
+  @ApiProperty({ type: () => BoatDimensionsDto })
   @ValidateNested()
   @Type(() => BoatDimensionsDto)
   boatDimensions: BoatDimensionsDto;
@@ -173,6 +173,17 @@ export class BoatsInfoOnBoardingDto {
   @Type(() => ExtraDetailItemDto)
   extraDetails?: ExtraDetailItemDto[];
 
+  // Media
+  @ApiPropertyOptional({
+    description: 'Video URL for the boat',
+    example: 'https://www.youtube.com/watch?v=8eZu8K5W0mM',
+  })
+  @IsOptional()
+  @IsUrl()
+  videoURL?: string;
+}
+
+export class CreateBoatsInfoDto extends BoatsInfoDto {
   // Nested engines info
   @ApiPropertyOptional({
     type: [BoatEngineDto],
@@ -183,13 +194,4 @@ export class BoatsInfoOnBoardingDto {
   @ValidateNested({ each: true })
   @Type(() => BoatEngineDto)
   engines?: BoatEngineDto[];
-
-  // Media
-  @ApiPropertyOptional({
-    description: 'Video URL for the boat',
-    example: 'https://www.youtube.com/watch?v=8eZu8K5W0mM',
-  })
-  @IsOptional()
-  @IsUrl()
-  videoURL?: string;
 }

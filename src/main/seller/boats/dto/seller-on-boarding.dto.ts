@@ -1,7 +1,7 @@
 import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
 import { Type } from 'class-transformer';
 import { IsUUID, ValidateNested } from 'class-validator';
-import { BoatsInfoOnBoardingDto } from './boats-info.dto';
+import { CreateBoatsInfoDto } from './boats-info.dto';
 import { SellerInfoOnBoardingDto } from './seller-info.dto';
 
 export class SellerOnBoardingDto {
@@ -23,10 +23,10 @@ export class SellerOnBoardingDto {
   })
   galleries?: Express.Multer.File[];
 
-  @ApiProperty({ type: BoatsInfoOnBoardingDto })
+  @ApiProperty({ type: CreateBoatsInfoDto })
   @ValidateNested()
-  @Type(() => BoatsInfoOnBoardingDto)
-  boatInfo: BoatsInfoOnBoardingDto;
+  @Type(() => CreateBoatsInfoDto)
+  boatInfo: CreateBoatsInfoDto;
 
   @ApiProperty({ type: SellerInfoOnBoardingDto })
   @ValidateNested()
@@ -58,40 +58,13 @@ export class SellerOnboardingBodyDto {
   @IsUUID()
   planId: string;
 
-  @ApiProperty({ type: BoatsInfoOnBoardingDto })
+  @ApiProperty({ type: CreateBoatsInfoDto })
   @ValidateNested()
-  @Type(() => BoatsInfoOnBoardingDto)
-  boatInfo: BoatsInfoOnBoardingDto;
+  @Type(() => CreateBoatsInfoDto)
+  boatInfo: CreateBoatsInfoDto;
 
   @ApiProperty({ type: SellerInfoOnBoardingDto })
   @ValidateNested()
   @Type(() => SellerInfoOnBoardingDto)
   sellerInfo: SellerInfoOnBoardingDto;
-}
-
-export class SellerOnboardingFilesDto {
-  @ApiPropertyOptional({
-    type: 'string',
-    format: 'binary',
-    description:
-      'Cover Images to upload (multipart file). Use this field when uploading files.',
-    isArray: true,
-  })
-  covers?: Express.Multer.File[];
-
-  @ApiPropertyOptional({
-    type: 'string',
-    format: 'binary',
-    description:
-      'Gallery Images to upload (multipart file). Use this field when uploading files.',
-    isArray: true,
-  })
-  galleries?: Express.Multer.File[];
-}
-
-export class BoatListingDto extends SellerOnboardingFilesDto {
-  @ApiProperty({ type: BoatsInfoOnBoardingDto })
-  @ValidateNested()
-  @Type(() => BoatsInfoOnBoardingDto)
-  boatInfo: BoatsInfoOnBoardingDto;
 }
