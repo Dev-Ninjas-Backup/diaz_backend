@@ -89,7 +89,7 @@ export class BoatListingHelperService {
       insideEquipment: boatInfo.insideEquipment || [],
       outsideEquipment: boatInfo.outsideEquipment || [],
       electricalEquipment: boatInfo.electricalEquipment || [],
-      covers: boatInfo.covers || [],
+      covers: boatInfo.coversEquipment || [],
       additionalEquipment: boatInfo.additionalEquipment || [],
       videoURL: boatInfo?.videoURL?.trim() || '',
       user: { connect: { id: userId } },
@@ -185,7 +185,7 @@ export class BoatListingHelperService {
       insideEquipment: boatInfo.insideEquipment,
       outsideEquipment: boatInfo.outsideEquipment,
       electricalEquipment: boatInfo.electricalEquipment,
-      covers: boatInfo.covers,
+      covers: boatInfo.coversEquipment,
       additionalEquipment: boatInfo.additionalEquipment,
     };
 

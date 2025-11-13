@@ -58,6 +58,7 @@ export class BoatsGroupService {
       return {
         Source: BoatsSourceEnum.inventory,
         ...boat,
+        Images: boat.Images?.[0],
       };
     });
 
@@ -92,6 +93,7 @@ export class BoatsGroupService {
       {
         Source: BoatsSourceEnum.inventory,
         ...boat,
+        Images: boat.Images?.[0],
       },
       'Boat found successfully from Inventory API',
     );
@@ -118,6 +120,7 @@ export class BoatsGroupService {
       return {
         Source: BoatsSourceEnum.service,
         ...boat,
+        Images: boat.Images?.[0],
       };
     });
 

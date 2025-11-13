@@ -6,6 +6,7 @@ import {
   Controller,
   Get,
   Param,
+  Patch,
   Post,
   Query,
   UploadedFiles,
@@ -28,9 +29,14 @@ import {
   SellerOnBoardingDto,
   SellerOnboardingPlanDto,
 } from './dto/seller-on-boarding.dto';
+import {
+  UpdateListingDtoWithFilesDto,
+  UpdateListingDtoWithImagesDto,
+} from './dto/update-boats.dto';
 import { BoatsService } from './services/boats.service';
 import { CreateListingService } from './services/create-listing.service';
 import { OnBoardingService } from './services/on-boarding.service';
+import { UpdateListingService } from './services/update-listing.service';
 
 @ApiTags('Seller -- Onboarding & Boats')
 @ApiBearerAuth()
@@ -41,6 +47,7 @@ export class BoatsController {
     private readonly onBoardingService: OnBoardingService,
     private readonly boatsService: BoatsService,
     private readonly createListingService: CreateListingService,
+    private readonly updateListingService: UpdateListingService,
   ) {}
 
   @ApiOperation({
@@ -161,5 +168,54 @@ export class BoatsController {
       })),
     ];
     return this.createListingService.createListing(userId, data, mappedFiles);
+  }
+
+  @ApiOperation({ summary: 'Update Boat Listing' })
+  @ApiBody({ type: UpdateListingDtoWithFilesDto })
+  @ApiConsumes('multipart/form-data')
+  @UseInterceptors(
+    FileFieldsInterceptor(
+      [
+        { name: 'covers', maxCount: 5 },
+        { name: 'galleries', maxCount: 70 },
+      ],
+      new MulterService().createMultipleFileOptions({
+        destinationFolder: './temp',
+        prefix: 'boat_listing_update',
+        fileType: FileType.IMAGE,
+        maxFileCount: 75,
+      }),
+    ),
+  )
+  @Patch('update-listing/:boatId')
+  async updateListingDto(
+    @Param('boatId') boatId: string,
+    @UploadedFiles()
+    files: {
+      covers?: Express.Multer.File[];
+      galleries?: Express.Multer.File[];
+    },
+    @Body()
+    data: {
+      boatInfo: UpdateListingDtoWithImagesDto;
+    },
+  ) {
+    const mappedFiles: QueueFile[] = [
+      ...(files.covers || []).map((file) => ({
+        path: file.path,
+        type: BoatImageType.COVER,
+        originalName: file.originalname,
+      })),
+      ...(files.galleries || []).map((file) => ({
+        path: file.path,
+        type: BoatImageType.GALLERY,
+        originalName: file.originalname,
+      })),
+    ];
+    return this.updateListingService.updateListing(
+      boatId,
+      data.boatInfo,
+      mappedFiles,
+    );
   }
 }

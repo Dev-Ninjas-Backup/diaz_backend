@@ -3,8 +3,8 @@ import { HandleError } from '@/common/error/handle-error.decorator';
 import { successResponse, TResponse } from '@/common/utils/response.util';
 import { PaywallCheckService } from '@/lib/paywall/paywall-check.service';
 import { PrismaService } from '@/lib/prisma/prisma.service';
+import { QueueFile } from '@/lib/queue/interface/image-process.payload';
 import { HttpStatus, Injectable, Logger } from '@nestjs/common';
-import { BoatImageType } from '@prisma/client';
 import { BoatListingDto } from '../dto/seller-on-boarding.dto';
 import { BoatListingHelperService } from './boat-listing-helper.service';
 
@@ -22,7 +22,7 @@ export class CreateListingService {
   async createListing(
     userId: string,
     data: BoatListingDto,
-    files: { path: string; type: BoatImageType; originalName: string }[],
+    files: QueueFile[],
   ): Promise<TResponse<any>> {
     if (!data.boatInfo) {
       throw new AppError(HttpStatus.BAD_REQUEST, 'Boat info is required');
