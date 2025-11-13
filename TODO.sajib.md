@@ -42,6 +42,7 @@
 
 * [X] Update A Existing boats by seller
 * [X] Retry Subscription Module
+* [X] Contact From Module
 * [ ] Google Merchant Center and Boats data uploading to it exploring
 
 ## 📅 Date: 2025-11-14

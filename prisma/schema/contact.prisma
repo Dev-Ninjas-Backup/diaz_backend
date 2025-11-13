@@ -1,0 +1,29 @@
+model Contact {
+  id String @id @default(uuid())
+
+  name    String
+  email   String
+  phone   String
+  message String
+
+  source ContactSource
+  type   ContactType
+
+  listingId     String?
+  listingSource String?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @default(now()) @updatedAt
+
+  @@map("contact")
+}
+
+enum ContactSource {
+  FLORIDA
+  JUPITER
+}
+
+enum ContactType {
+  INDIVIDUAL_LISTING
+  GLOBAL
+}
