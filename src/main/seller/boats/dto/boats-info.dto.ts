@@ -164,7 +164,7 @@ export class BoatsInfoDto {
 
   // Extra details
   @ApiPropertyOptional({
-    type: [ExtraDetailItemDto],
+    type: () => [ExtraDetailItemDto],
     description: 'Free-form key/value pairs for additional fields',
   })
   @IsOptional()
@@ -186,7 +186,7 @@ export class BoatsInfoDto {
 export class CreateBoatsInfoDto extends BoatsInfoDto {
   // Nested engines info
   @ApiPropertyOptional({
-    type: [BoatEngineDto],
+    type: () => [BoatEngineDto],
     description: 'Optional inline engine objects',
   })
   @IsOptional()

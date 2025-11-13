@@ -55,7 +55,7 @@ export class BoatsController {
       'Seller Onboarding with Boat Onboarding, returns payment secret for Stripe & preview data (Public)',
   })
   @ApiConsumes('multipart/form-data')
-  @ApiBody({ type: SellerOnBoardingDto })
+  @ApiBody({ type: () => SellerOnBoardingDto })
   @UseInterceptors(
     FileFieldsInterceptor(
       [

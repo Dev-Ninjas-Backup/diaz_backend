@@ -207,6 +207,12 @@ export class StripeService {
   }
 
   // Setup Intent Management
+  async retrieveSetupIntent(setupIntentId: string) {
+    const setupIntent = await this.stripe.setupIntents.retrieve(setupIntentId);
+    this.logger.log(`Retrieved SetupIntent ${setupIntentId}`);
+    return setupIntent;
+  }
+
   async createSetupIntent(metadata: PaymentMetadata) {
     try {
       // 1) find or create customer
