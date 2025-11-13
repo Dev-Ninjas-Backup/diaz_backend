@@ -189,6 +189,7 @@ export class BoatsController {
   )
   @Patch('update-listing/:boatId')
   async updateListingDto(
+    @GetUser('sub') userId: string,
     @Param('boatId') boatId: string,
     @UploadedFiles()
     files: {
@@ -197,7 +198,7 @@ export class BoatsController {
     },
     @Body()
     data: {
-      boatInfo: UpdateListingDtoWithImagesDto;
+      boatInfo?: UpdateListingDtoWithImagesDto;
     },
   ) {
     const mappedFiles: QueueFile[] = [
@@ -213,9 +214,10 @@ export class BoatsController {
       })),
     ];
     return this.updateListingService.updateListing(
+      userId,
       boatId,
-      data.boatInfo,
       mappedFiles,
+      data?.boatInfo,
     );
   }
 }

@@ -15,6 +15,7 @@ import { EventEmitter2 } from '@nestjs/event-emitter';
 import { BoatImageType, BoatListingStatus, Prisma } from '@prisma/client';
 import { BoatsInfoOnBoardingDto } from '../dto/boats-info.dto';
 import { BoatEngineDto } from '../dto/boats.dto';
+import { UpdateListingDtoWithImagesDto } from '../dto/update-boats.dto';
 
 @Injectable()
 export class BoatListingHelperService {
@@ -30,6 +31,15 @@ export class BoatListingHelperService {
   parseBoatInfo(boatInfoJson: BoatsInfoOnBoardingDto): BoatsInfoOnBoardingDto {
     const boatInfo = this.parsePipe.transform(boatInfoJson);
     this.logger.log('Boat Info parsed successfully');
+    return boatInfo;
+  }
+
+  // Parse update boat info
+  parseUpdateBoatInfo(
+    boatInfoJson?: UpdateListingDtoWithImagesDto,
+  ): UpdateListingDtoWithImagesDto {
+    const boatInfo = this.parsePipe.transform(boatInfoJson);
+    this.logger.log('Update Boat Info parsed successfully');
     return boatInfo;
   }
 
@@ -149,16 +159,16 @@ export class BoatListingHelperService {
   // Emit boat specification adoption event
   async emitBoatSpecificationEvent(
     listingId: string,
-    boatInfo: BoatsInfoOnBoardingDto,
+    boatInfo: BoatsInfoOnBoardingDto | UpdateListingDtoWithImagesDto,
   ): Promise<void> {
     const payload: AdoptBoatsSpecification = {
       listingId,
-      make: boatInfo.make,
-      model: boatInfo.model,
-      fuelType: boatInfo.fuelType,
-      class: boatInfo.boatClass,
-      material: boatInfo.material,
-      condition: boatInfo.condition,
+      make: boatInfo.make || '',
+      model: boatInfo.model || '',
+      fuelType: boatInfo.fuelType || '',
+      class: boatInfo.boatClass || '',
+      material: boatInfo.material || '',
+      condition: boatInfo.condition || '',
       engineType: boatInfo.engineType || '',
       propType: boatInfo.propType || '',
       propMaterial: boatInfo.propMaterial || '',
@@ -177,16 +187,16 @@ export class BoatListingHelperService {
   // Emit boat features adoption event
   async emitBoatFeaturesEvent(
     listingId: string,
-    boatInfo: BoatsInfoOnBoardingDto,
+    boatInfo: BoatsInfoOnBoardingDto | UpdateListingDtoWithImagesDto,
   ): Promise<void> {
     const payload: AdoptBoatsFeatures = {
       listingId,
-      electronics: boatInfo.electronics,
-      insideEquipment: boatInfo.insideEquipment,
-      outsideEquipment: boatInfo.outsideEquipment,
-      electricalEquipment: boatInfo.electricalEquipment,
-      covers: boatInfo.coversEquipment,
-      additionalEquipment: boatInfo.additionalEquipment,
+      electronics: boatInfo.electronics || [],
+      insideEquipment: boatInfo.insideEquipment || [],
+      outsideEquipment: boatInfo.outsideEquipment || [],
+      electricalEquipment: boatInfo.electricalEquipment || [],
+      covers: boatInfo.coversEquipment || [],
+      additionalEquipment: boatInfo.additionalEquipment || [],
     };
 
     await this.eventEmitter.emitAsync(
@@ -201,7 +211,7 @@ export class BoatListingHelperService {
   async emitAllBoatEvents(
     userId: string,
     listingId: string,
-    boatInfo: BoatsInfoOnBoardingDto,
+    boatInfo: BoatsInfoOnBoardingDto | UpdateListingDtoWithImagesDto,
     files: QueueFile[],
   ): Promise<void> {
     await Promise.all([

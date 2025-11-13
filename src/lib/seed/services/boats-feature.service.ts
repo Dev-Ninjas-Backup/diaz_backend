@@ -40,9 +40,9 @@ export class BoatsFeatureService implements OnModuleInit {
       });
 
       if (existing) {
-        this.logger.log(
-          `[EXIST] ${type} → "${name}" already exists, skipping...`,
-        );
+        // this.logger.log(
+        //   `[EXIST] ${type} → "${name}" already exists, skipping...`,
+        // );
         continue;
       }
 

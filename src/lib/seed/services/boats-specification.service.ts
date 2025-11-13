@@ -57,7 +57,7 @@ export class BoatsSpecificationService implements OnModuleInit {
         });
 
         if (existing) {
-          this.logger.log(`[EXIST] ${type} → "${name}" already exists`);
+          // this.logger.log(`[EXIST] ${type} → "${name}" already exists`);
           continue;
         }
 
@@ -95,7 +95,7 @@ export class BoatsSpecificationService implements OnModuleInit {
         });
 
         if (existing) {
-          this.logger.log(`[EXIST] MAKE → "${name}" already exists`);
+          // this.logger.log(`[EXIST] MAKE → "${name}" already exists`);
           continue;
         }
 
@@ -137,7 +137,7 @@ export class BoatsSpecificationService implements OnModuleInit {
           });
 
           if (existing) {
-            this.logger.log(`[EXIST] MODEL → "${name}" already exists`);
+            // this.logger.log(`[EXIST] MODEL → "${name}" already exists`);
             continue;
           }
 
