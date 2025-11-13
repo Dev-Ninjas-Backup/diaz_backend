@@ -18,8 +18,7 @@ export class UpdateListingService {
     const boatInfo = this.parsePipe.transform(data);
 
     this.logger.log(
-      `[UPDATE LISTING] boatId: ${boatId}. boatInfo: ${boatInfo} FILES: ${files.length}`,
+      `[UPDATE LISTING] boatId: ${boatId}. boatInfo: ${JSON.stringify(boatInfo, null, 2)} FILES: ${files.length}`,
     );
-    this.logger.log(JSON.stringify(boatInfo, null, 2));
   }
 }
