@@ -121,10 +121,11 @@ export class OnBoardingService {
       });
 
       const listing = await tx.boats.create({
-        data: this.boatListingHelper.buildBoatCreateData(
+        data: await this.boatListingHelper.buildBoatCreateData(
           boatInfo,
           user.id,
           'ONBOARDING_PENDING',
+          tx,
         ),
         include: {
           engines: true,

@@ -5,8 +5,8 @@ import { PaywallCheckService } from '@/lib/paywall/paywall-check.service';
 import { PrismaService } from '@/lib/prisma/prisma.service';
 import { QueueFile } from '@/lib/queue/interface/image-process.payload';
 import { HttpStatus, Injectable, Logger } from '@nestjs/common';
-import { BoatListingHelperService } from './boat-listing-helper.service';
 import { BoatListingDto } from '../dto/boats.dto';
+import { BoatListingHelperService } from './boat-listing-helper.service';
 
 @Injectable()
 export class CreateListingService {
@@ -39,16 +39,19 @@ export class CreateListingService {
     const boatInfo = this.boatListingHelper.parseBoatInfo(data.boatInfo);
 
     // Create listing
-    const listing = await this.prisma.boats.create({
-      data: this.boatListingHelper.buildBoatCreateData(
-        boatInfo,
-        user.id,
-        'ACTIVE',
-      ),
-      include: {
-        engines: true,
-        user: { select: { id: true, username: true, email: true } },
-      },
+    const listing = await this.prisma.$transaction(async (tx) => {
+      return tx.boats.create({
+        data: await this.boatListingHelper.buildBoatCreateData(
+          boatInfo,
+          user.id,
+          'ACTIVE',
+          tx,
+        ),
+        include: {
+          engines: true,
+          user: { select: { id: true, username: true, email: true } },
+        },
+      });
     });
 
     // Emit all events
