@@ -146,4 +146,27 @@ export class UtilsService {
       return fallback;
     }
   }
+
+  async getNextListingId(): Promise<string> {
+    const PREFIX = 'FYT';
+    const DIGITS = 8;
+
+    const lastBoat = await this.prisma.boats.findFirst({
+      orderBy: { createdAt: 'desc' },
+      select: { listingId: true },
+    });
+
+    let nextNumber = 1;
+
+    if (lastBoat?.listingId) {
+      const regex = new RegExp(`^${PREFIX}(\\d{${DIGITS}})$`);
+      const match = lastBoat?.listingId.match(regex);
+
+      if (match) {
+        nextNumber = parseInt(match[1], 10) + 1;
+      }
+    }
+
+    return `${PREFIX}${String(nextNumber).padStart(DIGITS, '0')}`;
+  }
 }

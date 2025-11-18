@@ -64,17 +64,45 @@ export class BoatListingHelperService {
     };
   }
 
+  // Get next listing id
+  async getNextListingId(tx: Prisma.TransactionClient): Promise<string> {
+    const PREFIX = 'FYT';
+    const DIGITS = 8;
+
+    const lastBoat = await tx.boats.findFirst({
+      orderBy: { createdAt: 'desc' },
+      select: { listingId: true },
+    });
+
+    let nextNumber = 1;
+
+    if (lastBoat?.listingId) {
+      const regex = new RegExp(`^${PREFIX}(\\d{${DIGITS}})$`);
+      const match = lastBoat.listingId.match(regex);
+
+      if (match) {
+        nextNumber = parseInt(match[1], 10) + 1;
+      }
+    }
+
+    return `${PREFIX}${String(nextNumber).padStart(DIGITS, '0')}`;
+  }
+
   // Build boat create data
-  buildBoatCreateData(
+  async buildBoatCreateData(
     boatInfo: CreateBoatsInfoDto,
     userId: string,
     status: BoatListingStatus,
-  ): Prisma.BoatsCreateInput {
+    tx: Prisma.TransactionClient,
+  ): Promise<Prisma.BoatsCreateInput> {
     const { length, beam, draft } = this.convertDimensions(
       boatInfo.boatDimensions,
     );
 
+    const listingId = await this.getNextListingId(tx);
+
     return {
+      listingId,
       name: boatInfo.name,
       price: boatInfo.price,
       description: boatInfo?.description?.trim() || '',
