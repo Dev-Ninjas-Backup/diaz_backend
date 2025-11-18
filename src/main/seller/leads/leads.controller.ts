@@ -4,15 +4,21 @@ import { ApiBearerAuth, ApiOperation, ApiTags } from '@nestjs/swagger';
 import { GetSellerLeadsDto } from './dto/get-own-leads.dto';
 import { LeadsService } from './services/leads.service';
 
-@ApiTags('Seller --- Leads')
+@ApiTags('Seller --- Leads & Stats')
 @ApiBearerAuth()
 @ValidateAuth()
-@Controller('leads/seller')
+@Controller('seller')
 export class LeadsController {
   constructor(private readonly leadsService: LeadsService) {}
 
+  @ApiOperation({ summary: 'Get seller stats' })
+  @Get('stats')
+  async getSellerStats(@GetUser('sub') userId: string) {
+    return this.leadsService.getSellerStats(userId);
+  }
+
   @ApiOperation({ summary: 'Get seller leads' })
-  @Get()
+  @Get('leads')
   async getSellerLeads(
     @GetUser('sub') userId: string,
     @Query() query: GetSellerLeadsDto,
@@ -21,7 +27,7 @@ export class LeadsController {
   }
 
   @ApiOperation({ summary: 'Get seller lead by id' })
-  @Get(':leadId')
+  @Get('leads/:leadId')
   async getSellerLeadById(
     @GetUser('sub') userId: string,
     @Param('leadId') leadId: string,
