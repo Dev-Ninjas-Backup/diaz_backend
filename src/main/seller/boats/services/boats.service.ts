@@ -36,6 +36,7 @@ export class BoatsService {
       where.OR = [
         { name: { contains: query.search, mode: 'insensitive' } },
         { description: { contains: query.search, mode: 'insensitive' } },
+        { listingId: { contains: query.search, mode: 'insensitive' } },
       ];
     }
 
