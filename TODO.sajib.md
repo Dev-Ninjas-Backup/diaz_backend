@@ -56,7 +56,7 @@
 ### Tasks
 
 * [X] Custom Listing ID Generation
-* [ ] Get leads for single seller (via contact form)
-* [ ] Get invoices for single seller
+* [X] Get leads for single seller (via contact form)
+* [X] Get invoices for single seller
 * [ ] Update Seller Profile
 * [ ] Change Seller Password
