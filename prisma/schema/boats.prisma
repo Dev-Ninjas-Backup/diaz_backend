@@ -1,6 +1,8 @@
 model Boats {
   id String @id @default(uuid())
 
+  listingId String @unique
+
   userId String
   user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
 

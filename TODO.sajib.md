@@ -50,3 +50,13 @@
 ### Tasks
 
 * [ ] Exploring Elasticsearch for searching and implementing with open ai sdk
+
+## 📅 Date: 2025-11-18
+
+### Tasks
+
+* [ ] Custom Listing ID Generation
+* [ ] Get leads for single seller (via contact form)
+* [ ] Get invoices for single seller
+* [ ] Update Seller Profile
+* [ ] Change Seller Password
