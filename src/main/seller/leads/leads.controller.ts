@@ -4,7 +4,7 @@ import { ApiBearerAuth, ApiOperation, ApiTags } from '@nestjs/swagger';
 import { GetSellerLeadsDto } from './dto/get-own-leads.dto';
 import { LeadsService } from './services/leads.service';
 
-@ApiTags('Seller --- Leads & Stats')
+@ApiTags('Seller -- Leads & Stats')
 @ApiBearerAuth()
 @ValidateAuth()
 @Controller('seller')
