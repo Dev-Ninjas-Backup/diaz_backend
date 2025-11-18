@@ -62,18 +62,36 @@ export class CreateContactService {
       );
     }
 
-    // 4. Validate listing existence for INDIVIDUAL_LISTING
+    // 4. Get the boat
+    let boat = null;
     if (listingId && listingSource) {
-      await this.getAllBoatsService.getSingleBoat(listingId, {
+      boat = await this.getAllBoatsService.getSingleBoat(listingId, {
         source: listingSource,
       });
     }
 
-    // 5. Create the contact
-    const contact = await this.prisma.contact.create({ data });
+    // Transaction: create contact and FloridaLead if needed
+    const result = await this.prisma.$transaction(async (tx) => {
+      // Create the contact
+      const contact = await tx.contact.create({ data });
 
-    this.logger.log(`Contact created: ${JSON.stringify(contact)}`);
+      // If FLORIDA contact with boat, create FloridaLead
+      if (source === ContactSource.FLORIDA && boat) {
+        const boatId = boat.data.DocumentID;
+        if (typeof boatId === 'string') {
+          await tx.floridaLead.create({
+            data: {
+              contactId: contact.id,
+              boatId,
+            },
+          });
+        }
+      }
 
-    return successResponse(contact, 'Contact created successfully');
+      return contact;
+    });
+
+    this.logger.log(`Contact created: ${JSON.stringify(result)}`);
+    return successResponse(result, 'Contact created successfully');
   }
 }

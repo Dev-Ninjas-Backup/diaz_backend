@@ -130,6 +130,7 @@ export class GetCustomBoatsService {
     return {
       // basic
       id: boat.id,
+      listingId: boat.listingId,
       userId: boat.userId,
       owner,
 
