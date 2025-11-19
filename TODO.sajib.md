@@ -68,4 +68,5 @@
 ### Tasks
 
 * [X] Cancel Seller Subscription
+* [X] Subscription for register seller
 * [ ] Google Merchant Center and Boats data uploading to it exploring

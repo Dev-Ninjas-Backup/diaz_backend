@@ -103,39 +103,36 @@ export class PaymentRetryService {
       },
     });
 
-    if (!subscription) {
-      throw new AppError(
-        HttpStatus.NOT_FOUND,
-        'No subscription found for this user',
-      );
-    }
+    let setupIntentStatus: string | null = null;
 
-    let setupIntentStatus = null;
-
-    // If subscription is pending, check SetupIntent status
-    if (subscription.status === 'PENDING' && subscription.stripeTransactionId) {
+    if (
+      subscription?.status === 'PENDING' &&
+      subscription.stripeTransactionId
+    ) {
       try {
         const setupIntent = await this.stripe.retrieveSetupIntent(
           subscription.stripeTransactionId,
         );
         setupIntentStatus = setupIntent.status;
-      } catch (error) {
+      } catch (error: any) {
         this.logger.error(`Failed to retrieve SetupIntent: ${error.message}`);
       }
     }
 
     return successResponse(
       {
-        subscriptionId: subscription.id,
-        subscriptionStatus: subscription.status,
-        setupIntentId: subscription.stripeTransactionId,
+        subscriptionId: subscription?.id || null,
+        subscriptionStatus: subscription?.status || 'NONE',
+        setupIntentId: subscription?.stripeTransactionId || null,
         setupIntentStatus,
-        plan: {
-          id: subscription.plan.id,
-          title: subscription.plan.title,
-          price: subscription.plan.price,
-        },
-        requiresPaymentMethod: subscription.status === 'PENDING',
+        plan: subscription
+          ? {
+              id: subscription.plan.id,
+              title: subscription.plan.title,
+              price: subscription.plan.price,
+            }
+          : null,
+        requiresPaymentMethod: subscription?.status === 'PENDING' || false,
       },
       'Payment status retrieved successfully',
     );
