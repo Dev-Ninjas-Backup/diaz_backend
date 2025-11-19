@@ -5,7 +5,7 @@ import { CreateContactDto } from './dto/create-contact.dto';
 import { ContactService } from './services/contact.service';
 import { CreateContactService } from './services/create-contact.service';
 
-@ApiTags('Shared --- Contact')
+@ApiTags('Shared -- Contact')
 @Controller('contact')
 export class ContactController {
   constructor(
