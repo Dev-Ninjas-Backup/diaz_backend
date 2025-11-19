@@ -240,20 +240,15 @@ export class StripeService {
       }
 
       // 2) create SetupIntent (no charge — collects & attaches payment method for future use)
-      const setupIntent = await this.stripe.setupIntents.create(
-        {
-          customer: customerId,
-          payment_method_types: ['card'],
-          usage: 'off_session', // important for subscriptions / future off-session charges
-          metadata: {
-            ...metadata,
-            customerId,
-          },
+      const setupIntent = await this.stripe.setupIntents.create({
+        customer: customerId,
+        payment_method_types: ['card'],
+        usage: 'off_session', // important for subscriptions / future off-session charges
+        metadata: {
+          ...metadata,
+          customerId,
         },
-        {
-          idempotencyKey: `si_${metadata.userId}_${metadata.planId ?? 'no-plan'}`,
-        },
-      );
+      });
 
       this.logger?.log(
         `Created SetupIntent ${setupIntent.id} for customer ${customerId}`,
