@@ -62,3 +62,10 @@
 * [X] Get Seller Notification
 * [X] Update Seller Profile
 * [X] Change Seller Password
+
+## 📅 Date: 2025-11-19
+
+### Tasks
+
+* [X] Cancel Seller Subscription
+* [ ] Google Merchant Center and Boats data uploading to it exploring
