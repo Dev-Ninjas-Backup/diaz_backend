@@ -5,7 +5,7 @@ import { BoatsFeatureService } from './services/boats-feature.service';
 import { BoatsSpecificationService } from './services/boats-specification.service';
 import { GetAllBoatsMergedService } from './services/get-all-boats-merged.service';
 import { GetAllBoatsService } from './services/get-all-boats.service';
-import { GetAllCustomBoatsService } from './services/get-all-custom-boats.service';
+import { GetAllCustomBoatsFloridaService } from './services/get-all-custom-boats-florida.service';
 import { GetCustomBoatsService } from './services/get-custom-boats.service';
 
 @Module({
@@ -16,7 +16,7 @@ import { GetCustomBoatsService } from './services/get-custom-boats.service';
     BoatsSpecificationService,
     BoatsFeatureService,
     GetAllBoatsMergedService,
-    GetAllCustomBoatsService,
+    GetAllCustomBoatsFloridaService,
   ],
 })
 export class BoatsModule {}

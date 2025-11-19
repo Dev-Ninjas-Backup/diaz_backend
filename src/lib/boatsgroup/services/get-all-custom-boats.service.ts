@@ -230,7 +230,7 @@ export class GetAllCustomBoatsService {
     return filtered as BoatFromBoatsGroup;
   }
 
-  private transformBoat(
+  public transformBoat(
     boat: Boats & {
       user: {
         id: string;
