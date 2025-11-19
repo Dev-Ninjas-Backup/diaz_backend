@@ -7,13 +7,14 @@ import { PrismaService } from '@/lib/prisma/prisma.service';
 import { Injectable } from '@nestjs/common';
 import { Prisma } from '@prisma/client';
 import { GetAllBoatsCustomDto } from '../dto/get-all-boats-custom.dto';
-import { GetCustomBoatsService } from './get-custom-boats.service';
+
+import { GetAllCustomBoatsService } from '@/lib/boatsgroup/services/get-all-custom-boats.service';
 
 @Injectable()
-export class GetAllCustomBoatsService {
+export class GetAllCustomBoatsFloridaService {
   constructor(
     private readonly prisma: PrismaService,
-    private readonly getCustomBoatsService: GetCustomBoatsService,
+    private readonly getAllCustomBoatsService: GetAllCustomBoatsService,
   ) {}
 
   @HandleError('Failed to get boats', 'Boats')
@@ -179,7 +180,13 @@ export class GetAllCustomBoatsService {
         take: limit,
         include: {
           user: {
-            select: { id: true, name: true, email: true, avatarUrl: true },
+            select: {
+              id: true,
+              name: true,
+              email: true,
+              phone: true,
+              avatarUrl: true,
+            },
           },
           engines: true,
           images: { include: { file: true } },
@@ -189,7 +196,7 @@ export class GetAllCustomBoatsService {
     ]);
 
     const formattedBoats = boats.map((b) =>
-      this.getCustomBoatsService.formatBoat(b),
+      this.getAllCustomBoatsService.transformBoat(b),
     );
 
     return successPaginatedResponse(

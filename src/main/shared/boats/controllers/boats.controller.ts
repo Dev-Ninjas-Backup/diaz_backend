@@ -8,7 +8,7 @@ import {
 } from '../dto/get-boats.dto';
 import { GetAllBoatsMergedService } from '../services/get-all-boats-merged.service';
 import { GetAllBoatsService } from '../services/get-all-boats.service';
-import { GetAllCustomBoatsService } from '../services/get-all-custom-boats.service';
+import { GetAllCustomBoatsFloridaService } from '../services/get-all-custom-boats-florida.service';
 import { GetCustomBoatsService } from '../services/get-custom-boats.service';
 
 @ApiTags('Shared -- Boats')
@@ -18,7 +18,7 @@ export class BoatsController {
     private readonly getCustomBoatsService: GetCustomBoatsService,
     private readonly getAllBoatsService: GetAllBoatsService,
     private readonly getAllBoatsMergedService: GetAllBoatsMergedService,
-    private readonly getAllCustomBoatsService: GetAllCustomBoatsService,
+    private readonly getAllCustomBoatsService: GetAllCustomBoatsFloridaService,
   ) {}
 
   @ApiOperation({ summary: 'Get all custom boats' })
