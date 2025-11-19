@@ -193,6 +193,7 @@ export class GetCustomBoatsService {
       engines: boat.engines ?? [],
       coverImages,
       galleryImages,
+      floridaLeads: boat.floridaLeads ?? [],
 
       // timestamps
       createdAt: boat.createdAt,
