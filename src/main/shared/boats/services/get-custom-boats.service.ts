@@ -1,15 +1,9 @@
 import { HandleError } from '@/common/error/handle-error.decorator';
-import {
-  successPaginatedResponse,
-  successResponse,
-  TPaginatedResponse,
-  TResponse,
-} from '@/common/utils/response.util';
+import { successResponse, TResponse } from '@/common/utils/response.util';
 import { PrismaService } from '@/lib/prisma/prisma.service';
 import { UtilsService } from '@/lib/utils/utils.service';
 import { Injectable } from '@nestjs/common';
 import { BoatImage } from '@prisma/client';
-import { GetAllBoatsCustomDto } from '../dto/get-all-boats-custom.dto';
 
 @Injectable()
 export class GetCustomBoatsService {
@@ -34,53 +28,6 @@ export class GetCustomBoatsService {
     return successResponse(
       this.formatBoat(boat),
       'Boat details fetched successfully',
-    );
-  }
-
-  @HandleError('Failed to get boats', 'Boats')
-  async getAllBoats(
-    options?: GetAllBoatsCustomDto,
-  ): Promise<TPaginatedResponse<any>> {
-    const page = Math.max(Number(options?.page) || 1, 1);
-    const requestedLimit = Number(options?.limit);
-    const DEFAULT_LIMIT = 10;
-    const MAX_LIMIT = 100;
-    const limit = Math.min(
-      Math.max(
-        Number.isFinite(requestedLimit) && requestedLimit > 0
-          ? requestedLimit
-          : DEFAULT_LIMIT,
-        1,
-      ),
-      MAX_LIMIT,
-    );
-    const skip = (page - 1) * limit;
-
-    const where = {};
-
-    const [total, boats] = await this.prisma.$transaction([
-      this.prisma.boats.count({ where }),
-      this.prisma.boats.findMany({
-        where,
-        skip,
-        take: limit,
-        include: {
-          user: {
-            select: { id: true, name: true, email: true, avatarUrl: true },
-          },
-          engines: true,
-          images: { include: { file: true } },
-        },
-        orderBy: { createdAt: 'desc' },
-      }),
-    ]);
-
-    const formattedBoats = boats.map((b) => this.formatBoat(b));
-
-    return successPaginatedResponse(
-      formattedBoats,
-      { page, limit, total },
-      'Boats found successfully',
     );
   }
 
