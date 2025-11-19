@@ -15,6 +15,53 @@ import { GetSellerLeadsDto } from '../dto/get-own-leads.dto';
 export class LeadsService {
   constructor(private readonly prisma: PrismaService) {}
 
+  @HandleError("Failed to get seller's stats")
+  async getSellerStats(userId: string): Promise<TResponse<any>> {
+    // 1. Fetch seller basic profile info
+    const seller = await this.prisma.user.findUniqueOrThrow({
+      where: { id: userId },
+      select: {
+        name: true,
+        avatarUrl: true,
+        country: true,
+        city: true,
+        state: true,
+        zip: true,
+      },
+    });
+
+    // 2. Fetch seller boats (for stats)
+    const [totalListing, activeListing] = await this.prisma.$transaction([
+      this.prisma.boats.count({ where: { userId } }),
+      this.prisma.boats.count({
+        where: { userId, status: 'ACTIVE' },
+      }),
+    ]);
+
+    // 3. Count all Florida leads for seller
+    const totalFloridaLeads = await this.prisma.floridaLead.count({
+      where: { boat: { userId } },
+    });
+
+    return successResponse(
+      {
+        name: seller.name,
+        avatarUrl: seller.avatarUrl,
+
+        country: seller.country,
+        city: seller.city,
+        state: seller.state,
+        zip: seller.zip,
+
+        totalListing,
+        activeListing,
+
+        totalLeads: totalFloridaLeads,
+      },
+      'Stats fetched successfully',
+    );
+  }
+
   @HandleError("Failed to get seller's leads")
   async getSellerLeads(
     userId: string,

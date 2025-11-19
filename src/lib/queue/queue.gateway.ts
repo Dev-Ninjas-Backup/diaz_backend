@@ -167,16 +167,37 @@ export class QueueGateway
     data: NotificationPayload,
   ): Promise<void> {
     const clients = this.getClientsForUser(userId);
+
+    // Store notification in DB
+    const notification = await this.prisma.notification.create({
+      data: {
+        type: data.type,
+        title: data.title,
+        message: data.message,
+        meta: data.meta ?? {},
+        users: {
+          create: {
+            userId,
+          },
+        },
+      },
+    });
+
+    // Attach newly created notificationId to payload
+    const payload = {
+      ...data,
+      notificationId: notification.id,
+    };
+
+    // Emit only if user is connected
     if (clients.size === 0) {
       this.logger.warn(`No clients connected for user ${userId}`);
       return;
     }
 
     clients.forEach((client) => {
-      client.emit(event, data);
-      this.logger.log(
-        `NotificationPayload sent to user ${userId} via event ${event}`,
-      );
+      client.emit(event, payload);
+      this.logger.log(`Notification sent to user ${userId} via event ${event}`);
     });
   }
 

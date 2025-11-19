@@ -58,5 +58,7 @@
 * [X] Custom Listing ID Generation
 * [X] Get leads for single seller (via contact form)
 * [X] Get invoices for single seller
-* [ ] Update Seller Profile
-* [ ] Change Seller Password
+* [X] Get Seller Stats
+* [X] Get Seller Notification
+* [X] Update Seller Profile
+* [X] Change Seller Password
