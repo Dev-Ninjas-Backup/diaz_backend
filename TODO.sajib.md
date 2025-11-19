@@ -69,4 +69,5 @@
 
 * [X] Cancel Seller Subscription
 * [X] Subscription for register seller
+* [X] Large Filtering to get all custom boats
 * [ ] Google Merchant Center and Boats data uploading to it exploring
