@@ -60,5 +60,5 @@
 * [X] Get invoices for single seller
 * [X] Get Seller Stats
 * [X] Get Seller Notification
-* [ ] Update Seller Profile
-* [ ] Change Seller Password
+* [X] Update Seller Profile
+* [X] Change Seller Password

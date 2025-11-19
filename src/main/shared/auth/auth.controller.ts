@@ -1,11 +1,31 @@
 import { PaginationDto } from '@/common/dto/pagination.dto';
 import { GetUser, Public, ValidateAuth } from '@/common/jwt/jwt.decorator';
-import { Body, Controller, Get, Param, Post, Query } from '@nestjs/common';
-import { ApiBearerAuth, ApiOperation, ApiTags } from '@nestjs/swagger';
+import {
+  Body,
+  Controller,
+  Get,
+  Param,
+  Patch,
+  Post,
+  Query,
+  UploadedFile,
+  UseInterceptors,
+} from '@nestjs/common';
+import { FileInterceptor } from '@nestjs/platform-express';
+import {
+  ApiBearerAuth,
+  ApiConsumes,
+  ApiOperation,
+  ApiTags,
+} from '@nestjs/swagger';
 import { LoginDto } from './dto/login.dto';
+import { ChangePasswordDto } from './dto/password.dto';
+import { UpdateProfileDto } from './dto/update-profile.dto';
 import { AuthLoginService } from './services/auth-login.service';
 import { AuthNotificationService } from './services/auth-notification.service';
+import { AuthPasswordService } from './services/auth-password.service';
 import { AuthProfileService } from './services/auth-profile.service';
+import { AuthUpdateProfileService } from './services/auth-update-profile.service';
 
 @ApiTags('Shared -- Auth, Profile & Notification')
 @ApiBearerAuth()
@@ -15,6 +35,8 @@ export class AuthController {
   constructor(
     private readonly loginService: AuthLoginService,
     private readonly profileService: AuthProfileService,
+    private readonly updateProfileService: AuthUpdateProfileService,
+    private readonly authPasswordService: AuthPasswordService,
     private readonly notificationService: AuthNotificationService,
   ) {}
 
@@ -29,6 +51,27 @@ export class AuthController {
   @Get('profile')
   async getProfile(@GetUser('sub') userId: string) {
     return this.profileService.getProfile(userId);
+  }
+
+  @ApiOperation({ summary: 'Update profile' })
+  @ApiConsumes('multipart/form-data')
+  @Patch('profile')
+  @UseInterceptors(FileInterceptor('image'))
+  update(
+    @GetUser('sub') id: string,
+    @Body() dto: UpdateProfileDto,
+    @UploadedFile() file?: Express.Multer.File,
+  ) {
+    return this.updateProfileService.updateProfile(id, dto, file);
+  }
+
+  @ApiOperation({ summary: 'Change Password' })
+  @Post('change-password')
+  async changePassword(
+    @GetUser('sub') userId: string,
+    @Body() body: ChangePasswordDto,
+  ) {
+    return this.authPasswordService.changePassword(userId, body);
   }
 
   @ApiOperation({ summary: 'Get user notification' })
