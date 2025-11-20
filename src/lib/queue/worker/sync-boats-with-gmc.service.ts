@@ -1,6 +1,6 @@
 import { QueueEventsEnum } from '@/common/enum/queue-events.enum';
 import { QueueName } from '@/common/enum/queue-name.enum';
-import { PrismaService } from '@/lib/prisma/prisma.service';
+import { GoogleContentService } from '@/lib/googleapis/services/google-content.service';
 import { OnWorkerEvent, Processor, WorkerHost } from '@nestjs/bullmq';
 import { Logger } from '@nestjs/common';
 import { Job } from 'bullmq';
@@ -14,42 +14,43 @@ export class SyncBoatsWithGmcService extends WorkerHost {
 
   constructor(
     private readonly gateway: QueueGateway,
-    private readonly prisma: PrismaService,
+    private readonly googleContent: GoogleContentService,
   ) {
     super();
   }
 
   async process(job: Job<SyncBoatsWithGmcPayload>): Promise<void> {
-    const payload = job.data;
-    const listingId = payload.listingId;
+    const listingId = job.data.listingId;
 
-    this.logger.log(`Start processing job ${job.id} for listing ${listingId}`);
+    this.logger.log(
+      `[GMC Worker] Start processing job: ${job.id}, listing: ${listingId}`,
+    );
 
     try {
-      this.logger.log(
-        `Completed processing job ${job.id} for listing ${listingId}`,
-      );
+      // Sync Product with GMC
+      const gmcResponse = await this.googleContent.syncBoatWithGmc(listingId);
 
+      // Notify admins
       const notificationPayload: NotificationPayload = {
-        title: 'Sync Boat with GMC',
-        message: `Sync Boat with GMC completed successfully for listing ${listingId}`,
+        title: 'Boat Synced with Google Merchant',
+        message: `Boat listing ${listingId} synced successfully.`,
         createdAt: new Date(),
         type: QueueEventsEnum.NOTIFICATION,
         meta: {
           performedBy: 'System',
           recordId: listingId,
           recordType: 'Boats',
+          others: { gmcResponse },
         },
       };
 
-      // TODO: Notify all admins
-      this.logger.log(
-        `Sending notification for job ${job.id} for listing ${listingId}`,
+      await this.gateway.emitToAdmins(
+        QueueEventsEnum.NOTIFICATION,
         notificationPayload,
       );
     } catch (err) {
       this.logger.error(
-        `Failed to process job ${job.id} for listing ${listingId}: ${(err as Error).message}`,
+        `[GMC Worker] Failed to process job ${job.id} for listing ${listingId}: ${(err as Error).message}`,
         (err as Error).stack,
       );
       // rethrow so BullMQ handles retry/backoff according to your queue config
@@ -59,11 +60,11 @@ export class SyncBoatsWithGmcService extends WorkerHost {
 
   @OnWorkerEvent('completed')
   onCompleted(job: Job) {
-    this.logger.log(`Job ${job.id} completed`);
+    this.logger.log(`[GMC Worker] Job ${job.id} completed`);
   }
 
   @OnWorkerEvent('failed')
   onFailed(job: Job, err: any) {
-    this.logger.error(`Job ${job.id} failed: ${err?.message}`);
+    this.logger.error(`[GMC Worker] Job ${job.id} failed: ${err?.message}`);
   }
 }
