@@ -64,20 +64,38 @@ export class GoogleContentService {
     customAttributes.push({ name: 'engineCount', value: String(engineCount) });
 
     const product: content_v2_1.Schema$Product = {
-      offerId: listing.listingId || listing.id,
-      title: listing.name || `Boat ${listing.listingId || listing.id}`,
-      description: listing.description || '',
-      link: `${this.frontendUrl}/${listing.id}`,
+      offerId: listing.id,
+
+      // BASIC INFO
+      title: listing.name || `Boat ${listing.id}`,
+      description: listing.description || 'No description available',
+
+      // LINKS
+      link: `${this.frontendUrl}/listing/${listing.id}`,
       imageLink: images[0],
       additionalImageLinks: images.length > 1 ? images.slice(1) : undefined,
-      condition: listing.condition || 'used',
+
+      // REQUIRED FOR ALL PRODUCTS
+      contentLanguage: 'en',
+      targetCountry: 'US',
+      channel: 'online',
+      availability: 'in stock',
+      condition: listing.condition === 'new' ? 'new' : 'used',
+
+      // PRICING
       price: {
-        value: listing.price != null ? String(listing.price) : '0',
+        value: String(listing.price ?? 0),
         currency: 'USD',
       },
-      availability: 'in stock',
-      brand: listing.make || 'Unknown',
-      productTypes: ['Boats', 'Boat', 'Yachts', 'Yacht'],
+
+      // BRAND + CATEGORY (minimum required)
+      brand: listing.make || 'Generic',
+      googleProductCategory: '870', // Boats (GMC Taxonomy ID)
+
+      // CUSTOM CATEGORY (user-defined)
+      productTypes: ['Vehicles > Boats', 'Boats', 'Yachts'],
+
+      // CUSTOM ATTRIBUTES
       customAttributes,
     };
 
@@ -96,7 +114,10 @@ export class GoogleContentService {
       this.logger.log(`Boat uploaded to Google Merchant: ${product.offerId}`);
       return res.data;
     } catch (err) {
-      this.logger.error(`Failed to upload boat ${product.offerId} to GMC`, err);
+      this.logger.error(
+        `Failed to upload boat ${product.offerId} to GMC`,
+        err.message,
+      );
       throw err;
     }
   }
@@ -110,8 +131,7 @@ export class GoogleContentService {
 
       return res.data; // includes status, issues, etc.
     } catch (err: any) {
-      if (err.code === 404) return null; // not yet uploaded
-      throw err;
+      this.logger.debug(`Boat ${offerId} is not in GMC`, err.message);
     }
   }
 
@@ -128,7 +148,10 @@ export class GoogleContentService {
       this.logger.log(`Boat updated in Google Merchant: ${product.offerId}`);
       return res.data;
     } catch (err) {
-      this.logger.error(`Failed to update boat ${product.offerId} in GMC`, err);
+      this.logger.error(
+        `Failed to update boat ${product.offerId} in GMC`,
+        err.message,
+      );
       throw err;
     }
   }
@@ -140,7 +163,7 @@ export class GoogleContentService {
       include: { engines: true, images: { include: { file: true } } },
     });
 
-    const offerId = listing.listingId || listing.id;
+    const offerId = listing.id;
     const gmcProduct = await this.getBoatGmcStatus(offerId);
 
     let res;
