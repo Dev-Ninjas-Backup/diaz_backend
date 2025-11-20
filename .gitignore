@@ -67,3 +67,4 @@ logs
 # temp dir
 temp
 tmp
+*.json
