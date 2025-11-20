@@ -1,7 +1,10 @@
-import { Module } from '@nestjs/common';
+import { Global, Module } from '@nestjs/common';
 import { GoogleapisService } from './googleapis.service';
+import { GoogleContentService } from './services/google-content.service';
 
+@Global()
 @Module({
-  providers: [GoogleapisService],
+  providers: [GoogleapisService, GoogleContentService],
+  exports: [GoogleapisService, GoogleContentService],
 })
 export class GoogleapisModule {}

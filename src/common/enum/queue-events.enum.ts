@@ -16,4 +16,7 @@ export enum QueueEventsEnum {
   // === Adopt boats data events ===
   ADOPT_BOATS_SPECIFICATION = 'queue:adopt_boats_specification',
   ADOPT_BOATS_FEATURES = 'queue:adopt_boats_features',
+
+  // === Sync Boats with GMC ===
+  SYNC_BOATS_WITH_GMC = 'queue:sync_boats_with_gmc',
 }

@@ -4,4 +4,5 @@ export enum QueueName {
   IMAGE_DELETING = 'image_deleting',
   ADOPT_BOATS_SPECIFICATIONS = 'adopt_boats_specifications',
   ADOPT_BOATS_FEATURES = 'adopt_boats_features',
+  SYNC_BOATS_WITH_GMC = 'sync_boats_with_gmc',
 }

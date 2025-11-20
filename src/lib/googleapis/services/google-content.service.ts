@@ -1,16 +1,11 @@
 import { ENVEnum } from '@/common/enum/env.enum';
 import { HandleError } from '@/common/error/handle-error.decorator';
 import { PrismaService } from '@/lib/prisma/prisma.service';
+import { ListingForGmc } from '@/lib/queue/interface/sync-boats-with-gmc.payload';
 import { Injectable, Logger } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
-import { BoatEngine, BoatImage, Boats, FileInstance } from '@prisma/client';
 import { content_v2_1 } from 'googleapis';
 import { GoogleapisService } from '../googleapis.service';
-
-type Listing = Boats & {
-  engines: BoatEngine[];
-  images: (BoatImage & { file: FileInstance })[];
-};
 
 @Injectable()
 export class GoogleContentService {
@@ -28,7 +23,7 @@ export class GoogleContentService {
   }
 
   // Build a Google Merchant Center product from a listing
-  buildGoogleProduct(listing: Listing) {
+  buildGoogleProduct(listing: ListingForGmc): content_v2_1.Schema$Product {
     // Map images to URLs
     const images: string[] = listing.images?.map((img) => img.file.url) || [];
 
@@ -89,7 +84,7 @@ export class GoogleContentService {
     return product;
   }
 
-  async uploadBoat(listing: Listing) {
+  async uploadBoat(listing: ListingForGmc) {
     const product = this.buildGoogleProduct(listing);
 
     try {
@@ -106,20 +101,59 @@ export class GoogleContentService {
     }
   }
 
-  @HandleError('Failed to upload boat to GMC')
-  async uploadBoatById(listingId: string) {
+  async getBoatGmcStatus(offerId: string) {
+    try {
+      const res = await this.googleapis.getClient().products.get({
+        merchantId: this.googleapis.getMerchantId(),
+        productId: offerId,
+      });
+
+      return res.data; // includes status, issues, etc.
+    } catch (err: any) {
+      if (err.code === 404) return null; // not yet uploaded
+      throw err;
+    }
+  }
+
+  async updateBoatOnGmc(listing: ListingForGmc) {
+    const product = this.buildGoogleProduct(listing);
+
+    try {
+      const res = await this.googleapis.getClient().products.update({
+        merchantId: this.googleapis.getMerchantId(),
+        productId: product.offerId!,
+        requestBody: product,
+      });
+
+      this.logger.log(`Boat updated in Google Merchant: ${product.offerId}`);
+      return res.data;
+    } catch (err) {
+      this.logger.error(`Failed to update boat ${product.offerId} in GMC`, err);
+      throw err;
+    }
+  }
+
+  @HandleError('Failed to sync boat with GMC')
+  async syncBoatWithGmc(listingId: string) {
     const listing = await this.prisma.boats.findUniqueOrThrow({
       where: { id: listingId },
-      include: {
-        engines: true,
-        images: {
-          include: {
-            file: true,
-          },
-        },
-      },
+      include: { engines: true, images: { include: { file: true } } },
     });
 
-    return this.uploadBoat(listing);
+    const offerId = listing.listingId || listing.id;
+    const gmcProduct = await this.getBoatGmcStatus(offerId);
+
+    let res;
+    if (!gmcProduct) {
+      // Not uploaded yet → insert
+      res = await this.uploadBoat(listing);
+    } else {
+      // Already uploaded → update
+      res = await this.updateBoatOnGmc(listing);
+    }
+
+    this.logger.log(`Boat synced with GMC: ${offerId}`, res);
+
+    return res;
   }
 }
