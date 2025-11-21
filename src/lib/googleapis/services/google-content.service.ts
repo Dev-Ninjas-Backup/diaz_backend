@@ -5,6 +5,7 @@ import { ListingForGmc } from '@/lib/queue/interface/sync-boats-with-gmc.payload
 import { Injectable, Logger } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { content_v2_1 } from 'googleapis';
+import { DateTime } from 'luxon';
 import { GoogleapisService } from '../googleapis.service';
 
 @Injectable()
@@ -126,7 +127,7 @@ export class GoogleContentService {
     try {
       const res = await this.googleapis.getClient().products.get({
         merchantId: this.googleapis.getMerchantId(),
-        productId: offerId,
+        productId: this.getGoogleProductId(offerId),
       });
 
       return res.data; // includes status, issues, etc.
@@ -136,20 +137,45 @@ export class GoogleContentService {
   }
 
   async updateBoatOnGmc(listing: ListingForGmc) {
-    const product = this.buildGoogleProduct(listing);
+    // Calculate 24 hours ago
+    const since = DateTime.now().minus({ hours: 24 }).toJSDate();
+
+    // Build full product
+    const fullProduct = this.buildGoogleProduct(listing);
+
+    // Remove offerId for update
+    const {
+      offerId,
+      targetCountry,
+      channel,
+      contentLanguage,
+      customAttributes,
+      ...updatePayload
+    } = fullProduct;
+    this.logger.debug(
+      `Update payload for boat ${channel}:${targetCountry}:${contentLanguage}:${offerId}`,
+      customAttributes,
+      updatePayload,
+    );
+
+    // Example: check each top-level field
+    if (listing.updatedAt >= since) {
+      this.logger.debug(`Boat ${offerId} was updated in the last 24 hours`);
+      return;
+    }
 
     try {
       const res = await this.googleapis.getClient().products.update({
         merchantId: this.googleapis.getMerchantId(),
-        productId: product.offerId!,
-        requestBody: product,
+        productId: this.getGoogleProductId(listing.id),
+        requestBody: updatePayload,
       });
 
-      this.logger.log(`Boat updated in Google Merchant: ${product.offerId}`);
+      this.logger.log(`Boat updated in Google Merchant: ${listing.id}`);
       return res.data;
     } catch (err) {
       this.logger.error(
-        `Failed to update boat ${product.offerId} in GMC`,
+        `Failed to update boat ${listing.id} in GMC`,
         err.message,
       );
       throw err;
@@ -178,5 +204,9 @@ export class GoogleContentService {
     this.logger.log(`Boat synced with GMC: ${offerId}`, res);
 
     return res;
+  }
+
+  private getGoogleProductId(offerId: string) {
+    return `online:en:US:${offerId}`;
   }
 }
