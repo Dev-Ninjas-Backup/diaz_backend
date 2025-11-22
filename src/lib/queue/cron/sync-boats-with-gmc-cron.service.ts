@@ -37,10 +37,10 @@ export class SyncBoatsWithGmcCronService {
     }
   }
 
-  // @Cron(CronExpression.EVERY_DAY_AT_1AM, {
-  //   timeZone: 'America/New_York',
-  // })
-  @Cron(CronExpression.EVERY_10_SECONDS)
+  @Cron(CronExpression.EVERY_DAY_AT_1AM, {
+    timeZone: 'America/New_York',
+  })
+  // @Cron(CronExpression.EVERY_10_SECONDS)
   async handleAmericaMorningCron() {
     await this.syncAllBoats();
   }
