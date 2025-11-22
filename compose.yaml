@@ -1,7 +1,7 @@
 services:
   caddy:
     image: caddy
-    container_name: caddy
+    container_name: ${PACKAGE_NAME}_caddy
     restart: always
     ports:
       - '80:80'

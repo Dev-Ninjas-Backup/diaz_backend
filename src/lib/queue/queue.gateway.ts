@@ -229,4 +229,58 @@ export class QueueGateway
       });
     });
   }
+
+  public async emitToAdmins(
+    event: string,
+    data: NotificationPayload,
+  ): Promise<void> {
+    // 1. Get all admins
+    const admins = await this.prisma.user.findMany({
+      where: {
+        role: { in: ['ADMIN', 'SUPER_ADMIN'] },
+      },
+      select: { id: true },
+    });
+
+    if (admins.length === 0) {
+      this.logger.warn('No admin found for emitToAdmins');
+      return;
+    }
+
+    // 2. Create ONE notification record
+    const notification = await this.prisma.notification.create({
+      data: {
+        type: data.type,
+        title: data.title,
+        message: data.message,
+        meta: data.meta ?? {},
+        // Attach all admins at once
+        users: {
+          createMany: {
+            data: admins.map((a) => ({ userId: a.id })),
+          },
+        },
+      },
+    });
+
+    const payload = {
+      ...data,
+      notificationId: notification.id,
+    };
+
+    // 3. Emit to every connected admin client
+    admins.forEach((admin) => {
+      const clients = this.getClientsForUser(admin.id);
+
+      if (clients.size === 0) return;
+
+      clients.forEach((client) => {
+        client.emit(event, payload);
+      });
+    });
+
+    this.logger.log(
+      `Notification sent to ${admins.length} admins (event: ${event})`,
+    );
+  }
 }
