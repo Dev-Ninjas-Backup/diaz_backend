@@ -15,7 +15,7 @@ export class SyncBoatsWithGmcCronService {
   ) {}
 
   async syncAllBoats() {
-    const boats = await this.prisma.boats.findMany({
+    const boats = await this.prisma.client.boats.findMany({
       include: { engines: true, images: { include: { file: true } } },
     });
 

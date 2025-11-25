@@ -8,7 +8,7 @@ import {
 } from '@/common/utils/response.util';
 import { PrismaService } from '@/lib/prisma/prisma.service';
 import { HttpStatus, Injectable } from '@nestjs/common';
-import { FloridaLead, Prisma } from '@prisma/client';
+import { FloridaLead, Prisma } from 'generated/client';
 import { GetSellerLeadsDto } from '../dto/get-own-leads.dto';
 
 @Injectable()
@@ -18,7 +18,7 @@ export class LeadsService {
   @HandleError("Failed to get seller's stats")
   async getSellerStats(userId: string): Promise<TResponse<any>> {
     // 1. Fetch seller basic profile info
-    const seller = await this.prisma.user.findUniqueOrThrow({
+    const seller = await this.prisma.client.user.findUniqueOrThrow({
       where: { id: userId },
       select: {
         name: true,
@@ -31,15 +31,17 @@ export class LeadsService {
     });
 
     // 2. Fetch seller boats (for stats)
-    const [totalListing, activeListing] = await this.prisma.$transaction([
-      this.prisma.boats.count({ where: { userId } }),
-      this.prisma.boats.count({
-        where: { userId, status: 'ACTIVE' },
-      }),
-    ]);
+    const [totalListing, activeListing] = await this.prisma.client.$transaction(
+      [
+        this.prisma.client.boats.count({ where: { userId } }),
+        this.prisma.client.boats.count({
+          where: { userId, status: 'ACTIVE' },
+        }),
+      ],
+    );
 
     // 3. Count all Florida leads for seller
-    const totalFloridaLeads = await this.prisma.floridaLead.count({
+    const totalFloridaLeads = await this.prisma.client.floridaLead.count({
       where: { boat: { userId } },
     });
 
@@ -90,9 +92,9 @@ export class LeadsService {
     }
 
     // Fetch total + paginated leads
-    const [total, leads] = await this.prisma.$transaction([
-      this.prisma.floridaLead.count({ where }),
-      this.prisma.floridaLead.findMany({
+    const [total, leads] = await this.prisma.client.$transaction([
+      this.prisma.client.floridaLead.count({ where }),
+      this.prisma.client.floridaLead.findMany({
         where,
         skip,
         take: limit,
@@ -119,7 +121,7 @@ export class LeadsService {
     userId: string,
     leadId: string,
   ): Promise<TResponse<any>> {
-    const lead = await this.prisma.floridaLead.findFirst({
+    const lead = await this.prisma.client.floridaLead.findFirst({
       where: {
         id: leadId,
         boat: { userId },

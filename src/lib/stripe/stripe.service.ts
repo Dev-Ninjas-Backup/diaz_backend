@@ -1,7 +1,7 @@
 import { ENVEnum } from '@/common/enum/env.enum';
 import { Injectable, Logger } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
-import { PlanType } from '@prisma/client';
+import { PlanType } from 'generated/client';
 import Stripe from 'stripe';
 import { PaymentMetadata } from './stripe.types';
 

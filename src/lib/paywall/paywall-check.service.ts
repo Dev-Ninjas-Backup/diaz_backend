@@ -10,7 +10,9 @@ export class PaywallCheckService {
   constructor(private readonly prisma: PrismaService) {}
 
   async validateUserCanPost(userId: string) {
-    const user = await this.prisma.user.findUnique({ where: { id: userId } });
+    const user = await this.prisma.client.user.findUnique({
+      where: { id: userId },
+    });
 
     if (!user) {
       throw new AppError(HttpStatus.NOT_FOUND, 'User not found');
@@ -24,7 +26,7 @@ export class PaywallCheckService {
     }
 
     // Get active subscription
-    const activeSub = await this.prisma.userSubscription.findFirst({
+    const activeSub = await this.prisma.client.userSubscription.findFirst({
       where: { userId, status: 'ACTIVE' },
     });
 
@@ -40,7 +42,7 @@ export class PaywallCheckService {
     }
 
     // Check plan
-    const plan = await this.prisma.subscriptionPlan.findUnique({
+    const plan = await this.prisma.client.subscriptionPlan.findUnique({
       where: { id: user.currentPlanId },
     });
 

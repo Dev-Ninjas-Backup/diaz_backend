@@ -32,8 +32,8 @@ export class PaymentRetryService {
 
     // Get user and plan details
     const [user, plan] = await Promise.all([
-      this.prisma.user.findUnique({ where: { id: userId } }),
-      this.prisma.subscriptionPlan.findUnique({
+      this.prisma.client.user.findUnique({ where: { id: userId } }),
+      this.prisma.client.subscriptionPlan.findUnique({
         where: { id: pendingSubscription.planId },
       }),
     ]);
@@ -64,7 +64,7 @@ export class PaymentRetryService {
     });
 
     // Update the pending subscription with new SetupIntent ID
-    await this.prisma.userSubscription.update({
+    await this.prisma.client.userSubscription.update({
       where: { id: pendingSubscription.id },
       data: {
         stripeTransactionId: setupIntent.id,
@@ -90,7 +90,7 @@ export class PaymentRetryService {
   // Get current status of setup intent and subscription
   @HandleError('Failed to get payment status', 'Payment')
   async getPaymentStatus(userId: string): Promise<TResponse<any>> {
-    const subscription = await this.prisma.userSubscription.findFirst({
+    const subscription = await this.prisma.client.userSubscription.findFirst({
       where: {
         userId,
         status: { in: ['PENDING', 'ACTIVE'] },
@@ -151,7 +151,7 @@ export class PaymentRetryService {
     }
 
     // Update subscription status to CANCELLED
-    await this.prisma.userSubscription.update({
+    await this.prisma.client.userSubscription.update({
       where: { id: pendingSubscription.id },
       data: {
         status: 'CANCELED',
@@ -167,7 +167,7 @@ export class PaymentRetryService {
   }
 
   private async findPendingSubscription(userId: string) {
-    return await this.prisma.userSubscription.findFirst({
+    return await this.prisma.client.userSubscription.findFirst({
       where: {
         userId,
         status: 'PENDING',

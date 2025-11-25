@@ -1,6 +1,5 @@
 import { BoatsSourceEnum } from '@/common/enum/boats-source.enum';
 import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
-import { ContactSource, ContactType } from '@prisma/client';
 import {
   IsEmail,
   IsEnum,
@@ -8,6 +7,7 @@ import {
   IsOptional,
   IsString,
 } from 'class-validator';
+import { ContactSource, ContactType } from 'generated/client';
 
 export class CreateContactDto {
   @ApiProperty({ description: 'Name of the contact', example: 'John Doe' })

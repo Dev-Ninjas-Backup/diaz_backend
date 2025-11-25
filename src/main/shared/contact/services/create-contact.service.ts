@@ -4,7 +4,7 @@ import { HandleError } from '@/common/error/handle-error.decorator';
 import { successResponse, TResponse } from '@/common/utils/response.util';
 import { PrismaService } from '@/lib/prisma/prisma.service';
 import { HttpStatus, Injectable, Logger } from '@nestjs/common';
-import { ContactSource, ContactType } from '@prisma/client';
+import { ContactSource, ContactType } from 'generated/client';
 import { GetAllBoatsService } from '../../boats/services/get-all-boats.service';
 import { CreateContactDto } from '../dto/create-contact.dto';
 
@@ -71,7 +71,7 @@ export class CreateContactService {
     }
 
     // Transaction: create contact and FloridaLead if needed
-    const result = await this.prisma.$transaction(async (tx) => {
+    const result = await this.prisma.client.$transaction(async (tx) => {
       // Create the contact
       const contact = await tx.contact.create({ data });
 

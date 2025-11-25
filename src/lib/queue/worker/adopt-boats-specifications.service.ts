@@ -2,8 +2,8 @@ import { QueueName } from '@/common/enum/queue-name.enum';
 import { PrismaService } from '@/lib/prisma/prisma.service';
 import { OnWorkerEvent, Processor, WorkerHost } from '@nestjs/bullmq';
 import { Logger } from '@nestjs/common';
-import { BoatSpecificationType, DataInsertSource } from '@prisma/client';
 import { Job } from 'bullmq';
+import { BoatSpecificationType, DataInsertSource } from 'generated/client';
 import { AdoptBoatsSpecification } from '../interface/adopt-boats-data.payload';
 
 @Processor(QueueName.ADOPT_BOATS_SPECIFICATIONS, { concurrency: 5 })
@@ -38,7 +38,7 @@ export class AdoptBoatsSpecificationsService extends WorkerHost {
       if (!value) continue;
 
       try {
-        const existing = await this.prisma.boatSpecification.findFirst({
+        const existing = await this.prisma.client.boatSpecification.findFirst({
           where: {
             type,
             name: value,
@@ -52,7 +52,7 @@ export class AdoptBoatsSpecificationsService extends WorkerHost {
           continue;
         }
 
-        await this.prisma.boatSpecification.create({
+        await this.prisma.client.boatSpecification.create({
           data: {
             type,
             name: value,

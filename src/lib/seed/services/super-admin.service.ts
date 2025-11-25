@@ -26,7 +26,7 @@ export class SuperAdminService implements OnModuleInit {
       ENVEnum.SUPER_ADMIN_PASS,
     );
 
-    const superAdminExists = await this.prisma.user.findFirst({
+    const superAdminExists = await this.prisma.client.user.findFirst({
       where: {
         email: superAdminEmail,
       },
@@ -34,7 +34,7 @@ export class SuperAdminService implements OnModuleInit {
 
     // * create super admin
     if (!superAdminExists) {
-      await this.prisma.user.create({
+      await this.prisma.client.user.create({
         data: {
           email: superAdminEmail,
           username: 'superadmin',
@@ -51,7 +51,7 @@ export class SuperAdminService implements OnModuleInit {
     }
 
     // * Log & update if super admin already exists
-    await this.prisma.user.update({
+    await this.prisma.client.user.update({
       where: {
         email: superAdminEmail,
       },

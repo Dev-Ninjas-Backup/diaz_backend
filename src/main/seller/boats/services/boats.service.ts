@@ -9,7 +9,7 @@ import {
 import { PrismaService } from '@/lib/prisma/prisma.service';
 import { GetCustomBoatsService } from '@/main/shared/boats/services/get-custom-boats.service';
 import { HttpStatus, Injectable } from '@nestjs/common';
-import { Prisma } from '@prisma/client';
+import { Prisma } from 'generated/client';
 import { GetOwnBoatsDto } from '../dto/get-own-boats.dto';
 
 @Injectable()
@@ -44,9 +44,9 @@ export class BoatsService {
       where.status = query.status;
     }
 
-    const [total, boats] = await this.prisma.$transaction([
-      this.prisma.boats.count({ where }),
-      this.prisma.boats.findMany({
+    const [total, boats] = await this.prisma.client.$transaction([
+      this.prisma.client.boats.count({ where }),
+      this.prisma.client.boats.findMany({
         where,
         skip,
         take: limit,
@@ -86,7 +86,7 @@ export class BoatsService {
   @HandleError('Failed to get subscription confirmation', 'Onboarding')
   async getSubscriptionConfirmation(userId: string) {
     // Fetch the latest subscription for this user
-    const subscription = await this.prisma.userSubscription.findFirst({
+    const subscription = await this.prisma.client.userSubscription.findFirst({
       where: { userId },
       orderBy: { createdAt: 'desc' },
       include: {
@@ -106,7 +106,7 @@ export class BoatsService {
     const isActive = subscription.status === 'ACTIVE';
 
     // Fetch associated boat listings (if any)
-    const listing = await this.prisma.boats.findFirst({
+    const listing = await this.prisma.client.boats.findFirst({
       where: { userId },
       select: {
         id: true,

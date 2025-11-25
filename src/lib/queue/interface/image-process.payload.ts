@@ -1,4 +1,4 @@
-import { BoatImageType } from '@prisma/client';
+import { BoatImageType } from 'generated/client';
 
 export interface QueueFile {
   path: string; // temp file path

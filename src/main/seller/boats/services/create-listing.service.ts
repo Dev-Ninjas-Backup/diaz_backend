@@ -39,7 +39,7 @@ export class CreateListingService {
     const boatInfo = this.boatListingHelper.parseBoatInfo(data.boatInfo);
 
     // Create listing
-    const listing = await this.prisma.$transaction(async (tx) => {
+    const listing = await this.prisma.client.$transaction(async (tx) => {
       return tx.boats.create({
         data: await this.boatListingHelper.buildBoatCreateData(
           boatInfo,

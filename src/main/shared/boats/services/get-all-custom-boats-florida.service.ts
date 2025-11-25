@@ -5,7 +5,7 @@ import {
 } from '@/common/utils/response.util';
 import { PrismaService } from '@/lib/prisma/prisma.service';
 import { Injectable } from '@nestjs/common';
-import { Prisma } from '@prisma/client';
+import { Prisma } from 'generated/client';
 import { GetAllBoatsCustomDto } from '../dto/get-all-boats-custom.dto';
 
 import { GetAllCustomBoatsService } from '@/lib/boatsgroup/services/get-all-custom-boats.service';
@@ -172,9 +172,9 @@ export class GetAllCustomBoatsFloridaService {
 
     const where: Prisma.BoatsWhereInput = and.length > 0 ? { AND: and } : {};
 
-    const [total, boats] = await this.prisma.$transaction([
-      this.prisma.boats.count({ where }),
-      this.prisma.boats.findMany({
+    const [total, boats] = await this.prisma.client.$transaction([
+      this.prisma.client.boats.count({ where }),
+      this.prisma.client.boats.findMany({
         where,
         skip,
         take: limit,

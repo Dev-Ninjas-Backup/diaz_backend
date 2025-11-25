@@ -9,7 +9,7 @@ export class SubscriptionService {
 
   @HandleError('Failed to fetch all boat plans', 'Subscription')
   async getAllPlans() {
-    const plans = await this.prisma.subscriptionPlan.findMany({
+    const plans = await this.prisma.client.subscriptionPlan.findMany({
       orderBy: { createdAt: 'desc' },
     });
     return successResponse(plans, 'Fetched all boat plans successfully');
