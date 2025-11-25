@@ -1,8 +1,8 @@
 import { PaginationDto } from '@/common/dto/pagination.dto';
 import { ApiPropertyOptional } from '@nestjs/swagger';
-import { InvoiceStatus } from '@prisma/client';
 import { Transform } from 'class-transformer';
 import { IsEnum, IsOptional, IsString } from 'class-validator';
+import { InvoiceStatus } from 'generated/client';
 
 export class GetSellerInvoicesDto extends PaginationDto {
   @ApiPropertyOptional({

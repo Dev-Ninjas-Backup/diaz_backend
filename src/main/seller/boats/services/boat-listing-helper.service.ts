@@ -14,7 +14,7 @@ import {
 import { UtilsService } from '@/lib/utils/utils.service';
 import { HttpStatus, Injectable, Logger } from '@nestjs/common';
 import { EventEmitter2 } from '@nestjs/event-emitter';
-import { BoatImageType, BoatListingStatus, Prisma } from '@prisma/client';
+import { BoatImageType, BoatListingStatus, Prisma } from 'generated/client';
 import { CreateBoatsInfoDto } from '../dto/boats-info.dto';
 import { BoatEngineDto, UpdateBoatEngineDto } from '../dto/boats.dto';
 import { UpdateListingDtoWithImagesDto } from '../dto/update-boats.dto';
@@ -202,7 +202,7 @@ export class BoatListingHelperService {
       (id) => !updatedIds.includes(id),
     );
 
-    await this.prisma.$transaction(async (tx) => {
+    await this.prisma.client.$transaction(async (tx) => {
       // Delete removed engines
       if (enginesToDelete.length > 0) {
         await tx.boatEngine.deleteMany({

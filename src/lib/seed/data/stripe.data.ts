@@ -1,4 +1,4 @@
-import { PlanType } from '@prisma/client';
+import { PlanType } from 'generated/client';
 
 export const planSeedData = [
   {

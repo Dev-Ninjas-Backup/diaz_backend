@@ -1,6 +1,6 @@
 import { PrismaService } from '@/lib/prisma/prisma.service';
 import { Injectable, Logger, OnModuleInit } from '@nestjs/common';
-import { BoatFeatureType, DataInsertSource } from '@prisma/client';
+import { BoatFeatureType, DataInsertSource } from 'generated/client';
 import { BOAT_FEATURES_SEED } from '../data/boat-features.data';
 
 @Injectable()
@@ -35,7 +35,7 @@ export class BoatsFeatureService implements OnModuleInit {
       const name = featureName.trim();
       if (!name) continue;
 
-      const existing = await this.prisma.boatFeature.findFirst({
+      const existing = await this.prisma.client.boatFeature.findFirst({
         where: { type, name },
       });
 
@@ -47,7 +47,7 @@ export class BoatsFeatureService implements OnModuleInit {
       }
 
       try {
-        await this.prisma.boatFeature.create({
+        await this.prisma.client.boatFeature.create({
           data: {
             type,
             name,

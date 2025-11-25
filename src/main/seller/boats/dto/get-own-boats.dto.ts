@@ -1,8 +1,8 @@
 import { PaginationDto } from '@/common/dto/pagination.dto';
 import { ApiPropertyOptional } from '@nestjs/swagger';
-import { BoatListingStatus } from '@prisma/client';
 import { Transform } from 'class-transformer';
 import { IsEnum, IsOptional, IsString } from 'class-validator';
+import { BoatListingStatus } from 'generated/client';
 
 export class GetOwnBoatsDto extends PaginationDto {
   @ApiPropertyOptional({

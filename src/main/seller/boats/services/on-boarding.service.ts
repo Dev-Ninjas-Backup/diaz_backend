@@ -6,7 +6,7 @@ import { PrismaService } from '@/lib/prisma/prisma.service';
 import { StripeService } from '@/lib/stripe/stripe.service';
 import { UtilsService } from '@/lib/utils/utils.service';
 import { HttpStatus, Injectable, Logger } from '@nestjs/common';
-import { BoatImageType } from '@prisma/client';
+import { BoatImageType } from 'generated/client';
 import { SellerOnboardingBodyDto } from '../dto/seller-on-boarding.dto';
 import { BoatListingHelperService } from './boat-listing-helper.service';
 
@@ -73,7 +73,7 @@ export class OnBoardingService {
   }
 
   private async validatePlan(planId: string) {
-    const plan = await this.prisma.subscriptionPlan.findUnique({
+    const plan = await this.prisma.client.subscriptionPlan.findUnique({
       where: { id: planId },
     });
 
@@ -90,8 +90,8 @@ export class OnBoardingService {
 
   private async validateUserUniqueness(username: string, email: string) {
     const [existingUser, existingEmail] = await Promise.all([
-      this.prisma.user.findUnique({ where: { username } }),
-      this.prisma.user.findUnique({ where: { email } }),
+      this.prisma.client.user.findUnique({ where: { username } }),
+      this.prisma.client.user.findUnique({ where: { email } }),
     ]);
 
     if (existingUser) {
@@ -104,7 +104,7 @@ export class OnBoardingService {
   }
 
   private async createUserAndListing(sellerInfo: any, boatInfo: any) {
-    return await this.prisma.$transaction(async (tx) => {
+    return await this.prisma.client.$transaction(async (tx) => {
       const user = await tx.user.create({
         data: {
           username: sellerInfo.username,
@@ -156,7 +156,7 @@ export class OnBoardingService {
     planId: string,
     setupIntentId: string,
   ) {
-    const subscription = await this.prisma.userSubscription.create({
+    const subscription = await this.prisma.client.userSubscription.create({
       data: {
         user: { connect: { id: userId } },
         plan: { connect: { id: planId } },

@@ -7,7 +7,7 @@ import {
 } from '@/common/utils/response.util';
 import { PrismaService } from '@/lib/prisma/prisma.service';
 import { Injectable } from '@nestjs/common';
-import { Prisma } from '@prisma/client';
+import { Prisma } from 'generated/client';
 import { GetSellerInvoicesDto } from '../dto/get-own-invoices.dto';
 
 @Injectable()
@@ -43,9 +43,9 @@ export class InvoicesService {
       where.status = query.status;
     }
 
-    const [total, invoices] = await this.prisma.$transaction([
-      this.prisma.invoice.count({ where }),
-      this.prisma.invoice.findMany({
+    const [total, invoices] = await this.prisma.client.$transaction([
+      this.prisma.client.invoice.count({ where }),
+      this.prisma.client.invoice.findMany({
         where,
         skip,
         take: limit,
@@ -71,7 +71,7 @@ export class InvoicesService {
     invoiceId: string,
     userId: string,
   ): Promise<TResponse<any>> {
-    const invoice = await this.prisma.invoice.findFirst({
+    const invoice = await this.prisma.client.invoice.findFirst({
       where: { id: invoiceId, userId },
       include: {
         subscription: { include: { plan: true } },

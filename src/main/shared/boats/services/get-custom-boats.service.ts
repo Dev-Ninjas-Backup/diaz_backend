@@ -3,7 +3,7 @@ import { successResponse, TResponse } from '@/common/utils/response.util';
 import { PrismaService } from '@/lib/prisma/prisma.service';
 import { UtilsService } from '@/lib/utils/utils.service';
 import { Injectable } from '@nestjs/common';
-import { BoatImage } from '@prisma/client';
+import { BoatImage } from 'generated/client';
 
 @Injectable()
 export class GetCustomBoatsService {
@@ -14,7 +14,7 @@ export class GetCustomBoatsService {
 
   @HandleError('Failed to get boat details', 'Boats')
   async getSingleBoat(boatId: string): Promise<TResponse<any>> {
-    const boat = await this.prisma.boats.findUniqueOrThrow({
+    const boat = await this.prisma.client.boats.findUniqueOrThrow({
       where: { id: boatId },
       include: {
         user: {

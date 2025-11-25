@@ -1,4 +1,4 @@
-import { BoatFeatureType } from '@prisma/client';
+import { BoatFeatureType } from 'generated/client';
 
 export const BOAT_FEATURES_SEED: Record<BoatFeatureType, string[]> = {
   [BoatFeatureType.ELECTRONICS]: [

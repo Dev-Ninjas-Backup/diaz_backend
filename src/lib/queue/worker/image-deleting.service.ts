@@ -33,7 +33,7 @@ export class ImageDeletingService extends WorkerHost {
 
     try {
       // Fetch boat images with their associated file instances
-      const boatImages = await this.prisma.boatImage.findMany({
+      const boatImages = await this.prisma.client.boatImage.findMany({
         where: {
           boatId: listingId,
           id: { in: imagesToDelete },
@@ -58,7 +58,7 @@ export class ImageDeletingService extends WorkerHost {
       const fileIds = boatImages.map((img) => img.fileId);
 
       // Delete from database first (cascade will handle BoatImage records)
-      await this.prisma.boatImage.deleteMany({
+      await this.prisma.client.boatImage.deleteMany({
         where: { id: { in: boatImages.map((img) => img.id) } },
       });
 

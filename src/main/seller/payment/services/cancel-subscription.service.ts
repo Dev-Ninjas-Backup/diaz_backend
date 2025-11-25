@@ -5,7 +5,7 @@ import { PrismaService } from '@/lib/prisma/prisma.service';
 
 import { StripeService } from '@/lib/stripe/stripe.service';
 import { Injectable, Logger } from '@nestjs/common';
-import { Prisma } from '@prisma/client';
+import { Prisma } from 'generated/client';
 
 @Injectable()
 export class CancelSubscriptionService {
@@ -18,7 +18,7 @@ export class CancelSubscriptionService {
 
   @HandleError('Failed to cancel subscription')
   async cancelCurrentSubscription(userId: string): Promise<TResponse<any>> {
-    const subscription = await this.prisma.userSubscription.findFirst({
+    const subscription = await this.prisma.client.userSubscription.findFirst({
       where: { userId, status: 'ACTIVE' },
       orderBy: [
         { updatedAt: Prisma.SortOrder.desc },
@@ -36,15 +36,15 @@ export class CancelSubscriptionService {
     await this.stripe.cancelSubscription(stripeSubscriptionId);
 
     // Update local DB subscription & user
-    await this.prisma.$transaction([
-      this.prisma.userSubscription.update({
+    await this.prisma.client.$transaction([
+      this.prisma.client.userSubscription.update({
         where: { id: subscription.id },
         data: {
           status: 'CANCELED',
           planEndedAt: new Date(),
         },
       }),
-      this.prisma.user.update({
+      this.prisma.client.user.update({
         where: { id: userId },
         data: {
           currentPlanStatus: 'CANCELED',

@@ -5,7 +5,7 @@ import {
 } from '@/common/utils/response.util';
 import { PrismaService } from '@/lib/prisma/prisma.service';
 import { Injectable } from '@nestjs/common';
-import { BoatSpecificationType, Prisma } from '@prisma/client';
+import { BoatSpecificationType, Prisma } from 'generated/client';
 import { GetBoatSpecificationsDto } from '../dto/get-boat-specifications.dto';
 
 @Injectable()
@@ -30,9 +30,9 @@ export class BoatsSpecificationService {
       };
     }
 
-    const [total, items] = await this.prisma.$transaction([
-      this.prisma.boatSpecification.count({ where }),
-      this.prisma.boatSpecification.findMany({
+    const [total, items] = await this.prisma.client.$transaction([
+      this.prisma.client.boatSpecification.count({ where }),
+      this.prisma.client.boatSpecification.findMany({
         where,
         orderBy: { name: 'asc' },
         take: limit,

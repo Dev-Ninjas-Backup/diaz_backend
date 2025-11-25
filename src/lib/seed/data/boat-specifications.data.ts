@@ -1,4 +1,4 @@
-import { BoatSpecificationType } from '@prisma/client';
+import { BoatSpecificationType } from 'generated/client';
 import { BOAT_MAKES_SEED } from './boat-makes.data';
 import { BOAT_MODELS_SEED } from './boat-models.data';
 

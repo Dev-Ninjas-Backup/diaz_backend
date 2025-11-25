@@ -7,7 +7,7 @@ import { QueueFile } from '@/lib/queue/interface/image-process.payload';
 import { UtilsService } from '@/lib/utils/utils.service';
 import { GetCustomBoatsService } from '@/main/shared/boats/services/get-custom-boats.service';
 import { HttpStatus, Injectable } from '@nestjs/common';
-import { Prisma } from '@prisma/client';
+import { Prisma } from 'generated/client';
 import { UpdateListingDtoWithImagesDto } from '../dto/update-boats.dto';
 import { BoatListingHelperService } from './boat-listing-helper.service';
 
@@ -33,7 +33,7 @@ export class UpdateListingService {
       await this.paywallCheckService.validateUserCanPost(userId);
 
     // Validate boat belongs to user
-    const listing = await this.prisma.boats.findUniqueOrThrow({
+    const listing = await this.prisma.client.boats.findUniqueOrThrow({
       where: { id: boatId },
       include: {
         engines: true,
@@ -128,7 +128,7 @@ export class UpdateListingService {
     };
 
     // Perform the update
-    await this.prisma.boats.update({
+    await this.prisma.client.boats.update({
       where: { id: boatId },
       data: updateData,
     });

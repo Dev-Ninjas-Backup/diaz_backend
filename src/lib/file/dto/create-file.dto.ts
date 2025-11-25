@@ -1,5 +1,5 @@
-import { FileType } from '@prisma/client';
 import { IsEnum, IsNumber, IsString } from 'class-validator';
+import { FileType } from 'generated/client';
 
 export class CreateFileDto {
   @IsString()

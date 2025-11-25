@@ -1,6 +1,6 @@
 import { PrismaService } from '@/lib/prisma/prisma.service';
 import { Injectable, Logger, OnModuleInit } from '@nestjs/common';
-import { BoatSpecificationType, DataInsertSource } from '@prisma/client';
+import { BoatSpecificationType, DataInsertSource } from 'generated/client';
 import { BOAT_MAKES_WITH_CODE } from '../data/boat-makes.data';
 import { BOAT_MODELS_BY_MAKE } from '../data/boat-models.data';
 import { BOAT_SPECIFICATIONS_SEED } from '../data/boat-specifications.data';
@@ -52,7 +52,7 @@ export class BoatsSpecificationService implements OnModuleInit {
       if (!name) continue;
 
       try {
-        const existing = await this.prisma.boatSpecification.findFirst({
+        const existing = await this.prisma.client.boatSpecification.findFirst({
           where: { type, name },
         });
 
@@ -61,7 +61,7 @@ export class BoatsSpecificationService implements OnModuleInit {
           continue;
         }
 
-        await this.prisma.boatSpecification.create({
+        await this.prisma.client.boatSpecification.create({
           data: {
             type,
             name,
@@ -90,7 +90,7 @@ export class BoatsSpecificationService implements OnModuleInit {
       if (!name) continue;
 
       try {
-        const existing = await this.prisma.boatSpecification.findFirst({
+        const existing = await this.prisma.client.boatSpecification.findFirst({
           where: { type: BoatSpecificationType.MAKE, name },
         });
 
@@ -99,7 +99,7 @@ export class BoatsSpecificationService implements OnModuleInit {
           continue;
         }
 
-        await this.prisma.boatSpecification.create({
+        await this.prisma.client.boatSpecification.create({
           data: {
             type: BoatSpecificationType.MAKE,
             name,
@@ -132,16 +132,18 @@ export class BoatsSpecificationService implements OnModuleInit {
         if (!name) continue;
 
         try {
-          const existing = await this.prisma.boatSpecification.findFirst({
-            where: { type: BoatSpecificationType.MODEL, name },
-          });
+          const existing = await this.prisma.client.boatSpecification.findFirst(
+            {
+              where: { type: BoatSpecificationType.MODEL, name },
+            },
+          );
 
           if (existing) {
             // this.logger.log(`[EXIST] MODEL → "${name}" already exists`);
             continue;
           }
 
-          await this.prisma.boatSpecification.create({
+          await this.prisma.client.boatSpecification.create({
             data: {
               type: BoatSpecificationType.MODEL,
               name,

@@ -25,7 +25,7 @@ export class AuthProfileService {
     const where: any = {};
     where[key] = value;
 
-    const user = await this.prisma.user.findUniqueOrThrow({ where });
+    const user = await this.prisma.client.user.findUniqueOrThrow({ where });
 
     const sanitizedUser = this.utils.sanitizedResponse(UserResponseDto, user);
 
