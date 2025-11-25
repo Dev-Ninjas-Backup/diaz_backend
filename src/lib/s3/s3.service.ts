@@ -16,8 +16,8 @@ import {
 } from '@aws-sdk/client-s3';
 import { Injectable } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
-import { FileType } from '@prisma/client';
 import * as fs from 'fs';
+import { FileType } from 'generated/client';
 import path from 'node:path';
 import { v4 as uuid } from 'uuid';
 
@@ -78,7 +78,7 @@ export class S3Service {
     }
 
     // Fetch files from DB
-    const files = await this.prisma.fileInstance.findMany({
+    const files = await this.prisma.client.fileInstance.findMany({
       where: { id: { in: fileIds } },
     });
 
@@ -99,7 +99,7 @@ export class S3Service {
     );
 
     // Delete from DB
-    await this.prisma.fileInstance.deleteMany({
+    await this.prisma.client.fileInstance.deleteMany({
       where: { id: { in: fileIds } },
     });
 
@@ -118,13 +118,13 @@ export class S3Service {
     const limit = pg.limit && +pg.limit > 0 ? +pg.limit : 10;
     const skip = (page - 1) * limit;
 
-    const [files, total] = await this.prisma.$transaction([
-      this.prisma.fileInstance.findMany({
+    const [files, total] = await this.prisma.client.$transaction([
+      this.prisma.client.fileInstance.findMany({
         take: limit,
         skip,
         orderBy: { createdAt: 'desc' },
       }),
-      this.prisma.fileInstance.count(),
+      this.prisma.client.fileInstance.count(),
     ]);
 
     return successPaginatedResponse(
@@ -140,7 +140,7 @@ export class S3Service {
 
   @HandleError('Failed to get file', 'File')
   async getFileById(id: string): Promise<TResponse<any>> {
-    const file = await this.prisma.fileInstance.findUnique({
+    const file = await this.prisma.client.fileInstance.findUnique({
       where: { id },
     });
 
@@ -172,7 +172,7 @@ export class S3Service {
     const fileUrl = `https://${this.AWS_S3_BUCKET_NAME}.s3.${this.AWS_REGION}.amazonaws.com/${s3Key}`;
 
     // Save record in database
-    const fileRecord = await this.prisma.fileInstance.create({
+    const fileRecord = await this.prisma.client.fileInstance.create({
       data: {
         filename: uniqueFileName,
         originalFilename: file.originalname,
@@ -213,7 +213,7 @@ export class S3Service {
     const fileUrl = `https://${this.AWS_S3_BUCKET_NAME}.s3.${this.AWS_REGION}.amazonaws.com/${s3Key}`;
 
     // Save record in DB
-    const fileRecord = await this.prisma.fileInstance.create({
+    const fileRecord = await this.prisma.client.fileInstance.create({
       data: {
         filename: uniqueFileName,
         originalFilename: originalName || path.basename(filePath),

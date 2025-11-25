@@ -9,7 +9,7 @@ import {
 import { PrismaService } from '@/lib/prisma/prisma.service';
 import { GetBoatsDto } from '@/main/shared/boats/dto/get-boats.dto';
 import { Injectable } from '@nestjs/common';
-import { BoatEngine, BoatImage, Boats, FileInstance } from '@prisma/client';
+import { BoatEngine, BoatImage, Boats, FileInstance } from 'generated/client';
 import { getBoatFieldsByPreset } from '../helpers/boat-field-presets';
 import { FieldPreset } from '../interface/boats-fields.interface';
 import {
@@ -34,9 +34,9 @@ export class GetAllCustomBoatsService {
 
     const skip = (page - 1) * limit;
 
-    const [total, boats] = await this.prisma.$transaction([
-      this.prisma.boats.count(),
-      this.prisma.boats.findMany({
+    const [total, boats] = await this.prisma.client.$transaction([
+      this.prisma.client.boats.count(),
+      this.prisma.client.boats.findMany({
         take: limit,
         skip,
         include: {
@@ -87,7 +87,7 @@ export class GetAllCustomBoatsService {
     boatId: string,
     fields: FieldPreset = FieldPreset.minimal,
   ): Promise<TResponse<BoatFromBoatsGroup & { Source: BoatsSourceEnum }>> {
-    const boat = await this.prisma.boats.findUniqueOrThrow({
+    const boat = await this.prisma.client.boats.findUniqueOrThrow({
       where: { id: boatId },
       include: {
         user: {

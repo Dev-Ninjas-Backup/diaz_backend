@@ -184,7 +184,7 @@ export class GoogleContentService {
 
   @HandleError('Failed to sync boat with GMC')
   async syncBoatWithGmc(listingId: string) {
-    const listing = await this.prisma.boats.findUniqueOrThrow({
+    const listing = await this.prisma.client.boats.findUniqueOrThrow({
       where: { id: listingId },
       include: { engines: true, images: { include: { file: true } } },
     });

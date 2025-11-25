@@ -1,5 +1,5 @@
-import { SubscriptionStatus, UserRole, UserStatus } from '@prisma/client';
 import { Expose } from 'class-transformer';
+import { SubscriptionStatus, UserRole, UserStatus } from 'generated/client';
 
 export class UserResponseDto {
   @Expose()

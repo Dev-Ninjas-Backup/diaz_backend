@@ -16,7 +16,7 @@ export class AuthLoginService {
 
   @HandleError('Failed to login user', 'User')
   async login(dto: LoginDto) {
-    const user = await this.prisma.user.findUniqueOrThrow({
+    const user = await this.prisma.client.user.findUniqueOrThrow({
       where: { email: dto.email },
     });
 
@@ -29,7 +29,7 @@ export class AuthLoginService {
       throw new AppError(HttpStatus.UNAUTHORIZED, 'Invalid password');
     }
 
-    const updatedUser = await this.prisma.user.update({
+    const updatedUser = await this.prisma.client.user.update({
       where: { id: user.id },
       data: { isLoggedIn: true, lastLoginAt: new Date() },
     });

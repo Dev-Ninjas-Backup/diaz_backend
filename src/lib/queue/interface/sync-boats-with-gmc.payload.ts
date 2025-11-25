@@ -1,4 +1,4 @@
-import { BoatEngine, BoatImage, Boats, FileInstance } from '@prisma/client';
+import { BoatEngine, BoatImage, Boats, FileInstance } from 'generated/client';
 
 export type ListingForGmc = Boats & {
   engines: BoatEngine[];

@@ -18,7 +18,7 @@ export class AuthNotificationService {
 
     const skip = (page - 1) * limit;
 
-    const notification = await this.prisma.userNotification.findMany({
+    const notification = await this.prisma.client.userNotification.findMany({
       where: {
         userId,
       },
@@ -41,7 +41,7 @@ export class AuthNotificationService {
     userId: string,
     notificationId: string,
   ): Promise<TResponse<any>> {
-    const updated = await this.prisma.userNotification.update({
+    const updated = await this.prisma.client.userNotification.update({
       where: { userId_notificationId: { userId, notificationId } },
       data: { read: true },
     });
@@ -50,7 +50,7 @@ export class AuthNotificationService {
 
   @HandleError('Failed to mark notifications')
   async markAllAsRead(userId: string): Promise<TResponse<any>> {
-    await this.prisma.userNotification.updateMany({
+    await this.prisma.client.userNotification.updateMany({
       where: { userId, read: false },
       data: { read: true },
     });

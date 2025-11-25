@@ -1,5 +1,4 @@
 import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
-import { BoatSpecificationType } from '@prisma/client';
 import { Type } from 'class-transformer';
 import {
   IsEnum,
@@ -9,6 +8,7 @@ import {
   Max,
   Min,
 } from 'class-validator';
+import { BoatSpecificationType } from 'generated/client';
 
 export class GetBoatSpecificationsDto {
   @ApiProperty({

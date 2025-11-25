@@ -1,5 +1,5 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { FileType } from '@prisma/client';
+import { FileType } from 'generated/client';
 
 export class UploadedFileDto {
   @ApiProperty({ example: '123e4567-e89b-12d3-a456-426614174000.mp4' })

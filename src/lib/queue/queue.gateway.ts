@@ -77,7 +77,7 @@ export class QueueGateway
         return this.disconnectWithError(client, 'Invalid token payload');
       }
 
-      const user = await this.prisma.user.findUnique({
+      const user = await this.prisma.client.user.findUnique({
         where: { id: payload.sub },
         select: {
           id: true,
@@ -175,7 +175,7 @@ export class QueueGateway
     const clients = this.getClientsForUser(userId);
 
     // Store notification in DB
-    const notification = await this.prisma.notification.create({
+    const notification = await this.prisma.client.notification.create({
       data: {
         type: data.type,
         title: data.title,
@@ -241,7 +241,7 @@ export class QueueGateway
     data: NotificationPayload,
   ): Promise<void> {
     // 1. Get all admins
-    const admins = await this.prisma.user.findMany({
+    const admins = await this.prisma.client.user.findMany({
       where: {
         role: { in: ['ADMIN', 'SUPER_ADMIN'] },
       },
@@ -254,7 +254,7 @@ export class QueueGateway
     }
 
     // 2. Create ONE notification record
-    const notification = await this.prisma.notification.create({
+    const notification = await this.prisma.client.notification.create({
       data: {
         type: data.type,
         title: data.title,

@@ -71,7 +71,7 @@ export class HandleWebhookService {
     const customerId = setupIntent.customer as string;
 
     // Find pending subscription created during onboarding
-    const subscription = await this.prisma.userSubscription.findUnique({
+    const subscription = await this.prisma.client.userSubscription.findUnique({
       where: { stripeTransactionId: transactionId },
       include: { user: true, plan: true },
     });
@@ -97,8 +97,8 @@ export class HandleWebhookService {
         paymentMethodId,
       });
 
-      await this.prisma.$transaction([
-        this.prisma.user.update({
+      await this.prisma.client.$transaction([
+        this.prisma.client.user.update({
           where: { id: subscription.userId },
           data: {
             currentPlan: { connect: { id: subscription.planId } },
@@ -106,7 +106,7 @@ export class HandleWebhookService {
             stripeCustomerId: customerId,
           },
         }),
-        this.prisma.boats.updateMany({
+        this.prisma.client.boats.updateMany({
           where: {
             userId: subscription.userId,
             status: 'ONBOARDING_PENDING',
@@ -130,7 +130,7 @@ export class HandleWebhookService {
   private async handleSetupIntentFailed(setupIntent: Stripe.SetupIntent) {
     const transactionId = setupIntent.id;
 
-    const subscription = await this.prisma.userSubscription.findUnique({
+    const subscription = await this.prisma.client.userSubscription.findUnique({
       where: { stripeTransactionId: transactionId },
     });
 
@@ -142,7 +142,7 @@ export class HandleWebhookService {
     }
 
     try {
-      await this.prisma.userSubscription.update({
+      await this.prisma.client.userSubscription.update({
         where: { id: subscription.id },
         data: { status: 'FAILED', failedAt: new Date() },
       });
@@ -166,7 +166,7 @@ export class HandleWebhookService {
       `customer.subscription.updated: ${stripeSubId} status=${subscription.status}`,
     );
 
-    const local = await this.prisma.userSubscription.findUnique({
+    const local = await this.prisma.client.userSubscription.findUnique({
       where: { stripeSubscriptionId: stripeSubId },
       include: { plan: true },
     });
@@ -198,7 +198,7 @@ export class HandleWebhookService {
       updates.planEndedAt = new Date(subscription.ended_at * 1000);
 
     if (Object.keys(updates).length) {
-      await this.prisma.userSubscription.update({
+      await this.prisma.client.userSubscription.update({
         where: { id: local.id },
         data: updates,
       });
@@ -223,15 +223,16 @@ export class HandleWebhookService {
     const { userId, planId } = metadata;
 
     // Fetch local subscription
-    const localSubscription = await this.prisma.userSubscription.findFirst({
-      where: {
-        OR: [
-          { stripeSubscriptionId: subscriptionId },
-          { userId: userId, planId: planId },
-        ],
-      },
-      include: { plan: true },
-    });
+    const localSubscription =
+      await this.prisma.client.userSubscription.findFirst({
+        where: {
+          OR: [
+            { stripeSubscriptionId: subscriptionId },
+            { userId: userId, planId: planId },
+          ],
+        },
+        include: { plan: true },
+      });
 
     if (!localSubscription) {
       this.logger.error(
@@ -247,8 +248,8 @@ export class HandleWebhookService {
     );
 
     // Run updates in transaction
-    await this.prisma.$transaction([
-      this.prisma.userSubscription.update({
+    await this.prisma.client.$transaction([
+      this.prisma.client.userSubscription.update({
         where: { id: localSubscription.id },
         data: {
           status: 'ACTIVE',
@@ -259,7 +260,7 @@ export class HandleWebhookService {
         },
       }),
 
-      this.prisma.invoice.create({
+      this.prisma.client.invoice.create({
         data: {
           stripeInvoiceId: invoice.id,
           userId: userId,

@@ -4,8 +4,8 @@ import { PrismaService } from '@/lib/prisma/prisma.service';
 import { S3Service } from '@/lib/s3/s3.service';
 import { OnWorkerEvent, Processor, WorkerHost } from '@nestjs/bullmq';
 import { Logger } from '@nestjs/common';
-import { BoatImageType } from '@prisma/client';
 import { Job } from 'bullmq';
+import { BoatImageType } from 'generated/client';
 import {
   ListingImageProcessPayload,
   QueueFile,
@@ -64,7 +64,7 @@ export class ImageProcessingService extends WorkerHost {
           throw error;
         }
 
-        await this.prisma.boatImage.create({
+        await this.prisma.client.boatImage.create({
           data: {
             boatId: listingId,
             imageType,

@@ -23,7 +23,7 @@ export class SubscriptionPlanService implements OnModuleInit {
 
   async seedPlans() {
     for (const plan of planSeedData) {
-      const existingPlan = await this.prisma.subscriptionPlan.findFirst({
+      const existingPlan = await this.prisma.client.subscriptionPlan.findFirst({
         where: { planType: plan.planType },
       });
 
@@ -44,7 +44,7 @@ export class SubscriptionPlanService implements OnModuleInit {
           `[REUSE] Reusing price ${existingPrice.id} for ${plan.planType}`,
         );
 
-        await this.prisma.subscriptionPlan.create({
+        await this.prisma.client.subscriptionPlan.create({
           data: {
             ...plan,
             stripeProductId: existingPrice.product as string,
@@ -64,7 +64,7 @@ export class SubscriptionPlanService implements OnModuleInit {
         planType: plan.planType,
       });
 
-      await this.prisma.subscriptionPlan.create({
+      await this.prisma.client.subscriptionPlan.create({
         data: {
           ...plan,
           stripeProductId: stripePrice.product as string,
@@ -79,7 +79,7 @@ export class SubscriptionPlanService implements OnModuleInit {
   async seedCoupons() {
     for (const coupon of couponSeedData) {
       // 1. Find plan
-      const plan = await this.prisma.subscriptionPlan.findFirst({
+      const plan = await this.prisma.client.subscriptionPlan.findFirst({
         where: { planType: coupon.planType },
       });
 
@@ -91,7 +91,7 @@ export class SubscriptionPlanService implements OnModuleInit {
       }
 
       // 2. Check DB
-      const existingPromo = await this.prisma.promoCode.findFirst({
+      const existingPromo = await this.prisma.client.promoCode.findFirst({
         where: { code: coupon.code },
       });
 
@@ -120,7 +120,7 @@ export class SubscriptionPlanService implements OnModuleInit {
       }
 
       // 4. Create Promo in DB
-      await this.prisma.promoCode.create({
+      await this.prisma.client.promoCode.create({
         data: {
           code: coupon.code,
           discount: coupon.discount,

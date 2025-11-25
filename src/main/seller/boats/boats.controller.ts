@@ -20,7 +20,7 @@ import {
   ApiOperation,
   ApiTags,
 } from '@nestjs/swagger';
-import { BoatImageType } from '@prisma/client';
+import { BoatImageType } from 'generated/client';
 import { CreateBoatsInfoDto } from './dto/boats-info.dto';
 import { BoatListingDto } from './dto/boats.dto';
 import { GetOwnBoatsDto } from './dto/get-own-boats.dto';
