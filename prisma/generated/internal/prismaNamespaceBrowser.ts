@@ -64,6 +64,9 @@ export const ModelName = {
   FileInstance: 'FileInstance',
   Notification: 'Notification',
   UserNotification: 'UserNotification',
+  PageBanner: 'PageBanner',
+  Blog: 'Blog',
+  Setting: 'Setting',
   SubscriptionPlan: 'SubscriptionPlan',
   UserSubscription: 'UserSubscription',
   PromoCode: 'PromoCode',
@@ -253,6 +256,52 @@ export const UserNotificationScalarFieldEnum = {
 
 export type UserNotificationScalarFieldEnum =
   (typeof UserNotificationScalarFieldEnum)[keyof typeof UserNotificationScalarFieldEnum];
+
+export const PageBannerScalarFieldEnum = {
+  id: 'id',
+  page: 'page',
+  site: 'site',
+  bannerTitle: 'bannerTitle',
+  subtitle: 'subtitle',
+  logoId: 'logoId',
+  backgroundId: 'backgroundId',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+} as const;
+
+export type PageBannerScalarFieldEnum =
+  (typeof PageBannerScalarFieldEnum)[keyof typeof PageBannerScalarFieldEnum];
+
+export const BlogScalarFieldEnum = {
+  id: 'id',
+  blogImageId: 'blogImageId',
+  blogTitle: 'blogTitle',
+  blogDescription: 'blogDescription',
+  sharedLink: 'sharedLink',
+  readTime: 'readTime',
+  viewCount: 'viewCount',
+  postStatus: 'postStatus',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+} as const;
+
+export type BlogScalarFieldEnum =
+  (typeof BlogScalarFieldEnum)[keyof typeof BlogScalarFieldEnum];
+
+export const SettingScalarFieldEnum = {
+  id: 'id',
+  siteName: 'siteName',
+  currency: 'currency',
+  maintenanceMode: 'maintenanceMode',
+  logoId: 'logoId',
+  newListingSubmitted: 'newListingSubmitted',
+  newSellerRegistration: 'newSellerRegistration',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+} as const;
+
+export type SettingScalarFieldEnum =
+  (typeof SettingScalarFieldEnum)[keyof typeof SettingScalarFieldEnum];
 
 export const SubscriptionPlanScalarFieldEnum = {
   id: 'id',
