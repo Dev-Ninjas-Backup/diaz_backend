@@ -11,9 +11,12 @@ model FileInstance {
 
   createdAt DateTime @default(now())
   updatedAt DateTime @default(now()) @updatedAt
+  pageBanners PageBanner[] @relation("LogoFile")
+  pageBannersBackground PageBanner[] @relation("BackgroundFile")
 
+  blog Blog[] @relation("blogImage")
   boatImages BoatImage[]
-  blogImages Blog[]
+
 
   contactTopImages ContactPage? @relation("contactTopImage")
   contactBottomImages ContactPage? @relation("contactBottomImage")
@@ -22,6 +25,9 @@ model FileInstance {
   aboutPageBottonImages AboutPage? @relation("AboutPageBottomImage")
 
   @@map("file_instances")
+
+  blogs Blog[]
+  settings Setting[]
 }
 
 enum FileType {
