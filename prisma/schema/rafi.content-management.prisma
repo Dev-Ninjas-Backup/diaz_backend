@@ -1,0 +1,82 @@
+// ------------------------------------------------------
+// ENUMS
+// ------------------------------------------------------
+enum PostStatus {
+  DRAFT
+  PUBLISHED
+  ARCHIVED
+}
+
+// ------------------------------------------------------
+// MODELS
+// ------------------------------------------------------
+
+model Blog {
+  id               String        @id @default(uuid())
+  blogImageId      String?
+  blogImage        FileInstance? @relation(fields: [blogImageId], references: [id])
+
+  blogTitle        String        @db.VarChar(255)
+  blogDescription  String
+  sharedLink       String?       @db.VarChar(255)
+  readTime         Int?
+  viewCount        Int           @default(0)
+  postStatus       PostStatus    @default(DRAFT)
+  createdAt        DateTime      @default(now())
+  updatedAt        DateTime      @updatedAt
+
+  @@map("blog")
+}
+
+
+model AboutPage {
+  id                   String   @id @default(uuid())
+
+  aboutTopImageId      String?  @unique
+  aboutTopImage        FileInstance? @relation("AboutPageTopImage", fields: [aboutTopImageId], references: [id])
+
+  aboutBottonImageId   String?  @unique
+  aboutBottomImage     FileInstance? @relation("AboutPageBottomImage", fields: [aboutBottonImageId], references: [id])
+
+  aboutBottomTitle     String   @db.VarChar(255)
+  aboutBottomSubTitle  String   @db.VarChar(255)
+  createdAt            DateTime @default(now())
+  updatedAt            DateTime @updatedAt
+
+  @@map("aboutpage")
+}
+
+model ContactPage {
+  id               String   @id @default(uuid())
+
+  contactTopImageId String   @unique
+  contactTopImage   FileInstance @relation("contactTopImage", fields: [contactTopImageId], references: [id])
+
+  contactBottomImageId String   @unique
+  contactBottomImage   FileInstance @relation("contactBottomImage", fields: [contactBottomImageId], references: [id])
+
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+
+  @@map("contactpage")
+}
+
+model PrivacyPolicy {
+  id                 String   @id @default(uuid())
+  privacyTitle       String   @db.VarChar(255)
+  privacyDescription String
+  createdAt          DateTime @default(now())
+  updatedAt          DateTime @updatedAt
+
+  @@map("privacypolicy")
+}
+
+model TermsOfServices {
+  id               String   @id @default(uuid())
+  termsTitle       String   @db.VarChar(255)
+  termsDescription String
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+
+  @@map("terms_of_services")
+}

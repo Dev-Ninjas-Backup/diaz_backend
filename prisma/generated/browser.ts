@@ -67,6 +67,31 @@ export type Notification = Prisma.NotificationModel;
  */
 export type UserNotification = Prisma.UserNotificationModel;
 /**
+ * Model Blog
+ *
+ */
+export type Blog = Prisma.BlogModel;
+/**
+ * Model AboutPage
+ *
+ */
+export type AboutPage = Prisma.AboutPageModel;
+/**
+ * Model ContactPage
+ *
+ */
+export type ContactPage = Prisma.ContactPageModel;
+/**
+ * Model PrivacyPolicy
+ *
+ */
+export type PrivacyPolicy = Prisma.PrivacyPolicyModel;
+/**
+ * Model TermsOfServices
+ *
+ */
+export type TermsOfServices = Prisma.TermsOfServicesModel;
+/**
  * Model SubscriptionPlan
  *
  */
