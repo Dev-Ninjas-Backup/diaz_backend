@@ -10,7 +10,7 @@ import {
   ApiResponse,
   ApiTags,
 } from '@nestjs/swagger';
-import { GetSellerDto, UpdateSellerDto } from './dto/seller.dto';
+import { UpdateSellerDto } from './dto/seller.dto';
 
 @ApiTags('Seller Management')
 @Controller('seller-management')
@@ -27,7 +27,6 @@ export class SellerManagementController {
   })
   @ApiOkResponse({
     description: 'List of sellers retrieved successfully',
-    type: [GetSellerDto],
     example: [
       {
         sellerId: 'usr_123abc',

@@ -11,35 +11,6 @@ import {
 } from 'class-validator';
 import { UserStatus } from 'generated/enums';
 
-export class GetSellerDto {
-  @ApiProperty({ example: 'usr_123abc', description: 'Unique seller ID' })
-  sellerId: string;
-
-  @ApiProperty({ example: 'John Marine', description: 'Display name' })
-  name: string;
-
-  @ApiProperty({ example: 'john@boats.com' })
-  email: string;
-
-  @ApiProperty({ example: 'johnmarine' })
-  username: string;
-
-  @ApiProperty({ example: 'https://example.com/avatar.jpg', nullable: true })
-  avatarUrl: string | null;
-
-  @ApiProperty({ example: 15, description: 'Number of active/pending boats' })
-  boatsCount: number;
-
-  @ApiProperty({
-    example: 2850000.0,
-    description: 'Total asking price of all their listed boats',
-  })
-  totalSalesValue: number;
-
-  @ApiProperty({ example: '2025-01-01T00:00:00.000Z' })
-  createdAt: Date;
-}
-
 export class UpdateSellerDto {
   // === Profile ===
   @ApiProperty({

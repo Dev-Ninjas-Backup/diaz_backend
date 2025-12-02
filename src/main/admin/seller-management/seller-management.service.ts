@@ -1,6 +1,6 @@
 import { PrismaService } from '@/lib/prisma/prisma.service';
 import { Injectable } from '@nestjs/common';
-import { GetSellerDto, UpdateSellerDto } from './dto/seller.dto';
+import { UpdateSellerDto } from './dto/seller.dto';
 
 @Injectable()
 export class SellerManagementService {
@@ -66,6 +66,7 @@ export class SellerManagementService {
         totalSalesValue: Number(totalSalesValue.toFixed(2)), // Clean float
       };
     });
+    return result;
   }
 
   async updateSeller(sellerId: string, updateSellerDto: UpdateSellerDto) {
