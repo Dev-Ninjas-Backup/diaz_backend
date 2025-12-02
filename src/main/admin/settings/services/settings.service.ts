@@ -47,7 +47,7 @@ export class SettingsService {
       fileRecord = uploaded.data.files[0];
     }
 
-    const { logo, ...prismaData } = dto as any;
+    const prismaData = dto as any;
 
     return this.prisma.client.setting.update({
       where: { id: settings.id },
