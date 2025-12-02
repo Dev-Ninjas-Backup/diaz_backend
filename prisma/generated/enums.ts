@@ -88,6 +88,14 @@ export const FileType = {
 
 export type FileType = (typeof FileType)[keyof typeof FileType];
 
+export const PostStatus = {
+  DRAFT: 'DRAFT',
+  PUBLISHED: 'PUBLISHED',
+  ARCHIVED: 'ARCHIVED',
+} as const;
+
+export type PostStatus = (typeof PostStatus)[keyof typeof PostStatus];
+
 export const PlanType = {
   GOLD: 'GOLD',
   PLATINUM: 'PLATINUM',

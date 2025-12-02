@@ -262,6 +262,23 @@ export type FileInstanceWhereInput = {
   createdAt?: Prisma.DateTimeFilter<'FileInstance'> | Date | string;
   updatedAt?: Prisma.DateTimeFilter<'FileInstance'> | Date | string;
   boatImages?: Prisma.BoatImageListRelationFilter;
+  blogImages?: Prisma.BlogListRelationFilter;
+  contactTopImages?: Prisma.XOR<
+    Prisma.ContactPageNullableScalarRelationFilter,
+    Prisma.ContactPageWhereInput
+  > | null;
+  contactBottomImages?: Prisma.XOR<
+    Prisma.ContactPageNullableScalarRelationFilter,
+    Prisma.ContactPageWhereInput
+  > | null;
+  aboutPageTopImages?: Prisma.XOR<
+    Prisma.AboutPageNullableScalarRelationFilter,
+    Prisma.AboutPageWhereInput
+  > | null;
+  aboutPageBottonImages?: Prisma.XOR<
+    Prisma.AboutPageNullableScalarRelationFilter,
+    Prisma.AboutPageWhereInput
+  > | null;
 };
 
 export type FileInstanceOrderByWithRelationInput = {
@@ -276,6 +293,11 @@ export type FileInstanceOrderByWithRelationInput = {
   createdAt?: Prisma.SortOrder;
   updatedAt?: Prisma.SortOrder;
   boatImages?: Prisma.BoatImageOrderByRelationAggregateInput;
+  blogImages?: Prisma.BlogOrderByRelationAggregateInput;
+  contactTopImages?: Prisma.ContactPageOrderByWithRelationInput;
+  contactBottomImages?: Prisma.ContactPageOrderByWithRelationInput;
+  aboutPageTopImages?: Prisma.AboutPageOrderByWithRelationInput;
+  aboutPageBottonImages?: Prisma.AboutPageOrderByWithRelationInput;
 };
 
 export type FileInstanceWhereUniqueInput = Prisma.AtLeast<
@@ -294,6 +316,23 @@ export type FileInstanceWhereUniqueInput = Prisma.AtLeast<
     createdAt?: Prisma.DateTimeFilter<'FileInstance'> | Date | string;
     updatedAt?: Prisma.DateTimeFilter<'FileInstance'> | Date | string;
     boatImages?: Prisma.BoatImageListRelationFilter;
+    blogImages?: Prisma.BlogListRelationFilter;
+    contactTopImages?: Prisma.XOR<
+      Prisma.ContactPageNullableScalarRelationFilter,
+      Prisma.ContactPageWhereInput
+    > | null;
+    contactBottomImages?: Prisma.XOR<
+      Prisma.ContactPageNullableScalarRelationFilter,
+      Prisma.ContactPageWhereInput
+    > | null;
+    aboutPageTopImages?: Prisma.XOR<
+      Prisma.AboutPageNullableScalarRelationFilter,
+      Prisma.AboutPageWhereInput
+    > | null;
+    aboutPageBottonImages?: Prisma.XOR<
+      Prisma.AboutPageNullableScalarRelationFilter,
+      Prisma.AboutPageWhereInput
+    > | null;
   },
   'id'
 >;
@@ -356,6 +395,11 @@ export type FileInstanceCreateInput = {
   createdAt?: Date | string;
   updatedAt?: Date | string;
   boatImages?: Prisma.BoatImageCreateNestedManyWithoutFileInput;
+  blogImages?: Prisma.BlogCreateNestedManyWithoutBlogImageInput;
+  contactTopImages?: Prisma.ContactPageCreateNestedOneWithoutContactTopImageInput;
+  contactBottomImages?: Prisma.ContactPageCreateNestedOneWithoutContactBottomImageInput;
+  aboutPageTopImages?: Prisma.AboutPageCreateNestedOneWithoutAboutTopImageInput;
+  aboutPageBottonImages?: Prisma.AboutPageCreateNestedOneWithoutAboutBottomImageInput;
 };
 
 export type FileInstanceUncheckedCreateInput = {
@@ -370,6 +414,11 @@ export type FileInstanceUncheckedCreateInput = {
   createdAt?: Date | string;
   updatedAt?: Date | string;
   boatImages?: Prisma.BoatImageUncheckedCreateNestedManyWithoutFileInput;
+  blogImages?: Prisma.BlogUncheckedCreateNestedManyWithoutBlogImageInput;
+  contactTopImages?: Prisma.ContactPageUncheckedCreateNestedOneWithoutContactTopImageInput;
+  contactBottomImages?: Prisma.ContactPageUncheckedCreateNestedOneWithoutContactBottomImageInput;
+  aboutPageTopImages?: Prisma.AboutPageUncheckedCreateNestedOneWithoutAboutTopImageInput;
+  aboutPageBottonImages?: Prisma.AboutPageUncheckedCreateNestedOneWithoutAboutBottomImageInput;
 };
 
 export type FileInstanceUpdateInput = {
@@ -384,6 +433,11 @@ export type FileInstanceUpdateInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   boatImages?: Prisma.BoatImageUpdateManyWithoutFileNestedInput;
+  blogImages?: Prisma.BlogUpdateManyWithoutBlogImageNestedInput;
+  contactTopImages?: Prisma.ContactPageUpdateOneWithoutContactTopImageNestedInput;
+  contactBottomImages?: Prisma.ContactPageUpdateOneWithoutContactBottomImageNestedInput;
+  aboutPageTopImages?: Prisma.AboutPageUpdateOneWithoutAboutTopImageNestedInput;
+  aboutPageBottonImages?: Prisma.AboutPageUpdateOneWithoutAboutBottomImageNestedInput;
 };
 
 export type FileInstanceUncheckedUpdateInput = {
@@ -398,6 +452,11 @@ export type FileInstanceUncheckedUpdateInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   boatImages?: Prisma.BoatImageUncheckedUpdateManyWithoutFileNestedInput;
+  blogImages?: Prisma.BlogUncheckedUpdateManyWithoutBlogImageNestedInput;
+  contactTopImages?: Prisma.ContactPageUncheckedUpdateOneWithoutContactTopImageNestedInput;
+  contactBottomImages?: Prisma.ContactPageUncheckedUpdateOneWithoutContactBottomImageNestedInput;
+  aboutPageTopImages?: Prisma.AboutPageUncheckedUpdateOneWithoutAboutTopImageNestedInput;
+  aboutPageBottonImages?: Prisma.AboutPageUncheckedUpdateOneWithoutAboutBottomImageNestedInput;
 };
 
 export type FileInstanceCreateManyInput = {
@@ -491,6 +550,11 @@ export type FileInstanceSumOrderByAggregateInput = {
   size?: Prisma.SortOrder;
 };
 
+export type FileInstanceNullableScalarRelationFilter = {
+  is?: Prisma.FileInstanceWhereInput | null;
+  isNot?: Prisma.FileInstanceWhereInput | null;
+};
+
 export type FileInstanceCreateNestedOneWithoutBoatImagesInput = {
   create?: Prisma.XOR<
     Prisma.FileInstanceCreateWithoutBoatImagesInput,
@@ -521,6 +585,143 @@ export type EnumFileTypeFieldUpdateOperationsInput = {
   set?: $Enums.FileType;
 };
 
+export type FileInstanceCreateNestedOneWithoutBlogImagesInput = {
+  create?: Prisma.XOR<
+    Prisma.FileInstanceCreateWithoutBlogImagesInput,
+    Prisma.FileInstanceUncheckedCreateWithoutBlogImagesInput
+  >;
+  connectOrCreate?: Prisma.FileInstanceCreateOrConnectWithoutBlogImagesInput;
+  connect?: Prisma.FileInstanceWhereUniqueInput;
+};
+
+export type FileInstanceUpdateOneWithoutBlogImagesNestedInput = {
+  create?: Prisma.XOR<
+    Prisma.FileInstanceCreateWithoutBlogImagesInput,
+    Prisma.FileInstanceUncheckedCreateWithoutBlogImagesInput
+  >;
+  connectOrCreate?: Prisma.FileInstanceCreateOrConnectWithoutBlogImagesInput;
+  upsert?: Prisma.FileInstanceUpsertWithoutBlogImagesInput;
+  disconnect?: Prisma.FileInstanceWhereInput | boolean;
+  delete?: Prisma.FileInstanceWhereInput | boolean;
+  connect?: Prisma.FileInstanceWhereUniqueInput;
+  update?: Prisma.XOR<
+    Prisma.XOR<
+      Prisma.FileInstanceUpdateToOneWithWhereWithoutBlogImagesInput,
+      Prisma.FileInstanceUpdateWithoutBlogImagesInput
+    >,
+    Prisma.FileInstanceUncheckedUpdateWithoutBlogImagesInput
+  >;
+};
+
+export type FileInstanceCreateNestedOneWithoutAboutPageTopImagesInput = {
+  create?: Prisma.XOR<
+    Prisma.FileInstanceCreateWithoutAboutPageTopImagesInput,
+    Prisma.FileInstanceUncheckedCreateWithoutAboutPageTopImagesInput
+  >;
+  connectOrCreate?: Prisma.FileInstanceCreateOrConnectWithoutAboutPageTopImagesInput;
+  connect?: Prisma.FileInstanceWhereUniqueInput;
+};
+
+export type FileInstanceCreateNestedOneWithoutAboutPageBottonImagesInput = {
+  create?: Prisma.XOR<
+    Prisma.FileInstanceCreateWithoutAboutPageBottonImagesInput,
+    Prisma.FileInstanceUncheckedCreateWithoutAboutPageBottonImagesInput
+  >;
+  connectOrCreate?: Prisma.FileInstanceCreateOrConnectWithoutAboutPageBottonImagesInput;
+  connect?: Prisma.FileInstanceWhereUniqueInput;
+};
+
+export type FileInstanceUpdateOneWithoutAboutPageTopImagesNestedInput = {
+  create?: Prisma.XOR<
+    Prisma.FileInstanceCreateWithoutAboutPageTopImagesInput,
+    Prisma.FileInstanceUncheckedCreateWithoutAboutPageTopImagesInput
+  >;
+  connectOrCreate?: Prisma.FileInstanceCreateOrConnectWithoutAboutPageTopImagesInput;
+  upsert?: Prisma.FileInstanceUpsertWithoutAboutPageTopImagesInput;
+  disconnect?: Prisma.FileInstanceWhereInput | boolean;
+  delete?: Prisma.FileInstanceWhereInput | boolean;
+  connect?: Prisma.FileInstanceWhereUniqueInput;
+  update?: Prisma.XOR<
+    Prisma.XOR<
+      Prisma.FileInstanceUpdateToOneWithWhereWithoutAboutPageTopImagesInput,
+      Prisma.FileInstanceUpdateWithoutAboutPageTopImagesInput
+    >,
+    Prisma.FileInstanceUncheckedUpdateWithoutAboutPageTopImagesInput
+  >;
+};
+
+export type FileInstanceUpdateOneWithoutAboutPageBottonImagesNestedInput = {
+  create?: Prisma.XOR<
+    Prisma.FileInstanceCreateWithoutAboutPageBottonImagesInput,
+    Prisma.FileInstanceUncheckedCreateWithoutAboutPageBottonImagesInput
+  >;
+  connectOrCreate?: Prisma.FileInstanceCreateOrConnectWithoutAboutPageBottonImagesInput;
+  upsert?: Prisma.FileInstanceUpsertWithoutAboutPageBottonImagesInput;
+  disconnect?: Prisma.FileInstanceWhereInput | boolean;
+  delete?: Prisma.FileInstanceWhereInput | boolean;
+  connect?: Prisma.FileInstanceWhereUniqueInput;
+  update?: Prisma.XOR<
+    Prisma.XOR<
+      Prisma.FileInstanceUpdateToOneWithWhereWithoutAboutPageBottonImagesInput,
+      Prisma.FileInstanceUpdateWithoutAboutPageBottonImagesInput
+    >,
+    Prisma.FileInstanceUncheckedUpdateWithoutAboutPageBottonImagesInput
+  >;
+};
+
+export type FileInstanceCreateNestedOneWithoutContactTopImagesInput = {
+  create?: Prisma.XOR<
+    Prisma.FileInstanceCreateWithoutContactTopImagesInput,
+    Prisma.FileInstanceUncheckedCreateWithoutContactTopImagesInput
+  >;
+  connectOrCreate?: Prisma.FileInstanceCreateOrConnectWithoutContactTopImagesInput;
+  connect?: Prisma.FileInstanceWhereUniqueInput;
+};
+
+export type FileInstanceCreateNestedOneWithoutContactBottomImagesInput = {
+  create?: Prisma.XOR<
+    Prisma.FileInstanceCreateWithoutContactBottomImagesInput,
+    Prisma.FileInstanceUncheckedCreateWithoutContactBottomImagesInput
+  >;
+  connectOrCreate?: Prisma.FileInstanceCreateOrConnectWithoutContactBottomImagesInput;
+  connect?: Prisma.FileInstanceWhereUniqueInput;
+};
+
+export type FileInstanceUpdateOneRequiredWithoutContactTopImagesNestedInput = {
+  create?: Prisma.XOR<
+    Prisma.FileInstanceCreateWithoutContactTopImagesInput,
+    Prisma.FileInstanceUncheckedCreateWithoutContactTopImagesInput
+  >;
+  connectOrCreate?: Prisma.FileInstanceCreateOrConnectWithoutContactTopImagesInput;
+  upsert?: Prisma.FileInstanceUpsertWithoutContactTopImagesInput;
+  connect?: Prisma.FileInstanceWhereUniqueInput;
+  update?: Prisma.XOR<
+    Prisma.XOR<
+      Prisma.FileInstanceUpdateToOneWithWhereWithoutContactTopImagesInput,
+      Prisma.FileInstanceUpdateWithoutContactTopImagesInput
+    >,
+    Prisma.FileInstanceUncheckedUpdateWithoutContactTopImagesInput
+  >;
+};
+
+export type FileInstanceUpdateOneRequiredWithoutContactBottomImagesNestedInput =
+  {
+    create?: Prisma.XOR<
+      Prisma.FileInstanceCreateWithoutContactBottomImagesInput,
+      Prisma.FileInstanceUncheckedCreateWithoutContactBottomImagesInput
+    >;
+    connectOrCreate?: Prisma.FileInstanceCreateOrConnectWithoutContactBottomImagesInput;
+    upsert?: Prisma.FileInstanceUpsertWithoutContactBottomImagesInput;
+    connect?: Prisma.FileInstanceWhereUniqueInput;
+    update?: Prisma.XOR<
+      Prisma.XOR<
+        Prisma.FileInstanceUpdateToOneWithWhereWithoutContactBottomImagesInput,
+        Prisma.FileInstanceUpdateWithoutContactBottomImagesInput
+      >,
+      Prisma.FileInstanceUncheckedUpdateWithoutContactBottomImagesInput
+    >;
+  };
+
 export type FileInstanceCreateWithoutBoatImagesInput = {
   id?: string;
   filename: string;
@@ -532,6 +733,11 @@ export type FileInstanceCreateWithoutBoatImagesInput = {
   size: number;
   createdAt?: Date | string;
   updatedAt?: Date | string;
+  blogImages?: Prisma.BlogCreateNestedManyWithoutBlogImageInput;
+  contactTopImages?: Prisma.ContactPageCreateNestedOneWithoutContactTopImageInput;
+  contactBottomImages?: Prisma.ContactPageCreateNestedOneWithoutContactBottomImageInput;
+  aboutPageTopImages?: Prisma.AboutPageCreateNestedOneWithoutAboutTopImageInput;
+  aboutPageBottonImages?: Prisma.AboutPageCreateNestedOneWithoutAboutBottomImageInput;
 };
 
 export type FileInstanceUncheckedCreateWithoutBoatImagesInput = {
@@ -545,6 +751,11 @@ export type FileInstanceUncheckedCreateWithoutBoatImagesInput = {
   size: number;
   createdAt?: Date | string;
   updatedAt?: Date | string;
+  blogImages?: Prisma.BlogUncheckedCreateNestedManyWithoutBlogImageInput;
+  contactTopImages?: Prisma.ContactPageUncheckedCreateNestedOneWithoutContactTopImageInput;
+  contactBottomImages?: Prisma.ContactPageUncheckedCreateNestedOneWithoutContactBottomImageInput;
+  aboutPageTopImages?: Prisma.AboutPageUncheckedCreateNestedOneWithoutAboutTopImageInput;
+  aboutPageBottonImages?: Prisma.AboutPageUncheckedCreateNestedOneWithoutAboutBottomImageInput;
 };
 
 export type FileInstanceCreateOrConnectWithoutBoatImagesInput = {
@@ -586,6 +797,11 @@ export type FileInstanceUpdateWithoutBoatImagesInput = {
   size?: Prisma.IntFieldUpdateOperationsInput | number;
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  blogImages?: Prisma.BlogUpdateManyWithoutBlogImageNestedInput;
+  contactTopImages?: Prisma.ContactPageUpdateOneWithoutContactTopImageNestedInput;
+  contactBottomImages?: Prisma.ContactPageUpdateOneWithoutContactBottomImageNestedInput;
+  aboutPageTopImages?: Prisma.AboutPageUpdateOneWithoutAboutTopImageNestedInput;
+  aboutPageBottonImages?: Prisma.AboutPageUpdateOneWithoutAboutBottomImageNestedInput;
 };
 
 export type FileInstanceUncheckedUpdateWithoutBoatImagesInput = {
@@ -599,6 +815,512 @@ export type FileInstanceUncheckedUpdateWithoutBoatImagesInput = {
   size?: Prisma.IntFieldUpdateOperationsInput | number;
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  blogImages?: Prisma.BlogUncheckedUpdateManyWithoutBlogImageNestedInput;
+  contactTopImages?: Prisma.ContactPageUncheckedUpdateOneWithoutContactTopImageNestedInput;
+  contactBottomImages?: Prisma.ContactPageUncheckedUpdateOneWithoutContactBottomImageNestedInput;
+  aboutPageTopImages?: Prisma.AboutPageUncheckedUpdateOneWithoutAboutTopImageNestedInput;
+  aboutPageBottonImages?: Prisma.AboutPageUncheckedUpdateOneWithoutAboutBottomImageNestedInput;
+};
+
+export type FileInstanceCreateWithoutBlogImagesInput = {
+  id?: string;
+  filename: string;
+  originalFilename: string;
+  path: string;
+  url: string;
+  fileType?: $Enums.FileType;
+  mimeType: string;
+  size: number;
+  createdAt?: Date | string;
+  updatedAt?: Date | string;
+  boatImages?: Prisma.BoatImageCreateNestedManyWithoutFileInput;
+  contactTopImages?: Prisma.ContactPageCreateNestedOneWithoutContactTopImageInput;
+  contactBottomImages?: Prisma.ContactPageCreateNestedOneWithoutContactBottomImageInput;
+  aboutPageTopImages?: Prisma.AboutPageCreateNestedOneWithoutAboutTopImageInput;
+  aboutPageBottonImages?: Prisma.AboutPageCreateNestedOneWithoutAboutBottomImageInput;
+};
+
+export type FileInstanceUncheckedCreateWithoutBlogImagesInput = {
+  id?: string;
+  filename: string;
+  originalFilename: string;
+  path: string;
+  url: string;
+  fileType?: $Enums.FileType;
+  mimeType: string;
+  size: number;
+  createdAt?: Date | string;
+  updatedAt?: Date | string;
+  boatImages?: Prisma.BoatImageUncheckedCreateNestedManyWithoutFileInput;
+  contactTopImages?: Prisma.ContactPageUncheckedCreateNestedOneWithoutContactTopImageInput;
+  contactBottomImages?: Prisma.ContactPageUncheckedCreateNestedOneWithoutContactBottomImageInput;
+  aboutPageTopImages?: Prisma.AboutPageUncheckedCreateNestedOneWithoutAboutTopImageInput;
+  aboutPageBottonImages?: Prisma.AboutPageUncheckedCreateNestedOneWithoutAboutBottomImageInput;
+};
+
+export type FileInstanceCreateOrConnectWithoutBlogImagesInput = {
+  where: Prisma.FileInstanceWhereUniqueInput;
+  create: Prisma.XOR<
+    Prisma.FileInstanceCreateWithoutBlogImagesInput,
+    Prisma.FileInstanceUncheckedCreateWithoutBlogImagesInput
+  >;
+};
+
+export type FileInstanceUpsertWithoutBlogImagesInput = {
+  update: Prisma.XOR<
+    Prisma.FileInstanceUpdateWithoutBlogImagesInput,
+    Prisma.FileInstanceUncheckedUpdateWithoutBlogImagesInput
+  >;
+  create: Prisma.XOR<
+    Prisma.FileInstanceCreateWithoutBlogImagesInput,
+    Prisma.FileInstanceUncheckedCreateWithoutBlogImagesInput
+  >;
+  where?: Prisma.FileInstanceWhereInput;
+};
+
+export type FileInstanceUpdateToOneWithWhereWithoutBlogImagesInput = {
+  where?: Prisma.FileInstanceWhereInput;
+  data: Prisma.XOR<
+    Prisma.FileInstanceUpdateWithoutBlogImagesInput,
+    Prisma.FileInstanceUncheckedUpdateWithoutBlogImagesInput
+  >;
+};
+
+export type FileInstanceUpdateWithoutBlogImagesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string;
+  filename?: Prisma.StringFieldUpdateOperationsInput | string;
+  originalFilename?: Prisma.StringFieldUpdateOperationsInput | string;
+  path?: Prisma.StringFieldUpdateOperationsInput | string;
+  url?: Prisma.StringFieldUpdateOperationsInput | string;
+  fileType?: Prisma.EnumFileTypeFieldUpdateOperationsInput | $Enums.FileType;
+  mimeType?: Prisma.StringFieldUpdateOperationsInput | string;
+  size?: Prisma.IntFieldUpdateOperationsInput | number;
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  boatImages?: Prisma.BoatImageUpdateManyWithoutFileNestedInput;
+  contactTopImages?: Prisma.ContactPageUpdateOneWithoutContactTopImageNestedInput;
+  contactBottomImages?: Prisma.ContactPageUpdateOneWithoutContactBottomImageNestedInput;
+  aboutPageTopImages?: Prisma.AboutPageUpdateOneWithoutAboutTopImageNestedInput;
+  aboutPageBottonImages?: Prisma.AboutPageUpdateOneWithoutAboutBottomImageNestedInput;
+};
+
+export type FileInstanceUncheckedUpdateWithoutBlogImagesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string;
+  filename?: Prisma.StringFieldUpdateOperationsInput | string;
+  originalFilename?: Prisma.StringFieldUpdateOperationsInput | string;
+  path?: Prisma.StringFieldUpdateOperationsInput | string;
+  url?: Prisma.StringFieldUpdateOperationsInput | string;
+  fileType?: Prisma.EnumFileTypeFieldUpdateOperationsInput | $Enums.FileType;
+  mimeType?: Prisma.StringFieldUpdateOperationsInput | string;
+  size?: Prisma.IntFieldUpdateOperationsInput | number;
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  boatImages?: Prisma.BoatImageUncheckedUpdateManyWithoutFileNestedInput;
+  contactTopImages?: Prisma.ContactPageUncheckedUpdateOneWithoutContactTopImageNestedInput;
+  contactBottomImages?: Prisma.ContactPageUncheckedUpdateOneWithoutContactBottomImageNestedInput;
+  aboutPageTopImages?: Prisma.AboutPageUncheckedUpdateOneWithoutAboutTopImageNestedInput;
+  aboutPageBottonImages?: Prisma.AboutPageUncheckedUpdateOneWithoutAboutBottomImageNestedInput;
+};
+
+export type FileInstanceCreateWithoutAboutPageTopImagesInput = {
+  id?: string;
+  filename: string;
+  originalFilename: string;
+  path: string;
+  url: string;
+  fileType?: $Enums.FileType;
+  mimeType: string;
+  size: number;
+  createdAt?: Date | string;
+  updatedAt?: Date | string;
+  boatImages?: Prisma.BoatImageCreateNestedManyWithoutFileInput;
+  blogImages?: Prisma.BlogCreateNestedManyWithoutBlogImageInput;
+  contactTopImages?: Prisma.ContactPageCreateNestedOneWithoutContactTopImageInput;
+  contactBottomImages?: Prisma.ContactPageCreateNestedOneWithoutContactBottomImageInput;
+  aboutPageBottonImages?: Prisma.AboutPageCreateNestedOneWithoutAboutBottomImageInput;
+};
+
+export type FileInstanceUncheckedCreateWithoutAboutPageTopImagesInput = {
+  id?: string;
+  filename: string;
+  originalFilename: string;
+  path: string;
+  url: string;
+  fileType?: $Enums.FileType;
+  mimeType: string;
+  size: number;
+  createdAt?: Date | string;
+  updatedAt?: Date | string;
+  boatImages?: Prisma.BoatImageUncheckedCreateNestedManyWithoutFileInput;
+  blogImages?: Prisma.BlogUncheckedCreateNestedManyWithoutBlogImageInput;
+  contactTopImages?: Prisma.ContactPageUncheckedCreateNestedOneWithoutContactTopImageInput;
+  contactBottomImages?: Prisma.ContactPageUncheckedCreateNestedOneWithoutContactBottomImageInput;
+  aboutPageBottonImages?: Prisma.AboutPageUncheckedCreateNestedOneWithoutAboutBottomImageInput;
+};
+
+export type FileInstanceCreateOrConnectWithoutAboutPageTopImagesInput = {
+  where: Prisma.FileInstanceWhereUniqueInput;
+  create: Prisma.XOR<
+    Prisma.FileInstanceCreateWithoutAboutPageTopImagesInput,
+    Prisma.FileInstanceUncheckedCreateWithoutAboutPageTopImagesInput
+  >;
+};
+
+export type FileInstanceCreateWithoutAboutPageBottonImagesInput = {
+  id?: string;
+  filename: string;
+  originalFilename: string;
+  path: string;
+  url: string;
+  fileType?: $Enums.FileType;
+  mimeType: string;
+  size: number;
+  createdAt?: Date | string;
+  updatedAt?: Date | string;
+  boatImages?: Prisma.BoatImageCreateNestedManyWithoutFileInput;
+  blogImages?: Prisma.BlogCreateNestedManyWithoutBlogImageInput;
+  contactTopImages?: Prisma.ContactPageCreateNestedOneWithoutContactTopImageInput;
+  contactBottomImages?: Prisma.ContactPageCreateNestedOneWithoutContactBottomImageInput;
+  aboutPageTopImages?: Prisma.AboutPageCreateNestedOneWithoutAboutTopImageInput;
+};
+
+export type FileInstanceUncheckedCreateWithoutAboutPageBottonImagesInput = {
+  id?: string;
+  filename: string;
+  originalFilename: string;
+  path: string;
+  url: string;
+  fileType?: $Enums.FileType;
+  mimeType: string;
+  size: number;
+  createdAt?: Date | string;
+  updatedAt?: Date | string;
+  boatImages?: Prisma.BoatImageUncheckedCreateNestedManyWithoutFileInput;
+  blogImages?: Prisma.BlogUncheckedCreateNestedManyWithoutBlogImageInput;
+  contactTopImages?: Prisma.ContactPageUncheckedCreateNestedOneWithoutContactTopImageInput;
+  contactBottomImages?: Prisma.ContactPageUncheckedCreateNestedOneWithoutContactBottomImageInput;
+  aboutPageTopImages?: Prisma.AboutPageUncheckedCreateNestedOneWithoutAboutTopImageInput;
+};
+
+export type FileInstanceCreateOrConnectWithoutAboutPageBottonImagesInput = {
+  where: Prisma.FileInstanceWhereUniqueInput;
+  create: Prisma.XOR<
+    Prisma.FileInstanceCreateWithoutAboutPageBottonImagesInput,
+    Prisma.FileInstanceUncheckedCreateWithoutAboutPageBottonImagesInput
+  >;
+};
+
+export type FileInstanceUpsertWithoutAboutPageTopImagesInput = {
+  update: Prisma.XOR<
+    Prisma.FileInstanceUpdateWithoutAboutPageTopImagesInput,
+    Prisma.FileInstanceUncheckedUpdateWithoutAboutPageTopImagesInput
+  >;
+  create: Prisma.XOR<
+    Prisma.FileInstanceCreateWithoutAboutPageTopImagesInput,
+    Prisma.FileInstanceUncheckedCreateWithoutAboutPageTopImagesInput
+  >;
+  where?: Prisma.FileInstanceWhereInput;
+};
+
+export type FileInstanceUpdateToOneWithWhereWithoutAboutPageTopImagesInput = {
+  where?: Prisma.FileInstanceWhereInput;
+  data: Prisma.XOR<
+    Prisma.FileInstanceUpdateWithoutAboutPageTopImagesInput,
+    Prisma.FileInstanceUncheckedUpdateWithoutAboutPageTopImagesInput
+  >;
+};
+
+export type FileInstanceUpdateWithoutAboutPageTopImagesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string;
+  filename?: Prisma.StringFieldUpdateOperationsInput | string;
+  originalFilename?: Prisma.StringFieldUpdateOperationsInput | string;
+  path?: Prisma.StringFieldUpdateOperationsInput | string;
+  url?: Prisma.StringFieldUpdateOperationsInput | string;
+  fileType?: Prisma.EnumFileTypeFieldUpdateOperationsInput | $Enums.FileType;
+  mimeType?: Prisma.StringFieldUpdateOperationsInput | string;
+  size?: Prisma.IntFieldUpdateOperationsInput | number;
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  boatImages?: Prisma.BoatImageUpdateManyWithoutFileNestedInput;
+  blogImages?: Prisma.BlogUpdateManyWithoutBlogImageNestedInput;
+  contactTopImages?: Prisma.ContactPageUpdateOneWithoutContactTopImageNestedInput;
+  contactBottomImages?: Prisma.ContactPageUpdateOneWithoutContactBottomImageNestedInput;
+  aboutPageBottonImages?: Prisma.AboutPageUpdateOneWithoutAboutBottomImageNestedInput;
+};
+
+export type FileInstanceUncheckedUpdateWithoutAboutPageTopImagesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string;
+  filename?: Prisma.StringFieldUpdateOperationsInput | string;
+  originalFilename?: Prisma.StringFieldUpdateOperationsInput | string;
+  path?: Prisma.StringFieldUpdateOperationsInput | string;
+  url?: Prisma.StringFieldUpdateOperationsInput | string;
+  fileType?: Prisma.EnumFileTypeFieldUpdateOperationsInput | $Enums.FileType;
+  mimeType?: Prisma.StringFieldUpdateOperationsInput | string;
+  size?: Prisma.IntFieldUpdateOperationsInput | number;
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  boatImages?: Prisma.BoatImageUncheckedUpdateManyWithoutFileNestedInput;
+  blogImages?: Prisma.BlogUncheckedUpdateManyWithoutBlogImageNestedInput;
+  contactTopImages?: Prisma.ContactPageUncheckedUpdateOneWithoutContactTopImageNestedInput;
+  contactBottomImages?: Prisma.ContactPageUncheckedUpdateOneWithoutContactBottomImageNestedInput;
+  aboutPageBottonImages?: Prisma.AboutPageUncheckedUpdateOneWithoutAboutBottomImageNestedInput;
+};
+
+export type FileInstanceUpsertWithoutAboutPageBottonImagesInput = {
+  update: Prisma.XOR<
+    Prisma.FileInstanceUpdateWithoutAboutPageBottonImagesInput,
+    Prisma.FileInstanceUncheckedUpdateWithoutAboutPageBottonImagesInput
+  >;
+  create: Prisma.XOR<
+    Prisma.FileInstanceCreateWithoutAboutPageBottonImagesInput,
+    Prisma.FileInstanceUncheckedCreateWithoutAboutPageBottonImagesInput
+  >;
+  where?: Prisma.FileInstanceWhereInput;
+};
+
+export type FileInstanceUpdateToOneWithWhereWithoutAboutPageBottonImagesInput =
+  {
+    where?: Prisma.FileInstanceWhereInput;
+    data: Prisma.XOR<
+      Prisma.FileInstanceUpdateWithoutAboutPageBottonImagesInput,
+      Prisma.FileInstanceUncheckedUpdateWithoutAboutPageBottonImagesInput
+    >;
+  };
+
+export type FileInstanceUpdateWithoutAboutPageBottonImagesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string;
+  filename?: Prisma.StringFieldUpdateOperationsInput | string;
+  originalFilename?: Prisma.StringFieldUpdateOperationsInput | string;
+  path?: Prisma.StringFieldUpdateOperationsInput | string;
+  url?: Prisma.StringFieldUpdateOperationsInput | string;
+  fileType?: Prisma.EnumFileTypeFieldUpdateOperationsInput | $Enums.FileType;
+  mimeType?: Prisma.StringFieldUpdateOperationsInput | string;
+  size?: Prisma.IntFieldUpdateOperationsInput | number;
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  boatImages?: Prisma.BoatImageUpdateManyWithoutFileNestedInput;
+  blogImages?: Prisma.BlogUpdateManyWithoutBlogImageNestedInput;
+  contactTopImages?: Prisma.ContactPageUpdateOneWithoutContactTopImageNestedInput;
+  contactBottomImages?: Prisma.ContactPageUpdateOneWithoutContactBottomImageNestedInput;
+  aboutPageTopImages?: Prisma.AboutPageUpdateOneWithoutAboutTopImageNestedInput;
+};
+
+export type FileInstanceUncheckedUpdateWithoutAboutPageBottonImagesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string;
+  filename?: Prisma.StringFieldUpdateOperationsInput | string;
+  originalFilename?: Prisma.StringFieldUpdateOperationsInput | string;
+  path?: Prisma.StringFieldUpdateOperationsInput | string;
+  url?: Prisma.StringFieldUpdateOperationsInput | string;
+  fileType?: Prisma.EnumFileTypeFieldUpdateOperationsInput | $Enums.FileType;
+  mimeType?: Prisma.StringFieldUpdateOperationsInput | string;
+  size?: Prisma.IntFieldUpdateOperationsInput | number;
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  boatImages?: Prisma.BoatImageUncheckedUpdateManyWithoutFileNestedInput;
+  blogImages?: Prisma.BlogUncheckedUpdateManyWithoutBlogImageNestedInput;
+  contactTopImages?: Prisma.ContactPageUncheckedUpdateOneWithoutContactTopImageNestedInput;
+  contactBottomImages?: Prisma.ContactPageUncheckedUpdateOneWithoutContactBottomImageNestedInput;
+  aboutPageTopImages?: Prisma.AboutPageUncheckedUpdateOneWithoutAboutTopImageNestedInput;
+};
+
+export type FileInstanceCreateWithoutContactTopImagesInput = {
+  id?: string;
+  filename: string;
+  originalFilename: string;
+  path: string;
+  url: string;
+  fileType?: $Enums.FileType;
+  mimeType: string;
+  size: number;
+  createdAt?: Date | string;
+  updatedAt?: Date | string;
+  boatImages?: Prisma.BoatImageCreateNestedManyWithoutFileInput;
+  blogImages?: Prisma.BlogCreateNestedManyWithoutBlogImageInput;
+  contactBottomImages?: Prisma.ContactPageCreateNestedOneWithoutContactBottomImageInput;
+  aboutPageTopImages?: Prisma.AboutPageCreateNestedOneWithoutAboutTopImageInput;
+  aboutPageBottonImages?: Prisma.AboutPageCreateNestedOneWithoutAboutBottomImageInput;
+};
+
+export type FileInstanceUncheckedCreateWithoutContactTopImagesInput = {
+  id?: string;
+  filename: string;
+  originalFilename: string;
+  path: string;
+  url: string;
+  fileType?: $Enums.FileType;
+  mimeType: string;
+  size: number;
+  createdAt?: Date | string;
+  updatedAt?: Date | string;
+  boatImages?: Prisma.BoatImageUncheckedCreateNestedManyWithoutFileInput;
+  blogImages?: Prisma.BlogUncheckedCreateNestedManyWithoutBlogImageInput;
+  contactBottomImages?: Prisma.ContactPageUncheckedCreateNestedOneWithoutContactBottomImageInput;
+  aboutPageTopImages?: Prisma.AboutPageUncheckedCreateNestedOneWithoutAboutTopImageInput;
+  aboutPageBottonImages?: Prisma.AboutPageUncheckedCreateNestedOneWithoutAboutBottomImageInput;
+};
+
+export type FileInstanceCreateOrConnectWithoutContactTopImagesInput = {
+  where: Prisma.FileInstanceWhereUniqueInput;
+  create: Prisma.XOR<
+    Prisma.FileInstanceCreateWithoutContactTopImagesInput,
+    Prisma.FileInstanceUncheckedCreateWithoutContactTopImagesInput
+  >;
+};
+
+export type FileInstanceCreateWithoutContactBottomImagesInput = {
+  id?: string;
+  filename: string;
+  originalFilename: string;
+  path: string;
+  url: string;
+  fileType?: $Enums.FileType;
+  mimeType: string;
+  size: number;
+  createdAt?: Date | string;
+  updatedAt?: Date | string;
+  boatImages?: Prisma.BoatImageCreateNestedManyWithoutFileInput;
+  blogImages?: Prisma.BlogCreateNestedManyWithoutBlogImageInput;
+  contactTopImages?: Prisma.ContactPageCreateNestedOneWithoutContactTopImageInput;
+  aboutPageTopImages?: Prisma.AboutPageCreateNestedOneWithoutAboutTopImageInput;
+  aboutPageBottonImages?: Prisma.AboutPageCreateNestedOneWithoutAboutBottomImageInput;
+};
+
+export type FileInstanceUncheckedCreateWithoutContactBottomImagesInput = {
+  id?: string;
+  filename: string;
+  originalFilename: string;
+  path: string;
+  url: string;
+  fileType?: $Enums.FileType;
+  mimeType: string;
+  size: number;
+  createdAt?: Date | string;
+  updatedAt?: Date | string;
+  boatImages?: Prisma.BoatImageUncheckedCreateNestedManyWithoutFileInput;
+  blogImages?: Prisma.BlogUncheckedCreateNestedManyWithoutBlogImageInput;
+  contactTopImages?: Prisma.ContactPageUncheckedCreateNestedOneWithoutContactTopImageInput;
+  aboutPageTopImages?: Prisma.AboutPageUncheckedCreateNestedOneWithoutAboutTopImageInput;
+  aboutPageBottonImages?: Prisma.AboutPageUncheckedCreateNestedOneWithoutAboutBottomImageInput;
+};
+
+export type FileInstanceCreateOrConnectWithoutContactBottomImagesInput = {
+  where: Prisma.FileInstanceWhereUniqueInput;
+  create: Prisma.XOR<
+    Prisma.FileInstanceCreateWithoutContactBottomImagesInput,
+    Prisma.FileInstanceUncheckedCreateWithoutContactBottomImagesInput
+  >;
+};
+
+export type FileInstanceUpsertWithoutContactTopImagesInput = {
+  update: Prisma.XOR<
+    Prisma.FileInstanceUpdateWithoutContactTopImagesInput,
+    Prisma.FileInstanceUncheckedUpdateWithoutContactTopImagesInput
+  >;
+  create: Prisma.XOR<
+    Prisma.FileInstanceCreateWithoutContactTopImagesInput,
+    Prisma.FileInstanceUncheckedCreateWithoutContactTopImagesInput
+  >;
+  where?: Prisma.FileInstanceWhereInput;
+};
+
+export type FileInstanceUpdateToOneWithWhereWithoutContactTopImagesInput = {
+  where?: Prisma.FileInstanceWhereInput;
+  data: Prisma.XOR<
+    Prisma.FileInstanceUpdateWithoutContactTopImagesInput,
+    Prisma.FileInstanceUncheckedUpdateWithoutContactTopImagesInput
+  >;
+};
+
+export type FileInstanceUpdateWithoutContactTopImagesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string;
+  filename?: Prisma.StringFieldUpdateOperationsInput | string;
+  originalFilename?: Prisma.StringFieldUpdateOperationsInput | string;
+  path?: Prisma.StringFieldUpdateOperationsInput | string;
+  url?: Prisma.StringFieldUpdateOperationsInput | string;
+  fileType?: Prisma.EnumFileTypeFieldUpdateOperationsInput | $Enums.FileType;
+  mimeType?: Prisma.StringFieldUpdateOperationsInput | string;
+  size?: Prisma.IntFieldUpdateOperationsInput | number;
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  boatImages?: Prisma.BoatImageUpdateManyWithoutFileNestedInput;
+  blogImages?: Prisma.BlogUpdateManyWithoutBlogImageNestedInput;
+  contactBottomImages?: Prisma.ContactPageUpdateOneWithoutContactBottomImageNestedInput;
+  aboutPageTopImages?: Prisma.AboutPageUpdateOneWithoutAboutTopImageNestedInput;
+  aboutPageBottonImages?: Prisma.AboutPageUpdateOneWithoutAboutBottomImageNestedInput;
+};
+
+export type FileInstanceUncheckedUpdateWithoutContactTopImagesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string;
+  filename?: Prisma.StringFieldUpdateOperationsInput | string;
+  originalFilename?: Prisma.StringFieldUpdateOperationsInput | string;
+  path?: Prisma.StringFieldUpdateOperationsInput | string;
+  url?: Prisma.StringFieldUpdateOperationsInput | string;
+  fileType?: Prisma.EnumFileTypeFieldUpdateOperationsInput | $Enums.FileType;
+  mimeType?: Prisma.StringFieldUpdateOperationsInput | string;
+  size?: Prisma.IntFieldUpdateOperationsInput | number;
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  boatImages?: Prisma.BoatImageUncheckedUpdateManyWithoutFileNestedInput;
+  blogImages?: Prisma.BlogUncheckedUpdateManyWithoutBlogImageNestedInput;
+  contactBottomImages?: Prisma.ContactPageUncheckedUpdateOneWithoutContactBottomImageNestedInput;
+  aboutPageTopImages?: Prisma.AboutPageUncheckedUpdateOneWithoutAboutTopImageNestedInput;
+  aboutPageBottonImages?: Prisma.AboutPageUncheckedUpdateOneWithoutAboutBottomImageNestedInput;
+};
+
+export type FileInstanceUpsertWithoutContactBottomImagesInput = {
+  update: Prisma.XOR<
+    Prisma.FileInstanceUpdateWithoutContactBottomImagesInput,
+    Prisma.FileInstanceUncheckedUpdateWithoutContactBottomImagesInput
+  >;
+  create: Prisma.XOR<
+    Prisma.FileInstanceCreateWithoutContactBottomImagesInput,
+    Prisma.FileInstanceUncheckedCreateWithoutContactBottomImagesInput
+  >;
+  where?: Prisma.FileInstanceWhereInput;
+};
+
+export type FileInstanceUpdateToOneWithWhereWithoutContactBottomImagesInput = {
+  where?: Prisma.FileInstanceWhereInput;
+  data: Prisma.XOR<
+    Prisma.FileInstanceUpdateWithoutContactBottomImagesInput,
+    Prisma.FileInstanceUncheckedUpdateWithoutContactBottomImagesInput
+  >;
+};
+
+export type FileInstanceUpdateWithoutContactBottomImagesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string;
+  filename?: Prisma.StringFieldUpdateOperationsInput | string;
+  originalFilename?: Prisma.StringFieldUpdateOperationsInput | string;
+  path?: Prisma.StringFieldUpdateOperationsInput | string;
+  url?: Prisma.StringFieldUpdateOperationsInput | string;
+  fileType?: Prisma.EnumFileTypeFieldUpdateOperationsInput | $Enums.FileType;
+  mimeType?: Prisma.StringFieldUpdateOperationsInput | string;
+  size?: Prisma.IntFieldUpdateOperationsInput | number;
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  boatImages?: Prisma.BoatImageUpdateManyWithoutFileNestedInput;
+  blogImages?: Prisma.BlogUpdateManyWithoutBlogImageNestedInput;
+  contactTopImages?: Prisma.ContactPageUpdateOneWithoutContactTopImageNestedInput;
+  aboutPageTopImages?: Prisma.AboutPageUpdateOneWithoutAboutTopImageNestedInput;
+  aboutPageBottonImages?: Prisma.AboutPageUpdateOneWithoutAboutBottomImageNestedInput;
+};
+
+export type FileInstanceUncheckedUpdateWithoutContactBottomImagesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string;
+  filename?: Prisma.StringFieldUpdateOperationsInput | string;
+  originalFilename?: Prisma.StringFieldUpdateOperationsInput | string;
+  path?: Prisma.StringFieldUpdateOperationsInput | string;
+  url?: Prisma.StringFieldUpdateOperationsInput | string;
+  fileType?: Prisma.EnumFileTypeFieldUpdateOperationsInput | $Enums.FileType;
+  mimeType?: Prisma.StringFieldUpdateOperationsInput | string;
+  size?: Prisma.IntFieldUpdateOperationsInput | number;
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  boatImages?: Prisma.BoatImageUncheckedUpdateManyWithoutFileNestedInput;
+  blogImages?: Prisma.BlogUncheckedUpdateManyWithoutBlogImageNestedInput;
+  contactTopImages?: Prisma.ContactPageUncheckedUpdateOneWithoutContactTopImageNestedInput;
+  aboutPageTopImages?: Prisma.AboutPageUncheckedUpdateOneWithoutAboutTopImageNestedInput;
+  aboutPageBottonImages?: Prisma.AboutPageUncheckedUpdateOneWithoutAboutBottomImageNestedInput;
 };
 
 /**
@@ -607,6 +1329,7 @@ export type FileInstanceUncheckedUpdateWithoutBoatImagesInput = {
 
 export type FileInstanceCountOutputType = {
   boatImages: number;
+  blogImages: number;
 };
 
 export type FileInstanceCountOutputTypeSelect<
@@ -614,6 +1337,7 @@ export type FileInstanceCountOutputTypeSelect<
     runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs,
 > = {
   boatImages?: boolean | FileInstanceCountOutputTypeCountBoatImagesArgs;
+  blogImages?: boolean | FileInstanceCountOutputTypeCountBlogImagesArgs;
 };
 
 /**
@@ -639,6 +1363,16 @@ export type FileInstanceCountOutputTypeCountBoatImagesArgs<
   where?: Prisma.BoatImageWhereInput;
 };
 
+/**
+ * FileInstanceCountOutputType without action
+ */
+export type FileInstanceCountOutputTypeCountBlogImagesArgs<
+  ExtArgs extends
+    runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs,
+> = {
+  where?: Prisma.BlogWhereInput;
+};
+
 export type FileInstanceSelect<
   ExtArgs extends
     runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs,
@@ -655,6 +1389,19 @@ export type FileInstanceSelect<
     createdAt?: boolean;
     updatedAt?: boolean;
     boatImages?: boolean | Prisma.FileInstance$boatImagesArgs<ExtArgs>;
+    blogImages?: boolean | Prisma.FileInstance$blogImagesArgs<ExtArgs>;
+    contactTopImages?:
+      | boolean
+      | Prisma.FileInstance$contactTopImagesArgs<ExtArgs>;
+    contactBottomImages?:
+      | boolean
+      | Prisma.FileInstance$contactBottomImagesArgs<ExtArgs>;
+    aboutPageTopImages?:
+      | boolean
+      | Prisma.FileInstance$aboutPageTopImagesArgs<ExtArgs>;
+    aboutPageBottonImages?:
+      | boolean
+      | Prisma.FileInstance$aboutPageBottonImagesArgs<ExtArgs>;
     _count?: boolean | Prisma.FileInstanceCountOutputTypeDefaultArgs<ExtArgs>;
   },
   ExtArgs['result']['fileInstance']
@@ -732,6 +1479,19 @@ export type FileInstanceInclude<
     runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs,
 > = {
   boatImages?: boolean | Prisma.FileInstance$boatImagesArgs<ExtArgs>;
+  blogImages?: boolean | Prisma.FileInstance$blogImagesArgs<ExtArgs>;
+  contactTopImages?:
+    | boolean
+    | Prisma.FileInstance$contactTopImagesArgs<ExtArgs>;
+  contactBottomImages?:
+    | boolean
+    | Prisma.FileInstance$contactBottomImagesArgs<ExtArgs>;
+  aboutPageTopImages?:
+    | boolean
+    | Prisma.FileInstance$aboutPageTopImagesArgs<ExtArgs>;
+  aboutPageBottonImages?:
+    | boolean
+    | Prisma.FileInstance$aboutPageBottonImagesArgs<ExtArgs>;
   _count?: boolean | Prisma.FileInstanceCountOutputTypeDefaultArgs<ExtArgs>;
 };
 export type FileInstanceIncludeCreateManyAndReturn<
@@ -750,6 +1510,11 @@ export type $FileInstancePayload<
   name: 'FileInstance';
   objects: {
     boatImages: Prisma.$BoatImagePayload<ExtArgs>[];
+    blogImages: Prisma.$BlogPayload<ExtArgs>[];
+    contactTopImages: Prisma.$ContactPagePayload<ExtArgs> | null;
+    contactBottomImages: Prisma.$ContactPagePayload<ExtArgs> | null;
+    aboutPageTopImages: Prisma.$AboutPagePayload<ExtArgs> | null;
+    aboutPageBottonImages: Prisma.$AboutPagePayload<ExtArgs> | null;
   };
   scalars: runtime.Types.Extensions.GetPayloadResult<
     {
@@ -1330,6 +2095,86 @@ export interface Prisma__FileInstanceClient<
       >
     | Null
   >;
+  blogImages<T extends Prisma.FileInstance$blogImagesArgs<ExtArgs> = {}>(
+    args?: Prisma.Subset<T, Prisma.FileInstance$blogImagesArgs<ExtArgs>>,
+  ): Prisma.PrismaPromise<
+    | runtime.Types.Result.GetResult<
+        Prisma.$BlogPayload<ExtArgs>,
+        T,
+        'findMany',
+        GlobalOmitOptions
+      >
+    | Null
+  >;
+  contactTopImages<
+    T extends Prisma.FileInstance$contactTopImagesArgs<ExtArgs> = {},
+  >(
+    args?: Prisma.Subset<T, Prisma.FileInstance$contactTopImagesArgs<ExtArgs>>,
+  ): Prisma.Prisma__ContactPageClient<
+    runtime.Types.Result.GetResult<
+      Prisma.$ContactPagePayload<ExtArgs>,
+      T,
+      'findUniqueOrThrow',
+      GlobalOmitOptions
+    > | null,
+    null,
+    ExtArgs,
+    GlobalOmitOptions
+  >;
+  contactBottomImages<
+    T extends Prisma.FileInstance$contactBottomImagesArgs<ExtArgs> = {},
+  >(
+    args?: Prisma.Subset<
+      T,
+      Prisma.FileInstance$contactBottomImagesArgs<ExtArgs>
+    >,
+  ): Prisma.Prisma__ContactPageClient<
+    runtime.Types.Result.GetResult<
+      Prisma.$ContactPagePayload<ExtArgs>,
+      T,
+      'findUniqueOrThrow',
+      GlobalOmitOptions
+    > | null,
+    null,
+    ExtArgs,
+    GlobalOmitOptions
+  >;
+  aboutPageTopImages<
+    T extends Prisma.FileInstance$aboutPageTopImagesArgs<ExtArgs> = {},
+  >(
+    args?: Prisma.Subset<
+      T,
+      Prisma.FileInstance$aboutPageTopImagesArgs<ExtArgs>
+    >,
+  ): Prisma.Prisma__AboutPageClient<
+    runtime.Types.Result.GetResult<
+      Prisma.$AboutPagePayload<ExtArgs>,
+      T,
+      'findUniqueOrThrow',
+      GlobalOmitOptions
+    > | null,
+    null,
+    ExtArgs,
+    GlobalOmitOptions
+  >;
+  aboutPageBottonImages<
+    T extends Prisma.FileInstance$aboutPageBottonImagesArgs<ExtArgs> = {},
+  >(
+    args?: Prisma.Subset<
+      T,
+      Prisma.FileInstance$aboutPageBottonImagesArgs<ExtArgs>
+    >,
+  ): Prisma.Prisma__AboutPageClient<
+    runtime.Types.Result.GetResult<
+      Prisma.$AboutPagePayload<ExtArgs>,
+      T,
+      'findUniqueOrThrow',
+      GlobalOmitOptions
+    > | null,
+    null,
+    ExtArgs,
+    GlobalOmitOptions
+  >;
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1873,6 +2718,123 @@ export type FileInstance$boatImagesArgs<
   distinct?:
     | Prisma.BoatImageScalarFieldEnum
     | Prisma.BoatImageScalarFieldEnum[];
+};
+
+/**
+ * FileInstance.blogImages
+ */
+export type FileInstance$blogImagesArgs<
+  ExtArgs extends
+    runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs,
+> = {
+  /**
+   * Select specific fields to fetch from the Blog
+   */
+  select?: Prisma.BlogSelect<ExtArgs> | null;
+  /**
+   * Omit specific fields from the Blog
+   */
+  omit?: Prisma.BlogOmit<ExtArgs> | null;
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.BlogInclude<ExtArgs> | null;
+  where?: Prisma.BlogWhereInput;
+  orderBy?:
+    | Prisma.BlogOrderByWithRelationInput
+    | Prisma.BlogOrderByWithRelationInput[];
+  cursor?: Prisma.BlogWhereUniqueInput;
+  take?: number;
+  skip?: number;
+  distinct?: Prisma.BlogScalarFieldEnum | Prisma.BlogScalarFieldEnum[];
+};
+
+/**
+ * FileInstance.contactTopImages
+ */
+export type FileInstance$contactTopImagesArgs<
+  ExtArgs extends
+    runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs,
+> = {
+  /**
+   * Select specific fields to fetch from the ContactPage
+   */
+  select?: Prisma.ContactPageSelect<ExtArgs> | null;
+  /**
+   * Omit specific fields from the ContactPage
+   */
+  omit?: Prisma.ContactPageOmit<ExtArgs> | null;
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ContactPageInclude<ExtArgs> | null;
+  where?: Prisma.ContactPageWhereInput;
+};
+
+/**
+ * FileInstance.contactBottomImages
+ */
+export type FileInstance$contactBottomImagesArgs<
+  ExtArgs extends
+    runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs,
+> = {
+  /**
+   * Select specific fields to fetch from the ContactPage
+   */
+  select?: Prisma.ContactPageSelect<ExtArgs> | null;
+  /**
+   * Omit specific fields from the ContactPage
+   */
+  omit?: Prisma.ContactPageOmit<ExtArgs> | null;
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ContactPageInclude<ExtArgs> | null;
+  where?: Prisma.ContactPageWhereInput;
+};
+
+/**
+ * FileInstance.aboutPageTopImages
+ */
+export type FileInstance$aboutPageTopImagesArgs<
+  ExtArgs extends
+    runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs,
+> = {
+  /**
+   * Select specific fields to fetch from the AboutPage
+   */
+  select?: Prisma.AboutPageSelect<ExtArgs> | null;
+  /**
+   * Omit specific fields from the AboutPage
+   */
+  omit?: Prisma.AboutPageOmit<ExtArgs> | null;
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.AboutPageInclude<ExtArgs> | null;
+  where?: Prisma.AboutPageWhereInput;
+};
+
+/**
+ * FileInstance.aboutPageBottonImages
+ */
+export type FileInstance$aboutPageBottonImagesArgs<
+  ExtArgs extends
+    runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs,
+> = {
+  /**
+   * Select specific fields to fetch from the AboutPage
+   */
+  select?: Prisma.AboutPageSelect<ExtArgs> | null;
+  /**
+   * Omit specific fields from the AboutPage
+   */
+  omit?: Prisma.AboutPageOmit<ExtArgs> | null;
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.AboutPageInclude<ExtArgs> | null;
+  where?: Prisma.AboutPageWhereInput;
 };
 
 /**

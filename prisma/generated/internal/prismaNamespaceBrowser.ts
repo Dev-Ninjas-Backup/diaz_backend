@@ -64,6 +64,11 @@ export const ModelName = {
   FileInstance: 'FileInstance',
   Notification: 'Notification',
   UserNotification: 'UserNotification',
+  Blog: 'Blog',
+  AboutPage: 'AboutPage',
+  ContactPage: 'ContactPage',
+  PrivacyPolicy: 'PrivacyPolicy',
+  TermsOfServices: 'TermsOfServices',
   SubscriptionPlan: 'SubscriptionPlan',
   UserSubscription: 'UserSubscription',
   PromoCode: 'PromoCode',
@@ -253,6 +258,68 @@ export const UserNotificationScalarFieldEnum = {
 
 export type UserNotificationScalarFieldEnum =
   (typeof UserNotificationScalarFieldEnum)[keyof typeof UserNotificationScalarFieldEnum];
+
+export const BlogScalarFieldEnum = {
+  id: 'id',
+  blogImageId: 'blogImageId',
+  blogTitle: 'blogTitle',
+  blogDescription: 'blogDescription',
+  sharedLink: 'sharedLink',
+  readTime: 'readTime',
+  viewCount: 'viewCount',
+  postStatus: 'postStatus',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+} as const;
+
+export type BlogScalarFieldEnum =
+  (typeof BlogScalarFieldEnum)[keyof typeof BlogScalarFieldEnum];
+
+export const AboutPageScalarFieldEnum = {
+  id: 'id',
+  aboutTopImageId: 'aboutTopImageId',
+  aboutBottonImageId: 'aboutBottonImageId',
+  aboutBottomTitle: 'aboutBottomTitle',
+  aboutBottomSubTitle: 'aboutBottomSubTitle',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+} as const;
+
+export type AboutPageScalarFieldEnum =
+  (typeof AboutPageScalarFieldEnum)[keyof typeof AboutPageScalarFieldEnum];
+
+export const ContactPageScalarFieldEnum = {
+  id: 'id',
+  contactTopImageId: 'contactTopImageId',
+  contactBottomImageId: 'contactBottomImageId',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+} as const;
+
+export type ContactPageScalarFieldEnum =
+  (typeof ContactPageScalarFieldEnum)[keyof typeof ContactPageScalarFieldEnum];
+
+export const PrivacyPolicyScalarFieldEnum = {
+  id: 'id',
+  privacyTitle: 'privacyTitle',
+  privacyDescription: 'privacyDescription',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+} as const;
+
+export type PrivacyPolicyScalarFieldEnum =
+  (typeof PrivacyPolicyScalarFieldEnum)[keyof typeof PrivacyPolicyScalarFieldEnum];
+
+export const TermsOfServicesScalarFieldEnum = {
+  id: 'id',
+  termsTitle: 'termsTitle',
+  termsDescription: 'termsDescription',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+} as const;
+
+export type TermsOfServicesScalarFieldEnum =
+  (typeof TermsOfServicesScalarFieldEnum)[keyof typeof TermsOfServicesScalarFieldEnum];
 
 export const SubscriptionPlanScalarFieldEnum = {
   id: 'id',
