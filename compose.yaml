@@ -3,6 +3,8 @@ services:
     image: caddy
     container_name: ${PACKAGE_NAME}_caddy
     restart: always
+    profiles:
+      - prod
     ports:
       - '80:80'
       - '443:443'
@@ -23,6 +25,8 @@ services:
     platform: linux/amd64
     image: ${DOCKER_USERNAME}/${PACKAGE_NAME}:${PACKAGE_VERSION}
     container_name: ${PACKAGE_NAME}_api
+    profiles:
+      - prod
     restart: always
     env_file:
       - .env
@@ -63,6 +67,9 @@ services:
     image: postgres:17
     container_name: ${PACKAGE_NAME}_db
     restart: always
+    profiles:
+      - dev
+      - prod
     user: postgres
     environment:
       POSTGRES_USER: postgres
@@ -81,6 +88,9 @@ services:
   redis-master:
     image: redis
     container_name: ${PACKAGE_NAME}_redis-master
+    profiles:
+      - dev
+      - prod
     command:
       [
         'redis-server',
@@ -103,6 +113,9 @@ services:
   redis-replica:
     image: redis
     container_name: ${PACKAGE_NAME}_redis-replica
+    profiles:
+      - prod
+      - dev
     command:
       [
         'redis-server',
