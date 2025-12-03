@@ -261,7 +261,12 @@ export type FileInstanceWhereInput = {
   size?: Prisma.IntFilter<'FileInstance'> | number;
   createdAt?: Prisma.DateTimeFilter<'FileInstance'> | Date | string;
   updatedAt?: Prisma.DateTimeFilter<'FileInstance'> | Date | string;
+  pageBanners?: Prisma.PageBannerListRelationFilter;
+  pageBannersBackground?: Prisma.PageBannerListRelationFilter;
+  blog?: Prisma.BlogListRelationFilter;
   boatImages?: Prisma.BoatImageListRelationFilter;
+  blogs?: Prisma.BlogListRelationFilter;
+  settings?: Prisma.SettingListRelationFilter;
 };
 
 export type FileInstanceOrderByWithRelationInput = {
@@ -275,7 +280,12 @@ export type FileInstanceOrderByWithRelationInput = {
   size?: Prisma.SortOrder;
   createdAt?: Prisma.SortOrder;
   updatedAt?: Prisma.SortOrder;
+  pageBanners?: Prisma.PageBannerOrderByRelationAggregateInput;
+  pageBannersBackground?: Prisma.PageBannerOrderByRelationAggregateInput;
+  blog?: Prisma.BlogOrderByRelationAggregateInput;
   boatImages?: Prisma.BoatImageOrderByRelationAggregateInput;
+  blogs?: Prisma.BlogOrderByRelationAggregateInput;
+  settings?: Prisma.SettingOrderByRelationAggregateInput;
 };
 
 export type FileInstanceWhereUniqueInput = Prisma.AtLeast<
@@ -293,7 +303,12 @@ export type FileInstanceWhereUniqueInput = Prisma.AtLeast<
     size?: Prisma.IntFilter<'FileInstance'> | number;
     createdAt?: Prisma.DateTimeFilter<'FileInstance'> | Date | string;
     updatedAt?: Prisma.DateTimeFilter<'FileInstance'> | Date | string;
+    pageBanners?: Prisma.PageBannerListRelationFilter;
+    pageBannersBackground?: Prisma.PageBannerListRelationFilter;
+    blog?: Prisma.BlogListRelationFilter;
     boatImages?: Prisma.BoatImageListRelationFilter;
+    blogs?: Prisma.BlogListRelationFilter;
+    settings?: Prisma.SettingListRelationFilter;
   },
   'id'
 >;
@@ -355,7 +370,12 @@ export type FileInstanceCreateInput = {
   size: number;
   createdAt?: Date | string;
   updatedAt?: Date | string;
+  pageBanners?: Prisma.PageBannerCreateNestedManyWithoutLogoInput;
+  pageBannersBackground?: Prisma.PageBannerCreateNestedManyWithoutBackgroundInput;
+  blog?: Prisma.BlogCreateNestedManyWithoutFileInstancesInput;
   boatImages?: Prisma.BoatImageCreateNestedManyWithoutFileInput;
+  blogs?: Prisma.BlogCreateNestedManyWithoutBlogImageInput;
+  settings?: Prisma.SettingCreateNestedManyWithoutLogoInput;
 };
 
 export type FileInstanceUncheckedCreateInput = {
@@ -369,7 +389,12 @@ export type FileInstanceUncheckedCreateInput = {
   size: number;
   createdAt?: Date | string;
   updatedAt?: Date | string;
+  pageBanners?: Prisma.PageBannerUncheckedCreateNestedManyWithoutLogoInput;
+  pageBannersBackground?: Prisma.PageBannerUncheckedCreateNestedManyWithoutBackgroundInput;
+  blog?: Prisma.BlogUncheckedCreateNestedManyWithoutFileInstancesInput;
   boatImages?: Prisma.BoatImageUncheckedCreateNestedManyWithoutFileInput;
+  blogs?: Prisma.BlogUncheckedCreateNestedManyWithoutBlogImageInput;
+  settings?: Prisma.SettingUncheckedCreateNestedManyWithoutLogoInput;
 };
 
 export type FileInstanceUpdateInput = {
@@ -383,7 +408,12 @@ export type FileInstanceUpdateInput = {
   size?: Prisma.IntFieldUpdateOperationsInput | number;
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  pageBanners?: Prisma.PageBannerUpdateManyWithoutLogoNestedInput;
+  pageBannersBackground?: Prisma.PageBannerUpdateManyWithoutBackgroundNestedInput;
+  blog?: Prisma.BlogUpdateManyWithoutFileInstancesNestedInput;
   boatImages?: Prisma.BoatImageUpdateManyWithoutFileNestedInput;
+  blogs?: Prisma.BlogUpdateManyWithoutBlogImageNestedInput;
+  settings?: Prisma.SettingUpdateManyWithoutLogoNestedInput;
 };
 
 export type FileInstanceUncheckedUpdateInput = {
@@ -397,7 +427,12 @@ export type FileInstanceUncheckedUpdateInput = {
   size?: Prisma.IntFieldUpdateOperationsInput | number;
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  pageBanners?: Prisma.PageBannerUncheckedUpdateManyWithoutLogoNestedInput;
+  pageBannersBackground?: Prisma.PageBannerUncheckedUpdateManyWithoutBackgroundNestedInput;
+  blog?: Prisma.BlogUncheckedUpdateManyWithoutFileInstancesNestedInput;
   boatImages?: Prisma.BoatImageUncheckedUpdateManyWithoutFileNestedInput;
+  blogs?: Prisma.BlogUncheckedUpdateManyWithoutBlogImageNestedInput;
+  settings?: Prisma.SettingUncheckedUpdateManyWithoutLogoNestedInput;
 };
 
 export type FileInstanceCreateManyInput = {
@@ -491,6 +526,21 @@ export type FileInstanceSumOrderByAggregateInput = {
   size?: Prisma.SortOrder;
 };
 
+export type FileInstanceNullableScalarRelationFilter = {
+  is?: Prisma.FileInstanceWhereInput | null;
+  isNot?: Prisma.FileInstanceWhereInput | null;
+};
+
+export type FileInstanceListRelationFilter = {
+  every?: Prisma.FileInstanceWhereInput;
+  some?: Prisma.FileInstanceWhereInput;
+  none?: Prisma.FileInstanceWhereInput;
+};
+
+export type FileInstanceOrderByRelationAggregateInput = {
+  _count?: Prisma.SortOrder;
+};
+
 export type FileInstanceCreateNestedOneWithoutBoatImagesInput = {
   create?: Prisma.XOR<
     Prisma.FileInstanceCreateWithoutBoatImagesInput,
@@ -521,6 +571,224 @@ export type EnumFileTypeFieldUpdateOperationsInput = {
   set?: $Enums.FileType;
 };
 
+export type FileInstanceCreateNestedOneWithoutPageBannersInput = {
+  create?: Prisma.XOR<
+    Prisma.FileInstanceCreateWithoutPageBannersInput,
+    Prisma.FileInstanceUncheckedCreateWithoutPageBannersInput
+  >;
+  connectOrCreate?: Prisma.FileInstanceCreateOrConnectWithoutPageBannersInput;
+  connect?: Prisma.FileInstanceWhereUniqueInput;
+};
+
+export type FileInstanceCreateNestedOneWithoutPageBannersBackgroundInput = {
+  create?: Prisma.XOR<
+    Prisma.FileInstanceCreateWithoutPageBannersBackgroundInput,
+    Prisma.FileInstanceUncheckedCreateWithoutPageBannersBackgroundInput
+  >;
+  connectOrCreate?: Prisma.FileInstanceCreateOrConnectWithoutPageBannersBackgroundInput;
+  connect?: Prisma.FileInstanceWhereUniqueInput;
+};
+
+export type FileInstanceUpdateOneWithoutPageBannersNestedInput = {
+  create?: Prisma.XOR<
+    Prisma.FileInstanceCreateWithoutPageBannersInput,
+    Prisma.FileInstanceUncheckedCreateWithoutPageBannersInput
+  >;
+  connectOrCreate?: Prisma.FileInstanceCreateOrConnectWithoutPageBannersInput;
+  upsert?: Prisma.FileInstanceUpsertWithoutPageBannersInput;
+  disconnect?: Prisma.FileInstanceWhereInput | boolean;
+  delete?: Prisma.FileInstanceWhereInput | boolean;
+  connect?: Prisma.FileInstanceWhereUniqueInput;
+  update?: Prisma.XOR<
+    Prisma.XOR<
+      Prisma.FileInstanceUpdateToOneWithWhereWithoutPageBannersInput,
+      Prisma.FileInstanceUpdateWithoutPageBannersInput
+    >,
+    Prisma.FileInstanceUncheckedUpdateWithoutPageBannersInput
+  >;
+};
+
+export type FileInstanceUpdateOneWithoutPageBannersBackgroundNestedInput = {
+  create?: Prisma.XOR<
+    Prisma.FileInstanceCreateWithoutPageBannersBackgroundInput,
+    Prisma.FileInstanceUncheckedCreateWithoutPageBannersBackgroundInput
+  >;
+  connectOrCreate?: Prisma.FileInstanceCreateOrConnectWithoutPageBannersBackgroundInput;
+  upsert?: Prisma.FileInstanceUpsertWithoutPageBannersBackgroundInput;
+  disconnect?: Prisma.FileInstanceWhereInput | boolean;
+  delete?: Prisma.FileInstanceWhereInput | boolean;
+  connect?: Prisma.FileInstanceWhereUniqueInput;
+  update?: Prisma.XOR<
+    Prisma.XOR<
+      Prisma.FileInstanceUpdateToOneWithWhereWithoutPageBannersBackgroundInput,
+      Prisma.FileInstanceUpdateWithoutPageBannersBackgroundInput
+    >,
+    Prisma.FileInstanceUncheckedUpdateWithoutPageBannersBackgroundInput
+  >;
+};
+
+export type FileInstanceCreateNestedOneWithoutBlogsInput = {
+  create?: Prisma.XOR<
+    Prisma.FileInstanceCreateWithoutBlogsInput,
+    Prisma.FileInstanceUncheckedCreateWithoutBlogsInput
+  >;
+  connectOrCreate?: Prisma.FileInstanceCreateOrConnectWithoutBlogsInput;
+  connect?: Prisma.FileInstanceWhereUniqueInput;
+};
+
+export type FileInstanceCreateNestedManyWithoutBlogInput = {
+  create?:
+    | Prisma.XOR<
+        Prisma.FileInstanceCreateWithoutBlogInput,
+        Prisma.FileInstanceUncheckedCreateWithoutBlogInput
+      >
+    | Prisma.FileInstanceCreateWithoutBlogInput[]
+    | Prisma.FileInstanceUncheckedCreateWithoutBlogInput[];
+  connectOrCreate?:
+    | Prisma.FileInstanceCreateOrConnectWithoutBlogInput
+    | Prisma.FileInstanceCreateOrConnectWithoutBlogInput[];
+  connect?:
+    | Prisma.FileInstanceWhereUniqueInput
+    | Prisma.FileInstanceWhereUniqueInput[];
+};
+
+export type FileInstanceUncheckedCreateNestedManyWithoutBlogInput = {
+  create?:
+    | Prisma.XOR<
+        Prisma.FileInstanceCreateWithoutBlogInput,
+        Prisma.FileInstanceUncheckedCreateWithoutBlogInput
+      >
+    | Prisma.FileInstanceCreateWithoutBlogInput[]
+    | Prisma.FileInstanceUncheckedCreateWithoutBlogInput[];
+  connectOrCreate?:
+    | Prisma.FileInstanceCreateOrConnectWithoutBlogInput
+    | Prisma.FileInstanceCreateOrConnectWithoutBlogInput[];
+  connect?:
+    | Prisma.FileInstanceWhereUniqueInput
+    | Prisma.FileInstanceWhereUniqueInput[];
+};
+
+export type FileInstanceUpdateOneWithoutBlogsNestedInput = {
+  create?: Prisma.XOR<
+    Prisma.FileInstanceCreateWithoutBlogsInput,
+    Prisma.FileInstanceUncheckedCreateWithoutBlogsInput
+  >;
+  connectOrCreate?: Prisma.FileInstanceCreateOrConnectWithoutBlogsInput;
+  upsert?: Prisma.FileInstanceUpsertWithoutBlogsInput;
+  disconnect?: Prisma.FileInstanceWhereInput | boolean;
+  delete?: Prisma.FileInstanceWhereInput | boolean;
+  connect?: Prisma.FileInstanceWhereUniqueInput;
+  update?: Prisma.XOR<
+    Prisma.XOR<
+      Prisma.FileInstanceUpdateToOneWithWhereWithoutBlogsInput,
+      Prisma.FileInstanceUpdateWithoutBlogsInput
+    >,
+    Prisma.FileInstanceUncheckedUpdateWithoutBlogsInput
+  >;
+};
+
+export type FileInstanceUpdateManyWithoutBlogNestedInput = {
+  create?:
+    | Prisma.XOR<
+        Prisma.FileInstanceCreateWithoutBlogInput,
+        Prisma.FileInstanceUncheckedCreateWithoutBlogInput
+      >
+    | Prisma.FileInstanceCreateWithoutBlogInput[]
+    | Prisma.FileInstanceUncheckedCreateWithoutBlogInput[];
+  connectOrCreate?:
+    | Prisma.FileInstanceCreateOrConnectWithoutBlogInput
+    | Prisma.FileInstanceCreateOrConnectWithoutBlogInput[];
+  upsert?:
+    | Prisma.FileInstanceUpsertWithWhereUniqueWithoutBlogInput
+    | Prisma.FileInstanceUpsertWithWhereUniqueWithoutBlogInput[];
+  set?:
+    | Prisma.FileInstanceWhereUniqueInput
+    | Prisma.FileInstanceWhereUniqueInput[];
+  disconnect?:
+    | Prisma.FileInstanceWhereUniqueInput
+    | Prisma.FileInstanceWhereUniqueInput[];
+  delete?:
+    | Prisma.FileInstanceWhereUniqueInput
+    | Prisma.FileInstanceWhereUniqueInput[];
+  connect?:
+    | Prisma.FileInstanceWhereUniqueInput
+    | Prisma.FileInstanceWhereUniqueInput[];
+  update?:
+    | Prisma.FileInstanceUpdateWithWhereUniqueWithoutBlogInput
+    | Prisma.FileInstanceUpdateWithWhereUniqueWithoutBlogInput[];
+  updateMany?:
+    | Prisma.FileInstanceUpdateManyWithWhereWithoutBlogInput
+    | Prisma.FileInstanceUpdateManyWithWhereWithoutBlogInput[];
+  deleteMany?:
+    | Prisma.FileInstanceScalarWhereInput
+    | Prisma.FileInstanceScalarWhereInput[];
+};
+
+export type FileInstanceUncheckedUpdateManyWithoutBlogNestedInput = {
+  create?:
+    | Prisma.XOR<
+        Prisma.FileInstanceCreateWithoutBlogInput,
+        Prisma.FileInstanceUncheckedCreateWithoutBlogInput
+      >
+    | Prisma.FileInstanceCreateWithoutBlogInput[]
+    | Prisma.FileInstanceUncheckedCreateWithoutBlogInput[];
+  connectOrCreate?:
+    | Prisma.FileInstanceCreateOrConnectWithoutBlogInput
+    | Prisma.FileInstanceCreateOrConnectWithoutBlogInput[];
+  upsert?:
+    | Prisma.FileInstanceUpsertWithWhereUniqueWithoutBlogInput
+    | Prisma.FileInstanceUpsertWithWhereUniqueWithoutBlogInput[];
+  set?:
+    | Prisma.FileInstanceWhereUniqueInput
+    | Prisma.FileInstanceWhereUniqueInput[];
+  disconnect?:
+    | Prisma.FileInstanceWhereUniqueInput
+    | Prisma.FileInstanceWhereUniqueInput[];
+  delete?:
+    | Prisma.FileInstanceWhereUniqueInput
+    | Prisma.FileInstanceWhereUniqueInput[];
+  connect?:
+    | Prisma.FileInstanceWhereUniqueInput
+    | Prisma.FileInstanceWhereUniqueInput[];
+  update?:
+    | Prisma.FileInstanceUpdateWithWhereUniqueWithoutBlogInput
+    | Prisma.FileInstanceUpdateWithWhereUniqueWithoutBlogInput[];
+  updateMany?:
+    | Prisma.FileInstanceUpdateManyWithWhereWithoutBlogInput
+    | Prisma.FileInstanceUpdateManyWithWhereWithoutBlogInput[];
+  deleteMany?:
+    | Prisma.FileInstanceScalarWhereInput
+    | Prisma.FileInstanceScalarWhereInput[];
+};
+
+export type FileInstanceCreateNestedOneWithoutSettingsInput = {
+  create?: Prisma.XOR<
+    Prisma.FileInstanceCreateWithoutSettingsInput,
+    Prisma.FileInstanceUncheckedCreateWithoutSettingsInput
+  >;
+  connectOrCreate?: Prisma.FileInstanceCreateOrConnectWithoutSettingsInput;
+  connect?: Prisma.FileInstanceWhereUniqueInput;
+};
+
+export type FileInstanceUpdateOneWithoutSettingsNestedInput = {
+  create?: Prisma.XOR<
+    Prisma.FileInstanceCreateWithoutSettingsInput,
+    Prisma.FileInstanceUncheckedCreateWithoutSettingsInput
+  >;
+  connectOrCreate?: Prisma.FileInstanceCreateOrConnectWithoutSettingsInput;
+  upsert?: Prisma.FileInstanceUpsertWithoutSettingsInput;
+  disconnect?: Prisma.FileInstanceWhereInput | boolean;
+  delete?: Prisma.FileInstanceWhereInput | boolean;
+  connect?: Prisma.FileInstanceWhereUniqueInput;
+  update?: Prisma.XOR<
+    Prisma.XOR<
+      Prisma.FileInstanceUpdateToOneWithWhereWithoutSettingsInput,
+      Prisma.FileInstanceUpdateWithoutSettingsInput
+    >,
+    Prisma.FileInstanceUncheckedUpdateWithoutSettingsInput
+  >;
+};
+
 export type FileInstanceCreateWithoutBoatImagesInput = {
   id?: string;
   filename: string;
@@ -532,6 +800,11 @@ export type FileInstanceCreateWithoutBoatImagesInput = {
   size: number;
   createdAt?: Date | string;
   updatedAt?: Date | string;
+  pageBanners?: Prisma.PageBannerCreateNestedManyWithoutLogoInput;
+  pageBannersBackground?: Prisma.PageBannerCreateNestedManyWithoutBackgroundInput;
+  blog?: Prisma.BlogCreateNestedManyWithoutFileInstancesInput;
+  blogs?: Prisma.BlogCreateNestedManyWithoutBlogImageInput;
+  settings?: Prisma.SettingCreateNestedManyWithoutLogoInput;
 };
 
 export type FileInstanceUncheckedCreateWithoutBoatImagesInput = {
@@ -545,6 +818,11 @@ export type FileInstanceUncheckedCreateWithoutBoatImagesInput = {
   size: number;
   createdAt?: Date | string;
   updatedAt?: Date | string;
+  pageBanners?: Prisma.PageBannerUncheckedCreateNestedManyWithoutLogoInput;
+  pageBannersBackground?: Prisma.PageBannerUncheckedCreateNestedManyWithoutBackgroundInput;
+  blog?: Prisma.BlogUncheckedCreateNestedManyWithoutFileInstancesInput;
+  blogs?: Prisma.BlogUncheckedCreateNestedManyWithoutBlogImageInput;
+  settings?: Prisma.SettingUncheckedCreateNestedManyWithoutLogoInput;
 };
 
 export type FileInstanceCreateOrConnectWithoutBoatImagesInput = {
@@ -586,9 +864,561 @@ export type FileInstanceUpdateWithoutBoatImagesInput = {
   size?: Prisma.IntFieldUpdateOperationsInput | number;
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  pageBanners?: Prisma.PageBannerUpdateManyWithoutLogoNestedInput;
+  pageBannersBackground?: Prisma.PageBannerUpdateManyWithoutBackgroundNestedInput;
+  blog?: Prisma.BlogUpdateManyWithoutFileInstancesNestedInput;
+  blogs?: Prisma.BlogUpdateManyWithoutBlogImageNestedInput;
+  settings?: Prisma.SettingUpdateManyWithoutLogoNestedInput;
 };
 
 export type FileInstanceUncheckedUpdateWithoutBoatImagesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string;
+  filename?: Prisma.StringFieldUpdateOperationsInput | string;
+  originalFilename?: Prisma.StringFieldUpdateOperationsInput | string;
+  path?: Prisma.StringFieldUpdateOperationsInput | string;
+  url?: Prisma.StringFieldUpdateOperationsInput | string;
+  fileType?: Prisma.EnumFileTypeFieldUpdateOperationsInput | $Enums.FileType;
+  mimeType?: Prisma.StringFieldUpdateOperationsInput | string;
+  size?: Prisma.IntFieldUpdateOperationsInput | number;
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  pageBanners?: Prisma.PageBannerUncheckedUpdateManyWithoutLogoNestedInput;
+  pageBannersBackground?: Prisma.PageBannerUncheckedUpdateManyWithoutBackgroundNestedInput;
+  blog?: Prisma.BlogUncheckedUpdateManyWithoutFileInstancesNestedInput;
+  blogs?: Prisma.BlogUncheckedUpdateManyWithoutBlogImageNestedInput;
+  settings?: Prisma.SettingUncheckedUpdateManyWithoutLogoNestedInput;
+};
+
+export type FileInstanceCreateWithoutPageBannersInput = {
+  id?: string;
+  filename: string;
+  originalFilename: string;
+  path: string;
+  url: string;
+  fileType?: $Enums.FileType;
+  mimeType: string;
+  size: number;
+  createdAt?: Date | string;
+  updatedAt?: Date | string;
+  pageBannersBackground?: Prisma.PageBannerCreateNestedManyWithoutBackgroundInput;
+  blog?: Prisma.BlogCreateNestedManyWithoutFileInstancesInput;
+  boatImages?: Prisma.BoatImageCreateNestedManyWithoutFileInput;
+  blogs?: Prisma.BlogCreateNestedManyWithoutBlogImageInput;
+  settings?: Prisma.SettingCreateNestedManyWithoutLogoInput;
+};
+
+export type FileInstanceUncheckedCreateWithoutPageBannersInput = {
+  id?: string;
+  filename: string;
+  originalFilename: string;
+  path: string;
+  url: string;
+  fileType?: $Enums.FileType;
+  mimeType: string;
+  size: number;
+  createdAt?: Date | string;
+  updatedAt?: Date | string;
+  pageBannersBackground?: Prisma.PageBannerUncheckedCreateNestedManyWithoutBackgroundInput;
+  blog?: Prisma.BlogUncheckedCreateNestedManyWithoutFileInstancesInput;
+  boatImages?: Prisma.BoatImageUncheckedCreateNestedManyWithoutFileInput;
+  blogs?: Prisma.BlogUncheckedCreateNestedManyWithoutBlogImageInput;
+  settings?: Prisma.SettingUncheckedCreateNestedManyWithoutLogoInput;
+};
+
+export type FileInstanceCreateOrConnectWithoutPageBannersInput = {
+  where: Prisma.FileInstanceWhereUniqueInput;
+  create: Prisma.XOR<
+    Prisma.FileInstanceCreateWithoutPageBannersInput,
+    Prisma.FileInstanceUncheckedCreateWithoutPageBannersInput
+  >;
+};
+
+export type FileInstanceCreateWithoutPageBannersBackgroundInput = {
+  id?: string;
+  filename: string;
+  originalFilename: string;
+  path: string;
+  url: string;
+  fileType?: $Enums.FileType;
+  mimeType: string;
+  size: number;
+  createdAt?: Date | string;
+  updatedAt?: Date | string;
+  pageBanners?: Prisma.PageBannerCreateNestedManyWithoutLogoInput;
+  blog?: Prisma.BlogCreateNestedManyWithoutFileInstancesInput;
+  boatImages?: Prisma.BoatImageCreateNestedManyWithoutFileInput;
+  blogs?: Prisma.BlogCreateNestedManyWithoutBlogImageInput;
+  settings?: Prisma.SettingCreateNestedManyWithoutLogoInput;
+};
+
+export type FileInstanceUncheckedCreateWithoutPageBannersBackgroundInput = {
+  id?: string;
+  filename: string;
+  originalFilename: string;
+  path: string;
+  url: string;
+  fileType?: $Enums.FileType;
+  mimeType: string;
+  size: number;
+  createdAt?: Date | string;
+  updatedAt?: Date | string;
+  pageBanners?: Prisma.PageBannerUncheckedCreateNestedManyWithoutLogoInput;
+  blog?: Prisma.BlogUncheckedCreateNestedManyWithoutFileInstancesInput;
+  boatImages?: Prisma.BoatImageUncheckedCreateNestedManyWithoutFileInput;
+  blogs?: Prisma.BlogUncheckedCreateNestedManyWithoutBlogImageInput;
+  settings?: Prisma.SettingUncheckedCreateNestedManyWithoutLogoInput;
+};
+
+export type FileInstanceCreateOrConnectWithoutPageBannersBackgroundInput = {
+  where: Prisma.FileInstanceWhereUniqueInput;
+  create: Prisma.XOR<
+    Prisma.FileInstanceCreateWithoutPageBannersBackgroundInput,
+    Prisma.FileInstanceUncheckedCreateWithoutPageBannersBackgroundInput
+  >;
+};
+
+export type FileInstanceUpsertWithoutPageBannersInput = {
+  update: Prisma.XOR<
+    Prisma.FileInstanceUpdateWithoutPageBannersInput,
+    Prisma.FileInstanceUncheckedUpdateWithoutPageBannersInput
+  >;
+  create: Prisma.XOR<
+    Prisma.FileInstanceCreateWithoutPageBannersInput,
+    Prisma.FileInstanceUncheckedCreateWithoutPageBannersInput
+  >;
+  where?: Prisma.FileInstanceWhereInput;
+};
+
+export type FileInstanceUpdateToOneWithWhereWithoutPageBannersInput = {
+  where?: Prisma.FileInstanceWhereInput;
+  data: Prisma.XOR<
+    Prisma.FileInstanceUpdateWithoutPageBannersInput,
+    Prisma.FileInstanceUncheckedUpdateWithoutPageBannersInput
+  >;
+};
+
+export type FileInstanceUpdateWithoutPageBannersInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string;
+  filename?: Prisma.StringFieldUpdateOperationsInput | string;
+  originalFilename?: Prisma.StringFieldUpdateOperationsInput | string;
+  path?: Prisma.StringFieldUpdateOperationsInput | string;
+  url?: Prisma.StringFieldUpdateOperationsInput | string;
+  fileType?: Prisma.EnumFileTypeFieldUpdateOperationsInput | $Enums.FileType;
+  mimeType?: Prisma.StringFieldUpdateOperationsInput | string;
+  size?: Prisma.IntFieldUpdateOperationsInput | number;
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  pageBannersBackground?: Prisma.PageBannerUpdateManyWithoutBackgroundNestedInput;
+  blog?: Prisma.BlogUpdateManyWithoutFileInstancesNestedInput;
+  boatImages?: Prisma.BoatImageUpdateManyWithoutFileNestedInput;
+  blogs?: Prisma.BlogUpdateManyWithoutBlogImageNestedInput;
+  settings?: Prisma.SettingUpdateManyWithoutLogoNestedInput;
+};
+
+export type FileInstanceUncheckedUpdateWithoutPageBannersInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string;
+  filename?: Prisma.StringFieldUpdateOperationsInput | string;
+  originalFilename?: Prisma.StringFieldUpdateOperationsInput | string;
+  path?: Prisma.StringFieldUpdateOperationsInput | string;
+  url?: Prisma.StringFieldUpdateOperationsInput | string;
+  fileType?: Prisma.EnumFileTypeFieldUpdateOperationsInput | $Enums.FileType;
+  mimeType?: Prisma.StringFieldUpdateOperationsInput | string;
+  size?: Prisma.IntFieldUpdateOperationsInput | number;
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  pageBannersBackground?: Prisma.PageBannerUncheckedUpdateManyWithoutBackgroundNestedInput;
+  blog?: Prisma.BlogUncheckedUpdateManyWithoutFileInstancesNestedInput;
+  boatImages?: Prisma.BoatImageUncheckedUpdateManyWithoutFileNestedInput;
+  blogs?: Prisma.BlogUncheckedUpdateManyWithoutBlogImageNestedInput;
+  settings?: Prisma.SettingUncheckedUpdateManyWithoutLogoNestedInput;
+};
+
+export type FileInstanceUpsertWithoutPageBannersBackgroundInput = {
+  update: Prisma.XOR<
+    Prisma.FileInstanceUpdateWithoutPageBannersBackgroundInput,
+    Prisma.FileInstanceUncheckedUpdateWithoutPageBannersBackgroundInput
+  >;
+  create: Prisma.XOR<
+    Prisma.FileInstanceCreateWithoutPageBannersBackgroundInput,
+    Prisma.FileInstanceUncheckedCreateWithoutPageBannersBackgroundInput
+  >;
+  where?: Prisma.FileInstanceWhereInput;
+};
+
+export type FileInstanceUpdateToOneWithWhereWithoutPageBannersBackgroundInput =
+  {
+    where?: Prisma.FileInstanceWhereInput;
+    data: Prisma.XOR<
+      Prisma.FileInstanceUpdateWithoutPageBannersBackgroundInput,
+      Prisma.FileInstanceUncheckedUpdateWithoutPageBannersBackgroundInput
+    >;
+  };
+
+export type FileInstanceUpdateWithoutPageBannersBackgroundInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string;
+  filename?: Prisma.StringFieldUpdateOperationsInput | string;
+  originalFilename?: Prisma.StringFieldUpdateOperationsInput | string;
+  path?: Prisma.StringFieldUpdateOperationsInput | string;
+  url?: Prisma.StringFieldUpdateOperationsInput | string;
+  fileType?: Prisma.EnumFileTypeFieldUpdateOperationsInput | $Enums.FileType;
+  mimeType?: Prisma.StringFieldUpdateOperationsInput | string;
+  size?: Prisma.IntFieldUpdateOperationsInput | number;
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  pageBanners?: Prisma.PageBannerUpdateManyWithoutLogoNestedInput;
+  blog?: Prisma.BlogUpdateManyWithoutFileInstancesNestedInput;
+  boatImages?: Prisma.BoatImageUpdateManyWithoutFileNestedInput;
+  blogs?: Prisma.BlogUpdateManyWithoutBlogImageNestedInput;
+  settings?: Prisma.SettingUpdateManyWithoutLogoNestedInput;
+};
+
+export type FileInstanceUncheckedUpdateWithoutPageBannersBackgroundInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string;
+  filename?: Prisma.StringFieldUpdateOperationsInput | string;
+  originalFilename?: Prisma.StringFieldUpdateOperationsInput | string;
+  path?: Prisma.StringFieldUpdateOperationsInput | string;
+  url?: Prisma.StringFieldUpdateOperationsInput | string;
+  fileType?: Prisma.EnumFileTypeFieldUpdateOperationsInput | $Enums.FileType;
+  mimeType?: Prisma.StringFieldUpdateOperationsInput | string;
+  size?: Prisma.IntFieldUpdateOperationsInput | number;
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  pageBanners?: Prisma.PageBannerUncheckedUpdateManyWithoutLogoNestedInput;
+  blog?: Prisma.BlogUncheckedUpdateManyWithoutFileInstancesNestedInput;
+  boatImages?: Prisma.BoatImageUncheckedUpdateManyWithoutFileNestedInput;
+  blogs?: Prisma.BlogUncheckedUpdateManyWithoutBlogImageNestedInput;
+  settings?: Prisma.SettingUncheckedUpdateManyWithoutLogoNestedInput;
+};
+
+export type FileInstanceCreateWithoutBlogsInput = {
+  id?: string;
+  filename: string;
+  originalFilename: string;
+  path: string;
+  url: string;
+  fileType?: $Enums.FileType;
+  mimeType: string;
+  size: number;
+  createdAt?: Date | string;
+  updatedAt?: Date | string;
+  pageBanners?: Prisma.PageBannerCreateNestedManyWithoutLogoInput;
+  pageBannersBackground?: Prisma.PageBannerCreateNestedManyWithoutBackgroundInput;
+  blog?: Prisma.BlogCreateNestedManyWithoutFileInstancesInput;
+  boatImages?: Prisma.BoatImageCreateNestedManyWithoutFileInput;
+  settings?: Prisma.SettingCreateNestedManyWithoutLogoInput;
+};
+
+export type FileInstanceUncheckedCreateWithoutBlogsInput = {
+  id?: string;
+  filename: string;
+  originalFilename: string;
+  path: string;
+  url: string;
+  fileType?: $Enums.FileType;
+  mimeType: string;
+  size: number;
+  createdAt?: Date | string;
+  updatedAt?: Date | string;
+  pageBanners?: Prisma.PageBannerUncheckedCreateNestedManyWithoutLogoInput;
+  pageBannersBackground?: Prisma.PageBannerUncheckedCreateNestedManyWithoutBackgroundInput;
+  blog?: Prisma.BlogUncheckedCreateNestedManyWithoutFileInstancesInput;
+  boatImages?: Prisma.BoatImageUncheckedCreateNestedManyWithoutFileInput;
+  settings?: Prisma.SettingUncheckedCreateNestedManyWithoutLogoInput;
+};
+
+export type FileInstanceCreateOrConnectWithoutBlogsInput = {
+  where: Prisma.FileInstanceWhereUniqueInput;
+  create: Prisma.XOR<
+    Prisma.FileInstanceCreateWithoutBlogsInput,
+    Prisma.FileInstanceUncheckedCreateWithoutBlogsInput
+  >;
+};
+
+export type FileInstanceCreateWithoutBlogInput = {
+  id?: string;
+  filename: string;
+  originalFilename: string;
+  path: string;
+  url: string;
+  fileType?: $Enums.FileType;
+  mimeType: string;
+  size: number;
+  createdAt?: Date | string;
+  updatedAt?: Date | string;
+  pageBanners?: Prisma.PageBannerCreateNestedManyWithoutLogoInput;
+  pageBannersBackground?: Prisma.PageBannerCreateNestedManyWithoutBackgroundInput;
+  boatImages?: Prisma.BoatImageCreateNestedManyWithoutFileInput;
+  blogs?: Prisma.BlogCreateNestedManyWithoutBlogImageInput;
+  settings?: Prisma.SettingCreateNestedManyWithoutLogoInput;
+};
+
+export type FileInstanceUncheckedCreateWithoutBlogInput = {
+  id?: string;
+  filename: string;
+  originalFilename: string;
+  path: string;
+  url: string;
+  fileType?: $Enums.FileType;
+  mimeType: string;
+  size: number;
+  createdAt?: Date | string;
+  updatedAt?: Date | string;
+  pageBanners?: Prisma.PageBannerUncheckedCreateNestedManyWithoutLogoInput;
+  pageBannersBackground?: Prisma.PageBannerUncheckedCreateNestedManyWithoutBackgroundInput;
+  boatImages?: Prisma.BoatImageUncheckedCreateNestedManyWithoutFileInput;
+  blogs?: Prisma.BlogUncheckedCreateNestedManyWithoutBlogImageInput;
+  settings?: Prisma.SettingUncheckedCreateNestedManyWithoutLogoInput;
+};
+
+export type FileInstanceCreateOrConnectWithoutBlogInput = {
+  where: Prisma.FileInstanceWhereUniqueInput;
+  create: Prisma.XOR<
+    Prisma.FileInstanceCreateWithoutBlogInput,
+    Prisma.FileInstanceUncheckedCreateWithoutBlogInput
+  >;
+};
+
+export type FileInstanceUpsertWithoutBlogsInput = {
+  update: Prisma.XOR<
+    Prisma.FileInstanceUpdateWithoutBlogsInput,
+    Prisma.FileInstanceUncheckedUpdateWithoutBlogsInput
+  >;
+  create: Prisma.XOR<
+    Prisma.FileInstanceCreateWithoutBlogsInput,
+    Prisma.FileInstanceUncheckedCreateWithoutBlogsInput
+  >;
+  where?: Prisma.FileInstanceWhereInput;
+};
+
+export type FileInstanceUpdateToOneWithWhereWithoutBlogsInput = {
+  where?: Prisma.FileInstanceWhereInput;
+  data: Prisma.XOR<
+    Prisma.FileInstanceUpdateWithoutBlogsInput,
+    Prisma.FileInstanceUncheckedUpdateWithoutBlogsInput
+  >;
+};
+
+export type FileInstanceUpdateWithoutBlogsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string;
+  filename?: Prisma.StringFieldUpdateOperationsInput | string;
+  originalFilename?: Prisma.StringFieldUpdateOperationsInput | string;
+  path?: Prisma.StringFieldUpdateOperationsInput | string;
+  url?: Prisma.StringFieldUpdateOperationsInput | string;
+  fileType?: Prisma.EnumFileTypeFieldUpdateOperationsInput | $Enums.FileType;
+  mimeType?: Prisma.StringFieldUpdateOperationsInput | string;
+  size?: Prisma.IntFieldUpdateOperationsInput | number;
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  pageBanners?: Prisma.PageBannerUpdateManyWithoutLogoNestedInput;
+  pageBannersBackground?: Prisma.PageBannerUpdateManyWithoutBackgroundNestedInput;
+  blog?: Prisma.BlogUpdateManyWithoutFileInstancesNestedInput;
+  boatImages?: Prisma.BoatImageUpdateManyWithoutFileNestedInput;
+  settings?: Prisma.SettingUpdateManyWithoutLogoNestedInput;
+};
+
+export type FileInstanceUncheckedUpdateWithoutBlogsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string;
+  filename?: Prisma.StringFieldUpdateOperationsInput | string;
+  originalFilename?: Prisma.StringFieldUpdateOperationsInput | string;
+  path?: Prisma.StringFieldUpdateOperationsInput | string;
+  url?: Prisma.StringFieldUpdateOperationsInput | string;
+  fileType?: Prisma.EnumFileTypeFieldUpdateOperationsInput | $Enums.FileType;
+  mimeType?: Prisma.StringFieldUpdateOperationsInput | string;
+  size?: Prisma.IntFieldUpdateOperationsInput | number;
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  pageBanners?: Prisma.PageBannerUncheckedUpdateManyWithoutLogoNestedInput;
+  pageBannersBackground?: Prisma.PageBannerUncheckedUpdateManyWithoutBackgroundNestedInput;
+  blog?: Prisma.BlogUncheckedUpdateManyWithoutFileInstancesNestedInput;
+  boatImages?: Prisma.BoatImageUncheckedUpdateManyWithoutFileNestedInput;
+  settings?: Prisma.SettingUncheckedUpdateManyWithoutLogoNestedInput;
+};
+
+export type FileInstanceUpsertWithWhereUniqueWithoutBlogInput = {
+  where: Prisma.FileInstanceWhereUniqueInput;
+  update: Prisma.XOR<
+    Prisma.FileInstanceUpdateWithoutBlogInput,
+    Prisma.FileInstanceUncheckedUpdateWithoutBlogInput
+  >;
+  create: Prisma.XOR<
+    Prisma.FileInstanceCreateWithoutBlogInput,
+    Prisma.FileInstanceUncheckedCreateWithoutBlogInput
+  >;
+};
+
+export type FileInstanceUpdateWithWhereUniqueWithoutBlogInput = {
+  where: Prisma.FileInstanceWhereUniqueInput;
+  data: Prisma.XOR<
+    Prisma.FileInstanceUpdateWithoutBlogInput,
+    Prisma.FileInstanceUncheckedUpdateWithoutBlogInput
+  >;
+};
+
+export type FileInstanceUpdateManyWithWhereWithoutBlogInput = {
+  where: Prisma.FileInstanceScalarWhereInput;
+  data: Prisma.XOR<
+    Prisma.FileInstanceUpdateManyMutationInput,
+    Prisma.FileInstanceUncheckedUpdateManyWithoutBlogInput
+  >;
+};
+
+export type FileInstanceScalarWhereInput = {
+  AND?:
+    | Prisma.FileInstanceScalarWhereInput
+    | Prisma.FileInstanceScalarWhereInput[];
+  OR?: Prisma.FileInstanceScalarWhereInput[];
+  NOT?:
+    | Prisma.FileInstanceScalarWhereInput
+    | Prisma.FileInstanceScalarWhereInput[];
+  id?: Prisma.StringFilter<'FileInstance'> | string;
+  filename?: Prisma.StringFilter<'FileInstance'> | string;
+  originalFilename?: Prisma.StringFilter<'FileInstance'> | string;
+  path?: Prisma.StringFilter<'FileInstance'> | string;
+  url?: Prisma.StringFilter<'FileInstance'> | string;
+  fileType?: Prisma.EnumFileTypeFilter<'FileInstance'> | $Enums.FileType;
+  mimeType?: Prisma.StringFilter<'FileInstance'> | string;
+  size?: Prisma.IntFilter<'FileInstance'> | number;
+  createdAt?: Prisma.DateTimeFilter<'FileInstance'> | Date | string;
+  updatedAt?: Prisma.DateTimeFilter<'FileInstance'> | Date | string;
+};
+
+export type FileInstanceCreateWithoutSettingsInput = {
+  id?: string;
+  filename: string;
+  originalFilename: string;
+  path: string;
+  url: string;
+  fileType?: $Enums.FileType;
+  mimeType: string;
+  size: number;
+  createdAt?: Date | string;
+  updatedAt?: Date | string;
+  pageBanners?: Prisma.PageBannerCreateNestedManyWithoutLogoInput;
+  pageBannersBackground?: Prisma.PageBannerCreateNestedManyWithoutBackgroundInput;
+  blog?: Prisma.BlogCreateNestedManyWithoutFileInstancesInput;
+  boatImages?: Prisma.BoatImageCreateNestedManyWithoutFileInput;
+  blogs?: Prisma.BlogCreateNestedManyWithoutBlogImageInput;
+};
+
+export type FileInstanceUncheckedCreateWithoutSettingsInput = {
+  id?: string;
+  filename: string;
+  originalFilename: string;
+  path: string;
+  url: string;
+  fileType?: $Enums.FileType;
+  mimeType: string;
+  size: number;
+  createdAt?: Date | string;
+  updatedAt?: Date | string;
+  pageBanners?: Prisma.PageBannerUncheckedCreateNestedManyWithoutLogoInput;
+  pageBannersBackground?: Prisma.PageBannerUncheckedCreateNestedManyWithoutBackgroundInput;
+  blog?: Prisma.BlogUncheckedCreateNestedManyWithoutFileInstancesInput;
+  boatImages?: Prisma.BoatImageUncheckedCreateNestedManyWithoutFileInput;
+  blogs?: Prisma.BlogUncheckedCreateNestedManyWithoutBlogImageInput;
+};
+
+export type FileInstanceCreateOrConnectWithoutSettingsInput = {
+  where: Prisma.FileInstanceWhereUniqueInput;
+  create: Prisma.XOR<
+    Prisma.FileInstanceCreateWithoutSettingsInput,
+    Prisma.FileInstanceUncheckedCreateWithoutSettingsInput
+  >;
+};
+
+export type FileInstanceUpsertWithoutSettingsInput = {
+  update: Prisma.XOR<
+    Prisma.FileInstanceUpdateWithoutSettingsInput,
+    Prisma.FileInstanceUncheckedUpdateWithoutSettingsInput
+  >;
+  create: Prisma.XOR<
+    Prisma.FileInstanceCreateWithoutSettingsInput,
+    Prisma.FileInstanceUncheckedCreateWithoutSettingsInput
+  >;
+  where?: Prisma.FileInstanceWhereInput;
+};
+
+export type FileInstanceUpdateToOneWithWhereWithoutSettingsInput = {
+  where?: Prisma.FileInstanceWhereInput;
+  data: Prisma.XOR<
+    Prisma.FileInstanceUpdateWithoutSettingsInput,
+    Prisma.FileInstanceUncheckedUpdateWithoutSettingsInput
+  >;
+};
+
+export type FileInstanceUpdateWithoutSettingsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string;
+  filename?: Prisma.StringFieldUpdateOperationsInput | string;
+  originalFilename?: Prisma.StringFieldUpdateOperationsInput | string;
+  path?: Prisma.StringFieldUpdateOperationsInput | string;
+  url?: Prisma.StringFieldUpdateOperationsInput | string;
+  fileType?: Prisma.EnumFileTypeFieldUpdateOperationsInput | $Enums.FileType;
+  mimeType?: Prisma.StringFieldUpdateOperationsInput | string;
+  size?: Prisma.IntFieldUpdateOperationsInput | number;
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  pageBanners?: Prisma.PageBannerUpdateManyWithoutLogoNestedInput;
+  pageBannersBackground?: Prisma.PageBannerUpdateManyWithoutBackgroundNestedInput;
+  blog?: Prisma.BlogUpdateManyWithoutFileInstancesNestedInput;
+  boatImages?: Prisma.BoatImageUpdateManyWithoutFileNestedInput;
+  blogs?: Prisma.BlogUpdateManyWithoutBlogImageNestedInput;
+};
+
+export type FileInstanceUncheckedUpdateWithoutSettingsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string;
+  filename?: Prisma.StringFieldUpdateOperationsInput | string;
+  originalFilename?: Prisma.StringFieldUpdateOperationsInput | string;
+  path?: Prisma.StringFieldUpdateOperationsInput | string;
+  url?: Prisma.StringFieldUpdateOperationsInput | string;
+  fileType?: Prisma.EnumFileTypeFieldUpdateOperationsInput | $Enums.FileType;
+  mimeType?: Prisma.StringFieldUpdateOperationsInput | string;
+  size?: Prisma.IntFieldUpdateOperationsInput | number;
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  pageBanners?: Prisma.PageBannerUncheckedUpdateManyWithoutLogoNestedInput;
+  pageBannersBackground?: Prisma.PageBannerUncheckedUpdateManyWithoutBackgroundNestedInput;
+  blog?: Prisma.BlogUncheckedUpdateManyWithoutFileInstancesNestedInput;
+  boatImages?: Prisma.BoatImageUncheckedUpdateManyWithoutFileNestedInput;
+  blogs?: Prisma.BlogUncheckedUpdateManyWithoutBlogImageNestedInput;
+};
+
+export type FileInstanceUpdateWithoutBlogInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string;
+  filename?: Prisma.StringFieldUpdateOperationsInput | string;
+  originalFilename?: Prisma.StringFieldUpdateOperationsInput | string;
+  path?: Prisma.StringFieldUpdateOperationsInput | string;
+  url?: Prisma.StringFieldUpdateOperationsInput | string;
+  fileType?: Prisma.EnumFileTypeFieldUpdateOperationsInput | $Enums.FileType;
+  mimeType?: Prisma.StringFieldUpdateOperationsInput | string;
+  size?: Prisma.IntFieldUpdateOperationsInput | number;
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  pageBanners?: Prisma.PageBannerUpdateManyWithoutLogoNestedInput;
+  pageBannersBackground?: Prisma.PageBannerUpdateManyWithoutBackgroundNestedInput;
+  boatImages?: Prisma.BoatImageUpdateManyWithoutFileNestedInput;
+  blogs?: Prisma.BlogUpdateManyWithoutBlogImageNestedInput;
+  settings?: Prisma.SettingUpdateManyWithoutLogoNestedInput;
+};
+
+export type FileInstanceUncheckedUpdateWithoutBlogInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string;
+  filename?: Prisma.StringFieldUpdateOperationsInput | string;
+  originalFilename?: Prisma.StringFieldUpdateOperationsInput | string;
+  path?: Prisma.StringFieldUpdateOperationsInput | string;
+  url?: Prisma.StringFieldUpdateOperationsInput | string;
+  fileType?: Prisma.EnumFileTypeFieldUpdateOperationsInput | $Enums.FileType;
+  mimeType?: Prisma.StringFieldUpdateOperationsInput | string;
+  size?: Prisma.IntFieldUpdateOperationsInput | number;
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  pageBanners?: Prisma.PageBannerUncheckedUpdateManyWithoutLogoNestedInput;
+  pageBannersBackground?: Prisma.PageBannerUncheckedUpdateManyWithoutBackgroundNestedInput;
+  boatImages?: Prisma.BoatImageUncheckedUpdateManyWithoutFileNestedInput;
+  blogs?: Prisma.BlogUncheckedUpdateManyWithoutBlogImageNestedInput;
+  settings?: Prisma.SettingUncheckedUpdateManyWithoutLogoNestedInput;
+};
+
+export type FileInstanceUncheckedUpdateManyWithoutBlogInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string;
   filename?: Prisma.StringFieldUpdateOperationsInput | string;
   originalFilename?: Prisma.StringFieldUpdateOperationsInput | string;
@@ -606,14 +1436,26 @@ export type FileInstanceUncheckedUpdateWithoutBoatImagesInput = {
  */
 
 export type FileInstanceCountOutputType = {
+  pageBanners: number;
+  pageBannersBackground: number;
+  blog: number;
   boatImages: number;
+  blogs: number;
+  settings: number;
 };
 
 export type FileInstanceCountOutputTypeSelect<
   ExtArgs extends
     runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs,
 > = {
+  pageBanners?: boolean | FileInstanceCountOutputTypeCountPageBannersArgs;
+  pageBannersBackground?:
+    | boolean
+    | FileInstanceCountOutputTypeCountPageBannersBackgroundArgs;
+  blog?: boolean | FileInstanceCountOutputTypeCountBlogArgs;
   boatImages?: boolean | FileInstanceCountOutputTypeCountBoatImagesArgs;
+  blogs?: boolean | FileInstanceCountOutputTypeCountBlogsArgs;
+  settings?: boolean | FileInstanceCountOutputTypeCountSettingsArgs;
 };
 
 /**
@@ -632,11 +1474,61 @@ export type FileInstanceCountOutputTypeDefaultArgs<
 /**
  * FileInstanceCountOutputType without action
  */
+export type FileInstanceCountOutputTypeCountPageBannersArgs<
+  ExtArgs extends
+    runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs,
+> = {
+  where?: Prisma.PageBannerWhereInput;
+};
+
+/**
+ * FileInstanceCountOutputType without action
+ */
+export type FileInstanceCountOutputTypeCountPageBannersBackgroundArgs<
+  ExtArgs extends
+    runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs,
+> = {
+  where?: Prisma.PageBannerWhereInput;
+};
+
+/**
+ * FileInstanceCountOutputType without action
+ */
+export type FileInstanceCountOutputTypeCountBlogArgs<
+  ExtArgs extends
+    runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs,
+> = {
+  where?: Prisma.BlogWhereInput;
+};
+
+/**
+ * FileInstanceCountOutputType without action
+ */
 export type FileInstanceCountOutputTypeCountBoatImagesArgs<
   ExtArgs extends
     runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs,
 > = {
   where?: Prisma.BoatImageWhereInput;
+};
+
+/**
+ * FileInstanceCountOutputType without action
+ */
+export type FileInstanceCountOutputTypeCountBlogsArgs<
+  ExtArgs extends
+    runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs,
+> = {
+  where?: Prisma.BlogWhereInput;
+};
+
+/**
+ * FileInstanceCountOutputType without action
+ */
+export type FileInstanceCountOutputTypeCountSettingsArgs<
+  ExtArgs extends
+    runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs,
+> = {
+  where?: Prisma.SettingWhereInput;
 };
 
 export type FileInstanceSelect<
@@ -654,7 +1546,14 @@ export type FileInstanceSelect<
     size?: boolean;
     createdAt?: boolean;
     updatedAt?: boolean;
+    pageBanners?: boolean | Prisma.FileInstance$pageBannersArgs<ExtArgs>;
+    pageBannersBackground?:
+      | boolean
+      | Prisma.FileInstance$pageBannersBackgroundArgs<ExtArgs>;
+    blog?: boolean | Prisma.FileInstance$blogArgs<ExtArgs>;
     boatImages?: boolean | Prisma.FileInstance$boatImagesArgs<ExtArgs>;
+    blogs?: boolean | Prisma.FileInstance$blogsArgs<ExtArgs>;
+    settings?: boolean | Prisma.FileInstance$settingsArgs<ExtArgs>;
     _count?: boolean | Prisma.FileInstanceCountOutputTypeDefaultArgs<ExtArgs>;
   },
   ExtArgs['result']['fileInstance']
@@ -731,7 +1630,14 @@ export type FileInstanceInclude<
   ExtArgs extends
     runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs,
 > = {
+  pageBanners?: boolean | Prisma.FileInstance$pageBannersArgs<ExtArgs>;
+  pageBannersBackground?:
+    | boolean
+    | Prisma.FileInstance$pageBannersBackgroundArgs<ExtArgs>;
+  blog?: boolean | Prisma.FileInstance$blogArgs<ExtArgs>;
   boatImages?: boolean | Prisma.FileInstance$boatImagesArgs<ExtArgs>;
+  blogs?: boolean | Prisma.FileInstance$blogsArgs<ExtArgs>;
+  settings?: boolean | Prisma.FileInstance$settingsArgs<ExtArgs>;
   _count?: boolean | Prisma.FileInstanceCountOutputTypeDefaultArgs<ExtArgs>;
 };
 export type FileInstanceIncludeCreateManyAndReturn<
@@ -749,7 +1655,12 @@ export type $FileInstancePayload<
 > = {
   name: 'FileInstance';
   objects: {
+    pageBanners: Prisma.$PageBannerPayload<ExtArgs>[];
+    pageBannersBackground: Prisma.$PageBannerPayload<ExtArgs>[];
+    blog: Prisma.$BlogPayload<ExtArgs>[];
     boatImages: Prisma.$BoatImagePayload<ExtArgs>[];
+    blogs: Prisma.$BlogPayload<ExtArgs>[];
+    settings: Prisma.$SettingPayload<ExtArgs>[];
   };
   scalars: runtime.Types.Extensions.GetPayloadResult<
     {
@@ -1319,11 +2230,71 @@ export interface Prisma__FileInstanceClient<
   GlobalOmitOptions = {},
 > extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: 'PrismaPromise';
+  pageBanners<T extends Prisma.FileInstance$pageBannersArgs<ExtArgs> = {}>(
+    args?: Prisma.Subset<T, Prisma.FileInstance$pageBannersArgs<ExtArgs>>,
+  ): Prisma.PrismaPromise<
+    | runtime.Types.Result.GetResult<
+        Prisma.$PageBannerPayload<ExtArgs>,
+        T,
+        'findMany',
+        GlobalOmitOptions
+      >
+    | Null
+  >;
+  pageBannersBackground<
+    T extends Prisma.FileInstance$pageBannersBackgroundArgs<ExtArgs> = {},
+  >(
+    args?: Prisma.Subset<
+      T,
+      Prisma.FileInstance$pageBannersBackgroundArgs<ExtArgs>
+    >,
+  ): Prisma.PrismaPromise<
+    | runtime.Types.Result.GetResult<
+        Prisma.$PageBannerPayload<ExtArgs>,
+        T,
+        'findMany',
+        GlobalOmitOptions
+      >
+    | Null
+  >;
+  blog<T extends Prisma.FileInstance$blogArgs<ExtArgs> = {}>(
+    args?: Prisma.Subset<T, Prisma.FileInstance$blogArgs<ExtArgs>>,
+  ): Prisma.PrismaPromise<
+    | runtime.Types.Result.GetResult<
+        Prisma.$BlogPayload<ExtArgs>,
+        T,
+        'findMany',
+        GlobalOmitOptions
+      >
+    | Null
+  >;
   boatImages<T extends Prisma.FileInstance$boatImagesArgs<ExtArgs> = {}>(
     args?: Prisma.Subset<T, Prisma.FileInstance$boatImagesArgs<ExtArgs>>,
   ): Prisma.PrismaPromise<
     | runtime.Types.Result.GetResult<
         Prisma.$BoatImagePayload<ExtArgs>,
+        T,
+        'findMany',
+        GlobalOmitOptions
+      >
+    | Null
+  >;
+  blogs<T extends Prisma.FileInstance$blogsArgs<ExtArgs> = {}>(
+    args?: Prisma.Subset<T, Prisma.FileInstance$blogsArgs<ExtArgs>>,
+  ): Prisma.PrismaPromise<
+    | runtime.Types.Result.GetResult<
+        Prisma.$BlogPayload<ExtArgs>,
+        T,
+        'findMany',
+        GlobalOmitOptions
+      >
+    | Null
+  >;
+  settings<T extends Prisma.FileInstance$settingsArgs<ExtArgs> = {}>(
+    args?: Prisma.Subset<T, Prisma.FileInstance$settingsArgs<ExtArgs>>,
+  ): Prisma.PrismaPromise<
+    | runtime.Types.Result.GetResult<
+        Prisma.$SettingPayload<ExtArgs>,
         T,
         'findMany',
         GlobalOmitOptions
@@ -1845,6 +2816,97 @@ export type FileInstanceDeleteManyArgs<
 };
 
 /**
+ * FileInstance.pageBanners
+ */
+export type FileInstance$pageBannersArgs<
+  ExtArgs extends
+    runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs,
+> = {
+  /**
+   * Select specific fields to fetch from the PageBanner
+   */
+  select?: Prisma.PageBannerSelect<ExtArgs> | null;
+  /**
+   * Omit specific fields from the PageBanner
+   */
+  omit?: Prisma.PageBannerOmit<ExtArgs> | null;
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.PageBannerInclude<ExtArgs> | null;
+  where?: Prisma.PageBannerWhereInput;
+  orderBy?:
+    | Prisma.PageBannerOrderByWithRelationInput
+    | Prisma.PageBannerOrderByWithRelationInput[];
+  cursor?: Prisma.PageBannerWhereUniqueInput;
+  take?: number;
+  skip?: number;
+  distinct?:
+    | Prisma.PageBannerScalarFieldEnum
+    | Prisma.PageBannerScalarFieldEnum[];
+};
+
+/**
+ * FileInstance.pageBannersBackground
+ */
+export type FileInstance$pageBannersBackgroundArgs<
+  ExtArgs extends
+    runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs,
+> = {
+  /**
+   * Select specific fields to fetch from the PageBanner
+   */
+  select?: Prisma.PageBannerSelect<ExtArgs> | null;
+  /**
+   * Omit specific fields from the PageBanner
+   */
+  omit?: Prisma.PageBannerOmit<ExtArgs> | null;
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.PageBannerInclude<ExtArgs> | null;
+  where?: Prisma.PageBannerWhereInput;
+  orderBy?:
+    | Prisma.PageBannerOrderByWithRelationInput
+    | Prisma.PageBannerOrderByWithRelationInput[];
+  cursor?: Prisma.PageBannerWhereUniqueInput;
+  take?: number;
+  skip?: number;
+  distinct?:
+    | Prisma.PageBannerScalarFieldEnum
+    | Prisma.PageBannerScalarFieldEnum[];
+};
+
+/**
+ * FileInstance.blog
+ */
+export type FileInstance$blogArgs<
+  ExtArgs extends
+    runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs,
+> = {
+  /**
+   * Select specific fields to fetch from the Blog
+   */
+  select?: Prisma.BlogSelect<ExtArgs> | null;
+  /**
+   * Omit specific fields from the Blog
+   */
+  omit?: Prisma.BlogOmit<ExtArgs> | null;
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.BlogInclude<ExtArgs> | null;
+  where?: Prisma.BlogWhereInput;
+  orderBy?:
+    | Prisma.BlogOrderByWithRelationInput
+    | Prisma.BlogOrderByWithRelationInput[];
+  cursor?: Prisma.BlogWhereUniqueInput;
+  take?: number;
+  skip?: number;
+  distinct?: Prisma.BlogScalarFieldEnum | Prisma.BlogScalarFieldEnum[];
+};
+
+/**
  * FileInstance.boatImages
  */
 export type FileInstance$boatImagesArgs<
@@ -1873,6 +2935,64 @@ export type FileInstance$boatImagesArgs<
   distinct?:
     | Prisma.BoatImageScalarFieldEnum
     | Prisma.BoatImageScalarFieldEnum[];
+};
+
+/**
+ * FileInstance.blogs
+ */
+export type FileInstance$blogsArgs<
+  ExtArgs extends
+    runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs,
+> = {
+  /**
+   * Select specific fields to fetch from the Blog
+   */
+  select?: Prisma.BlogSelect<ExtArgs> | null;
+  /**
+   * Omit specific fields from the Blog
+   */
+  omit?: Prisma.BlogOmit<ExtArgs> | null;
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.BlogInclude<ExtArgs> | null;
+  where?: Prisma.BlogWhereInput;
+  orderBy?:
+    | Prisma.BlogOrderByWithRelationInput
+    | Prisma.BlogOrderByWithRelationInput[];
+  cursor?: Prisma.BlogWhereUniqueInput;
+  take?: number;
+  skip?: number;
+  distinct?: Prisma.BlogScalarFieldEnum | Prisma.BlogScalarFieldEnum[];
+};
+
+/**
+ * FileInstance.settings
+ */
+export type FileInstance$settingsArgs<
+  ExtArgs extends
+    runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs,
+> = {
+  /**
+   * Select specific fields to fetch from the Setting
+   */
+  select?: Prisma.SettingSelect<ExtArgs> | null;
+  /**
+   * Omit specific fields from the Setting
+   */
+  omit?: Prisma.SettingOmit<ExtArgs> | null;
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.SettingInclude<ExtArgs> | null;
+  where?: Prisma.SettingWhereInput;
+  orderBy?:
+    | Prisma.SettingOrderByWithRelationInput
+    | Prisma.SettingOrderByWithRelationInput[];
+  cursor?: Prisma.SettingWhereUniqueInput;
+  take?: number;
+  skip?: number;
+  distinct?: Prisma.SettingScalarFieldEnum | Prisma.SettingScalarFieldEnum[];
 };
 
 /**
