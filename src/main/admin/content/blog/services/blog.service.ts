@@ -56,10 +56,19 @@ export class BlogService {
   }
 
   async findAll() {
-    return this.prisma.client.blog.findMany({
+    const blogs = await this.prisma.client.blog.findMany({
       include: { blogImage: true },
       orderBy: { createdAt: 'desc' },
     });
+
+    const withViews = await Promise.all(
+      blogs.map(async (blog) => {
+        const viewCount = await this.getBlogPageViews(blog.sharedLink);
+        return { ...blog, pageViewCount: viewCount };
+      }),
+    );
+
+    return withViews;
   }
 
   async findOne(id: string) {
@@ -69,7 +78,8 @@ export class BlogService {
     });
 
     if (!blog) throw new NotFoundException('Blog not found');
-    return blog;
+    const viewCount = await this.getBlogPageViews(blog.sharedLink);
+    return { ...blog, pageViewCount: viewCount };
   }
 
   async update(id: string, dto: UpdateBlogDto, file?: Express.Multer.File) {
@@ -114,6 +124,20 @@ export class BlogService {
     });
 
     if (!blog) throw new NotFoundException('Blog not found');
-    return blog;
+
+    const viewCount = await this.getBlogPageViews(sharedLink);
+
+    return { ...blog, pageViewCount: viewCount };
+  }
+
+  private async getBlogPageViews(sharedLink: string): Promise<number> {
+    const page = `/blogs/${sharedLink}`;
+
+    const views = await this.prisma.client.pageView.aggregate({
+      _sum: { count: true },
+      where: { page },
+    });
+
+    return views._sum.count ?? 0;
   }
 }

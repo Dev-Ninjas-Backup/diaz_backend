@@ -17,6 +17,30 @@ model Setting {
   @@map("settings")
 }
 
+model VisitorSession {
+  id        String   @id @default(uuid())
+  ip        String
+  userAgent String?
+  startedAt DateTime @default(now())
+  endedAt   DateTime?
+  page      String
+  createdAt DateTime @default(now())
+
+  durationSeconds Int? 
+
+  @@index([ip])
+  @@map("visitor_sessions")
+}
+
+model PageView {
+  id        String   @id @default(uuid())
+  page      String
+  count     Int      @default(1)
+  createdAt DateTime @default(now())
+
+  @@map("page_views")
+}
+
 enum Currency {
   AED
   AFN

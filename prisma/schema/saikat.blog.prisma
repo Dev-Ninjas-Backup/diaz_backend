@@ -21,7 +21,6 @@ model Blog {
   blogDescription  String
   sharedLink       String        @db.VarChar(255) @unique
   readTime         Int?          @default(5)
-  viewCount        Int           @default(0)
   postStatus       PostStatus    @default(DRAFT)
   createdAt        DateTime      @default(now())
   updatedAt        DateTime      @updatedAt
