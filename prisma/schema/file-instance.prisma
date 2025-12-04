@@ -17,7 +17,6 @@ model FileInstance {
   blog Blog[] @relation("blogImage")
   boatImages BoatImage[]
 
-
   contactTopImages ContactPage? @relation("contactTopImage")
   contactBottomImages ContactPage? @relation("contactBottomImage")
 
