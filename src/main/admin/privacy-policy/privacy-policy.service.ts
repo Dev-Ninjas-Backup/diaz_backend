@@ -1,7 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { UpdatePrivacyPolicyDto } from './dto/privacy-policy.dto';
 import { PrismaService } from '@/lib/prisma/prisma.service';
-
 // In-memory storage (replace with Prisma/TypeORM/Mongo in production)
 
 @Injectable()

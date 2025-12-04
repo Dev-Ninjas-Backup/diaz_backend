@@ -18,7 +18,6 @@ import {
 } from '@nestjs/swagger';
 import { CreateAdminUserDto } from './dto/admin.dto';
 import { UserPermissionsService } from './user-permissions.services';
-import { changeRole } from './enum/changerole.enum';
 import { RoleAuthGuard } from '@/common/guard/role-auth.guard';
 import { UserRole } from 'generated/enums';
 
@@ -52,12 +51,6 @@ export class UserPermissionsController {
   @Patch(':id')
   @ApiOperation({ summary: 'Change role of a user (SUPER_ADMIN only)' })
   @ApiParam({ name: 'id', description: 'User ID (UUID or number)' })
-  @ApiQuery({
-    name: 'changerole',
-    enum: changeRole,
-    description: 'New role to assign',
-    example: changeRole.ADMIN,
-  })
   @ApiResponse({ status: 200, description: 'Role updated successfully.' })
   @ApiResponse({ status: 400, description: 'Invalid role provided.' })
   @ApiResponse({
@@ -65,12 +58,12 @@ export class UserPermissionsController {
     description: 'Forbidden – insufficient permissions.',
   })
   async changeRole(
-    @Query('changerole') role: changeRole,
+    @Query('changerole') role: UserRole,
     @Param('id') id: string,
   ) {
-    if (!role || !Object.values(changeRole).includes(role as changeRole)) {
+    if (!role || !Object.values(UserRole).includes(role as UserRole)) {
       throw new BadRequestException(
-        `Invalid site. Allowed values: ${Object.values(changeRole).join(', ')}`,
+        `Invalid site. Allowed values: ${Object.values(UserRole).join(', ')}`,
       );
     }
 

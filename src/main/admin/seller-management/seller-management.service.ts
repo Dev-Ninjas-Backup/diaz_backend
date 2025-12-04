@@ -74,6 +74,7 @@ export class SellerManagementService {
     return this.prisma.client.user.update({
       where: { id: sellerId },
       data: {
+        ...updateSellerDto,
         status: updateSellerDto.status,
       },
     });

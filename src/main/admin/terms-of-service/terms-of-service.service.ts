@@ -6,15 +6,15 @@ import { UpdateTermsOfServicesDto } from './dto/tos.dto';
 export class TermsofServicesService {
   constructor(private readonly prisma: PrismaService) {}
 
-  async createTermsOfService(createTermsOfServiceDto: any) {
-    const { termsTitle, termsDescription } = createTermsOfServiceDto;
-    return this.prisma.client.termsOfServices.create({
-      data: {
-        termsTitle,
-        termsDescription,
-      },
-    });
-  }
+  // async createTermsOfService(createTermsOfServiceDto: any) {
+  //   const { termsTitle, termsDescription } = createTermsOfServiceDto;
+  //   return this.prisma.client.termsOfServices.create({
+  //     data: {
+  //       termsTitle,
+  //       termsDescription,
+  //     },
+  //   });
+  // }
 
   async updateTermsOfService(
     id: string,
@@ -30,9 +30,9 @@ export class TermsofServicesService {
     });
   }
 
-  async getTermsOfServiceById(id: string) {
-    return this.prisma.client.termsOfServices.findUnique({
-      where: { id },
-    });
-  }
+  // async getTermsOfServiceById(id: string) {
+  //   return this.prisma.client.termsOfServices.findUnique({
+  //     where: { id },
+  //   });
+  // }
 }

@@ -14,18 +14,18 @@ import {
 export class TermsOfServiceController {
   constructor(private readonly privacyPolicyService: TermsofServicesService) {}
 
-  @Post('create')
-  @ApiOperation({ summary: 'Create a new Terms of Service entry' })
-  @ApiBody({ type: UpdateTermsOfServicesDto })
-  @ApiResponse({ status: 201, description: 'Terms created successfully.' })
-  @ApiResponse({ status: 400, description: 'Invalid input.' })
-  async createTermsOfService(
-    @Body() createTermsOfServiceDto: UpdateTermsOfServicesDto,
-  ) {
-    return this.privacyPolicyService.createTermsOfService(
-      createTermsOfServiceDto,
-    );
-  }
+  // @Post('create')
+  // @ApiOperation({ summary: 'Create a new Terms of Service entry' })
+  // @ApiBody({ type: UpdateTermsOfServicesDto })
+  // @ApiResponse({ status: 201, description: 'Terms created successfully.' })
+  // @ApiResponse({ status: 400, description: 'Invalid input.' })
+  // async createTermsOfService(
+  //   @Body() createTermsOfServiceDto: UpdateTermsOfServicesDto,
+  // ) {
+  //   return this.privacyPolicyService.createTermsOfService(
+  //     createTermsOfServiceDto,
+  //   );
+  // }
 
   @Patch('update/:id')
   @ApiOperation({ summary: 'Update Terms of Service by ID' })
@@ -44,8 +44,8 @@ export class TermsOfServiceController {
     );
   }
 
-  @Get('get/:id')
-  async getTermsOfService(@Param('id') id: string) {
-    return this.privacyPolicyService.getTermsOfServiceById(id);
-  }
+  // @Get('get/:id')
+  // async getTermsOfService(@Param('id') id: string) {
+  //   return this.privacyPolicyService.getTermsOfServiceById(id);
+  // }
 }

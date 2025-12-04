@@ -27,7 +27,22 @@ export class PrivacyPolicyController {
   constructor(private readonly privacyPolicyService: PrivacyPolicyService) {}
 
   @Post('create')
-  async createUser(@Body() createPrivacyPolicyDto: UpdatePrivacyPolicyDto) {
+  @HttpCode(HttpStatus.OK)
+  @ApiOperation({ summary: 'Update privacy policy for a site (admin only)' })
+  @ApiQuery({
+    name: 'site',
+    enum: Site,
+    example: Site.FLORIDA,
+  })
+  @ApiBody({ type: UpdatePrivacyPolicyDto })
+  @ApiResponse({
+    status: 200,
+    description: 'Privacy policy updated successfully',
+  })
+  async createUser(
+    @Query('site') site: Site,
+    @Body() createPrivacyPolicyDto: UpdatePrivacyPolicyDto,
+  ) {
     return this.privacyPolicyService.createPrivacyPolicy(
       createPrivacyPolicyDto,
     );
@@ -41,7 +56,7 @@ export class PrivacyPolicyController {
     example: Site.JUPITER,
   })
   @ApiResponse({ status: 200, description: 'Returns title and description' })
-  async getPrivacyPolicy(@Query('site') site: string) {
+  async getPrivacyPolicy(@Query('site') site: Site) {
     if (!site || !Object.values(Site).includes(site as Site)) {
       throw new BadRequestException(
         `Invalid site. Allowed values: ${Object.values(Site).join(', ')}`,
@@ -73,21 +88,14 @@ export class PrivacyPolicyController {
     description: 'Privacy policy updated successfully',
   })
   async updatePrivacyPolicy(
-    @Query('site') site: string,
+    @Query('site') site: Site,
     @Body() dto: UpdatePrivacyPolicyDto,
   ) {
-    if (site !== Site.FLORIDA) {
+    if (!site || !Object.values(Site).includes(site as Site)) {
       throw new BadRequestException(
         `Invalid site. Allowed values: ${Object.values(Site).join(', ')}`,
       );
     }
-
-    await this.privacyPolicyService.updatePolicy(dto);
-
-    return {
-      message: `Privacy policy for ${site} updated successfully`,
-      site,
-      updatedAt: new Date().toISOString(),
-    };
+    return this.privacyPolicyService.updatePolicy(dto);
   }
 }

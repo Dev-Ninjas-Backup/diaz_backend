@@ -3,11 +3,9 @@ import {
   IsString,
   IsOptional,
   IsEmail,
-  Length,
   IsUrl,
   IsEnum,
   IsPhoneNumber,
-  Matches,
 } from 'class-validator';
 import { UserStatus } from 'generated/enums';
 
@@ -20,7 +18,6 @@ export class UpdateSellerDto {
   })
   @IsOptional()
   @IsString()
-  @Length(2, 50)
   name?: string;
 
   @ApiProperty({
@@ -30,10 +27,6 @@ export class UpdateSellerDto {
   })
   @IsOptional()
   @IsString()
-  @Length(3, 30)
-  @Matches(/^[a-zA-Z0-9_]+$/, {
-    message: 'Username can only contain letters, numbers, and underscores',
-  })
   username?: string;
 
   @ApiProperty({
@@ -82,7 +75,6 @@ export class UpdateSellerDto {
   @ApiProperty({ example: '33139', required: false })
   @IsOptional()
   @IsString()
-  @Length(4, 10)
   zip?: string;
 
   // === Account Status (Admin only) ===

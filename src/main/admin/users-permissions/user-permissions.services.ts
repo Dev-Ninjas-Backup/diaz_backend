@@ -1,12 +1,15 @@
 import { PrismaService } from '@/lib/prisma/prisma.service';
 import { Injectable } from '@nestjs/common';
 import { CreateAdminUserDto, GetAdminUsersDto } from './dto/admin.dto';
-import { changeRole } from './enum/changerole.enum';
-import { UserStatus } from 'generated/enums';
+import { UserRole, UserStatus } from 'generated/enums';
+import { UtilsService } from '@/lib/utils/utils.service';
 
 @Injectable()
 export class UserPermissionsService {
-  constructor(private readonly prisma: PrismaService) {}
+  constructor(
+    private readonly prisma: PrismaService,
+    private readonly utils: UtilsService,
+  ) {}
 
   async getAdmins(): Promise<GetAdminUsersDto[]> {
     return this.prisma.client.user.findMany({
@@ -28,12 +31,17 @@ export class UserPermissionsService {
   }
 
   async addAdmin(createAdminUserDto: CreateAdminUserDto) {
+    const hashedPassword = await this.utils.hash(createAdminUserDto.password);
     return this.prisma.client.user.create({
-      data: { ...createAdminUserDto, isVerified: true },
+      data: {
+        ...createAdminUserDto,
+        isVerified: true,
+        password: hashedPassword,
+      },
     });
   }
 
-  async changeRole(id: string, role: changeRole) {
+  async changeRole(id: string, role: UserRole) {
     return this.prisma.client.user.update({
       where: { id },
       data: {
