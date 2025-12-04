@@ -95,5 +95,4 @@ export class UpdateSellerDto {
   @IsOptional()
   @IsEnum(UserStatus)
   status?: UserStatus;
-  sellerId: any;
 }

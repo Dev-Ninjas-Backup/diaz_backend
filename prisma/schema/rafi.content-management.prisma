@@ -1,6 +1,5 @@
 
 
-
 model AboutPage {
   id                   String   @id @default(uuid())
 

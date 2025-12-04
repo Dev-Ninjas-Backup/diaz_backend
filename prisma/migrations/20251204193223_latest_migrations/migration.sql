@@ -288,7 +288,6 @@ CREATE TABLE "blog" (
     "blogDescription" TEXT NOT NULL,
     "sharedLink" VARCHAR(255) NOT NULL,
     "readTime" INTEGER DEFAULT 5,
-    "viewCount" INTEGER NOT NULL DEFAULT 0,
     "postStatus" "PostStatus" NOT NULL DEFAULT 'DRAFT',
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL,
@@ -309,6 +308,30 @@ CREATE TABLE "settings" (
     "updatedAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
 
     CONSTRAINT "settings_pkey" PRIMARY KEY ("id")
+);
+
+-- CreateTable
+CREATE TABLE "visitor_sessions" (
+    "id" TEXT NOT NULL,
+    "ip" TEXT NOT NULL,
+    "userAgent" TEXT,
+    "startedAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "endedAt" TIMESTAMP(3),
+    "page" TEXT NOT NULL,
+    "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "durationSeconds" INTEGER,
+
+    CONSTRAINT "visitor_sessions_pkey" PRIMARY KEY ("id")
+);
+
+-- CreateTable
+CREATE TABLE "page_views" (
+    "id" TEXT NOT NULL,
+    "page" TEXT NOT NULL,
+    "count" INTEGER NOT NULL DEFAULT 1,
+    "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+
+    CONSTRAINT "page_views_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateTable
@@ -455,6 +478,9 @@ CREATE UNIQUE INDEX "contactpage_contactBottomImageId_key" ON "contactpage"("con
 
 -- CreateIndex
 CREATE UNIQUE INDEX "blog_sharedLink_key" ON "blog"("sharedLink");
+
+-- CreateIndex
+CREATE INDEX "visitor_sessions_ip_idx" ON "visitor_sessions"("ip");
 
 -- CreateIndex
 CREATE UNIQUE INDEX "subscription_plans_stripeProductId_key" ON "subscription_plans"("stripeProductId");

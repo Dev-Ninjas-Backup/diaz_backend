@@ -1,8 +1,7 @@
-import { Body, Controller, Delete, Get, Param, Patch } from '@nestjs/common';
+import { Body, Controller, Get, Param, Patch } from '@nestjs/common';
 import { SellerManagementService } from './seller-management.service';
 import {
   ApiBody,
-  ApiNoContentResponse,
   ApiNotFoundResponse,
   ApiOkResponse,
   ApiOperation,
@@ -34,6 +33,7 @@ export class SellerManagementController {
         email: 'john@boats.com',
         username: 'johnmarine',
         avatarUrl: 'https://example.com/avatars/john.jpg',
+        isVerified: true,
         boatsCount: 15,
         totalSalesValue: 2850000.0,
         createdAt: '2024-06-15T10:30:00.000Z',
@@ -44,6 +44,7 @@ export class SellerManagementController {
         email: 'sales@miamiyachts.com',
         username: 'miamiyachts',
         avatarUrl: null,
+        isVerified: true,
         boatsCount: 8,
         totalSalesValue: 1240000.0,
         createdAt: '2025-01-20T14:20:00.000Z',
@@ -119,27 +120,8 @@ export class SellerManagementController {
     return this.sellerManagementService.updateSeller(sellerId, updateSellerDto);
   }
 
-  @Delete('sellers/:sellerId')
-  @ApiOperation({
-    summary: 'Delete (or soft-delete) a seller',
-    description:
-      'Typically sets status to DELETED or INACTIVE. Use with caution.',
-  })
-  @ApiParam({
-    name: 'sellerId',
-    type: 'string',
-    description: 'UUID of the seller to delete',
-    example: 'usr_669f8a1c-8b2d-4f3a-9e1a-7d5f8e9c1b2a',
-  })
-  @ApiNoContentResponse({
-    description: 'Seller deleted successfully (no content returned)',
-  })
-  @ApiNotFoundResponse({ description: 'Seller not found' })
-  @ApiResponse({
-    status: 403,
-    description: 'Forbidden (e.g. cannot delete super admin)',
-  })
-  async deleteSeller(@Param('sellerId') sellerId: string) {
-    return this.sellerManagementService.deleteSeller(sellerId);
+  @Get('seller/:id')
+  async getSellerById(@Param('id') id: string) {
+    return this.sellerManagementService.getSellerById(id);
   }
 }

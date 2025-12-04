@@ -20,6 +20,7 @@ export class SellerManagementService {
         name: true,
         email: true,
         username: true,
+        isVerified: true,
         avatarUrl: true,
 
         // Count of boats
@@ -28,21 +29,21 @@ export class SellerManagementService {
             boats: {
               where: {
                 status: {
-                  in: ['ACTIVE', 'PENDING'], // Only count sellable boats
+                  in: ['SOLD'], // Only count sold boats
                 },
               },
             },
           },
         },
 
-        // Total value of all active boats (sum of price)
+        // Total value of all sold boats (sum of price)
         boats: {
           select: {
             price: true,
           },
           where: {
             status: {
-              in: ['ACTIVE', 'PENDING'],
+              in: ['SOLD'],
             },
           },
         },
@@ -71,16 +72,16 @@ export class SellerManagementService {
 
   async updateSeller(sellerId: string, updateSellerDto: UpdateSellerDto) {
     return this.prisma.client.user.update({
-      where: { id: updateSellerDto.sellerId },
+      where: { id: sellerId },
       data: {
         status: updateSellerDto.status,
       },
     });
   }
 
-  async deleteSeller(sellerId: string) {
-    return this.prisma.client.user.delete({
-      where: { id: sellerId },
+  async getSellerById(id: string) {
+    return this.prisma.client.user.findUnique({
+      where: { id },
     });
   }
 }
