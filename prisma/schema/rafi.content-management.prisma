@@ -1,32 +1,3 @@
-// ------------------------------------------------------
-// ENUMS
-// ------------------------------------------------------
-enum PostStatus {
-  DRAFT
-  PUBLISHED
-  ARCHIVED
-}
-
-// ------------------------------------------------------
-// MODELS
-// ------------------------------------------------------
-
-model Blog {
-  id               String        @id @default(uuid())
-  blogImageId      String?
-  blogImage        FileInstance? @relation(fields: [blogImageId], references: [id])
-
-  blogTitle        String        @db.VarChar(255)
-  blogDescription  String
-  sharedLink       String?       @db.VarChar(255)
-  readTime         Int?
-  viewCount        Int           @default(0)
-  postStatus       PostStatus    @default(DRAFT)
-  createdAt        DateTime      @default(now())
-  updatedAt        DateTime      @updatedAt
-
-  @@map("blog")
-}
 
 
 model AboutPage {

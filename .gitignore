@@ -67,3 +67,4 @@ logs
 temp
 tmp
 *.json
+prisma/genereate

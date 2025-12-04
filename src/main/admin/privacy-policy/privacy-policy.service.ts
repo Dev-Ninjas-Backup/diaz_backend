@@ -1,36 +1,33 @@
-import { PrismaService } from '@/lib/prisma/prisma.service';
 import { Injectable } from '@nestjs/common';
 import { UpdatePrivacyPolicyDto } from './dto/privacy-policy.dto';
+import { PrismaService } from '@/lib/prisma/prisma.service';
+
+// In-memory storage (replace with Prisma/TypeORM/Mongo in production)
 
 @Injectable()
 export class PrivacyPolicyService {
   constructor(private readonly prisma: PrismaService) {}
 
-  async createPrivacyPolicy(updatePrivacyPolicyDto: UpdatePrivacyPolicyDto) {
-    return this.prisma.client.privacyPolicy.create({
-      data: {
-        privacyTitle: updatePrivacyPolicyDto.privacyTitle,
-        privacyDescription: updatePrivacyPolicyDto.privacyDescription,
-      },
-    });
+  async getPolicy(): Promise<UpdatePrivacyPolicyDto | null> {
+    return this.prisma.client.privacyPolicy.findFirst();
   }
 
-  async updatePrivacyPolicy(
-    id: string,
-    updatePrivacyPolicyDto: UpdatePrivacyPolicyDto,
-  ) {
+  async updatePolicy(updatePrivacyPolicyDto: UpdatePrivacyPolicyDto) {
+    const ppp = await this.getPolicy();
+
+    if (!ppp) {
+      throw new Error('Privacy policy not found');
+    }
+
     return this.prisma.client.privacyPolicy.update({
-      where: { id },
-      data: {
-        privacyTitle: updatePrivacyPolicyDto.privacyTitle,
-        privacyDescription: updatePrivacyPolicyDto.privacyDescription,
-      },
+      where: { id: ppp.id },
+      data: updatePrivacyPolicyDto,
     });
   }
 
-  async getPrivacyPolicyById(id: string) {
-    return this.prisma.client.privacyPolicy.findUnique({
-      where: { id },
+  async createPrivacyPolicy(createPrivacyPolicy: UpdatePrivacyPolicyDto) {
+    return this.prisma.client.privacyPolicy.create({
+      data: createPrivacyPolicy,
     });
   }
 }

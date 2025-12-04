@@ -1,18 +1,21 @@
+// src/privacy-policy/dto/update-privacy-policy.dto.ts
 import { ApiProperty } from '@nestjs/swagger';
 import { IsString } from 'class-validator';
 
 export class UpdatePrivacyPolicyDto {
-  @IsString()
   @ApiProperty({
-    example: 'Privacy Policy',
+    example: 'Privacy Policy - Florida Location',
     description: 'Title of the Privacy Policy',
   })
+  @IsString()
   privacyTitle: string;
 
-  @IsString()
   @ApiProperty({
-    example: 'These are the terms...',
-    description: 'Description of the Privacy Policy',
+    example:
+      '<h1>Effective Date: December 2025</h1><p>We respect your privacy...</p>',
+    description: 'Full content (HTML recommended) of the privacy policy',
   })
+  @IsString()
   privacyDescription: string;
+  id: any;
 }
