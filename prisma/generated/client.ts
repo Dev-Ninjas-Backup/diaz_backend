@@ -123,6 +123,16 @@ export type Blog = Prisma.BlogModel
  */
 export type Setting = Prisma.SettingModel
 /**
+ * Model VisitorSession
+ * 
+ */
+export type VisitorSession = Prisma.VisitorSessionModel
+/**
+ * Model PageView
+ * 
+ */
+export type PageView = Prisma.PageViewModel
+/**
  * Model SubscriptionPlan
  * 
  */

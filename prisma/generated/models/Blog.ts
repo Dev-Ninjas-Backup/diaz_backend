@@ -28,12 +28,10 @@ export type AggregateBlog = {
 
 export type BlogAvgAggregateOutputType = {
   readTime: number | null
-  viewCount: number | null
 }
 
 export type BlogSumAggregateOutputType = {
   readTime: number | null
-  viewCount: number | null
 }
 
 export type BlogMinAggregateOutputType = {
@@ -43,7 +41,6 @@ export type BlogMinAggregateOutputType = {
   blogDescription: string | null
   sharedLink: string | null
   readTime: number | null
-  viewCount: number | null
   postStatus: $Enums.PostStatus | null
   createdAt: Date | null
   updatedAt: Date | null
@@ -56,7 +53,6 @@ export type BlogMaxAggregateOutputType = {
   blogDescription: string | null
   sharedLink: string | null
   readTime: number | null
-  viewCount: number | null
   postStatus: $Enums.PostStatus | null
   createdAt: Date | null
   updatedAt: Date | null
@@ -69,7 +65,6 @@ export type BlogCountAggregateOutputType = {
   blogDescription: number
   sharedLink: number
   readTime: number
-  viewCount: number
   postStatus: number
   createdAt: number
   updatedAt: number
@@ -79,12 +74,10 @@ export type BlogCountAggregateOutputType = {
 
 export type BlogAvgAggregateInputType = {
   readTime?: true
-  viewCount?: true
 }
 
 export type BlogSumAggregateInputType = {
   readTime?: true
-  viewCount?: true
 }
 
 export type BlogMinAggregateInputType = {
@@ -94,7 +87,6 @@ export type BlogMinAggregateInputType = {
   blogDescription?: true
   sharedLink?: true
   readTime?: true
-  viewCount?: true
   postStatus?: true
   createdAt?: true
   updatedAt?: true
@@ -107,7 +99,6 @@ export type BlogMaxAggregateInputType = {
   blogDescription?: true
   sharedLink?: true
   readTime?: true
-  viewCount?: true
   postStatus?: true
   createdAt?: true
   updatedAt?: true
@@ -120,7 +111,6 @@ export type BlogCountAggregateInputType = {
   blogDescription?: true
   sharedLink?: true
   readTime?: true
-  viewCount?: true
   postStatus?: true
   createdAt?: true
   updatedAt?: true
@@ -220,7 +210,6 @@ export type BlogGroupByOutputType = {
   blogDescription: string
   sharedLink: string
   readTime: number | null
-  viewCount: number
   postStatus: $Enums.PostStatus
   createdAt: Date
   updatedAt: Date
@@ -256,7 +245,6 @@ export type BlogWhereInput = {
   blogDescription?: Prisma.StringFilter<"Blog"> | string
   sharedLink?: Prisma.StringFilter<"Blog"> | string
   readTime?: Prisma.IntNullableFilter<"Blog"> | number | null
-  viewCount?: Prisma.IntFilter<"Blog"> | number
   postStatus?: Prisma.EnumPostStatusFilter<"Blog"> | $Enums.PostStatus
   createdAt?: Prisma.DateTimeFilter<"Blog"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Blog"> | Date | string
@@ -271,7 +259,6 @@ export type BlogOrderByWithRelationInput = {
   blogDescription?: Prisma.SortOrder
   sharedLink?: Prisma.SortOrder
   readTime?: Prisma.SortOrderInput | Prisma.SortOrder
-  viewCount?: Prisma.SortOrder
   postStatus?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
@@ -289,7 +276,6 @@ export type BlogWhereUniqueInput = Prisma.AtLeast<{
   blogTitle?: Prisma.StringFilter<"Blog"> | string
   blogDescription?: Prisma.StringFilter<"Blog"> | string
   readTime?: Prisma.IntNullableFilter<"Blog"> | number | null
-  viewCount?: Prisma.IntFilter<"Blog"> | number
   postStatus?: Prisma.EnumPostStatusFilter<"Blog"> | $Enums.PostStatus
   createdAt?: Prisma.DateTimeFilter<"Blog"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Blog"> | Date | string
@@ -304,7 +290,6 @@ export type BlogOrderByWithAggregationInput = {
   blogDescription?: Prisma.SortOrder
   sharedLink?: Prisma.SortOrder
   readTime?: Prisma.SortOrderInput | Prisma.SortOrder
-  viewCount?: Prisma.SortOrder
   postStatus?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
@@ -325,7 +310,6 @@ export type BlogScalarWhereWithAggregatesInput = {
   blogDescription?: Prisma.StringWithAggregatesFilter<"Blog"> | string
   sharedLink?: Prisma.StringWithAggregatesFilter<"Blog"> | string
   readTime?: Prisma.IntNullableWithAggregatesFilter<"Blog"> | number | null
-  viewCount?: Prisma.IntWithAggregatesFilter<"Blog"> | number
   postStatus?: Prisma.EnumPostStatusWithAggregatesFilter<"Blog"> | $Enums.PostStatus
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"Blog"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"Blog"> | Date | string
@@ -337,7 +321,6 @@ export type BlogCreateInput = {
   blogDescription: string
   sharedLink: string
   readTime?: number | null
-  viewCount?: number
   postStatus?: $Enums.PostStatus
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -352,7 +335,6 @@ export type BlogUncheckedCreateInput = {
   blogDescription: string
   sharedLink: string
   readTime?: number | null
-  viewCount?: number
   postStatus?: $Enums.PostStatus
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -365,7 +347,6 @@ export type BlogUpdateInput = {
   blogDescription?: Prisma.StringFieldUpdateOperationsInput | string
   sharedLink?: Prisma.StringFieldUpdateOperationsInput | string
   readTime?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  viewCount?: Prisma.IntFieldUpdateOperationsInput | number
   postStatus?: Prisma.EnumPostStatusFieldUpdateOperationsInput | $Enums.PostStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -380,7 +361,6 @@ export type BlogUncheckedUpdateInput = {
   blogDescription?: Prisma.StringFieldUpdateOperationsInput | string
   sharedLink?: Prisma.StringFieldUpdateOperationsInput | string
   readTime?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  viewCount?: Prisma.IntFieldUpdateOperationsInput | number
   postStatus?: Prisma.EnumPostStatusFieldUpdateOperationsInput | $Enums.PostStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -394,7 +374,6 @@ export type BlogCreateManyInput = {
   blogDescription: string
   sharedLink: string
   readTime?: number | null
-  viewCount?: number
   postStatus?: $Enums.PostStatus
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -406,7 +385,6 @@ export type BlogUpdateManyMutationInput = {
   blogDescription?: Prisma.StringFieldUpdateOperationsInput | string
   sharedLink?: Prisma.StringFieldUpdateOperationsInput | string
   readTime?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  viewCount?: Prisma.IntFieldUpdateOperationsInput | number
   postStatus?: Prisma.EnumPostStatusFieldUpdateOperationsInput | $Enums.PostStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -419,7 +397,6 @@ export type BlogUncheckedUpdateManyInput = {
   blogDescription?: Prisma.StringFieldUpdateOperationsInput | string
   sharedLink?: Prisma.StringFieldUpdateOperationsInput | string
   readTime?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  viewCount?: Prisma.IntFieldUpdateOperationsInput | number
   postStatus?: Prisma.EnumPostStatusFieldUpdateOperationsInput | $Enums.PostStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -442,7 +419,6 @@ export type BlogCountOrderByAggregateInput = {
   blogDescription?: Prisma.SortOrder
   sharedLink?: Prisma.SortOrder
   readTime?: Prisma.SortOrder
-  viewCount?: Prisma.SortOrder
   postStatus?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
@@ -450,7 +426,6 @@ export type BlogCountOrderByAggregateInput = {
 
 export type BlogAvgOrderByAggregateInput = {
   readTime?: Prisma.SortOrder
-  viewCount?: Prisma.SortOrder
 }
 
 export type BlogMaxOrderByAggregateInput = {
@@ -460,7 +435,6 @@ export type BlogMaxOrderByAggregateInput = {
   blogDescription?: Prisma.SortOrder
   sharedLink?: Prisma.SortOrder
   readTime?: Prisma.SortOrder
-  viewCount?: Prisma.SortOrder
   postStatus?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
@@ -473,7 +447,6 @@ export type BlogMinOrderByAggregateInput = {
   blogDescription?: Prisma.SortOrder
   sharedLink?: Prisma.SortOrder
   readTime?: Prisma.SortOrder
-  viewCount?: Prisma.SortOrder
   postStatus?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
@@ -481,7 +454,6 @@ export type BlogMinOrderByAggregateInput = {
 
 export type BlogSumOrderByAggregateInput = {
   readTime?: Prisma.SortOrder
-  viewCount?: Prisma.SortOrder
 }
 
 export type BlogCreateNestedManyWithoutFileInstancesInput = {
@@ -582,7 +554,6 @@ export type BlogCreateWithoutFileInstancesInput = {
   blogDescription: string
   sharedLink: string
   readTime?: number | null
-  viewCount?: number
   postStatus?: $Enums.PostStatus
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -596,7 +567,6 @@ export type BlogUncheckedCreateWithoutFileInstancesInput = {
   blogDescription: string
   sharedLink: string
   readTime?: number | null
-  viewCount?: number
   postStatus?: $Enums.PostStatus
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -613,7 +583,6 @@ export type BlogCreateWithoutBlogImageInput = {
   blogDescription: string
   sharedLink: string
   readTime?: number | null
-  viewCount?: number
   postStatus?: $Enums.PostStatus
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -626,7 +595,6 @@ export type BlogUncheckedCreateWithoutBlogImageInput = {
   blogDescription: string
   sharedLink: string
   readTime?: number | null
-  viewCount?: number
   postStatus?: $Enums.PostStatus
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -669,7 +637,6 @@ export type BlogScalarWhereInput = {
   blogDescription?: Prisma.StringFilter<"Blog"> | string
   sharedLink?: Prisma.StringFilter<"Blog"> | string
   readTime?: Prisma.IntNullableFilter<"Blog"> | number | null
-  viewCount?: Prisma.IntFilter<"Blog"> | number
   postStatus?: Prisma.EnumPostStatusFilter<"Blog"> | $Enums.PostStatus
   createdAt?: Prisma.DateTimeFilter<"Blog"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Blog"> | Date | string
@@ -697,7 +664,6 @@ export type BlogCreateManyBlogImageInput = {
   blogDescription: string
   sharedLink: string
   readTime?: number | null
-  viewCount?: number
   postStatus?: $Enums.PostStatus
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -709,7 +675,6 @@ export type BlogUpdateWithoutFileInstancesInput = {
   blogDescription?: Prisma.StringFieldUpdateOperationsInput | string
   sharedLink?: Prisma.StringFieldUpdateOperationsInput | string
   readTime?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  viewCount?: Prisma.IntFieldUpdateOperationsInput | number
   postStatus?: Prisma.EnumPostStatusFieldUpdateOperationsInput | $Enums.PostStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -723,7 +688,6 @@ export type BlogUncheckedUpdateWithoutFileInstancesInput = {
   blogDescription?: Prisma.StringFieldUpdateOperationsInput | string
   sharedLink?: Prisma.StringFieldUpdateOperationsInput | string
   readTime?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  viewCount?: Prisma.IntFieldUpdateOperationsInput | number
   postStatus?: Prisma.EnumPostStatusFieldUpdateOperationsInput | $Enums.PostStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -736,7 +700,6 @@ export type BlogUncheckedUpdateManyWithoutFileInstancesInput = {
   blogDescription?: Prisma.StringFieldUpdateOperationsInput | string
   sharedLink?: Prisma.StringFieldUpdateOperationsInput | string
   readTime?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  viewCount?: Prisma.IntFieldUpdateOperationsInput | number
   postStatus?: Prisma.EnumPostStatusFieldUpdateOperationsInput | $Enums.PostStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -748,7 +711,6 @@ export type BlogUpdateWithoutBlogImageInput = {
   blogDescription?: Prisma.StringFieldUpdateOperationsInput | string
   sharedLink?: Prisma.StringFieldUpdateOperationsInput | string
   readTime?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  viewCount?: Prisma.IntFieldUpdateOperationsInput | number
   postStatus?: Prisma.EnumPostStatusFieldUpdateOperationsInput | $Enums.PostStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -761,7 +723,6 @@ export type BlogUncheckedUpdateWithoutBlogImageInput = {
   blogDescription?: Prisma.StringFieldUpdateOperationsInput | string
   sharedLink?: Prisma.StringFieldUpdateOperationsInput | string
   readTime?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  viewCount?: Prisma.IntFieldUpdateOperationsInput | number
   postStatus?: Prisma.EnumPostStatusFieldUpdateOperationsInput | $Enums.PostStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -774,7 +735,6 @@ export type BlogUncheckedUpdateManyWithoutBlogImageInput = {
   blogDescription?: Prisma.StringFieldUpdateOperationsInput | string
   sharedLink?: Prisma.StringFieldUpdateOperationsInput | string
   readTime?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  viewCount?: Prisma.IntFieldUpdateOperationsInput | number
   postStatus?: Prisma.EnumPostStatusFieldUpdateOperationsInput | $Enums.PostStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -818,7 +778,6 @@ export type BlogSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
   blogDescription?: boolean
   sharedLink?: boolean
   readTime?: boolean
-  viewCount?: boolean
   postStatus?: boolean
   createdAt?: boolean
   updatedAt?: boolean
@@ -834,7 +793,6 @@ export type BlogSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensio
   blogDescription?: boolean
   sharedLink?: boolean
   readTime?: boolean
-  viewCount?: boolean
   postStatus?: boolean
   createdAt?: boolean
   updatedAt?: boolean
@@ -848,7 +806,6 @@ export type BlogSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensio
   blogDescription?: boolean
   sharedLink?: boolean
   readTime?: boolean
-  viewCount?: boolean
   postStatus?: boolean
   createdAt?: boolean
   updatedAt?: boolean
@@ -862,13 +819,12 @@ export type BlogSelectScalar = {
   blogDescription?: boolean
   sharedLink?: boolean
   readTime?: boolean
-  viewCount?: boolean
   postStatus?: boolean
   createdAt?: boolean
   updatedAt?: boolean
 }
 
-export type BlogOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "blogImageId" | "blogTitle" | "blogDescription" | "sharedLink" | "readTime" | "viewCount" | "postStatus" | "createdAt" | "updatedAt", ExtArgs["result"]["blog"]>
+export type BlogOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "blogImageId" | "blogTitle" | "blogDescription" | "sharedLink" | "readTime" | "postStatus" | "createdAt" | "updatedAt", ExtArgs["result"]["blog"]>
 export type BlogInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   blogImage?: boolean | Prisma.Blog$blogImageArgs<ExtArgs>
   fileInstances?: boolean | Prisma.Blog$fileInstancesArgs<ExtArgs>
@@ -894,7 +850,6 @@ export type $BlogPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
     blogDescription: string
     sharedLink: string
     readTime: number | null
-    viewCount: number
     postStatus: $Enums.PostStatus
     createdAt: Date
     updatedAt: Date
@@ -1329,7 +1284,6 @@ export interface BlogFieldRefs {
   readonly blogDescription: Prisma.FieldRef<"Blog", 'String'>
   readonly sharedLink: Prisma.FieldRef<"Blog", 'String'>
   readonly readTime: Prisma.FieldRef<"Blog", 'Int'>
-  readonly viewCount: Prisma.FieldRef<"Blog", 'Int'>
   readonly postStatus: Prisma.FieldRef<"Blog", 'PostStatus'>
   readonly createdAt: Prisma.FieldRef<"Blog", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"Blog", 'DateTime'>

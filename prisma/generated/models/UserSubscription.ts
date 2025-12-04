@@ -643,10 +643,6 @@ export type EnumSubscriptionStatusFieldUpdateOperationsInput = {
   set?: $Enums.SubscriptionStatus
 }
 
-export type NullableDateTimeFieldUpdateOperationsInput = {
-  set?: Date | string | null
-}
-
 export type UserSubscriptionCreateNestedManyWithoutPromoCodeInput = {
   create?: Prisma.XOR<Prisma.UserSubscriptionCreateWithoutPromoCodeInput, Prisma.UserSubscriptionUncheckedCreateWithoutPromoCodeInput> | Prisma.UserSubscriptionCreateWithoutPromoCodeInput[] | Prisma.UserSubscriptionUncheckedCreateWithoutPromoCodeInput[]
   connectOrCreate?: Prisma.UserSubscriptionCreateOrConnectWithoutPromoCodeInput | Prisma.UserSubscriptionCreateOrConnectWithoutPromoCodeInput[]

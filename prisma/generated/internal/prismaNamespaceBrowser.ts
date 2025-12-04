@@ -68,6 +68,8 @@ export const ModelName = {
   PageBanner: 'PageBanner',
   Blog: 'Blog',
   Setting: 'Setting',
+  VisitorSession: 'VisitorSession',
+  PageView: 'PageView',
   SubscriptionPlan: 'SubscriptionPlan',
   UserSubscription: 'UserSubscription',
   PromoCode: 'PromoCode',
@@ -326,7 +328,6 @@ export const BlogScalarFieldEnum = {
   blogDescription: 'blogDescription',
   sharedLink: 'sharedLink',
   readTime: 'readTime',
-  viewCount: 'viewCount',
   postStatus: 'postStatus',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
@@ -348,6 +349,30 @@ export const SettingScalarFieldEnum = {
 } as const
 
 export type SettingScalarFieldEnum = (typeof SettingScalarFieldEnum)[keyof typeof SettingScalarFieldEnum]
+
+
+export const VisitorSessionScalarFieldEnum = {
+  id: 'id',
+  ip: 'ip',
+  userAgent: 'userAgent',
+  startedAt: 'startedAt',
+  endedAt: 'endedAt',
+  page: 'page',
+  createdAt: 'createdAt',
+  durationSeconds: 'durationSeconds'
+} as const
+
+export type VisitorSessionScalarFieldEnum = (typeof VisitorSessionScalarFieldEnum)[keyof typeof VisitorSessionScalarFieldEnum]
+
+
+export const PageViewScalarFieldEnum = {
+  id: 'id',
+  page: 'page',
+  count: 'count',
+  createdAt: 'createdAt'
+} as const
+
+export type PageViewScalarFieldEnum = (typeof PageViewScalarFieldEnum)[keyof typeof PageViewScalarFieldEnum]
 
 
 export const SubscriptionPlanScalarFieldEnum = {
