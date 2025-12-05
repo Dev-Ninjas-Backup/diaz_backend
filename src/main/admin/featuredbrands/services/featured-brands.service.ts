@@ -1,6 +1,8 @@
+import { AppError } from '@/common/error/handle-error.app';
 import { PrismaService } from '@/lib/prisma/prisma.service';
 import { S3Service } from '@/lib/s3/s3.service';
 import { Injectable, NotFoundException } from '@nestjs/common';
+import { SiteType } from 'generated/enums';
 import { CreateFeaturedBrandDto } from '../dto/create-featured-brand.dto';
 import { UpdateFeaturedBrandDto } from '../dto/update-featured-brand.dto';
 
@@ -22,7 +24,7 @@ export class FeaturedBrandsService {
       featuredbrandId = uploaded.data.files[0].id;
     }
     const createData: any = {
-      Site: dto.site,
+      site: dto.site,
       featuredbrandId: featuredbrandId ?? undefined,
     };
 
@@ -50,7 +52,7 @@ export class FeaturedBrandsService {
 
     const updateData: any = {
       featuredbrandId: newFileId ?? undefined,
-      Site: dto.site ?? undefined,
+      site: dto.site ?? undefined,
     };
 
     return this.prisma.client.featuredBrands.update({
@@ -60,8 +62,9 @@ export class FeaturedBrandsService {
     });
   }
 
-  async findAll() {
+  async findAll(site?: SiteType) {
     return this.prisma.client.featuredBrands.findMany({
+      where: site ? { site } : undefined,
       include: { featuredbrandLogo: true },
       orderBy: { createdAt: 'desc' },
     });
@@ -82,5 +85,17 @@ export class FeaturedBrandsService {
     return this.prisma.client.featuredBrands.delete({
       where: { id },
     });
+  }
+
+  async findAllBySite(site: SiteType) {
+    const banner = await this.prisma.client.featuredBrands.findMany({
+      where: { site },
+      include: { featuredbrandLogo: true },
+    });
+
+    if (!banner || banner.length === 0)
+      throw new AppError(404, 'Featured brand not found');
+
+    return banner;
   }
 }

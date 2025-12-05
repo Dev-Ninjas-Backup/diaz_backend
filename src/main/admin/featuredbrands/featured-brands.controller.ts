@@ -7,13 +7,16 @@ import {
   Param,
   Patch,
   Post,
+  Query,
   UploadedFiles,
   UseInterceptors,
 } from '@nestjs/common';
 import { FileFieldsInterceptor } from '@nestjs/platform-express';
 import { ApiConsumes, ApiOperation, ApiTags } from '@nestjs/swagger';
+import { SiteType } from 'generated/enums';
 import multer from 'multer';
 import { CreateFeaturedBrandDto } from './dto/create-featured-brand.dto';
+import { GetFeaturedBrandQueryDto } from './dto/get-featured-brand.dto';
 import { UpdateFeaturedBrandDto } from './dto/update-featured-brand.dto';
 import { FeaturedBrandsService } from './services/featured-brands.service';
 
@@ -45,15 +48,15 @@ export class FeaturedBrandsController {
   }
 
   @Get()
-  @ApiOperation({ summary: 'Get all featured brands' })
-  findAll() {
-    return this.featuredBrandsService.findAll();
+  @ApiOperation({ summary: 'Get all featured brands by site' })
+  findAll(@Query() dto: GetFeaturedBrandQueryDto) {
+    return this.featuredBrandsService.findAll(dto.site);
   }
 
-  @Get(':id')
-  @ApiOperation({ summary: 'Get single featured brand' })
-  findOne(@Param('id') id: string) {
-    return this.featuredBrandsService.findOne(id);
+  @Get(':site')
+  @ApiOperation({ summary: 'Get featured brands by site' })
+  findOne(@Param('site') site: SiteType) {
+    return this.featuredBrandsService.findAllBySite(site);
   }
 
   @Patch(':id')
