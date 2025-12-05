@@ -9,6 +9,7 @@ import { SellerManagementModule } from './seller-management/seller-management.mo
 import { SettingsModule } from './settings/settings.module';
 import { TermsOfServiceModule } from './terms-of-service/terms-of-service.module';
 import { UserPermissionsModule } from './users-permissions/user-permissions.module';
+import { PopularCategoryModule } from './popular_catagory/popular_catagory.module';
 
 @Module({
   imports: [
@@ -22,6 +23,7 @@ import { UserPermissionsModule } from './users-permissions/user-permissions.modu
     DashboardModule,
     ListingManagementModule,
     SettingsModule,
+    PopularCategoryModule,
   ],
 })
 export class AdminModule {}

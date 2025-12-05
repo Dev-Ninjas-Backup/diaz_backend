@@ -70,6 +70,7 @@ export const ModelName = {
   Setting: 'Setting',
   VisitorSession: 'VisitorSession',
   PageView: 'PageView',
+  POPULAR_CATAGORY: 'POPULAR_CATAGORY',
   SubscriptionPlan: 'SubscriptionPlan',
   UserSubscription: 'UserSubscription',
   PromoCode: 'PromoCode',
@@ -373,6 +374,18 @@ export const PageViewScalarFieldEnum = {
 } as const
 
 export type PageViewScalarFieldEnum = (typeof PageViewScalarFieldEnum)[keyof typeof PageViewScalarFieldEnum]
+
+
+export const POPULAR_CATAGORYScalarFieldEnum = {
+  id: 'id',
+  bannerImg: 'bannerImg',
+  title: 'title',
+  toggle: 'toggle',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type POPULAR_CATAGORYScalarFieldEnum = (typeof POPULAR_CATAGORYScalarFieldEnum)[keyof typeof POPULAR_CATAGORYScalarFieldEnum]
 
 
 export const SubscriptionPlanScalarFieldEnum = {

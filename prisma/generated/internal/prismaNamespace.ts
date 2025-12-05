@@ -80,12 +80,12 @@ export type PrismaVersion = {
 }
 
 /**
- * Prisma Client JS version: 7.0.1
- * Query Engine version: f09f2815f091dbba658cdcd2264306d88bb5bda6
+ * Prisma Client JS version: 7.1.0
+ * Query Engine version: ab635e6b9d606fa5c8fb8b1a7f909c3c3c1c98ba
  */
 export const prismaVersion: PrismaVersion = {
-  client: "7.0.1",
-  engine: "f09f2815f091dbba658cdcd2264306d88bb5bda6"
+  client: "7.1.0",
+  engine: "ab635e6b9d606fa5c8fb8b1a7f909c3c3c1c98ba"
 }
 
 /**
@@ -403,6 +403,7 @@ export const ModelName = {
   Setting: 'Setting',
   VisitorSession: 'VisitorSession',
   PageView: 'PageView',
+  POPULAR_CATAGORY: 'POPULAR_CATAGORY',
   SubscriptionPlan: 'SubscriptionPlan',
   UserSubscription: 'UserSubscription',
   PromoCode: 'PromoCode',
@@ -423,7 +424,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "boatSpecification" | "boatFeature" | "boats" | "boatEngine" | "boatImage" | "contact" | "floridaLead" | "fileInstance" | "notification" | "userNotification" | "aboutPage" | "contactPage" | "privacyPolicy" | "termsOfServices" | "pageBanner" | "blog" | "setting" | "visitorSession" | "pageView" | "subscriptionPlan" | "userSubscription" | "promoCode" | "invoice" | "user"
+    modelProps: "boatSpecification" | "boatFeature" | "boats" | "boatEngine" | "boatImage" | "contact" | "floridaLead" | "fileInstance" | "notification" | "userNotification" | "aboutPage" | "contactPage" | "privacyPolicy" | "termsOfServices" | "pageBanner" | "blog" | "setting" | "visitorSession" | "pageView" | "pOPULAR_CATAGORY" | "subscriptionPlan" | "userSubscription" | "promoCode" | "invoice" | "user"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -1833,6 +1834,80 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    POPULAR_CATAGORY: {
+      payload: Prisma.$POPULAR_CATAGORYPayload<ExtArgs>
+      fields: Prisma.POPULAR_CATAGORYFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.POPULAR_CATAGORYFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$POPULAR_CATAGORYPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.POPULAR_CATAGORYFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$POPULAR_CATAGORYPayload>
+        }
+        findFirst: {
+          args: Prisma.POPULAR_CATAGORYFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$POPULAR_CATAGORYPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.POPULAR_CATAGORYFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$POPULAR_CATAGORYPayload>
+        }
+        findMany: {
+          args: Prisma.POPULAR_CATAGORYFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$POPULAR_CATAGORYPayload>[]
+        }
+        create: {
+          args: Prisma.POPULAR_CATAGORYCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$POPULAR_CATAGORYPayload>
+        }
+        createMany: {
+          args: Prisma.POPULAR_CATAGORYCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.POPULAR_CATAGORYCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$POPULAR_CATAGORYPayload>[]
+        }
+        delete: {
+          args: Prisma.POPULAR_CATAGORYDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$POPULAR_CATAGORYPayload>
+        }
+        update: {
+          args: Prisma.POPULAR_CATAGORYUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$POPULAR_CATAGORYPayload>
+        }
+        deleteMany: {
+          args: Prisma.POPULAR_CATAGORYDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.POPULAR_CATAGORYUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.POPULAR_CATAGORYUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$POPULAR_CATAGORYPayload>[]
+        }
+        upsert: {
+          args: Prisma.POPULAR_CATAGORYUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$POPULAR_CATAGORYPayload>
+        }
+        aggregate: {
+          args: Prisma.POPULAR_CATAGORYAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregatePOPULAR_CATAGORY>
+        }
+        groupBy: {
+          args: Prisma.POPULAR_CATAGORYGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.POPULAR_CATAGORYGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.POPULAR_CATAGORYCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.POPULAR_CATAGORYCountAggregateOutputType> | number
+        }
+      }
+    }
     SubscriptionPlan: {
       payload: Prisma.$SubscriptionPlanPayload<ExtArgs>
       fields: Prisma.SubscriptionPlanFieldRefs
@@ -2524,6 +2599,18 @@ export const PageViewScalarFieldEnum = {
 export type PageViewScalarFieldEnum = (typeof PageViewScalarFieldEnum)[keyof typeof PageViewScalarFieldEnum]
 
 
+export const POPULAR_CATAGORYScalarFieldEnum = {
+  id: 'id',
+  bannerImg: 'bannerImg',
+  title: 'title',
+  toggle: 'toggle',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type POPULAR_CATAGORYScalarFieldEnum = (typeof POPULAR_CATAGORYScalarFieldEnum)[keyof typeof POPULAR_CATAGORYScalarFieldEnum]
+
+
 export const SubscriptionPlanScalarFieldEnum = {
   id: 'id',
   title: 'title',
@@ -3065,7 +3152,7 @@ export type PrismaClientOptions = ({
    *  { emit: 'stdout', level: 'error' }
    * 
    * ```
-   * Read more in our [docs](https://www.prisma.io/docs/reference/tools-and-interfaces/prisma-client/logging#the-log-option).
+   * Read more in our [docs](https://pris.ly/d/logging).
    */
   log?: (LogLevel | LogDefinition)[]
   /**
@@ -3093,6 +3180,22 @@ export type PrismaClientOptions = ({
    * ```
    */
   omit?: GlobalOmitConfig
+  /**
+   * SQL commenter plugins that add metadata to SQL queries as comments.
+   * Comments follow the sqlcommenter format: https://google.github.io/sqlcommenter/
+   * 
+   * @example
+   * ```
+   * const prisma = new PrismaClient({
+   *   adapter,
+   *   comments: [
+   *     traceContext(),
+   *     queryInsights(),
+   *   ],
+   * })
+   * ```
+   */
+  comments?: runtime.SqlCommenterPlugin[]
 }
 export type GlobalOmitConfig = {
   boatSpecification?: Prisma.BoatSpecificationOmit
@@ -3114,6 +3217,7 @@ export type GlobalOmitConfig = {
   setting?: Prisma.SettingOmit
   visitorSession?: Prisma.VisitorSessionOmit
   pageView?: Prisma.PageViewOmit
+  pOPULAR_CATAGORY?: Prisma.POPULAR_CATAGORYOmit
   subscriptionPlan?: Prisma.SubscriptionPlanOmit
   userSubscription?: Prisma.UserSubscriptionOmit
   promoCode?: Prisma.PromoCodeOmit

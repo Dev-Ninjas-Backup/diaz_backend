@@ -113,6 +113,11 @@ export type VisitorSession = Prisma.VisitorSessionModel
  */
 export type PageView = Prisma.PageViewModel
 /**
+ * Model POPULAR_CATAGORY
+ * 
+ */
+export type POPULAR_CATAGORY = Prisma.POPULAR_CATAGORYModel
+/**
  * Model SubscriptionPlan
  * 
  */

@@ -31,7 +31,7 @@ export * from "./enums"
  * const boatSpecifications = await prisma.boatSpecification.findMany()
  * ```
  * 
- * Read more in our [docs](https://www.prisma.io/docs/reference/tools-and-interfaces/prisma-client).
+ * Read more in our [docs](https://pris.ly/d/client).
  */
 export const PrismaClient = $Class.getPrismaClientClass()
 export type PrismaClient<LogOpts extends Prisma.LogLevel = never, OmitOpts extends Prisma.PrismaClientOptions["omit"] = Prisma.PrismaClientOptions["omit"], ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = $Class.PrismaClient<LogOpts, OmitOpts, ExtArgs>
@@ -132,6 +132,11 @@ export type VisitorSession = Prisma.VisitorSessionModel
  * 
  */
 export type PageView = Prisma.PageViewModel
+/**
+ * Model POPULAR_CATAGORY
+ * 
+ */
+export type POPULAR_CATAGORY = Prisma.POPULAR_CATAGORYModel
 /**
  * Model SubscriptionPlan
  * 
