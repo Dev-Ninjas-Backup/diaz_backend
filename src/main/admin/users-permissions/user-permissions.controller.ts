@@ -1,8 +1,14 @@
 import { Controller, Get } from '@nestjs/common';
-import { ApiOkResponse, ApiOperation, ApiResponse } from '@nestjs/swagger';
+import {
+  ApiOkResponse,
+  ApiOperation,
+  ApiResponse,
+  ApiTags,
+} from '@nestjs/swagger';
 import { GetAdminUsersDto } from './dto/admin.dto';
 import { UserPermissionsService } from './user-permissions.services';
 
+@ApiTags('Admin -- User Permissions')
 @Controller('user-permissions')
 export class UserPermissionsController {
   constructor(

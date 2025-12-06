@@ -1,5 +1,4 @@
 import { Body, Controller, Delete, Get, Param, Patch } from '@nestjs/common';
-import { SellerManagementService } from './seller-management.service';
 import {
   ApiBody,
   ApiNoContentResponse,
@@ -11,8 +10,9 @@ import {
   ApiTags,
 } from '@nestjs/swagger';
 import { UpdateSellerDto } from './dto/seller.dto';
+import { SellerManagementService } from './seller-management.service';
 
-@ApiTags('Seller Management')
+@ApiTags('Admin -- Seller Management')
 @Controller('seller-management')
 export class SellerManagementController {
   constructor(

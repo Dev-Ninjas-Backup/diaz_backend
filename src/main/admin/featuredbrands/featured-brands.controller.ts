@@ -20,7 +20,7 @@ import { GetFeaturedBrandQueryDto } from './dto/get-featured-brand.dto';
 import { UpdateFeaturedBrandDto } from './dto/update-featured-brand.dto';
 import { FeaturedBrandsService } from './services/featured-brands.service';
 
-@ApiTags('Featured Brands')
+@ApiTags('Admin -- Featured Brands')
 @Controller('featured-brands')
 export class FeaturedBrandsController {
   constructor(private readonly featuredBrandsService: FeaturedBrandsService) {}

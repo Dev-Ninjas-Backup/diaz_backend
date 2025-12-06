@@ -12,7 +12,7 @@ import * as multer from 'multer';
 import { UpdateSettingsDto } from './dto/update-settings.dto';
 import { SettingsService } from './services/settings.service';
 
-@ApiTags('Settings')
+@ApiTags('Admin -- Settings')
 @Controller('admin/settings')
 export class SettingsController {
   constructor(private readonly settingsService: SettingsService) {}

@@ -1,6 +1,4 @@
 import { Body, Controller, Get, Param, Patch, Post } from '@nestjs/common';
-import { PrivacyPolicyService } from './privacy-policy.service';
-import { UpdatePrivacyPolicyDto } from './dto/privacy-policy.dto';
 import {
   ApiBody,
   ApiOperation,
@@ -8,8 +6,10 @@ import {
   ApiResponse,
   ApiTags,
 } from '@nestjs/swagger';
+import { UpdatePrivacyPolicyDto } from './dto/privacy-policy.dto';
+import { PrivacyPolicyService } from './privacy-policy.service';
 
-@ApiTags('Privacy Policy') // This groups it nicely in Swagger UI
+@ApiTags('Admin -- Privacy Policy') // This groups it nicely in Swagger UI
 @Controller('privacy-policy')
 export class PrivacyPolicyController {
   constructor(private readonly privacyPolicyService: PrivacyPolicyService) {}

@@ -16,7 +16,7 @@ import { CreateBlogDto } from './dto/create-blog.dto';
 import { UpdateBlogDto } from './dto/update-blog.dto';
 import { BlogService } from './services/blog.service';
 
-@ApiTags('Blog')
+@ApiTags('Admin -- Blog')
 @Controller('blogs')
 export class BlogController {
   constructor(private readonly blogService: BlogService) {}

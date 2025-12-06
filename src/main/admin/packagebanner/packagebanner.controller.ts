@@ -16,7 +16,7 @@ import { CreatePackageBannerDto } from './dto/create-packagebanner.dto';
 import { UpdatePackageBannerDto } from './dto/update-packagebanner.dto';
 import { PackageBannerService } from './services/packagebanner.service';
 
-@ApiTags('Package Banner')
+@ApiTags('Admin -- Package Banner')
 @Controller('package-banner')
 export class PackageBannerController {
   constructor(private readonly packageBannerService: PackageBannerService) {}

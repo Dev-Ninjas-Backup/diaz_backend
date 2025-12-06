@@ -16,7 +16,7 @@ import { CreateAISearchBannerDto } from './dto/create-aisearchbanner.dto';
 import { UpdateAISearchBannerDto } from './dto/update-aisearchbanner.dto';
 import { AISearchBannerService } from './services/aisearchbanner.service';
 
-@ApiTags('AI Search Banner')
+@ApiTags('Admin -- AI Search Banner')
 @Controller('ai-search-banner')
 export class AISearchBannerController {
   constructor(private readonly aiSearchBannerService: AISearchBannerService) {}
