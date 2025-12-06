@@ -1,6 +1,9 @@
 model packageBanner {
   id        String   @id @default(cuid())
-  site      SiteType
+  site      SiteType @default(FLORIDA)
+
+  bannerTitle   String
+  subtitle      String?
 
   packageBannerId        String?
   packageBanner          FileInstance? @relation("packageBanner", fields: [packageBannerId], references: [id], onDelete: SetNull)
@@ -8,5 +11,5 @@ model packageBanner {
   createdAt     DateTime @default(now())
   updatedAt     DateTime @updatedAt
 
-    @@map("package_banners")
+  @@map("package_banners")
 }

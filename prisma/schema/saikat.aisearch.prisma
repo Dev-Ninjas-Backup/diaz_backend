@@ -1,6 +1,9 @@
 model AiSearchBanner {
   id        String   @id @default(cuid())
-  site      SiteType
+  site      SiteType @default(JUPITER)
+
+  bannerTitle   String
+  subtitle      String?
 
   aiSearchBannerId        String?
   aiSearchBanner          FileInstance? @relation("AiSearchBanner", fields: [aiSearchBannerId], references: [id], onDelete: SetNull)
