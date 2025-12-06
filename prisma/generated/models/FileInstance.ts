@@ -611,18 +611,22 @@ export type FileInstanceCreateNestedOneWithoutContactBottomImagesInput = {
   connect?: Prisma.FileInstanceWhereUniqueInput
 }
 
-export type FileInstanceUpdateOneRequiredWithoutContactTopImagesNestedInput = {
+export type FileInstanceUpdateOneWithoutContactTopImagesNestedInput = {
   create?: Prisma.XOR<Prisma.FileInstanceCreateWithoutContactTopImagesInput, Prisma.FileInstanceUncheckedCreateWithoutContactTopImagesInput>
   connectOrCreate?: Prisma.FileInstanceCreateOrConnectWithoutContactTopImagesInput
   upsert?: Prisma.FileInstanceUpsertWithoutContactTopImagesInput
+  disconnect?: Prisma.FileInstanceWhereInput | boolean
+  delete?: Prisma.FileInstanceWhereInput | boolean
   connect?: Prisma.FileInstanceWhereUniqueInput
   update?: Prisma.XOR<Prisma.XOR<Prisma.FileInstanceUpdateToOneWithWhereWithoutContactTopImagesInput, Prisma.FileInstanceUpdateWithoutContactTopImagesInput>, Prisma.FileInstanceUncheckedUpdateWithoutContactTopImagesInput>
 }
 
-export type FileInstanceUpdateOneRequiredWithoutContactBottomImagesNestedInput = {
+export type FileInstanceUpdateOneWithoutContactBottomImagesNestedInput = {
   create?: Prisma.XOR<Prisma.FileInstanceCreateWithoutContactBottomImagesInput, Prisma.FileInstanceUncheckedCreateWithoutContactBottomImagesInput>
   connectOrCreate?: Prisma.FileInstanceCreateOrConnectWithoutContactBottomImagesInput
   upsert?: Prisma.FileInstanceUpsertWithoutContactBottomImagesInput
+  disconnect?: Prisma.FileInstanceWhereInput | boolean
+  delete?: Prisma.FileInstanceWhereInput | boolean
   connect?: Prisma.FileInstanceWhereUniqueInput
   update?: Prisma.XOR<Prisma.XOR<Prisma.FileInstanceUpdateToOneWithWhereWithoutContactBottomImagesInput, Prisma.FileInstanceUpdateWithoutContactBottomImagesInput>, Prisma.FileInstanceUncheckedUpdateWithoutContactBottomImagesInput>
 }

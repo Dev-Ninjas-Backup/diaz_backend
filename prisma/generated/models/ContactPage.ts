@@ -28,6 +28,8 @@ export type ContactPageMinAggregateOutputType = {
   id: string | null
   contactTopImageId: string | null
   contactBottomImageId: string | null
+  contactTitle: string | null
+  contactDiscription: string | null
   createdAt: Date | null
   updatedAt: Date | null
 }
@@ -36,6 +38,8 @@ export type ContactPageMaxAggregateOutputType = {
   id: string | null
   contactTopImageId: string | null
   contactBottomImageId: string | null
+  contactTitle: string | null
+  contactDiscription: string | null
   createdAt: Date | null
   updatedAt: Date | null
 }
@@ -44,6 +48,8 @@ export type ContactPageCountAggregateOutputType = {
   id: number
   contactTopImageId: number
   contactBottomImageId: number
+  contactTitle: number
+  contactDiscription: number
   createdAt: number
   updatedAt: number
   _all: number
@@ -54,6 +60,8 @@ export type ContactPageMinAggregateInputType = {
   id?: true
   contactTopImageId?: true
   contactBottomImageId?: true
+  contactTitle?: true
+  contactDiscription?: true
   createdAt?: true
   updatedAt?: true
 }
@@ -62,6 +70,8 @@ export type ContactPageMaxAggregateInputType = {
   id?: true
   contactTopImageId?: true
   contactBottomImageId?: true
+  contactTitle?: true
+  contactDiscription?: true
   createdAt?: true
   updatedAt?: true
 }
@@ -70,6 +80,8 @@ export type ContactPageCountAggregateInputType = {
   id?: true
   contactTopImageId?: true
   contactBottomImageId?: true
+  contactTitle?: true
+  contactDiscription?: true
   createdAt?: true
   updatedAt?: true
   _all?: true
@@ -149,8 +161,10 @@ export type ContactPageGroupByArgs<ExtArgs extends runtime.Types.Extensions.Inte
 
 export type ContactPageGroupByOutputType = {
   id: string
-  contactTopImageId: string
-  contactBottomImageId: string
+  contactTopImageId: string | null
+  contactBottomImageId: string | null
+  contactTitle: string
+  contactDiscription: string
   createdAt: Date
   updatedAt: Date
   _count: ContactPageCountAggregateOutputType | null
@@ -178,18 +192,22 @@ export type ContactPageWhereInput = {
   OR?: Prisma.ContactPageWhereInput[]
   NOT?: Prisma.ContactPageWhereInput | Prisma.ContactPageWhereInput[]
   id?: Prisma.StringFilter<"ContactPage"> | string
-  contactTopImageId?: Prisma.StringFilter<"ContactPage"> | string
-  contactBottomImageId?: Prisma.StringFilter<"ContactPage"> | string
+  contactTopImageId?: Prisma.StringNullableFilter<"ContactPage"> | string | null
+  contactBottomImageId?: Prisma.StringNullableFilter<"ContactPage"> | string | null
+  contactTitle?: Prisma.StringFilter<"ContactPage"> | string
+  contactDiscription?: Prisma.StringFilter<"ContactPage"> | string
   createdAt?: Prisma.DateTimeFilter<"ContactPage"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"ContactPage"> | Date | string
-  contactTopImage?: Prisma.XOR<Prisma.FileInstanceScalarRelationFilter, Prisma.FileInstanceWhereInput>
-  contactBottomImage?: Prisma.XOR<Prisma.FileInstanceScalarRelationFilter, Prisma.FileInstanceWhereInput>
+  contactTopImage?: Prisma.XOR<Prisma.FileInstanceNullableScalarRelationFilter, Prisma.FileInstanceWhereInput> | null
+  contactBottomImage?: Prisma.XOR<Prisma.FileInstanceNullableScalarRelationFilter, Prisma.FileInstanceWhereInput> | null
 }
 
 export type ContactPageOrderByWithRelationInput = {
   id?: Prisma.SortOrder
-  contactTopImageId?: Prisma.SortOrder
-  contactBottomImageId?: Prisma.SortOrder
+  contactTopImageId?: Prisma.SortOrderInput | Prisma.SortOrder
+  contactBottomImageId?: Prisma.SortOrderInput | Prisma.SortOrder
+  contactTitle?: Prisma.SortOrder
+  contactDiscription?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   contactTopImage?: Prisma.FileInstanceOrderByWithRelationInput
@@ -203,16 +221,20 @@ export type ContactPageWhereUniqueInput = Prisma.AtLeast<{
   AND?: Prisma.ContactPageWhereInput | Prisma.ContactPageWhereInput[]
   OR?: Prisma.ContactPageWhereInput[]
   NOT?: Prisma.ContactPageWhereInput | Prisma.ContactPageWhereInput[]
+  contactTitle?: Prisma.StringFilter<"ContactPage"> | string
+  contactDiscription?: Prisma.StringFilter<"ContactPage"> | string
   createdAt?: Prisma.DateTimeFilter<"ContactPage"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"ContactPage"> | Date | string
-  contactTopImage?: Prisma.XOR<Prisma.FileInstanceScalarRelationFilter, Prisma.FileInstanceWhereInput>
-  contactBottomImage?: Prisma.XOR<Prisma.FileInstanceScalarRelationFilter, Prisma.FileInstanceWhereInput>
+  contactTopImage?: Prisma.XOR<Prisma.FileInstanceNullableScalarRelationFilter, Prisma.FileInstanceWhereInput> | null
+  contactBottomImage?: Prisma.XOR<Prisma.FileInstanceNullableScalarRelationFilter, Prisma.FileInstanceWhereInput> | null
 }, "id" | "contactTopImageId" | "contactBottomImageId">
 
 export type ContactPageOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
-  contactTopImageId?: Prisma.SortOrder
-  contactBottomImageId?: Prisma.SortOrder
+  contactTopImageId?: Prisma.SortOrderInput | Prisma.SortOrder
+  contactBottomImageId?: Prisma.SortOrderInput | Prisma.SortOrder
+  contactTitle?: Prisma.SortOrder
+  contactDiscription?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   _count?: Prisma.ContactPageCountOrderByAggregateInput
@@ -225,62 +247,78 @@ export type ContactPageScalarWhereWithAggregatesInput = {
   OR?: Prisma.ContactPageScalarWhereWithAggregatesInput[]
   NOT?: Prisma.ContactPageScalarWhereWithAggregatesInput | Prisma.ContactPageScalarWhereWithAggregatesInput[]
   id?: Prisma.StringWithAggregatesFilter<"ContactPage"> | string
-  contactTopImageId?: Prisma.StringWithAggregatesFilter<"ContactPage"> | string
-  contactBottomImageId?: Prisma.StringWithAggregatesFilter<"ContactPage"> | string
+  contactTopImageId?: Prisma.StringNullableWithAggregatesFilter<"ContactPage"> | string | null
+  contactBottomImageId?: Prisma.StringNullableWithAggregatesFilter<"ContactPage"> | string | null
+  contactTitle?: Prisma.StringWithAggregatesFilter<"ContactPage"> | string
+  contactDiscription?: Prisma.StringWithAggregatesFilter<"ContactPage"> | string
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"ContactPage"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"ContactPage"> | Date | string
 }
 
 export type ContactPageCreateInput = {
   id?: string
+  contactTitle: string
+  contactDiscription: string
   createdAt?: Date | string
   updatedAt?: Date | string
-  contactTopImage: Prisma.FileInstanceCreateNestedOneWithoutContactTopImagesInput
-  contactBottomImage: Prisma.FileInstanceCreateNestedOneWithoutContactBottomImagesInput
+  contactTopImage?: Prisma.FileInstanceCreateNestedOneWithoutContactTopImagesInput
+  contactBottomImage?: Prisma.FileInstanceCreateNestedOneWithoutContactBottomImagesInput
 }
 
 export type ContactPageUncheckedCreateInput = {
   id?: string
-  contactTopImageId: string
-  contactBottomImageId: string
+  contactTopImageId?: string | null
+  contactBottomImageId?: string | null
+  contactTitle: string
+  contactDiscription: string
   createdAt?: Date | string
   updatedAt?: Date | string
 }
 
 export type ContactPageUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  contactTitle?: Prisma.StringFieldUpdateOperationsInput | string
+  contactDiscription?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  contactTopImage?: Prisma.FileInstanceUpdateOneRequiredWithoutContactTopImagesNestedInput
-  contactBottomImage?: Prisma.FileInstanceUpdateOneRequiredWithoutContactBottomImagesNestedInput
+  contactTopImage?: Prisma.FileInstanceUpdateOneWithoutContactTopImagesNestedInput
+  contactBottomImage?: Prisma.FileInstanceUpdateOneWithoutContactBottomImagesNestedInput
 }
 
 export type ContactPageUncheckedUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  contactTopImageId?: Prisma.StringFieldUpdateOperationsInput | string
-  contactBottomImageId?: Prisma.StringFieldUpdateOperationsInput | string
+  contactTopImageId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  contactBottomImageId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  contactTitle?: Prisma.StringFieldUpdateOperationsInput | string
+  contactDiscription?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type ContactPageCreateManyInput = {
   id?: string
-  contactTopImageId: string
-  contactBottomImageId: string
+  contactTopImageId?: string | null
+  contactBottomImageId?: string | null
+  contactTitle: string
+  contactDiscription: string
   createdAt?: Date | string
   updatedAt?: Date | string
 }
 
 export type ContactPageUpdateManyMutationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  contactTitle?: Prisma.StringFieldUpdateOperationsInput | string
+  contactDiscription?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type ContactPageUncheckedUpdateManyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  contactTopImageId?: Prisma.StringFieldUpdateOperationsInput | string
-  contactBottomImageId?: Prisma.StringFieldUpdateOperationsInput | string
+  contactTopImageId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  contactBottomImageId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  contactTitle?: Prisma.StringFieldUpdateOperationsInput | string
+  contactDiscription?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -294,6 +332,8 @@ export type ContactPageCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
   contactTopImageId?: Prisma.SortOrder
   contactBottomImageId?: Prisma.SortOrder
+  contactTitle?: Prisma.SortOrder
+  contactDiscription?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
@@ -302,6 +342,8 @@ export type ContactPageMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
   contactTopImageId?: Prisma.SortOrder
   contactBottomImageId?: Prisma.SortOrder
+  contactTitle?: Prisma.SortOrder
+  contactDiscription?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
@@ -310,6 +352,8 @@ export type ContactPageMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
   contactTopImageId?: Prisma.SortOrder
   contactBottomImageId?: Prisma.SortOrder
+  contactTitle?: Prisma.SortOrder
+  contactDiscription?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
@@ -380,14 +424,18 @@ export type ContactPageUncheckedUpdateOneWithoutContactBottomImageNestedInput = 
 
 export type ContactPageCreateWithoutContactTopImageInput = {
   id?: string
+  contactTitle: string
+  contactDiscription: string
   createdAt?: Date | string
   updatedAt?: Date | string
-  contactBottomImage: Prisma.FileInstanceCreateNestedOneWithoutContactBottomImagesInput
+  contactBottomImage?: Prisma.FileInstanceCreateNestedOneWithoutContactBottomImagesInput
 }
 
 export type ContactPageUncheckedCreateWithoutContactTopImageInput = {
   id?: string
-  contactBottomImageId: string
+  contactBottomImageId?: string | null
+  contactTitle: string
+  contactDiscription: string
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -399,14 +447,18 @@ export type ContactPageCreateOrConnectWithoutContactTopImageInput = {
 
 export type ContactPageCreateWithoutContactBottomImageInput = {
   id?: string
+  contactTitle: string
+  contactDiscription: string
   createdAt?: Date | string
   updatedAt?: Date | string
-  contactTopImage: Prisma.FileInstanceCreateNestedOneWithoutContactTopImagesInput
+  contactTopImage?: Prisma.FileInstanceCreateNestedOneWithoutContactTopImagesInput
 }
 
 export type ContactPageUncheckedCreateWithoutContactBottomImageInput = {
   id?: string
-  contactTopImageId: string
+  contactTopImageId?: string | null
+  contactTitle: string
+  contactDiscription: string
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -429,14 +481,18 @@ export type ContactPageUpdateToOneWithWhereWithoutContactTopImageInput = {
 
 export type ContactPageUpdateWithoutContactTopImageInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  contactTitle?: Prisma.StringFieldUpdateOperationsInput | string
+  contactDiscription?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  contactBottomImage?: Prisma.FileInstanceUpdateOneRequiredWithoutContactBottomImagesNestedInput
+  contactBottomImage?: Prisma.FileInstanceUpdateOneWithoutContactBottomImagesNestedInput
 }
 
 export type ContactPageUncheckedUpdateWithoutContactTopImageInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  contactBottomImageId?: Prisma.StringFieldUpdateOperationsInput | string
+  contactBottomImageId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  contactTitle?: Prisma.StringFieldUpdateOperationsInput | string
+  contactDiscription?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -454,14 +510,18 @@ export type ContactPageUpdateToOneWithWhereWithoutContactBottomImageInput = {
 
 export type ContactPageUpdateWithoutContactBottomImageInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  contactTitle?: Prisma.StringFieldUpdateOperationsInput | string
+  contactDiscription?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  contactTopImage?: Prisma.FileInstanceUpdateOneRequiredWithoutContactTopImagesNestedInput
+  contactTopImage?: Prisma.FileInstanceUpdateOneWithoutContactTopImagesNestedInput
 }
 
 export type ContactPageUncheckedUpdateWithoutContactBottomImageInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  contactTopImageId?: Prisma.StringFieldUpdateOperationsInput | string
+  contactTopImageId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  contactTitle?: Prisma.StringFieldUpdateOperationsInput | string
+  contactDiscription?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -472,64 +532,74 @@ export type ContactPageSelect<ExtArgs extends runtime.Types.Extensions.InternalA
   id?: boolean
   contactTopImageId?: boolean
   contactBottomImageId?: boolean
+  contactTitle?: boolean
+  contactDiscription?: boolean
   createdAt?: boolean
   updatedAt?: boolean
-  contactTopImage?: boolean | Prisma.FileInstanceDefaultArgs<ExtArgs>
-  contactBottomImage?: boolean | Prisma.FileInstanceDefaultArgs<ExtArgs>
+  contactTopImage?: boolean | Prisma.ContactPage$contactTopImageArgs<ExtArgs>
+  contactBottomImage?: boolean | Prisma.ContactPage$contactBottomImageArgs<ExtArgs>
 }, ExtArgs["result"]["contactPage"]>
 
 export type ContactPageSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   contactTopImageId?: boolean
   contactBottomImageId?: boolean
+  contactTitle?: boolean
+  contactDiscription?: boolean
   createdAt?: boolean
   updatedAt?: boolean
-  contactTopImage?: boolean | Prisma.FileInstanceDefaultArgs<ExtArgs>
-  contactBottomImage?: boolean | Prisma.FileInstanceDefaultArgs<ExtArgs>
+  contactTopImage?: boolean | Prisma.ContactPage$contactTopImageArgs<ExtArgs>
+  contactBottomImage?: boolean | Prisma.ContactPage$contactBottomImageArgs<ExtArgs>
 }, ExtArgs["result"]["contactPage"]>
 
 export type ContactPageSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   contactTopImageId?: boolean
   contactBottomImageId?: boolean
+  contactTitle?: boolean
+  contactDiscription?: boolean
   createdAt?: boolean
   updatedAt?: boolean
-  contactTopImage?: boolean | Prisma.FileInstanceDefaultArgs<ExtArgs>
-  contactBottomImage?: boolean | Prisma.FileInstanceDefaultArgs<ExtArgs>
+  contactTopImage?: boolean | Prisma.ContactPage$contactTopImageArgs<ExtArgs>
+  contactBottomImage?: boolean | Prisma.ContactPage$contactBottomImageArgs<ExtArgs>
 }, ExtArgs["result"]["contactPage"]>
 
 export type ContactPageSelectScalar = {
   id?: boolean
   contactTopImageId?: boolean
   contactBottomImageId?: boolean
+  contactTitle?: boolean
+  contactDiscription?: boolean
   createdAt?: boolean
   updatedAt?: boolean
 }
 
-export type ContactPageOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "contactTopImageId" | "contactBottomImageId" | "createdAt" | "updatedAt", ExtArgs["result"]["contactPage"]>
+export type ContactPageOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "contactTopImageId" | "contactBottomImageId" | "contactTitle" | "contactDiscription" | "createdAt" | "updatedAt", ExtArgs["result"]["contactPage"]>
 export type ContactPageInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  contactTopImage?: boolean | Prisma.FileInstanceDefaultArgs<ExtArgs>
-  contactBottomImage?: boolean | Prisma.FileInstanceDefaultArgs<ExtArgs>
+  contactTopImage?: boolean | Prisma.ContactPage$contactTopImageArgs<ExtArgs>
+  contactBottomImage?: boolean | Prisma.ContactPage$contactBottomImageArgs<ExtArgs>
 }
 export type ContactPageIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  contactTopImage?: boolean | Prisma.FileInstanceDefaultArgs<ExtArgs>
-  contactBottomImage?: boolean | Prisma.FileInstanceDefaultArgs<ExtArgs>
+  contactTopImage?: boolean | Prisma.ContactPage$contactTopImageArgs<ExtArgs>
+  contactBottomImage?: boolean | Prisma.ContactPage$contactBottomImageArgs<ExtArgs>
 }
 export type ContactPageIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  contactTopImage?: boolean | Prisma.FileInstanceDefaultArgs<ExtArgs>
-  contactBottomImage?: boolean | Prisma.FileInstanceDefaultArgs<ExtArgs>
+  contactTopImage?: boolean | Prisma.ContactPage$contactTopImageArgs<ExtArgs>
+  contactBottomImage?: boolean | Prisma.ContactPage$contactBottomImageArgs<ExtArgs>
 }
 
 export type $ContactPagePayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "ContactPage"
   objects: {
-    contactTopImage: Prisma.$FileInstancePayload<ExtArgs>
-    contactBottomImage: Prisma.$FileInstancePayload<ExtArgs>
+    contactTopImage: Prisma.$FileInstancePayload<ExtArgs> | null
+    contactBottomImage: Prisma.$FileInstancePayload<ExtArgs> | null
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
-    contactTopImageId: string
-    contactBottomImageId: string
+    contactTopImageId: string | null
+    contactBottomImageId: string | null
+    contactTitle: string
+    contactDiscription: string
     createdAt: Date
     updatedAt: Date
   }, ExtArgs["result"]["contactPage"]>
@@ -926,8 +996,8 @@ readonly fields: ContactPageFieldRefs;
  */
 export interface Prisma__ContactPageClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
-  contactTopImage<T extends Prisma.FileInstanceDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.FileInstanceDefaultArgs<ExtArgs>>): Prisma.Prisma__FileInstanceClient<runtime.Types.Result.GetResult<Prisma.$FileInstancePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-  contactBottomImage<T extends Prisma.FileInstanceDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.FileInstanceDefaultArgs<ExtArgs>>): Prisma.Prisma__FileInstanceClient<runtime.Types.Result.GetResult<Prisma.$FileInstancePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+  contactTopImage<T extends Prisma.ContactPage$contactTopImageArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.ContactPage$contactTopImageArgs<ExtArgs>>): Prisma.Prisma__FileInstanceClient<runtime.Types.Result.GetResult<Prisma.$FileInstancePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+  contactBottomImage<T extends Prisma.ContactPage$contactBottomImageArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.ContactPage$contactBottomImageArgs<ExtArgs>>): Prisma.Prisma__FileInstanceClient<runtime.Types.Result.GetResult<Prisma.$FileInstancePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -960,6 +1030,8 @@ export interface ContactPageFieldRefs {
   readonly id: Prisma.FieldRef<"ContactPage", 'String'>
   readonly contactTopImageId: Prisma.FieldRef<"ContactPage", 'String'>
   readonly contactBottomImageId: Prisma.FieldRef<"ContactPage", 'String'>
+  readonly contactTitle: Prisma.FieldRef<"ContactPage", 'String'>
+  readonly contactDiscription: Prisma.FieldRef<"ContactPage", 'String'>
   readonly createdAt: Prisma.FieldRef<"ContactPage", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"ContactPage", 'DateTime'>
 }
@@ -1355,6 +1427,44 @@ export type ContactPageDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.I
    * Limit how many ContactPages to delete.
    */
   limit?: number
+}
+
+/**
+ * ContactPage.contactTopImage
+ */
+export type ContactPage$contactTopImageArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the FileInstance
+   */
+  select?: Prisma.FileInstanceSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the FileInstance
+   */
+  omit?: Prisma.FileInstanceOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.FileInstanceInclude<ExtArgs> | null
+  where?: Prisma.FileInstanceWhereInput
+}
+
+/**
+ * ContactPage.contactBottomImage
+ */
+export type ContactPage$contactBottomImageArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the FileInstance
+   */
+  select?: Prisma.FileInstanceSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the FileInstance
+   */
+  omit?: Prisma.FileInstanceOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.FileInstanceInclude<ExtArgs> | null
+  where?: Prisma.FileInstanceWhereInput
 }
 
 /**

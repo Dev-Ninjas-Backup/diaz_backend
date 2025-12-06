@@ -39,7 +39,7 @@ export class PrivacyPolicyController {
     status: 200,
     description: 'Privacy policy updated successfully',
   })
-  async createUser(
+  async createPrivacyPolicy(
     @Query('site') site: Site,
     @Body() createPrivacyPolicyDto: UpdatePrivacyPolicyDto,
   ) {

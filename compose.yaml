@@ -1,67 +1,67 @@
 services:
-  caddy:
-    image: caddy
-    container_name: ${PACKAGE_NAME}_caddy
-    restart: always
-    profiles:
-      - prod
-    ports:
-      - '80:80'
-      - '443:443'
-    volumes:
-      - ./Caddyfile:/etc/caddy/Caddyfile
-      - caddy_data:/data
-      - caddy_config:/config
-    depends_on:
-      server:
-        condition: service_healthy
-    healthcheck:
-      test: ['CMD-SHELL', 'caddy validate --config /etc/caddy/Caddyfile']
-      interval: 30s
-      timeout: 5s
-      retries: 3
+  # caddy:
+  #   image: caddy
+  #   container_name: ${PACKAGE_NAME}_caddy
+  #   restart: always
+  #   profiles:
+  #     - prod
+  #   ports:
+  #     - '80:80'
+  #     - '443:443'
+  #   volumes:
+  #     - ./Caddyfile:/etc/caddy/Caddyfile
+  #     - caddy_data:/data
+  #     - caddy_config:/config
+  #   depends_on:
+  #     server:
+  #       condition: service_healthy
+  #   healthcheck:
+  #     test: ['CMD-SHELL', 'caddy validate --config /etc/caddy/Caddyfile']
+  #     interval: 30s
+  #     timeout: 5s
+  #     retries: 3
 
-  server:
-    platform: linux/amd64
-    image: softvence/${PACKAGE_NAME}:latest
-    container_name: ${PACKAGE_NAME}_api
-    profiles:
-      - prod
-    restart: always
-    env_file:
-      - .env
-    environment:
-      NODE_ENV: production
-      DATABASE_URL: postgresql://postgres:postgres@db:5432/${PACKAGE_NAME}_db
+  # server:
+  #   platform: linux/amd64
+  #   image: softvence/${PACKAGE_NAME}:latest
+  #   container_name: ${PACKAGE_NAME}_api
+  #   profiles:
+  #     - prod
+  #   restart: always
+  #   env_file:
+  #     - .env
+  #   environment:
+  #     NODE_ENV: production
+  #     DATABASE_URL: postgresql://postgres:postgres@db:5432/${PACKAGE_NAME}_db
 
-      REDIS_HOST: redis-master
-      REDIS_PORT: 6379
+  #     REDIS_HOST: redis-master
+  #     REDIS_PORT: 6379
 
-      BASE_URL: http://0.0.0.0:5051/api
-      PORT: 5051
-    ports:
-      - '5051:5051'
-    depends_on:
-      db:
-        condition: service_healthy
-      redis-master:
-        condition: service_healthy
-    command: >
-      sh -c "
-        echo '🏁 Waiting for DB...';
-        sleep 5;
-        npx prisma migrate deploy;
-        echo '🚀 Starting app...';
-        pnpm start
-      "
-    volumes:
-      - files-data:/app/uploads
-      - temp-data:/app/tmp
-    healthcheck:
-      test: ['CMD', 'curl', '-f', 'http://0.0.0.0:5051/api/health']
-      interval: 30s
-      timeout: 10s
-      retries: 5
+  #     BASE_URL: http://0.0.0.0:5051/api
+  #     PORT: 5051
+  #   ports:
+  #     - '5051:5051'
+  #   depends_on:
+  #     db:
+  #       condition: service_healthy
+  #     redis-master:
+  #       condition: service_healthy
+  #   command: >
+  #     sh -c "
+  #       echo '🏁 Waiting for DB...';
+  #       sleep 5;
+  #       npx prisma migrate deploy;
+  #       echo '🚀 Starting app...';
+  #       pnpm start
+  #     "
+  #   volumes:
+  #     - files-data:/app/uploads
+  #     - temp-data:/app/tmp
+  #   healthcheck:
+  #     test: ['CMD', 'curl', '-f', 'http://0.0.0.0:5051/api/health']
+  #     interval: 30s
+  #     timeout: 10s
+  #     retries: 5
 
   db:
     image: postgres:17

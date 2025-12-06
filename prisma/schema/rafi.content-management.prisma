@@ -20,11 +20,14 @@ model AboutPage {
 model ContactPage {
   id               String   @id @default(uuid())
 
-  contactTopImageId String   @unique
-  contactTopImage   FileInstance @relation("contactTopImage", fields: [contactTopImageId], references: [id])
+  contactTopImageId String?   @unique
+  contactTopImage   FileInstance? @relation("contactTopImage", fields: [contactTopImageId], references: [id])
 
-  contactBottomImageId String   @unique
-  contactBottomImage   FileInstance @relation("contactBottomImage", fields: [contactBottomImageId], references: [id])
+  contactBottomImageId String?   @unique
+  contactBottomImage   FileInstance? @relation("contactBottomImage", fields: [contactBottomImageId], references: [id])
+
+  contactTitle     String   @db.VarChar(255)
+  contactDiscription  String   @db.VarChar(255)
 
   createdAt         DateTime @default(now())
   updatedAt         DateTime @updatedAt
@@ -41,6 +44,7 @@ model PrivacyPolicy {
 
   @@map("privacypolicy")
 }
+
 
 model TermsOfServices {
   id               String   @id @default(uuid())

@@ -2426,6 +2426,8 @@ export const ContactPageScalarFieldEnum = {
   id: 'id',
   contactTopImageId: 'contactTopImageId',
   contactBottomImageId: 'contactBottomImageId',
+  contactTitle: 'contactTitle',
+  contactDiscription: 'contactDiscription',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 } as const
