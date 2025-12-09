@@ -8,7 +8,7 @@
   "license": "UNLICENSED",
   "scripts": {
     "dev": "npx prisma generate && npx prisma migrate deploy && nest start --watch",
-    "build": "nest build",
+    "build": "npx prisma generate && nest build",
     "start": "npx prisma generate && npx prisma migrate deploy && node dist/src/main",
     "start:debug": "nest start --debug --watch",
     "lint": "eslint . --ext .ts",
