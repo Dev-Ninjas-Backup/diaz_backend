@@ -1,12 +1,26 @@
-import { Controller, Get } from '@nestjs/common';
 import {
-  ApiOkResponse,
+  BadRequestException,
+  Body,
+  Controller,
+  Get,
+  Param,
+  Patch,
+  Post,
+  Query,
+  UseGuards,
+} from '@nestjs/common';
+import {
   ApiOperation,
   ApiResponse,
-  ApiTags,
+  ApiBody,
+  ApiParam,
+  ApiQuery,
 } from '@nestjs/swagger';
-import { GetAdminUsersDto } from './dto/admin.dto';
+import { CreateAdminUserDto } from './dto/admin.dto';
 import { UserPermissionsService } from './user-permissions.services';
+import { changeRole } from './enum/changerole.enum';
+import { RoleAuthGuard } from '@/common/guard/role-auth.guard';
+import { UserRole } from 'generated/enums';
 
 @ApiTags('Admin -- User Permissions')
 @Controller('user-permissions')
@@ -15,37 +29,63 @@ export class UserPermissionsController {
     private readonly userPermissionsServices: UserPermissionsService,
   ) {}
 
-  @Get('admins')
-  @ApiOperation({
-    summary: 'Get all users with ADMIN or SUPER_ADMIN role',
-    description:
-      'Returns a list of users who have elevated privileges (ADMIN and SUPER_ADMIN).',
-  })
-  @ApiOkResponse({
-    description: 'List of admin users retrieved successfully',
-    type: [GetAdminUsersDto], // Shows array + fields in Swagger UI
-    example: [
-      {
-        id: 1,
-        email: 'super@example.com',
-        name: 'Super Admin',
-        role: 'SUPER_ADMIN',
-      },
-      {
-        id: 2,
-        name: 'Site Admin',
-        email: 'admin@example.com',
-        role: 'ADMIN',
-      },
-    ],
-  })
+  @Post('add-admin')
+  @ApiOperation({ summary: 'Create a new admin user' })
+  @ApiBody({ type: CreateAdminUserDto })
+  @ApiResponse({ status: 201, description: 'Admin created successfully.' })
+  @ApiResponse({ status: 400, description: 'Bad Request.' })
+  async addAdmin(@Body() createAdminUserDto: CreateAdminUserDto) {
+    return this.userPermissionsServices.addAdmin(createAdminUserDto);
+  }
+
+  @Get('get-admins')
+  @ApiOperation({ summary: 'Retrieve list of all admin users' })
   @ApiResponse({
-    status: 204,
-    description: 'No admin users found (empty list)',
+    status: 200,
+    description: 'List of admin users',
+    type: [CreateAdminUserDto], // adjust if you have a response DTO
   })
-  @ApiResponse({ status: 500, description: 'Internal server error' })
   async getAdminUsers() {
-    // Placeholder logic - replace with actual implementation
-    return this.userPermissionsServices.getAdminUsers();
+    return this.userPermissionsServices.getAdmins();
+  }
+
+  @UseGuards(new RoleAuthGuard([UserRole.SUPER_ADMIN]))
+  @Patch(':id')
+  @ApiOperation({ summary: 'Change role of a user (SUPER_ADMIN only)' })
+  @ApiParam({ name: 'id', description: 'User ID (UUID or number)' })
+  @ApiQuery({
+    name: 'changerole',
+    enum: changeRole,
+    description: 'New role to assign',
+    example: changeRole.ADMIN,
+  })
+  @ApiResponse({ status: 200, description: 'Role updated successfully.' })
+  @ApiResponse({ status: 400, description: 'Invalid role provided.' })
+  @ApiResponse({
+    status: 403,
+    description: 'Forbidden – insufficient permissions.',
+  })
+  async changeRole(
+    @Query('changerole') role: changeRole,
+    @Param('id') id: string,
+  ) {
+    if (!role || !Object.values(changeRole).includes(role as changeRole)) {
+      throw new BadRequestException(
+        `Invalid site. Allowed values: ${Object.values(changeRole).join(', ')}`,
+      );
+    }
+
+    return this.userPermissionsServices.changeRole(id, role);
+  }
+
+  @Patch('delete/:id')
+  @ApiOperation({
+    summary: 'Soft-delete or remove admin privileges from a user',
+  })
+  @ApiParam({ name: 'id', description: 'User ID to delete as admin' })
+  @ApiResponse({ status: 200, description: 'Admin removed successfully.' })
+  @ApiResponse({ status: 404, description: 'User not found.' })
+  async deleteAdmin(@Param('id') id: string) {
+    return this.userPermissionsServices.deleteAdmin(id);
   }
 }

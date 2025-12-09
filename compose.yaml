@@ -23,7 +23,7 @@ services:
 
   server:
     platform: linux/amd64
-    image: ${DOCKER_USERNAME}/${PACKAGE_NAME}:${PACKAGE_VERSION}
+    image: softvence/${PACKAGE_NAME}:latest
     container_name: ${PACKAGE_NAME}_api
     profiles:
       - prod

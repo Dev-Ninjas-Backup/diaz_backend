@@ -69,5 +69,4 @@ tmp
 *.json
 
 bun.lock
-pnpm-lock.yaml
 prisma/generated

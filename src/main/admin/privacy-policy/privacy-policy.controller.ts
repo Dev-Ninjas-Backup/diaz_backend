@@ -1,71 +1,94 @@
-import { Body, Controller, Get, Param, Patch, Post } from '@nestjs/common';
 import {
-  ApiBody,
-  ApiOperation,
-  ApiParam,
-  ApiResponse,
+  Controller,
+  Get,
+  Patch,
+  Query,
+  Body,
+  BadRequestException,
+  HttpCode,
+  HttpStatus,
+  Post,
+} from '@nestjs/common';
+import { PrivacyPolicyService } from './privacy-policy.service';
+import { Site } from './enum/site.enum';
+import { UpdatePrivacyPolicyDto } from './dto/privacy-policy.dto';
+import {
   ApiTags,
+  ApiOperation,
+  ApiQuery,
+  ApiResponse,
+  ApiBody,
 } from '@nestjs/swagger';
 import { UpdatePrivacyPolicyDto } from './dto/privacy-policy.dto';
 import { PrivacyPolicyService } from './privacy-policy.service';
 
-@ApiTags('Admin -- Privacy Policy') // This groups it nicely in Swagger UI
+@ApiTags('privacy-policy')
 @Controller('privacy-policy')
 export class PrivacyPolicyController {
   constructor(private readonly privacyPolicyService: PrivacyPolicyService) {}
 
-  @ApiOperation({ summary: 'Create a new Privacy Policy entry' })
-  @ApiBody({ type: UpdatePrivacyPolicyDto })
-  @ApiResponse({
-    status: 201,
-    description: 'Privacy Policy created successfully.',
-  })
-  @ApiResponse({ status: 400, description: 'Invalid input data.' })
   @Post('create')
-  async createPrivacyPolicy(
-    @Body() updatePrivacyPolicyDto: UpdatePrivacyPolicyDto,
-  ) {
+  async createUser(@Body() createPrivacyPolicyDto: UpdatePrivacyPolicyDto) {
     return this.privacyPolicyService.createPrivacyPolicy(
-      updatePrivacyPolicyDto,
+      createPrivacyPolicyDto,
     );
   }
 
-  @Patch('update/:id')
-  @ApiOperation({ summary: 'Update existing Privacy Policy by ID' })
-  @ApiParam({
-    name: 'id',
-    type: 'string',
-    description: 'Privacy Policy ID',
-    example: 1,
+  @Get()
+  @ApiOperation({ summary: 'Get privacy policy for a specific site' })
+  @ApiQuery({
+    name: 'site',
+    enum: Site,
+    example: Site.JUPITER,
+  })
+  @ApiResponse({ status: 200, description: 'Returns title and description' })
+  async getPrivacyPolicy(@Query('site') site: string) {
+    if (!site || !Object.values(Site).includes(site as Site)) {
+      throw new BadRequestException(
+        `Invalid site. Allowed values: ${Object.values(Site).join(', ')}`,
+      );
+    }
+
+    const policy = await this.privacyPolicyService.getPolicy();
+
+    return {
+      site,
+      privacyTitle: policy || {
+        privacyTitle: 'No policy set yet',
+        privacyDescription: '',
+      },
+    };
+  }
+
+  @Patch()
+  @HttpCode(HttpStatus.OK)
+  @ApiOperation({ summary: 'Update privacy policy for a site (admin only)' })
+  @ApiQuery({
+    name: 'site',
+    enum: Site,
+    example: Site.FLORIDA,
   })
   @ApiBody({ type: UpdatePrivacyPolicyDto })
   @ApiResponse({
     status: 200,
-    description: 'Privacy Policy updated successfully.',
+    description: 'Privacy policy updated successfully',
   })
-  @ApiResponse({ status: 404, description: 'Privacy Policy not found.' })
-  @ApiResponse({ status: 400, description: 'Bad request.' })
   async updatePrivacyPolicy(
-    @Param('id') id: string,
-    @Body() updatePrivacyPolicyDto: UpdatePrivacyPolicyDto,
+    @Query('site') site: string,
+    @Body() dto: UpdatePrivacyPolicyDto,
   ) {
-    return this.privacyPolicyService.updatePrivacyPolicy(
-      id,
-      updatePrivacyPolicyDto,
-    );
-  }
+    if (site !== Site.FLORIDA) {
+      throw new BadRequestException(
+        `Invalid site. Allowed values: ${Object.values(Site).join(', ')}`,
+      );
+    }
 
-  @Get('get/:id')
-  @ApiOperation({ summary: 'Get Privacy Policy by ID' })
-  @ApiParam({
-    name: 'id',
-    type: 'string',
-    description: 'Privacy Policy ID',
-    example: 1,
-  })
-  @ApiResponse({ status: 200, description: 'Privacy Policy found.' })
-  @ApiResponse({ status: 404, description: 'Privacy Policy not found.' })
-  async getPrivacyPolicy(@Param('id') id: string) {
-    return this.privacyPolicyService.getPrivacyPolicyById(id);
+    await this.privacyPolicyService.updatePolicy(dto);
+
+    return {
+      message: `Privacy policy for ${site} updated successfully`,
+      site,
+      updatedAt: new Date().toISOString(),
+    };
   }
 }
