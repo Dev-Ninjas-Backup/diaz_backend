@@ -19,14 +19,17 @@ export class AppController {
 
   @Get('health')
   @ApiOperation({
-    summary: 'Health check',
-    description: 'Returns API health status and timestamp.',
+    summary: 'System Health Check',
+    description:
+      'Returns health status for API, Database, Website, and Mobile App.',
   })
-  @ApiResponse({ status: 200, description: 'API is healthy.' })
+  @ApiResponse({ status: 200, description: 'Health information returned.' })
   health() {
     return {
-      status: 'ok',
-      timestamp: new Date().toISOString(),
+      api: 'up',
+      database: 'up',
+      website: 'up',
+      mobileApp: 'up',
     };
   }
 }

@@ -1,5 +1,6 @@
 import { PrismaService } from '@/lib/prisma/prisma.service';
 import { Injectable, NotFoundException } from '@nestjs/common';
+import { BoatListingStatus } from 'generated/client';
 import { ListingFilterDto } from '../dto/listing-filter.dto';
 import { UpdateListingDto } from '../dto/update-listing.dto';
 @Injectable()
@@ -13,14 +14,28 @@ export class ListingManagementService {
 
     const search = query.search?.trim();
 
-    const whereCondition = search
-      ? {
-          OR: [
-            { id: { contains: search } },
-            { boatName: { contains: search, mode: 'insensitive' } },
-          ],
-        }
-      : {};
+    const whereCondition: any = {
+      ...(search
+        ? {
+            OR: [
+              { id: { contains: search, mode: 'insensitive' } },
+              { listingId: { contains: search, mode: 'insensitive' } },
+              { name: { contains: search, mode: 'insensitive' } },
+              { make: { contains: search, mode: 'insensitive' } },
+              { model: { contains: search, mode: 'insensitive' } },
+              {
+                user: {
+                  OR: [
+                    { name: { contains: search, mode: 'insensitive' } },
+                    { email: { contains: search, mode: 'insensitive' } },
+                  ],
+                },
+              },
+            ],
+          }
+        : {}),
+      ...(query.status ? { status: query.status as BoatListingStatus } : {}),
+    };
 
     const [items, total] = await Promise.all([
       this.prisma.client.boats.findMany({
@@ -28,15 +43,44 @@ export class ListingManagementService {
         skip,
         take: limit,
         orderBy: { createdAt: 'desc' },
+        include: {
+          user: { select: { id: true, name: true, email: true } },
+        },
       }),
       this.prisma.client.boats.count({ where: whereCondition }),
     ]);
+
+    const listingIds = items.map((b) => b.listingId).filter(Boolean);
+    const views = listingIds.length
+      ? await this.prisma.client.pageView.groupBy({
+          by: ['page'],
+          where: { page: { in: listingIds as string[] } },
+          _sum: { count: true },
+        })
+      : [];
+    const viewsMap = new Map(views.map((v) => [v.page, v._sum.count ?? 0]));
+
+    const formatted = items.map((boat) => ({
+      id: boat.id,
+      listingId: boat.listingId,
+      name: boat.name,
+      make: boat.make,
+      model: boat.model,
+      year: boat.buildYear,
+      price: boat.price,
+      status: boat.status,
+      views: viewsMap.get(boat.listingId) ?? 0,
+      createdAt: boat.createdAt,
+      seller: boat.user
+        ? { id: boat.user.id, name: boat.user.name, email: boat.user.email }
+        : null,
+    }));
 
     return {
       page,
       limit,
       total,
-      items,
+      items: formatted,
     };
   }
 

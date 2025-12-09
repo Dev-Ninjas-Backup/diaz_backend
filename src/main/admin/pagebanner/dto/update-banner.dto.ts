@@ -5,9 +5,5 @@ import { CreateBannerDto } from './create-banner.dto';
 export class UpdateBannerDto extends PartialType(CreateBannerDto) {
   @IsOptional()
   @IsString()
-  logoId?: string;
-
-  @IsOptional()
-  @IsString()
   backgroundId?: string;
 }

@@ -12,7 +12,7 @@ import { ListingFilterDto } from './dto/listing-filter.dto';
 import { UpdateListingDto } from './dto/update-listing.dto';
 import { ListingManagementService } from './services/listing-management.service';
 
-@ApiTags('Listing Management')
+@ApiTags('Admin -- Listing Management')
 @Controller('admin/listings')
 export class ListingManagementController {
   constructor(private readonly service: ListingManagementService) {}

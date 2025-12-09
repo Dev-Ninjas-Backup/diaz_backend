@@ -22,9 +22,5 @@ export class CreateBannerDto {
 
   @ApiProperty({ type: 'string', format: 'binary', required: false })
   @IsOptional()
-  logo?: Express.Multer.File;
-
-  @ApiProperty({ type: 'string', format: 'binary', required: false })
-  @IsOptional()
   background?: Express.Multer.File;
 }

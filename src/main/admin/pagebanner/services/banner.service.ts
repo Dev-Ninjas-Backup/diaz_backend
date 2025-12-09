@@ -23,13 +23,7 @@ export class BannerService {
       background?: Express.Multer.File[];
     },
   ) {
-    let logoId: string | null = null;
     let backgroundId: string | null = null;
-
-    if (files.logo?.length) {
-      const uploaded = await this.s3Service.uploadFiles([files.logo[0]]);
-      logoId = uploaded.data.files[0].id;
-    }
 
     if (files.background?.length) {
       const uploaded = await this.s3Service.uploadFiles([files.background[0]]);
@@ -42,16 +36,15 @@ export class BannerService {
         site: dto.site,
         bannerTitle: dto.bannerTitle,
         subtitle: dto.subtitle,
-        logoId,
         backgroundId,
       },
-      include: { logo: true, background: true },
+      include: { background: true },
     });
   }
 
   async findAll() {
     return this.prisma.client.pageBanner.findMany({
-      include: { logo: true, background: true },
+      include: { background: true },
       orderBy: { createdAt: 'desc' },
     });
   }
@@ -59,7 +52,7 @@ export class BannerService {
   async findOneByPageAndSite(page: PageType, site: SiteType) {
     const banner = await this.prisma.client.pageBanner.findFirst({
       where: { page, site },
-      include: { logo: true, background: true },
+      include: { background: true },
     });
 
     if (!banner) throw new AppError(404, 'Banner not found');
@@ -78,13 +71,7 @@ export class BannerService {
       background?: Express.Multer.File[];
     },
   ) {
-    let logoId = dto.logoId;
     let backgroundId = dto.backgroundId;
-
-    if (files.logo?.length) {
-      const uploaded = await this.s3Service.uploadFiles([files.logo[0]]);
-      logoId = uploaded.data.files[0].id;
-    }
 
     if (files.background?.length) {
       const uploaded = await this.s3Service.uploadFiles([files.background[0]]);
@@ -98,10 +85,9 @@ export class BannerService {
         site: dto.site,
         bannerTitle: dto.bannerTitle,
         subtitle: dto.subtitle,
-        logoId,
         backgroundId,
       },
-      include: { logo: true, background: true },
+      include: { background: true },
     });
   }
 

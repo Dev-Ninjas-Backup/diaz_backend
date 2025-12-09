@@ -1,5 +1,6 @@
 import { ApiPropertyOptional } from '@nestjs/swagger';
-import { IsNumberString, IsOptional, IsString } from 'class-validator';
+import { IsEnum, IsNumberString, IsOptional, IsString } from 'class-validator';
+import { BoatListingStatus } from 'generated/client';
 
 export class ListingFilterDto {
   @ApiPropertyOptional()
@@ -16,4 +17,9 @@ export class ListingFilterDto {
   @IsOptional()
   @IsString()
   search?: string;
+
+  @ApiPropertyOptional({ enum: BoatListingStatus })
+  @IsOptional()
+  @IsEnum(BoatListingStatus)
+  status?: BoatListingStatus;
 }

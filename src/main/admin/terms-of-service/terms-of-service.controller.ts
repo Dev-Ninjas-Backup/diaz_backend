@@ -1,6 +1,4 @@
 import { Body, Controller, Get, Param, Patch, Post } from '@nestjs/common';
-import { TermsofServicesService } from './terms-of-service.service';
-import { UpdateTermsOfServicesDto } from './dto/tos.dto';
 import {
   ApiBody,
   ApiOperation,
@@ -8,8 +6,10 @@ import {
   ApiResponse,
   ApiTags,
 } from '@nestjs/swagger';
+import { UpdateTermsOfServicesDto } from './dto/tos.dto';
+import { TermsofServicesService } from './terms-of-service.service';
 
-@ApiTags('Terms of Service Page') // Groups in Swagger UI
+@ApiTags('Admin -- Terms of Service Page') // Groups in Swagger UI
 @Controller('terms-of-service')
 export class TermsOfServiceController {
   constructor(private readonly privacyPolicyService: TermsofServicesService) {}

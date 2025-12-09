@@ -6,9 +6,6 @@ model PageBanner {
   bannerTitle   String
   subtitle      String?
 
-  logoId        String?
-  logo          FileInstance? @relation("LogoFile", fields: [logoId], references: [id], onDelete: SetNull)
-
   backgroundId  String?
   background    FileInstance? @relation("BackgroundFile", fields: [backgroundId], references: [id], onDelete: SetNull)
 

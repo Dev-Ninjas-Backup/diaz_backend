@@ -23,7 +23,7 @@ import { GetBannerQueryDto } from './dto/get-banner.dto';
 import { UpdateBannerDto } from './dto/update-banner.dto';
 import { BannerService } from './services/banner.service';
 
-@ApiTags('Page Banners')
+@ApiTags('Admin -- Page Banners')
 @ApiBearerAuth()
 @Controller('banners')
 export class BannerController {
@@ -33,20 +33,13 @@ export class BannerController {
   @ApiOperation({ summary: 'Create a banner with file uploads' })
   @ApiConsumes('multipart/form-data')
   @UseInterceptors(
-    FileFieldsInterceptor(
-      [
-        { name: 'logo', maxCount: 1 },
-        { name: 'background', maxCount: 1 },
-      ],
-      {
-        storage: multer.memoryStorage(),
-      },
-    ),
+    FileFieldsInterceptor([{ name: 'background', maxCount: 1 }], {
+      storage: multer.memoryStorage(),
+    }),
   )
   async create(
     @UploadedFiles()
     files: {
-      logo?: Express.Multer.File[];
       background?: Express.Multer.File[];
     },
     @Body() dto: CreateBannerDto,
@@ -71,13 +64,9 @@ export class BannerController {
   @ApiOperation({ summary: 'Update banner (with optional file uploads)' })
   @ApiConsumes('multipart/form-data')
   @UseInterceptors(
-    FileFieldsInterceptor(
-      [
-        { name: 'logo', maxCount: 1 },
-        { name: 'background', maxCount: 1 },
-      ],
-      { storage: multer.memoryStorage() },
-    ),
+    FileFieldsInterceptor([{ name: 'background', maxCount: 1 }], {
+      storage: multer.memoryStorage(),
+    }),
   )
   async update(
     @Param('id') id: string,

@@ -22,6 +22,7 @@ import { changeRole } from './enum/changerole.enum';
 import { RoleAuthGuard } from '@/common/guard/role-auth.guard';
 import { UserRole } from 'generated/enums';
 
+@ApiTags('Admin -- User Permissions')
 @Controller('user-permissions')
 export class UserPermissionsController {
   constructor(

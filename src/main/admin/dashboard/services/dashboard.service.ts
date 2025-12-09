@@ -2,6 +2,8 @@ import { PrismaService } from '@/lib/prisma/prisma.service';
 import { Injectable } from '@nestjs/common';
 import { BoatListingStatus, UserRole } from 'generated/client';
 import { DashboardSummaryDto } from '../dto/dashboard-summary.dto';
+import { PerformanceOverviewDto } from '../dto/performance-overview.dto';
+import { RecentActivityItemDto } from '../dto/recent-activity.dto';
 
 @Injectable()
 export class DashboardService {
@@ -125,6 +127,120 @@ export class DashboardService {
       totalYachtsListedChangePercent,
       newVerifiedSellersThisWeek,
       recentActivity,
+    };
+  }
+
+  /**
+   * Build a cross-entity recent activity feed for the admin dashboard.
+   * Returns the latest events from boats, sellers, banners, and approvals in a single sorted list.
+   */
+  async getRecentActivity(): Promise<RecentActivityItemDto[]> {
+    const [newBoats, verifiedSellers, banners, approvedListings] =
+      await Promise.all([
+        this.prisma.client.boats.findMany({
+          take: 5,
+          orderBy: { createdAt: 'desc' },
+          select: {
+            id: true,
+            name: true,
+            createdAt: true,
+            user: { select: { name: true, email: true } },
+          },
+        }),
+        this.prisma.client.user.findMany({
+          where: { role: UserRole.SELLER, isVerified: true },
+          take: 5,
+          orderBy: { updatedAt: 'desc' },
+          select: { id: true, name: true, email: true, updatedAt: true },
+        }),
+        this.prisma.client.pageBanner.findMany({
+          take: 5,
+          orderBy: { createdAt: 'desc' },
+          select: { id: true, page: true, site: true, createdAt: true },
+        }),
+        this.prisma.client.boats.findMany({
+          where: { status: BoatListingStatus.ACTIVE },
+          take: 5,
+          orderBy: { updatedAt: 'desc' },
+          select: {
+            id: true,
+            name: true,
+            listingId: true,
+            updatedAt: true,
+          },
+        }),
+      ]);
+
+    const events: RecentActivityItemDto[] = [
+      ...newBoats.map((boat) => ({
+        type: 'boat_submitted',
+        title: 'New yacht submitted',
+        description: boat.user?.name
+          ? `${boat.user.name} submitted ${boat.name}`
+          : `New yacht submitted: ${boat.name}`,
+        createdAt: boat.createdAt,
+        meta: { boatId: boat.id },
+      })),
+      ...verifiedSellers.map((seller) => ({
+        type: 'seller_verified',
+        title: 'Seller verified',
+        description: seller.name
+          ? `${seller.name} was verified`
+          : `${seller.email} was verified`,
+        createdAt: seller.updatedAt,
+        meta: { userId: seller.id },
+      })),
+      ...banners.map((banner) => ({
+        type: 'banner_uploaded',
+        title: 'New app banner uploaded',
+        description: `${banner.page} banner for ${banner.site}`,
+        createdAt: banner.createdAt,
+        meta: { bannerId: banner.id },
+      })),
+      ...approvedListings.map((boat) => ({
+        type: 'listing_approved',
+        title: 'Listing approved',
+        description: boat.name,
+        createdAt: boat.updatedAt,
+        meta: { boatId: boat.id, listingId: boat.listingId },
+      })),
+    ];
+
+    return events
+      .filter((e) => Boolean(e.createdAt))
+      .sort((a, b) => b.createdAt.getTime() - a.createdAt.getTime())
+      .slice(0, 20);
+  }
+
+  /**
+   * Performance overview for admin dashboard cards.
+   * - Total visitors: visitor sessions this month
+   * - Page views: summed page view counts this month
+   * - Total listing value: sum of ACTIVE boat prices
+   */
+  async getPerformanceOverview(): Promise<PerformanceOverviewDto> {
+    const now = new Date();
+    const startOfMonth = new Date(now.getFullYear(), now.getMonth(), 1);
+    const startOfNextMonth = new Date(now.getFullYear(), now.getMonth() + 1, 1);
+
+    const [visitorSessions, pageViewsAgg, listingValueAgg] = await Promise.all([
+      this.prisma.client.visitorSession.count({
+        where: { createdAt: { gte: startOfMonth, lt: startOfNextMonth } },
+      }),
+      this.prisma.client.pageView.aggregate({
+        _sum: { count: true },
+        where: { createdAt: { gte: startOfMonth, lt: startOfNextMonth } },
+      }),
+      this.prisma.client.boats.aggregate({
+        _sum: { price: true },
+        where: { status: BoatListingStatus.ACTIVE },
+      }),
+    ]);
+
+    return {
+      totalVisitors: visitorSessions,
+      totalPageViews: pageViewsAgg._sum.count ?? 0,
+      totalListingValue: listingValueAgg._sum.price ?? 0,
     };
   }
 }

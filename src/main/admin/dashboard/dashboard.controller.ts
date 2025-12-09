@@ -12,4 +12,16 @@ export class DashboardController {
   getSummary() {
     return this.dashboardService.getSummary();
   }
+
+  @Get('recent-activity')
+  @ApiOperation({ summary: 'Get recent admin activities' })
+  getRecentActivity() {
+    return this.dashboardService.getRecentActivity();
+  }
+
+  @Get('performance-overview')
+  @ApiOperation({ summary: 'Get performance overview metrics' })
+  getPerformanceOverview() {
+    return this.dashboardService.getPerformanceOverview();
+  }
 }

@@ -1,4 +1,3 @@
-// src/privacy-policy/privacy-policy.controller.ts
 import {
   Controller,
   Get,
@@ -20,6 +19,8 @@ import {
   ApiResponse,
   ApiBody,
 } from '@nestjs/swagger';
+import { UpdatePrivacyPolicyDto } from './dto/privacy-policy.dto';
+import { PrivacyPolicyService } from './privacy-policy.service';
 
 @ApiTags('privacy-policy')
 @Controller('privacy-policy')

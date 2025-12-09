@@ -10,8 +10,9 @@ import {
   ApiTags,
 } from '@nestjs/swagger';
 import { UpdateSellerDto } from './dto/seller.dto';
+import { SellerManagementService } from './seller-management.service';
 
-@ApiTags('Seller Management')
+@ApiTags('Admin -- Seller Management')
 @Controller('seller-management')
 export class SellerManagementController {
   constructor(

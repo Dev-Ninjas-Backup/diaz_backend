@@ -1,0 +1,13 @@
+model FeaturedBrands {
+  id                String        @id @default(cuid())
+
+  featuredbrandId   String?
+  featuredbrandLogo FileInstance? @relation("FeaturedBrandLogo", fields: [featuredbrandId], references: [id], onDelete: SetNull)
+
+  site              SiteType
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("featured_brands")
+}

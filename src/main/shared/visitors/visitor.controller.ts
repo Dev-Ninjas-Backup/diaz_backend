@@ -2,7 +2,7 @@ import { Controller, Get } from '@nestjs/common';
 import { ApiOperation, ApiTags } from '@nestjs/swagger';
 import { VisitorService } from './services/visitor.service';
 
-@ApiTags('Visitor Analytics')
+@ApiTags('Shared -- Visitor Analytics')
 @Controller('visitor/analytics')
 export class VisitorController {
   constructor(private readonly visitorService: VisitorService) {}

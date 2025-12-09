@@ -1,0 +1,24 @@
+// enum Florida_content {
+//   HOME,
+//   BLOG,
+//   CONTACT,
+//   SEARCH,
+//   PRIVACY_POLICY,
+//   TERMS_AND_CONDITION,
+//   POPULAR_CATAGORY,
+//   WHY_US,
+//   BRAND,
+//   PACKAGE_BANNER,
+// }
+
+// enum Jupitar_content {
+//   HOME,
+//   BLOG,
+//   CONTACT,
+//   SEARCH,
+//   PRIVACY_POLICY,
+//   TERMS_AND_CONDITION,
+//   POPULAR_CATAGORY,
+//   BRAND,
+//   AI_SEARCH_BANNER,
+// }
