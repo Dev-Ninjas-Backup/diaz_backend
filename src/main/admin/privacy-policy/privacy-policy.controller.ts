@@ -1,25 +1,23 @@
 import {
+  BadRequestException,
+  Body,
   Controller,
   Get,
-  Patch,
-  Query,
-  Body,
-  BadRequestException,
   HttpCode,
   HttpStatus,
+  Patch,
   Post,
+  Query,
 } from '@nestjs/common';
-import { PrivacyPolicyService } from './privacy-policy.service';
-import { Site } from './enum/site.enum';
-import { UpdatePrivacyPolicyDto } from './dto/privacy-policy.dto';
 import {
-  ApiTags,
+  ApiBody,
   ApiOperation,
   ApiQuery,
   ApiResponse,
-  ApiBody,
+  ApiTags,
 } from '@nestjs/swagger';
 import { UpdatePrivacyPolicyDto } from './dto/privacy-policy.dto';
+import { Site } from './enum/site.enum';
 import { PrivacyPolicyService } from './privacy-policy.service';
 
 @ApiTags('privacy-policy')

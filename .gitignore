@@ -70,3 +70,5 @@ tmp
 
 bun.lock
 prisma/generated
+*.pem
+*.key

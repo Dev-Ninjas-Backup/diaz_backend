@@ -1,5 +1,4 @@
 import { Body, Controller, Get, Param, Patch } from '@nestjs/common';
-import { SellerManagementService } from './seller-management.service';
 import {
   ApiBody,
   ApiNotFoundResponse,

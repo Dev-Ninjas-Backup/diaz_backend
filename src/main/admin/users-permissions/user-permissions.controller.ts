@@ -1,3 +1,4 @@
+import { RoleAuthGuard } from '@/common/guard/role-auth.guard';
 import {
   BadRequestException,
   Body,
@@ -10,17 +11,17 @@ import {
   UseGuards,
 } from '@nestjs/common';
 import {
-  ApiOperation,
-  ApiResponse,
   ApiBody,
+  ApiOperation,
   ApiParam,
   ApiQuery,
+  ApiResponse,
+  ApiTags,
 } from '@nestjs/swagger';
-import { CreateAdminUserDto } from './dto/admin.dto';
-import { UserPermissionsService } from './user-permissions.services';
-import { changeRole } from './enum/changerole.enum';
-import { RoleAuthGuard } from '@/common/guard/role-auth.guard';
 import { UserRole } from 'generated/enums';
+import { CreateAdminUserDto } from './dto/admin.dto';
+import { changeRole } from './enum/changerole.enum';
+import { UserPermissionsService } from './user-permissions.services';
 
 @ApiTags('Admin -- User Permissions')
 @Controller('user-permissions')
