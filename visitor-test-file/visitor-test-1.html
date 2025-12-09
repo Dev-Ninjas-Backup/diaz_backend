@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Visitor Test 1</title>
+  </head>
+  <body>
+    <h2>Visitor Test Page 1</h2>
+
+    <p>Active Visitors: <span id="active">0</span></p>
+    <p>Total Visitors Today / Overall: <span id="stats"></span></p>
+
+    <script src="https://cdn.socket.io/4.7.2/socket.io.min.js"></script>
+    <script>
+      const socket = io("http://localhost:5051", { path: "/ws" });
+
+      socket.emit("visit:start", { page: "/blogs/test-blog" });
+
+      socket.on("visitors:count", (data) => {
+        document.getElementById("active").innerText = data.active;
+        console.log("Active Visitors:", data.active);
+      });
+
+      socket.on("visitors:stats", (data) => {
+        document.getElementById(
+          "stats"
+        ).innerText = `Today: ${data.todayVisitors} | Total: ${data.totalVisitors}`;
+        console.log("Stats:", data);
+      });
+
+      window.addEventListener("beforeunload", () => {
+        socket.emit("visit:end");
+      });
+    </script>
+  </body>
+</html>
