@@ -34,19 +34,58 @@ export class SuperAdminService implements OnModuleInit {
 
     // * create super admin
     if (!superAdminExists) {
-      await this.prisma.client.user.create({
-        data: {
-          email: superAdminEmail,
+      const usernameExists = await this.prisma.client.user.findUnique({
+        where: {
           username: 'superadmin',
-          password: await this.utils.hash(superAdminPass),
-          name: 'Super Admin',
-          role: 'SUPER_ADMIN',
-          isVerified: true,
         },
       });
-      this.logger.log(
-        `[CREATE] Super Admin user created with email: ${superAdminEmail}`,
-      );
+
+      if (usernameExists) {
+        this.logger.warn(
+          `Username 'superadmin' already exists. Updating existing user to super admin role.`,
+        );
+        await this.prisma.client.user.update({
+          where: {
+            username: 'superadmin',
+          },
+          data: {
+            email: superAdminEmail,
+            password: await this.utils.hash(superAdminPass),
+            name: 'Super Admin',
+            role: 'SUPER_ADMIN',
+            isVerified: true,
+          },
+        });
+        this.logger.log(
+          `[UPDATE] User with username 'superadmin' updated to Super Admin with email: ${superAdminEmail}`,
+        );
+        return;
+      }
+
+      try {
+        await this.prisma.client.user.create({
+          data: {
+            email: superAdminEmail,
+            username: 'superadmin',
+            password: await this.utils.hash(superAdminPass),
+            name: 'Super Admin',
+            role: 'SUPER_ADMIN',
+            isVerified: true,
+          },
+        });
+        this.logger.log(
+          `[CREATE] Super Admin user created with email: ${superAdminEmail}`,
+        );
+      } catch (error: any) {
+        // Handle unique constraint errors gracefully
+        if (error.code === 'P2002') {
+          this.logger.warn(
+            `User with email ${superAdminEmail} or username 'superadmin' already exists. Skipping creation.`,
+          );
+        } else {
+          throw error;
+        }
+      }
       return;
     }
 

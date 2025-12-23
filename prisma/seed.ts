@@ -166,21 +166,34 @@ async function main() {
   // 3. Create Users
   console.log('👤 Creating users...');
   const hashedPassword = await bcrypt.hash('password123', 10);
-  const adminUser = await prisma.user.create({
-    data: {
-      email: 'admin@diaz.com',
-      username: 'admin',
-      password: hashedPassword,
-      name: 'Admin User',
-      role: 'SUPER_ADMIN',
-      status: 'ACTIVE',
-      isVerified: true,
-      isLoggedIn: false,
-      currentPlanId: diamondPlan.id,
-      currentPlanStatus: 'ACTIVE',
-      stripeCustomerId: 'cus_admin_' + Date.now(),
+
+  // Check if admin user already exists (to avoid conflict with super-admin service)
+  let adminUser = await prisma.user.findFirst({
+    where: {
+      OR: [{ email: 'admin@diaz.com' }, { username: 'admin' }],
     },
   });
+
+  if (!adminUser) {
+    adminUser = await prisma.user.create({
+      data: {
+        email: 'admin@diaz.com',
+        username: 'admin',
+        password: hashedPassword,
+        name: 'Admin User',
+        role: 'SUPER_ADMIN',
+        status: 'ACTIVE',
+        isVerified: true,
+        isLoggedIn: false,
+        currentPlanId: diamondPlan.id,
+        currentPlanStatus: 'ACTIVE',
+        stripeCustomerId: 'cus_admin_' + Date.now(),
+      },
+    });
+    console.log('✅ Admin user created');
+  } else {
+    console.log('ℹ️  Admin user already exists, skipping creation');
+  }
 
   const sellerUser1 = await prisma.user.create({
     data: {
