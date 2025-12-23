@@ -9,6 +9,7 @@ import { GetAllBoatsService } from './services/get-all-boats.service';
 import { GetAllCustomBoatsFloridaService } from './services/get-all-custom-boats-florida.service';
 import { GetCustomBoatsService } from './services/get-custom-boats.service';
 import { TopViewedBoatsService } from './services/top-viewed-boats.service';
+import { PremiumDealsFloridaService } from './services/premium-deals-florida.service';
 
 @Module({
   controllers: [
@@ -24,6 +25,7 @@ import { TopViewedBoatsService } from './services/top-viewed-boats.service';
     GetAllBoatsMergedService,
     GetAllCustomBoatsFloridaService,
     TopViewedBoatsService,
+    PremiumDealsFloridaService,
   ],
 })
 export class BoatsModule {}

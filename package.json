@@ -26,6 +26,7 @@
     "db:studio": "npx prisma studio",
     "db:validate": "npx prisma validate",
     "db:format": "npx prisma format",
+    "db:seed": "ts-node --require dotenv/config --require tsconfig-paths/register prisma/seed.ts",
     "prepare": "husky"
   },
   "dependencies": {
