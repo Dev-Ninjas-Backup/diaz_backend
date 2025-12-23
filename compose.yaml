@@ -115,7 +115,6 @@ services:
     container_name: ${PACKAGE_NAME}_redis-replica
     profiles:
       - prod
-      - dev
     command:
       [
         'redis-server',
