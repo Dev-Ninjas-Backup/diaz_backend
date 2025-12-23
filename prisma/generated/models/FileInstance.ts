@@ -540,6 +540,21 @@ export type FileInstanceUncheckedUpdateManyInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
 };
 
+export type FileInstanceNullableScalarRelationFilter = {
+  is?: Prisma.FileInstanceWhereInput | null;
+  isNot?: Prisma.FileInstanceWhereInput | null;
+};
+
+export type FileInstanceListRelationFilter = {
+  every?: Prisma.FileInstanceWhereInput;
+  some?: Prisma.FileInstanceWhereInput;
+  none?: Prisma.FileInstanceWhereInput;
+};
+
+export type FileInstanceOrderByRelationAggregateInput = {
+  _count?: Prisma.SortOrder;
+};
+
 export type FileInstanceScalarRelationFilter = {
   is?: Prisma.FileInstanceWhereInput;
   isNot?: Prisma.FileInstanceWhereInput;
@@ -591,160 +606,6 @@ export type FileInstanceMinOrderByAggregateInput = {
 export type FileInstanceSumOrderByAggregateInput = {
   size?: Prisma.SortOrder;
 };
-
-export type FileInstanceNullableScalarRelationFilter = {
-  is?: Prisma.FileInstanceWhereInput | null;
-  isNot?: Prisma.FileInstanceWhereInput | null;
-};
-
-export type FileInstanceListRelationFilter = {
-  every?: Prisma.FileInstanceWhereInput;
-  some?: Prisma.FileInstanceWhereInput;
-  none?: Prisma.FileInstanceWhereInput;
-};
-
-export type FileInstanceOrderByRelationAggregateInput = {
-  _count?: Prisma.SortOrder;
-};
-
-export type FileInstanceCreateNestedOneWithoutBoatImagesInput = {
-  create?: Prisma.XOR<
-    Prisma.FileInstanceCreateWithoutBoatImagesInput,
-    Prisma.FileInstanceUncheckedCreateWithoutBoatImagesInput
-  >;
-  connectOrCreate?: Prisma.FileInstanceCreateOrConnectWithoutBoatImagesInput;
-  connect?: Prisma.FileInstanceWhereUniqueInput;
-};
-
-export type FileInstanceUpdateOneRequiredWithoutBoatImagesNestedInput = {
-  create?: Prisma.XOR<
-    Prisma.FileInstanceCreateWithoutBoatImagesInput,
-    Prisma.FileInstanceUncheckedCreateWithoutBoatImagesInput
-  >;
-  connectOrCreate?: Prisma.FileInstanceCreateOrConnectWithoutBoatImagesInput;
-  upsert?: Prisma.FileInstanceUpsertWithoutBoatImagesInput;
-  connect?: Prisma.FileInstanceWhereUniqueInput;
-  update?: Prisma.XOR<
-    Prisma.XOR<
-      Prisma.FileInstanceUpdateToOneWithWhereWithoutBoatImagesInput,
-      Prisma.FileInstanceUpdateWithoutBoatImagesInput
-    >,
-    Prisma.FileInstanceUncheckedUpdateWithoutBoatImagesInput
-  >;
-};
-
-export type EnumFileTypeFieldUpdateOperationsInput = {
-  set?: $Enums.FileType;
-};
-
-export type FileInstanceCreateNestedOneWithoutAboutPageTopImagesInput = {
-  create?: Prisma.XOR<
-    Prisma.FileInstanceCreateWithoutAboutPageTopImagesInput,
-    Prisma.FileInstanceUncheckedCreateWithoutAboutPageTopImagesInput
-  >;
-  connectOrCreate?: Prisma.FileInstanceCreateOrConnectWithoutAboutPageTopImagesInput;
-  connect?: Prisma.FileInstanceWhereUniqueInput;
-};
-
-export type FileInstanceCreateNestedOneWithoutAboutPageBottonImagesInput = {
-  create?: Prisma.XOR<
-    Prisma.FileInstanceCreateWithoutAboutPageBottonImagesInput,
-    Prisma.FileInstanceUncheckedCreateWithoutAboutPageBottonImagesInput
-  >;
-  connectOrCreate?: Prisma.FileInstanceCreateOrConnectWithoutAboutPageBottonImagesInput;
-  connect?: Prisma.FileInstanceWhereUniqueInput;
-};
-
-export type FileInstanceUpdateOneWithoutAboutPageTopImagesNestedInput = {
-  create?: Prisma.XOR<
-    Prisma.FileInstanceCreateWithoutAboutPageTopImagesInput,
-    Prisma.FileInstanceUncheckedCreateWithoutAboutPageTopImagesInput
-  >;
-  connectOrCreate?: Prisma.FileInstanceCreateOrConnectWithoutAboutPageTopImagesInput;
-  upsert?: Prisma.FileInstanceUpsertWithoutAboutPageTopImagesInput;
-  disconnect?: Prisma.FileInstanceWhereInput | boolean;
-  delete?: Prisma.FileInstanceWhereInput | boolean;
-  connect?: Prisma.FileInstanceWhereUniqueInput;
-  update?: Prisma.XOR<
-    Prisma.XOR<
-      Prisma.FileInstanceUpdateToOneWithWhereWithoutAboutPageTopImagesInput,
-      Prisma.FileInstanceUpdateWithoutAboutPageTopImagesInput
-    >,
-    Prisma.FileInstanceUncheckedUpdateWithoutAboutPageTopImagesInput
-  >;
-};
-
-export type FileInstanceUpdateOneWithoutAboutPageBottonImagesNestedInput = {
-  create?: Prisma.XOR<
-    Prisma.FileInstanceCreateWithoutAboutPageBottonImagesInput,
-    Prisma.FileInstanceUncheckedCreateWithoutAboutPageBottonImagesInput
-  >;
-  connectOrCreate?: Prisma.FileInstanceCreateOrConnectWithoutAboutPageBottonImagesInput;
-  upsert?: Prisma.FileInstanceUpsertWithoutAboutPageBottonImagesInput;
-  disconnect?: Prisma.FileInstanceWhereInput | boolean;
-  delete?: Prisma.FileInstanceWhereInput | boolean;
-  connect?: Prisma.FileInstanceWhereUniqueInput;
-  update?: Prisma.XOR<
-    Prisma.XOR<
-      Prisma.FileInstanceUpdateToOneWithWhereWithoutAboutPageBottonImagesInput,
-      Prisma.FileInstanceUpdateWithoutAboutPageBottonImagesInput
-    >,
-    Prisma.FileInstanceUncheckedUpdateWithoutAboutPageBottonImagesInput
-  >;
-};
-
-export type FileInstanceCreateNestedOneWithoutContactTopImagesInput = {
-  create?: Prisma.XOR<
-    Prisma.FileInstanceCreateWithoutContactTopImagesInput,
-    Prisma.FileInstanceUncheckedCreateWithoutContactTopImagesInput
-  >;
-  connectOrCreate?: Prisma.FileInstanceCreateOrConnectWithoutContactTopImagesInput;
-  connect?: Prisma.FileInstanceWhereUniqueInput;
-};
-
-export type FileInstanceCreateNestedOneWithoutContactBottomImagesInput = {
-  create?: Prisma.XOR<
-    Prisma.FileInstanceCreateWithoutContactBottomImagesInput,
-    Prisma.FileInstanceUncheckedCreateWithoutContactBottomImagesInput
-  >;
-  connectOrCreate?: Prisma.FileInstanceCreateOrConnectWithoutContactBottomImagesInput;
-  connect?: Prisma.FileInstanceWhereUniqueInput;
-};
-
-export type FileInstanceUpdateOneRequiredWithoutContactTopImagesNestedInput = {
-  create?: Prisma.XOR<
-    Prisma.FileInstanceCreateWithoutContactTopImagesInput,
-    Prisma.FileInstanceUncheckedCreateWithoutContactTopImagesInput
-  >;
-  connectOrCreate?: Prisma.FileInstanceCreateOrConnectWithoutContactTopImagesInput;
-  upsert?: Prisma.FileInstanceUpsertWithoutContactTopImagesInput;
-  connect?: Prisma.FileInstanceWhereUniqueInput;
-  update?: Prisma.XOR<
-    Prisma.XOR<
-      Prisma.FileInstanceUpdateToOneWithWhereWithoutContactTopImagesInput,
-      Prisma.FileInstanceUpdateWithoutContactTopImagesInput
-    >,
-    Prisma.FileInstanceUncheckedUpdateWithoutContactTopImagesInput
-  >;
-};
-
-export type FileInstanceUpdateOneRequiredWithoutContactBottomImagesNestedInput =
-  {
-    create?: Prisma.XOR<
-      Prisma.FileInstanceCreateWithoutContactBottomImagesInput,
-      Prisma.FileInstanceUncheckedCreateWithoutContactBottomImagesInput
-    >;
-    connectOrCreate?: Prisma.FileInstanceCreateOrConnectWithoutContactBottomImagesInput;
-    upsert?: Prisma.FileInstanceUpsertWithoutContactBottomImagesInput;
-    connect?: Prisma.FileInstanceWhereUniqueInput;
-    update?: Prisma.XOR<
-      Prisma.XOR<
-        Prisma.FileInstanceUpdateToOneWithWhereWithoutContactBottomImagesInput,
-        Prisma.FileInstanceUpdateWithoutContactBottomImagesInput
-      >,
-      Prisma.FileInstanceUncheckedUpdateWithoutContactBottomImagesInput
-    >;
-  };
 
 export type FileInstanceCreateNestedOneWithoutAiSearchBannersInput = {
   create?: Prisma.XOR<
@@ -936,6 +797,141 @@ export type FileInstanceUncheckedUpdateManyWithoutBlogNestedInput = {
     | Prisma.FileInstanceScalarWhereInput[];
 };
 
+export type FileInstanceCreateNestedOneWithoutBoatImagesInput = {
+  create?: Prisma.XOR<
+    Prisma.FileInstanceCreateWithoutBoatImagesInput,
+    Prisma.FileInstanceUncheckedCreateWithoutBoatImagesInput
+  >;
+  connectOrCreate?: Prisma.FileInstanceCreateOrConnectWithoutBoatImagesInput;
+  connect?: Prisma.FileInstanceWhereUniqueInput;
+};
+
+export type FileInstanceUpdateOneRequiredWithoutBoatImagesNestedInput = {
+  create?: Prisma.XOR<
+    Prisma.FileInstanceCreateWithoutBoatImagesInput,
+    Prisma.FileInstanceUncheckedCreateWithoutBoatImagesInput
+  >;
+  connectOrCreate?: Prisma.FileInstanceCreateOrConnectWithoutBoatImagesInput;
+  upsert?: Prisma.FileInstanceUpsertWithoutBoatImagesInput;
+  connect?: Prisma.FileInstanceWhereUniqueInput;
+  update?: Prisma.XOR<
+    Prisma.XOR<
+      Prisma.FileInstanceUpdateToOneWithWhereWithoutBoatImagesInput,
+      Prisma.FileInstanceUpdateWithoutBoatImagesInput
+    >,
+    Prisma.FileInstanceUncheckedUpdateWithoutBoatImagesInput
+  >;
+};
+
+export type FileInstanceCreateNestedOneWithoutAboutPageTopImagesInput = {
+  create?: Prisma.XOR<
+    Prisma.FileInstanceCreateWithoutAboutPageTopImagesInput,
+    Prisma.FileInstanceUncheckedCreateWithoutAboutPageTopImagesInput
+  >;
+  connectOrCreate?: Prisma.FileInstanceCreateOrConnectWithoutAboutPageTopImagesInput;
+  connect?: Prisma.FileInstanceWhereUniqueInput;
+};
+
+export type FileInstanceCreateNestedOneWithoutAboutPageBottonImagesInput = {
+  create?: Prisma.XOR<
+    Prisma.FileInstanceCreateWithoutAboutPageBottonImagesInput,
+    Prisma.FileInstanceUncheckedCreateWithoutAboutPageBottonImagesInput
+  >;
+  connectOrCreate?: Prisma.FileInstanceCreateOrConnectWithoutAboutPageBottonImagesInput;
+  connect?: Prisma.FileInstanceWhereUniqueInput;
+};
+
+export type FileInstanceUpdateOneWithoutAboutPageTopImagesNestedInput = {
+  create?: Prisma.XOR<
+    Prisma.FileInstanceCreateWithoutAboutPageTopImagesInput,
+    Prisma.FileInstanceUncheckedCreateWithoutAboutPageTopImagesInput
+  >;
+  connectOrCreate?: Prisma.FileInstanceCreateOrConnectWithoutAboutPageTopImagesInput;
+  upsert?: Prisma.FileInstanceUpsertWithoutAboutPageTopImagesInput;
+  disconnect?: Prisma.FileInstanceWhereInput | boolean;
+  delete?: Prisma.FileInstanceWhereInput | boolean;
+  connect?: Prisma.FileInstanceWhereUniqueInput;
+  update?: Prisma.XOR<
+    Prisma.XOR<
+      Prisma.FileInstanceUpdateToOneWithWhereWithoutAboutPageTopImagesInput,
+      Prisma.FileInstanceUpdateWithoutAboutPageTopImagesInput
+    >,
+    Prisma.FileInstanceUncheckedUpdateWithoutAboutPageTopImagesInput
+  >;
+};
+
+export type FileInstanceUpdateOneWithoutAboutPageBottonImagesNestedInput = {
+  create?: Prisma.XOR<
+    Prisma.FileInstanceCreateWithoutAboutPageBottonImagesInput,
+    Prisma.FileInstanceUncheckedCreateWithoutAboutPageBottonImagesInput
+  >;
+  connectOrCreate?: Prisma.FileInstanceCreateOrConnectWithoutAboutPageBottonImagesInput;
+  upsert?: Prisma.FileInstanceUpsertWithoutAboutPageBottonImagesInput;
+  disconnect?: Prisma.FileInstanceWhereInput | boolean;
+  delete?: Prisma.FileInstanceWhereInput | boolean;
+  connect?: Prisma.FileInstanceWhereUniqueInput;
+  update?: Prisma.XOR<
+    Prisma.XOR<
+      Prisma.FileInstanceUpdateToOneWithWhereWithoutAboutPageBottonImagesInput,
+      Prisma.FileInstanceUpdateWithoutAboutPageBottonImagesInput
+    >,
+    Prisma.FileInstanceUncheckedUpdateWithoutAboutPageBottonImagesInput
+  >;
+};
+
+export type FileInstanceCreateNestedOneWithoutContactTopImagesInput = {
+  create?: Prisma.XOR<
+    Prisma.FileInstanceCreateWithoutContactTopImagesInput,
+    Prisma.FileInstanceUncheckedCreateWithoutContactTopImagesInput
+  >;
+  connectOrCreate?: Prisma.FileInstanceCreateOrConnectWithoutContactTopImagesInput;
+  connect?: Prisma.FileInstanceWhereUniqueInput;
+};
+
+export type FileInstanceCreateNestedOneWithoutContactBottomImagesInput = {
+  create?: Prisma.XOR<
+    Prisma.FileInstanceCreateWithoutContactBottomImagesInput,
+    Prisma.FileInstanceUncheckedCreateWithoutContactBottomImagesInput
+  >;
+  connectOrCreate?: Prisma.FileInstanceCreateOrConnectWithoutContactBottomImagesInput;
+  connect?: Prisma.FileInstanceWhereUniqueInput;
+};
+
+export type FileInstanceUpdateOneRequiredWithoutContactTopImagesNestedInput = {
+  create?: Prisma.XOR<
+    Prisma.FileInstanceCreateWithoutContactTopImagesInput,
+    Prisma.FileInstanceUncheckedCreateWithoutContactTopImagesInput
+  >;
+  connectOrCreate?: Prisma.FileInstanceCreateOrConnectWithoutContactTopImagesInput;
+  upsert?: Prisma.FileInstanceUpsertWithoutContactTopImagesInput;
+  connect?: Prisma.FileInstanceWhereUniqueInput;
+  update?: Prisma.XOR<
+    Prisma.XOR<
+      Prisma.FileInstanceUpdateToOneWithWhereWithoutContactTopImagesInput,
+      Prisma.FileInstanceUpdateWithoutContactTopImagesInput
+    >,
+    Prisma.FileInstanceUncheckedUpdateWithoutContactTopImagesInput
+  >;
+};
+
+export type FileInstanceUpdateOneRequiredWithoutContactBottomImagesNestedInput =
+  {
+    create?: Prisma.XOR<
+      Prisma.FileInstanceCreateWithoutContactBottomImagesInput,
+      Prisma.FileInstanceUncheckedCreateWithoutContactBottomImagesInput
+    >;
+    connectOrCreate?: Prisma.FileInstanceCreateOrConnectWithoutContactBottomImagesInput;
+    upsert?: Prisma.FileInstanceUpsertWithoutContactBottomImagesInput;
+    connect?: Prisma.FileInstanceWhereUniqueInput;
+    update?: Prisma.XOR<
+      Prisma.XOR<
+        Prisma.FileInstanceUpdateToOneWithWhereWithoutContactBottomImagesInput,
+        Prisma.FileInstanceUpdateWithoutContactBottomImagesInput
+      >,
+      Prisma.FileInstanceUncheckedUpdateWithoutContactBottomImagesInput
+    >;
+  };
+
 export type FileInstanceCreateNestedOneWithoutFeaturedBrandLogosInput = {
   create?: Prisma.XOR<
     Prisma.FileInstanceCreateWithoutFeaturedBrandLogosInput,
@@ -962,6 +958,10 @@ export type FileInstanceUpdateOneWithoutFeaturedBrandLogosNestedInput = {
     >,
     Prisma.FileInstanceUncheckedUpdateWithoutFeaturedBrandLogosInput
   >;
+};
+
+export type EnumFileTypeFieldUpdateOperationsInput = {
+  set?: $Enums.FileType;
 };
 
 export type FileInstanceCreateNestedOneWithoutPackageBannersInput = {
@@ -1018,6 +1018,483 @@ export type FileInstanceUpdateOneWithoutSettingsNestedInput = {
     >,
     Prisma.FileInstanceUncheckedUpdateWithoutSettingsInput
   >;
+};
+
+export type FileInstanceCreateWithoutAiSearchBannersInput = {
+  id?: string;
+  filename: string;
+  originalFilename: string;
+  path: string;
+  url: string;
+  fileType?: $Enums.FileType;
+  mimeType: string;
+  size: number;
+  createdAt?: Date | string;
+  updatedAt?: Date | string;
+  pageBannersBackground?: Prisma.PageBannerCreateNestedManyWithoutBackgroundInput;
+  blog?: Prisma.BlogCreateNestedManyWithoutFileInstancesInput;
+  boatImages?: Prisma.BoatImageCreateNestedManyWithoutFileInput;
+  contactTopImages?: Prisma.ContactPageCreateNestedOneWithoutContactTopImageInput;
+  contactBottomImages?: Prisma.ContactPageCreateNestedOneWithoutContactBottomImageInput;
+  aboutPageTopImages?: Prisma.AboutPageCreateNestedOneWithoutAboutTopImageInput;
+  aboutPageBottonImages?: Prisma.AboutPageCreateNestedOneWithoutAboutBottomImageInput;
+  featuredBrandLogos?: Prisma.FeaturedBrandsCreateNestedManyWithoutFeaturedbrandLogoInput;
+  blogs?: Prisma.BlogCreateNestedManyWithoutBlogImageInput;
+  settings?: Prisma.SettingCreateNestedManyWithoutLogoInput;
+  packageBanners?: Prisma.packageBannerCreateNestedManyWithoutPackageBannerInput;
+};
+
+export type FileInstanceUncheckedCreateWithoutAiSearchBannersInput = {
+  id?: string;
+  filename: string;
+  originalFilename: string;
+  path: string;
+  url: string;
+  fileType?: $Enums.FileType;
+  mimeType: string;
+  size: number;
+  createdAt?: Date | string;
+  updatedAt?: Date | string;
+  pageBannersBackground?: Prisma.PageBannerUncheckedCreateNestedManyWithoutBackgroundInput;
+  blog?: Prisma.BlogUncheckedCreateNestedManyWithoutFileInstancesInput;
+  boatImages?: Prisma.BoatImageUncheckedCreateNestedManyWithoutFileInput;
+  contactTopImages?: Prisma.ContactPageUncheckedCreateNestedOneWithoutContactTopImageInput;
+  contactBottomImages?: Prisma.ContactPageUncheckedCreateNestedOneWithoutContactBottomImageInput;
+  aboutPageTopImages?: Prisma.AboutPageUncheckedCreateNestedOneWithoutAboutTopImageInput;
+  aboutPageBottonImages?: Prisma.AboutPageUncheckedCreateNestedOneWithoutAboutBottomImageInput;
+  featuredBrandLogos?: Prisma.FeaturedBrandsUncheckedCreateNestedManyWithoutFeaturedbrandLogoInput;
+  blogs?: Prisma.BlogUncheckedCreateNestedManyWithoutBlogImageInput;
+  settings?: Prisma.SettingUncheckedCreateNestedManyWithoutLogoInput;
+  packageBanners?: Prisma.packageBannerUncheckedCreateNestedManyWithoutPackageBannerInput;
+};
+
+export type FileInstanceCreateOrConnectWithoutAiSearchBannersInput = {
+  where: Prisma.FileInstanceWhereUniqueInput;
+  create: Prisma.XOR<
+    Prisma.FileInstanceCreateWithoutAiSearchBannersInput,
+    Prisma.FileInstanceUncheckedCreateWithoutAiSearchBannersInput
+  >;
+};
+
+export type FileInstanceUpsertWithoutAiSearchBannersInput = {
+  update: Prisma.XOR<
+    Prisma.FileInstanceUpdateWithoutAiSearchBannersInput,
+    Prisma.FileInstanceUncheckedUpdateWithoutAiSearchBannersInput
+  >;
+  create: Prisma.XOR<
+    Prisma.FileInstanceCreateWithoutAiSearchBannersInput,
+    Prisma.FileInstanceUncheckedCreateWithoutAiSearchBannersInput
+  >;
+  where?: Prisma.FileInstanceWhereInput;
+};
+
+export type FileInstanceUpdateToOneWithWhereWithoutAiSearchBannersInput = {
+  where?: Prisma.FileInstanceWhereInput;
+  data: Prisma.XOR<
+    Prisma.FileInstanceUpdateWithoutAiSearchBannersInput,
+    Prisma.FileInstanceUncheckedUpdateWithoutAiSearchBannersInput
+  >;
+};
+
+export type FileInstanceUpdateWithoutAiSearchBannersInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string;
+  filename?: Prisma.StringFieldUpdateOperationsInput | string;
+  originalFilename?: Prisma.StringFieldUpdateOperationsInput | string;
+  path?: Prisma.StringFieldUpdateOperationsInput | string;
+  url?: Prisma.StringFieldUpdateOperationsInput | string;
+  fileType?: Prisma.EnumFileTypeFieldUpdateOperationsInput | $Enums.FileType;
+  mimeType?: Prisma.StringFieldUpdateOperationsInput | string;
+  size?: Prisma.IntFieldUpdateOperationsInput | number;
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  pageBannersBackground?: Prisma.PageBannerUpdateManyWithoutBackgroundNestedInput;
+  blog?: Prisma.BlogUpdateManyWithoutFileInstancesNestedInput;
+  boatImages?: Prisma.BoatImageUpdateManyWithoutFileNestedInput;
+  contactTopImages?: Prisma.ContactPageUpdateOneWithoutContactTopImageNestedInput;
+  contactBottomImages?: Prisma.ContactPageUpdateOneWithoutContactBottomImageNestedInput;
+  aboutPageTopImages?: Prisma.AboutPageUpdateOneWithoutAboutTopImageNestedInput;
+  aboutPageBottonImages?: Prisma.AboutPageUpdateOneWithoutAboutBottomImageNestedInput;
+  featuredBrandLogos?: Prisma.FeaturedBrandsUpdateManyWithoutFeaturedbrandLogoNestedInput;
+  blogs?: Prisma.BlogUpdateManyWithoutBlogImageNestedInput;
+  settings?: Prisma.SettingUpdateManyWithoutLogoNestedInput;
+  packageBanners?: Prisma.packageBannerUpdateManyWithoutPackageBannerNestedInput;
+};
+
+export type FileInstanceUncheckedUpdateWithoutAiSearchBannersInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string;
+  filename?: Prisma.StringFieldUpdateOperationsInput | string;
+  originalFilename?: Prisma.StringFieldUpdateOperationsInput | string;
+  path?: Prisma.StringFieldUpdateOperationsInput | string;
+  url?: Prisma.StringFieldUpdateOperationsInput | string;
+  fileType?: Prisma.EnumFileTypeFieldUpdateOperationsInput | $Enums.FileType;
+  mimeType?: Prisma.StringFieldUpdateOperationsInput | string;
+  size?: Prisma.IntFieldUpdateOperationsInput | number;
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  pageBannersBackground?: Prisma.PageBannerUncheckedUpdateManyWithoutBackgroundNestedInput;
+  blog?: Prisma.BlogUncheckedUpdateManyWithoutFileInstancesNestedInput;
+  boatImages?: Prisma.BoatImageUncheckedUpdateManyWithoutFileNestedInput;
+  contactTopImages?: Prisma.ContactPageUncheckedUpdateOneWithoutContactTopImageNestedInput;
+  contactBottomImages?: Prisma.ContactPageUncheckedUpdateOneWithoutContactBottomImageNestedInput;
+  aboutPageTopImages?: Prisma.AboutPageUncheckedUpdateOneWithoutAboutTopImageNestedInput;
+  aboutPageBottonImages?: Prisma.AboutPageUncheckedUpdateOneWithoutAboutBottomImageNestedInput;
+  featuredBrandLogos?: Prisma.FeaturedBrandsUncheckedUpdateManyWithoutFeaturedbrandLogoNestedInput;
+  blogs?: Prisma.BlogUncheckedUpdateManyWithoutBlogImageNestedInput;
+  settings?: Prisma.SettingUncheckedUpdateManyWithoutLogoNestedInput;
+  packageBanners?: Prisma.packageBannerUncheckedUpdateManyWithoutPackageBannerNestedInput;
+};
+
+export type FileInstanceCreateWithoutPageBannersBackgroundInput = {
+  id?: string;
+  filename: string;
+  originalFilename: string;
+  path: string;
+  url: string;
+  fileType?: $Enums.FileType;
+  mimeType: string;
+  size: number;
+  createdAt?: Date | string;
+  updatedAt?: Date | string;
+  blog?: Prisma.BlogCreateNestedManyWithoutFileInstancesInput;
+  boatImages?: Prisma.BoatImageCreateNestedManyWithoutFileInput;
+  contactTopImages?: Prisma.ContactPageCreateNestedOneWithoutContactTopImageInput;
+  contactBottomImages?: Prisma.ContactPageCreateNestedOneWithoutContactBottomImageInput;
+  aboutPageTopImages?: Prisma.AboutPageCreateNestedOneWithoutAboutTopImageInput;
+  aboutPageBottonImages?: Prisma.AboutPageCreateNestedOneWithoutAboutBottomImageInput;
+  featuredBrandLogos?: Prisma.FeaturedBrandsCreateNestedManyWithoutFeaturedbrandLogoInput;
+  blogs?: Prisma.BlogCreateNestedManyWithoutBlogImageInput;
+  settings?: Prisma.SettingCreateNestedManyWithoutLogoInput;
+  packageBanners?: Prisma.packageBannerCreateNestedManyWithoutPackageBannerInput;
+  aiSearchBanners?: Prisma.AiSearchBannerCreateNestedManyWithoutAiSearchBannerInput;
+};
+
+export type FileInstanceUncheckedCreateWithoutPageBannersBackgroundInput = {
+  id?: string;
+  filename: string;
+  originalFilename: string;
+  path: string;
+  url: string;
+  fileType?: $Enums.FileType;
+  mimeType: string;
+  size: number;
+  createdAt?: Date | string;
+  updatedAt?: Date | string;
+  blog?: Prisma.BlogUncheckedCreateNestedManyWithoutFileInstancesInput;
+  boatImages?: Prisma.BoatImageUncheckedCreateNestedManyWithoutFileInput;
+  contactTopImages?: Prisma.ContactPageUncheckedCreateNestedOneWithoutContactTopImageInput;
+  contactBottomImages?: Prisma.ContactPageUncheckedCreateNestedOneWithoutContactBottomImageInput;
+  aboutPageTopImages?: Prisma.AboutPageUncheckedCreateNestedOneWithoutAboutTopImageInput;
+  aboutPageBottonImages?: Prisma.AboutPageUncheckedCreateNestedOneWithoutAboutBottomImageInput;
+  featuredBrandLogos?: Prisma.FeaturedBrandsUncheckedCreateNestedManyWithoutFeaturedbrandLogoInput;
+  blogs?: Prisma.BlogUncheckedCreateNestedManyWithoutBlogImageInput;
+  settings?: Prisma.SettingUncheckedCreateNestedManyWithoutLogoInput;
+  packageBanners?: Prisma.packageBannerUncheckedCreateNestedManyWithoutPackageBannerInput;
+  aiSearchBanners?: Prisma.AiSearchBannerUncheckedCreateNestedManyWithoutAiSearchBannerInput;
+};
+
+export type FileInstanceCreateOrConnectWithoutPageBannersBackgroundInput = {
+  where: Prisma.FileInstanceWhereUniqueInput;
+  create: Prisma.XOR<
+    Prisma.FileInstanceCreateWithoutPageBannersBackgroundInput,
+    Prisma.FileInstanceUncheckedCreateWithoutPageBannersBackgroundInput
+  >;
+};
+
+export type FileInstanceUpsertWithoutPageBannersBackgroundInput = {
+  update: Prisma.XOR<
+    Prisma.FileInstanceUpdateWithoutPageBannersBackgroundInput,
+    Prisma.FileInstanceUncheckedUpdateWithoutPageBannersBackgroundInput
+  >;
+  create: Prisma.XOR<
+    Prisma.FileInstanceCreateWithoutPageBannersBackgroundInput,
+    Prisma.FileInstanceUncheckedCreateWithoutPageBannersBackgroundInput
+  >;
+  where?: Prisma.FileInstanceWhereInput;
+};
+
+export type FileInstanceUpdateToOneWithWhereWithoutPageBannersBackgroundInput =
+  {
+    where?: Prisma.FileInstanceWhereInput;
+    data: Prisma.XOR<
+      Prisma.FileInstanceUpdateWithoutPageBannersBackgroundInput,
+      Prisma.FileInstanceUncheckedUpdateWithoutPageBannersBackgroundInput
+    >;
+  };
+
+export type FileInstanceUpdateWithoutPageBannersBackgroundInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string;
+  filename?: Prisma.StringFieldUpdateOperationsInput | string;
+  originalFilename?: Prisma.StringFieldUpdateOperationsInput | string;
+  path?: Prisma.StringFieldUpdateOperationsInput | string;
+  url?: Prisma.StringFieldUpdateOperationsInput | string;
+  fileType?: Prisma.EnumFileTypeFieldUpdateOperationsInput | $Enums.FileType;
+  mimeType?: Prisma.StringFieldUpdateOperationsInput | string;
+  size?: Prisma.IntFieldUpdateOperationsInput | number;
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  blog?: Prisma.BlogUpdateManyWithoutFileInstancesNestedInput;
+  boatImages?: Prisma.BoatImageUpdateManyWithoutFileNestedInput;
+  contactTopImages?: Prisma.ContactPageUpdateOneWithoutContactTopImageNestedInput;
+  contactBottomImages?: Prisma.ContactPageUpdateOneWithoutContactBottomImageNestedInput;
+  aboutPageTopImages?: Prisma.AboutPageUpdateOneWithoutAboutTopImageNestedInput;
+  aboutPageBottonImages?: Prisma.AboutPageUpdateOneWithoutAboutBottomImageNestedInput;
+  featuredBrandLogos?: Prisma.FeaturedBrandsUpdateManyWithoutFeaturedbrandLogoNestedInput;
+  blogs?: Prisma.BlogUpdateManyWithoutBlogImageNestedInput;
+  settings?: Prisma.SettingUpdateManyWithoutLogoNestedInput;
+  packageBanners?: Prisma.packageBannerUpdateManyWithoutPackageBannerNestedInput;
+  aiSearchBanners?: Prisma.AiSearchBannerUpdateManyWithoutAiSearchBannerNestedInput;
+};
+
+export type FileInstanceUncheckedUpdateWithoutPageBannersBackgroundInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string;
+  filename?: Prisma.StringFieldUpdateOperationsInput | string;
+  originalFilename?: Prisma.StringFieldUpdateOperationsInput | string;
+  path?: Prisma.StringFieldUpdateOperationsInput | string;
+  url?: Prisma.StringFieldUpdateOperationsInput | string;
+  fileType?: Prisma.EnumFileTypeFieldUpdateOperationsInput | $Enums.FileType;
+  mimeType?: Prisma.StringFieldUpdateOperationsInput | string;
+  size?: Prisma.IntFieldUpdateOperationsInput | number;
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  blog?: Prisma.BlogUncheckedUpdateManyWithoutFileInstancesNestedInput;
+  boatImages?: Prisma.BoatImageUncheckedUpdateManyWithoutFileNestedInput;
+  contactTopImages?: Prisma.ContactPageUncheckedUpdateOneWithoutContactTopImageNestedInput;
+  contactBottomImages?: Prisma.ContactPageUncheckedUpdateOneWithoutContactBottomImageNestedInput;
+  aboutPageTopImages?: Prisma.AboutPageUncheckedUpdateOneWithoutAboutTopImageNestedInput;
+  aboutPageBottonImages?: Prisma.AboutPageUncheckedUpdateOneWithoutAboutBottomImageNestedInput;
+  featuredBrandLogos?: Prisma.FeaturedBrandsUncheckedUpdateManyWithoutFeaturedbrandLogoNestedInput;
+  blogs?: Prisma.BlogUncheckedUpdateManyWithoutBlogImageNestedInput;
+  settings?: Prisma.SettingUncheckedUpdateManyWithoutLogoNestedInput;
+  packageBanners?: Prisma.packageBannerUncheckedUpdateManyWithoutPackageBannerNestedInput;
+  aiSearchBanners?: Prisma.AiSearchBannerUncheckedUpdateManyWithoutAiSearchBannerNestedInput;
+};
+
+export type FileInstanceCreateWithoutBlogsInput = {
+  id?: string;
+  filename: string;
+  originalFilename: string;
+  path: string;
+  url: string;
+  fileType?: $Enums.FileType;
+  mimeType: string;
+  size: number;
+  createdAt?: Date | string;
+  updatedAt?: Date | string;
+  pageBannersBackground?: Prisma.PageBannerCreateNestedManyWithoutBackgroundInput;
+  blog?: Prisma.BlogCreateNestedManyWithoutFileInstancesInput;
+  boatImages?: Prisma.BoatImageCreateNestedManyWithoutFileInput;
+  contactTopImages?: Prisma.ContactPageCreateNestedOneWithoutContactTopImageInput;
+  contactBottomImages?: Prisma.ContactPageCreateNestedOneWithoutContactBottomImageInput;
+  aboutPageTopImages?: Prisma.AboutPageCreateNestedOneWithoutAboutTopImageInput;
+  aboutPageBottonImages?: Prisma.AboutPageCreateNestedOneWithoutAboutBottomImageInput;
+  featuredBrandLogos?: Prisma.FeaturedBrandsCreateNestedManyWithoutFeaturedbrandLogoInput;
+  settings?: Prisma.SettingCreateNestedManyWithoutLogoInput;
+  packageBanners?: Prisma.packageBannerCreateNestedManyWithoutPackageBannerInput;
+  aiSearchBanners?: Prisma.AiSearchBannerCreateNestedManyWithoutAiSearchBannerInput;
+};
+
+export type FileInstanceUncheckedCreateWithoutBlogsInput = {
+  id?: string;
+  filename: string;
+  originalFilename: string;
+  path: string;
+  url: string;
+  fileType?: $Enums.FileType;
+  mimeType: string;
+  size: number;
+  createdAt?: Date | string;
+  updatedAt?: Date | string;
+  pageBannersBackground?: Prisma.PageBannerUncheckedCreateNestedManyWithoutBackgroundInput;
+  blog?: Prisma.BlogUncheckedCreateNestedManyWithoutFileInstancesInput;
+  boatImages?: Prisma.BoatImageUncheckedCreateNestedManyWithoutFileInput;
+  contactTopImages?: Prisma.ContactPageUncheckedCreateNestedOneWithoutContactTopImageInput;
+  contactBottomImages?: Prisma.ContactPageUncheckedCreateNestedOneWithoutContactBottomImageInput;
+  aboutPageTopImages?: Prisma.AboutPageUncheckedCreateNestedOneWithoutAboutTopImageInput;
+  aboutPageBottonImages?: Prisma.AboutPageUncheckedCreateNestedOneWithoutAboutBottomImageInput;
+  featuredBrandLogos?: Prisma.FeaturedBrandsUncheckedCreateNestedManyWithoutFeaturedbrandLogoInput;
+  settings?: Prisma.SettingUncheckedCreateNestedManyWithoutLogoInput;
+  packageBanners?: Prisma.packageBannerUncheckedCreateNestedManyWithoutPackageBannerInput;
+  aiSearchBanners?: Prisma.AiSearchBannerUncheckedCreateNestedManyWithoutAiSearchBannerInput;
+};
+
+export type FileInstanceCreateOrConnectWithoutBlogsInput = {
+  where: Prisma.FileInstanceWhereUniqueInput;
+  create: Prisma.XOR<
+    Prisma.FileInstanceCreateWithoutBlogsInput,
+    Prisma.FileInstanceUncheckedCreateWithoutBlogsInput
+  >;
+};
+
+export type FileInstanceCreateWithoutBlogInput = {
+  id?: string;
+  filename: string;
+  originalFilename: string;
+  path: string;
+  url: string;
+  fileType?: $Enums.FileType;
+  mimeType: string;
+  size: number;
+  createdAt?: Date | string;
+  updatedAt?: Date | string;
+  pageBannersBackground?: Prisma.PageBannerCreateNestedManyWithoutBackgroundInput;
+  boatImages?: Prisma.BoatImageCreateNestedManyWithoutFileInput;
+  contactTopImages?: Prisma.ContactPageCreateNestedOneWithoutContactTopImageInput;
+  contactBottomImages?: Prisma.ContactPageCreateNestedOneWithoutContactBottomImageInput;
+  aboutPageTopImages?: Prisma.AboutPageCreateNestedOneWithoutAboutTopImageInput;
+  aboutPageBottonImages?: Prisma.AboutPageCreateNestedOneWithoutAboutBottomImageInput;
+  featuredBrandLogos?: Prisma.FeaturedBrandsCreateNestedManyWithoutFeaturedbrandLogoInput;
+  blogs?: Prisma.BlogCreateNestedManyWithoutBlogImageInput;
+  settings?: Prisma.SettingCreateNestedManyWithoutLogoInput;
+  packageBanners?: Prisma.packageBannerCreateNestedManyWithoutPackageBannerInput;
+  aiSearchBanners?: Prisma.AiSearchBannerCreateNestedManyWithoutAiSearchBannerInput;
+};
+
+export type FileInstanceUncheckedCreateWithoutBlogInput = {
+  id?: string;
+  filename: string;
+  originalFilename: string;
+  path: string;
+  url: string;
+  fileType?: $Enums.FileType;
+  mimeType: string;
+  size: number;
+  createdAt?: Date | string;
+  updatedAt?: Date | string;
+  pageBannersBackground?: Prisma.PageBannerUncheckedCreateNestedManyWithoutBackgroundInput;
+  boatImages?: Prisma.BoatImageUncheckedCreateNestedManyWithoutFileInput;
+  contactTopImages?: Prisma.ContactPageUncheckedCreateNestedOneWithoutContactTopImageInput;
+  contactBottomImages?: Prisma.ContactPageUncheckedCreateNestedOneWithoutContactBottomImageInput;
+  aboutPageTopImages?: Prisma.AboutPageUncheckedCreateNestedOneWithoutAboutTopImageInput;
+  aboutPageBottonImages?: Prisma.AboutPageUncheckedCreateNestedOneWithoutAboutBottomImageInput;
+  featuredBrandLogos?: Prisma.FeaturedBrandsUncheckedCreateNestedManyWithoutFeaturedbrandLogoInput;
+  blogs?: Prisma.BlogUncheckedCreateNestedManyWithoutBlogImageInput;
+  settings?: Prisma.SettingUncheckedCreateNestedManyWithoutLogoInput;
+  packageBanners?: Prisma.packageBannerUncheckedCreateNestedManyWithoutPackageBannerInput;
+  aiSearchBanners?: Prisma.AiSearchBannerUncheckedCreateNestedManyWithoutAiSearchBannerInput;
+};
+
+export type FileInstanceCreateOrConnectWithoutBlogInput = {
+  where: Prisma.FileInstanceWhereUniqueInput;
+  create: Prisma.XOR<
+    Prisma.FileInstanceCreateWithoutBlogInput,
+    Prisma.FileInstanceUncheckedCreateWithoutBlogInput
+  >;
+};
+
+export type FileInstanceUpsertWithoutBlogsInput = {
+  update: Prisma.XOR<
+    Prisma.FileInstanceUpdateWithoutBlogsInput,
+    Prisma.FileInstanceUncheckedUpdateWithoutBlogsInput
+  >;
+  create: Prisma.XOR<
+    Prisma.FileInstanceCreateWithoutBlogsInput,
+    Prisma.FileInstanceUncheckedCreateWithoutBlogsInput
+  >;
+  where?: Prisma.FileInstanceWhereInput;
+};
+
+export type FileInstanceUpdateToOneWithWhereWithoutBlogsInput = {
+  where?: Prisma.FileInstanceWhereInput;
+  data: Prisma.XOR<
+    Prisma.FileInstanceUpdateWithoutBlogsInput,
+    Prisma.FileInstanceUncheckedUpdateWithoutBlogsInput
+  >;
+};
+
+export type FileInstanceUpdateWithoutBlogsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string;
+  filename?: Prisma.StringFieldUpdateOperationsInput | string;
+  originalFilename?: Prisma.StringFieldUpdateOperationsInput | string;
+  path?: Prisma.StringFieldUpdateOperationsInput | string;
+  url?: Prisma.StringFieldUpdateOperationsInput | string;
+  fileType?: Prisma.EnumFileTypeFieldUpdateOperationsInput | $Enums.FileType;
+  mimeType?: Prisma.StringFieldUpdateOperationsInput | string;
+  size?: Prisma.IntFieldUpdateOperationsInput | number;
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  pageBannersBackground?: Prisma.PageBannerUpdateManyWithoutBackgroundNestedInput;
+  blog?: Prisma.BlogUpdateManyWithoutFileInstancesNestedInput;
+  boatImages?: Prisma.BoatImageUpdateManyWithoutFileNestedInput;
+  contactTopImages?: Prisma.ContactPageUpdateOneWithoutContactTopImageNestedInput;
+  contactBottomImages?: Prisma.ContactPageUpdateOneWithoutContactBottomImageNestedInput;
+  aboutPageTopImages?: Prisma.AboutPageUpdateOneWithoutAboutTopImageNestedInput;
+  aboutPageBottonImages?: Prisma.AboutPageUpdateOneWithoutAboutBottomImageNestedInput;
+  featuredBrandLogos?: Prisma.FeaturedBrandsUpdateManyWithoutFeaturedbrandLogoNestedInput;
+  settings?: Prisma.SettingUpdateManyWithoutLogoNestedInput;
+  packageBanners?: Prisma.packageBannerUpdateManyWithoutPackageBannerNestedInput;
+  aiSearchBanners?: Prisma.AiSearchBannerUpdateManyWithoutAiSearchBannerNestedInput;
+};
+
+export type FileInstanceUncheckedUpdateWithoutBlogsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string;
+  filename?: Prisma.StringFieldUpdateOperationsInput | string;
+  originalFilename?: Prisma.StringFieldUpdateOperationsInput | string;
+  path?: Prisma.StringFieldUpdateOperationsInput | string;
+  url?: Prisma.StringFieldUpdateOperationsInput | string;
+  fileType?: Prisma.EnumFileTypeFieldUpdateOperationsInput | $Enums.FileType;
+  mimeType?: Prisma.StringFieldUpdateOperationsInput | string;
+  size?: Prisma.IntFieldUpdateOperationsInput | number;
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  pageBannersBackground?: Prisma.PageBannerUncheckedUpdateManyWithoutBackgroundNestedInput;
+  blog?: Prisma.BlogUncheckedUpdateManyWithoutFileInstancesNestedInput;
+  boatImages?: Prisma.BoatImageUncheckedUpdateManyWithoutFileNestedInput;
+  contactTopImages?: Prisma.ContactPageUncheckedUpdateOneWithoutContactTopImageNestedInput;
+  contactBottomImages?: Prisma.ContactPageUncheckedUpdateOneWithoutContactBottomImageNestedInput;
+  aboutPageTopImages?: Prisma.AboutPageUncheckedUpdateOneWithoutAboutTopImageNestedInput;
+  aboutPageBottonImages?: Prisma.AboutPageUncheckedUpdateOneWithoutAboutBottomImageNestedInput;
+  featuredBrandLogos?: Prisma.FeaturedBrandsUncheckedUpdateManyWithoutFeaturedbrandLogoNestedInput;
+  settings?: Prisma.SettingUncheckedUpdateManyWithoutLogoNestedInput;
+  packageBanners?: Prisma.packageBannerUncheckedUpdateManyWithoutPackageBannerNestedInput;
+  aiSearchBanners?: Prisma.AiSearchBannerUncheckedUpdateManyWithoutAiSearchBannerNestedInput;
+};
+
+export type FileInstanceUpsertWithWhereUniqueWithoutBlogInput = {
+  where: Prisma.FileInstanceWhereUniqueInput;
+  update: Prisma.XOR<
+    Prisma.FileInstanceUpdateWithoutBlogInput,
+    Prisma.FileInstanceUncheckedUpdateWithoutBlogInput
+  >;
+  create: Prisma.XOR<
+    Prisma.FileInstanceCreateWithoutBlogInput,
+    Prisma.FileInstanceUncheckedCreateWithoutBlogInput
+  >;
+};
+
+export type FileInstanceUpdateWithWhereUniqueWithoutBlogInput = {
+  where: Prisma.FileInstanceWhereUniqueInput;
+  data: Prisma.XOR<
+    Prisma.FileInstanceUpdateWithoutBlogInput,
+    Prisma.FileInstanceUncheckedUpdateWithoutBlogInput
+  >;
+};
+
+export type FileInstanceUpdateManyWithWhereWithoutBlogInput = {
+  where: Prisma.FileInstanceScalarWhereInput;
+  data: Prisma.XOR<
+    Prisma.FileInstanceUpdateManyMutationInput,
+    Prisma.FileInstanceUncheckedUpdateManyWithoutBlogInput
+  >;
+};
+
+export type FileInstanceScalarWhereInput = {
+  AND?:
+    | Prisma.FileInstanceScalarWhereInput
+    | Prisma.FileInstanceScalarWhereInput[];
+  OR?: Prisma.FileInstanceScalarWhereInput[];
+  NOT?:
+    | Prisma.FileInstanceScalarWhereInput
+    | Prisma.FileInstanceScalarWhereInput[];
+  id?: Prisma.StringFilter<'FileInstance'> | string;
+  filename?: Prisma.StringFilter<'FileInstance'> | string;
+  originalFilename?: Prisma.StringFilter<'FileInstance'> | string;
+  path?: Prisma.StringFilter<'FileInstance'> | string;
+  url?: Prisma.StringFilter<'FileInstance'> | string;
+  fileType?: Prisma.EnumFileTypeFilter<'FileInstance'> | $Enums.FileType;
+  mimeType?: Prisma.StringFilter<'FileInstance'> | string;
+  size?: Prisma.IntFilter<'FileInstance'> | number;
+  createdAt?: Prisma.DateTimeFilter<'FileInstance'> | Date | string;
+  updatedAt?: Prisma.DateTimeFilter<'FileInstance'> | Date | string;
 };
 
 export type FileInstanceCreateWithoutBoatImagesInput = {
@@ -1639,483 +2116,6 @@ export type FileInstanceUncheckedUpdateWithoutContactBottomImagesInput = {
   settings?: Prisma.SettingUncheckedUpdateManyWithoutLogoNestedInput;
   packageBanners?: Prisma.packageBannerUncheckedUpdateManyWithoutPackageBannerNestedInput;
   aiSearchBanners?: Prisma.AiSearchBannerUncheckedUpdateManyWithoutAiSearchBannerNestedInput;
-};
-
-export type FileInstanceCreateWithoutAiSearchBannersInput = {
-  id?: string;
-  filename: string;
-  originalFilename: string;
-  path: string;
-  url: string;
-  fileType?: $Enums.FileType;
-  mimeType: string;
-  size: number;
-  createdAt?: Date | string;
-  updatedAt?: Date | string;
-  pageBannersBackground?: Prisma.PageBannerCreateNestedManyWithoutBackgroundInput;
-  blog?: Prisma.BlogCreateNestedManyWithoutFileInstancesInput;
-  boatImages?: Prisma.BoatImageCreateNestedManyWithoutFileInput;
-  contactTopImages?: Prisma.ContactPageCreateNestedOneWithoutContactTopImageInput;
-  contactBottomImages?: Prisma.ContactPageCreateNestedOneWithoutContactBottomImageInput;
-  aboutPageTopImages?: Prisma.AboutPageCreateNestedOneWithoutAboutTopImageInput;
-  aboutPageBottonImages?: Prisma.AboutPageCreateNestedOneWithoutAboutBottomImageInput;
-  featuredBrandLogos?: Prisma.FeaturedBrandsCreateNestedManyWithoutFeaturedbrandLogoInput;
-  blogs?: Prisma.BlogCreateNestedManyWithoutBlogImageInput;
-  settings?: Prisma.SettingCreateNestedManyWithoutLogoInput;
-  packageBanners?: Prisma.packageBannerCreateNestedManyWithoutPackageBannerInput;
-};
-
-export type FileInstanceUncheckedCreateWithoutAiSearchBannersInput = {
-  id?: string;
-  filename: string;
-  originalFilename: string;
-  path: string;
-  url: string;
-  fileType?: $Enums.FileType;
-  mimeType: string;
-  size: number;
-  createdAt?: Date | string;
-  updatedAt?: Date | string;
-  pageBannersBackground?: Prisma.PageBannerUncheckedCreateNestedManyWithoutBackgroundInput;
-  blog?: Prisma.BlogUncheckedCreateNestedManyWithoutFileInstancesInput;
-  boatImages?: Prisma.BoatImageUncheckedCreateNestedManyWithoutFileInput;
-  contactTopImages?: Prisma.ContactPageUncheckedCreateNestedOneWithoutContactTopImageInput;
-  contactBottomImages?: Prisma.ContactPageUncheckedCreateNestedOneWithoutContactBottomImageInput;
-  aboutPageTopImages?: Prisma.AboutPageUncheckedCreateNestedOneWithoutAboutTopImageInput;
-  aboutPageBottonImages?: Prisma.AboutPageUncheckedCreateNestedOneWithoutAboutBottomImageInput;
-  featuredBrandLogos?: Prisma.FeaturedBrandsUncheckedCreateNestedManyWithoutFeaturedbrandLogoInput;
-  blogs?: Prisma.BlogUncheckedCreateNestedManyWithoutBlogImageInput;
-  settings?: Prisma.SettingUncheckedCreateNestedManyWithoutLogoInput;
-  packageBanners?: Prisma.packageBannerUncheckedCreateNestedManyWithoutPackageBannerInput;
-};
-
-export type FileInstanceCreateOrConnectWithoutAiSearchBannersInput = {
-  where: Prisma.FileInstanceWhereUniqueInput;
-  create: Prisma.XOR<
-    Prisma.FileInstanceCreateWithoutAiSearchBannersInput,
-    Prisma.FileInstanceUncheckedCreateWithoutAiSearchBannersInput
-  >;
-};
-
-export type FileInstanceUpsertWithoutAiSearchBannersInput = {
-  update: Prisma.XOR<
-    Prisma.FileInstanceUpdateWithoutAiSearchBannersInput,
-    Prisma.FileInstanceUncheckedUpdateWithoutAiSearchBannersInput
-  >;
-  create: Prisma.XOR<
-    Prisma.FileInstanceCreateWithoutAiSearchBannersInput,
-    Prisma.FileInstanceUncheckedCreateWithoutAiSearchBannersInput
-  >;
-  where?: Prisma.FileInstanceWhereInput;
-};
-
-export type FileInstanceUpdateToOneWithWhereWithoutAiSearchBannersInput = {
-  where?: Prisma.FileInstanceWhereInput;
-  data: Prisma.XOR<
-    Prisma.FileInstanceUpdateWithoutAiSearchBannersInput,
-    Prisma.FileInstanceUncheckedUpdateWithoutAiSearchBannersInput
-  >;
-};
-
-export type FileInstanceUpdateWithoutAiSearchBannersInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string;
-  filename?: Prisma.StringFieldUpdateOperationsInput | string;
-  originalFilename?: Prisma.StringFieldUpdateOperationsInput | string;
-  path?: Prisma.StringFieldUpdateOperationsInput | string;
-  url?: Prisma.StringFieldUpdateOperationsInput | string;
-  fileType?: Prisma.EnumFileTypeFieldUpdateOperationsInput | $Enums.FileType;
-  mimeType?: Prisma.StringFieldUpdateOperationsInput | string;
-  size?: Prisma.IntFieldUpdateOperationsInput | number;
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
-  pageBannersBackground?: Prisma.PageBannerUpdateManyWithoutBackgroundNestedInput;
-  blog?: Prisma.BlogUpdateManyWithoutFileInstancesNestedInput;
-  boatImages?: Prisma.BoatImageUpdateManyWithoutFileNestedInput;
-  contactTopImages?: Prisma.ContactPageUpdateOneWithoutContactTopImageNestedInput;
-  contactBottomImages?: Prisma.ContactPageUpdateOneWithoutContactBottomImageNestedInput;
-  aboutPageTopImages?: Prisma.AboutPageUpdateOneWithoutAboutTopImageNestedInput;
-  aboutPageBottonImages?: Prisma.AboutPageUpdateOneWithoutAboutBottomImageNestedInput;
-  featuredBrandLogos?: Prisma.FeaturedBrandsUpdateManyWithoutFeaturedbrandLogoNestedInput;
-  blogs?: Prisma.BlogUpdateManyWithoutBlogImageNestedInput;
-  settings?: Prisma.SettingUpdateManyWithoutLogoNestedInput;
-  packageBanners?: Prisma.packageBannerUpdateManyWithoutPackageBannerNestedInput;
-};
-
-export type FileInstanceUncheckedUpdateWithoutAiSearchBannersInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string;
-  filename?: Prisma.StringFieldUpdateOperationsInput | string;
-  originalFilename?: Prisma.StringFieldUpdateOperationsInput | string;
-  path?: Prisma.StringFieldUpdateOperationsInput | string;
-  url?: Prisma.StringFieldUpdateOperationsInput | string;
-  fileType?: Prisma.EnumFileTypeFieldUpdateOperationsInput | $Enums.FileType;
-  mimeType?: Prisma.StringFieldUpdateOperationsInput | string;
-  size?: Prisma.IntFieldUpdateOperationsInput | number;
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
-  pageBannersBackground?: Prisma.PageBannerUncheckedUpdateManyWithoutBackgroundNestedInput;
-  blog?: Prisma.BlogUncheckedUpdateManyWithoutFileInstancesNestedInput;
-  boatImages?: Prisma.BoatImageUncheckedUpdateManyWithoutFileNestedInput;
-  contactTopImages?: Prisma.ContactPageUncheckedUpdateOneWithoutContactTopImageNestedInput;
-  contactBottomImages?: Prisma.ContactPageUncheckedUpdateOneWithoutContactBottomImageNestedInput;
-  aboutPageTopImages?: Prisma.AboutPageUncheckedUpdateOneWithoutAboutTopImageNestedInput;
-  aboutPageBottonImages?: Prisma.AboutPageUncheckedUpdateOneWithoutAboutBottomImageNestedInput;
-  featuredBrandLogos?: Prisma.FeaturedBrandsUncheckedUpdateManyWithoutFeaturedbrandLogoNestedInput;
-  blogs?: Prisma.BlogUncheckedUpdateManyWithoutBlogImageNestedInput;
-  settings?: Prisma.SettingUncheckedUpdateManyWithoutLogoNestedInput;
-  packageBanners?: Prisma.packageBannerUncheckedUpdateManyWithoutPackageBannerNestedInput;
-};
-
-export type FileInstanceCreateWithoutPageBannersBackgroundInput = {
-  id?: string;
-  filename: string;
-  originalFilename: string;
-  path: string;
-  url: string;
-  fileType?: $Enums.FileType;
-  mimeType: string;
-  size: number;
-  createdAt?: Date | string;
-  updatedAt?: Date | string;
-  blog?: Prisma.BlogCreateNestedManyWithoutFileInstancesInput;
-  boatImages?: Prisma.BoatImageCreateNestedManyWithoutFileInput;
-  contactTopImages?: Prisma.ContactPageCreateNestedOneWithoutContactTopImageInput;
-  contactBottomImages?: Prisma.ContactPageCreateNestedOneWithoutContactBottomImageInput;
-  aboutPageTopImages?: Prisma.AboutPageCreateNestedOneWithoutAboutTopImageInput;
-  aboutPageBottonImages?: Prisma.AboutPageCreateNestedOneWithoutAboutBottomImageInput;
-  featuredBrandLogos?: Prisma.FeaturedBrandsCreateNestedManyWithoutFeaturedbrandLogoInput;
-  blogs?: Prisma.BlogCreateNestedManyWithoutBlogImageInput;
-  settings?: Prisma.SettingCreateNestedManyWithoutLogoInput;
-  packageBanners?: Prisma.packageBannerCreateNestedManyWithoutPackageBannerInput;
-  aiSearchBanners?: Prisma.AiSearchBannerCreateNestedManyWithoutAiSearchBannerInput;
-};
-
-export type FileInstanceUncheckedCreateWithoutPageBannersBackgroundInput = {
-  id?: string;
-  filename: string;
-  originalFilename: string;
-  path: string;
-  url: string;
-  fileType?: $Enums.FileType;
-  mimeType: string;
-  size: number;
-  createdAt?: Date | string;
-  updatedAt?: Date | string;
-  blog?: Prisma.BlogUncheckedCreateNestedManyWithoutFileInstancesInput;
-  boatImages?: Prisma.BoatImageUncheckedCreateNestedManyWithoutFileInput;
-  contactTopImages?: Prisma.ContactPageUncheckedCreateNestedOneWithoutContactTopImageInput;
-  contactBottomImages?: Prisma.ContactPageUncheckedCreateNestedOneWithoutContactBottomImageInput;
-  aboutPageTopImages?: Prisma.AboutPageUncheckedCreateNestedOneWithoutAboutTopImageInput;
-  aboutPageBottonImages?: Prisma.AboutPageUncheckedCreateNestedOneWithoutAboutBottomImageInput;
-  featuredBrandLogos?: Prisma.FeaturedBrandsUncheckedCreateNestedManyWithoutFeaturedbrandLogoInput;
-  blogs?: Prisma.BlogUncheckedCreateNestedManyWithoutBlogImageInput;
-  settings?: Prisma.SettingUncheckedCreateNestedManyWithoutLogoInput;
-  packageBanners?: Prisma.packageBannerUncheckedCreateNestedManyWithoutPackageBannerInput;
-  aiSearchBanners?: Prisma.AiSearchBannerUncheckedCreateNestedManyWithoutAiSearchBannerInput;
-};
-
-export type FileInstanceCreateOrConnectWithoutPageBannersBackgroundInput = {
-  where: Prisma.FileInstanceWhereUniqueInput;
-  create: Prisma.XOR<
-    Prisma.FileInstanceCreateWithoutPageBannersBackgroundInput,
-    Prisma.FileInstanceUncheckedCreateWithoutPageBannersBackgroundInput
-  >;
-};
-
-export type FileInstanceUpsertWithoutPageBannersBackgroundInput = {
-  update: Prisma.XOR<
-    Prisma.FileInstanceUpdateWithoutPageBannersBackgroundInput,
-    Prisma.FileInstanceUncheckedUpdateWithoutPageBannersBackgroundInput
-  >;
-  create: Prisma.XOR<
-    Prisma.FileInstanceCreateWithoutPageBannersBackgroundInput,
-    Prisma.FileInstanceUncheckedCreateWithoutPageBannersBackgroundInput
-  >;
-  where?: Prisma.FileInstanceWhereInput;
-};
-
-export type FileInstanceUpdateToOneWithWhereWithoutPageBannersBackgroundInput =
-  {
-    where?: Prisma.FileInstanceWhereInput;
-    data: Prisma.XOR<
-      Prisma.FileInstanceUpdateWithoutPageBannersBackgroundInput,
-      Prisma.FileInstanceUncheckedUpdateWithoutPageBannersBackgroundInput
-    >;
-  };
-
-export type FileInstanceUpdateWithoutPageBannersBackgroundInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string;
-  filename?: Prisma.StringFieldUpdateOperationsInput | string;
-  originalFilename?: Prisma.StringFieldUpdateOperationsInput | string;
-  path?: Prisma.StringFieldUpdateOperationsInput | string;
-  url?: Prisma.StringFieldUpdateOperationsInput | string;
-  fileType?: Prisma.EnumFileTypeFieldUpdateOperationsInput | $Enums.FileType;
-  mimeType?: Prisma.StringFieldUpdateOperationsInput | string;
-  size?: Prisma.IntFieldUpdateOperationsInput | number;
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
-  blog?: Prisma.BlogUpdateManyWithoutFileInstancesNestedInput;
-  boatImages?: Prisma.BoatImageUpdateManyWithoutFileNestedInput;
-  contactTopImages?: Prisma.ContactPageUpdateOneWithoutContactTopImageNestedInput;
-  contactBottomImages?: Prisma.ContactPageUpdateOneWithoutContactBottomImageNestedInput;
-  aboutPageTopImages?: Prisma.AboutPageUpdateOneWithoutAboutTopImageNestedInput;
-  aboutPageBottonImages?: Prisma.AboutPageUpdateOneWithoutAboutBottomImageNestedInput;
-  featuredBrandLogos?: Prisma.FeaturedBrandsUpdateManyWithoutFeaturedbrandLogoNestedInput;
-  blogs?: Prisma.BlogUpdateManyWithoutBlogImageNestedInput;
-  settings?: Prisma.SettingUpdateManyWithoutLogoNestedInput;
-  packageBanners?: Prisma.packageBannerUpdateManyWithoutPackageBannerNestedInput;
-  aiSearchBanners?: Prisma.AiSearchBannerUpdateManyWithoutAiSearchBannerNestedInput;
-};
-
-export type FileInstanceUncheckedUpdateWithoutPageBannersBackgroundInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string;
-  filename?: Prisma.StringFieldUpdateOperationsInput | string;
-  originalFilename?: Prisma.StringFieldUpdateOperationsInput | string;
-  path?: Prisma.StringFieldUpdateOperationsInput | string;
-  url?: Prisma.StringFieldUpdateOperationsInput | string;
-  fileType?: Prisma.EnumFileTypeFieldUpdateOperationsInput | $Enums.FileType;
-  mimeType?: Prisma.StringFieldUpdateOperationsInput | string;
-  size?: Prisma.IntFieldUpdateOperationsInput | number;
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
-  blog?: Prisma.BlogUncheckedUpdateManyWithoutFileInstancesNestedInput;
-  boatImages?: Prisma.BoatImageUncheckedUpdateManyWithoutFileNestedInput;
-  contactTopImages?: Prisma.ContactPageUncheckedUpdateOneWithoutContactTopImageNestedInput;
-  contactBottomImages?: Prisma.ContactPageUncheckedUpdateOneWithoutContactBottomImageNestedInput;
-  aboutPageTopImages?: Prisma.AboutPageUncheckedUpdateOneWithoutAboutTopImageNestedInput;
-  aboutPageBottonImages?: Prisma.AboutPageUncheckedUpdateOneWithoutAboutBottomImageNestedInput;
-  featuredBrandLogos?: Prisma.FeaturedBrandsUncheckedUpdateManyWithoutFeaturedbrandLogoNestedInput;
-  blogs?: Prisma.BlogUncheckedUpdateManyWithoutBlogImageNestedInput;
-  settings?: Prisma.SettingUncheckedUpdateManyWithoutLogoNestedInput;
-  packageBanners?: Prisma.packageBannerUncheckedUpdateManyWithoutPackageBannerNestedInput;
-  aiSearchBanners?: Prisma.AiSearchBannerUncheckedUpdateManyWithoutAiSearchBannerNestedInput;
-};
-
-export type FileInstanceCreateWithoutBlogsInput = {
-  id?: string;
-  filename: string;
-  originalFilename: string;
-  path: string;
-  url: string;
-  fileType?: $Enums.FileType;
-  mimeType: string;
-  size: number;
-  createdAt?: Date | string;
-  updatedAt?: Date | string;
-  pageBannersBackground?: Prisma.PageBannerCreateNestedManyWithoutBackgroundInput;
-  blog?: Prisma.BlogCreateNestedManyWithoutFileInstancesInput;
-  boatImages?: Prisma.BoatImageCreateNestedManyWithoutFileInput;
-  contactTopImages?: Prisma.ContactPageCreateNestedOneWithoutContactTopImageInput;
-  contactBottomImages?: Prisma.ContactPageCreateNestedOneWithoutContactBottomImageInput;
-  aboutPageTopImages?: Prisma.AboutPageCreateNestedOneWithoutAboutTopImageInput;
-  aboutPageBottonImages?: Prisma.AboutPageCreateNestedOneWithoutAboutBottomImageInput;
-  featuredBrandLogos?: Prisma.FeaturedBrandsCreateNestedManyWithoutFeaturedbrandLogoInput;
-  settings?: Prisma.SettingCreateNestedManyWithoutLogoInput;
-  packageBanners?: Prisma.packageBannerCreateNestedManyWithoutPackageBannerInput;
-  aiSearchBanners?: Prisma.AiSearchBannerCreateNestedManyWithoutAiSearchBannerInput;
-};
-
-export type FileInstanceUncheckedCreateWithoutBlogsInput = {
-  id?: string;
-  filename: string;
-  originalFilename: string;
-  path: string;
-  url: string;
-  fileType?: $Enums.FileType;
-  mimeType: string;
-  size: number;
-  createdAt?: Date | string;
-  updatedAt?: Date | string;
-  pageBannersBackground?: Prisma.PageBannerUncheckedCreateNestedManyWithoutBackgroundInput;
-  blog?: Prisma.BlogUncheckedCreateNestedManyWithoutFileInstancesInput;
-  boatImages?: Prisma.BoatImageUncheckedCreateNestedManyWithoutFileInput;
-  contactTopImages?: Prisma.ContactPageUncheckedCreateNestedOneWithoutContactTopImageInput;
-  contactBottomImages?: Prisma.ContactPageUncheckedCreateNestedOneWithoutContactBottomImageInput;
-  aboutPageTopImages?: Prisma.AboutPageUncheckedCreateNestedOneWithoutAboutTopImageInput;
-  aboutPageBottonImages?: Prisma.AboutPageUncheckedCreateNestedOneWithoutAboutBottomImageInput;
-  featuredBrandLogos?: Prisma.FeaturedBrandsUncheckedCreateNestedManyWithoutFeaturedbrandLogoInput;
-  settings?: Prisma.SettingUncheckedCreateNestedManyWithoutLogoInput;
-  packageBanners?: Prisma.packageBannerUncheckedCreateNestedManyWithoutPackageBannerInput;
-  aiSearchBanners?: Prisma.AiSearchBannerUncheckedCreateNestedManyWithoutAiSearchBannerInput;
-};
-
-export type FileInstanceCreateOrConnectWithoutBlogsInput = {
-  where: Prisma.FileInstanceWhereUniqueInput;
-  create: Prisma.XOR<
-    Prisma.FileInstanceCreateWithoutBlogsInput,
-    Prisma.FileInstanceUncheckedCreateWithoutBlogsInput
-  >;
-};
-
-export type FileInstanceCreateWithoutBlogInput = {
-  id?: string;
-  filename: string;
-  originalFilename: string;
-  path: string;
-  url: string;
-  fileType?: $Enums.FileType;
-  mimeType: string;
-  size: number;
-  createdAt?: Date | string;
-  updatedAt?: Date | string;
-  pageBannersBackground?: Prisma.PageBannerCreateNestedManyWithoutBackgroundInput;
-  boatImages?: Prisma.BoatImageCreateNestedManyWithoutFileInput;
-  contactTopImages?: Prisma.ContactPageCreateNestedOneWithoutContactTopImageInput;
-  contactBottomImages?: Prisma.ContactPageCreateNestedOneWithoutContactBottomImageInput;
-  aboutPageTopImages?: Prisma.AboutPageCreateNestedOneWithoutAboutTopImageInput;
-  aboutPageBottonImages?: Prisma.AboutPageCreateNestedOneWithoutAboutBottomImageInput;
-  featuredBrandLogos?: Prisma.FeaturedBrandsCreateNestedManyWithoutFeaturedbrandLogoInput;
-  blogs?: Prisma.BlogCreateNestedManyWithoutBlogImageInput;
-  settings?: Prisma.SettingCreateNestedManyWithoutLogoInput;
-  packageBanners?: Prisma.packageBannerCreateNestedManyWithoutPackageBannerInput;
-  aiSearchBanners?: Prisma.AiSearchBannerCreateNestedManyWithoutAiSearchBannerInput;
-};
-
-export type FileInstanceUncheckedCreateWithoutBlogInput = {
-  id?: string;
-  filename: string;
-  originalFilename: string;
-  path: string;
-  url: string;
-  fileType?: $Enums.FileType;
-  mimeType: string;
-  size: number;
-  createdAt?: Date | string;
-  updatedAt?: Date | string;
-  pageBannersBackground?: Prisma.PageBannerUncheckedCreateNestedManyWithoutBackgroundInput;
-  boatImages?: Prisma.BoatImageUncheckedCreateNestedManyWithoutFileInput;
-  contactTopImages?: Prisma.ContactPageUncheckedCreateNestedOneWithoutContactTopImageInput;
-  contactBottomImages?: Prisma.ContactPageUncheckedCreateNestedOneWithoutContactBottomImageInput;
-  aboutPageTopImages?: Prisma.AboutPageUncheckedCreateNestedOneWithoutAboutTopImageInput;
-  aboutPageBottonImages?: Prisma.AboutPageUncheckedCreateNestedOneWithoutAboutBottomImageInput;
-  featuredBrandLogos?: Prisma.FeaturedBrandsUncheckedCreateNestedManyWithoutFeaturedbrandLogoInput;
-  blogs?: Prisma.BlogUncheckedCreateNestedManyWithoutBlogImageInput;
-  settings?: Prisma.SettingUncheckedCreateNestedManyWithoutLogoInput;
-  packageBanners?: Prisma.packageBannerUncheckedCreateNestedManyWithoutPackageBannerInput;
-  aiSearchBanners?: Prisma.AiSearchBannerUncheckedCreateNestedManyWithoutAiSearchBannerInput;
-};
-
-export type FileInstanceCreateOrConnectWithoutBlogInput = {
-  where: Prisma.FileInstanceWhereUniqueInput;
-  create: Prisma.XOR<
-    Prisma.FileInstanceCreateWithoutBlogInput,
-    Prisma.FileInstanceUncheckedCreateWithoutBlogInput
-  >;
-};
-
-export type FileInstanceUpsertWithoutBlogsInput = {
-  update: Prisma.XOR<
-    Prisma.FileInstanceUpdateWithoutBlogsInput,
-    Prisma.FileInstanceUncheckedUpdateWithoutBlogsInput
-  >;
-  create: Prisma.XOR<
-    Prisma.FileInstanceCreateWithoutBlogsInput,
-    Prisma.FileInstanceUncheckedCreateWithoutBlogsInput
-  >;
-  where?: Prisma.FileInstanceWhereInput;
-};
-
-export type FileInstanceUpdateToOneWithWhereWithoutBlogsInput = {
-  where?: Prisma.FileInstanceWhereInput;
-  data: Prisma.XOR<
-    Prisma.FileInstanceUpdateWithoutBlogsInput,
-    Prisma.FileInstanceUncheckedUpdateWithoutBlogsInput
-  >;
-};
-
-export type FileInstanceUpdateWithoutBlogsInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string;
-  filename?: Prisma.StringFieldUpdateOperationsInput | string;
-  originalFilename?: Prisma.StringFieldUpdateOperationsInput | string;
-  path?: Prisma.StringFieldUpdateOperationsInput | string;
-  url?: Prisma.StringFieldUpdateOperationsInput | string;
-  fileType?: Prisma.EnumFileTypeFieldUpdateOperationsInput | $Enums.FileType;
-  mimeType?: Prisma.StringFieldUpdateOperationsInput | string;
-  size?: Prisma.IntFieldUpdateOperationsInput | number;
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
-  pageBannersBackground?: Prisma.PageBannerUpdateManyWithoutBackgroundNestedInput;
-  blog?: Prisma.BlogUpdateManyWithoutFileInstancesNestedInput;
-  boatImages?: Prisma.BoatImageUpdateManyWithoutFileNestedInput;
-  contactTopImages?: Prisma.ContactPageUpdateOneWithoutContactTopImageNestedInput;
-  contactBottomImages?: Prisma.ContactPageUpdateOneWithoutContactBottomImageNestedInput;
-  aboutPageTopImages?: Prisma.AboutPageUpdateOneWithoutAboutTopImageNestedInput;
-  aboutPageBottonImages?: Prisma.AboutPageUpdateOneWithoutAboutBottomImageNestedInput;
-  featuredBrandLogos?: Prisma.FeaturedBrandsUpdateManyWithoutFeaturedbrandLogoNestedInput;
-  settings?: Prisma.SettingUpdateManyWithoutLogoNestedInput;
-  packageBanners?: Prisma.packageBannerUpdateManyWithoutPackageBannerNestedInput;
-  aiSearchBanners?: Prisma.AiSearchBannerUpdateManyWithoutAiSearchBannerNestedInput;
-};
-
-export type FileInstanceUncheckedUpdateWithoutBlogsInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string;
-  filename?: Prisma.StringFieldUpdateOperationsInput | string;
-  originalFilename?: Prisma.StringFieldUpdateOperationsInput | string;
-  path?: Prisma.StringFieldUpdateOperationsInput | string;
-  url?: Prisma.StringFieldUpdateOperationsInput | string;
-  fileType?: Prisma.EnumFileTypeFieldUpdateOperationsInput | $Enums.FileType;
-  mimeType?: Prisma.StringFieldUpdateOperationsInput | string;
-  size?: Prisma.IntFieldUpdateOperationsInput | number;
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
-  pageBannersBackground?: Prisma.PageBannerUncheckedUpdateManyWithoutBackgroundNestedInput;
-  blog?: Prisma.BlogUncheckedUpdateManyWithoutFileInstancesNestedInput;
-  boatImages?: Prisma.BoatImageUncheckedUpdateManyWithoutFileNestedInput;
-  contactTopImages?: Prisma.ContactPageUncheckedUpdateOneWithoutContactTopImageNestedInput;
-  contactBottomImages?: Prisma.ContactPageUncheckedUpdateOneWithoutContactBottomImageNestedInput;
-  aboutPageTopImages?: Prisma.AboutPageUncheckedUpdateOneWithoutAboutTopImageNestedInput;
-  aboutPageBottonImages?: Prisma.AboutPageUncheckedUpdateOneWithoutAboutBottomImageNestedInput;
-  featuredBrandLogos?: Prisma.FeaturedBrandsUncheckedUpdateManyWithoutFeaturedbrandLogoNestedInput;
-  settings?: Prisma.SettingUncheckedUpdateManyWithoutLogoNestedInput;
-  packageBanners?: Prisma.packageBannerUncheckedUpdateManyWithoutPackageBannerNestedInput;
-  aiSearchBanners?: Prisma.AiSearchBannerUncheckedUpdateManyWithoutAiSearchBannerNestedInput;
-};
-
-export type FileInstanceUpsertWithWhereUniqueWithoutBlogInput = {
-  where: Prisma.FileInstanceWhereUniqueInput;
-  update: Prisma.XOR<
-    Prisma.FileInstanceUpdateWithoutBlogInput,
-    Prisma.FileInstanceUncheckedUpdateWithoutBlogInput
-  >;
-  create: Prisma.XOR<
-    Prisma.FileInstanceCreateWithoutBlogInput,
-    Prisma.FileInstanceUncheckedCreateWithoutBlogInput
-  >;
-};
-
-export type FileInstanceUpdateWithWhereUniqueWithoutBlogInput = {
-  where: Prisma.FileInstanceWhereUniqueInput;
-  data: Prisma.XOR<
-    Prisma.FileInstanceUpdateWithoutBlogInput,
-    Prisma.FileInstanceUncheckedUpdateWithoutBlogInput
-  >;
-};
-
-export type FileInstanceUpdateManyWithWhereWithoutBlogInput = {
-  where: Prisma.FileInstanceScalarWhereInput;
-  data: Prisma.XOR<
-    Prisma.FileInstanceUpdateManyMutationInput,
-    Prisma.FileInstanceUncheckedUpdateManyWithoutBlogInput
-  >;
-};
-
-export type FileInstanceScalarWhereInput = {
-  AND?:
-    | Prisma.FileInstanceScalarWhereInput
-    | Prisma.FileInstanceScalarWhereInput[];
-  OR?: Prisma.FileInstanceScalarWhereInput[];
-  NOT?:
-    | Prisma.FileInstanceScalarWhereInput
-    | Prisma.FileInstanceScalarWhereInput[];
-  id?: Prisma.StringFilter<'FileInstance'> | string;
-  filename?: Prisma.StringFilter<'FileInstance'> | string;
-  originalFilename?: Prisma.StringFilter<'FileInstance'> | string;
-  path?: Prisma.StringFilter<'FileInstance'> | string;
-  url?: Prisma.StringFilter<'FileInstance'> | string;
-  fileType?: Prisma.EnumFileTypeFilter<'FileInstance'> | $Enums.FileType;
-  mimeType?: Prisma.StringFilter<'FileInstance'> | string;
-  size?: Prisma.IntFilter<'FileInstance'> | number;
-  createdAt?: Prisma.DateTimeFilter<'FileInstance'> | Date | string;
-  updatedAt?: Prisma.DateTimeFilter<'FileInstance'> | Date | string;
 };
 
 export type FileInstanceCreateWithoutFeaturedBrandLogosInput = {

@@ -20,7 +20,7 @@ import { UpdatePrivacyPolicyDto } from './dto/privacy-policy.dto';
 import { Site } from './enum/site.enum';
 import { PrivacyPolicyService } from './privacy-policy.service';
 
-@ApiTags('privacy-policy')
+@ApiTags('Admin Privacy Policy')
 @Controller('privacy-policy')
 export class PrivacyPolicyController {
   constructor(private readonly privacyPolicyService: PrivacyPolicyService) {}

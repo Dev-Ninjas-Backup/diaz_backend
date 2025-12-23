@@ -369,16 +369,6 @@ export type AiSearchBannerUncheckedUpdateManyInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
 };
 
-export type AiSearchBannerListRelationFilter = {
-  every?: Prisma.AiSearchBannerWhereInput;
-  some?: Prisma.AiSearchBannerWhereInput;
-  none?: Prisma.AiSearchBannerWhereInput;
-};
-
-export type AiSearchBannerOrderByRelationAggregateInput = {
-  _count?: Prisma.SortOrder;
-};
-
 export type AiSearchBannerCountOrderByAggregateInput = {
   id?: Prisma.SortOrder;
   site?: Prisma.SortOrder;
@@ -407,6 +397,32 @@ export type AiSearchBannerMinOrderByAggregateInput = {
   aiSearchBannerId?: Prisma.SortOrder;
   createdAt?: Prisma.SortOrder;
   updatedAt?: Prisma.SortOrder;
+};
+
+export type AiSearchBannerListRelationFilter = {
+  every?: Prisma.AiSearchBannerWhereInput;
+  some?: Prisma.AiSearchBannerWhereInput;
+  none?: Prisma.AiSearchBannerWhereInput;
+};
+
+export type AiSearchBannerOrderByRelationAggregateInput = {
+  _count?: Prisma.SortOrder;
+};
+
+export type StringFieldUpdateOperationsInput = {
+  set?: string;
+};
+
+export type EnumSiteTypeFieldUpdateOperationsInput = {
+  set?: $Enums.SiteType;
+};
+
+export type NullableStringFieldUpdateOperationsInput = {
+  set?: string | null;
+};
+
+export type DateTimeFieldUpdateOperationsInput = {
+  set?: Date | string;
 };
 
 export type AiSearchBannerCreateNestedManyWithoutAiSearchBannerInput = {
@@ -520,10 +536,6 @@ export type AiSearchBannerUncheckedUpdateManyWithoutAiSearchBannerNestedInput =
       | Prisma.AiSearchBannerScalarWhereInput
       | Prisma.AiSearchBannerScalarWhereInput[];
   };
-
-export type EnumSiteTypeFieldUpdateOperationsInput = {
-  set?: $Enums.SiteType;
-};
 
 export type AiSearchBannerCreateWithoutAiSearchBannerInput = {
   id?: string;

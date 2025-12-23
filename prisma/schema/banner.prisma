@@ -1,0 +1,31 @@
+model PageBanner {
+  id String @id @default(uuid())
+
+  page PageType
+  site SiteType
+
+  bannerTitle String
+  subtitle    String?
+
+  backgroundId String?
+  background   FileInstance? @relation("BackgroundFile", fields: [backgroundId], references: [id], onDelete: SetNull)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("page_banners")
+}
+
+enum PageType {
+  HOME
+  BLOG
+  CONTACT
+  SEARCH
+  PRIVACY_POLICY
+  TERMS_AND_CONDITION
+}
+
+enum SiteType {
+  FLORIDA
+  JUPITER
+}

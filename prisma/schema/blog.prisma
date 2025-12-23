@@ -1,0 +1,24 @@
+model Blog {
+  id String @id @default(uuid())
+
+  blogImageId String?
+  blogImage   FileInstance? @relation(fields: [blogImageId], references: [id])
+
+  blogTitle       String     @db.VarChar(255)
+  blogDescription String
+  sharedLink      String     @unique @db.VarChar(255)
+  readTime        Int?       @default(5)
+  postStatus      PostStatus @default(DRAFT)
+  createdAt       DateTime   @default(now())
+  updatedAt       DateTime   @updatedAt
+
+  fileInstances FileInstance[] @relation("blogImage")
+
+  @@map("blog")
+}
+
+enum PostStatus {
+  DRAFT
+  PUBLISHED
+  ARCHIVED
+}

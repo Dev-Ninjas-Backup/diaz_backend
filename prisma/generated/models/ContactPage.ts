@@ -316,11 +316,6 @@ export type ContactPageUncheckedUpdateManyInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
 };
 
-export type ContactPageNullableScalarRelationFilter = {
-  is?: Prisma.ContactPageWhereInput | null;
-  isNot?: Prisma.ContactPageWhereInput | null;
-};
-
 export type ContactPageCountOrderByAggregateInput = {
   id?: Prisma.SortOrder;
   contactTopImageId?: Prisma.SortOrder;
@@ -343,6 +338,11 @@ export type ContactPageMinOrderByAggregateInput = {
   contactBottomImageId?: Prisma.SortOrder;
   createdAt?: Prisma.SortOrder;
   updatedAt?: Prisma.SortOrder;
+};
+
+export type ContactPageNullableScalarRelationFilter = {
+  is?: Prisma.ContactPageWhereInput | null;
+  isNot?: Prisma.ContactPageWhereInput | null;
 };
 
 export type ContactPageCreateNestedOneWithoutContactTopImageInput = {

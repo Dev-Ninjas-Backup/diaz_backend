@@ -373,16 +373,6 @@ export type PageBannerUncheckedUpdateManyInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
 };
 
-export type PageBannerListRelationFilter = {
-  every?: Prisma.PageBannerWhereInput;
-  some?: Prisma.PageBannerWhereInput;
-  none?: Prisma.PageBannerWhereInput;
-};
-
-export type PageBannerOrderByRelationAggregateInput = {
-  _count?: Prisma.SortOrder;
-};
-
 export type PageBannerCountOrderByAggregateInput = {
   id?: Prisma.SortOrder;
   page?: Prisma.SortOrder;
@@ -414,6 +404,20 @@ export type PageBannerMinOrderByAggregateInput = {
   backgroundId?: Prisma.SortOrder;
   createdAt?: Prisma.SortOrder;
   updatedAt?: Prisma.SortOrder;
+};
+
+export type PageBannerListRelationFilter = {
+  every?: Prisma.PageBannerWhereInput;
+  some?: Prisma.PageBannerWhereInput;
+  none?: Prisma.PageBannerWhereInput;
+};
+
+export type PageBannerOrderByRelationAggregateInput = {
+  _count?: Prisma.SortOrder;
+};
+
+export type EnumPageTypeFieldUpdateOperationsInput = {
+  set?: $Enums.PageType;
 };
 
 export type PageBannerCreateNestedManyWithoutBackgroundInput = {
@@ -520,10 +524,6 @@ export type PageBannerUncheckedUpdateManyWithoutBackgroundNestedInput = {
   deleteMany?:
     | Prisma.PageBannerScalarWhereInput
     | Prisma.PageBannerScalarWhereInput[];
-};
-
-export type EnumPageTypeFieldUpdateOperationsInput = {
-  set?: $Enums.PageType;
 };
 
 export type PageBannerCreateWithoutBackgroundInput = {

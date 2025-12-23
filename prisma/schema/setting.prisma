@@ -1,15 +1,15 @@
 model Setting {
   id String @id @default(uuid())
 
-  siteName   String
-  currency   Currency @default(USD)
-  maintenanceMode Boolean @default(false)
+  siteName        String
+  currency        Currency @default(USD)
+  maintenanceMode Boolean  @default(false)
 
-  logoId  String?
-  logo    FileInstance? @relation(fields: [logoId], references: [id])
+  logoId String?
+  logo   FileInstance? @relation(fields: [logoId], references: [id])
 
-  newListingSubmitted     Boolean @default(true)
-  newSellerRegistration   Boolean @default(true)
+  newListingSubmitted   Boolean @default(true)
+  newSellerRegistration Boolean @default(true)
 
   createdAt DateTime @default(now())
   updatedAt DateTime @default(now()) @updatedAt
@@ -18,22 +18,24 @@ model Setting {
 }
 
 model VisitorSession {
-  id        String   @id @default(uuid())
+  id String @id @default(uuid())
+
   ip        String
   userAgent String?
-  startedAt DateTime @default(now())
+  startedAt DateTime  @default(now())
   endedAt   DateTime?
   page      String
-  createdAt DateTime @default(now())
+  createdAt DateTime  @default(now())
 
-  durationSeconds Int? 
+  durationSeconds Int?
 
   @@index([ip])
   @@map("visitor_sessions")
 }
 
 model PageView {
-  id        String   @id @default(uuid())
+  id String @id @default(uuid())
+
   page      String
   count     Int      @default(1)
   createdAt DateTime @default(now())

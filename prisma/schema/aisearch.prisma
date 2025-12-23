@@ -1,0 +1,16 @@
+model AiSearchBanner {
+  id String @id @default(uuid())
+
+  site SiteType @default(JUPITER)
+
+  bannerTitle String
+  subtitle    String?
+
+  aiSearchBannerId String?
+  aiSearchBanner   FileInstance? @relation("AiSearchBanner", fields: [aiSearchBannerId], references: [id], onDelete: SetNull)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("ai_search_banners")
+}
