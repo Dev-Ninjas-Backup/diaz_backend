@@ -16,6 +16,11 @@ export class MailService {
     this.transporter = nodemailer.createTransport({
       service: 'gmail',
       auth: { user, pass },
+      tls: {
+        rejectUnauthorized: false,
+      },
+      secure: false,
+      ignoreTLS: false,
     });
   }
 

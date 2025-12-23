@@ -1,9 +1,12 @@
 import { BoatsSourceEnum } from '@/common/enum/boats-source.enum';
+import { ENVEnum } from '@/common/enum/env.enum';
 import { AppError } from '@/common/error/handle-error.app';
 import { HandleError } from '@/common/error/handle-error.decorator';
 import { successResponse, TResponse } from '@/common/utils/response.util';
+import { MailService } from '@/lib/mail/mail.service';
 import { PrismaService } from '@/lib/prisma/prisma.service';
 import { HttpStatus, Injectable, Logger } from '@nestjs/common';
+import { ConfigService } from '@nestjs/config';
 import { ContactSource, ContactType } from 'generated/client';
 import { GetAllBoatsService } from '../../boats/services/get-all-boats.service';
 import { CreateContactDto } from '../dto/create-contact.dto';
@@ -15,6 +18,8 @@ export class CreateContactService {
   constructor(
     private readonly prisma: PrismaService,
     private readonly getAllBoatsService: GetAllBoatsService,
+    private readonly mailService: MailService,
+    private readonly configService: ConfigService,
   ) {}
 
   @HandleError('Failed to create contact', 'Contact')
@@ -90,6 +95,100 @@ export class CreateContactService {
 
       return contact;
     });
+
+    try {
+      const adminEmail = this.configService.get<string>(
+        ENVEnum.SUPER_ADMIN_EMAIL,
+      );
+
+      if (!adminEmail) {
+        this.logger.warn(
+          'SUPER_ADMIN_EMAIL not configured in environment variables. Skipping email notification.',
+        );
+      } else {
+        const boatInfo = boat
+          ? `<p><strong>Boat:</strong> ${boat.data.BoatName || boat.data.ListingTitle || 'N/A'}</p>
+             <p><strong>Listing ID:</strong> ${data.listingId || 'N/A'}</p>
+             <p><strong>Price:</strong> ${boat.data.Price || 'N/A'}</p>`
+          : '<p><strong>Type:</strong> General Inquiry</p>';
+
+        const emailHtml = `
+          <!DOCTYPE html>
+          <html>
+          <head>
+            <style>
+              body { font-family: Arial, sans-serif; line-height: 1.6; color: #333; }
+              .container { max-width: 600px; margin: 0 auto; padding: 20px; }
+              .header { background-color: #4CAF50; color: white; padding: 20px; text-align: center; }
+              .content { padding: 20px; background-color: #f9f9f9; }
+              .info-box { background-color: white; padding: 15px; margin: 10px 0; border-left: 4px solid #4CAF50; }
+              .footer { text-align: center; padding: 20px; font-size: 12px; color: #666; }
+            </style>
+          </head>
+          <body>
+            <div class="container">
+              <div class="header">
+                <h1>New Contact Form Submission</h1>
+              </div>
+              <div class="content">
+                <div class="info-box">
+                  <h2>Contact Information</h2>
+                  <p><strong>Name:</strong> ${data.name}</p>
+                  <p><strong>Email:</strong> ${data.email}</p>
+                  <p><strong>Phone:</strong> ${data.phone}</p>
+                </div>
+                <div class="info-box">
+                  <h2>Message</h2>
+                  <p>${data.message.replace(/\n/g, '<br>')}</p>
+                </div>
+                <div class="info-box">
+                  <h2>Details</h2>
+                  <p><strong>Source:</strong> ${data.source}</p>
+                  <p><strong>Type:</strong> ${data.type}</p>
+                  ${boatInfo}
+                  <p><strong>Submitted:</strong> ${new Date().toLocaleString()}</p>
+                </div>
+              </div>
+              <div class="footer">
+                <p>This is an automated email from Diaz Boats Contact System</p>
+              </div>
+            </div>
+          </body>
+          </html>
+        `;
+
+        const emailText = `
+New Contact Form Submission
+
+Contact Information:
+Name: ${data.name}
+Email: ${data.email}
+Phone: ${data.phone}
+
+Message:
+${data.message}
+
+Details:
+Source: ${data.source}
+Type: ${data.type}
+${boat ? `Boat: ${boat.data.BoatName || boat.data.ListingTitle || 'N/A'}\nListing ID: ${data.listingId || 'N/A'}\nPrice: ${boat.data.Price || 'N/A'}` : 'Type: General Inquiry'}
+Submitted: ${new Date().toLocaleString()}
+        `;
+
+        await this.mailService.sendMail({
+          to: adminEmail,
+          subject: `New Contact Form Submission - ${data.name}`,
+          html: emailHtml,
+          text: emailText,
+        });
+
+        this.logger.log(
+          `Contact email sent to admin (SUPER_ADMIN_EMAIL): ${adminEmail}`,
+        );
+      }
+    } catch (error) {
+      this.logger.error(`Failed to send email to admin: ${error.message}`);
+    }
 
     this.logger.log(`Contact created: ${JSON.stringify(result)}`);
     return successResponse(result, 'Contact created successfully');
