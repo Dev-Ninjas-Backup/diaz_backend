@@ -328,16 +328,6 @@ export type FeaturedBrandsUncheckedUpdateManyInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
 };
 
-export type FeaturedBrandsListRelationFilter = {
-  every?: Prisma.FeaturedBrandsWhereInput;
-  some?: Prisma.FeaturedBrandsWhereInput;
-  none?: Prisma.FeaturedBrandsWhereInput;
-};
-
-export type FeaturedBrandsOrderByRelationAggregateInput = {
-  _count?: Prisma.SortOrder;
-};
-
 export type FeaturedBrandsCountOrderByAggregateInput = {
   id?: Prisma.SortOrder;
   featuredbrandId?: Prisma.SortOrder;
@@ -360,6 +350,16 @@ export type FeaturedBrandsMinOrderByAggregateInput = {
   site?: Prisma.SortOrder;
   createdAt?: Prisma.SortOrder;
   updatedAt?: Prisma.SortOrder;
+};
+
+export type FeaturedBrandsListRelationFilter = {
+  every?: Prisma.FeaturedBrandsWhereInput;
+  some?: Prisma.FeaturedBrandsWhereInput;
+  none?: Prisma.FeaturedBrandsWhereInput;
+};
+
+export type FeaturedBrandsOrderByRelationAggregateInput = {
+  _count?: Prisma.SortOrder;
 };
 
 export type FeaturedBrandsCreateNestedManyWithoutFeaturedbrandLogoInput = {

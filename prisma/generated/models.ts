@@ -7,6 +7,9 @@
  *
  * 🟢 You can import this file directly.
  */
+export type * from './models/AiSearchBanner';
+export type * from './models/PageBanner';
+export type * from './models/Blog';
 export type * from './models/BoatSpecification';
 export type * from './models/BoatFeature';
 export type * from './models/Boats';
@@ -14,17 +17,14 @@ export type * from './models/BoatEngine';
 export type * from './models/BoatImage';
 export type * from './models/Contact';
 export type * from './models/FloridaLead';
-export type * from './models/FileInstance';
-export type * from './models/Notification';
-export type * from './models/UserNotification';
 export type * from './models/AboutPage';
 export type * from './models/ContactPage';
 export type * from './models/PrivacyPolicy';
 export type * from './models/TermsOfServices';
-export type * from './models/AiSearchBanner';
-export type * from './models/PageBanner';
-export type * from './models/Blog';
 export type * from './models/FeaturedBrands';
+export type * from './models/FileInstance';
+export type * from './models/Notification';
+export type * from './models/UserNotification';
 export type * from './models/packageBanner';
 export type * from './models/Setting';
 export type * from './models/VisitorSession';

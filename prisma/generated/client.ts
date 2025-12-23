@@ -26,8 +26,8 @@ export * from './enums';
  * @example
  * ```
  * const prisma = new PrismaClient()
- * // Fetch zero or more BoatSpecifications
- * const boatSpecifications = await prisma.boatSpecification.findMany()
+ * // Fetch zero or more AiSearchBanners
+ * const aiSearchBanners = await prisma.aiSearchBanner.findMany()
  * ```
  *
  * Read more in our [docs](https://pris.ly/d/client).
@@ -42,6 +42,21 @@ export type PrismaClient<
 > = $Class.PrismaClient<LogOpts, OmitOpts, ExtArgs>;
 export { Prisma };
 
+/**
+ * Model AiSearchBanner
+ *
+ */
+export type AiSearchBanner = Prisma.AiSearchBannerModel;
+/**
+ * Model PageBanner
+ *
+ */
+export type PageBanner = Prisma.PageBannerModel;
+/**
+ * Model Blog
+ *
+ */
+export type Blog = Prisma.BlogModel;
 /**
  * Model BoatSpecification
  *
@@ -78,21 +93,6 @@ export type Contact = Prisma.ContactModel;
  */
 export type FloridaLead = Prisma.FloridaLeadModel;
 /**
- * Model FileInstance
- *
- */
-export type FileInstance = Prisma.FileInstanceModel;
-/**
- * Model Notification
- *
- */
-export type Notification = Prisma.NotificationModel;
-/**
- * Model UserNotification
- *
- */
-export type UserNotification = Prisma.UserNotificationModel;
-/**
  * Model AboutPage
  *
  */
@@ -113,25 +113,25 @@ export type PrivacyPolicy = Prisma.PrivacyPolicyModel;
  */
 export type TermsOfServices = Prisma.TermsOfServicesModel;
 /**
- * Model AiSearchBanner
- *
- */
-export type AiSearchBanner = Prisma.AiSearchBannerModel;
-/**
- * Model PageBanner
- *
- */
-export type PageBanner = Prisma.PageBannerModel;
-/**
- * Model Blog
- *
- */
-export type Blog = Prisma.BlogModel;
-/**
  * Model FeaturedBrands
  *
  */
 export type FeaturedBrands = Prisma.FeaturedBrandsModel;
+/**
+ * Model FileInstance
+ *
+ */
+export type FileInstance = Prisma.FileInstanceModel;
+/**
+ * Model Notification
+ *
+ */
+export type Notification = Prisma.NotificationModel;
+/**
+ * Model UserNotification
+ *
+ */
+export type UserNotification = Prisma.UserNotificationModel;
 /**
  * Model packageBanner
  *

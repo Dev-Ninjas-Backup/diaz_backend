@@ -432,10 +432,6 @@ export type BoatSpecificationMinOrderByAggregateInput = {
   updatedAt?: Prisma.SortOrder;
 };
 
-export type StringFieldUpdateOperationsInput = {
-  set?: string;
-};
-
 export type EnumBoatSpecificationTypeFieldUpdateOperationsInput = {
   set?: $Enums.BoatSpecificationType;
 };
@@ -446,10 +442,6 @@ export type EnumDataInsertSourceFieldUpdateOperationsInput = {
 
 export type BoolFieldUpdateOperationsInput = {
   set?: boolean;
-};
-
-export type DateTimeFieldUpdateOperationsInput = {
-  set?: Date | string;
 };
 
 export type BoatSpecificationSelect<

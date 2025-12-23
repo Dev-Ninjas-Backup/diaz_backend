@@ -54,6 +54,9 @@ export const JsonNull = runtime.JsonNull;
 export const AnyNull = runtime.AnyNull;
 
 export const ModelName = {
+  AiSearchBanner: 'AiSearchBanner',
+  PageBanner: 'PageBanner',
+  Blog: 'Blog',
   BoatSpecification: 'BoatSpecification',
   BoatFeature: 'BoatFeature',
   Boats: 'Boats',
@@ -61,17 +64,14 @@ export const ModelName = {
   BoatImage: 'BoatImage',
   Contact: 'Contact',
   FloridaLead: 'FloridaLead',
-  FileInstance: 'FileInstance',
-  Notification: 'Notification',
-  UserNotification: 'UserNotification',
   AboutPage: 'AboutPage',
   ContactPage: 'ContactPage',
   PrivacyPolicy: 'PrivacyPolicy',
   TermsOfServices: 'TermsOfServices',
-  AiSearchBanner: 'AiSearchBanner',
-  PageBanner: 'PageBanner',
-  Blog: 'Blog',
   FeaturedBrands: 'FeaturedBrands',
+  FileInstance: 'FileInstance',
+  Notification: 'Notification',
+  UserNotification: 'UserNotification',
   packageBanner: 'packageBanner',
   Setting: 'Setting',
   VisitorSession: 'VisitorSession',
@@ -98,6 +98,48 @@ export const TransactionIsolationLevel = {
 
 export type TransactionIsolationLevel =
   (typeof TransactionIsolationLevel)[keyof typeof TransactionIsolationLevel];
+
+export const AiSearchBannerScalarFieldEnum = {
+  id: 'id',
+  site: 'site',
+  bannerTitle: 'bannerTitle',
+  subtitle: 'subtitle',
+  aiSearchBannerId: 'aiSearchBannerId',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+} as const;
+
+export type AiSearchBannerScalarFieldEnum =
+  (typeof AiSearchBannerScalarFieldEnum)[keyof typeof AiSearchBannerScalarFieldEnum];
+
+export const PageBannerScalarFieldEnum = {
+  id: 'id',
+  page: 'page',
+  site: 'site',
+  bannerTitle: 'bannerTitle',
+  subtitle: 'subtitle',
+  backgroundId: 'backgroundId',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+} as const;
+
+export type PageBannerScalarFieldEnum =
+  (typeof PageBannerScalarFieldEnum)[keyof typeof PageBannerScalarFieldEnum];
+
+export const BlogScalarFieldEnum = {
+  id: 'id',
+  blogImageId: 'blogImageId',
+  blogTitle: 'blogTitle',
+  blogDescription: 'blogDescription',
+  sharedLink: 'sharedLink',
+  readTime: 'readTime',
+  postStatus: 'postStatus',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+} as const;
+
+export type BlogScalarFieldEnum =
+  (typeof BlogScalarFieldEnum)[keyof typeof BlogScalarFieldEnum];
 
 export const BoatSpecificationScalarFieldEnum = {
   id: 'id',
@@ -225,47 +267,6 @@ export const FloridaLeadScalarFieldEnum = {
 export type FloridaLeadScalarFieldEnum =
   (typeof FloridaLeadScalarFieldEnum)[keyof typeof FloridaLeadScalarFieldEnum];
 
-export const FileInstanceScalarFieldEnum = {
-  id: 'id',
-  filename: 'filename',
-  originalFilename: 'originalFilename',
-  path: 'path',
-  url: 'url',
-  fileType: 'fileType',
-  mimeType: 'mimeType',
-  size: 'size',
-  createdAt: 'createdAt',
-  updatedAt: 'updatedAt',
-} as const;
-
-export type FileInstanceScalarFieldEnum =
-  (typeof FileInstanceScalarFieldEnum)[keyof typeof FileInstanceScalarFieldEnum];
-
-export const NotificationScalarFieldEnum = {
-  id: 'id',
-  type: 'type',
-  title: 'title',
-  message: 'message',
-  meta: 'meta',
-  createdAt: 'createdAt',
-  updatedAt: 'updatedAt',
-} as const;
-
-export type NotificationScalarFieldEnum =
-  (typeof NotificationScalarFieldEnum)[keyof typeof NotificationScalarFieldEnum];
-
-export const UserNotificationScalarFieldEnum = {
-  id: 'id',
-  userId: 'userId',
-  notificationId: 'notificationId',
-  read: 'read',
-  createdAt: 'createdAt',
-  updatedAt: 'updatedAt',
-} as const;
-
-export type UserNotificationScalarFieldEnum =
-  (typeof UserNotificationScalarFieldEnum)[keyof typeof UserNotificationScalarFieldEnum];
-
 export const AboutPageScalarFieldEnum = {
   id: 'id',
   aboutTopImageId: 'aboutTopImageId',
@@ -312,48 +313,6 @@ export const TermsOfServicesScalarFieldEnum = {
 export type TermsOfServicesScalarFieldEnum =
   (typeof TermsOfServicesScalarFieldEnum)[keyof typeof TermsOfServicesScalarFieldEnum];
 
-export const AiSearchBannerScalarFieldEnum = {
-  id: 'id',
-  site: 'site',
-  bannerTitle: 'bannerTitle',
-  subtitle: 'subtitle',
-  aiSearchBannerId: 'aiSearchBannerId',
-  createdAt: 'createdAt',
-  updatedAt: 'updatedAt',
-} as const;
-
-export type AiSearchBannerScalarFieldEnum =
-  (typeof AiSearchBannerScalarFieldEnum)[keyof typeof AiSearchBannerScalarFieldEnum];
-
-export const PageBannerScalarFieldEnum = {
-  id: 'id',
-  page: 'page',
-  site: 'site',
-  bannerTitle: 'bannerTitle',
-  subtitle: 'subtitle',
-  backgroundId: 'backgroundId',
-  createdAt: 'createdAt',
-  updatedAt: 'updatedAt',
-} as const;
-
-export type PageBannerScalarFieldEnum =
-  (typeof PageBannerScalarFieldEnum)[keyof typeof PageBannerScalarFieldEnum];
-
-export const BlogScalarFieldEnum = {
-  id: 'id',
-  blogImageId: 'blogImageId',
-  blogTitle: 'blogTitle',
-  blogDescription: 'blogDescription',
-  sharedLink: 'sharedLink',
-  readTime: 'readTime',
-  postStatus: 'postStatus',
-  createdAt: 'createdAt',
-  updatedAt: 'updatedAt',
-} as const;
-
-export type BlogScalarFieldEnum =
-  (typeof BlogScalarFieldEnum)[keyof typeof BlogScalarFieldEnum];
-
 export const FeaturedBrandsScalarFieldEnum = {
   id: 'id',
   featuredbrandId: 'featuredbrandId',
@@ -364,6 +323,47 @@ export const FeaturedBrandsScalarFieldEnum = {
 
 export type FeaturedBrandsScalarFieldEnum =
   (typeof FeaturedBrandsScalarFieldEnum)[keyof typeof FeaturedBrandsScalarFieldEnum];
+
+export const FileInstanceScalarFieldEnum = {
+  id: 'id',
+  filename: 'filename',
+  originalFilename: 'originalFilename',
+  path: 'path',
+  url: 'url',
+  fileType: 'fileType',
+  mimeType: 'mimeType',
+  size: 'size',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+} as const;
+
+export type FileInstanceScalarFieldEnum =
+  (typeof FileInstanceScalarFieldEnum)[keyof typeof FileInstanceScalarFieldEnum];
+
+export const NotificationScalarFieldEnum = {
+  id: 'id',
+  type: 'type',
+  title: 'title',
+  message: 'message',
+  meta: 'meta',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+} as const;
+
+export type NotificationScalarFieldEnum =
+  (typeof NotificationScalarFieldEnum)[keyof typeof NotificationScalarFieldEnum];
+
+export const UserNotificationScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  notificationId: 'notificationId',
+  read: 'read',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+} as const;
+
+export type UserNotificationScalarFieldEnum =
+  (typeof UserNotificationScalarFieldEnum)[keyof typeof UserNotificationScalarFieldEnum];
 
 export const PackageBannerScalarFieldEnum = {
   id: 'id',
@@ -556,6 +556,13 @@ export const QueryMode = {
 
 export type QueryMode = (typeof QueryMode)[keyof typeof QueryMode];
 
+export const NullsOrder = {
+  first: 'first',
+  last: 'last',
+} as const;
+
+export type NullsOrder = (typeof NullsOrder)[keyof typeof NullsOrder];
+
 export const JsonNullValueFilter = {
   DbNull: 'DbNull',
   JsonNull: 'JsonNull',
@@ -564,10 +571,3 @@ export const JsonNullValueFilter = {
 
 export type JsonNullValueFilter =
   (typeof JsonNullValueFilter)[keyof typeof JsonNullValueFilter];
-
-export const NullsOrder = {
-  first: 'first',
-  last: 'last',
-} as const;
-
-export type NullsOrder = (typeof NullsOrder)[keyof typeof NullsOrder];

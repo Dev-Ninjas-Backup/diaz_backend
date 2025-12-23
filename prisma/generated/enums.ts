@@ -8,6 +8,32 @@
  * 🟢 You can import this file directly.
  */
 
+export const PageType = {
+  HOME: 'HOME',
+  BLOG: 'BLOG',
+  CONTACT: 'CONTACT',
+  SEARCH: 'SEARCH',
+  PRIVACY_POLICY: 'PRIVACY_POLICY',
+  TERMS_AND_CONDITION: 'TERMS_AND_CONDITION',
+} as const;
+
+export type PageType = (typeof PageType)[keyof typeof PageType];
+
+export const SiteType = {
+  FLORIDA: 'FLORIDA',
+  JUPITER: 'JUPITER',
+} as const;
+
+export type SiteType = (typeof SiteType)[keyof typeof SiteType];
+
+export const PostStatus = {
+  DRAFT: 'DRAFT',
+  PUBLISHED: 'PUBLISHED',
+  ARCHIVED: 'ARCHIVED',
+} as const;
+
+export type PostStatus = (typeof PostStatus)[keyof typeof PostStatus];
+
 export const BoatSpecificationType = {
   MAKE: 'MAKE',
   MODEL: 'MODEL',
@@ -87,32 +113,6 @@ export const FileType = {
 } as const;
 
 export type FileType = (typeof FileType)[keyof typeof FileType];
-
-export const PageType = {
-  HOME: 'HOME',
-  BLOG: 'BLOG',
-  CONTACT: 'CONTACT',
-  SEARCH: 'SEARCH',
-  PRIVACY_POLICY: 'PRIVACY_POLICY',
-  TERMS_AND_CONDITION: 'TERMS_AND_CONDITION',
-} as const;
-
-export type PageType = (typeof PageType)[keyof typeof PageType];
-
-export const SiteType = {
-  FLORIDA: 'FLORIDA',
-  JUPITER: 'JUPITER',
-} as const;
-
-export type SiteType = (typeof SiteType)[keyof typeof SiteType];
-
-export const PostStatus = {
-  DRAFT: 'DRAFT',
-  PUBLISHED: 'PUBLISHED',
-  ARCHIVED: 'ARCHIVED',
-} as const;
-
-export type PostStatus = (typeof PostStatus)[keyof typeof PostStatus];
 
 export const Currency = {
   AED: 'AED',

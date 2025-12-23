@@ -431,16 +431,6 @@ export type BlogUncheckedUpdateManyInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
 };
 
-export type BlogListRelationFilter = {
-  every?: Prisma.BlogWhereInput;
-  some?: Prisma.BlogWhereInput;
-  none?: Prisma.BlogWhereInput;
-};
-
-export type BlogOrderByRelationAggregateInput = {
-  _count?: Prisma.SortOrder;
-};
-
 export type BlogCountOrderByAggregateInput = {
   id?: Prisma.SortOrder;
   blogImageId?: Prisma.SortOrder;
@@ -483,6 +473,28 @@ export type BlogMinOrderByAggregateInput = {
 
 export type BlogSumOrderByAggregateInput = {
   readTime?: Prisma.SortOrder;
+};
+
+export type BlogListRelationFilter = {
+  every?: Prisma.BlogWhereInput;
+  some?: Prisma.BlogWhereInput;
+  none?: Prisma.BlogWhereInput;
+};
+
+export type BlogOrderByRelationAggregateInput = {
+  _count?: Prisma.SortOrder;
+};
+
+export type NullableIntFieldUpdateOperationsInput = {
+  set?: number | null;
+  increment?: number;
+  decrement?: number;
+  multiply?: number;
+  divide?: number;
+};
+
+export type EnumPostStatusFieldUpdateOperationsInput = {
+  set?: $Enums.PostStatus;
 };
 
 export type BlogCreateNestedManyWithoutFileInstancesInput = {
@@ -651,18 +663,6 @@ export type BlogUncheckedUpdateManyWithoutBlogImageNestedInput = {
     | Prisma.BlogUpdateManyWithWhereWithoutBlogImageInput
     | Prisma.BlogUpdateManyWithWhereWithoutBlogImageInput[];
   deleteMany?: Prisma.BlogScalarWhereInput | Prisma.BlogScalarWhereInput[];
-};
-
-export type NullableIntFieldUpdateOperationsInput = {
-  set?: number | null;
-  increment?: number;
-  decrement?: number;
-  multiply?: number;
-  divide?: number;
-};
-
-export type EnumPostStatusFieldUpdateOperationsInput = {
-  set?: $Enums.PostStatus;
 };
 
 export type BlogCreateWithoutFileInstancesInput = {

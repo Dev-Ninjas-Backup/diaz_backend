@@ -364,11 +364,6 @@ export type AboutPageUncheckedUpdateManyInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
 };
 
-export type AboutPageNullableScalarRelationFilter = {
-  is?: Prisma.AboutPageWhereInput | null;
-  isNot?: Prisma.AboutPageWhereInput | null;
-};
-
 export type AboutPageCountOrderByAggregateInput = {
   id?: Prisma.SortOrder;
   aboutTopImageId?: Prisma.SortOrder;
@@ -397,6 +392,11 @@ export type AboutPageMinOrderByAggregateInput = {
   aboutBottomSubTitle?: Prisma.SortOrder;
   createdAt?: Prisma.SortOrder;
   updatedAt?: Prisma.SortOrder;
+};
+
+export type AboutPageNullableScalarRelationFilter = {
+  is?: Prisma.AboutPageWhereInput | null;
+  isNot?: Prisma.AboutPageWhereInput | null;
 };
 
 export type AboutPageCreateNestedOneWithoutAboutTopImageInput = {

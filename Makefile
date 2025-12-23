@@ -46,9 +46,6 @@ build:
 # Compose Up
 # -------------------------------------------------
 up:
-	docker compose -f $(COMPOSE_FILE) up
-
-up-prod:
 	docker compose -f $(COMPOSE_FILE) --profile prod up -d
 
 up-dev:
@@ -58,7 +55,7 @@ up-dev:
 # Down
 # -------------------------------------------------
 down:
-	docker compose -f $(COMPOSE_FILE) down
+	docker compose -f $(COMPOSE_FILE) --profile prod down
 
 restart: down up
 

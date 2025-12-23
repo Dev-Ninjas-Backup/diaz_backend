@@ -9,27 +9,27 @@ model FileInstance {
   mimeType         String
   size             Int
 
-  createdAt DateTime @default(now())
-  updatedAt DateTime @default(now()) @updatedAt
+  createdAt             DateTime     @default(now())
+  updatedAt             DateTime     @default(now()) @updatedAt
   pageBannersBackground PageBanner[] @relation("BackgroundFile")
 
-  blog Blog[] @relation("blogImage")
+  blog       Blog[]      @relation("blogImage")
   boatImages BoatImage[]
 
-  contactTopImages ContactPage? @relation("contactTopImage")
+  contactTopImages    ContactPage? @relation("contactTopImage")
   contactBottomImages ContactPage? @relation("contactBottomImage")
 
-  aboutPageTopImages AboutPage?    @relation("AboutPageTopImage")
+  aboutPageTopImages    AboutPage? @relation("AboutPageTopImage")
   aboutPageBottonImages AboutPage? @relation("AboutPageBottomImage")
 
   featuredBrandLogos FeaturedBrands[] @relation("FeaturedBrandLogo")
 
-  @@map("file_instances")
-
-  blogs Blog[]
-  settings Setting[]
-  packageBanners packageBanner[] @relation("packageBanner")
+  blogs           Blog[]
+  settings        Setting[]
+  packageBanners  packageBanner[]  @relation("packageBanner")
   aiSearchBanners AiSearchBanner[] @relation("AiSearchBanner")
+
+  @@map("file_instances")
 }
 
 enum FileType {

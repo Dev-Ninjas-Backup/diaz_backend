@@ -1,0 +1,16 @@
+model packageBanner {
+  id String @id @default(uuid())
+
+  site SiteType @default(FLORIDA)
+
+  bannerTitle String
+  subtitle    String?
+
+  packageBannerId String?
+  packageBanner   FileInstance? @relation("packageBanner", fields: [packageBannerId], references: [id], onDelete: SetNull)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("package_banners")
+}
