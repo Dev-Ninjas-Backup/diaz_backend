@@ -10,6 +10,8 @@ import { GetAllBoatsMergedService } from '../services/get-all-boats-merged.servi
 import { GetAllBoatsService } from '../services/get-all-boats.service';
 import { GetAllCustomBoatsFloridaService } from '../services/get-all-custom-boats-florida.service';
 import { GetCustomBoatsService } from '../services/get-custom-boats.service';
+import { PremiumDealsFloridaService } from '../services/premium-deals-florida.service';
+import { PaginationDto } from '@/common/dto/pagination.dto';
 
 @ApiTags('Shared -- Boats')
 @Controller('boats')
@@ -19,6 +21,7 @@ export class BoatsController {
     private readonly getAllBoatsService: GetAllBoatsService,
     private readonly getAllBoatsMergedService: GetAllBoatsMergedService,
     private readonly getAllCustomBoatsService: GetAllCustomBoatsFloridaService,
+    private readonly premiumDealsFloridaService: PremiumDealsFloridaService,
   ) {}
 
   @ApiOperation({ summary: 'Get all custom boats' })
@@ -52,5 +55,11 @@ export class BoatsController {
   @Get('merged/all-sources')
   async getMergedBoats(@Query() query: GetMergedBoatsDto) {
     return this.getAllBoatsMergedService.getMergedBoats(query);
+  }
+
+  @ApiOperation({ summary: 'Get premium deals near Florida' })
+  @Get('premium-deals/florida')
+  async getPremiumDealsNearFlorida(@Query() query: PaginationDto) {
+    return this.premiumDealsFloridaService.getPremiumDealsNearFlorida(query);
   }
 }
