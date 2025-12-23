@@ -1,71 +1,97 @@
+# -------------------------------------------------
 # Variables
-DOCKER_USERNAME=softvence
-PACKAGE_NAME=diaz_backend
-PACKAGE_VERSION=latest
+# -------------------------------------------------
+DOCKER_USERNAME      := softvence
+PACKAGE_NAME         := diaz_backend
+PACKAGE_VERSION      := latest
 
-# Docker image name
-APP_IMAGE := $(DOCKER_USERNAME)/$(PACKAGE_NAME):$(PACKAGE_VERSION)
+APP_IMAGE            := $(DOCKER_USERNAME)/$(PACKAGE_NAME):$(PACKAGE_VERSION)
+COMPOSE_FILE         := compose.yaml
 
-# Compose file
-COMPOSE_FILE := compose.yaml
+API_CONTAINER        := $(PACKAGE_NAME)_api
+CADDY_CONTAINER      := $(PACKAGE_NAME)_caddy
+DB_CONTAINER         := $(PACKAGE_NAME)_db
+REDIS_MASTER         := $(PACKAGE_NAME)_redis-master
+REDIS_REPLICA        := $(PACKAGE_NAME)_redis-replica
 
-.PHONY: help build up down restart logs clean push  containers volumes networks images
+# -------------------------------------------------
+# Commands
+# -------------------------------------------------
+.PHONY: help build up up-prod up-dev down restart logs clean push containers volumes networks images
 
-# Show available commands
+# Show help
 help:
 	@echo "Available commands:"
-	@echo "  make build       Build the Docker image"
-	@echo "  make up          Start containers using docker-compose"
-	@echo "  make down        Stop containers"
-	@echo "  make restart     Restart containers"
-	@echo "  make logs        Show logs of the app container"
-	@echo "  make clean       Remove containers, networks, volumes, and image"
-	@echo "  make push        Push the Docker image to Docker Hub"
-	@echo "  make containers  Show containers of current compose"
-	@echo "  make volumes     Show volumes of current compose"
-	@echo "  make networks    Show networks of current compose"
-	@echo "  make images      Show images of current compose"
+	@echo "  make build         Build the Docker image"
+	@echo "  make up            Start containers (default profile)"
+	@echo "  make up-prod       Start containers with prod profile"
+	@echo "  make up-dev        Start containers with dev profile"
+	@echo "  make down          Stop containers"
+	@echo "  make restart       Restart all containers"
+	@echo "  make logs          Show logs of API container"
+	@echo "  make clean         Remove all containers, volumes, networks, and image"
+	@echo "  make push          Push the Docker image to Docker Hub"
+	@echo "  make containers    List compose containers"
+	@echo "  make volumes       List compose volumes"
+	@echo "  make networks      List compose networks"
+	@echo "  make images        List compose images"
 
-# Build the Docker image
+# -------------------------------------------------
+# Build Docker image
+# -------------------------------------------------
 build:
 	docker build -t $(APP_IMAGE) .
 
-# Start containers
+# -------------------------------------------------
+# Compose Up
+# -------------------------------------------------
 up:
 	docker compose -f $(COMPOSE_FILE) up
 
-# Stop containers
+up-prod:
+	docker compose -f $(COMPOSE_FILE) --profile prod up -d
+
+up-dev:
+	docker compose -f $(COMPOSE_FILE) --profile dev up -d
+
+# -------------------------------------------------
+# Down
+# -------------------------------------------------
 down:
 	docker compose -f $(COMPOSE_FILE) down
 
-# Restart containers
 restart: down up
 
-# Show logs of the app container
+# -------------------------------------------------
+# Logs
+# -------------------------------------------------
 logs:
-	docker compose -f $(COMPOSE_FILE) logs -f diaz_backend_api
+	docker logs -f $(API_CONTAINER)
 
-# Cleanup everything
-clean: down
-	docker rm $(shell docker ps -a -q) || true
-	docker rmi $(APP_IMAGE) || true
+# -------------------------------------------------
+# Cleanup
+# -------------------------------------------------
+clean:
+	docker compose -f $(COMPOSE_FILE) down --volumes --remove-orphans
+	- docker rmi $(APP_IMAGE) || true
 
-# Show containers of current compose
+# -------------------------------------------------
+# Utility Commands
+# -------------------------------------------------
 containers:
 	docker compose -f $(COMPOSE_FILE) ps
 
-# Show volumes of current compose
 volumes:
 	docker compose -f $(COMPOSE_FILE) volume ls
 
-# Show networks of current compose
 networks:
 	docker compose -f $(COMPOSE_FILE) network ls
 
-# Show images of current compose
 images:
 	docker compose -f $(COMPOSE_FILE) images
 
-# Push to Docker Hub
+# -------------------------------------------------
+# Push image
+# -------------------------------------------------
 push: build
 	docker push $(APP_IMAGE)
