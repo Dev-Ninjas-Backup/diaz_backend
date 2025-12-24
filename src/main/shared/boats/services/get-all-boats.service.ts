@@ -220,7 +220,7 @@ export class GetAllBoatsService {
 
     // ---- PRIMARY SPECIFICATIONS ----
     // We only expose 12 primary specifications in `specifications` (frontend requirement).
-    // Any other fields are pushed into `aditionalInfo`.
+    // Any other fields are pushed into `additionalInfo`.
     const PRIMARY_SPECS: Array<{ key: string; getter: (b: any) => any }> = [
       {
         key: 'Brand Make',
@@ -478,7 +478,7 @@ export class GetAllBoatsService {
 
       images: extractImages(boat),
       engines: enginesArr, // engines provided separately
-      aditionalInfo: additional,
+      additionalInfo: additional,
       // raw: boat,
     };
 
