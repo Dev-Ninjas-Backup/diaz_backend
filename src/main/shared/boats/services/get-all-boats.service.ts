@@ -191,12 +191,12 @@ export class GetAllBoatsService {
         for (const e of b.Engines) {
           out.push({
             make: e?.Make ?? e?.make ?? null,
-            model: e?.Model ?? e?.model ?? null,
+            // model: e?.Model ?? e?.model ?? null,
             fuelType: e?.Fuel ?? e?.fuel ?? null,
             power: e?.EnginePower ?? e?.horsepower ?? null,
             hours: e?.Hours ?? e?.hours ?? null,
             type: e?.Type ?? e?.type ?? null,
-            propellerType: e?.PropellerType ?? e?.propellerType ?? null,
+            // propellerType: e?.PropellerType ?? e?.propellerType ?? null,
           });
         }
       }
@@ -206,12 +206,12 @@ export class GetAllBoatsService {
         const e = b.Engine;
         out.push({
           make: e?.Make ?? e?.make ?? null,
-          model: e?.Model ?? e?.model ?? null,
+          // model: e?.Model ?? e?.model ?? null,
           fuelType: e?.Fuel ?? e?.fuel ?? null,
           power: e?.EnginePower ?? e?.horsepower ?? null,
           hours: e?.Hours ?? e?.hours ?? null,
           type: e?.Type ?? e?.type ?? null,
-          propellerType: e?.PropellerType ?? e?.propellerType ?? null,
+          // propellerType: e?.PropellerType ?? e?.propellerType ?? null,
         });
       }
 
@@ -421,7 +421,8 @@ export class GetAllBoatsService {
 
       // Engines summary if present (kept in additional info too for easy display)
       if (enginesArr.length) {
-        out.push({ key: 'engines_summary', value: JSON.stringify(enginesArr) });
+        // out.push({ key: 'engines_summary', value: JSON.stringify(enginesArr) });
+        this.logger.log(`engines_summary: ${JSON.stringify(enginesArr)}`);
       }
 
       // as a last resort, include any raw fields that might be useful but weren't captured above
@@ -449,6 +450,7 @@ export class GetAllBoatsService {
     const enginesArr = extractEngines(boat);
     const specifications = buildSpecs(boat);
     const detailedSpecs = buildDetailedSpecs(boat, enginesArr);
+    this.logger.log(`detailedSpecs: ${JSON.stringify(detailedSpecs)}`);
     const additional = buildAdditional(boat, enginesArr);
 
     const transformed = {
@@ -472,7 +474,7 @@ export class GetAllBoatsService {
 
       // only 12 primary specifications here
       specifications,
-      detailedSpecs,
+      // detailedSpecs,
 
       images: extractImages(boat),
       engines: enginesArr, // engines provided separately
