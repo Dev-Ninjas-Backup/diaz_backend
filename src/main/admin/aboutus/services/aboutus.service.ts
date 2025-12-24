@@ -5,90 +5,87 @@ import {
   Logger,
   NotFoundException,
 } from '@nestjs/common';
-import {
-  CreatePrivacyPolicyDto,
-  UpdatePrivacyPolicyDto,
-} from './dto/privacy-policy.dto';
 import { PrismaService } from '@/lib/prisma/prisma.service';
-import { SiteType } from 'generated/enums';
+import { CreateAboutUsDto } from '../dto/create-aboutus.dto';
+import { UpdateAboutUsDto } from '../dto/update-aboutus.dto';
 import { Prisma } from 'generated/client';
+import { SiteType } from 'generated/enums';
 
 @Injectable()
-export class PrivacyPolicyService {
-  private readonly logger = new Logger(PrivacyPolicyService.name);
+export class AboutUsService {
+  private readonly logger = new Logger(AboutUsService.name);
 
   constructor(private readonly prisma: PrismaService) {}
 
-  async getPrivacyPolicy(site: SiteType) {
+  async getAboutUs(site: SiteType) {
     try {
-      const policy = await this.prisma.client.privacyPolicy.findFirst({
+      const aboutUs = await this.prisma.client.aboutPage.findUnique({
         where: { site },
         select: {
           id: true,
           site: true,
-          privacyTitle: true,
-          privacyDescription: true,
+          aboutTitle: true,
+          aboutDescription: true,
           createdAt: true,
           updatedAt: true,
         },
       });
 
-      if (!policy) {
+      if (!aboutUs) {
         throw new NotFoundException(
-          `Privacy policy for site ${site} not found`,
+          `About Us content for site ${site} not found`,
         );
       }
 
-      return policy;
+      return aboutUs;
     } catch (error) {
-      this.logger.error('Error getting Privacy Policy:', error);
+      this.logger.error('Error getting About Us:', error);
 
       if (error instanceof NotFoundException) {
         throw error;
       }
 
       const errorMessage =
-        error instanceof Error ? error.message : 'Failed to get Privacy Policy';
+        error instanceof Error
+          ? error.message
+          : 'Failed to get About Us content';
       this.logger.error('Full error:', JSON.stringify(error, null, 2));
       throw new InternalServerErrorException(errorMessage);
     }
   }
 
-  async createPrivacyPolicy(
-    site: SiteType,
-    createPrivacyPolicyDto: CreatePrivacyPolicyDto,
-  ) {
+  async createAboutUs(site: SiteType, createAboutUsDto: CreateAboutUsDto) {
     try {
-      // Check if Privacy Policy already exists for this site
-      const existing = await this.prisma.client.privacyPolicy.findFirst({
+      // Check if About Us content already exists for this site
+      const existing = await this.prisma.client.aboutPage.findUnique({
         where: { site },
         select: { id: true },
       });
 
       if (existing) {
         throw new BadRequestException(
-          `Privacy Policy for site ${site} already exists. Use PATCH method to update.`,
+          `About Us content for site ${site} already exists. Use PATCH method to update.`,
         );
       }
 
-      const result = await this.prisma.client.privacyPolicy.create({
+      const result = await this.prisma.client.aboutPage.create({
         data: {
           site,
-          privacyTitle: createPrivacyPolicyDto.privacyTitle,
-          privacyDescription: createPrivacyPolicyDto.privacyDescription,
+          aboutTitle: createAboutUsDto.aboutTitle,
+          aboutDescription: createAboutUsDto.aboutDescription,
         },
         select: {
           id: true,
           site: true,
-          privacyTitle: true,
-          privacyDescription: true,
+          aboutTitle: true,
+          aboutDescription: true,
           createdAt: true,
           updatedAt: true,
         },
       });
       return result;
     } catch (error) {
-      this.logger.error('Error creating Privacy Policy:', error);
+      this.logger.error('Error creating About Us:', error);
 
       if (error instanceof BadRequestException) {
         throw error;
@@ -97,7 +94,7 @@ export class PrivacyPolicyService {
       if (error instanceof Prisma.PrismaClientKnownRequestError) {
         if (error.code === 'P2002') {
           throw new BadRequestException(
-            `Privacy Policy for site ${site} already exists. Use PATCH method to update.`,
+            `About Us content for site ${site} already exists. Use PATCH method to update.`,
           );
         }
         this.logger.error('Prisma error code:', error.code);
@@ -107,57 +104,53 @@ export class PrivacyPolicyService {
       const errorMessage =
         error instanceof Error
           ? error.message
-          : 'Failed to create Privacy Policy';
+          : 'Failed to create About Us content';
       this.logger.error('Full error:', JSON.stringify(error, null, 2));
       throw new InternalServerErrorException(errorMessage);
     }
   }
 
-  async updatePrivacyPolicy(
-    site: SiteType,
-    updatePrivacyPolicyDto: UpdatePrivacyPolicyDto,
-  ) {
+  async updateAboutUs(site: SiteType, updateAboutUsDto: UpdateAboutUsDto) {
     try {
-      // Get the existing Privacy Policy for this site
-      const existing = await this.prisma.client.privacyPolicy.findUnique({
+      // Get the existing About Us record for this site
+      const existing = await this.prisma.client.aboutPage.findUnique({
         where: { site },
         select: { id: true },
       });
 
       if (!existing) {
         throw new NotFoundException(
-          `Privacy Policy for site ${site} not found. Use POST method to create.`,
+          `About Us content for site ${site} not found. Use POST method to create.`,
         );
       }
 
       // Build update data object, only including fields that are provided
       const updateData: {
-        privacyTitle?: string;
-        privacyDescription?: string;
+        aboutTitle?: string;
+        aboutDescription?: string;
       } = {};
-      if (updatePrivacyPolicyDto.privacyTitle !== undefined) {
-        updateData.privacyTitle = updatePrivacyPolicyDto.privacyTitle;
+      if (updateAboutUsDto.aboutTitle !== undefined) {
+        updateData.aboutTitle = updateAboutUsDto.aboutTitle;
       }
-      if (updatePrivacyPolicyDto.privacyDescription !== undefined) {
-        updateData.privacyDescription =
-          updatePrivacyPolicyDto.privacyDescription;
+      if (updateAboutUsDto.aboutDescription !== undefined) {
+        updateData.aboutDescription = updateAboutUsDto.aboutDescription;
       }
 
-      const result = await this.prisma.client.privacyPolicy.update({
+      const result = await this.prisma.client.aboutPage.update({
         where: { site },
         data: updateData,
         select: {
           id: true,
           site: true,
-          privacyTitle: true,
-          privacyDescription: true,
+          aboutTitle: true,
+          aboutDescription: true,
           createdAt: true,
           updatedAt: true,
         },
       });
       return result;
     } catch (error) {
-      this.logger.error('Error updating Privacy Policy:', error);
+      this.logger.error('Error updating About Us:', error);
 
       if (error instanceof NotFoundException) {
         throw error;
@@ -171,7 +164,7 @@ export class PrivacyPolicyService {
       const errorMessage =
         error instanceof Error
           ? error.message
-          : 'Failed to update Privacy Policy';
+          : 'Failed to update About Us content';
       this.logger.error('Full error:', JSON.stringify(error, null, 2));
       throw new InternalServerErrorException(errorMessage);
     }

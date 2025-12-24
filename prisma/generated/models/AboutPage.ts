@@ -26,30 +26,27 @@ export type AggregateAboutPage = {
 
 export type AboutPageMinAggregateOutputType = {
   id: string | null;
-  aboutTopImageId: string | null;
-  aboutBottonImageId: string | null;
-  aboutBottomTitle: string | null;
-  aboutBottomSubTitle: string | null;
+  site: $Enums.SiteType | null;
+  aboutTitle: string | null;
+  aboutDescription: string | null;
   createdAt: Date | null;
   updatedAt: Date | null;
 };
 
 export type AboutPageMaxAggregateOutputType = {
   id: string | null;
-  aboutTopImageId: string | null;
-  aboutBottonImageId: string | null;
-  aboutBottomTitle: string | null;
-  aboutBottomSubTitle: string | null;
+  site: $Enums.SiteType | null;
+  aboutTitle: string | null;
+  aboutDescription: string | null;
   createdAt: Date | null;
   updatedAt: Date | null;
 };
 
 export type AboutPageCountAggregateOutputType = {
   id: number;
-  aboutTopImageId: number;
-  aboutBottonImageId: number;
-  aboutBottomTitle: number;
-  aboutBottomSubTitle: number;
+  site: number;
+  aboutTitle: number;
+  aboutDescription: number;
   createdAt: number;
   updatedAt: number;
   _all: number;
@@ -57,30 +54,27 @@ export type AboutPageCountAggregateOutputType = {
 
 export type AboutPageMinAggregateInputType = {
   id?: true;
-  aboutTopImageId?: true;
-  aboutBottonImageId?: true;
-  aboutBottomTitle?: true;
-  aboutBottomSubTitle?: true;
+  site?: true;
+  aboutTitle?: true;
+  aboutDescription?: true;
   createdAt?: true;
   updatedAt?: true;
 };
 
 export type AboutPageMaxAggregateInputType = {
   id?: true;
-  aboutTopImageId?: true;
-  aboutBottonImageId?: true;
-  aboutBottomTitle?: true;
-  aboutBottomSubTitle?: true;
+  site?: true;
+  aboutTitle?: true;
+  aboutDescription?: true;
   createdAt?: true;
   updatedAt?: true;
 };
 
 export type AboutPageCountAggregateInputType = {
   id?: true;
-  aboutTopImageId?: true;
-  aboutBottonImageId?: true;
-  aboutBottomTitle?: true;
-  aboutBottomSubTitle?: true;
+  site?: true;
+  aboutTitle?: true;
+  aboutDescription?: true;
   createdAt?: true;
   updatedAt?: true;
   _all?: true;
@@ -167,10 +161,9 @@ export type AboutPageGroupByArgs<
 
 export type AboutPageGroupByOutputType = {
   id: string;
-  aboutTopImageId: string | null;
-  aboutBottonImageId: string | null;
-  aboutBottomTitle: string;
-  aboutBottomSubTitle: string;
+  site: $Enums.SiteType;
+  aboutTitle: string | null;
+  aboutDescription: string | null;
   createdAt: Date;
   updatedAt: Date;
   _count: AboutPageCountAggregateOutputType | null;
@@ -196,64 +189,42 @@ export type AboutPageWhereInput = {
   OR?: Prisma.AboutPageWhereInput[];
   NOT?: Prisma.AboutPageWhereInput | Prisma.AboutPageWhereInput[];
   id?: Prisma.StringFilter<'AboutPage'> | string;
-  aboutTopImageId?: Prisma.StringNullableFilter<'AboutPage'> | string | null;
-  aboutBottonImageId?: Prisma.StringNullableFilter<'AboutPage'> | string | null;
-  aboutBottomTitle?: Prisma.StringFilter<'AboutPage'> | string;
-  aboutBottomSubTitle?: Prisma.StringFilter<'AboutPage'> | string;
+  site?: Prisma.EnumSiteTypeFilter<'AboutPage'> | $Enums.SiteType;
+  aboutTitle?: Prisma.StringNullableFilter<'AboutPage'> | string | null;
+  aboutDescription?: Prisma.StringNullableFilter<'AboutPage'> | string | null;
   createdAt?: Prisma.DateTimeFilter<'AboutPage'> | Date | string;
   updatedAt?: Prisma.DateTimeFilter<'AboutPage'> | Date | string;
-  aboutTopImage?: Prisma.XOR<
-    Prisma.FileInstanceNullableScalarRelationFilter,
-    Prisma.FileInstanceWhereInput
-  > | null;
-  aboutBottomImage?: Prisma.XOR<
-    Prisma.FileInstanceNullableScalarRelationFilter,
-    Prisma.FileInstanceWhereInput
-  > | null;
 };
 
 export type AboutPageOrderByWithRelationInput = {
   id?: Prisma.SortOrder;
-  aboutTopImageId?: Prisma.SortOrderInput | Prisma.SortOrder;
-  aboutBottonImageId?: Prisma.SortOrderInput | Prisma.SortOrder;
-  aboutBottomTitle?: Prisma.SortOrder;
-  aboutBottomSubTitle?: Prisma.SortOrder;
+  site?: Prisma.SortOrder;
+  aboutTitle?: Prisma.SortOrderInput | Prisma.SortOrder;
+  aboutDescription?: Prisma.SortOrderInput | Prisma.SortOrder;
   createdAt?: Prisma.SortOrder;
   updatedAt?: Prisma.SortOrder;
-  aboutTopImage?: Prisma.FileInstanceOrderByWithRelationInput;
-  aboutBottomImage?: Prisma.FileInstanceOrderByWithRelationInput;
 };
 
 export type AboutPageWhereUniqueInput = Prisma.AtLeast<
   {
     id?: string;
-    aboutTopImageId?: string;
-    aboutBottonImageId?: string;
+    site?: $Enums.SiteType;
     AND?: Prisma.AboutPageWhereInput | Prisma.AboutPageWhereInput[];
     OR?: Prisma.AboutPageWhereInput[];
     NOT?: Prisma.AboutPageWhereInput | Prisma.AboutPageWhereInput[];
-    aboutBottomTitle?: Prisma.StringFilter<'AboutPage'> | string;
-    aboutBottomSubTitle?: Prisma.StringFilter<'AboutPage'> | string;
+    aboutTitle?: Prisma.StringNullableFilter<'AboutPage'> | string | null;
+    aboutDescription?: Prisma.StringNullableFilter<'AboutPage'> | string | null;
     createdAt?: Prisma.DateTimeFilter<'AboutPage'> | Date | string;
     updatedAt?: Prisma.DateTimeFilter<'AboutPage'> | Date | string;
-    aboutTopImage?: Prisma.XOR<
-      Prisma.FileInstanceNullableScalarRelationFilter,
-      Prisma.FileInstanceWhereInput
-    > | null;
-    aboutBottomImage?: Prisma.XOR<
-      Prisma.FileInstanceNullableScalarRelationFilter,
-      Prisma.FileInstanceWhereInput
-    > | null;
   },
-  'id' | 'aboutTopImageId' | 'aboutBottonImageId'
+  'id' | 'site'
 >;
 
 export type AboutPageOrderByWithAggregationInput = {
   id?: Prisma.SortOrder;
-  aboutTopImageId?: Prisma.SortOrderInput | Prisma.SortOrder;
-  aboutBottonImageId?: Prisma.SortOrderInput | Prisma.SortOrder;
-  aboutBottomTitle?: Prisma.SortOrder;
-  aboutBottomSubTitle?: Prisma.SortOrder;
+  site?: Prisma.SortOrder;
+  aboutTitle?: Prisma.SortOrderInput | Prisma.SortOrder;
+  aboutDescription?: Prisma.SortOrderInput | Prisma.SortOrder;
   createdAt?: Prisma.SortOrder;
   updatedAt?: Prisma.SortOrder;
   _count?: Prisma.AboutPageCountOrderByAggregateInput;
@@ -270,379 +241,119 @@ export type AboutPageScalarWhereWithAggregatesInput = {
     | Prisma.AboutPageScalarWhereWithAggregatesInput
     | Prisma.AboutPageScalarWhereWithAggregatesInput[];
   id?: Prisma.StringWithAggregatesFilter<'AboutPage'> | string;
-  aboutTopImageId?:
+  site?: Prisma.EnumSiteTypeWithAggregatesFilter<'AboutPage'> | $Enums.SiteType;
+  aboutTitle?:
     | Prisma.StringNullableWithAggregatesFilter<'AboutPage'>
     | string
     | null;
-  aboutBottonImageId?:
+  aboutDescription?:
     | Prisma.StringNullableWithAggregatesFilter<'AboutPage'>
     | string
     | null;
-  aboutBottomTitle?: Prisma.StringWithAggregatesFilter<'AboutPage'> | string;
-  aboutBottomSubTitle?: Prisma.StringWithAggregatesFilter<'AboutPage'> | string;
   createdAt?: Prisma.DateTimeWithAggregatesFilter<'AboutPage'> | Date | string;
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<'AboutPage'> | Date | string;
 };
 
 export type AboutPageCreateInput = {
   id?: string;
-  aboutBottomTitle: string;
-  aboutBottomSubTitle: string;
+  site?: $Enums.SiteType;
+  aboutTitle?: string | null;
+  aboutDescription?: string | null;
   createdAt?: Date | string;
   updatedAt?: Date | string;
-  aboutTopImage?: Prisma.FileInstanceCreateNestedOneWithoutAboutPageTopImagesInput;
-  aboutBottomImage?: Prisma.FileInstanceCreateNestedOneWithoutAboutPageBottonImagesInput;
 };
 
 export type AboutPageUncheckedCreateInput = {
   id?: string;
-  aboutTopImageId?: string | null;
-  aboutBottonImageId?: string | null;
-  aboutBottomTitle: string;
-  aboutBottomSubTitle: string;
+  site?: $Enums.SiteType;
+  aboutTitle?: string | null;
+  aboutDescription?: string | null;
   createdAt?: Date | string;
   updatedAt?: Date | string;
 };
 
 export type AboutPageUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string;
-  aboutBottomTitle?: Prisma.StringFieldUpdateOperationsInput | string;
-  aboutBottomSubTitle?: Prisma.StringFieldUpdateOperationsInput | string;
+  site?: Prisma.EnumSiteTypeFieldUpdateOperationsInput | $Enums.SiteType;
+  aboutTitle?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  aboutDescription?:
+    | Prisma.NullableStringFieldUpdateOperationsInput
+    | string
+    | null;
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
-  aboutTopImage?: Prisma.FileInstanceUpdateOneWithoutAboutPageTopImagesNestedInput;
-  aboutBottomImage?: Prisma.FileInstanceUpdateOneWithoutAboutPageBottonImagesNestedInput;
 };
 
 export type AboutPageUncheckedUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string;
-  aboutTopImageId?:
+  site?: Prisma.EnumSiteTypeFieldUpdateOperationsInput | $Enums.SiteType;
+  aboutTitle?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  aboutDescription?:
     | Prisma.NullableStringFieldUpdateOperationsInput
     | string
     | null;
-  aboutBottonImageId?:
-    | Prisma.NullableStringFieldUpdateOperationsInput
-    | string
-    | null;
-  aboutBottomTitle?: Prisma.StringFieldUpdateOperationsInput | string;
-  aboutBottomSubTitle?: Prisma.StringFieldUpdateOperationsInput | string;
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
 };
 
 export type AboutPageCreateManyInput = {
   id?: string;
-  aboutTopImageId?: string | null;
-  aboutBottonImageId?: string | null;
-  aboutBottomTitle: string;
-  aboutBottomSubTitle: string;
+  site?: $Enums.SiteType;
+  aboutTitle?: string | null;
+  aboutDescription?: string | null;
   createdAt?: Date | string;
   updatedAt?: Date | string;
 };
 
 export type AboutPageUpdateManyMutationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string;
-  aboutBottomTitle?: Prisma.StringFieldUpdateOperationsInput | string;
-  aboutBottomSubTitle?: Prisma.StringFieldUpdateOperationsInput | string;
+  site?: Prisma.EnumSiteTypeFieldUpdateOperationsInput | $Enums.SiteType;
+  aboutTitle?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  aboutDescription?:
+    | Prisma.NullableStringFieldUpdateOperationsInput
+    | string
+    | null;
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
 };
 
 export type AboutPageUncheckedUpdateManyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string;
-  aboutTopImageId?:
+  site?: Prisma.EnumSiteTypeFieldUpdateOperationsInput | $Enums.SiteType;
+  aboutTitle?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  aboutDescription?:
     | Prisma.NullableStringFieldUpdateOperationsInput
     | string
     | null;
-  aboutBottonImageId?:
-    | Prisma.NullableStringFieldUpdateOperationsInput
-    | string
-    | null;
-  aboutBottomTitle?: Prisma.StringFieldUpdateOperationsInput | string;
-  aboutBottomSubTitle?: Prisma.StringFieldUpdateOperationsInput | string;
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
 };
 
 export type AboutPageCountOrderByAggregateInput = {
   id?: Prisma.SortOrder;
-  aboutTopImageId?: Prisma.SortOrder;
-  aboutBottonImageId?: Prisma.SortOrder;
-  aboutBottomTitle?: Prisma.SortOrder;
-  aboutBottomSubTitle?: Prisma.SortOrder;
+  site?: Prisma.SortOrder;
+  aboutTitle?: Prisma.SortOrder;
+  aboutDescription?: Prisma.SortOrder;
   createdAt?: Prisma.SortOrder;
   updatedAt?: Prisma.SortOrder;
 };
 
 export type AboutPageMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder;
-  aboutTopImageId?: Prisma.SortOrder;
-  aboutBottonImageId?: Prisma.SortOrder;
-  aboutBottomTitle?: Prisma.SortOrder;
-  aboutBottomSubTitle?: Prisma.SortOrder;
+  site?: Prisma.SortOrder;
+  aboutTitle?: Prisma.SortOrder;
+  aboutDescription?: Prisma.SortOrder;
   createdAt?: Prisma.SortOrder;
   updatedAt?: Prisma.SortOrder;
 };
 
 export type AboutPageMinOrderByAggregateInput = {
   id?: Prisma.SortOrder;
-  aboutTopImageId?: Prisma.SortOrder;
-  aboutBottonImageId?: Prisma.SortOrder;
-  aboutBottomTitle?: Prisma.SortOrder;
-  aboutBottomSubTitle?: Prisma.SortOrder;
+  site?: Prisma.SortOrder;
+  aboutTitle?: Prisma.SortOrder;
+  aboutDescription?: Prisma.SortOrder;
   createdAt?: Prisma.SortOrder;
   updatedAt?: Prisma.SortOrder;
-};
-
-export type AboutPageNullableScalarRelationFilter = {
-  is?: Prisma.AboutPageWhereInput | null;
-  isNot?: Prisma.AboutPageWhereInput | null;
-};
-
-export type AboutPageCreateNestedOneWithoutAboutTopImageInput = {
-  create?: Prisma.XOR<
-    Prisma.AboutPageCreateWithoutAboutTopImageInput,
-    Prisma.AboutPageUncheckedCreateWithoutAboutTopImageInput
-  >;
-  connectOrCreate?: Prisma.AboutPageCreateOrConnectWithoutAboutTopImageInput;
-  connect?: Prisma.AboutPageWhereUniqueInput;
-};
-
-export type AboutPageCreateNestedOneWithoutAboutBottomImageInput = {
-  create?: Prisma.XOR<
-    Prisma.AboutPageCreateWithoutAboutBottomImageInput,
-    Prisma.AboutPageUncheckedCreateWithoutAboutBottomImageInput
-  >;
-  connectOrCreate?: Prisma.AboutPageCreateOrConnectWithoutAboutBottomImageInput;
-  connect?: Prisma.AboutPageWhereUniqueInput;
-};
-
-export type AboutPageUncheckedCreateNestedOneWithoutAboutTopImageInput = {
-  create?: Prisma.XOR<
-    Prisma.AboutPageCreateWithoutAboutTopImageInput,
-    Prisma.AboutPageUncheckedCreateWithoutAboutTopImageInput
-  >;
-  connectOrCreate?: Prisma.AboutPageCreateOrConnectWithoutAboutTopImageInput;
-  connect?: Prisma.AboutPageWhereUniqueInput;
-};
-
-export type AboutPageUncheckedCreateNestedOneWithoutAboutBottomImageInput = {
-  create?: Prisma.XOR<
-    Prisma.AboutPageCreateWithoutAboutBottomImageInput,
-    Prisma.AboutPageUncheckedCreateWithoutAboutBottomImageInput
-  >;
-  connectOrCreate?: Prisma.AboutPageCreateOrConnectWithoutAboutBottomImageInput;
-  connect?: Prisma.AboutPageWhereUniqueInput;
-};
-
-export type AboutPageUpdateOneWithoutAboutTopImageNestedInput = {
-  create?: Prisma.XOR<
-    Prisma.AboutPageCreateWithoutAboutTopImageInput,
-    Prisma.AboutPageUncheckedCreateWithoutAboutTopImageInput
-  >;
-  connectOrCreate?: Prisma.AboutPageCreateOrConnectWithoutAboutTopImageInput;
-  upsert?: Prisma.AboutPageUpsertWithoutAboutTopImageInput;
-  disconnect?: Prisma.AboutPageWhereInput | boolean;
-  delete?: Prisma.AboutPageWhereInput | boolean;
-  connect?: Prisma.AboutPageWhereUniqueInput;
-  update?: Prisma.XOR<
-    Prisma.XOR<
-      Prisma.AboutPageUpdateToOneWithWhereWithoutAboutTopImageInput,
-      Prisma.AboutPageUpdateWithoutAboutTopImageInput
-    >,
-    Prisma.AboutPageUncheckedUpdateWithoutAboutTopImageInput
-  >;
-};
-
-export type AboutPageUpdateOneWithoutAboutBottomImageNestedInput = {
-  create?: Prisma.XOR<
-    Prisma.AboutPageCreateWithoutAboutBottomImageInput,
-    Prisma.AboutPageUncheckedCreateWithoutAboutBottomImageInput
-  >;
-  connectOrCreate?: Prisma.AboutPageCreateOrConnectWithoutAboutBottomImageInput;
-  upsert?: Prisma.AboutPageUpsertWithoutAboutBottomImageInput;
-  disconnect?: Prisma.AboutPageWhereInput | boolean;
-  delete?: Prisma.AboutPageWhereInput | boolean;
-  connect?: Prisma.AboutPageWhereUniqueInput;
-  update?: Prisma.XOR<
-    Prisma.XOR<
-      Prisma.AboutPageUpdateToOneWithWhereWithoutAboutBottomImageInput,
-      Prisma.AboutPageUpdateWithoutAboutBottomImageInput
-    >,
-    Prisma.AboutPageUncheckedUpdateWithoutAboutBottomImageInput
-  >;
-};
-
-export type AboutPageUncheckedUpdateOneWithoutAboutTopImageNestedInput = {
-  create?: Prisma.XOR<
-    Prisma.AboutPageCreateWithoutAboutTopImageInput,
-    Prisma.AboutPageUncheckedCreateWithoutAboutTopImageInput
-  >;
-  connectOrCreate?: Prisma.AboutPageCreateOrConnectWithoutAboutTopImageInput;
-  upsert?: Prisma.AboutPageUpsertWithoutAboutTopImageInput;
-  disconnect?: Prisma.AboutPageWhereInput | boolean;
-  delete?: Prisma.AboutPageWhereInput | boolean;
-  connect?: Prisma.AboutPageWhereUniqueInput;
-  update?: Prisma.XOR<
-    Prisma.XOR<
-      Prisma.AboutPageUpdateToOneWithWhereWithoutAboutTopImageInput,
-      Prisma.AboutPageUpdateWithoutAboutTopImageInput
-    >,
-    Prisma.AboutPageUncheckedUpdateWithoutAboutTopImageInput
-  >;
-};
-
-export type AboutPageUncheckedUpdateOneWithoutAboutBottomImageNestedInput = {
-  create?: Prisma.XOR<
-    Prisma.AboutPageCreateWithoutAboutBottomImageInput,
-    Prisma.AboutPageUncheckedCreateWithoutAboutBottomImageInput
-  >;
-  connectOrCreate?: Prisma.AboutPageCreateOrConnectWithoutAboutBottomImageInput;
-  upsert?: Prisma.AboutPageUpsertWithoutAboutBottomImageInput;
-  disconnect?: Prisma.AboutPageWhereInput | boolean;
-  delete?: Prisma.AboutPageWhereInput | boolean;
-  connect?: Prisma.AboutPageWhereUniqueInput;
-  update?: Prisma.XOR<
-    Prisma.XOR<
-      Prisma.AboutPageUpdateToOneWithWhereWithoutAboutBottomImageInput,
-      Prisma.AboutPageUpdateWithoutAboutBottomImageInput
-    >,
-    Prisma.AboutPageUncheckedUpdateWithoutAboutBottomImageInput
-  >;
-};
-
-export type AboutPageCreateWithoutAboutTopImageInput = {
-  id?: string;
-  aboutBottomTitle: string;
-  aboutBottomSubTitle: string;
-  createdAt?: Date | string;
-  updatedAt?: Date | string;
-  aboutBottomImage?: Prisma.FileInstanceCreateNestedOneWithoutAboutPageBottonImagesInput;
-};
-
-export type AboutPageUncheckedCreateWithoutAboutTopImageInput = {
-  id?: string;
-  aboutBottonImageId?: string | null;
-  aboutBottomTitle: string;
-  aboutBottomSubTitle: string;
-  createdAt?: Date | string;
-  updatedAt?: Date | string;
-};
-
-export type AboutPageCreateOrConnectWithoutAboutTopImageInput = {
-  where: Prisma.AboutPageWhereUniqueInput;
-  create: Prisma.XOR<
-    Prisma.AboutPageCreateWithoutAboutTopImageInput,
-    Prisma.AboutPageUncheckedCreateWithoutAboutTopImageInput
-  >;
-};
-
-export type AboutPageCreateWithoutAboutBottomImageInput = {
-  id?: string;
-  aboutBottomTitle: string;
-  aboutBottomSubTitle: string;
-  createdAt?: Date | string;
-  updatedAt?: Date | string;
-  aboutTopImage?: Prisma.FileInstanceCreateNestedOneWithoutAboutPageTopImagesInput;
-};
-
-export type AboutPageUncheckedCreateWithoutAboutBottomImageInput = {
-  id?: string;
-  aboutTopImageId?: string | null;
-  aboutBottomTitle: string;
-  aboutBottomSubTitle: string;
-  createdAt?: Date | string;
-  updatedAt?: Date | string;
-};
-
-export type AboutPageCreateOrConnectWithoutAboutBottomImageInput = {
-  where: Prisma.AboutPageWhereUniqueInput;
-  create: Prisma.XOR<
-    Prisma.AboutPageCreateWithoutAboutBottomImageInput,
-    Prisma.AboutPageUncheckedCreateWithoutAboutBottomImageInput
-  >;
-};
-
-export type AboutPageUpsertWithoutAboutTopImageInput = {
-  update: Prisma.XOR<
-    Prisma.AboutPageUpdateWithoutAboutTopImageInput,
-    Prisma.AboutPageUncheckedUpdateWithoutAboutTopImageInput
-  >;
-  create: Prisma.XOR<
-    Prisma.AboutPageCreateWithoutAboutTopImageInput,
-    Prisma.AboutPageUncheckedCreateWithoutAboutTopImageInput
-  >;
-  where?: Prisma.AboutPageWhereInput;
-};
-
-export type AboutPageUpdateToOneWithWhereWithoutAboutTopImageInput = {
-  where?: Prisma.AboutPageWhereInput;
-  data: Prisma.XOR<
-    Prisma.AboutPageUpdateWithoutAboutTopImageInput,
-    Prisma.AboutPageUncheckedUpdateWithoutAboutTopImageInput
-  >;
-};
-
-export type AboutPageUpdateWithoutAboutTopImageInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string;
-  aboutBottomTitle?: Prisma.StringFieldUpdateOperationsInput | string;
-  aboutBottomSubTitle?: Prisma.StringFieldUpdateOperationsInput | string;
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
-  aboutBottomImage?: Prisma.FileInstanceUpdateOneWithoutAboutPageBottonImagesNestedInput;
-};
-
-export type AboutPageUncheckedUpdateWithoutAboutTopImageInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string;
-  aboutBottonImageId?:
-    | Prisma.NullableStringFieldUpdateOperationsInput
-    | string
-    | null;
-  aboutBottomTitle?: Prisma.StringFieldUpdateOperationsInput | string;
-  aboutBottomSubTitle?: Prisma.StringFieldUpdateOperationsInput | string;
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
-};
-
-export type AboutPageUpsertWithoutAboutBottomImageInput = {
-  update: Prisma.XOR<
-    Prisma.AboutPageUpdateWithoutAboutBottomImageInput,
-    Prisma.AboutPageUncheckedUpdateWithoutAboutBottomImageInput
-  >;
-  create: Prisma.XOR<
-    Prisma.AboutPageCreateWithoutAboutBottomImageInput,
-    Prisma.AboutPageUncheckedCreateWithoutAboutBottomImageInput
-  >;
-  where?: Prisma.AboutPageWhereInput;
-};
-
-export type AboutPageUpdateToOneWithWhereWithoutAboutBottomImageInput = {
-  where?: Prisma.AboutPageWhereInput;
-  data: Prisma.XOR<
-    Prisma.AboutPageUpdateWithoutAboutBottomImageInput,
-    Prisma.AboutPageUncheckedUpdateWithoutAboutBottomImageInput
-  >;
-};
-
-export type AboutPageUpdateWithoutAboutBottomImageInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string;
-  aboutBottomTitle?: Prisma.StringFieldUpdateOperationsInput | string;
-  aboutBottomSubTitle?: Prisma.StringFieldUpdateOperationsInput | string;
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
-  aboutTopImage?: Prisma.FileInstanceUpdateOneWithoutAboutPageTopImagesNestedInput;
-};
-
-export type AboutPageUncheckedUpdateWithoutAboutBottomImageInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string;
-  aboutTopImageId?:
-    | Prisma.NullableStringFieldUpdateOperationsInput
-    | string
-    | null;
-  aboutBottomTitle?: Prisma.StringFieldUpdateOperationsInput | string;
-  aboutBottomSubTitle?: Prisma.StringFieldUpdateOperationsInput | string;
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
 };
 
 export type AboutPageSelect<
@@ -651,14 +362,11 @@ export type AboutPageSelect<
 > = runtime.Types.Extensions.GetSelect<
   {
     id?: boolean;
-    aboutTopImageId?: boolean;
-    aboutBottonImageId?: boolean;
-    aboutBottomTitle?: boolean;
-    aboutBottomSubTitle?: boolean;
+    site?: boolean;
+    aboutTitle?: boolean;
+    aboutDescription?: boolean;
     createdAt?: boolean;
     updatedAt?: boolean;
-    aboutTopImage?: boolean | Prisma.AboutPage$aboutTopImageArgs<ExtArgs>;
-    aboutBottomImage?: boolean | Prisma.AboutPage$aboutBottomImageArgs<ExtArgs>;
   },
   ExtArgs['result']['aboutPage']
 >;
@@ -669,14 +377,11 @@ export type AboutPageSelectCreateManyAndReturn<
 > = runtime.Types.Extensions.GetSelect<
   {
     id?: boolean;
-    aboutTopImageId?: boolean;
-    aboutBottonImageId?: boolean;
-    aboutBottomTitle?: boolean;
-    aboutBottomSubTitle?: boolean;
+    site?: boolean;
+    aboutTitle?: boolean;
+    aboutDescription?: boolean;
     createdAt?: boolean;
     updatedAt?: boolean;
-    aboutTopImage?: boolean | Prisma.AboutPage$aboutTopImageArgs<ExtArgs>;
-    aboutBottomImage?: boolean | Prisma.AboutPage$aboutBottomImageArgs<ExtArgs>;
   },
   ExtArgs['result']['aboutPage']
 >;
@@ -687,24 +392,20 @@ export type AboutPageSelectUpdateManyAndReturn<
 > = runtime.Types.Extensions.GetSelect<
   {
     id?: boolean;
-    aboutTopImageId?: boolean;
-    aboutBottonImageId?: boolean;
-    aboutBottomTitle?: boolean;
-    aboutBottomSubTitle?: boolean;
+    site?: boolean;
+    aboutTitle?: boolean;
+    aboutDescription?: boolean;
     createdAt?: boolean;
     updatedAt?: boolean;
-    aboutTopImage?: boolean | Prisma.AboutPage$aboutTopImageArgs<ExtArgs>;
-    aboutBottomImage?: boolean | Prisma.AboutPage$aboutBottomImageArgs<ExtArgs>;
   },
   ExtArgs['result']['aboutPage']
 >;
 
 export type AboutPageSelectScalar = {
   id?: boolean;
-  aboutTopImageId?: boolean;
-  aboutBottonImageId?: boolean;
-  aboutBottomTitle?: boolean;
-  aboutBottomSubTitle?: boolean;
+  site?: boolean;
+  aboutTitle?: boolean;
+  aboutDescription?: boolean;
   createdAt?: boolean;
   updatedAt?: boolean;
 };
@@ -713,53 +414,22 @@ export type AboutPageOmit<
   ExtArgs extends runtime.Types.Extensions.InternalArgs =
     runtime.Types.Extensions.DefaultArgs,
 > = runtime.Types.Extensions.GetOmit<
-  | 'id'
-  | 'aboutTopImageId'
-  | 'aboutBottonImageId'
-  | 'aboutBottomTitle'
-  | 'aboutBottomSubTitle'
-  | 'createdAt'
-  | 'updatedAt',
+  'id' | 'site' | 'aboutTitle' | 'aboutDescription' | 'createdAt' | 'updatedAt',
   ExtArgs['result']['aboutPage']
 >;
-export type AboutPageInclude<
-  ExtArgs extends runtime.Types.Extensions.InternalArgs =
-    runtime.Types.Extensions.DefaultArgs,
-> = {
-  aboutTopImage?: boolean | Prisma.AboutPage$aboutTopImageArgs<ExtArgs>;
-  aboutBottomImage?: boolean | Prisma.AboutPage$aboutBottomImageArgs<ExtArgs>;
-};
-export type AboutPageIncludeCreateManyAndReturn<
-  ExtArgs extends runtime.Types.Extensions.InternalArgs =
-    runtime.Types.Extensions.DefaultArgs,
-> = {
-  aboutTopImage?: boolean | Prisma.AboutPage$aboutTopImageArgs<ExtArgs>;
-  aboutBottomImage?: boolean | Prisma.AboutPage$aboutBottomImageArgs<ExtArgs>;
-};
-export type AboutPageIncludeUpdateManyAndReturn<
-  ExtArgs extends runtime.Types.Extensions.InternalArgs =
-    runtime.Types.Extensions.DefaultArgs,
-> = {
-  aboutTopImage?: boolean | Prisma.AboutPage$aboutTopImageArgs<ExtArgs>;
-  aboutBottomImage?: boolean | Prisma.AboutPage$aboutBottomImageArgs<ExtArgs>;
-};
 
 export type $AboutPagePayload<
   ExtArgs extends runtime.Types.Extensions.InternalArgs =
     runtime.Types.Extensions.DefaultArgs,
 > = {
   name: 'AboutPage';
-  objects: {
-    aboutTopImage: Prisma.$FileInstancePayload<ExtArgs> | null;
-    aboutBottomImage: Prisma.$FileInstancePayload<ExtArgs> | null;
-  };
+  objects: {};
   scalars: runtime.Types.Extensions.GetPayloadResult<
     {
       id: string;
-      aboutTopImageId: string | null;
-      aboutBottonImageId: string | null;
-      aboutBottomTitle: string;
-      aboutBottomSubTitle: string;
+      site: $Enums.SiteType;
+      aboutTitle: string | null;
+      aboutDescription: string | null;
       createdAt: Date;
       updatedAt: Date;
     },
@@ -1312,34 +982,6 @@ export interface Prisma__AboutPageClient<
   GlobalOmitOptions = {},
 > extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: 'PrismaPromise';
-  aboutTopImage<T extends Prisma.AboutPage$aboutTopImageArgs<ExtArgs> = {}>(
-    args?: Prisma.Subset<T, Prisma.AboutPage$aboutTopImageArgs<ExtArgs>>,
-  ): Prisma.Prisma__FileInstanceClient<
-    runtime.Types.Result.GetResult<
-      Prisma.$FileInstancePayload<ExtArgs>,
-      T,
-      'findUniqueOrThrow',
-      GlobalOmitOptions
-    > | null,
-    null,
-    ExtArgs,
-    GlobalOmitOptions
-  >;
-  aboutBottomImage<
-    T extends Prisma.AboutPage$aboutBottomImageArgs<ExtArgs> = {},
-  >(
-    args?: Prisma.Subset<T, Prisma.AboutPage$aboutBottomImageArgs<ExtArgs>>,
-  ): Prisma.Prisma__FileInstanceClient<
-    runtime.Types.Result.GetResult<
-      Prisma.$FileInstancePayload<ExtArgs>,
-      T,
-      'findUniqueOrThrow',
-      GlobalOmitOptions
-    > | null,
-    null,
-    ExtArgs,
-    GlobalOmitOptions
-  >;
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1383,10 +1025,9 @@ export interface Prisma__AboutPageClient<
  */
 export interface AboutPageFieldRefs {
   readonly id: Prisma.FieldRef<'AboutPage', 'String'>;
-  readonly aboutTopImageId: Prisma.FieldRef<'AboutPage', 'String'>;
-  readonly aboutBottonImageId: Prisma.FieldRef<'AboutPage', 'String'>;
-  readonly aboutBottomTitle: Prisma.FieldRef<'AboutPage', 'String'>;
-  readonly aboutBottomSubTitle: Prisma.FieldRef<'AboutPage', 'String'>;
+  readonly site: Prisma.FieldRef<'AboutPage', 'SiteType'>;
+  readonly aboutTitle: Prisma.FieldRef<'AboutPage', 'String'>;
+  readonly aboutDescription: Prisma.FieldRef<'AboutPage', 'String'>;
   readonly createdAt: Prisma.FieldRef<'AboutPage', 'DateTime'>;
   readonly updatedAt: Prisma.FieldRef<'AboutPage', 'DateTime'>;
 }
@@ -1407,10 +1048,6 @@ export type AboutPageFindUniqueArgs<
    * Omit specific fields from the AboutPage
    */
   omit?: Prisma.AboutPageOmit<ExtArgs> | null;
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.AboutPageInclude<ExtArgs> | null;
   /**
    * Filter, which AboutPage to fetch.
    */
@@ -1433,10 +1070,6 @@ export type AboutPageFindUniqueOrThrowArgs<
    */
   omit?: Prisma.AboutPageOmit<ExtArgs> | null;
   /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.AboutPageInclude<ExtArgs> | null;
-  /**
    * Filter, which AboutPage to fetch.
    */
   where: Prisma.AboutPageWhereUniqueInput;
@@ -1457,10 +1090,6 @@ export type AboutPageFindFirstArgs<
    * Omit specific fields from the AboutPage
    */
   omit?: Prisma.AboutPageOmit<ExtArgs> | null;
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.AboutPageInclude<ExtArgs> | null;
   /**
    * Filter, which AboutPage to fetch.
    */
@@ -1517,10 +1146,6 @@ export type AboutPageFindFirstOrThrowArgs<
    */
   omit?: Prisma.AboutPageOmit<ExtArgs> | null;
   /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.AboutPageInclude<ExtArgs> | null;
-  /**
    * Filter, which AboutPage to fetch.
    */
   where?: Prisma.AboutPageWhereInput;
@@ -1576,10 +1201,6 @@ export type AboutPageFindManyArgs<
    */
   omit?: Prisma.AboutPageOmit<ExtArgs> | null;
   /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.AboutPageInclude<ExtArgs> | null;
-  /**
    * Filter, which AboutPages to fetch.
    */
   where?: Prisma.AboutPageWhereInput;
@@ -1630,10 +1251,6 @@ export type AboutPageCreateArgs<
    */
   omit?: Prisma.AboutPageOmit<ExtArgs> | null;
   /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.AboutPageInclude<ExtArgs> | null;
-  /**
    * The data needed to create a AboutPage.
    */
   data: Prisma.XOR<
@@ -1676,10 +1293,6 @@ export type AboutPageCreateManyAndReturnArgs<
    */
   data: Prisma.AboutPageCreateManyInput | Prisma.AboutPageCreateManyInput[];
   skipDuplicates?: boolean;
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.AboutPageIncludeCreateManyAndReturn<ExtArgs> | null;
 };
 
 /**
@@ -1697,10 +1310,6 @@ export type AboutPageUpdateArgs<
    * Omit specific fields from the AboutPage
    */
   omit?: Prisma.AboutPageOmit<ExtArgs> | null;
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.AboutPageInclude<ExtArgs> | null;
   /**
    * The data needed to update a AboutPage.
    */
@@ -1768,10 +1377,6 @@ export type AboutPageUpdateManyAndReturnArgs<
    * Limit how many AboutPages to update.
    */
   limit?: number;
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.AboutPageIncludeUpdateManyAndReturn<ExtArgs> | null;
 };
 
 /**
@@ -1789,10 +1394,6 @@ export type AboutPageUpsertArgs<
    * Omit specific fields from the AboutPage
    */
   omit?: Prisma.AboutPageOmit<ExtArgs> | null;
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.AboutPageInclude<ExtArgs> | null;
   /**
    * The filter to search for the AboutPage to update in case it exists.
    */
@@ -1829,10 +1430,6 @@ export type AboutPageDeleteArgs<
    */
   omit?: Prisma.AboutPageOmit<ExtArgs> | null;
   /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.AboutPageInclude<ExtArgs> | null;
-  /**
    * Filter which AboutPage to delete.
    */
   where: Prisma.AboutPageWhereUniqueInput;
@@ -1856,50 +1453,6 @@ export type AboutPageDeleteManyArgs<
 };
 
 /**
- * AboutPage.aboutTopImage
- */
-export type AboutPage$aboutTopImageArgs<
-  ExtArgs extends runtime.Types.Extensions.InternalArgs =
-    runtime.Types.Extensions.DefaultArgs,
-> = {
-  /**
-   * Select specific fields to fetch from the FileInstance
-   */
-  select?: Prisma.FileInstanceSelect<ExtArgs> | null;
-  /**
-   * Omit specific fields from the FileInstance
-   */
-  omit?: Prisma.FileInstanceOmit<ExtArgs> | null;
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.FileInstanceInclude<ExtArgs> | null;
-  where?: Prisma.FileInstanceWhereInput;
-};
-
-/**
- * AboutPage.aboutBottomImage
- */
-export type AboutPage$aboutBottomImageArgs<
-  ExtArgs extends runtime.Types.Extensions.InternalArgs =
-    runtime.Types.Extensions.DefaultArgs,
-> = {
-  /**
-   * Select specific fields to fetch from the FileInstance
-   */
-  select?: Prisma.FileInstanceSelect<ExtArgs> | null;
-  /**
-   * Omit specific fields from the FileInstance
-   */
-  omit?: Prisma.FileInstanceOmit<ExtArgs> | null;
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.FileInstanceInclude<ExtArgs> | null;
-  where?: Prisma.FileInstanceWhereInput;
-};
-
-/**
  * AboutPage without action
  */
 export type AboutPageDefaultArgs<
@@ -1914,8 +1467,4 @@ export type AboutPageDefaultArgs<
    * Omit specific fields from the AboutPage
    */
   omit?: Prisma.AboutPageOmit<ExtArgs> | null;
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.AboutPageInclude<ExtArgs> | null;
 };

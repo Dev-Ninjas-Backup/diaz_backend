@@ -1,53 +1,59 @@
 model AboutPage {
   id String @id @default(uuid())
 
-  aboutTopImageId String?       @unique
-  aboutTopImage   FileInstance? @relation("AboutPageTopImage", fields: [aboutTopImageId], references: [id])
+  site              SiteType @default(FLORIDA)
+  aboutTitle        String?  @db.VarChar(255)
+  aboutDescription  String?
 
-  aboutBottonImageId String?       @unique
-  aboutBottomImage   FileInstance? @relation("AboutPageBottomImage", fields: [aboutBottonImageId], references: [id])
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 
-  aboutBottomTitle    String   @db.VarChar(255)
-  aboutBottomSubTitle String   @db.VarChar(255)
-  createdAt           DateTime @default(now())
-  updatedAt           DateTime @updatedAt
-
+  @@unique([site])
   @@map("aboutpage")
 }
 
 model ContactPage {
   id String @id @default(uuid())
 
-  contactTopImageId String       @unique
-  contactTopImage   FileInstance @relation("contactTopImage", fields: [contactTopImageId], references: [id])
+  site                SiteType @default(FLORIDA)
+  contactTitle        String?  @db.VarChar(255)
+  contactDescription  String?
 
-  contactBottomImageId String       @unique
-  contactBottomImage   FileInstance @relation("contactBottomImage", fields: [contactBottomImageId], references: [id])
+  contactTopImageId String?       @unique
+  contactTopImage   FileInstance? @relation("contactTopImage", fields: [contactTopImageId], references: [id])
+
+  contactBottomImageId String?       @unique
+  contactBottomImage   FileInstance? @relation("contactBottomImage", fields: [contactBottomImageId], references: [id])
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
+  @@unique([site])
   @@map("contactpage")
 }
 
 model PrivacyPolicy {
   id String @id @default(uuid())
 
-  privacyTitle       String   @db.VarChar(255)
+  site              SiteType @default(FLORIDA)
+  privacyTitle      String   @db.VarChar(255)
   privacyDescription String
-  createdAt          DateTime @default(now())
-  updatedAt          DateTime @updatedAt
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
 
+  @@unique([site])
   @@map("privacypolicy")
 }
 
 model TermsOfServices {
   id String @id @default(uuid())
 
-  termsTitle       String   @db.VarChar(255)
-  termsDescription String
-  createdAt        DateTime @default(now())
-  updatedAt        DateTime @updatedAt
+  site              SiteType @default(FLORIDA)
+  termsTitle        String   @db.VarChar(255)
+  termsDescription  String
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
 
+  @@unique([site])
   @@map("terms_of_services")
 }

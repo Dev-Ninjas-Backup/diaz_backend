@@ -16,21 +16,19 @@ import {
   ApiResponse,
   ApiTags,
 } from '@nestjs/swagger';
+import { CreateAboutUsDto } from './dto/create-aboutus.dto';
+import { UpdateAboutUsDto } from './dto/update-aboutus.dto';
+import { AboutUsService } from './services/aboutus.service';
 import { SiteType } from 'generated/enums';
-import {
-  CreatePrivacyPolicyDto,
-  UpdatePrivacyPolicyDto,
-} from './dto/privacy-policy.dto';
-import { PrivacyPolicyService } from './privacy-policy.service';
 
-@ApiTags('Admin Privacy Policy')
-@Controller('privacy-policy')
-export class PrivacyPolicyController {
-  constructor(private readonly privacyPolicyService: PrivacyPolicyService) {}
+@ApiTags('Admin About Us')
+@Controller('aboutus')
+export class AboutUsController {
+  constructor(private readonly aboutUsService: AboutUsService) {}
 
   @Get()
   @HttpCode(HttpStatus.OK)
-  @ApiOperation({ summary: 'Get privacy policy for a specific site' })
+  @ApiOperation({ summary: 'Get About Us content for a specific site' })
   @ApiQuery({
     name: 'site',
     enum: SiteType,
@@ -39,7 +37,7 @@ export class PrivacyPolicyController {
   })
   @ApiResponse({
     status: 200,
-    description: 'Privacy policy retrieved successfully',
+    description: 'About Us content retrieved successfully',
   })
   @ApiResponse({
     status: 400,
@@ -47,22 +45,22 @@ export class PrivacyPolicyController {
   })
   @ApiResponse({
     status: 404,
-    description: 'Privacy policy not found for this site',
+    description: 'About Us content not found for this site',
   })
-  async getPrivacyPolicy(@Query('site') site: SiteType) {
+  async getAboutUs(@Query('site') site: SiteType) {
     if (!site || !Object.values(SiteType).includes(site)) {
       throw new BadRequestException(
         `Invalid site. Allowed values: ${Object.values(SiteType).join(', ')}`,
       );
     }
 
-    return this.privacyPolicyService.getPrivacyPolicy(site);
+    return this.aboutUsService.getAboutUs(site);
   }
 
   @Post('create')
   @HttpCode(HttpStatus.CREATED)
   @ApiOperation({
-    summary: 'Create privacy policy for a site (only if not exists)',
+    summary: 'Create About Us content for a site (only if not exists)',
   })
   @ApiQuery({
     name: 'site',
@@ -70,19 +68,19 @@ export class PrivacyPolicyController {
     example: SiteType.FLORIDA,
     description: 'Site type (FLORIDA or JUPITER)',
   })
-  @ApiBody({ type: CreatePrivacyPolicyDto })
+  @ApiBody({ type: CreateAboutUsDto })
   @ApiResponse({
     status: 201,
-    description: 'Privacy policy created successfully',
+    description: 'About Us content created successfully',
   })
   @ApiResponse({
     status: 400,
     description:
-      'Privacy policy already exists for this site. Use PATCH to update.',
+      'About Us content already exists for this site. Use PATCH to update.',
   })
-  async createPrivacyPolicy(
+  async createAboutUs(
     @Query('site') site: SiteType,
-    @Body() createPrivacyPolicyDto: CreatePrivacyPolicyDto,
+    @Body() createAboutUsDto: CreateAboutUsDto,
   ) {
     if (!site || !Object.values(SiteType).includes(site)) {
       throw new BadRequestException(
@@ -90,33 +88,31 @@ export class PrivacyPolicyController {
       );
     }
 
-    return this.privacyPolicyService.createPrivacyPolicy(
-      site,
-      createPrivacyPolicyDto,
-    );
+    return this.aboutUsService.createAboutUs(site, createAboutUsDto);
   }
 
   @Patch()
   @HttpCode(HttpStatus.OK)
-  @ApiOperation({ summary: 'Update privacy policy for a site' })
+  @ApiOperation({ summary: 'Update About Us content for a site' })
   @ApiQuery({
     name: 'site',
     enum: SiteType,
     example: SiteType.FLORIDA,
     description: 'Site type (FLORIDA or JUPITER)',
   })
-  @ApiBody({ type: UpdatePrivacyPolicyDto })
+  @ApiBody({ type: UpdateAboutUsDto })
   @ApiResponse({
     status: 200,
-    description: 'Privacy policy updated successfully',
+    description: 'About Us content updated successfully',
   })
   @ApiResponse({
     status: 404,
-    description: 'Privacy policy not found for this site. Use POST to create.',
+    description:
+      'About Us content not found for this site. Use POST to create.',
   })
-  async updatePrivacyPolicy(
+  async updateAboutUs(
     @Query('site') site: SiteType,
-    @Body() updatePrivacyPolicyDto: UpdatePrivacyPolicyDto,
+    @Body() updateAboutUsDto: UpdateAboutUsDto,
   ) {
     if (!site || !Object.values(SiteType).includes(site)) {
       throw new BadRequestException(
@@ -124,9 +120,6 @@ export class PrivacyPolicyController {
       );
     }
 
-    return this.privacyPolicyService.updatePrivacyPolicy(
-      site,
-      updatePrivacyPolicyDto,
-    );
+    return this.aboutUsService.updateAboutUs(site, updateAboutUsDto);
   }
 }

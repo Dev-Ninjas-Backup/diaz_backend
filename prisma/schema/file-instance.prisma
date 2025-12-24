@@ -19,9 +19,6 @@ model FileInstance {
   contactTopImages    ContactPage? @relation("contactTopImage")
   contactBottomImages ContactPage? @relation("contactBottomImage")
 
-  aboutPageTopImages    AboutPage? @relation("AboutPageTopImage")
-  aboutPageBottonImages AboutPage? @relation("AboutPageBottomImage")
-
   featuredBrandLogos FeaturedBrands[] @relation("FeaturedBrandLogo")
 
   blogs           Blog[]
