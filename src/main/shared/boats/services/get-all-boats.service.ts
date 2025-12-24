@@ -177,45 +177,144 @@ export class GetAllBoatsService {
 
     // Build specifications as { key, value } pairs for consistent consumption
     const buildSpecs = (b: any) => {
-      const specs: Array<{
-        key: string;
-        value: string | number | null | undefined;
-      }> = [];
+      const specs: Array<{ key: string; value: string | number }> = [];
 
-      const push = (k: string, v: any) =>
-        specs.push({
-          key: k,
-          value: v ?? null,
-        });
+      const push = (k: string, v: any) => {
+        if (v === undefined || v === null || v === '' || v === 'null') return;
+        specs.push({ key: k, value: v });
+      };
 
-      push('Make', b?.MakeString ?? b?.Make ?? b?.make);
+      // ---- BASE / COMMON FIELDS ----
+      push('Brand Make', b?.MakeString ?? b?.Make ?? b?.make);
       push('Model', b?.Model ?? b?.model);
-      push('Year', b?.ModelYear ?? b?.buildYear ?? b?.year ?? null);
-      push('Condition', b?.SaleClassCode ?? b?.condition ?? null);
-      push('Length', b?.NominalLength ?? b?.LengthOverall ?? b?.length ?? null);
-      push('Beam', b?.BeamMeasure ?? b?.beam ?? null);
-      push('Draft', b?.MaxDraft ?? b?.draft ?? null);
-      push('Fuel', b?.Engines?.[0]?.Fuel ?? b?.fuelType ?? null);
+      push('Built Year', b?.ModelYear ?? b?.buildYear ?? b?.year);
+      push('Length', b?.NominalLength ?? b?.LengthOverall ?? b?.length);
+      push('Beam Size', b?.BeamMeasure ?? b?.beam);
+      push('Max Draft', b?.MaxDraft ?? b?.draft);
 
+      push('Condition', b?.SaleClassCode ?? b?.condition);
+      push('Class', b?.BoatClassCode?.[0] ?? b?.Class ?? b?.class);
+      push(
+        'Material',
+        b?.BoatHullMaterialCode ?? b?.HullMaterial ?? b?.material,
+      );
+
+      // ---- ENGINES ----
       if (Array.isArray(b?.Engines) && b.Engines.length) {
+        push('Number Of Engines', b.Engines.length);
+
         b.Engines.forEach((e: any, i: number) => {
           const idx = i + 1;
-          push(`Engine ${idx} - Make`, e?.Make ?? e?.make ?? null);
-          push(`Engine ${idx} - Model`, e?.Model ?? e?.model ?? null);
-          const power = e?.EnginePower ?? e?.horsepower ?? null;
-          push(`Engine ${idx} - Power`, power);
+          push(`Engine ${idx} - Make`, e?.Make);
+          push(`Engine ${idx} - Model`, e?.Model);
+          push(`Engine ${idx} - Fuel Type`, e?.Fuel);
+          push(`Engine ${idx} - Power`, e?.EnginePower ?? e?.horsepower);
+          push(`Engine ${idx} - Hours`, e?.Hours);
+          push(`Engine ${idx} - Type`, e?.Type);
+          push(`Engine ${idx} - Propeller Type`, e?.PropellerType);
         });
       }
 
-      // remove duplicates and empty values while keeping order
+      // ---- CABINS & HEADS ----
+      push('Number Of Cabins', b?.CabinsCountNumeric ?? b?.cabins);
+      push('Number Of Heads', b?.HeadsCountNumeric ?? b?.heads);
+
+      // ---- LOCATION ----
+      push('City', b?.BoatCityName ?? b?.city);
+      push('State', b?.BoatStateCode ?? b?.state);
+      push('Country', b?.BoatCountryID ?? b?.country);
+
+      if (b?.Office) {
+        push('Office City', b.Office.City);
+        push('Office Address', b.Office.PostalAddress);
+        push('Office State', b.Office.State);
+        push('Office Country', b.Office.Country);
+      }
+
+      // ---- NAME / TITLE ----
+      push('Name', b?.BoatName ?? b?.name);
+      push('Listing Title', b?.ListingTitle);
+
+      // ---- PRICE ----
+      push('Price', b?.Price ?? b?.OriginalPrice ?? b?.NormPrice);
+
+      // ---- ADDITIONAL OPTIONAL FIELDS ----
+      push('Fuel Type', b?.fuelType ?? b?.Engines?.[0]?.Fuel);
+      push('Drive Type', b?.DriveTypeCode);
+      push('Hull ID Exists', b?.HasBoatHullID ? 'Yes' : undefined);
+      push('Co-Op Indicator', b?.CoOpIndicator ? 'Yes' : undefined);
+      push('Sales Status', b?.SalesStatus);
+
+      push('Builder Name', b?.BuilderName);
+      push('Total Engine Power', b?.TotalEnginePowerQuantity);
+      push('Nominal Length', b?.NominalLength);
+      push('Length Overall', b?.LengthOverall);
+
+      push('Boat Class Code', b?.BoatClassCode?.join(', '));
+
+      // ---- DIMENSIONS ----
+      push('Norm Nominal Length', b?.NormNominalLength);
+
+      // ---- TIMESTAMPS ----
+      push('Last Modified', b?.LastModificationDate);
+      push('Item Received Date', b?.ItemReceivedDate);
+      push('IMT Timestamp', b?.IMTTimeStamp);
+
+      // ---- REMOVE DUPLICATES ----
       const seen = new Set();
       return specs.filter((s) => {
         const key = `${s.key}:${s.value}`;
-        if (!s.value) return false;
         if (seen.has(key)) return false;
         seen.add(key);
         return true;
       });
+    };
+
+    // Build frontend-required detailed specifications
+    const buildDetailedSpecs = (b: any) => {
+      const get = (...keys: string[]) => {
+        for (const k of keys) {
+          if (b?.[k] !== undefined && b?.[k] !== null && b?.[k] !== '') {
+            return b[k];
+          }
+        }
+        return null;
+      };
+
+      const numberOfEngines = Array.isArray(b?.Engines)
+        ? b.Engines.length
+        : (b?.numberOfEngines ?? null);
+
+      const location =
+        b?.Location ??
+        (b?.Office
+          ? [b.Office.City, b.Office.StateProv, b.Office.Country]
+              .filter(Boolean)
+              .join(', ')
+          : null);
+
+      return {
+        brandMake: get('MakeString', 'Make', 'make', 'manufacturer'),
+        model: get('Model', 'model'),
+        builtYear: get('ModelYear', 'buildYear', 'year'),
+        length:
+          get('NominalLength', 'LengthOverall', 'length') ??
+          (b?.Specs?.length ? `${b.Specs.length}` : null),
+        numberOfEngines,
+        class: get('BoatClassCode', 'Class', 'class'),
+        material: get('HullMaterial', 'material'),
+        numberOfCabins: get('Cabins', 'cabinCount', 'numberOfCabins'),
+        numberOfHeads: get('Heads', 'bathrooms', 'numberOfHeads'),
+        beamSize: get('BeamMeasure', 'beam', 'Beam'),
+        fuelType: get('FuelType', 'fuelType') ?? b?.Engines?.[0]?.Fuel ?? null,
+        maxDraft: get('MaxDraft', 'draft'),
+        boatName: get('BoatName', 'name'),
+        location,
+        condition: get('SaleClassCode', 'condition'),
+        price:
+          get('Price', 'OriginalPrice') ??
+          (b?.NormPrice != null ? `${b.NormPrice}` : null),
+      };
     };
 
     // Additional info (descriptions + office/contact + external links)
@@ -300,7 +399,10 @@ export class GetAllBoatsService {
         boat?.OriginalPrice ??
         (boat?.NormPrice != null ? `${boat.NormPrice}` : null),
       source: boat?.Source ?? query.source ?? null,
+
       specifications: buildSpecs(boat),
+      detailedSpecs: buildDetailedSpecs(boat),
+
       images: extractImages(boat),
       aditionalInfo: buildAdditional(boat),
       raw: boat,
