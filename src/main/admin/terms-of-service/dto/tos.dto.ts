@@ -1,7 +1,7 @@
-import { ApiProperty } from '@nestjs/swagger';
-import { IsString } from 'class-validator';
+import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
+import { IsString, IsOptional } from 'class-validator';
 
-export class UpdateTermsOfServicesDto {
+export class CreateTermsOfServicesDto {
   @IsString()
   @ApiProperty({
     example: 'Terms of Service',
@@ -15,4 +15,22 @@ export class UpdateTermsOfServicesDto {
     description: 'Description of the Terms of Service',
   })
   termsDescription: string;
+}
+
+export class UpdateTermsOfServicesDto {
+  @IsString()
+  @IsOptional()
+  @ApiPropertyOptional({
+    example: 'Terms of Service',
+    description: 'Title of the Terms of Service',
+  })
+  termsTitle?: string;
+
+  @IsString()
+  @IsOptional()
+  @ApiPropertyOptional({
+    example: 'These are the terms...',
+    description: 'Description of the Terms of Service',
+  })
+  termsDescription?: string;
 }

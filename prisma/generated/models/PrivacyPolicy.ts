@@ -26,6 +26,7 @@ export type AggregatePrivacyPolicy = {
 
 export type PrivacyPolicyMinAggregateOutputType = {
   id: string | null;
+  site: $Enums.SiteType | null;
   privacyTitle: string | null;
   privacyDescription: string | null;
   createdAt: Date | null;
@@ -34,6 +35,7 @@ export type PrivacyPolicyMinAggregateOutputType = {
 
 export type PrivacyPolicyMaxAggregateOutputType = {
   id: string | null;
+  site: $Enums.SiteType | null;
   privacyTitle: string | null;
   privacyDescription: string | null;
   createdAt: Date | null;
@@ -42,6 +44,7 @@ export type PrivacyPolicyMaxAggregateOutputType = {
 
 export type PrivacyPolicyCountAggregateOutputType = {
   id: number;
+  site: number;
   privacyTitle: number;
   privacyDescription: number;
   createdAt: number;
@@ -51,6 +54,7 @@ export type PrivacyPolicyCountAggregateOutputType = {
 
 export type PrivacyPolicyMinAggregateInputType = {
   id?: true;
+  site?: true;
   privacyTitle?: true;
   privacyDescription?: true;
   createdAt?: true;
@@ -59,6 +63,7 @@ export type PrivacyPolicyMinAggregateInputType = {
 
 export type PrivacyPolicyMaxAggregateInputType = {
   id?: true;
+  site?: true;
   privacyTitle?: true;
   privacyDescription?: true;
   createdAt?: true;
@@ -67,6 +72,7 @@ export type PrivacyPolicyMaxAggregateInputType = {
 
 export type PrivacyPolicyCountAggregateInputType = {
   id?: true;
+  site?: true;
   privacyTitle?: true;
   privacyDescription?: true;
   createdAt?: true;
@@ -159,6 +165,7 @@ export type PrivacyPolicyGroupByArgs<
 
 export type PrivacyPolicyGroupByOutputType = {
   id: string;
+  site: $Enums.SiteType;
   privacyTitle: string;
   privacyDescription: string;
   createdAt: Date;
@@ -187,6 +194,7 @@ export type PrivacyPolicyWhereInput = {
   OR?: Prisma.PrivacyPolicyWhereInput[];
   NOT?: Prisma.PrivacyPolicyWhereInput | Prisma.PrivacyPolicyWhereInput[];
   id?: Prisma.StringFilter<'PrivacyPolicy'> | string;
+  site?: Prisma.EnumSiteTypeFilter<'PrivacyPolicy'> | $Enums.SiteType;
   privacyTitle?: Prisma.StringFilter<'PrivacyPolicy'> | string;
   privacyDescription?: Prisma.StringFilter<'PrivacyPolicy'> | string;
   createdAt?: Prisma.DateTimeFilter<'PrivacyPolicy'> | Date | string;
@@ -195,6 +203,7 @@ export type PrivacyPolicyWhereInput = {
 
 export type PrivacyPolicyOrderByWithRelationInput = {
   id?: Prisma.SortOrder;
+  site?: Prisma.SortOrder;
   privacyTitle?: Prisma.SortOrder;
   privacyDescription?: Prisma.SortOrder;
   createdAt?: Prisma.SortOrder;
@@ -204,6 +213,7 @@ export type PrivacyPolicyOrderByWithRelationInput = {
 export type PrivacyPolicyWhereUniqueInput = Prisma.AtLeast<
   {
     id?: string;
+    site?: $Enums.SiteType;
     AND?: Prisma.PrivacyPolicyWhereInput | Prisma.PrivacyPolicyWhereInput[];
     OR?: Prisma.PrivacyPolicyWhereInput[];
     NOT?: Prisma.PrivacyPolicyWhereInput | Prisma.PrivacyPolicyWhereInput[];
@@ -212,11 +222,12 @@ export type PrivacyPolicyWhereUniqueInput = Prisma.AtLeast<
     createdAt?: Prisma.DateTimeFilter<'PrivacyPolicy'> | Date | string;
     updatedAt?: Prisma.DateTimeFilter<'PrivacyPolicy'> | Date | string;
   },
-  'id'
+  'id' | 'site'
 >;
 
 export type PrivacyPolicyOrderByWithAggregationInput = {
   id?: Prisma.SortOrder;
+  site?: Prisma.SortOrder;
   privacyTitle?: Prisma.SortOrder;
   privacyDescription?: Prisma.SortOrder;
   createdAt?: Prisma.SortOrder;
@@ -235,6 +246,9 @@ export type PrivacyPolicyScalarWhereWithAggregatesInput = {
     | Prisma.PrivacyPolicyScalarWhereWithAggregatesInput
     | Prisma.PrivacyPolicyScalarWhereWithAggregatesInput[];
   id?: Prisma.StringWithAggregatesFilter<'PrivacyPolicy'> | string;
+  site?:
+    | Prisma.EnumSiteTypeWithAggregatesFilter<'PrivacyPolicy'>
+    | $Enums.SiteType;
   privacyTitle?: Prisma.StringWithAggregatesFilter<'PrivacyPolicy'> | string;
   privacyDescription?:
     | Prisma.StringWithAggregatesFilter<'PrivacyPolicy'>
@@ -251,6 +265,7 @@ export type PrivacyPolicyScalarWhereWithAggregatesInput = {
 
 export type PrivacyPolicyCreateInput = {
   id?: string;
+  site?: $Enums.SiteType;
   privacyTitle: string;
   privacyDescription: string;
   createdAt?: Date | string;
@@ -259,6 +274,7 @@ export type PrivacyPolicyCreateInput = {
 
 export type PrivacyPolicyUncheckedCreateInput = {
   id?: string;
+  site?: $Enums.SiteType;
   privacyTitle: string;
   privacyDescription: string;
   createdAt?: Date | string;
@@ -267,6 +283,7 @@ export type PrivacyPolicyUncheckedCreateInput = {
 
 export type PrivacyPolicyUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string;
+  site?: Prisma.EnumSiteTypeFieldUpdateOperationsInput | $Enums.SiteType;
   privacyTitle?: Prisma.StringFieldUpdateOperationsInput | string;
   privacyDescription?: Prisma.StringFieldUpdateOperationsInput | string;
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
@@ -275,6 +292,7 @@ export type PrivacyPolicyUpdateInput = {
 
 export type PrivacyPolicyUncheckedUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string;
+  site?: Prisma.EnumSiteTypeFieldUpdateOperationsInput | $Enums.SiteType;
   privacyTitle?: Prisma.StringFieldUpdateOperationsInput | string;
   privacyDescription?: Prisma.StringFieldUpdateOperationsInput | string;
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
@@ -283,6 +301,7 @@ export type PrivacyPolicyUncheckedUpdateInput = {
 
 export type PrivacyPolicyCreateManyInput = {
   id?: string;
+  site?: $Enums.SiteType;
   privacyTitle: string;
   privacyDescription: string;
   createdAt?: Date | string;
@@ -291,6 +310,7 @@ export type PrivacyPolicyCreateManyInput = {
 
 export type PrivacyPolicyUpdateManyMutationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string;
+  site?: Prisma.EnumSiteTypeFieldUpdateOperationsInput | $Enums.SiteType;
   privacyTitle?: Prisma.StringFieldUpdateOperationsInput | string;
   privacyDescription?: Prisma.StringFieldUpdateOperationsInput | string;
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
@@ -299,6 +319,7 @@ export type PrivacyPolicyUpdateManyMutationInput = {
 
 export type PrivacyPolicyUncheckedUpdateManyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string;
+  site?: Prisma.EnumSiteTypeFieldUpdateOperationsInput | $Enums.SiteType;
   privacyTitle?: Prisma.StringFieldUpdateOperationsInput | string;
   privacyDescription?: Prisma.StringFieldUpdateOperationsInput | string;
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
@@ -307,6 +328,7 @@ export type PrivacyPolicyUncheckedUpdateManyInput = {
 
 export type PrivacyPolicyCountOrderByAggregateInput = {
   id?: Prisma.SortOrder;
+  site?: Prisma.SortOrder;
   privacyTitle?: Prisma.SortOrder;
   privacyDescription?: Prisma.SortOrder;
   createdAt?: Prisma.SortOrder;
@@ -315,6 +337,7 @@ export type PrivacyPolicyCountOrderByAggregateInput = {
 
 export type PrivacyPolicyMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder;
+  site?: Prisma.SortOrder;
   privacyTitle?: Prisma.SortOrder;
   privacyDescription?: Prisma.SortOrder;
   createdAt?: Prisma.SortOrder;
@@ -323,6 +346,7 @@ export type PrivacyPolicyMaxOrderByAggregateInput = {
 
 export type PrivacyPolicyMinOrderByAggregateInput = {
   id?: Prisma.SortOrder;
+  site?: Prisma.SortOrder;
   privacyTitle?: Prisma.SortOrder;
   privacyDescription?: Prisma.SortOrder;
   createdAt?: Prisma.SortOrder;
@@ -335,6 +359,7 @@ export type PrivacyPolicySelect<
 > = runtime.Types.Extensions.GetSelect<
   {
     id?: boolean;
+    site?: boolean;
     privacyTitle?: boolean;
     privacyDescription?: boolean;
     createdAt?: boolean;
@@ -349,6 +374,7 @@ export type PrivacyPolicySelectCreateManyAndReturn<
 > = runtime.Types.Extensions.GetSelect<
   {
     id?: boolean;
+    site?: boolean;
     privacyTitle?: boolean;
     privacyDescription?: boolean;
     createdAt?: boolean;
@@ -363,6 +389,7 @@ export type PrivacyPolicySelectUpdateManyAndReturn<
 > = runtime.Types.Extensions.GetSelect<
   {
     id?: boolean;
+    site?: boolean;
     privacyTitle?: boolean;
     privacyDescription?: boolean;
     createdAt?: boolean;
@@ -373,6 +400,7 @@ export type PrivacyPolicySelectUpdateManyAndReturn<
 
 export type PrivacyPolicySelectScalar = {
   id?: boolean;
+  site?: boolean;
   privacyTitle?: boolean;
   privacyDescription?: boolean;
   createdAt?: boolean;
@@ -383,7 +411,12 @@ export type PrivacyPolicyOmit<
   ExtArgs extends runtime.Types.Extensions.InternalArgs =
     runtime.Types.Extensions.DefaultArgs,
 > = runtime.Types.Extensions.GetOmit<
-  'id' | 'privacyTitle' | 'privacyDescription' | 'createdAt' | 'updatedAt',
+  | 'id'
+  | 'site'
+  | 'privacyTitle'
+  | 'privacyDescription'
+  | 'createdAt'
+  | 'updatedAt',
   ExtArgs['result']['privacyPolicy']
 >;
 
@@ -396,6 +429,7 @@ export type $PrivacyPolicyPayload<
   scalars: runtime.Types.Extensions.GetPayloadResult<
     {
       id: string;
+      site: $Enums.SiteType;
       privacyTitle: string;
       privacyDescription: string;
       createdAt: Date;
@@ -1002,6 +1036,7 @@ export interface Prisma__PrivacyPolicyClient<
  */
 export interface PrivacyPolicyFieldRefs {
   readonly id: Prisma.FieldRef<'PrivacyPolicy', 'String'>;
+  readonly site: Prisma.FieldRef<'PrivacyPolicy', 'SiteType'>;
   readonly privacyTitle: Prisma.FieldRef<'PrivacyPolicy', 'String'>;
   readonly privacyDescription: Prisma.FieldRef<'PrivacyPolicy', 'String'>;
   readonly createdAt: Prisma.FieldRef<'PrivacyPolicy', 'DateTime'>;

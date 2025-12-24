@@ -1,51 +1,133 @@
-import { Body, Controller, Get, Param, Patch, Post } from '@nestjs/common';
+import {
+  BadRequestException,
+  Body,
+  Controller,
+  Get,
+  HttpCode,
+  HttpStatus,
+  Patch,
+  Post,
+  Query,
+} from '@nestjs/common';
 import {
   ApiBody,
   ApiOperation,
-  ApiParam,
+  ApiQuery,
   ApiResponse,
   ApiTags,
 } from '@nestjs/swagger';
-import { UpdateTermsOfServicesDto } from './dto/tos.dto';
+import {
+  CreateTermsOfServicesDto,
+  UpdateTermsOfServicesDto,
+} from './dto/tos.dto';
 import { TermsofServicesService } from './terms-of-service.service';
+import { SiteType } from 'generated/enums';
 
-@ApiTags('Admin -- Terms of Service Page') // Groups in Swagger UI
+@ApiTags('Admin Terms of Service')
 @Controller('terms-of-service')
 export class TermsOfServiceController {
-  constructor(private readonly privacyPolicyService: TermsofServicesService) {}
+  constructor(private readonly termsOfServiceService: TermsofServicesService) {}
+
+  @Get()
+  @HttpCode(HttpStatus.OK)
+  @ApiOperation({ summary: 'Get Terms of Service for a specific site' })
+  @ApiQuery({
+    name: 'site',
+    enum: SiteType,
+    example: SiteType.FLORIDA,
+    description: 'Site type (FLORIDA or JUPITER)',
+  })
+  @ApiResponse({
+    status: 200,
+    description: 'Terms of Service retrieved successfully',
+  })
+  @ApiResponse({
+    status: 400,
+    description: 'Invalid site type',
+  })
+  @ApiResponse({
+    status: 404,
+    description: 'Terms of Service not found for this site',
+  })
+  async getTermsOfService(@Query('site') site: SiteType) {
+    if (!site || !Object.values(SiteType).includes(site)) {
+      throw new BadRequestException(
+        `Invalid site. Allowed values: ${Object.values(SiteType).join(', ')}`,
+      );
+    }
+
+    return this.termsOfServiceService.getTermsOfService(site);
+  }
 
   @Post('create')
-  @ApiOperation({ summary: 'Create a new Terms of Service entry' })
-  @ApiBody({ type: UpdateTermsOfServicesDto })
-  @ApiResponse({ status: 201, description: 'Terms created successfully.' })
-  @ApiResponse({ status: 400, description: 'Invalid input.' })
+  @HttpCode(HttpStatus.CREATED)
+  @ApiOperation({
+    summary: 'Create Terms of Service for a site (only if not exists)',
+  })
+  @ApiQuery({
+    name: 'site',
+    enum: SiteType,
+    example: SiteType.FLORIDA,
+    description: 'Site type (FLORIDA or JUPITER)',
+  })
+  @ApiBody({ type: CreateTermsOfServicesDto })
+  @ApiResponse({
+    status: 201,
+    description: 'Terms of Service created successfully',
+  })
+  @ApiResponse({
+    status: 400,
+    description:
+      'Terms of Service already exists for this site. Use PATCH to update.',
+  })
   async createTermsOfService(
-    @Body() createTermsOfServiceDto: UpdateTermsOfServicesDto,
+    @Query('site') site: SiteType,
+    @Body() createTermsOfServiceDto: CreateTermsOfServicesDto,
   ) {
-    return this.privacyPolicyService.createTermsOfService(
+    if (!site || !Object.values(SiteType).includes(site)) {
+      throw new BadRequestException(
+        `Invalid site. Allowed values: ${Object.values(SiteType).join(', ')}`,
+      );
+    }
+
+    return this.termsOfServiceService.createTermsOfService(
+      site,
       createTermsOfServiceDto,
     );
   }
 
-  @Patch('update/:id')
-  @ApiOperation({ summary: 'Update Terms of Service by ID' })
-  @ApiParam({ name: 'id', type: 'string', description: 'Terms of Service ID' })
+  @Patch()
+  @HttpCode(HttpStatus.OK)
+  @ApiOperation({ summary: 'Update Terms of Service for a site' })
+  @ApiQuery({
+    name: 'site',
+    enum: SiteType,
+    example: SiteType.FLORIDA,
+    description: 'Site type (FLORIDA or JUPITER)',
+  })
   @ApiBody({ type: UpdateTermsOfServicesDto })
-  @ApiResponse({ status: 200, description: 'Terms updated successfully.' })
-  @ApiResponse({ status: 404, description: 'Terms not found.' })
-  @ApiResponse({ status: 400, description: 'Invalid data.' })
+  @ApiResponse({
+    status: 200,
+    description: 'Terms of Service updated successfully',
+  })
+  @ApiResponse({
+    status: 404,
+    description:
+      'Terms of Service not found for this site. Use POST to create.',
+  })
   async updateTermsOfService(
+    @Query('site') site: SiteType,
     @Body() updateTermsOfServiceDto: UpdateTermsOfServicesDto,
-    @Param('id') id: string,
   ) {
-    return this.privacyPolicyService.updateTermsOfService(
-      id,
+    if (!site || !Object.values(SiteType).includes(site)) {
+      throw new BadRequestException(
+        `Invalid site. Allowed values: ${Object.values(SiteType).join(', ')}`,
+      );
+    }
+
+    return this.termsOfServiceService.updateTermsOfService(
+      site,
       updateTermsOfServiceDto,
     );
-  }
-
-  @Get('get/:id')
-  async getTermsOfService(@Param('id') id: string) {
-    return this.privacyPolicyService.getTermsOfServiceById(id);
   }
 }

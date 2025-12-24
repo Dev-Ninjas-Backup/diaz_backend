@@ -269,10 +269,9 @@ export type FloridaLeadScalarFieldEnum =
 
 export const AboutPageScalarFieldEnum = {
   id: 'id',
-  aboutTopImageId: 'aboutTopImageId',
-  aboutBottonImageId: 'aboutBottonImageId',
-  aboutBottomTitle: 'aboutBottomTitle',
-  aboutBottomSubTitle: 'aboutBottomSubTitle',
+  site: 'site',
+  aboutTitle: 'aboutTitle',
+  aboutDescription: 'aboutDescription',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
 } as const;
@@ -282,6 +281,9 @@ export type AboutPageScalarFieldEnum =
 
 export const ContactPageScalarFieldEnum = {
   id: 'id',
+  site: 'site',
+  contactTitle: 'contactTitle',
+  contactDescription: 'contactDescription',
   contactTopImageId: 'contactTopImageId',
   contactBottomImageId: 'contactBottomImageId',
   createdAt: 'createdAt',
@@ -293,6 +295,7 @@ export type ContactPageScalarFieldEnum =
 
 export const PrivacyPolicyScalarFieldEnum = {
   id: 'id',
+  site: 'site',
   privacyTitle: 'privacyTitle',
   privacyDescription: 'privacyDescription',
   createdAt: 'createdAt',
@@ -304,6 +307,7 @@ export type PrivacyPolicyScalarFieldEnum =
 
 export const TermsOfServicesScalarFieldEnum = {
   id: 'id',
+  site: 'site',
   termsTitle: 'termsTitle',
   termsDescription: 'termsDescription',
   createdAt: 'createdAt',

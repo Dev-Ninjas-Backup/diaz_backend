@@ -1,7 +1,7 @@
-import { ApiProperty } from '@nestjs/swagger';
-import { IsString } from 'class-validator';
+import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
+import { IsString, IsOptional } from 'class-validator';
 
-export class UpdatePrivacyPolicyDto {
+export class CreatePrivacyPolicyDto {
   @ApiProperty({
     example: 'Privacy Policy - Florida Location',
     description: 'Title of the Privacy Policy',
@@ -16,5 +16,23 @@ export class UpdatePrivacyPolicyDto {
   })
   @IsString()
   privacyDescription: string;
-  id: any;
+}
+
+export class UpdatePrivacyPolicyDto {
+  @ApiPropertyOptional({
+    example: 'Privacy Policy - Florida Location',
+    description: 'Title of the Privacy Policy',
+  })
+  @IsString()
+  @IsOptional()
+  privacyTitle?: string;
+
+  @ApiPropertyOptional({
+    example:
+      '<h1>Effective Date: December 2025</h1><p>We respect your privacy...</p>',
+    description: 'Full content (HTML recommended) of the privacy policy',
+  })
+  @IsString()
+  @IsOptional()
+  privacyDescription?: string;
 }

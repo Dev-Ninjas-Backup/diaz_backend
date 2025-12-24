@@ -26,6 +26,7 @@ export type AggregateTermsOfServices = {
 
 export type TermsOfServicesMinAggregateOutputType = {
   id: string | null;
+  site: $Enums.SiteType | null;
   termsTitle: string | null;
   termsDescription: string | null;
   createdAt: Date | null;
@@ -34,6 +35,7 @@ export type TermsOfServicesMinAggregateOutputType = {
 
 export type TermsOfServicesMaxAggregateOutputType = {
   id: string | null;
+  site: $Enums.SiteType | null;
   termsTitle: string | null;
   termsDescription: string | null;
   createdAt: Date | null;
@@ -42,6 +44,7 @@ export type TermsOfServicesMaxAggregateOutputType = {
 
 export type TermsOfServicesCountAggregateOutputType = {
   id: number;
+  site: number;
   termsTitle: number;
   termsDescription: number;
   createdAt: number;
@@ -51,6 +54,7 @@ export type TermsOfServicesCountAggregateOutputType = {
 
 export type TermsOfServicesMinAggregateInputType = {
   id?: true;
+  site?: true;
   termsTitle?: true;
   termsDescription?: true;
   createdAt?: true;
@@ -59,6 +63,7 @@ export type TermsOfServicesMinAggregateInputType = {
 
 export type TermsOfServicesMaxAggregateInputType = {
   id?: true;
+  site?: true;
   termsTitle?: true;
   termsDescription?: true;
   createdAt?: true;
@@ -67,6 +72,7 @@ export type TermsOfServicesMaxAggregateInputType = {
 
 export type TermsOfServicesCountAggregateInputType = {
   id?: true;
+  site?: true;
   termsTitle?: true;
   termsDescription?: true;
   createdAt?: true;
@@ -159,6 +165,7 @@ export type TermsOfServicesGroupByArgs<
 
 export type TermsOfServicesGroupByOutputType = {
   id: string;
+  site: $Enums.SiteType;
   termsTitle: string;
   termsDescription: string;
   createdAt: Date;
@@ -187,6 +194,7 @@ export type TermsOfServicesWhereInput = {
   OR?: Prisma.TermsOfServicesWhereInput[];
   NOT?: Prisma.TermsOfServicesWhereInput | Prisma.TermsOfServicesWhereInput[];
   id?: Prisma.StringFilter<'TermsOfServices'> | string;
+  site?: Prisma.EnumSiteTypeFilter<'TermsOfServices'> | $Enums.SiteType;
   termsTitle?: Prisma.StringFilter<'TermsOfServices'> | string;
   termsDescription?: Prisma.StringFilter<'TermsOfServices'> | string;
   createdAt?: Prisma.DateTimeFilter<'TermsOfServices'> | Date | string;
@@ -195,6 +203,7 @@ export type TermsOfServicesWhereInput = {
 
 export type TermsOfServicesOrderByWithRelationInput = {
   id?: Prisma.SortOrder;
+  site?: Prisma.SortOrder;
   termsTitle?: Prisma.SortOrder;
   termsDescription?: Prisma.SortOrder;
   createdAt?: Prisma.SortOrder;
@@ -204,6 +213,7 @@ export type TermsOfServicesOrderByWithRelationInput = {
 export type TermsOfServicesWhereUniqueInput = Prisma.AtLeast<
   {
     id?: string;
+    site?: $Enums.SiteType;
     AND?: Prisma.TermsOfServicesWhereInput | Prisma.TermsOfServicesWhereInput[];
     OR?: Prisma.TermsOfServicesWhereInput[];
     NOT?: Prisma.TermsOfServicesWhereInput | Prisma.TermsOfServicesWhereInput[];
@@ -212,11 +222,12 @@ export type TermsOfServicesWhereUniqueInput = Prisma.AtLeast<
     createdAt?: Prisma.DateTimeFilter<'TermsOfServices'> | Date | string;
     updatedAt?: Prisma.DateTimeFilter<'TermsOfServices'> | Date | string;
   },
-  'id'
+  'id' | 'site'
 >;
 
 export type TermsOfServicesOrderByWithAggregationInput = {
   id?: Prisma.SortOrder;
+  site?: Prisma.SortOrder;
   termsTitle?: Prisma.SortOrder;
   termsDescription?: Prisma.SortOrder;
   createdAt?: Prisma.SortOrder;
@@ -235,6 +246,9 @@ export type TermsOfServicesScalarWhereWithAggregatesInput = {
     | Prisma.TermsOfServicesScalarWhereWithAggregatesInput
     | Prisma.TermsOfServicesScalarWhereWithAggregatesInput[];
   id?: Prisma.StringWithAggregatesFilter<'TermsOfServices'> | string;
+  site?:
+    | Prisma.EnumSiteTypeWithAggregatesFilter<'TermsOfServices'>
+    | $Enums.SiteType;
   termsTitle?: Prisma.StringWithAggregatesFilter<'TermsOfServices'> | string;
   termsDescription?:
     | Prisma.StringWithAggregatesFilter<'TermsOfServices'>
@@ -251,6 +265,7 @@ export type TermsOfServicesScalarWhereWithAggregatesInput = {
 
 export type TermsOfServicesCreateInput = {
   id?: string;
+  site?: $Enums.SiteType;
   termsTitle: string;
   termsDescription: string;
   createdAt?: Date | string;
@@ -259,6 +274,7 @@ export type TermsOfServicesCreateInput = {
 
 export type TermsOfServicesUncheckedCreateInput = {
   id?: string;
+  site?: $Enums.SiteType;
   termsTitle: string;
   termsDescription: string;
   createdAt?: Date | string;
@@ -267,6 +283,7 @@ export type TermsOfServicesUncheckedCreateInput = {
 
 export type TermsOfServicesUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string;
+  site?: Prisma.EnumSiteTypeFieldUpdateOperationsInput | $Enums.SiteType;
   termsTitle?: Prisma.StringFieldUpdateOperationsInput | string;
   termsDescription?: Prisma.StringFieldUpdateOperationsInput | string;
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
@@ -275,6 +292,7 @@ export type TermsOfServicesUpdateInput = {
 
 export type TermsOfServicesUncheckedUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string;
+  site?: Prisma.EnumSiteTypeFieldUpdateOperationsInput | $Enums.SiteType;
   termsTitle?: Prisma.StringFieldUpdateOperationsInput | string;
   termsDescription?: Prisma.StringFieldUpdateOperationsInput | string;
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
@@ -283,6 +301,7 @@ export type TermsOfServicesUncheckedUpdateInput = {
 
 export type TermsOfServicesCreateManyInput = {
   id?: string;
+  site?: $Enums.SiteType;
   termsTitle: string;
   termsDescription: string;
   createdAt?: Date | string;
@@ -291,6 +310,7 @@ export type TermsOfServicesCreateManyInput = {
 
 export type TermsOfServicesUpdateManyMutationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string;
+  site?: Prisma.EnumSiteTypeFieldUpdateOperationsInput | $Enums.SiteType;
   termsTitle?: Prisma.StringFieldUpdateOperationsInput | string;
   termsDescription?: Prisma.StringFieldUpdateOperationsInput | string;
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
@@ -299,6 +319,7 @@ export type TermsOfServicesUpdateManyMutationInput = {
 
 export type TermsOfServicesUncheckedUpdateManyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string;
+  site?: Prisma.EnumSiteTypeFieldUpdateOperationsInput | $Enums.SiteType;
   termsTitle?: Prisma.StringFieldUpdateOperationsInput | string;
   termsDescription?: Prisma.StringFieldUpdateOperationsInput | string;
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
@@ -307,6 +328,7 @@ export type TermsOfServicesUncheckedUpdateManyInput = {
 
 export type TermsOfServicesCountOrderByAggregateInput = {
   id?: Prisma.SortOrder;
+  site?: Prisma.SortOrder;
   termsTitle?: Prisma.SortOrder;
   termsDescription?: Prisma.SortOrder;
   createdAt?: Prisma.SortOrder;
@@ -315,6 +337,7 @@ export type TermsOfServicesCountOrderByAggregateInput = {
 
 export type TermsOfServicesMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder;
+  site?: Prisma.SortOrder;
   termsTitle?: Prisma.SortOrder;
   termsDescription?: Prisma.SortOrder;
   createdAt?: Prisma.SortOrder;
@@ -323,6 +346,7 @@ export type TermsOfServicesMaxOrderByAggregateInput = {
 
 export type TermsOfServicesMinOrderByAggregateInput = {
   id?: Prisma.SortOrder;
+  site?: Prisma.SortOrder;
   termsTitle?: Prisma.SortOrder;
   termsDescription?: Prisma.SortOrder;
   createdAt?: Prisma.SortOrder;
@@ -335,6 +359,7 @@ export type TermsOfServicesSelect<
 > = runtime.Types.Extensions.GetSelect<
   {
     id?: boolean;
+    site?: boolean;
     termsTitle?: boolean;
     termsDescription?: boolean;
     createdAt?: boolean;
@@ -349,6 +374,7 @@ export type TermsOfServicesSelectCreateManyAndReturn<
 > = runtime.Types.Extensions.GetSelect<
   {
     id?: boolean;
+    site?: boolean;
     termsTitle?: boolean;
     termsDescription?: boolean;
     createdAt?: boolean;
@@ -363,6 +389,7 @@ export type TermsOfServicesSelectUpdateManyAndReturn<
 > = runtime.Types.Extensions.GetSelect<
   {
     id?: boolean;
+    site?: boolean;
     termsTitle?: boolean;
     termsDescription?: boolean;
     createdAt?: boolean;
@@ -373,6 +400,7 @@ export type TermsOfServicesSelectUpdateManyAndReturn<
 
 export type TermsOfServicesSelectScalar = {
   id?: boolean;
+  site?: boolean;
   termsTitle?: boolean;
   termsDescription?: boolean;
   createdAt?: boolean;
@@ -383,7 +411,7 @@ export type TermsOfServicesOmit<
   ExtArgs extends runtime.Types.Extensions.InternalArgs =
     runtime.Types.Extensions.DefaultArgs,
 > = runtime.Types.Extensions.GetOmit<
-  'id' | 'termsTitle' | 'termsDescription' | 'createdAt' | 'updatedAt',
+  'id' | 'site' | 'termsTitle' | 'termsDescription' | 'createdAt' | 'updatedAt',
   ExtArgs['result']['termsOfServices']
 >;
 
@@ -396,6 +424,7 @@ export type $TermsOfServicesPayload<
   scalars: runtime.Types.Extensions.GetPayloadResult<
     {
       id: string;
+      site: $Enums.SiteType;
       termsTitle: string;
       termsDescription: string;
       createdAt: Date;
@@ -1005,6 +1034,7 @@ export interface Prisma__TermsOfServicesClient<
  */
 export interface TermsOfServicesFieldRefs {
   readonly id: Prisma.FieldRef<'TermsOfServices', 'String'>;
+  readonly site: Prisma.FieldRef<'TermsOfServices', 'SiteType'>;
   readonly termsTitle: Prisma.FieldRef<'TermsOfServices', 'String'>;
   readonly termsDescription: Prisma.FieldRef<'TermsOfServices', 'String'>;
   readonly createdAt: Prisma.FieldRef<'TermsOfServices', 'DateTime'>;

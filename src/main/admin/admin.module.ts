@@ -1,5 +1,7 @@
 import { Module } from '@nestjs/common';
 import { AISearchBannerModule } from './aisearchbanner/aisearchbanner.module';
+import { AboutUsModule } from './aboutus/aboutus.module';
+import { ContactUsModule } from './contactus/contactus.module';
 import { BoatsModule } from './boats/boats.module';
 import { BlogModule } from './content/blog/blog.module';
 import { DashboardModule } from './dashboard/dashboard.module';
@@ -28,6 +30,8 @@ import { UserPermissionsModule } from './users-permissions/user-permissions.modu
     FeaturedBrandsModule,
     PackageBannerModule,
     AISearchBannerModule,
+    AboutUsModule,
+    ContactUsModule,
   ],
 })
 export class AdminModule {}
