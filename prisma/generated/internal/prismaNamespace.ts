@@ -420,6 +420,7 @@ export const ModelName = {
   Boats: 'Boats',
   BoatEngine: 'BoatEngine',
   BoatImage: 'BoatImage',
+  Category: 'Category',
   Contact: 'Contact',
   FloridaLead: 'FloridaLead',
   AboutPage: 'AboutPage',
@@ -469,6 +470,7 @@ export type TypeMap<
       | 'boats'
       | 'boatEngine'
       | 'boatImage'
+      | 'category'
       | 'contact'
       | 'floridaLead'
       | 'aboutPage'
@@ -1095,6 +1097,82 @@ export type TypeMap<
           args: Prisma.BoatImageCountArgs<ExtArgs>;
           result:
             | runtime.Types.Utils.Optional<Prisma.BoatImageCountAggregateOutputType>
+            | number;
+        };
+      };
+    };
+    Category: {
+      payload: Prisma.$CategoryPayload<ExtArgs>;
+      fields: Prisma.CategoryFieldRefs;
+      operations: {
+        findUnique: {
+          args: Prisma.CategoryFindUniqueArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CategoryPayload> | null;
+        };
+        findUniqueOrThrow: {
+          args: Prisma.CategoryFindUniqueOrThrowArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CategoryPayload>;
+        };
+        findFirst: {
+          args: Prisma.CategoryFindFirstArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CategoryPayload> | null;
+        };
+        findFirstOrThrow: {
+          args: Prisma.CategoryFindFirstOrThrowArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CategoryPayload>;
+        };
+        findMany: {
+          args: Prisma.CategoryFindManyArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CategoryPayload>[];
+        };
+        create: {
+          args: Prisma.CategoryCreateArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CategoryPayload>;
+        };
+        createMany: {
+          args: Prisma.CategoryCreateManyArgs<ExtArgs>;
+          result: BatchPayload;
+        };
+        createManyAndReturn: {
+          args: Prisma.CategoryCreateManyAndReturnArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CategoryPayload>[];
+        };
+        delete: {
+          args: Prisma.CategoryDeleteArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CategoryPayload>;
+        };
+        update: {
+          args: Prisma.CategoryUpdateArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CategoryPayload>;
+        };
+        deleteMany: {
+          args: Prisma.CategoryDeleteManyArgs<ExtArgs>;
+          result: BatchPayload;
+        };
+        updateMany: {
+          args: Prisma.CategoryUpdateManyArgs<ExtArgs>;
+          result: BatchPayload;
+        };
+        updateManyAndReturn: {
+          args: Prisma.CategoryUpdateManyAndReturnArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CategoryPayload>[];
+        };
+        upsert: {
+          args: Prisma.CategoryUpsertArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CategoryPayload>;
+        };
+        aggregate: {
+          args: Prisma.CategoryAggregateArgs<ExtArgs>;
+          result: runtime.Types.Utils.Optional<Prisma.AggregateCategory>;
+        };
+        groupBy: {
+          args: Prisma.CategoryGroupByArgs<ExtArgs>;
+          result: runtime.Types.Utils.Optional<Prisma.CategoryGroupByOutputType>[];
+        };
+        count: {
+          args: Prisma.CategoryCountArgs<ExtArgs>;
+          result:
+            | runtime.Types.Utils.Optional<Prisma.CategoryCountAggregateOutputType>
             | number;
         };
       };
@@ -2722,6 +2800,17 @@ export const BoatImageScalarFieldEnum = {
 export type BoatImageScalarFieldEnum =
   (typeof BoatImageScalarFieldEnum)[keyof typeof BoatImageScalarFieldEnum];
 
+export const CategoryScalarFieldEnum = {
+  id: 'id',
+  title: 'title',
+  imageId: 'imageId',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+} as const;
+
+export type CategoryScalarFieldEnum =
+  (typeof CategoryScalarFieldEnum)[keyof typeof CategoryScalarFieldEnum];
+
 export const ContactScalarFieldEnum = {
   id: 'id',
   name: 'name',
@@ -3528,6 +3617,7 @@ export type GlobalOmitConfig = {
   boats?: Prisma.BoatsOmit;
   boatEngine?: Prisma.BoatEngineOmit;
   boatImage?: Prisma.BoatImageOmit;
+  category?: Prisma.CategoryOmit;
   contact?: Prisma.ContactOmit;
   floridaLead?: Prisma.FloridaLeadOmit;
   aboutPage?: Prisma.AboutPageOmit;

@@ -6,8 +6,8 @@ import {
   NotFoundException,
 } from '@nestjs/common';
 import { PrismaService } from '@/lib/prisma/prisma.service';
-import { CreateContactUsDto } from '../dto/create-contactus.dto';
-import { UpdateContactUsDto } from '../dto/update-contactus.dto';
+import { CreateContactPageDto } from '../dto/create-contactus.dto';
+import { UpdateContactPageDto } from '../dto/update-contactus.dto';
 import { Prisma } from 'generated/client';
 import { SiteType } from 'generated/enums';
 
@@ -56,7 +56,7 @@ export class ContactUsService {
 
   async createContactUs(
     site: SiteType,
-    createContactUsDto: CreateContactUsDto,
+    createContactPageDto: CreateContactPageDto,
   ) {
     try {
       // Check if Contact Us content already exists for this site
@@ -74,8 +74,8 @@ export class ContactUsService {
       const result = await this.prisma.client.contactPage.create({
         data: {
           site,
-          contactTitle: createContactUsDto.contactTitle,
-          contactDescription: createContactUsDto.contactDescription,
+          contactTitle: createContactPageDto.contactTitle,
+          contactDescription: createContactPageDto.contactDescription,
         },
         select: {
           id: true,
@@ -115,7 +115,7 @@ export class ContactUsService {
 
   async updateContactUs(
     site: SiteType,
-    updateContactUsDto: UpdateContactUsDto,
+    updateContactPageDto: UpdateContactPageDto,
   ) {
     try {
       // Get the existing Contact Us record for this site
@@ -135,11 +135,11 @@ export class ContactUsService {
         contactTitle?: string;
         contactDescription?: string;
       } = {};
-      if (updateContactUsDto.contactTitle !== undefined) {
-        updateData.contactTitle = updateContactUsDto.contactTitle;
+      if (updateContactPageDto.contactTitle !== undefined) {
+        updateData.contactTitle = updateContactPageDto.contactTitle;
       }
-      if (updateContactUsDto.contactDescription !== undefined) {
-        updateData.contactDescription = updateContactUsDto.contactDescription;
+      if (updateContactPageDto.contactDescription !== undefined) {
+        updateData.contactDescription = updateContactPageDto.contactDescription;
       }
 
       const result = await this.prisma.client.contactPage.update({

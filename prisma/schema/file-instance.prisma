@@ -25,6 +25,7 @@ model FileInstance {
   settings        Setting[]
   packageBanners  packageBanner[]  @relation("packageBanner")
   aiSearchBanners AiSearchBanner[] @relation("AiSearchBanner")
+  categoryImages  Category[]        @relation("CategoryImage")
 
   @@map("file_instances")
 }
