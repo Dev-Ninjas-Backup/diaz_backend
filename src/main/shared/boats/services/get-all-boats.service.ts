@@ -175,92 +175,112 @@ export class GetAllBoatsService {
       return out;
     };
 
-    // Build specifications as { key, value } pairs for consistent consumption
-    const buildSpecs = (b: any) => {
-      const specs: Array<{ key: string; value: string | number }> = [];
+    // Extract engines as a normalized array (separated from specifications)
+    const extractEngines = (b: any) => {
+      const out: Array<{
+        make?: string | null;
+        model?: string | null;
+        fuelType?: string | null;
+        power?: string | number | null;
+        hours?: string | number | null;
+        type?: string | null;
+        propellerType?: string | null;
+      }> = [];
 
-      const push = (k: string, v: any) => {
-        if (v === undefined || v === null || v === '' || v === 'null') return;
-        specs.push({ key: k, value: v });
-      };
-
-      // ---- BASE / COMMON FIELDS ----
-      push('Brand Make', b?.MakeString ?? b?.Make ?? b?.make);
-      push('Model', b?.Model ?? b?.model);
-      push('Built Year', b?.ModelYear ?? b?.buildYear ?? b?.year);
-      push('Length', b?.NominalLength ?? b?.LengthOverall ?? b?.length);
-      push('Beam Size', b?.BeamMeasure ?? b?.beam);
-      push('Max Draft', b?.MaxDraft ?? b?.draft);
-
-      push('Condition', b?.SaleClassCode ?? b?.condition);
-      push('Class', b?.BoatClassCode?.[0] ?? b?.Class ?? b?.class);
-      push(
-        'Material',
-        b?.BoatHullMaterialCode ?? b?.HullMaterial ?? b?.material,
-      );
-
-      // ---- ENGINES ----
       if (Array.isArray(b?.Engines) && b.Engines.length) {
-        push('Number Of Engines', b.Engines.length);
+        for (const e of b.Engines) {
+          out.push({
+            make: e?.Make ?? e?.make ?? null,
+            model: e?.Model ?? e?.model ?? null,
+            fuelType: e?.Fuel ?? e?.fuel ?? null,
+            power: e?.EnginePower ?? e?.horsepower ?? null,
+            hours: e?.Hours ?? e?.hours ?? null,
+            type: e?.Type ?? e?.type ?? null,
+            propellerType: e?.PropellerType ?? e?.propellerType ?? null,
+          });
+        }
+      }
 
-        b.Engines.forEach((e: any, i: number) => {
-          const idx = i + 1;
-          push(`Engine ${idx} - Make`, e?.Make);
-          push(`Engine ${idx} - Model`, e?.Model);
-          push(`Engine ${idx} - Fuel Type`, e?.Fuel);
-          push(`Engine ${idx} - Power`, e?.EnginePower ?? e?.horsepower);
-          push(`Engine ${idx} - Hours`, e?.Hours);
-          push(`Engine ${idx} - Type`, e?.Type);
-          push(`Engine ${idx} - Propeller Type`, e?.PropellerType);
+      // fallback for single object engine
+      if (!out.length && b?.Engine && typeof b.Engine === 'object') {
+        const e = b.Engine;
+        out.push({
+          make: e?.Make ?? e?.make ?? null,
+          model: e?.Model ?? e?.model ?? null,
+          fuelType: e?.Fuel ?? e?.fuel ?? null,
+          power: e?.EnginePower ?? e?.horsepower ?? null,
+          hours: e?.Hours ?? e?.hours ?? null,
+          type: e?.Type ?? e?.type ?? null,
+          propellerType: e?.PropellerType ?? e?.propellerType ?? null,
         });
       }
 
-      // ---- CABINS & HEADS ----
-      push('Number Of Cabins', b?.CabinsCountNumeric ?? b?.cabins);
-      push('Number Of Heads', b?.HeadsCountNumeric ?? b?.heads);
+      return out;
+    };
 
-      // ---- LOCATION ----
-      push('City', b?.BoatCityName ?? b?.city);
-      push('State', b?.BoatStateCode ?? b?.state);
-      push('Country', b?.BoatCountryID ?? b?.country);
+    // ---- PRIMARY SPECIFICATIONS ----
+    // We only expose 12 primary specifications in `specifications` (frontend requirement).
+    // Any other fields are pushed into `aditionalInfo`.
+    const PRIMARY_SPECS: Array<{ key: string; getter: (b: any) => any }> = [
+      {
+        key: 'Brand Make',
+        getter: (b: any) => b?.MakeString ?? b?.Make ?? b?.make,
+      },
+      { key: 'Model', getter: (b: any) => b?.Model ?? b?.model },
+      {
+        key: 'Built Year',
+        getter: (b: any) => b?.ModelYear ?? b?.buildYear ?? b?.year,
+      },
+      {
+        key: 'Length',
+        getter: (b: any) => b?.NominalLength ?? b?.LengthOverall ?? b?.length,
+      },
+      { key: 'Beam Size', getter: (b: any) => b?.BeamMeasure ?? b?.beam },
+      { key: 'Max Draft', getter: (b: any) => b?.MaxDraft ?? b?.draft },
+      {
+        key: 'Condition',
+        getter: (b: any) => b?.SaleClassCode ?? b?.condition,
+      },
+      {
+        key: 'Material',
+        getter: (b: any) =>
+          b?.BoatHullMaterialCode ?? b?.HullMaterial ?? b?.material,
+      },
+      {
+        key: 'Builder Name',
+        getter: (b: any) =>
+          b?.BuilderName ?? b?.Builder?.Name ?? b?.builderName,
+      },
+      {
+        key: 'Number Of Engines',
+        getter: (b: any) =>
+          Array.isArray(b?.Engines)
+            ? b.Engines.length
+            : (b?.numberOfEngines ?? null),
+      },
+      {
+        key: 'Number Of Cabins',
+        getter: (b: any) => b?.CabinsCountNumeric ?? b?.cabins,
+      },
+      {
+        key: 'Price',
+        getter: (b: any) =>
+          b?.Price ??
+          b?.OriginalPrice ??
+          (b?.NormPrice != null ? `${b.NormPrice}` : null),
+      },
+    ];
 
-      if (b?.Office) {
-        push('Office City', b.Office.City);
-        push('Office Address', b.Office.PostalAddress);
-        push('Office State', b.Office.State);
-        push('Office Country', b.Office.Country);
+    const buildSpecs = (b: any) => {
+      const specs: Array<{ key: string; value: string | number }> = [];
+
+      for (const spec of PRIMARY_SPECS) {
+        const v = spec.getter(b);
+        if (v === undefined || v === null || v === '' || v === 'null') continue;
+        specs.push({ key: spec.key, value: v });
       }
 
-      // ---- NAME / TITLE ----
-      push('Name', b?.BoatName ?? b?.name);
-      push('Listing Title', b?.ListingTitle);
-
-      // ---- PRICE ----
-      push('Price', b?.Price ?? b?.OriginalPrice ?? b?.NormPrice);
-
-      // ---- ADDITIONAL OPTIONAL FIELDS ----
-      push('Fuel Type', b?.fuelType ?? b?.Engines?.[0]?.Fuel);
-      push('Drive Type', b?.DriveTypeCode);
-      push('Hull ID Exists', b?.HasBoatHullID ? 'Yes' : undefined);
-      push('Co-Op Indicator', b?.CoOpIndicator ? 'Yes' : undefined);
-      push('Sales Status', b?.SalesStatus);
-
-      push('Builder Name', b?.BuilderName);
-      push('Total Engine Power', b?.TotalEnginePowerQuantity);
-      push('Nominal Length', b?.NominalLength);
-      push('Length Overall', b?.LengthOverall);
-
-      push('Boat Class Code', b?.BoatClassCode?.join(', '));
-
-      // ---- DIMENSIONS ----
-      push('Norm Nominal Length', b?.NormNominalLength);
-
-      // ---- TIMESTAMPS ----
-      push('Last Modified', b?.LastModificationDate);
-      push('Item Received Date', b?.ItemReceivedDate);
-      push('IMT Timestamp', b?.IMTTimeStamp);
-
-      // ---- REMOVE DUPLICATES ----
+      // remove duplicates
       const seen = new Set();
       return specs.filter((s) => {
         const key = `${s.key}:${s.value}`;
@@ -271,7 +291,7 @@ export class GetAllBoatsService {
     };
 
     // Build frontend-required detailed specifications
-    const buildDetailedSpecs = (b: any) => {
+    const buildDetailedSpecs = (b: any, enginesArr: any[]) => {
       const get = (...keys: string[]) => {
         for (const k of keys) {
           if (b?.[k] !== undefined && b?.[k] !== null && b?.[k] !== '') {
@@ -281,14 +301,16 @@ export class GetAllBoatsService {
         return null;
       };
 
-      const numberOfEngines = Array.isArray(b?.Engines)
-        ? b.Engines.length
-        : (b?.numberOfEngines ?? null);
+      const numberOfEngines = enginesArr.length || (b?.numberOfEngines ?? null);
 
       const location =
         b?.Location ??
         (b?.Office
-          ? [b.Office.City, b.Office.StateProv, b.Office.Country]
+          ? [
+              b.Office.City,
+              b.Office.StateProv ?? b.Office.State,
+              b.Office.Country,
+            ]
               .filter(Boolean)
               .join(', ')
           : null);
@@ -301,12 +323,14 @@ export class GetAllBoatsService {
           get('NominalLength', 'LengthOverall', 'length') ??
           (b?.Specs?.length ? `${b.Specs.length}` : null),
         numberOfEngines,
+        engines: enginesArr,
         class: get('BoatClassCode', 'Class', 'class'),
         material: get('HullMaterial', 'material'),
         numberOfCabins: get('Cabins', 'cabinCount', 'numberOfCabins'),
         numberOfHeads: get('Heads', 'bathrooms', 'numberOfHeads'),
         beamSize: get('BeamMeasure', 'beam', 'Beam'),
-        fuelType: get('FuelType', 'fuelType') ?? b?.Engines?.[0]?.Fuel ?? null,
+        fuelType:
+          get('FuelType', 'fuelType') ?? enginesArr[0]?.fuelType ?? null,
         maxDraft: get('MaxDraft', 'draft'),
         boatName: get('BoatName', 'name'),
         location,
@@ -317,8 +341,8 @@ export class GetAllBoatsService {
       };
     };
 
-    // Additional info (descriptions + office/contact + external links)
-    const buildAdditional = (b: any) => {
+    // Additional info (descriptions + office/contact + external links + leftover fields)
+    const buildAdditional = (b: any, enginesArr: any[]) => {
       const out: Array<{ key: string; value: string | null }> = [];
 
       // Combined description fields
@@ -341,28 +365,22 @@ export class GetAllBoatsService {
       // Office / contact
       if (b?.Office) {
         if (b.Office.Email) {
-          out.push({
-            key: 'email',
-            value: b.Office.Email,
-          });
+          out.push({ key: 'email', value: b.Office.Email });
         }
         if (b.Office.Phone) {
-          out.push({
-            key: 'phone',
-            value: b.Office.Phone,
-          });
+          out.push({ key: 'phone', value: b.Office.Phone });
         }
         if (b.Office.City) {
-          out.push({
-            key: 'city',
-            value: b.Office.City,
-          });
+          out.push({ key: 'city', value: b.Office.City });
         }
         if (b.Office.PostalAddress) {
-          out.push({
-            key: 'address',
-            value: b.Office.PostalAddress,
-          });
+          out.push({ key: 'address', value: b.Office.PostalAddress });
+        }
+        if (b.Office.State) {
+          out.push({ key: 'office_state', value: b.Office.State });
+        }
+        if (b.Office.Country) {
+          out.push({ key: 'office_country', value: b.Office.Country });
         }
       }
 
@@ -378,8 +396,60 @@ export class GetAllBoatsService {
         }
       }
 
+      // common fallback fields that are useful but not in the 12 primary specs
+      const fallbackFields: Array<{ key: string; val: any }> = [
+        { key: 'Total Engine Power', val: b?.TotalEnginePowerQuantity },
+        { key: 'Nominal Length', val: b?.NominalLength },
+        { key: 'Length Overall', val: b?.LengthOverall },
+        {
+          key: 'Boat Class Code',
+          val: Array.isArray(b?.BoatClassCode)
+            ? b.BoatClassCode.join(', ')
+            : b?.BoatClassCode,
+        },
+        { key: 'Norm Nominal Length', val: b?.NormNominalLength },
+        { key: 'Last Modified', val: b?.LastModificationDate },
+        { key: 'Item Received Date', val: b?.ItemReceivedDate },
+        { key: 'IMT Timestamp', val: b?.IMTTimeStamp },
+      ];
+
+      for (const f of fallbackFields) {
+        if (f.val !== undefined && f.val !== null && f.val !== '') {
+          out.push({ key: f.key, value: f.val });
+        }
+      }
+
+      // Engines summary if present (kept in additional info too for easy display)
+      if (enginesArr.length) {
+        out.push({ key: 'engines_summary', value: JSON.stringify(enginesArr) });
+      }
+
+      // as a last resort, include any raw fields that might be useful but weren't captured above
+      const extraCandidates = [
+        'DriveTypeCode',
+        'HasBoatHullID',
+        'CoOpIndicator',
+        'SalesStatus',
+        'Specs',
+        'Features',
+      ];
+
+      for (const k of extraCandidates) {
+        if (b?.[k] !== undefined && b?.[k] !== null && b?.[k] !== '') {
+          out.push({
+            key: k,
+            value: typeof b[k] === 'object' ? JSON.stringify(b[k]) : b[k],
+          });
+        }
+      }
+
       return out.filter(Boolean);
     };
+
+    const enginesArr = extractEngines(boat);
+    const specifications = buildSpecs(boat);
+    const detailedSpecs = buildDetailedSpecs(boat, enginesArr);
+    const additional = buildAdditional(boat, enginesArr);
 
     const transformed = {
       id:
@@ -400,12 +470,14 @@ export class GetAllBoatsService {
         (boat?.NormPrice != null ? `${boat.NormPrice}` : null),
       source: boat?.Source ?? query.source ?? null,
 
-      specifications: buildSpecs(boat),
-      detailedSpecs: buildDetailedSpecs(boat),
+      // only 12 primary specifications here
+      specifications,
+      detailedSpecs,
 
       images: extractImages(boat),
-      aditionalInfo: buildAdditional(boat),
-      raw: boat,
+      engines: enginesArr, // engines provided separately
+      aditionalInfo: additional,
+      // raw: boat,
     };
 
     return successResponse(transformed, 'Boat transformed successfully');
