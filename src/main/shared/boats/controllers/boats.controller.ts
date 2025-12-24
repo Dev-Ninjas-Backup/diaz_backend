@@ -1,3 +1,4 @@
+import { PaginationDto } from '@/common/dto/pagination.dto';
 import { Controller, Get, Param, Query } from '@nestjs/common';
 import { ApiOperation, ApiTags } from '@nestjs/swagger';
 import { GetAllBoatsCustomDto } from '../dto/get-all-boats-custom.dto';
@@ -11,7 +12,6 @@ import { GetAllBoatsService } from '../services/get-all-boats.service';
 import { GetAllCustomBoatsFloridaService } from '../services/get-all-custom-boats-florida.service';
 import { GetCustomBoatsService } from '../services/get-custom-boats.service';
 import { PremiumDealsFloridaService } from '../services/premium-deals-florida.service';
-import { PaginationDto } from '@/common/dto/pagination.dto';
 
 @ApiTags('Shared -- Boats')
 @Controller('boats')
@@ -49,6 +49,15 @@ export class BoatsController {
     @Query() query: GetSingleBoatDto,
   ) {
     return this.getAllBoatsService.getSingleBoat(boatId, query);
+  }
+
+  @ApiOperation({ summary: 'Get single boat from all sources' })
+  @Get(':boatId/transform')
+  async getSingleBoatTransform(
+    @Param('boatId') boatId: string,
+    @Query() query: GetSingleBoatDto,
+  ) {
+    return this.getAllBoatsService.getSingleBoatTransform(boatId, query);
   }
 
   @ApiOperation({ summary: 'Get all merged boats from all sources' })
