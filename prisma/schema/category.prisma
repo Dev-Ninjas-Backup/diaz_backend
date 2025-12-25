@@ -1,0 +1,13 @@
+model Category {
+  id String @id @default(uuid())
+
+  title String @db.VarChar(255)
+
+  imageId String?       @unique
+  image   FileInstance? @relation("CategoryImage", fields: [imageId], references: [id], onDelete: SetNull)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("categories")
+}

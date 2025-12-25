@@ -16,8 +16,8 @@ import {
   ApiResponse,
   ApiTags,
 } from '@nestjs/swagger';
-import { CreateContactUsDto } from './dto/create-contactus.dto';
-import { UpdateContactUsDto } from './dto/update-contactus.dto';
+import { CreateContactPageDto } from './dto/create-contactus.dto';
+import { UpdateContactPageDto } from './dto/update-contactus.dto';
 import { ContactUsService } from './services/contactus.service';
 import { SiteType } from 'generated/enums';
 
@@ -68,7 +68,7 @@ export class ContactUsController {
     example: SiteType.FLORIDA,
     description: 'Site type (FLORIDA or JUPITER)',
   })
-  @ApiBody({ type: CreateContactUsDto })
+  @ApiBody({ type: CreateContactPageDto })
   @ApiResponse({
     status: 201,
     description: 'Contact Us content created successfully',
@@ -80,7 +80,7 @@ export class ContactUsController {
   })
   async createContactUs(
     @Query('site') site: SiteType,
-    @Body() createContactUsDto: CreateContactUsDto,
+    @Body() createContactPageDto: CreateContactPageDto,
   ) {
     if (!site || !Object.values(SiteType).includes(site)) {
       throw new BadRequestException(
@@ -88,7 +88,7 @@ export class ContactUsController {
       );
     }
 
-    return this.contactUsService.createContactUs(site, createContactUsDto);
+    return this.contactUsService.createContactUs(site, createContactPageDto);
   }
 
   @Patch()
@@ -100,7 +100,7 @@ export class ContactUsController {
     example: SiteType.FLORIDA,
     description: 'Site type (FLORIDA or JUPITER)',
   })
-  @ApiBody({ type: UpdateContactUsDto })
+  @ApiBody({ type: UpdateContactPageDto })
   @ApiResponse({
     status: 200,
     description: 'Contact Us content updated successfully',
@@ -112,7 +112,7 @@ export class ContactUsController {
   })
   async updateContactUs(
     @Query('site') site: SiteType,
-    @Body() updateContactUsDto: UpdateContactUsDto,
+    @Body() updateContactPageDto: UpdateContactPageDto,
   ) {
     if (!site || !Object.values(SiteType).includes(site)) {
       throw new BadRequestException(
@@ -120,6 +120,6 @@ export class ContactUsController {
       );
     }
 
-    return this.contactUsService.updateContactUs(site, updateContactUsDto);
+    return this.contactUsService.updateContactUs(site, updateContactPageDto);
   }
 }

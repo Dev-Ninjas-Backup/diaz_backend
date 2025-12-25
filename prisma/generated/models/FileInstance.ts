@@ -277,6 +277,7 @@ export type FileInstanceWhereInput = {
   settings?: Prisma.SettingListRelationFilter;
   packageBanners?: Prisma.PackageBannerListRelationFilter;
   aiSearchBanners?: Prisma.AiSearchBannerListRelationFilter;
+  categoryImages?: Prisma.CategoryListRelationFilter;
 };
 
 export type FileInstanceOrderByWithRelationInput = {
@@ -300,6 +301,7 @@ export type FileInstanceOrderByWithRelationInput = {
   settings?: Prisma.SettingOrderByRelationAggregateInput;
   packageBanners?: Prisma.packageBannerOrderByRelationAggregateInput;
   aiSearchBanners?: Prisma.AiSearchBannerOrderByRelationAggregateInput;
+  categoryImages?: Prisma.CategoryOrderByRelationAggregateInput;
 };
 
 export type FileInstanceWhereUniqueInput = Prisma.AtLeast<
@@ -333,6 +335,7 @@ export type FileInstanceWhereUniqueInput = Prisma.AtLeast<
     settings?: Prisma.SettingListRelationFilter;
     packageBanners?: Prisma.PackageBannerListRelationFilter;
     aiSearchBanners?: Prisma.AiSearchBannerListRelationFilter;
+    categoryImages?: Prisma.CategoryListRelationFilter;
   },
   'id'
 >;
@@ -404,6 +407,7 @@ export type FileInstanceCreateInput = {
   settings?: Prisma.SettingCreateNestedManyWithoutLogoInput;
   packageBanners?: Prisma.packageBannerCreateNestedManyWithoutPackageBannerInput;
   aiSearchBanners?: Prisma.AiSearchBannerCreateNestedManyWithoutAiSearchBannerInput;
+  categoryImages?: Prisma.CategoryCreateNestedManyWithoutImageInput;
 };
 
 export type FileInstanceUncheckedCreateInput = {
@@ -427,6 +431,7 @@ export type FileInstanceUncheckedCreateInput = {
   settings?: Prisma.SettingUncheckedCreateNestedManyWithoutLogoInput;
   packageBanners?: Prisma.packageBannerUncheckedCreateNestedManyWithoutPackageBannerInput;
   aiSearchBanners?: Prisma.AiSearchBannerUncheckedCreateNestedManyWithoutAiSearchBannerInput;
+  categoryImages?: Prisma.CategoryUncheckedCreateNestedManyWithoutImageInput;
 };
 
 export type FileInstanceUpdateInput = {
@@ -450,6 +455,7 @@ export type FileInstanceUpdateInput = {
   settings?: Prisma.SettingUpdateManyWithoutLogoNestedInput;
   packageBanners?: Prisma.packageBannerUpdateManyWithoutPackageBannerNestedInput;
   aiSearchBanners?: Prisma.AiSearchBannerUpdateManyWithoutAiSearchBannerNestedInput;
+  categoryImages?: Prisma.CategoryUpdateManyWithoutImageNestedInput;
 };
 
 export type FileInstanceUncheckedUpdateInput = {
@@ -473,6 +479,7 @@ export type FileInstanceUncheckedUpdateInput = {
   settings?: Prisma.SettingUncheckedUpdateManyWithoutLogoNestedInput;
   packageBanners?: Prisma.packageBannerUncheckedUpdateManyWithoutPackageBannerNestedInput;
   aiSearchBanners?: Prisma.AiSearchBannerUncheckedUpdateManyWithoutAiSearchBannerNestedInput;
+  categoryImages?: Prisma.CategoryUncheckedUpdateManyWithoutImageNestedInput;
 };
 
 export type FileInstanceCreateManyInput = {
@@ -797,6 +804,34 @@ export type FileInstanceUpdateOneRequiredWithoutBoatImagesNestedInput = {
   >;
 };
 
+export type FileInstanceCreateNestedOneWithoutCategoryImagesInput = {
+  create?: Prisma.XOR<
+    Prisma.FileInstanceCreateWithoutCategoryImagesInput,
+    Prisma.FileInstanceUncheckedCreateWithoutCategoryImagesInput
+  >;
+  connectOrCreate?: Prisma.FileInstanceCreateOrConnectWithoutCategoryImagesInput;
+  connect?: Prisma.FileInstanceWhereUniqueInput;
+};
+
+export type FileInstanceUpdateOneWithoutCategoryImagesNestedInput = {
+  create?: Prisma.XOR<
+    Prisma.FileInstanceCreateWithoutCategoryImagesInput,
+    Prisma.FileInstanceUncheckedCreateWithoutCategoryImagesInput
+  >;
+  connectOrCreate?: Prisma.FileInstanceCreateOrConnectWithoutCategoryImagesInput;
+  upsert?: Prisma.FileInstanceUpsertWithoutCategoryImagesInput;
+  disconnect?: Prisma.FileInstanceWhereInput | boolean;
+  delete?: Prisma.FileInstanceWhereInput | boolean;
+  connect?: Prisma.FileInstanceWhereUniqueInput;
+  update?: Prisma.XOR<
+    Prisma.XOR<
+      Prisma.FileInstanceUpdateToOneWithWhereWithoutCategoryImagesInput,
+      Prisma.FileInstanceUpdateWithoutCategoryImagesInput
+    >,
+    Prisma.FileInstanceUncheckedUpdateWithoutCategoryImagesInput
+  >;
+};
+
 export type FileInstanceCreateNestedOneWithoutContactTopImagesInput = {
   create?: Prisma.XOR<
     Prisma.FileInstanceCreateWithoutContactTopImagesInput,
@@ -961,6 +996,7 @@ export type FileInstanceCreateWithoutAiSearchBannersInput = {
   blogs?: Prisma.BlogCreateNestedManyWithoutBlogImageInput;
   settings?: Prisma.SettingCreateNestedManyWithoutLogoInput;
   packageBanners?: Prisma.packageBannerCreateNestedManyWithoutPackageBannerInput;
+  categoryImages?: Prisma.CategoryCreateNestedManyWithoutImageInput;
 };
 
 export type FileInstanceUncheckedCreateWithoutAiSearchBannersInput = {
@@ -983,6 +1019,7 @@ export type FileInstanceUncheckedCreateWithoutAiSearchBannersInput = {
   blogs?: Prisma.BlogUncheckedCreateNestedManyWithoutBlogImageInput;
   settings?: Prisma.SettingUncheckedCreateNestedManyWithoutLogoInput;
   packageBanners?: Prisma.packageBannerUncheckedCreateNestedManyWithoutPackageBannerInput;
+  categoryImages?: Prisma.CategoryUncheckedCreateNestedManyWithoutImageInput;
 };
 
 export type FileInstanceCreateOrConnectWithoutAiSearchBannersInput = {
@@ -1033,6 +1070,7 @@ export type FileInstanceUpdateWithoutAiSearchBannersInput = {
   blogs?: Prisma.BlogUpdateManyWithoutBlogImageNestedInput;
   settings?: Prisma.SettingUpdateManyWithoutLogoNestedInput;
   packageBanners?: Prisma.packageBannerUpdateManyWithoutPackageBannerNestedInput;
+  categoryImages?: Prisma.CategoryUpdateManyWithoutImageNestedInput;
 };
 
 export type FileInstanceUncheckedUpdateWithoutAiSearchBannersInput = {
@@ -1055,6 +1093,7 @@ export type FileInstanceUncheckedUpdateWithoutAiSearchBannersInput = {
   blogs?: Prisma.BlogUncheckedUpdateManyWithoutBlogImageNestedInput;
   settings?: Prisma.SettingUncheckedUpdateManyWithoutLogoNestedInput;
   packageBanners?: Prisma.packageBannerUncheckedUpdateManyWithoutPackageBannerNestedInput;
+  categoryImages?: Prisma.CategoryUncheckedUpdateManyWithoutImageNestedInput;
 };
 
 export type FileInstanceCreateWithoutPageBannersBackgroundInput = {
@@ -1077,6 +1116,7 @@ export type FileInstanceCreateWithoutPageBannersBackgroundInput = {
   settings?: Prisma.SettingCreateNestedManyWithoutLogoInput;
   packageBanners?: Prisma.packageBannerCreateNestedManyWithoutPackageBannerInput;
   aiSearchBanners?: Prisma.AiSearchBannerCreateNestedManyWithoutAiSearchBannerInput;
+  categoryImages?: Prisma.CategoryCreateNestedManyWithoutImageInput;
 };
 
 export type FileInstanceUncheckedCreateWithoutPageBannersBackgroundInput = {
@@ -1099,6 +1139,7 @@ export type FileInstanceUncheckedCreateWithoutPageBannersBackgroundInput = {
   settings?: Prisma.SettingUncheckedCreateNestedManyWithoutLogoInput;
   packageBanners?: Prisma.packageBannerUncheckedCreateNestedManyWithoutPackageBannerInput;
   aiSearchBanners?: Prisma.AiSearchBannerUncheckedCreateNestedManyWithoutAiSearchBannerInput;
+  categoryImages?: Prisma.CategoryUncheckedCreateNestedManyWithoutImageInput;
 };
 
 export type FileInstanceCreateOrConnectWithoutPageBannersBackgroundInput = {
@@ -1150,6 +1191,7 @@ export type FileInstanceUpdateWithoutPageBannersBackgroundInput = {
   settings?: Prisma.SettingUpdateManyWithoutLogoNestedInput;
   packageBanners?: Prisma.packageBannerUpdateManyWithoutPackageBannerNestedInput;
   aiSearchBanners?: Prisma.AiSearchBannerUpdateManyWithoutAiSearchBannerNestedInput;
+  categoryImages?: Prisma.CategoryUpdateManyWithoutImageNestedInput;
 };
 
 export type FileInstanceUncheckedUpdateWithoutPageBannersBackgroundInput = {
@@ -1172,6 +1214,7 @@ export type FileInstanceUncheckedUpdateWithoutPageBannersBackgroundInput = {
   settings?: Prisma.SettingUncheckedUpdateManyWithoutLogoNestedInput;
   packageBanners?: Prisma.packageBannerUncheckedUpdateManyWithoutPackageBannerNestedInput;
   aiSearchBanners?: Prisma.AiSearchBannerUncheckedUpdateManyWithoutAiSearchBannerNestedInput;
+  categoryImages?: Prisma.CategoryUncheckedUpdateManyWithoutImageNestedInput;
 };
 
 export type FileInstanceCreateWithoutBlogsInput = {
@@ -1194,6 +1237,7 @@ export type FileInstanceCreateWithoutBlogsInput = {
   settings?: Prisma.SettingCreateNestedManyWithoutLogoInput;
   packageBanners?: Prisma.packageBannerCreateNestedManyWithoutPackageBannerInput;
   aiSearchBanners?: Prisma.AiSearchBannerCreateNestedManyWithoutAiSearchBannerInput;
+  categoryImages?: Prisma.CategoryCreateNestedManyWithoutImageInput;
 };
 
 export type FileInstanceUncheckedCreateWithoutBlogsInput = {
@@ -1216,6 +1260,7 @@ export type FileInstanceUncheckedCreateWithoutBlogsInput = {
   settings?: Prisma.SettingUncheckedCreateNestedManyWithoutLogoInput;
   packageBanners?: Prisma.packageBannerUncheckedCreateNestedManyWithoutPackageBannerInput;
   aiSearchBanners?: Prisma.AiSearchBannerUncheckedCreateNestedManyWithoutAiSearchBannerInput;
+  categoryImages?: Prisma.CategoryUncheckedCreateNestedManyWithoutImageInput;
 };
 
 export type FileInstanceCreateOrConnectWithoutBlogsInput = {
@@ -1246,6 +1291,7 @@ export type FileInstanceCreateWithoutBlogInput = {
   settings?: Prisma.SettingCreateNestedManyWithoutLogoInput;
   packageBanners?: Prisma.packageBannerCreateNestedManyWithoutPackageBannerInput;
   aiSearchBanners?: Prisma.AiSearchBannerCreateNestedManyWithoutAiSearchBannerInput;
+  categoryImages?: Prisma.CategoryCreateNestedManyWithoutImageInput;
 };
 
 export type FileInstanceUncheckedCreateWithoutBlogInput = {
@@ -1268,6 +1314,7 @@ export type FileInstanceUncheckedCreateWithoutBlogInput = {
   settings?: Prisma.SettingUncheckedCreateNestedManyWithoutLogoInput;
   packageBanners?: Prisma.packageBannerUncheckedCreateNestedManyWithoutPackageBannerInput;
   aiSearchBanners?: Prisma.AiSearchBannerUncheckedCreateNestedManyWithoutAiSearchBannerInput;
+  categoryImages?: Prisma.CategoryUncheckedCreateNestedManyWithoutImageInput;
 };
 
 export type FileInstanceCreateOrConnectWithoutBlogInput = {
@@ -1318,6 +1365,7 @@ export type FileInstanceUpdateWithoutBlogsInput = {
   settings?: Prisma.SettingUpdateManyWithoutLogoNestedInput;
   packageBanners?: Prisma.packageBannerUpdateManyWithoutPackageBannerNestedInput;
   aiSearchBanners?: Prisma.AiSearchBannerUpdateManyWithoutAiSearchBannerNestedInput;
+  categoryImages?: Prisma.CategoryUpdateManyWithoutImageNestedInput;
 };
 
 export type FileInstanceUncheckedUpdateWithoutBlogsInput = {
@@ -1340,6 +1388,7 @@ export type FileInstanceUncheckedUpdateWithoutBlogsInput = {
   settings?: Prisma.SettingUncheckedUpdateManyWithoutLogoNestedInput;
   packageBanners?: Prisma.packageBannerUncheckedUpdateManyWithoutPackageBannerNestedInput;
   aiSearchBanners?: Prisma.AiSearchBannerUncheckedUpdateManyWithoutAiSearchBannerNestedInput;
+  categoryImages?: Prisma.CategoryUncheckedUpdateManyWithoutImageNestedInput;
 };
 
 export type FileInstanceUpsertWithWhereUniqueWithoutBlogInput = {
@@ -1410,6 +1459,7 @@ export type FileInstanceCreateWithoutBoatImagesInput = {
   settings?: Prisma.SettingCreateNestedManyWithoutLogoInput;
   packageBanners?: Prisma.packageBannerCreateNestedManyWithoutPackageBannerInput;
   aiSearchBanners?: Prisma.AiSearchBannerCreateNestedManyWithoutAiSearchBannerInput;
+  categoryImages?: Prisma.CategoryCreateNestedManyWithoutImageInput;
 };
 
 export type FileInstanceUncheckedCreateWithoutBoatImagesInput = {
@@ -1432,6 +1482,7 @@ export type FileInstanceUncheckedCreateWithoutBoatImagesInput = {
   settings?: Prisma.SettingUncheckedCreateNestedManyWithoutLogoInput;
   packageBanners?: Prisma.packageBannerUncheckedCreateNestedManyWithoutPackageBannerInput;
   aiSearchBanners?: Prisma.AiSearchBannerUncheckedCreateNestedManyWithoutAiSearchBannerInput;
+  categoryImages?: Prisma.CategoryUncheckedCreateNestedManyWithoutImageInput;
 };
 
 export type FileInstanceCreateOrConnectWithoutBoatImagesInput = {
@@ -1482,6 +1533,7 @@ export type FileInstanceUpdateWithoutBoatImagesInput = {
   settings?: Prisma.SettingUpdateManyWithoutLogoNestedInput;
   packageBanners?: Prisma.packageBannerUpdateManyWithoutPackageBannerNestedInput;
   aiSearchBanners?: Prisma.AiSearchBannerUpdateManyWithoutAiSearchBannerNestedInput;
+  categoryImages?: Prisma.CategoryUpdateManyWithoutImageNestedInput;
 };
 
 export type FileInstanceUncheckedUpdateWithoutBoatImagesInput = {
@@ -1497,6 +1549,127 @@ export type FileInstanceUncheckedUpdateWithoutBoatImagesInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   pageBannersBackground?: Prisma.PageBannerUncheckedUpdateManyWithoutBackgroundNestedInput;
   blog?: Prisma.BlogUncheckedUpdateManyWithoutFileInstancesNestedInput;
+  contactTopImages?: Prisma.ContactPageUncheckedUpdateOneWithoutContactTopImageNestedInput;
+  contactBottomImages?: Prisma.ContactPageUncheckedUpdateOneWithoutContactBottomImageNestedInput;
+  featuredBrandLogos?: Prisma.FeaturedBrandsUncheckedUpdateManyWithoutFeaturedbrandLogoNestedInput;
+  blogs?: Prisma.BlogUncheckedUpdateManyWithoutBlogImageNestedInput;
+  settings?: Prisma.SettingUncheckedUpdateManyWithoutLogoNestedInput;
+  packageBanners?: Prisma.packageBannerUncheckedUpdateManyWithoutPackageBannerNestedInput;
+  aiSearchBanners?: Prisma.AiSearchBannerUncheckedUpdateManyWithoutAiSearchBannerNestedInput;
+  categoryImages?: Prisma.CategoryUncheckedUpdateManyWithoutImageNestedInput;
+};
+
+export type FileInstanceCreateWithoutCategoryImagesInput = {
+  id?: string;
+  filename: string;
+  originalFilename: string;
+  path: string;
+  url: string;
+  fileType?: $Enums.FileType;
+  mimeType: string;
+  size: number;
+  createdAt?: Date | string;
+  updatedAt?: Date | string;
+  pageBannersBackground?: Prisma.PageBannerCreateNestedManyWithoutBackgroundInput;
+  blog?: Prisma.BlogCreateNestedManyWithoutFileInstancesInput;
+  boatImages?: Prisma.BoatImageCreateNestedManyWithoutFileInput;
+  contactTopImages?: Prisma.ContactPageCreateNestedOneWithoutContactTopImageInput;
+  contactBottomImages?: Prisma.ContactPageCreateNestedOneWithoutContactBottomImageInput;
+  featuredBrandLogos?: Prisma.FeaturedBrandsCreateNestedManyWithoutFeaturedbrandLogoInput;
+  blogs?: Prisma.BlogCreateNestedManyWithoutBlogImageInput;
+  settings?: Prisma.SettingCreateNestedManyWithoutLogoInput;
+  packageBanners?: Prisma.packageBannerCreateNestedManyWithoutPackageBannerInput;
+  aiSearchBanners?: Prisma.AiSearchBannerCreateNestedManyWithoutAiSearchBannerInput;
+};
+
+export type FileInstanceUncheckedCreateWithoutCategoryImagesInput = {
+  id?: string;
+  filename: string;
+  originalFilename: string;
+  path: string;
+  url: string;
+  fileType?: $Enums.FileType;
+  mimeType: string;
+  size: number;
+  createdAt?: Date | string;
+  updatedAt?: Date | string;
+  pageBannersBackground?: Prisma.PageBannerUncheckedCreateNestedManyWithoutBackgroundInput;
+  blog?: Prisma.BlogUncheckedCreateNestedManyWithoutFileInstancesInput;
+  boatImages?: Prisma.BoatImageUncheckedCreateNestedManyWithoutFileInput;
+  contactTopImages?: Prisma.ContactPageUncheckedCreateNestedOneWithoutContactTopImageInput;
+  contactBottomImages?: Prisma.ContactPageUncheckedCreateNestedOneWithoutContactBottomImageInput;
+  featuredBrandLogos?: Prisma.FeaturedBrandsUncheckedCreateNestedManyWithoutFeaturedbrandLogoInput;
+  blogs?: Prisma.BlogUncheckedCreateNestedManyWithoutBlogImageInput;
+  settings?: Prisma.SettingUncheckedCreateNestedManyWithoutLogoInput;
+  packageBanners?: Prisma.packageBannerUncheckedCreateNestedManyWithoutPackageBannerInput;
+  aiSearchBanners?: Prisma.AiSearchBannerUncheckedCreateNestedManyWithoutAiSearchBannerInput;
+};
+
+export type FileInstanceCreateOrConnectWithoutCategoryImagesInput = {
+  where: Prisma.FileInstanceWhereUniqueInput;
+  create: Prisma.XOR<
+    Prisma.FileInstanceCreateWithoutCategoryImagesInput,
+    Prisma.FileInstanceUncheckedCreateWithoutCategoryImagesInput
+  >;
+};
+
+export type FileInstanceUpsertWithoutCategoryImagesInput = {
+  update: Prisma.XOR<
+    Prisma.FileInstanceUpdateWithoutCategoryImagesInput,
+    Prisma.FileInstanceUncheckedUpdateWithoutCategoryImagesInput
+  >;
+  create: Prisma.XOR<
+    Prisma.FileInstanceCreateWithoutCategoryImagesInput,
+    Prisma.FileInstanceUncheckedCreateWithoutCategoryImagesInput
+  >;
+  where?: Prisma.FileInstanceWhereInput;
+};
+
+export type FileInstanceUpdateToOneWithWhereWithoutCategoryImagesInput = {
+  where?: Prisma.FileInstanceWhereInput;
+  data: Prisma.XOR<
+    Prisma.FileInstanceUpdateWithoutCategoryImagesInput,
+    Prisma.FileInstanceUncheckedUpdateWithoutCategoryImagesInput
+  >;
+};
+
+export type FileInstanceUpdateWithoutCategoryImagesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string;
+  filename?: Prisma.StringFieldUpdateOperationsInput | string;
+  originalFilename?: Prisma.StringFieldUpdateOperationsInput | string;
+  path?: Prisma.StringFieldUpdateOperationsInput | string;
+  url?: Prisma.StringFieldUpdateOperationsInput | string;
+  fileType?: Prisma.EnumFileTypeFieldUpdateOperationsInput | $Enums.FileType;
+  mimeType?: Prisma.StringFieldUpdateOperationsInput | string;
+  size?: Prisma.IntFieldUpdateOperationsInput | number;
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  pageBannersBackground?: Prisma.PageBannerUpdateManyWithoutBackgroundNestedInput;
+  blog?: Prisma.BlogUpdateManyWithoutFileInstancesNestedInput;
+  boatImages?: Prisma.BoatImageUpdateManyWithoutFileNestedInput;
+  contactTopImages?: Prisma.ContactPageUpdateOneWithoutContactTopImageNestedInput;
+  contactBottomImages?: Prisma.ContactPageUpdateOneWithoutContactBottomImageNestedInput;
+  featuredBrandLogos?: Prisma.FeaturedBrandsUpdateManyWithoutFeaturedbrandLogoNestedInput;
+  blogs?: Prisma.BlogUpdateManyWithoutBlogImageNestedInput;
+  settings?: Prisma.SettingUpdateManyWithoutLogoNestedInput;
+  packageBanners?: Prisma.packageBannerUpdateManyWithoutPackageBannerNestedInput;
+  aiSearchBanners?: Prisma.AiSearchBannerUpdateManyWithoutAiSearchBannerNestedInput;
+};
+
+export type FileInstanceUncheckedUpdateWithoutCategoryImagesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string;
+  filename?: Prisma.StringFieldUpdateOperationsInput | string;
+  originalFilename?: Prisma.StringFieldUpdateOperationsInput | string;
+  path?: Prisma.StringFieldUpdateOperationsInput | string;
+  url?: Prisma.StringFieldUpdateOperationsInput | string;
+  fileType?: Prisma.EnumFileTypeFieldUpdateOperationsInput | $Enums.FileType;
+  mimeType?: Prisma.StringFieldUpdateOperationsInput | string;
+  size?: Prisma.IntFieldUpdateOperationsInput | number;
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  pageBannersBackground?: Prisma.PageBannerUncheckedUpdateManyWithoutBackgroundNestedInput;
+  blog?: Prisma.BlogUncheckedUpdateManyWithoutFileInstancesNestedInput;
+  boatImages?: Prisma.BoatImageUncheckedUpdateManyWithoutFileNestedInput;
   contactTopImages?: Prisma.ContactPageUncheckedUpdateOneWithoutContactTopImageNestedInput;
   contactBottomImages?: Prisma.ContactPageUncheckedUpdateOneWithoutContactBottomImageNestedInput;
   featuredBrandLogos?: Prisma.FeaturedBrandsUncheckedUpdateManyWithoutFeaturedbrandLogoNestedInput;
@@ -1526,6 +1699,7 @@ export type FileInstanceCreateWithoutContactTopImagesInput = {
   settings?: Prisma.SettingCreateNestedManyWithoutLogoInput;
   packageBanners?: Prisma.packageBannerCreateNestedManyWithoutPackageBannerInput;
   aiSearchBanners?: Prisma.AiSearchBannerCreateNestedManyWithoutAiSearchBannerInput;
+  categoryImages?: Prisma.CategoryCreateNestedManyWithoutImageInput;
 };
 
 export type FileInstanceUncheckedCreateWithoutContactTopImagesInput = {
@@ -1548,6 +1722,7 @@ export type FileInstanceUncheckedCreateWithoutContactTopImagesInput = {
   settings?: Prisma.SettingUncheckedCreateNestedManyWithoutLogoInput;
   packageBanners?: Prisma.packageBannerUncheckedCreateNestedManyWithoutPackageBannerInput;
   aiSearchBanners?: Prisma.AiSearchBannerUncheckedCreateNestedManyWithoutAiSearchBannerInput;
+  categoryImages?: Prisma.CategoryUncheckedCreateNestedManyWithoutImageInput;
 };
 
 export type FileInstanceCreateOrConnectWithoutContactTopImagesInput = {
@@ -1578,6 +1753,7 @@ export type FileInstanceCreateWithoutContactBottomImagesInput = {
   settings?: Prisma.SettingCreateNestedManyWithoutLogoInput;
   packageBanners?: Prisma.packageBannerCreateNestedManyWithoutPackageBannerInput;
   aiSearchBanners?: Prisma.AiSearchBannerCreateNestedManyWithoutAiSearchBannerInput;
+  categoryImages?: Prisma.CategoryCreateNestedManyWithoutImageInput;
 };
 
 export type FileInstanceUncheckedCreateWithoutContactBottomImagesInput = {
@@ -1600,6 +1776,7 @@ export type FileInstanceUncheckedCreateWithoutContactBottomImagesInput = {
   settings?: Prisma.SettingUncheckedCreateNestedManyWithoutLogoInput;
   packageBanners?: Prisma.packageBannerUncheckedCreateNestedManyWithoutPackageBannerInput;
   aiSearchBanners?: Prisma.AiSearchBannerUncheckedCreateNestedManyWithoutAiSearchBannerInput;
+  categoryImages?: Prisma.CategoryUncheckedCreateNestedManyWithoutImageInput;
 };
 
 export type FileInstanceCreateOrConnectWithoutContactBottomImagesInput = {
@@ -1650,6 +1827,7 @@ export type FileInstanceUpdateWithoutContactTopImagesInput = {
   settings?: Prisma.SettingUpdateManyWithoutLogoNestedInput;
   packageBanners?: Prisma.packageBannerUpdateManyWithoutPackageBannerNestedInput;
   aiSearchBanners?: Prisma.AiSearchBannerUpdateManyWithoutAiSearchBannerNestedInput;
+  categoryImages?: Prisma.CategoryUpdateManyWithoutImageNestedInput;
 };
 
 export type FileInstanceUncheckedUpdateWithoutContactTopImagesInput = {
@@ -1672,6 +1850,7 @@ export type FileInstanceUncheckedUpdateWithoutContactTopImagesInput = {
   settings?: Prisma.SettingUncheckedUpdateManyWithoutLogoNestedInput;
   packageBanners?: Prisma.packageBannerUncheckedUpdateManyWithoutPackageBannerNestedInput;
   aiSearchBanners?: Prisma.AiSearchBannerUncheckedUpdateManyWithoutAiSearchBannerNestedInput;
+  categoryImages?: Prisma.CategoryUncheckedUpdateManyWithoutImageNestedInput;
 };
 
 export type FileInstanceUpsertWithoutContactBottomImagesInput = {
@@ -1714,6 +1893,7 @@ export type FileInstanceUpdateWithoutContactBottomImagesInput = {
   settings?: Prisma.SettingUpdateManyWithoutLogoNestedInput;
   packageBanners?: Prisma.packageBannerUpdateManyWithoutPackageBannerNestedInput;
   aiSearchBanners?: Prisma.AiSearchBannerUpdateManyWithoutAiSearchBannerNestedInput;
+  categoryImages?: Prisma.CategoryUpdateManyWithoutImageNestedInput;
 };
 
 export type FileInstanceUncheckedUpdateWithoutContactBottomImagesInput = {
@@ -1736,6 +1916,7 @@ export type FileInstanceUncheckedUpdateWithoutContactBottomImagesInput = {
   settings?: Prisma.SettingUncheckedUpdateManyWithoutLogoNestedInput;
   packageBanners?: Prisma.packageBannerUncheckedUpdateManyWithoutPackageBannerNestedInput;
   aiSearchBanners?: Prisma.AiSearchBannerUncheckedUpdateManyWithoutAiSearchBannerNestedInput;
+  categoryImages?: Prisma.CategoryUncheckedUpdateManyWithoutImageNestedInput;
 };
 
 export type FileInstanceCreateWithoutFeaturedBrandLogosInput = {
@@ -1758,6 +1939,7 @@ export type FileInstanceCreateWithoutFeaturedBrandLogosInput = {
   settings?: Prisma.SettingCreateNestedManyWithoutLogoInput;
   packageBanners?: Prisma.packageBannerCreateNestedManyWithoutPackageBannerInput;
   aiSearchBanners?: Prisma.AiSearchBannerCreateNestedManyWithoutAiSearchBannerInput;
+  categoryImages?: Prisma.CategoryCreateNestedManyWithoutImageInput;
 };
 
 export type FileInstanceUncheckedCreateWithoutFeaturedBrandLogosInput = {
@@ -1780,6 +1962,7 @@ export type FileInstanceUncheckedCreateWithoutFeaturedBrandLogosInput = {
   settings?: Prisma.SettingUncheckedCreateNestedManyWithoutLogoInput;
   packageBanners?: Prisma.packageBannerUncheckedCreateNestedManyWithoutPackageBannerInput;
   aiSearchBanners?: Prisma.AiSearchBannerUncheckedCreateNestedManyWithoutAiSearchBannerInput;
+  categoryImages?: Prisma.CategoryUncheckedCreateNestedManyWithoutImageInput;
 };
 
 export type FileInstanceCreateOrConnectWithoutFeaturedBrandLogosInput = {
@@ -1830,6 +2013,7 @@ export type FileInstanceUpdateWithoutFeaturedBrandLogosInput = {
   settings?: Prisma.SettingUpdateManyWithoutLogoNestedInput;
   packageBanners?: Prisma.packageBannerUpdateManyWithoutPackageBannerNestedInput;
   aiSearchBanners?: Prisma.AiSearchBannerUpdateManyWithoutAiSearchBannerNestedInput;
+  categoryImages?: Prisma.CategoryUpdateManyWithoutImageNestedInput;
 };
 
 export type FileInstanceUncheckedUpdateWithoutFeaturedBrandLogosInput = {
@@ -1852,6 +2036,7 @@ export type FileInstanceUncheckedUpdateWithoutFeaturedBrandLogosInput = {
   settings?: Prisma.SettingUncheckedUpdateManyWithoutLogoNestedInput;
   packageBanners?: Prisma.packageBannerUncheckedUpdateManyWithoutPackageBannerNestedInput;
   aiSearchBanners?: Prisma.AiSearchBannerUncheckedUpdateManyWithoutAiSearchBannerNestedInput;
+  categoryImages?: Prisma.CategoryUncheckedUpdateManyWithoutImageNestedInput;
 };
 
 export type FileInstanceCreateWithoutPackageBannersInput = {
@@ -1874,6 +2059,7 @@ export type FileInstanceCreateWithoutPackageBannersInput = {
   blogs?: Prisma.BlogCreateNestedManyWithoutBlogImageInput;
   settings?: Prisma.SettingCreateNestedManyWithoutLogoInput;
   aiSearchBanners?: Prisma.AiSearchBannerCreateNestedManyWithoutAiSearchBannerInput;
+  categoryImages?: Prisma.CategoryCreateNestedManyWithoutImageInput;
 };
 
 export type FileInstanceUncheckedCreateWithoutPackageBannersInput = {
@@ -1896,6 +2082,7 @@ export type FileInstanceUncheckedCreateWithoutPackageBannersInput = {
   blogs?: Prisma.BlogUncheckedCreateNestedManyWithoutBlogImageInput;
   settings?: Prisma.SettingUncheckedCreateNestedManyWithoutLogoInput;
   aiSearchBanners?: Prisma.AiSearchBannerUncheckedCreateNestedManyWithoutAiSearchBannerInput;
+  categoryImages?: Prisma.CategoryUncheckedCreateNestedManyWithoutImageInput;
 };
 
 export type FileInstanceCreateOrConnectWithoutPackageBannersInput = {
@@ -1946,6 +2133,7 @@ export type FileInstanceUpdateWithoutPackageBannersInput = {
   blogs?: Prisma.BlogUpdateManyWithoutBlogImageNestedInput;
   settings?: Prisma.SettingUpdateManyWithoutLogoNestedInput;
   aiSearchBanners?: Prisma.AiSearchBannerUpdateManyWithoutAiSearchBannerNestedInput;
+  categoryImages?: Prisma.CategoryUpdateManyWithoutImageNestedInput;
 };
 
 export type FileInstanceUncheckedUpdateWithoutPackageBannersInput = {
@@ -1968,6 +2156,7 @@ export type FileInstanceUncheckedUpdateWithoutPackageBannersInput = {
   blogs?: Prisma.BlogUncheckedUpdateManyWithoutBlogImageNestedInput;
   settings?: Prisma.SettingUncheckedUpdateManyWithoutLogoNestedInput;
   aiSearchBanners?: Prisma.AiSearchBannerUncheckedUpdateManyWithoutAiSearchBannerNestedInput;
+  categoryImages?: Prisma.CategoryUncheckedUpdateManyWithoutImageNestedInput;
 };
 
 export type FileInstanceCreateWithoutSettingsInput = {
@@ -1990,6 +2179,7 @@ export type FileInstanceCreateWithoutSettingsInput = {
   blogs?: Prisma.BlogCreateNestedManyWithoutBlogImageInput;
   packageBanners?: Prisma.packageBannerCreateNestedManyWithoutPackageBannerInput;
   aiSearchBanners?: Prisma.AiSearchBannerCreateNestedManyWithoutAiSearchBannerInput;
+  categoryImages?: Prisma.CategoryCreateNestedManyWithoutImageInput;
 };
 
 export type FileInstanceUncheckedCreateWithoutSettingsInput = {
@@ -2012,6 +2202,7 @@ export type FileInstanceUncheckedCreateWithoutSettingsInput = {
   blogs?: Prisma.BlogUncheckedCreateNestedManyWithoutBlogImageInput;
   packageBanners?: Prisma.packageBannerUncheckedCreateNestedManyWithoutPackageBannerInput;
   aiSearchBanners?: Prisma.AiSearchBannerUncheckedCreateNestedManyWithoutAiSearchBannerInput;
+  categoryImages?: Prisma.CategoryUncheckedCreateNestedManyWithoutImageInput;
 };
 
 export type FileInstanceCreateOrConnectWithoutSettingsInput = {
@@ -2062,6 +2253,7 @@ export type FileInstanceUpdateWithoutSettingsInput = {
   blogs?: Prisma.BlogUpdateManyWithoutBlogImageNestedInput;
   packageBanners?: Prisma.packageBannerUpdateManyWithoutPackageBannerNestedInput;
   aiSearchBanners?: Prisma.AiSearchBannerUpdateManyWithoutAiSearchBannerNestedInput;
+  categoryImages?: Prisma.CategoryUpdateManyWithoutImageNestedInput;
 };
 
 export type FileInstanceUncheckedUpdateWithoutSettingsInput = {
@@ -2084,6 +2276,7 @@ export type FileInstanceUncheckedUpdateWithoutSettingsInput = {
   blogs?: Prisma.BlogUncheckedUpdateManyWithoutBlogImageNestedInput;
   packageBanners?: Prisma.packageBannerUncheckedUpdateManyWithoutPackageBannerNestedInput;
   aiSearchBanners?: Prisma.AiSearchBannerUncheckedUpdateManyWithoutAiSearchBannerNestedInput;
+  categoryImages?: Prisma.CategoryUncheckedUpdateManyWithoutImageNestedInput;
 };
 
 export type FileInstanceUpdateWithoutBlogInput = {
@@ -2106,6 +2299,7 @@ export type FileInstanceUpdateWithoutBlogInput = {
   settings?: Prisma.SettingUpdateManyWithoutLogoNestedInput;
   packageBanners?: Prisma.packageBannerUpdateManyWithoutPackageBannerNestedInput;
   aiSearchBanners?: Prisma.AiSearchBannerUpdateManyWithoutAiSearchBannerNestedInput;
+  categoryImages?: Prisma.CategoryUpdateManyWithoutImageNestedInput;
 };
 
 export type FileInstanceUncheckedUpdateWithoutBlogInput = {
@@ -2128,6 +2322,7 @@ export type FileInstanceUncheckedUpdateWithoutBlogInput = {
   settings?: Prisma.SettingUncheckedUpdateManyWithoutLogoNestedInput;
   packageBanners?: Prisma.packageBannerUncheckedUpdateManyWithoutPackageBannerNestedInput;
   aiSearchBanners?: Prisma.AiSearchBannerUncheckedUpdateManyWithoutAiSearchBannerNestedInput;
+  categoryImages?: Prisma.CategoryUncheckedUpdateManyWithoutImageNestedInput;
 };
 
 export type FileInstanceUncheckedUpdateManyWithoutBlogInput = {
@@ -2156,6 +2351,7 @@ export type FileInstanceCountOutputType = {
   settings: number;
   packageBanners: number;
   aiSearchBanners: number;
+  categoryImages: number;
 };
 
 export type FileInstanceCountOutputTypeSelect<
@@ -2176,6 +2372,7 @@ export type FileInstanceCountOutputTypeSelect<
   aiSearchBanners?:
     | boolean
     | FileInstanceCountOutputTypeCountAiSearchBannersArgs;
+  categoryImages?: boolean | FileInstanceCountOutputTypeCountCategoryImagesArgs;
 };
 
 /**
@@ -2271,6 +2468,16 @@ export type FileInstanceCountOutputTypeCountAiSearchBannersArgs<
   where?: Prisma.AiSearchBannerWhereInput;
 };
 
+/**
+ * FileInstanceCountOutputType without action
+ */
+export type FileInstanceCountOutputTypeCountCategoryImagesArgs<
+  ExtArgs extends runtime.Types.Extensions.InternalArgs =
+    runtime.Types.Extensions.DefaultArgs,
+> = {
+  where?: Prisma.CategoryWhereInput;
+};
+
 export type FileInstanceSelect<
   ExtArgs extends runtime.Types.Extensions.InternalArgs =
     runtime.Types.Extensions.DefaultArgs,
@@ -2306,6 +2513,7 @@ export type FileInstanceSelect<
     aiSearchBanners?:
       | boolean
       | Prisma.FileInstance$aiSearchBannersArgs<ExtArgs>;
+    categoryImages?: boolean | Prisma.FileInstance$categoryImagesArgs<ExtArgs>;
     _count?: boolean | Prisma.FileInstanceCountOutputTypeDefaultArgs<ExtArgs>;
   },
   ExtArgs['result']['fileInstance']
@@ -2400,6 +2608,7 @@ export type FileInstanceInclude<
   settings?: boolean | Prisma.FileInstance$settingsArgs<ExtArgs>;
   packageBanners?: boolean | Prisma.FileInstance$packageBannersArgs<ExtArgs>;
   aiSearchBanners?: boolean | Prisma.FileInstance$aiSearchBannersArgs<ExtArgs>;
+  categoryImages?: boolean | Prisma.FileInstance$categoryImagesArgs<ExtArgs>;
   _count?: boolean | Prisma.FileInstanceCountOutputTypeDefaultArgs<ExtArgs>;
 };
 export type FileInstanceIncludeCreateManyAndReturn<
@@ -2427,6 +2636,7 @@ export type $FileInstancePayload<
     settings: Prisma.$SettingPayload<ExtArgs>[];
     packageBanners: Prisma.$packageBannerPayload<ExtArgs>[];
     aiSearchBanners: Prisma.$AiSearchBannerPayload<ExtArgs>[];
+    categoryImages: Prisma.$CategoryPayload<ExtArgs>[];
   };
   scalars: runtime.Types.Extensions.GetPayloadResult<
     {
@@ -3125,6 +3335,19 @@ export interface Prisma__FileInstanceClient<
   ): Prisma.PrismaPromise<
     | runtime.Types.Result.GetResult<
         Prisma.$AiSearchBannerPayload<ExtArgs>,
+        T,
+        'findMany',
+        GlobalOmitOptions
+      >
+    | Null
+  >;
+  categoryImages<
+    T extends Prisma.FileInstance$categoryImagesArgs<ExtArgs> = {},
+  >(
+    args?: Prisma.Subset<T, Prisma.FileInstance$categoryImagesArgs<ExtArgs>>,
+  ): Prisma.PrismaPromise<
+    | runtime.Types.Result.GetResult<
+        Prisma.$CategoryPayload<ExtArgs>,
         T,
         'findMany',
         GlobalOmitOptions
@@ -3929,6 +4152,35 @@ export type FileInstance$aiSearchBannersArgs<
   distinct?:
     | Prisma.AiSearchBannerScalarFieldEnum
     | Prisma.AiSearchBannerScalarFieldEnum[];
+};
+
+/**
+ * FileInstance.categoryImages
+ */
+export type FileInstance$categoryImagesArgs<
+  ExtArgs extends runtime.Types.Extensions.InternalArgs =
+    runtime.Types.Extensions.DefaultArgs,
+> = {
+  /**
+   * Select specific fields to fetch from the Category
+   */
+  select?: Prisma.CategorySelect<ExtArgs> | null;
+  /**
+   * Omit specific fields from the Category
+   */
+  omit?: Prisma.CategoryOmit<ExtArgs> | null;
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.CategoryInclude<ExtArgs> | null;
+  where?: Prisma.CategoryWhereInput;
+  orderBy?:
+    | Prisma.CategoryOrderByWithRelationInput
+    | Prisma.CategoryOrderByWithRelationInput[];
+  cursor?: Prisma.CategoryWhereUniqueInput;
+  take?: number;
+  skip?: number;
+  distinct?: Prisma.CategoryScalarFieldEnum | Prisma.CategoryScalarFieldEnum[];
 };
 
 /**

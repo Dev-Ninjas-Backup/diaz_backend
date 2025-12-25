@@ -57,6 +57,11 @@ export type BoatEngine = Prisma.BoatEngineModel;
  */
 export type BoatImage = Prisma.BoatImageModel;
 /**
+ * Model Category
+ *
+ */
+export type Category = Prisma.CategoryModel;
+/**
  * Model Contact
  *
  */

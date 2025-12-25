@@ -62,6 +62,7 @@ export const ModelName = {
   Boats: 'Boats',
   BoatEngine: 'BoatEngine',
   BoatImage: 'BoatImage',
+  Category: 'Category',
   Contact: 'Contact',
   FloridaLead: 'FloridaLead',
   AboutPage: 'AboutPage',
@@ -238,6 +239,17 @@ export const BoatImageScalarFieldEnum = {
 
 export type BoatImageScalarFieldEnum =
   (typeof BoatImageScalarFieldEnum)[keyof typeof BoatImageScalarFieldEnum];
+
+export const CategoryScalarFieldEnum = {
+  id: 'id',
+  title: 'title',
+  imageId: 'imageId',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+} as const;
+
+export type CategoryScalarFieldEnum =
+  (typeof CategoryScalarFieldEnum)[keyof typeof CategoryScalarFieldEnum];
 
 export const ContactScalarFieldEnum = {
   id: 'id',

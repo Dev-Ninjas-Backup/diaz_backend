@@ -7,6 +7,10 @@ import { Injectable, Logger } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { ContactSource, ContactType } from 'generated/client';
 import { CreateContactUsDto } from '../dto/create-contact-us.dto';
+import {
+  ContactUsResponseDataDto,
+  CreateContactUsResponseDataDto,
+} from '../dto/contact-us-response.dto';
 
 @Injectable()
 export class CreateContactUsService {
@@ -19,9 +23,12 @@ export class CreateContactUsService {
   ) {}
 
   @HandleError('Failed to get contact us information', 'Contact')
-  async getContactUs(): Promise<TResponse<any>> {
+  async getContactUs(): Promise<TResponse<ContactUsResponseDataDto>> {
+    // This is a global endpoint, no site-specific ContactPage data
+
     return successResponse(
       {
+        contactPage: null,
         formFields: {
           fullName: {
             label: 'Full Name',
@@ -29,6 +36,7 @@ export class CreateContactUsService {
             required: true,
             placeholder: 'John Doe',
             maxLength: 255,
+            description: 'Full name of the contact',
           },
           phone: {
             label: 'Phone',
@@ -36,6 +44,7 @@ export class CreateContactUsService {
             required: true,
             placeholder: '1234567890',
             maxLength: 20,
+            description: 'Phone number of the contact',
           },
           email: {
             label: 'Email',
@@ -43,20 +52,23 @@ export class CreateContactUsService {
             required: true,
             placeholder: 'john@example.com',
             maxLength: 255,
+            description: 'Email address of the contact',
           },
           boatInformation: {
             label: 'Boat Information',
             type: 'textarea',
             required: false,
-            placeholder: 'Type your message...',
+            placeholder: 'Interested in a 2020 Sea Ray Sundancer',
             maxLength: 2000,
+            description: 'Boat information (optional)',
           },
           comments: {
             label: 'Comments',
             type: 'textarea',
             required: false,
-            placeholder: 'Type your message...',
+            placeholder: 'I would like to schedule a viewing.',
             maxLength: 2000,
+            description: 'Additional comments (optional)',
           },
         },
         endpoint: '/contact/contact-us',
@@ -68,7 +80,9 @@ export class CreateContactUsService {
   }
 
   @HandleError('Failed to create contact', 'Contact')
-  async createContactUs(data: CreateContactUsDto): Promise<TResponse<any>> {
+  async createContactUs(
+    data: CreateContactUsDto,
+  ): Promise<TResponse<CreateContactUsResponseDataDto>> {
     let message = '';
     if (data.boatInformation) {
       message += `Boat Information:\n${data.boatInformation}\n\n`;

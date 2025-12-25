@@ -15,6 +15,7 @@ export type * from './models/BoatFeature';
 export type * from './models/Boats';
 export type * from './models/BoatEngine';
 export type * from './models/BoatImage';
+export type * from './models/Category';
 export type * from './models/Contact';
 export type * from './models/FloridaLead';
 export type * from './models/AboutPage';
