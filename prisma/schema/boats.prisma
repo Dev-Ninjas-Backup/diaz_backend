@@ -56,9 +56,10 @@ model Boats {
   videoURL String?
 
   // Relations
-  engines      BoatEngine[]
-  images       BoatImage[]
-  floridaLeads FloridaLead[]
+  engines        BoatEngine[]
+  images         BoatImage[]
+  floridaLeads   FloridaLead[]
+  featuredYachts  FeaturedYacht[]
 
   @@map("boats")
 }

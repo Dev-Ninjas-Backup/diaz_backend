@@ -69,6 +69,7 @@ export const ModelName = {
   ContactPage: 'ContactPage',
   PrivacyPolicy: 'PrivacyPolicy',
   TermsOfServices: 'TermsOfServices',
+  FeaturedYacht: 'FeaturedYacht',
   FeaturedBrands: 'FeaturedBrands',
   FileInstance: 'FileInstance',
   Notification: 'Notification',
@@ -328,6 +329,19 @@ export const TermsOfServicesScalarFieldEnum = {
 
 export type TermsOfServicesScalarFieldEnum =
   (typeof TermsOfServicesScalarFieldEnum)[keyof typeof TermsOfServicesScalarFieldEnum];
+
+export const FeaturedYachtScalarFieldEnum = {
+  id: 'id',
+  boatId: 'boatId',
+  site: 'site',
+  featuredAt: 'featuredAt',
+  expiresAt: 'expiresAt',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+} as const;
+
+export type FeaturedYachtScalarFieldEnum =
+  (typeof FeaturedYachtScalarFieldEnum)[keyof typeof FeaturedYachtScalarFieldEnum];
 
 export const FeaturedBrandsScalarFieldEnum = {
   id: 'id',

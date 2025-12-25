@@ -1,6 +1,7 @@
 import { QueueName } from '@/common/enum/queue-name.enum';
 import { BullModule } from '@nestjs/bullmq';
 import { Global, Module } from '@nestjs/common';
+import { FeaturedYachtCronService } from './cron/featured-yacht-cron.service';
 import { SyncBoatsWithGmcCronService } from './cron/sync-boats-with-gmc-cron.service';
 import { QueueGateway } from './queue.gateway';
 import { AdoptBoatsDataEventsService } from './services/adopt-boats-data-events.service';
@@ -35,6 +36,7 @@ import { SyncBoatsWithGmcService } from './worker/sync-boats-with-gmc.service';
     SyncBoatsWithGmcCronService,
     SyncBoatsWitGmcEventsService,
     SyncBoatsWithGmcService,
+    FeaturedYachtCronService,
   ],
   exports: [BullModule],
 })

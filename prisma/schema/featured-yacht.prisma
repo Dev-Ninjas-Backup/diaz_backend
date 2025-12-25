@@ -1,0 +1,17 @@
+model FeaturedYacht {
+  id String @id @default(uuid())
+
+  boatId String
+  boat   Boats @relation(fields: [boatId], references: [id], onDelete: Cascade)
+
+  site SiteType
+
+  featuredAt DateTime @default(now())
+  expiresAt  DateTime
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@unique([site])
+  @@map("featured_yachts")
+}
