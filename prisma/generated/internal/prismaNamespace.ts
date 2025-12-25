@@ -427,6 +427,7 @@ export const ModelName = {
   ContactPage: 'ContactPage',
   PrivacyPolicy: 'PrivacyPolicy',
   TermsOfServices: 'TermsOfServices',
+  FeaturedYacht: 'FeaturedYacht',
   FeaturedBrands: 'FeaturedBrands',
   FileInstance: 'FileInstance',
   Notification: 'Notification',
@@ -477,6 +478,7 @@ export type TypeMap<
       | 'contactPage'
       | 'privacyPolicy'
       | 'termsOfServices'
+      | 'featuredYacht'
       | 'featuredBrands'
       | 'fileInstance'
       | 'notification'
@@ -1629,6 +1631,82 @@ export type TypeMap<
           args: Prisma.TermsOfServicesCountArgs<ExtArgs>;
           result:
             | runtime.Types.Utils.Optional<Prisma.TermsOfServicesCountAggregateOutputType>
+            | number;
+        };
+      };
+    };
+    FeaturedYacht: {
+      payload: Prisma.$FeaturedYachtPayload<ExtArgs>;
+      fields: Prisma.FeaturedYachtFieldRefs;
+      operations: {
+        findUnique: {
+          args: Prisma.FeaturedYachtFindUniqueArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$FeaturedYachtPayload> | null;
+        };
+        findUniqueOrThrow: {
+          args: Prisma.FeaturedYachtFindUniqueOrThrowArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$FeaturedYachtPayload>;
+        };
+        findFirst: {
+          args: Prisma.FeaturedYachtFindFirstArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$FeaturedYachtPayload> | null;
+        };
+        findFirstOrThrow: {
+          args: Prisma.FeaturedYachtFindFirstOrThrowArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$FeaturedYachtPayload>;
+        };
+        findMany: {
+          args: Prisma.FeaturedYachtFindManyArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$FeaturedYachtPayload>[];
+        };
+        create: {
+          args: Prisma.FeaturedYachtCreateArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$FeaturedYachtPayload>;
+        };
+        createMany: {
+          args: Prisma.FeaturedYachtCreateManyArgs<ExtArgs>;
+          result: BatchPayload;
+        };
+        createManyAndReturn: {
+          args: Prisma.FeaturedYachtCreateManyAndReturnArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$FeaturedYachtPayload>[];
+        };
+        delete: {
+          args: Prisma.FeaturedYachtDeleteArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$FeaturedYachtPayload>;
+        };
+        update: {
+          args: Prisma.FeaturedYachtUpdateArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$FeaturedYachtPayload>;
+        };
+        deleteMany: {
+          args: Prisma.FeaturedYachtDeleteManyArgs<ExtArgs>;
+          result: BatchPayload;
+        };
+        updateMany: {
+          args: Prisma.FeaturedYachtUpdateManyArgs<ExtArgs>;
+          result: BatchPayload;
+        };
+        updateManyAndReturn: {
+          args: Prisma.FeaturedYachtUpdateManyAndReturnArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$FeaturedYachtPayload>[];
+        };
+        upsert: {
+          args: Prisma.FeaturedYachtUpsertArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$FeaturedYachtPayload>;
+        };
+        aggregate: {
+          args: Prisma.FeaturedYachtAggregateArgs<ExtArgs>;
+          result: runtime.Types.Utils.Optional<Prisma.AggregateFeaturedYacht>;
+        };
+        groupBy: {
+          args: Prisma.FeaturedYachtGroupByArgs<ExtArgs>;
+          result: runtime.Types.Utils.Optional<Prisma.FeaturedYachtGroupByOutputType>[];
+        };
+        count: {
+          args: Prisma.FeaturedYachtCountArgs<ExtArgs>;
+          result:
+            | runtime.Types.Utils.Optional<Prisma.FeaturedYachtCountAggregateOutputType>
             | number;
         };
       };
@@ -2889,6 +2967,19 @@ export const TermsOfServicesScalarFieldEnum = {
 export type TermsOfServicesScalarFieldEnum =
   (typeof TermsOfServicesScalarFieldEnum)[keyof typeof TermsOfServicesScalarFieldEnum];
 
+export const FeaturedYachtScalarFieldEnum = {
+  id: 'id',
+  boatId: 'boatId',
+  site: 'site',
+  featuredAt: 'featuredAt',
+  expiresAt: 'expiresAt',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+} as const;
+
+export type FeaturedYachtScalarFieldEnum =
+  (typeof FeaturedYachtScalarFieldEnum)[keyof typeof FeaturedYachtScalarFieldEnum];
+
 export const FeaturedBrandsScalarFieldEnum = {
   id: 'id',
   featuredbrandId: 'featuredbrandId',
@@ -3624,6 +3715,7 @@ export type GlobalOmitConfig = {
   contactPage?: Prisma.ContactPageOmit;
   privacyPolicy?: Prisma.PrivacyPolicyOmit;
   termsOfServices?: Prisma.TermsOfServicesOmit;
+  featuredYacht?: Prisma.FeaturedYachtOmit;
   featuredBrands?: Prisma.FeaturedBrandsOmit;
   fileInstance?: Prisma.FileInstanceOmit;
   notification?: Prisma.NotificationOmit;

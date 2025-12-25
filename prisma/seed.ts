@@ -32,6 +32,7 @@ async function main() {
   await prisma.aiSearchBanner.deleteMany();
   await prisma.packageBanner.deleteMany();
   await prisma.featuredBrands.deleteMany();
+  await prisma.featuredYacht.deleteMany();
   await prisma.pageBanner.deleteMany();
   await prisma.aboutPage.deleteMany();
   await prisma.contactPage.deleteMany();
@@ -1870,66 +1871,128 @@ async function main() {
 
   // 22. Create About Page
   console.log('📄 Creating about page...');
-  await prisma.aboutPage.create({
-    data: {
-      aboutTopImageId: bannerImage.id,
-      aboutBottonImageId: bannerImage.id,
-      aboutBottomTitle: 'About Diaz Boats',
-      aboutBottomSubTitle: 'Your trusted partner in boat sales',
-    },
+  await prisma.aboutPage.createMany({
+    data: [
+      {
+        site: 'FLORIDA',
+        aboutTitle: 'About Diaz Boats',
+        aboutDescription:
+          'Your trusted partner in boat sales. We connect buyers and sellers of premium boats and yachts.',
+      },
+      {
+        site: 'JUPITER',
+        aboutTitle: 'About Jupiter Boats',
+        aboutDescription:
+          'Your trusted partner in boat sales. We connect buyers and sellers of premium boats and yachts.',
+      },
+    ],
   });
 
   // 23. Create Contact Page
   console.log('📞 Creating contact page...');
-  const contactTopImage = await prisma.fileInstance.create({
+  const contactTopImageFlorida = await prisma.fileInstance.create({
     data: {
-      filename: 'contact-top.jpg',
-      originalFilename: 'contact-top.jpg',
-      path: '/uploads/contact/contact-top.jpg',
-      url: 'https://example.com/uploads/contact/contact-top.jpg',
+      filename: 'contact-top-florida.jpg',
+      originalFilename: 'contact-top-florida.jpg',
+      path: '/uploads/contact/contact-top-florida.jpg',
+      url: 'https://example.com/uploads/contact/contact-top-florida.jpg',
       fileType: 'image',
       mimeType: 'image/jpeg',
       size: 102400,
     },
   });
 
-  const contactBottomImage = await prisma.fileInstance.create({
+  const contactBottomImageFlorida = await prisma.fileInstance.create({
     data: {
-      filename: 'contact-bottom.jpg',
-      originalFilename: 'contact-bottom.jpg',
-      path: '/uploads/contact/contact-bottom.jpg',
-      url: 'https://example.com/uploads/contact/contact-bottom.jpg',
+      filename: 'contact-bottom-florida.jpg',
+      originalFilename: 'contact-bottom-florida.jpg',
+      path: '/uploads/contact/contact-bottom-florida.jpg',
+      url: 'https://example.com/uploads/contact/contact-bottom-florida.jpg',
       fileType: 'image',
       mimeType: 'image/jpeg',
       size: 102400,
     },
   });
 
-  await prisma.contactPage.create({
+  const contactTopImageJupiter = await prisma.fileInstance.create({
     data: {
-      contactTopImageId: contactTopImage.id,
-      contactBottomImageId: contactBottomImage.id,
+      filename: 'contact-top-jupiter.jpg',
+      originalFilename: 'contact-top-jupiter.jpg',
+      path: '/uploads/contact/contact-top-jupiter.jpg',
+      url: 'https://example.com/uploads/contact/contact-top-jupiter.jpg',
+      fileType: 'image',
+      mimeType: 'image/jpeg',
+      size: 102400,
     },
+  });
+
+  const contactBottomImageJupiter = await prisma.fileInstance.create({
+    data: {
+      filename: 'contact-bottom-jupiter.jpg',
+      originalFilename: 'contact-bottom-jupiter.jpg',
+      path: '/uploads/contact/contact-bottom-jupiter.jpg',
+      url: 'https://example.com/uploads/contact/contact-bottom-jupiter.jpg',
+      fileType: 'image',
+      mimeType: 'image/jpeg',
+      size: 102400,
+    },
+  });
+
+  await prisma.contactPage.createMany({
+    data: [
+      {
+        site: 'FLORIDA',
+        contactTitle: 'Contact Us',
+        contactDescription: 'Get in touch with us for any inquiries.',
+        contactTopImageId: contactTopImageFlorida.id,
+        contactBottomImageId: contactBottomImageFlorida.id,
+      },
+      {
+        site: 'JUPITER',
+        contactTitle: 'Contact Us',
+        contactDescription: 'Get in touch with us for any inquiries.',
+        contactTopImageId: contactTopImageJupiter.id,
+        contactBottomImageId: contactBottomImageJupiter.id,
+      },
+    ],
   });
 
   // 24. Create Privacy Policy
   console.log('🔒 Creating privacy policy...');
-  await prisma.privacyPolicy.create({
-    data: {
-      privacyTitle: 'Privacy Policy',
-      privacyDescription:
-        'At Diaz Boats, we take your privacy seriously. This policy explains how we collect, use, and protect your personal information when you use our platform.',
-    },
+  await prisma.privacyPolicy.createMany({
+    data: [
+      {
+        site: 'FLORIDA',
+        privacyTitle: 'Privacy Policy',
+        privacyDescription:
+          'At Diaz Boats, we take your privacy seriously. This policy explains how we collect, use, and protect your personal information when you use our platform.',
+      },
+      {
+        site: 'JUPITER',
+        privacyTitle: 'Privacy Policy',
+        privacyDescription:
+          'At Jupiter Boats, we take your privacy seriously. This policy explains how we collect, use, and protect your personal information when you use our platform.',
+      },
+    ],
   });
 
   // 25. Create Terms of Services
   console.log('📋 Creating terms of services...');
-  await prisma.termsOfServices.create({
-    data: {
-      termsTitle: 'Terms of Service',
-      termsDescription:
-        'By using Diaz Boats, you agree to these terms and conditions. Please read them carefully before using our platform.',
-    },
+  await prisma.termsOfServices.createMany({
+    data: [
+      {
+        site: 'FLORIDA',
+        termsTitle: 'Terms of Service',
+        termsDescription:
+          'By using Diaz Boats, you agree to these terms and conditions. Please read them carefully before using our platform.',
+      },
+      {
+        site: 'JUPITER',
+        termsTitle: 'Terms of Service',
+        termsDescription:
+          'By using Jupiter Boats, you agree to these terms and conditions. Please read them carefully before using our platform.',
+      },
+    ],
   });
 
   // 26. Create Visitor Sessions (optional sample data)
@@ -2002,6 +2065,60 @@ async function main() {
       { page: '/terms', count: 4 },
     ],
   });
+
+  // 28. Create Featured Yachts
+  console.log('⭐ Creating featured yachts...');
+  const activeBoats = await prisma.boats.findMany({
+    where: { status: 'ACTIVE' },
+  });
+
+  if (activeBoats.length > 0) {
+    // Select random boat for FLORIDA site
+    const floridaBoatIndex = Math.floor(Math.random() * activeBoats.length);
+    const floridaBoat = activeBoats[floridaBoatIndex];
+
+    const now = new Date();
+    const expiresAt = new Date(now);
+    expiresAt.setDate(expiresAt.getDate() + 7); // 7 days from now
+
+    await prisma.featuredYacht.create({
+      data: {
+        boatId: floridaBoat.id,
+        site: 'FLORIDA',
+        featuredAt: now,
+        expiresAt: expiresAt,
+      },
+    });
+
+    console.log(
+      `✅ Featured yacht created for FLORIDA: ${floridaBoat.name} (ID: ${floridaBoat.id})`,
+    );
+
+    // Select random boat for JUPITER site (try to select different boat)
+    let jupiterBoatIndex = Math.floor(Math.random() * activeBoats.length);
+    if (activeBoats.length > 1) {
+      // Ensure we select a different boat if possible
+      while (jupiterBoatIndex === floridaBoatIndex) {
+        jupiterBoatIndex = Math.floor(Math.random() * activeBoats.length);
+      }
+    }
+    const jupiterBoat = activeBoats[jupiterBoatIndex];
+
+    await prisma.featuredYacht.create({
+      data: {
+        boatId: jupiterBoat.id,
+        site: 'JUPITER',
+        featuredAt: now,
+        expiresAt: expiresAt,
+      },
+    });
+
+    console.log(
+      `✅ Featured yacht created for JUPITER: ${jupiterBoat.name} (ID: ${jupiterBoat.id})`,
+    );
+  } else {
+    console.log('⚠️  No active boats found, skipping featured yacht creation');
+  }
 
   console.log('✅ Database seed completed successfully!');
 }

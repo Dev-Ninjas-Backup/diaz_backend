@@ -92,6 +92,11 @@ export type PrivacyPolicy = Prisma.PrivacyPolicyModel;
  */
 export type TermsOfServices = Prisma.TermsOfServicesModel;
 /**
+ * Model FeaturedYacht
+ *
+ */
+export type FeaturedYacht = Prisma.FeaturedYachtModel;
+/**
  * Model FeaturedBrands
  *
  */

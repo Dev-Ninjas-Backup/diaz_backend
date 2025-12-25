@@ -473,6 +473,7 @@ export type BoatsWhereInput = {
   engines?: Prisma.BoatEngineListRelationFilter;
   images?: Prisma.BoatImageListRelationFilter;
   floridaLeads?: Prisma.FloridaLeadListRelationFilter;
+  featuredYachts?: Prisma.FeaturedYachtListRelationFilter;
 };
 
 export type BoatsOrderByWithRelationInput = {
@@ -516,6 +517,7 @@ export type BoatsOrderByWithRelationInput = {
   engines?: Prisma.BoatEngineOrderByRelationAggregateInput;
   images?: Prisma.BoatImageOrderByRelationAggregateInput;
   floridaLeads?: Prisma.FloridaLeadOrderByRelationAggregateInput;
+  featuredYachts?: Prisma.FeaturedYachtOrderByRelationAggregateInput;
 };
 
 export type BoatsWhereUniqueInput = Prisma.AtLeast<
@@ -565,6 +567,7 @@ export type BoatsWhereUniqueInput = Prisma.AtLeast<
     engines?: Prisma.BoatEngineListRelationFilter;
     images?: Prisma.BoatImageListRelationFilter;
     floridaLeads?: Prisma.FloridaLeadListRelationFilter;
+    featuredYachts?: Prisma.FeaturedYachtListRelationFilter;
   },
   'id' | 'listingId'
 >;
@@ -710,6 +713,7 @@ export type BoatsCreateInput = {
   engines?: Prisma.BoatEngineCreateNestedManyWithoutBoatInput;
   images?: Prisma.BoatImageCreateNestedManyWithoutBoatInput;
   floridaLeads?: Prisma.FloridaLeadCreateNestedManyWithoutBoatInput;
+  featuredYachts?: Prisma.FeaturedYachtCreateNestedManyWithoutBoatInput;
 };
 
 export type BoatsUncheckedCreateInput = {
@@ -752,6 +756,7 @@ export type BoatsUncheckedCreateInput = {
   engines?: Prisma.BoatEngineUncheckedCreateNestedManyWithoutBoatInput;
   images?: Prisma.BoatImageUncheckedCreateNestedManyWithoutBoatInput;
   floridaLeads?: Prisma.FloridaLeadUncheckedCreateNestedManyWithoutBoatInput;
+  featuredYachts?: Prisma.FeaturedYachtUncheckedCreateNestedManyWithoutBoatInput;
 };
 
 export type BoatsUpdateInput = {
@@ -799,6 +804,7 @@ export type BoatsUpdateInput = {
   engines?: Prisma.BoatEngineUpdateManyWithoutBoatNestedInput;
   images?: Prisma.BoatImageUpdateManyWithoutBoatNestedInput;
   floridaLeads?: Prisma.FloridaLeadUpdateManyWithoutBoatNestedInput;
+  featuredYachts?: Prisma.FeaturedYachtUpdateManyWithoutBoatNestedInput;
 };
 
 export type BoatsUncheckedUpdateInput = {
@@ -846,6 +852,7 @@ export type BoatsUncheckedUpdateInput = {
   engines?: Prisma.BoatEngineUncheckedUpdateManyWithoutBoatNestedInput;
   images?: Prisma.BoatImageUncheckedUpdateManyWithoutBoatNestedInput;
   floridaLeads?: Prisma.FloridaLeadUncheckedUpdateManyWithoutBoatNestedInput;
+  featuredYachts?: Prisma.FeaturedYachtUncheckedUpdateManyWithoutBoatNestedInput;
 };
 
 export type BoatsCreateManyInput = {
@@ -1274,6 +1281,32 @@ export type BoatsUpdateOneRequiredWithoutFloridaLeadsNestedInput = {
   >;
 };
 
+export type BoatsCreateNestedOneWithoutFeaturedYachtsInput = {
+  create?: Prisma.XOR<
+    Prisma.BoatsCreateWithoutFeaturedYachtsInput,
+    Prisma.BoatsUncheckedCreateWithoutFeaturedYachtsInput
+  >;
+  connectOrCreate?: Prisma.BoatsCreateOrConnectWithoutFeaturedYachtsInput;
+  connect?: Prisma.BoatsWhereUniqueInput;
+};
+
+export type BoatsUpdateOneRequiredWithoutFeaturedYachtsNestedInput = {
+  create?: Prisma.XOR<
+    Prisma.BoatsCreateWithoutFeaturedYachtsInput,
+    Prisma.BoatsUncheckedCreateWithoutFeaturedYachtsInput
+  >;
+  connectOrCreate?: Prisma.BoatsCreateOrConnectWithoutFeaturedYachtsInput;
+  upsert?: Prisma.BoatsUpsertWithoutFeaturedYachtsInput;
+  connect?: Prisma.BoatsWhereUniqueInput;
+  update?: Prisma.XOR<
+    Prisma.XOR<
+      Prisma.BoatsUpdateToOneWithWhereWithoutFeaturedYachtsInput,
+      Prisma.BoatsUpdateWithoutFeaturedYachtsInput
+    >,
+    Prisma.BoatsUncheckedUpdateWithoutFeaturedYachtsInput
+  >;
+};
+
 export type BoatsCreateNestedManyWithoutUserInput = {
   create?:
     | Prisma.XOR<
@@ -1399,6 +1432,7 @@ export type BoatsCreateWithoutEnginesInput = {
   user: Prisma.UserCreateNestedOneWithoutBoatsInput;
   images?: Prisma.BoatImageCreateNestedManyWithoutBoatInput;
   floridaLeads?: Prisma.FloridaLeadCreateNestedManyWithoutBoatInput;
+  featuredYachts?: Prisma.FeaturedYachtCreateNestedManyWithoutBoatInput;
 };
 
 export type BoatsUncheckedCreateWithoutEnginesInput = {
@@ -1440,6 +1474,7 @@ export type BoatsUncheckedCreateWithoutEnginesInput = {
   videoURL?: string | null;
   images?: Prisma.BoatImageUncheckedCreateNestedManyWithoutBoatInput;
   floridaLeads?: Prisma.FloridaLeadUncheckedCreateNestedManyWithoutBoatInput;
+  featuredYachts?: Prisma.FeaturedYachtUncheckedCreateNestedManyWithoutBoatInput;
 };
 
 export type BoatsCreateOrConnectWithoutEnginesInput = {
@@ -1514,6 +1549,7 @@ export type BoatsUpdateWithoutEnginesInput = {
   user?: Prisma.UserUpdateOneRequiredWithoutBoatsNestedInput;
   images?: Prisma.BoatImageUpdateManyWithoutBoatNestedInput;
   floridaLeads?: Prisma.FloridaLeadUpdateManyWithoutBoatNestedInput;
+  featuredYachts?: Prisma.FeaturedYachtUpdateManyWithoutBoatNestedInput;
 };
 
 export type BoatsUncheckedUpdateWithoutEnginesInput = {
@@ -1560,6 +1596,7 @@ export type BoatsUncheckedUpdateWithoutEnginesInput = {
   videoURL?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
   images?: Prisma.BoatImageUncheckedUpdateManyWithoutBoatNestedInput;
   floridaLeads?: Prisma.FloridaLeadUncheckedUpdateManyWithoutBoatNestedInput;
+  featuredYachts?: Prisma.FeaturedYachtUncheckedUpdateManyWithoutBoatNestedInput;
 };
 
 export type BoatsCreateWithoutImagesInput = {
@@ -1601,6 +1638,7 @@ export type BoatsCreateWithoutImagesInput = {
   user: Prisma.UserCreateNestedOneWithoutBoatsInput;
   engines?: Prisma.BoatEngineCreateNestedManyWithoutBoatInput;
   floridaLeads?: Prisma.FloridaLeadCreateNestedManyWithoutBoatInput;
+  featuredYachts?: Prisma.FeaturedYachtCreateNestedManyWithoutBoatInput;
 };
 
 export type BoatsUncheckedCreateWithoutImagesInput = {
@@ -1642,6 +1680,7 @@ export type BoatsUncheckedCreateWithoutImagesInput = {
   videoURL?: string | null;
   engines?: Prisma.BoatEngineUncheckedCreateNestedManyWithoutBoatInput;
   floridaLeads?: Prisma.FloridaLeadUncheckedCreateNestedManyWithoutBoatInput;
+  featuredYachts?: Prisma.FeaturedYachtUncheckedCreateNestedManyWithoutBoatInput;
 };
 
 export type BoatsCreateOrConnectWithoutImagesInput = {
@@ -1716,6 +1755,7 @@ export type BoatsUpdateWithoutImagesInput = {
   user?: Prisma.UserUpdateOneRequiredWithoutBoatsNestedInput;
   engines?: Prisma.BoatEngineUpdateManyWithoutBoatNestedInput;
   floridaLeads?: Prisma.FloridaLeadUpdateManyWithoutBoatNestedInput;
+  featuredYachts?: Prisma.FeaturedYachtUpdateManyWithoutBoatNestedInput;
 };
 
 export type BoatsUncheckedUpdateWithoutImagesInput = {
@@ -1762,6 +1802,7 @@ export type BoatsUncheckedUpdateWithoutImagesInput = {
   videoURL?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
   engines?: Prisma.BoatEngineUncheckedUpdateManyWithoutBoatNestedInput;
   floridaLeads?: Prisma.FloridaLeadUncheckedUpdateManyWithoutBoatNestedInput;
+  featuredYachts?: Prisma.FeaturedYachtUncheckedUpdateManyWithoutBoatNestedInput;
 };
 
 export type BoatsCreateWithoutFloridaLeadsInput = {
@@ -1803,6 +1844,7 @@ export type BoatsCreateWithoutFloridaLeadsInput = {
   user: Prisma.UserCreateNestedOneWithoutBoatsInput;
   engines?: Prisma.BoatEngineCreateNestedManyWithoutBoatInput;
   images?: Prisma.BoatImageCreateNestedManyWithoutBoatInput;
+  featuredYachts?: Prisma.FeaturedYachtCreateNestedManyWithoutBoatInput;
 };
 
 export type BoatsUncheckedCreateWithoutFloridaLeadsInput = {
@@ -1844,6 +1886,7 @@ export type BoatsUncheckedCreateWithoutFloridaLeadsInput = {
   videoURL?: string | null;
   engines?: Prisma.BoatEngineUncheckedCreateNestedManyWithoutBoatInput;
   images?: Prisma.BoatImageUncheckedCreateNestedManyWithoutBoatInput;
+  featuredYachts?: Prisma.FeaturedYachtUncheckedCreateNestedManyWithoutBoatInput;
 };
 
 export type BoatsCreateOrConnectWithoutFloridaLeadsInput = {
@@ -1918,6 +1961,7 @@ export type BoatsUpdateWithoutFloridaLeadsInput = {
   user?: Prisma.UserUpdateOneRequiredWithoutBoatsNestedInput;
   engines?: Prisma.BoatEngineUpdateManyWithoutBoatNestedInput;
   images?: Prisma.BoatImageUpdateManyWithoutBoatNestedInput;
+  featuredYachts?: Prisma.FeaturedYachtUpdateManyWithoutBoatNestedInput;
 };
 
 export type BoatsUncheckedUpdateWithoutFloridaLeadsInput = {
@@ -1964,6 +2008,213 @@ export type BoatsUncheckedUpdateWithoutFloridaLeadsInput = {
   videoURL?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
   engines?: Prisma.BoatEngineUncheckedUpdateManyWithoutBoatNestedInput;
   images?: Prisma.BoatImageUncheckedUpdateManyWithoutBoatNestedInput;
+  featuredYachts?: Prisma.FeaturedYachtUncheckedUpdateManyWithoutBoatNestedInput;
+};
+
+export type BoatsCreateWithoutFeaturedYachtsInput = {
+  id?: string;
+  listingId: string;
+  name: string;
+  price: number;
+  buildYear: number;
+  description?: string | null;
+  make: string;
+  model: string;
+  fuelType: string;
+  class: string;
+  material: string;
+  condition: string;
+  engineType?: string | null;
+  propType?: string | null;
+  propMaterial?: string | null;
+  electronics?: Prisma.BoatsCreateelectronicsInput | string[];
+  insideEquipment?: Prisma.BoatsCreateinsideEquipmentInput | string[];
+  outsideEquipment?: Prisma.BoatsCreateoutsideEquipmentInput | string[];
+  electricalEquipment?: Prisma.BoatsCreateelectricalEquipmentInput | string[];
+  covers?: Prisma.BoatsCreatecoversInput | string[];
+  additionalEquipment?: Prisma.BoatsCreateadditionalEquipmentInput | string[];
+  length: number;
+  beam: number;
+  draft: number;
+  enginesNumber: number;
+  cabinsNumber: number;
+  headsNumber: number;
+  city: string;
+  state: string;
+  zip: string;
+  extraDetails?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
+  status?: $Enums.BoatListingStatus;
+  createdAt?: Date | string;
+  updatedAt?: Date | string;
+  videoURL?: string | null;
+  user: Prisma.UserCreateNestedOneWithoutBoatsInput;
+  engines?: Prisma.BoatEngineCreateNestedManyWithoutBoatInput;
+  images?: Prisma.BoatImageCreateNestedManyWithoutBoatInput;
+  floridaLeads?: Prisma.FloridaLeadCreateNestedManyWithoutBoatInput;
+};
+
+export type BoatsUncheckedCreateWithoutFeaturedYachtsInput = {
+  id?: string;
+  listingId: string;
+  userId: string;
+  name: string;
+  price: number;
+  buildYear: number;
+  description?: string | null;
+  make: string;
+  model: string;
+  fuelType: string;
+  class: string;
+  material: string;
+  condition: string;
+  engineType?: string | null;
+  propType?: string | null;
+  propMaterial?: string | null;
+  electronics?: Prisma.BoatsCreateelectronicsInput | string[];
+  insideEquipment?: Prisma.BoatsCreateinsideEquipmentInput | string[];
+  outsideEquipment?: Prisma.BoatsCreateoutsideEquipmentInput | string[];
+  electricalEquipment?: Prisma.BoatsCreateelectricalEquipmentInput | string[];
+  covers?: Prisma.BoatsCreatecoversInput | string[];
+  additionalEquipment?: Prisma.BoatsCreateadditionalEquipmentInput | string[];
+  length: number;
+  beam: number;
+  draft: number;
+  enginesNumber: number;
+  cabinsNumber: number;
+  headsNumber: number;
+  city: string;
+  state: string;
+  zip: string;
+  extraDetails?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
+  status?: $Enums.BoatListingStatus;
+  createdAt?: Date | string;
+  updatedAt?: Date | string;
+  videoURL?: string | null;
+  engines?: Prisma.BoatEngineUncheckedCreateNestedManyWithoutBoatInput;
+  images?: Prisma.BoatImageUncheckedCreateNestedManyWithoutBoatInput;
+  floridaLeads?: Prisma.FloridaLeadUncheckedCreateNestedManyWithoutBoatInput;
+};
+
+export type BoatsCreateOrConnectWithoutFeaturedYachtsInput = {
+  where: Prisma.BoatsWhereUniqueInput;
+  create: Prisma.XOR<
+    Prisma.BoatsCreateWithoutFeaturedYachtsInput,
+    Prisma.BoatsUncheckedCreateWithoutFeaturedYachtsInput
+  >;
+};
+
+export type BoatsUpsertWithoutFeaturedYachtsInput = {
+  update: Prisma.XOR<
+    Prisma.BoatsUpdateWithoutFeaturedYachtsInput,
+    Prisma.BoatsUncheckedUpdateWithoutFeaturedYachtsInput
+  >;
+  create: Prisma.XOR<
+    Prisma.BoatsCreateWithoutFeaturedYachtsInput,
+    Prisma.BoatsUncheckedCreateWithoutFeaturedYachtsInput
+  >;
+  where?: Prisma.BoatsWhereInput;
+};
+
+export type BoatsUpdateToOneWithWhereWithoutFeaturedYachtsInput = {
+  where?: Prisma.BoatsWhereInput;
+  data: Prisma.XOR<
+    Prisma.BoatsUpdateWithoutFeaturedYachtsInput,
+    Prisma.BoatsUncheckedUpdateWithoutFeaturedYachtsInput
+  >;
+};
+
+export type BoatsUpdateWithoutFeaturedYachtsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string;
+  listingId?: Prisma.StringFieldUpdateOperationsInput | string;
+  name?: Prisma.StringFieldUpdateOperationsInput | string;
+  price?: Prisma.FloatFieldUpdateOperationsInput | number;
+  buildYear?: Prisma.IntFieldUpdateOperationsInput | number;
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  make?: Prisma.StringFieldUpdateOperationsInput | string;
+  model?: Prisma.StringFieldUpdateOperationsInput | string;
+  fuelType?: Prisma.StringFieldUpdateOperationsInput | string;
+  class?: Prisma.StringFieldUpdateOperationsInput | string;
+  material?: Prisma.StringFieldUpdateOperationsInput | string;
+  condition?: Prisma.StringFieldUpdateOperationsInput | string;
+  engineType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  propType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  propMaterial?:
+    | Prisma.NullableStringFieldUpdateOperationsInput
+    | string
+    | null;
+  electronics?: Prisma.BoatsUpdateelectronicsInput | string[];
+  insideEquipment?: Prisma.BoatsUpdateinsideEquipmentInput | string[];
+  outsideEquipment?: Prisma.BoatsUpdateoutsideEquipmentInput | string[];
+  electricalEquipment?: Prisma.BoatsUpdateelectricalEquipmentInput | string[];
+  covers?: Prisma.BoatsUpdatecoversInput | string[];
+  additionalEquipment?: Prisma.BoatsUpdateadditionalEquipmentInput | string[];
+  length?: Prisma.FloatFieldUpdateOperationsInput | number;
+  beam?: Prisma.FloatFieldUpdateOperationsInput | number;
+  draft?: Prisma.FloatFieldUpdateOperationsInput | number;
+  enginesNumber?: Prisma.IntFieldUpdateOperationsInput | number;
+  cabinsNumber?: Prisma.IntFieldUpdateOperationsInput | number;
+  headsNumber?: Prisma.IntFieldUpdateOperationsInput | number;
+  city?: Prisma.StringFieldUpdateOperationsInput | string;
+  state?: Prisma.StringFieldUpdateOperationsInput | string;
+  zip?: Prisma.StringFieldUpdateOperationsInput | string;
+  extraDetails?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
+  status?:
+    | Prisma.EnumBoatListingStatusFieldUpdateOperationsInput
+    | $Enums.BoatListingStatus;
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  videoURL?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  user?: Prisma.UserUpdateOneRequiredWithoutBoatsNestedInput;
+  engines?: Prisma.BoatEngineUpdateManyWithoutBoatNestedInput;
+  images?: Prisma.BoatImageUpdateManyWithoutBoatNestedInput;
+  floridaLeads?: Prisma.FloridaLeadUpdateManyWithoutBoatNestedInput;
+};
+
+export type BoatsUncheckedUpdateWithoutFeaturedYachtsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string;
+  listingId?: Prisma.StringFieldUpdateOperationsInput | string;
+  userId?: Prisma.StringFieldUpdateOperationsInput | string;
+  name?: Prisma.StringFieldUpdateOperationsInput | string;
+  price?: Prisma.FloatFieldUpdateOperationsInput | number;
+  buildYear?: Prisma.IntFieldUpdateOperationsInput | number;
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  make?: Prisma.StringFieldUpdateOperationsInput | string;
+  model?: Prisma.StringFieldUpdateOperationsInput | string;
+  fuelType?: Prisma.StringFieldUpdateOperationsInput | string;
+  class?: Prisma.StringFieldUpdateOperationsInput | string;
+  material?: Prisma.StringFieldUpdateOperationsInput | string;
+  condition?: Prisma.StringFieldUpdateOperationsInput | string;
+  engineType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  propType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  propMaterial?:
+    | Prisma.NullableStringFieldUpdateOperationsInput
+    | string
+    | null;
+  electronics?: Prisma.BoatsUpdateelectronicsInput | string[];
+  insideEquipment?: Prisma.BoatsUpdateinsideEquipmentInput | string[];
+  outsideEquipment?: Prisma.BoatsUpdateoutsideEquipmentInput | string[];
+  electricalEquipment?: Prisma.BoatsUpdateelectricalEquipmentInput | string[];
+  covers?: Prisma.BoatsUpdatecoversInput | string[];
+  additionalEquipment?: Prisma.BoatsUpdateadditionalEquipmentInput | string[];
+  length?: Prisma.FloatFieldUpdateOperationsInput | number;
+  beam?: Prisma.FloatFieldUpdateOperationsInput | number;
+  draft?: Prisma.FloatFieldUpdateOperationsInput | number;
+  enginesNumber?: Prisma.IntFieldUpdateOperationsInput | number;
+  cabinsNumber?: Prisma.IntFieldUpdateOperationsInput | number;
+  headsNumber?: Prisma.IntFieldUpdateOperationsInput | number;
+  city?: Prisma.StringFieldUpdateOperationsInput | string;
+  state?: Prisma.StringFieldUpdateOperationsInput | string;
+  zip?: Prisma.StringFieldUpdateOperationsInput | string;
+  extraDetails?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
+  status?:
+    | Prisma.EnumBoatListingStatusFieldUpdateOperationsInput
+    | $Enums.BoatListingStatus;
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  videoURL?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  engines?: Prisma.BoatEngineUncheckedUpdateManyWithoutBoatNestedInput;
+  images?: Prisma.BoatImageUncheckedUpdateManyWithoutBoatNestedInput;
+  floridaLeads?: Prisma.FloridaLeadUncheckedUpdateManyWithoutBoatNestedInput;
 };
 
 export type BoatsCreateWithoutUserInput = {
@@ -2005,6 +2256,7 @@ export type BoatsCreateWithoutUserInput = {
   engines?: Prisma.BoatEngineCreateNestedManyWithoutBoatInput;
   images?: Prisma.BoatImageCreateNestedManyWithoutBoatInput;
   floridaLeads?: Prisma.FloridaLeadCreateNestedManyWithoutBoatInput;
+  featuredYachts?: Prisma.FeaturedYachtCreateNestedManyWithoutBoatInput;
 };
 
 export type BoatsUncheckedCreateWithoutUserInput = {
@@ -2046,6 +2298,7 @@ export type BoatsUncheckedCreateWithoutUserInput = {
   engines?: Prisma.BoatEngineUncheckedCreateNestedManyWithoutBoatInput;
   images?: Prisma.BoatImageUncheckedCreateNestedManyWithoutBoatInput;
   floridaLeads?: Prisma.FloridaLeadUncheckedCreateNestedManyWithoutBoatInput;
+  featuredYachts?: Prisma.FeaturedYachtUncheckedCreateNestedManyWithoutBoatInput;
 };
 
 export type BoatsCreateOrConnectWithoutUserInput = {
@@ -2215,6 +2468,7 @@ export type BoatsUpdateWithoutUserInput = {
   engines?: Prisma.BoatEngineUpdateManyWithoutBoatNestedInput;
   images?: Prisma.BoatImageUpdateManyWithoutBoatNestedInput;
   floridaLeads?: Prisma.FloridaLeadUpdateManyWithoutBoatNestedInput;
+  featuredYachts?: Prisma.FeaturedYachtUpdateManyWithoutBoatNestedInput;
 };
 
 export type BoatsUncheckedUpdateWithoutUserInput = {
@@ -2261,6 +2515,7 @@ export type BoatsUncheckedUpdateWithoutUserInput = {
   engines?: Prisma.BoatEngineUncheckedUpdateManyWithoutBoatNestedInput;
   images?: Prisma.BoatImageUncheckedUpdateManyWithoutBoatNestedInput;
   floridaLeads?: Prisma.FloridaLeadUncheckedUpdateManyWithoutBoatNestedInput;
+  featuredYachts?: Prisma.FeaturedYachtUncheckedUpdateManyWithoutBoatNestedInput;
 };
 
 export type BoatsUncheckedUpdateManyWithoutUserInput = {
@@ -2314,6 +2569,7 @@ export type BoatsCountOutputType = {
   engines: number;
   images: number;
   floridaLeads: number;
+  featuredYachts: number;
 };
 
 export type BoatsCountOutputTypeSelect<
@@ -2323,6 +2579,7 @@ export type BoatsCountOutputTypeSelect<
   engines?: boolean | BoatsCountOutputTypeCountEnginesArgs;
   images?: boolean | BoatsCountOutputTypeCountImagesArgs;
   floridaLeads?: boolean | BoatsCountOutputTypeCountFloridaLeadsArgs;
+  featuredYachts?: boolean | BoatsCountOutputTypeCountFeaturedYachtsArgs;
 };
 
 /**
@@ -2366,6 +2623,16 @@ export type BoatsCountOutputTypeCountFloridaLeadsArgs<
     runtime.Types.Extensions.DefaultArgs,
 > = {
   where?: Prisma.FloridaLeadWhereInput;
+};
+
+/**
+ * BoatsCountOutputType without action
+ */
+export type BoatsCountOutputTypeCountFeaturedYachtsArgs<
+  ExtArgs extends runtime.Types.Extensions.InternalArgs =
+    runtime.Types.Extensions.DefaultArgs,
+> = {
+  where?: Prisma.FeaturedYachtWhereInput;
 };
 
 export type BoatsSelect<
@@ -2413,6 +2680,7 @@ export type BoatsSelect<
     engines?: boolean | Prisma.Boats$enginesArgs<ExtArgs>;
     images?: boolean | Prisma.Boats$imagesArgs<ExtArgs>;
     floridaLeads?: boolean | Prisma.Boats$floridaLeadsArgs<ExtArgs>;
+    featuredYachts?: boolean | Prisma.Boats$featuredYachtsArgs<ExtArgs>;
     _count?: boolean | Prisma.BoatsCountOutputTypeDefaultArgs<ExtArgs>;
   },
   ExtArgs['result']['boats']
@@ -2599,6 +2867,7 @@ export type BoatsInclude<
   engines?: boolean | Prisma.Boats$enginesArgs<ExtArgs>;
   images?: boolean | Prisma.Boats$imagesArgs<ExtArgs>;
   floridaLeads?: boolean | Prisma.Boats$floridaLeadsArgs<ExtArgs>;
+  featuredYachts?: boolean | Prisma.Boats$featuredYachtsArgs<ExtArgs>;
   _count?: boolean | Prisma.BoatsCountOutputTypeDefaultArgs<ExtArgs>;
 };
 export type BoatsIncludeCreateManyAndReturn<
@@ -2624,6 +2893,7 @@ export type $BoatsPayload<
     engines: Prisma.$BoatEnginePayload<ExtArgs>[];
     images: Prisma.$BoatImagePayload<ExtArgs>[];
     floridaLeads: Prisma.$FloridaLeadPayload<ExtArgs>[];
+    featuredYachts: Prisma.$FeaturedYachtPayload<ExtArgs>[];
   };
   scalars: runtime.Types.Extensions.GetPayloadResult<
     {
@@ -3260,6 +3530,17 @@ export interface Prisma__BoatsClient<
       >
     | Null
   >;
+  featuredYachts<T extends Prisma.Boats$featuredYachtsArgs<ExtArgs> = {}>(
+    args?: Prisma.Subset<T, Prisma.Boats$featuredYachtsArgs<ExtArgs>>,
+  ): Prisma.PrismaPromise<
+    | runtime.Types.Result.GetResult<
+        Prisma.$FeaturedYachtPayload<ExtArgs>,
+        T,
+        'findMany',
+        GlobalOmitOptions
+      >
+    | Null
+  >;
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -3877,6 +4158,37 @@ export type Boats$floridaLeadsArgs<
   distinct?:
     | Prisma.FloridaLeadScalarFieldEnum
     | Prisma.FloridaLeadScalarFieldEnum[];
+};
+
+/**
+ * Boats.featuredYachts
+ */
+export type Boats$featuredYachtsArgs<
+  ExtArgs extends runtime.Types.Extensions.InternalArgs =
+    runtime.Types.Extensions.DefaultArgs,
+> = {
+  /**
+   * Select specific fields to fetch from the FeaturedYacht
+   */
+  select?: Prisma.FeaturedYachtSelect<ExtArgs> | null;
+  /**
+   * Omit specific fields from the FeaturedYacht
+   */
+  omit?: Prisma.FeaturedYachtOmit<ExtArgs> | null;
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.FeaturedYachtInclude<ExtArgs> | null;
+  where?: Prisma.FeaturedYachtWhereInput;
+  orderBy?:
+    | Prisma.FeaturedYachtOrderByWithRelationInput
+    | Prisma.FeaturedYachtOrderByWithRelationInput[];
+  cursor?: Prisma.FeaturedYachtWhereUniqueInput;
+  take?: number;
+  skip?: number;
+  distinct?:
+    | Prisma.FeaturedYachtScalarFieldEnum
+    | Prisma.FeaturedYachtScalarFieldEnum[];
 };
 
 /**

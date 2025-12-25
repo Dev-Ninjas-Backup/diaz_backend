@@ -22,6 +22,7 @@ export type * from './models/AboutPage';
 export type * from './models/ContactPage';
 export type * from './models/PrivacyPolicy';
 export type * from './models/TermsOfServices';
+export type * from './models/FeaturedYacht';
 export type * from './models/FeaturedBrands';
 export type * from './models/FileInstance';
 export type * from './models/Notification';
