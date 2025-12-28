@@ -341,26 +341,45 @@ export class GetAllBoatsService {
       };
     };
 
+    // Build description
+    const extractDescription = (b: any) => {
+      const descriptionParts: string[] = [];
+
+      if (Array.isArray(b?.GeneralBoatDescription)) {
+        descriptionParts.push(...b.GeneralBoatDescription);
+      }
+
+      if (Array.isArray(b?.AdditionalDetailDescription)) {
+        descriptionParts.push(...b.AdditionalDetailDescription);
+      }
+
+      if (typeof b?.description === 'string') {
+        descriptionParts.push(b.description);
+      }
+
+      return descriptionParts.length ? descriptionParts.join('\n') : null;
+    };
+
     // Additional info (descriptions + office/contact + external links + leftover fields)
     const buildAdditional = (b: any, enginesArr: any[]) => {
       const out: Array<{ key: string; value: string | null }> = [];
 
-      // Combined description fields
-      const descriptionParts: string[] = [];
-      if (Array.isArray(b?.GeneralBoatDescription)) {
-        descriptionParts.push(...b.GeneralBoatDescription);
-      }
-      if (Array.isArray(b?.AdditionalDetailDescription)) {
-        descriptionParts.push(...b.AdditionalDetailDescription);
-      }
-      if (b?.description && typeof b.description === 'string') {
-        descriptionParts.push(b.description);
-      }
+      // // Combined description fields
+      // const descriptionParts: string[] = [];
+      // if (Array.isArray(b?.GeneralBoatDescription)) {
+      //   descriptionParts.push(...b.GeneralBoatDescription);
+      // }
+      // if (Array.isArray(b?.AdditionalDetailDescription)) {
+      //   descriptionParts.push(...b.AdditionalDetailDescription);
+      // }
+      // if (b?.description && typeof b.description === 'string') {
+      //   descriptionParts.push(b.description);
+      // }
 
-      out.push({
-        key: 'description',
-        value: descriptionParts.length ? descriptionParts.join('\n') : null,
-      });
+      // out.push({
+      //   key: 'description',
+      //   value: descriptionParts.length ? descriptionParts.join('\n') : null,
+      // });
 
       // Office / contact
       if (b?.Office) {
@@ -452,6 +471,7 @@ export class GetAllBoatsService {
     const detailedSpecs = buildDetailedSpecs(boat, enginesArr);
     this.logger.log(`detailedSpecs: ${JSON.stringify(detailedSpecs)}`);
     const additional = buildAdditional(boat, enginesArr);
+    const description = extractDescription(boat);
 
     const transformed = {
       id:
@@ -460,21 +480,26 @@ export class GetAllBoatsService {
         boat?.id ??
         boat?.listingId ??
         null,
+
       title:
         boat?.ListingTitle ??
         boat?.BoatName ??
         boat?.listingTitle ??
         boat?.name ??
         null,
+
       price:
         boat?.Price ??
         boat?.OriginalPrice ??
         (boat?.NormPrice != null ? `${boat.NormPrice}` : null),
+
       source: boat?.Source ?? query.source ?? null,
 
       // only 12 primary specifications here
       specifications,
       // detailedSpecs,
+
+      description,
 
       images: extractImages(boat),
       engines: enginesArr, // engines provided separately
