@@ -1,8 +1,19 @@
 api.floridayachttrader.com {
+  # PgAdmin route - proxy without stripping prefix
+  handle /pgadmin* {
+    reverse_proxy pgadmin_container:80 {
+      header_up X-Real-IP {remote}
+      header_up X-Forwarded-For {remote}
+      header_up X-Forwarded-Proto {scheme}
+      header_up X-Script-Name /pgadmin
+    }
+  }
+
   reverse_proxy /socket.io* server:5051
 
   @api {
     not path /socket.io*
+    not path /pgadmin*
   }
 
   handle @api {
@@ -18,9 +29,4 @@ api.floridayachttrader.com {
       header_up Host {host}
     }
   }
-}
-
-pgadmin.floridayachttrader.com {
-  reverse_proxy /socket.io* pgadmin_container:8123
-  reverse_proxy pgadmin_container:8123
 }
