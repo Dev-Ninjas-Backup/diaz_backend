@@ -57,3 +57,108 @@ model TermsOfServices {
   @@unique([site])
   @@map("terms_of_services")
 }
+
+model FooterSettings {
+  id String @id @default(uuid())
+
+  site SiteType @default(FLORIDA)
+
+  // Company Information
+  companyName        String?  @db.VarChar(255)
+  companyDescription String?
+
+  // Quick Links
+  quickLinks Json? // Array of { label: string, url: string }
+
+  // Need Help? - Policies
+  policyLinks Json? // Array of { label: string, url: string }
+
+  // Contact Information
+  phone String? @db.VarChar(50)
+  email String? @db.VarChar(255)
+
+  // Social Media Links
+  socialMediaLinks Json? // Array of { platform: string, url: string, icon: string }
+
+  // Copyright Text
+  copyrightText String? @default("© Copyright 2025 by Jupiter Marine Sales. All rights reserved.")
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@unique([site])
+  @@map("footer_settings")
+}
+
+model EmailSubscription {
+  id String @id @default(uuid())
+
+  email String @db.VarChar(255)
+  site  SiteType @default(FLORIDA)
+
+  isActive Boolean @default(true)
+
+  subscribedAt DateTime @default(now())
+  unsubscribedAt DateTime?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@unique([email, site])
+  @@index([email])
+  @@index([site])
+  @@map("email_subscriptions")
+}
+
+model FAQ {
+  id String @id @default(uuid())
+
+  site SiteType @default(FLORIDA)
+
+  title    String
+  subtitle String?
+
+  // Array of Q&A objects stored as JSON
+  questions Json // Array of { question: string, answer: string }
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([site])
+  @@map("faqs")
+}
+
+model WhyUs {
+  id String @id @default(uuid())
+
+  site SiteType @default(FLORIDA)
+
+  title       String  @db.VarChar(255)
+  description String? @db.Text
+
+  // Statistics
+  excellence       String? @db.VarChar(255) // e.g., "Years of Excellence"
+  boatsSoldPerYear String? @db.VarChar(100) // e.g., "1000+"
+  listingViewed    String? @db.VarChar(100) // e.g., "10M+"
+
+  // Button
+  buttonText String? @db.VarChar(100)
+  buttonLink String? @db.VarChar(500)
+
+  // Images (3 images)
+  image1Id String?       @unique
+  image1   FileInstance? @relation("WhyUsImage1", fields: [image1Id], references: [id], onDelete: SetNull)
+
+  image2Id String?       @unique
+  image2   FileInstance? @relation("WhyUsImage2", fields: [image2Id], references: [id], onDelete: SetNull)
+
+  image3Id String?       @unique
+  image3   FileInstance? @relation("WhyUsImage3", fields: [image3Id], references: [id], onDelete: SetNull)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@unique([site])
+  @@index([site])
+  @@map("why_us")
+}

@@ -27,6 +27,10 @@ model FileInstance {
   aiSearchBanners AiSearchBanner[] @relation("AiSearchBanner")
   categoryImages  Category[]        @relation("CategoryImage")
 
+  whyUsImage1 WhyUs[] @relation("WhyUsImage1")
+  whyUsImage2 WhyUs[] @relation("WhyUsImage2")
+  whyUsImage3 WhyUs[] @relation("WhyUsImage3")
+
   @@map("file_instances")
 }
 
