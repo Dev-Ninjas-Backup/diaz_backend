@@ -22,6 +22,7 @@ RUN pnpm install --frozen-lockfile
 COPY . .
 
 # Build the app (NestJS -> dist/)
+ENV NODE_OPTIONS="--max-old-space-size=4096"
 RUN pnpm build
 
 # ====== PRODUCTION STAGE ======
