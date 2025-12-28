@@ -9,7 +9,7 @@ CREATE TABLE "footer_settings" (
     "phone" VARCHAR(50),
     "email" VARCHAR(255),
     "socialMediaLinks" JSONB,
-    "copyrightText" TEXT,
+    "copyrightText" TEXT DEFAULT '© Copyright 2025 by Jupiter Marine Sales. All rights reserved.',
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL,
 
