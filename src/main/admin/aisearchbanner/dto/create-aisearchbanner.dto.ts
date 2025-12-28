@@ -25,7 +25,6 @@ export class CreateAISearchBannerDto {
     example: SiteType.JUPITER,
     default: SiteType.JUPITER,
     required: true,
-    readOnly: true,
   })
   @IsEnum(SiteType)
   site: SiteType = SiteType.JUPITER;

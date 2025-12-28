@@ -30,16 +30,16 @@ export class AISearchBannerController {
     type: CreateAISearchBannerDto,
   })
   @UseInterceptors(
-    FileFieldsInterceptor([{ name: 'aiSearchBanner', maxCount: 1 }], {
+    FileFieldsInterceptor([{ name: 'aisearchBanner', maxCount: 1 }], {
       storage: multer.memoryStorage(),
     }),
   )
   create(
     @UploadedFiles()
-    files: { aiSearchBanner?: Express.Multer.File[] },
+    files: { aisearchBanner?: Express.Multer.File[] },
     @Body() dto: CreateAISearchBannerDto,
   ) {
-    const file = files.aiSearchBanner?.[0];
+    const file = files.aisearchBanner?.[0];
     return this.aiSearchBannerService.create(dto, file);
   }
 
@@ -66,17 +66,17 @@ export class AISearchBannerController {
     type: UpdateAISearchBannerDto,
   })
   @UseInterceptors(
-    FileFieldsInterceptor([{ name: 'aiSearchBanner', maxCount: 1 }], {
+    FileFieldsInterceptor([{ name: 'aisearchBanner', maxCount: 1 }], {
       storage: multer.memoryStorage(),
     }),
   )
   update(
     @Param('id') id: string,
     @UploadedFiles()
-    files: { aiSearchBanner?: Express.Multer.File[] },
+    files: { aisearchBanner?: Express.Multer.File[] },
     @Body() dto: UpdateAISearchBannerDto,
   ) {
-    const file = files.aiSearchBanner?.[0];
+    const file = files.aisearchBanner?.[0];
     return this.aiSearchBannerService.update(id, dto, file);
   }
 

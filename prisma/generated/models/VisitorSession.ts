@@ -486,10 +486,6 @@ export type VisitorSessionSumOrderByAggregateInput = {
   durationSeconds?: Prisma.SortOrder;
 };
 
-export type NullableDateTimeFieldUpdateOperationsInput = {
-  set?: Date | string | null;
-};
-
 export type VisitorSessionSelect<
   ExtArgs extends runtime.Types.Extensions.InternalArgs =
     runtime.Types.Extensions.DefaultArgs,

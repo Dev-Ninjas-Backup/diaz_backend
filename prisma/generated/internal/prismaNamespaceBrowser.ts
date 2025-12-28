@@ -69,6 +69,10 @@ export const ModelName = {
   ContactPage: 'ContactPage',
   PrivacyPolicy: 'PrivacyPolicy',
   TermsOfServices: 'TermsOfServices',
+  FooterSettings: 'FooterSettings',
+  EmailSubscription: 'EmailSubscription',
+  FAQ: 'FAQ',
+  WhyUs: 'WhyUs',
   FeaturedYacht: 'FeaturedYacht',
   FeaturedBrands: 'FeaturedBrands',
   FileInstance: 'FileInstance',
@@ -329,6 +333,71 @@ export const TermsOfServicesScalarFieldEnum = {
 
 export type TermsOfServicesScalarFieldEnum =
   (typeof TermsOfServicesScalarFieldEnum)[keyof typeof TermsOfServicesScalarFieldEnum];
+
+export const FooterSettingsScalarFieldEnum = {
+  id: 'id',
+  site: 'site',
+  companyName: 'companyName',
+  companyDescription: 'companyDescription',
+  quickLinks: 'quickLinks',
+  policyLinks: 'policyLinks',
+  phone: 'phone',
+  email: 'email',
+  socialMediaLinks: 'socialMediaLinks',
+  copyrightText: 'copyrightText',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+} as const;
+
+export type FooterSettingsScalarFieldEnum =
+  (typeof FooterSettingsScalarFieldEnum)[keyof typeof FooterSettingsScalarFieldEnum];
+
+export const EmailSubscriptionScalarFieldEnum = {
+  id: 'id',
+  email: 'email',
+  site: 'site',
+  isActive: 'isActive',
+  subscribedAt: 'subscribedAt',
+  unsubscribedAt: 'unsubscribedAt',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+} as const;
+
+export type EmailSubscriptionScalarFieldEnum =
+  (typeof EmailSubscriptionScalarFieldEnum)[keyof typeof EmailSubscriptionScalarFieldEnum];
+
+export const FAQScalarFieldEnum = {
+  id: 'id',
+  site: 'site',
+  title: 'title',
+  subtitle: 'subtitle',
+  questions: 'questions',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+} as const;
+
+export type FAQScalarFieldEnum =
+  (typeof FAQScalarFieldEnum)[keyof typeof FAQScalarFieldEnum];
+
+export const WhyUsScalarFieldEnum = {
+  id: 'id',
+  site: 'site',
+  title: 'title',
+  description: 'description',
+  excellence: 'excellence',
+  boatsSoldPerYear: 'boatsSoldPerYear',
+  listingViewed: 'listingViewed',
+  buttonText: 'buttonText',
+  buttonLink: 'buttonLink',
+  image1Id: 'image1Id',
+  image2Id: 'image2Id',
+  image3Id: 'image3Id',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+} as const;
+
+export type WhyUsScalarFieldEnum =
+  (typeof WhyUsScalarFieldEnum)[keyof typeof WhyUsScalarFieldEnum];
 
 export const FeaturedYachtScalarFieldEnum = {
   id: 'id',

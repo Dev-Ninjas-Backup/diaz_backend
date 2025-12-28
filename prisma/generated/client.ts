@@ -118,6 +118,26 @@ export type PrivacyPolicy = Prisma.PrivacyPolicyModel;
  */
 export type TermsOfServices = Prisma.TermsOfServicesModel;
 /**
+ * Model FooterSettings
+ *
+ */
+export type FooterSettings = Prisma.FooterSettingsModel;
+/**
+ * Model EmailSubscription
+ *
+ */
+export type EmailSubscription = Prisma.EmailSubscriptionModel;
+/**
+ * Model FAQ
+ *
+ */
+export type FAQ = Prisma.FAQModel;
+/**
+ * Model WhyUs
+ *
+ */
+export type WhyUs = Prisma.WhyUsModel;
+/**
  * Model FeaturedYacht
  *
  */
