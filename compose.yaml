@@ -94,8 +94,6 @@ services:
       - PGADMIN_DEFAULT_PASSWORD=${SUPER_ADMIN_PASS}
     ports:
       - "8123:80"
-    networks:
-      - ${PACKAGE_NAME}_network
     depends_on:
       - db
 
