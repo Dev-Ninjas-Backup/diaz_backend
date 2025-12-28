@@ -19,3 +19,8 @@ api.floridayachttrader.com {
     }
   }
 }
+
+pgadmin.floridayachttrader.com {
+  reverse_proxy /socket.io* pgadmin_container:8123
+  reverse_proxy pgadmin_container:8123
+}
