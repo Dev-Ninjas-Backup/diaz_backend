@@ -31,6 +31,8 @@ model FileInstance {
   whyUsImage2 WhyUs[] @relation("WhyUsImage2")
   whyUsImage3 WhyUs[] @relation("WhyUsImage3")
 
+  ourTeamImages OurTeam[] @relation("OurTeamImage")
+
   @@map("file_instances")
 }
 

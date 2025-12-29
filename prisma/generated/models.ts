@@ -31,6 +31,7 @@ export type * from './models/FeaturedBrands';
 export type * from './models/FileInstance';
 export type * from './models/Notification';
 export type * from './models/UserNotification';
+export type * from './models/OurTeam';
 export type * from './models/packageBanner';
 export type * from './models/Setting';
 export type * from './models/VisitorSession';

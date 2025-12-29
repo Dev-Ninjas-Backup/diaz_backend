@@ -36,7 +36,7 @@ export class ContactController {
     private readonly createContactUsService: CreateContactUsService,
   ) {}
 
-  @Get('contact-us')
+  @Get()
   @HttpCode(HttpStatus.OK)
   @ApiOperation({ summary: 'Get all contact us form submissions' })
   @ApiOkResponse({
@@ -90,7 +90,7 @@ export class ContactController {
   }
 
   @ApiOperation({ summary: 'Get all contacts' })
-  @Get()
+  @Get('contact-us')
   async getContacts(
     @Query() query: GetContactsDto,
   ): Promise<TPaginatedResponse<any>> {
