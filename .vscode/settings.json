@@ -35,7 +35,10 @@
     "Buildx",
     "Caddyfile",
     "diaz",
+    "dpage",
     "floridayachttrader",
-    "healthcheck"
+    "healthcheck",
+    "pgadmin",
+    "softvence"
   ]
 }
