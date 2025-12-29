@@ -360,6 +360,25 @@ export class GetAllBoatsService {
       return descriptionParts.length ? descriptionParts.join('\n') : null;
     };
 
+    // Extract location as separate fields
+    const extractLocation = (b: any) => {
+      const locationParts: string[] = [];
+
+      if (b?.Location) {
+        locationParts.push(b.Location);
+      } else if (b?.Office) {
+        const city = b.Office.City;
+        const state = b.Office.StateProv ?? b.Office.State;
+        const country = b.Office.Country;
+
+        if (city) locationParts.push(city);
+        if (state) locationParts.push(state);
+        if (country) locationParts.push(country);
+      }
+
+      return locationParts.length ? locationParts.join(', ') : null;
+    };
+
     // Additional info (descriptions + office/contact + external links + leftover fields)
     const buildAdditional = (b: any, enginesArr: any[]) => {
       const out: Array<{ key: string; value: string | null }> = [];
@@ -472,6 +491,7 @@ export class GetAllBoatsService {
     this.logger.log(`detailedSpecs: ${JSON.stringify(detailedSpecs)}`);
     const additional = buildAdditional(boat, enginesArr);
     const description = extractDescription(boat);
+    const location = extractLocation(boat);
 
     const transformed = {
       id:
@@ -500,6 +520,8 @@ export class GetAllBoatsService {
       // detailedSpecs,
 
       description,
+
+      location,
 
       images: extractImages(boat),
       engines: enginesArr, // engines provided separately
