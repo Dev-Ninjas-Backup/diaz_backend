@@ -1,4 +1,5 @@
 import { Module } from '@nestjs/common';
+import { AboutUsModule } from './about-us/about-us.module';
 import { AuthModule } from './auth/auth.module';
 import { BoatsModule } from './boats/boats.module';
 import { ContactModule } from './contact/contact.module';
@@ -22,6 +23,7 @@ import { WhyUsModule } from './why-us/why-us.module';
     VisitorModule,
     WhyUsModule,
     OurTeamModule,
+    AboutUsModule,
   ],
   controllers: [],
   providers: [],

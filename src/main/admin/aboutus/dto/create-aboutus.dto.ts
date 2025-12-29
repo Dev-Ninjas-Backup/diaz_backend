@@ -15,4 +15,18 @@ export class CreateAboutUsDto {
   })
   @IsString()
   aboutDescription: string;
+
+  @ApiProperty({
+    example: 'Our mission is to make yacht trading effortless and accessible.',
+    description: 'Mission statement',
+  })
+  @IsString()
+  mission: string;
+
+  @ApiProperty({
+    example: 'To be the premier yacht trading platform in the nation.',
+    description: 'Vision statement',
+  })
+  @IsString()
+  vision: string;
 }

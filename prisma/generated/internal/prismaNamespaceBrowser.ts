@@ -290,6 +290,8 @@ export const AboutPageScalarFieldEnum = {
   site: 'site',
   aboutTitle: 'aboutTitle',
   aboutDescription: 'aboutDescription',
+  mission: 'mission',
+  vision: 'vision',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
 } as const;

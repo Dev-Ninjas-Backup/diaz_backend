@@ -237,7 +237,7 @@ export class OurTeamService {
           this.logger.log(`Image deleted: ${existing.imageId}`);
         }
 
-        const deleted = await this.prisma.client.ourTeam.delete({
+        await this.prisma.client.ourTeam.delete({
           where: { id },
         });
 

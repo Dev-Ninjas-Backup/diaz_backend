@@ -1,5 +1,5 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { IsString, IsOptional } from 'class-validator';
+import { IsOptional, IsString } from 'class-validator';
 
 export class UpdateAboutUsDto {
   @ApiProperty({
@@ -19,4 +19,22 @@ export class UpdateAboutUsDto {
   @IsString()
   @IsOptional()
   aboutDescription?: string;
+
+  @ApiProperty({
+    example: 'Our mission is to make yacht trading effortless and accessible.',
+    description: 'Mission statement',
+    required: false,
+  })
+  @IsString()
+  @IsOptional()
+  mission?: string;
+
+  @ApiProperty({
+    example: 'To be the premier yacht trading platform in the nation.',
+    description: 'Vision statement',
+    required: false,
+  })
+  @IsString()
+  @IsOptional()
+  vision?: string;
 }

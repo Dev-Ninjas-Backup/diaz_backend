@@ -1,3 +1,4 @@
+import { PrismaService } from '@/lib/prisma/prisma.service';
 import {
   BadRequestException,
   Injectable,
@@ -5,11 +6,10 @@ import {
   Logger,
   NotFoundException,
 } from '@nestjs/common';
-import { PrismaService } from '@/lib/prisma/prisma.service';
-import { CreateAboutUsDto } from '../dto/create-aboutus.dto';
-import { UpdateAboutUsDto } from '../dto/update-aboutus.dto';
 import { Prisma } from 'generated/client';
 import { SiteType } from 'generated/enums';
+import { CreateAboutUsDto } from '../dto/create-aboutus.dto';
+import { UpdateAboutUsDto } from '../dto/update-aboutus.dto';
 
 @Injectable()
 export class AboutUsService {
@@ -26,6 +26,8 @@ export class AboutUsService {
           site: true,
           aboutTitle: true,
           aboutDescription: true,
+          mission: true,
+          vision: true,
           createdAt: true,
           updatedAt: true,
         },
@@ -73,12 +75,16 @@ export class AboutUsService {
           site,
           aboutTitle: createAboutUsDto.aboutTitle,
           aboutDescription: createAboutUsDto.aboutDescription,
+          mission: createAboutUsDto.mission,
+          vision: createAboutUsDto.vision,
         },
         select: {
           id: true,
           site: true,
           aboutTitle: true,
           aboutDescription: true,
+          mission: true,
+          vision: true,
           createdAt: true,
           updatedAt: true,
         },
@@ -128,12 +134,20 @@ export class AboutUsService {
       const updateData: {
         aboutTitle?: string;
         aboutDescription?: string;
+        mission?: string;
+        vision?: string;
       } = {};
       if (updateAboutUsDto.aboutTitle !== undefined) {
         updateData.aboutTitle = updateAboutUsDto.aboutTitle;
       }
       if (updateAboutUsDto.aboutDescription !== undefined) {
         updateData.aboutDescription = updateAboutUsDto.aboutDescription;
+      }
+      if (updateAboutUsDto.mission !== undefined) {
+        updateData.mission = updateAboutUsDto.mission;
+      }
+      if (updateAboutUsDto.vision !== undefined) {
+        updateData.vision = updateAboutUsDto.vision;
       }
 
       const result = await this.prisma.client.aboutPage.update({
@@ -144,6 +158,8 @@ export class AboutUsService {
           site: true,
           aboutTitle: true,
           aboutDescription: true,
+          mission: true,
+          vision: true,
           createdAt: true,
           updatedAt: true,
         },
