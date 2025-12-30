@@ -108,7 +108,7 @@ export class BoatListingFilesDto {
     type: 'string',
     format: 'binary',
     description:
-      'Cover Images to upload (multipart file). Use this field when uploading files.',
+      'Cover Images to upload (multipart file). Maximum 5 files. To replace: first delete the old image UUID via imagesToDelete, then upload new cover here.',
     isArray: true,
   })
   covers?: Express.Multer.File[];
@@ -116,8 +116,7 @@ export class BoatListingFilesDto {
   @ApiPropertyOptional({
     type: 'string',
     format: 'binary',
-    description:
-      'Gallery Images to upload (multipart file). Use this field when uploading files.',
+    description: 'Gallery Images to upload (multipart file). Maximum 70 files.',
     isArray: true,
   })
   galleries?: Express.Multer.File[];

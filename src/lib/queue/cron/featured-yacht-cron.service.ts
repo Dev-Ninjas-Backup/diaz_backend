@@ -22,15 +22,19 @@ export class FeaturedYachtCronService implements OnModuleInit {
       10,
     );
 
-    console.log('═══════════════════════════════════════════════════════════');
-    console.log('🚀 Featured Yacht Cron Service Initializing...');
-    console.log(
+    this.logger.log(
+      '═══════════════════════════════════════════════════════════',
+    );
+    this.logger.log('🚀 Featured Yacht Cron Service Initializing...');
+    this.logger.log(
       `   ├─ Status: ${this.cronEnabled ? '✅ ENABLED' : '❌ DISABLED'}`,
     );
-    console.log(`   ├─ Rotation Days: ${this.rotationDays}`);
-    console.log(`   ├─ Schedule: Daily at Midnight`);
-    console.log(`   └─ Timezone: America/New_York`);
-    console.log('═══════════════════════════════════════════════════════════');
+    this.logger.log(`   ├─ Rotation Days: ${this.rotationDays}`);
+    this.logger.log(`   ├─ Schedule: Daily at Midnight`);
+    this.logger.log(`   └─ Timezone: America/New_York`);
+    this.logger.log(
+      '═══════════════════════════════════════════════════════════',
+    );
   }
 
   /**
@@ -38,13 +42,13 @@ export class FeaturedYachtCronService implements OnModuleInit {
    */
   async onModuleInit() {
     if (!this.cronEnabled) {
-      console.log(
+      this.logger.log(
         '⏭️  Featured yacht cron is disabled - skipping startup check',
       );
       return;
     }
 
-    console.log('\n🔍 Checking featured yachts on server startup...');
+    this.logger.log('🔍 Checking featured yachts on server startup...');
 
     try {
       // Check FLORIDA site
@@ -53,9 +57,12 @@ export class FeaturedYachtCronService implements OnModuleInit {
       // Check JUPITER site
       await this.checkAndRotateOnStartup(SiteType.JUPITER);
 
-      console.log('✅ Startup featured yacht check completed\n');
+      this.logger.log('✅ Startup featured yacht check completed');
     } catch (error) {
-      console.error('❌ Error during startup featured yacht check:', error);
+      this.logger.error(
+        '❌ Error during startup featured yacht check:',
+        error instanceof Error ? error.stack : error,
+      );
     }
   }
 
@@ -63,7 +70,7 @@ export class FeaturedYachtCronService implements OnModuleInit {
    * Check if featured yacht exists for a site and rotate if empty
    */
   private async checkAndRotateOnStartup(site: SiteType): Promise<void> {
-    console.log(`\n📌 Checking ${site} site...`);
+    this.logger.log(`📌 Checking ${site} site...`);
 
     const featured = await this.prisma.client.featuredYacht.findUnique({
       where: { site },
@@ -71,33 +78,35 @@ export class FeaturedYachtCronService implements OnModuleInit {
     });
 
     if (!featured) {
-      console.log(`   ⚠️  No featured yacht found for ${site}`);
-      console.log(`   🔄 Running instant rotation for ${site}...`);
+      this.logger.log(`   ⚠️  No featured yacht found for ${site}`);
+      this.logger.log(`   🔄 Running instant rotation for ${site}...`);
       await this.rotateFeaturedYacht(site);
     } else {
       const now = new Date();
       const isExpired = featured.expiresAt <= now;
 
-      console.log(`   ✅ Featured yacht exists for ${site}`);
-      console.log(
+      this.logger.log(`   ✅ Featured yacht exists for ${site}`);
+      this.logger.log(
         `   ├─ Boat: ${featured.boat?.name || 'N/A'} (${featured.boatId})`,
       );
-      console.log(`   ├─ Featured At: ${featured.featuredAt.toISOString()}`);
-      console.log(`   ├─ Expires At: ${featured.expiresAt.toISOString()}`);
-      console.log(`   └─ Status: ${isExpired ? '⏰ EXPIRED' : '✅ VALID'}`);
+      this.logger.log(
+        `   ├─ Featured At: ${featured.featuredAt.toISOString()}`,
+      );
+      this.logger.log(`   ├─ Expires At: ${featured.expiresAt.toISOString()}`);
+      this.logger.log(`   └─ Status: ${isExpired ? '⏰ EXPIRED' : '✅ VALID'}`);
 
       if (isExpired) {
-        console.log(`   🔄 Running instant rotation due to expiration...`);
+        this.logger.log(`   🔄 Running instant rotation due to expiration...`);
         await this.rotateFeaturedYacht(site);
       }
     }
   }
 
   async rotateFeaturedYacht(site: SiteType): Promise<void> {
-    console.log(`\n🔄 Starting rotation for ${site}...`);
+    this.logger.log(`🔄 Starting rotation for ${site}...`);
 
     try {
-      console.log(`   ├─ Step 1: Fetching current featured yacht...`);
+      this.logger.log(`   ├─ Step 1: Fetching current featured yacht...`);
       const currentFeatured = await this.prisma.client.featuredYacht.findUnique(
         {
           where: { site },
@@ -109,86 +118,91 @@ export class FeaturedYachtCronService implements OnModuleInit {
 
       // If featured yacht exists and hasn't expired, skip rotation
       if (currentFeatured && currentFeatured.expiresAt > now) {
-        console.log(
+        this.logger.log(
           `   ├─ Current featured yacht: ${currentFeatured.boat?.name || 'N/A'}`,
         );
-        console.log(
+        this.logger.log(
           `   ├─ Expires at: ${currentFeatured.expiresAt.toISOString()}`,
         );
-        console.log(`   └─ ✅ Still valid - skipping rotation`);
+        this.logger.log(`   └─ ✅ Still valid - skipping rotation`);
         return;
       }
 
       if (currentFeatured) {
-        console.log(
+        this.logger.log(
           `   ├─ Current featured yacht expired: ${currentFeatured.boat?.name || 'N/A'}`,
         );
       } else {
-        console.log(`   ├─ No featured yacht found`);
+        this.logger.log(`   ├─ No featured yacht found`);
       }
 
-      console.log(`   ├─ Step 2: Fetching active boats...`);
+      this.logger.log(`   ├─ Step 2: Fetching active boats...`);
       const activeBoats = await this.prisma.client.boats.findMany({
         where: {
           status: 'ACTIVE',
         },
       });
 
-      console.log(`   ├─ Found ${activeBoats.length} active boat(s)`);
+      this.logger.log(`   ├─ Found ${activeBoats.length} active boat(s)`);
 
       if (activeBoats.length === 0) {
-        console.log(`   └─ ⚠️  No active boats available for rotation`);
+        this.logger.log(`   └─ ⚠️  No active boats available for rotation`);
         this.logger.warn(
           `No active boats found for ${site} featured yacht rotation`,
         );
         return;
       }
 
-      console.log(`   ├─ Step 3: Filtering available boats...`);
+      this.logger.log(`   ├─ Step 3: Filtering available boats...`);
       const availableBoats = activeBoats.filter(
         (boat) => boat.id !== currentFeatured?.boatId,
       );
 
-      console.log(
+      this.logger.log(
         `   ├─ Available boats for rotation: ${availableBoats.length}`,
       );
 
       if (availableBoats.length === 0) {
-        console.log(`   ├─ ⚠️  No different boats available`);
+        this.logger.log(`   ├─ ⚠️  No different boats available`);
         // If only one boat exists, we can still feature it
         if (activeBoats.length === 1) {
           const selectedBoat = activeBoats[0];
-          console.log(
+          this.logger.log(
             `   ├─ Using the only available boat: ${selectedBoat.name}`,
           );
-          console.log(`   ├─ Step 4: Setting featured yacht...`);
+          this.logger.log(`   ├─ Step 4: Setting featured yacht...`);
           await this.setFeaturedYacht(selectedBoat.id, site);
-          console.log(`   └─ ✅ Featured yacht set successfully`);
+          this.logger.log(`   └─ ✅ Featured yacht set successfully`);
           return;
         }
-        console.log(`   └─ ❌ No boats available for rotation`);
+        this.logger.log(`   └─ ❌ No boats available for rotation`);
         return;
       }
 
-      console.log(`   ├─ Step 4: Randomly selecting boat...`);
+      this.logger.log(`   ├─ Step 4: Randomly selecting boat...`);
       const randomIndex = Math.floor(Math.random() * availableBoats.length);
       const selectedBoat = availableBoats[randomIndex];
 
-      console.log(
+      this.logger.log(
         `   ├─ Selected boat: ${selectedBoat.name} (${selectedBoat.id})`,
       );
-      console.log(`   ├─ Step 5: Updating featured yacht in database...`);
+      this.logger.log(`   ├─ Step 5: Updating featured yacht in database...`);
 
       await this.setFeaturedYacht(selectedBoat.id, site);
 
-      console.log(`   └─ ✅ Successfully rotated featured yacht for ${site}`);
-      console.log(`      └─ New featured: ${selectedBoat.name}`);
+      this.logger.log(
+        `   └─ ✅ Successfully rotated featured yacht for ${site}`,
+      );
+      this.logger.log(`      └─ New featured: ${selectedBoat.name}`);
 
       this.logger.log(
         `Successfully rotated featured yacht for ${site}: Boat ID ${selectedBoat.id} (${selectedBoat.name})`,
       );
     } catch (error) {
-      console.error(`   └─ ❌ Rotation failed for ${site}:`, error);
+      this.logger.error(
+        `   └─ ❌ Rotation failed for ${site}:`,
+        error instanceof Error ? error.stack : error,
+      );
       this.logger.error(
         `Failed to rotate featured yacht for ${site}:`,
         error instanceof Error ? error.stack : error,
@@ -207,9 +221,9 @@ export class FeaturedYachtCronService implements OnModuleInit {
     const expiresAt = new Date(now);
     expiresAt.setDate(expiresAt.getDate() + this.rotationDays);
 
-    console.log(`      ├─ Boat ID: ${boatId}`);
-    console.log(`      ├─ Featured At: ${now.toISOString()}`);
-    console.log(
+    this.logger.log(`      ├─ Boat ID: ${boatId}`);
+    this.logger.log(`      ├─ Featured At: ${now.toISOString()}`);
+    this.logger.log(
       `      └─ Expires At: ${expiresAt.toISOString()} (${this.rotationDays} days)`,
     );
 
@@ -233,23 +247,25 @@ export class FeaturedYachtCronService implements OnModuleInit {
    * Rotate featured yachts for all sites
    */
   async rotateAllSites(): Promise<void> {
-    console.log(
-      '\n═══════════════════════════════════════════════════════════',
+    this.logger.log(
+      '═══════════════════════════════════════════════════════════',
     );
-    console.log('🔄 Starting featured yacht rotation for all sites');
-    console.log('═══════════════════════════════════════════════════════════');
+    this.logger.log('🔄 Starting featured yacht rotation for all sites');
+    this.logger.log(
+      '═══════════════════════════════════════════════════════════',
+    );
 
     await Promise.all([
       this.rotateFeaturedYacht(SiteType.FLORIDA),
       this.rotateFeaturedYacht(SiteType.JUPITER),
     ]);
 
-    console.log(
-      '\n═══════════════════════════════════════════════════════════',
+    this.logger.log(
+      '═══════════════════════════════════════════════════════════',
     );
-    console.log('✅ Completed featured yacht rotation for all sites');
-    console.log(
-      '═══════════════════════════════════════════════════════════\n',
+    this.logger.log('✅ Completed featured yacht rotation for all sites');
+    this.logger.log(
+      '═══════════════════════════════════════════════════════════',
     );
 
     this.logger.log('Completed featured yacht rotation for all sites');
@@ -266,13 +282,12 @@ export class FeaturedYachtCronService implements OnModuleInit {
   })
   async handleDailyRotation(): Promise<void> {
     if (!this.cronEnabled) {
-      console.log('⏭️  Featured yacht cron is disabled');
-      this.logger.log('Featured yacht cron is disabled');
+      this.logger.log('⏭️  Featured yacht cron is disabled');
       return;
     }
 
-    console.log('\n⏰ Scheduled cron job triggered');
-    console.log(`   Time: ${new Date().toISOString()}`);
+    this.logger.log('⏰ Scheduled cron job triggered');
+    this.logger.log(`   Time: ${new Date().toISOString()}`);
     this.logger.log('🔄 Running scheduled featured yacht rotation');
     await this.rotateAllSites();
   }

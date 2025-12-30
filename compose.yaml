@@ -97,6 +97,7 @@ services:
     restart: unless-stopped
     profiles:
       - prod
+      - dev
     environment:
       - PGADMIN_DEFAULT_EMAIL=${SUPER_ADMIN_EMAIL}
       - PGADMIN_DEFAULT_PASSWORD=${SUPER_ADMIN_PASS}
@@ -104,6 +105,8 @@ services:
     ports:
       - '8123:80'
     depends_on:
+      db:
+        condition: service_healthy
       server:
         condition: service_healthy
 
