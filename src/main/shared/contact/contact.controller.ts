@@ -42,14 +42,25 @@ export class ContactController {
   @ApiOkResponse({
     description: 'Contact us submissions retrieved successfully',
   })
-  async getContactUs(
-    @Query() query: CreateContactDto,
-  ): Promise<TPaginatedResponse<any>> {
+  async getContactUs(): Promise<TPaginatedResponse<any>> {
     const filteredQuery: GetContactsDto = {
-      ...query,
       type: ContactType.GLOBAL,
     };
     return await this.contactService.getContacts(filteredQuery);
+  }
+
+  @ApiOperation({ summary: 'Create contact (with boat listing)' })
+  @Post()
+  async createContact(@Body() dto: CreateContactDto): Promise<TResponse<any>> {
+    return await this.createContactService.createContact(dto);
+  }
+
+  @ApiOperation({ summary: 'Get all contacts' })
+  @Get('contact-us')
+  async getContacts(
+    @Query() query: GetContactsDto,
+  ): Promise<TPaginatedResponse<any>> {
+    return await this.contactService.getContacts(query);
   }
 
   @Post('contact-us')
@@ -87,19 +98,5 @@ export class ContactController {
     @Body() dto: CreateContactUsDto,
   ): Promise<TResponse<any>> {
     return await this.createContactUsService.createContactUs(dto);
-  }
-
-  @ApiOperation({ summary: 'Get all contacts' })
-  @Get('contact-us')
-  async getContacts(
-    @Query() query: GetContactsDto,
-  ): Promise<TPaginatedResponse<any>> {
-    return await this.contactService.getContacts(query);
-  }
-
-  @ApiOperation({ summary: 'Create contact (with boat listing)' })
-  @Post()
-  async createContact(@Body() dto: CreateContactDto): Promise<TResponse<any>> {
-    return await this.createContactService.createContact(dto);
   }
 }
