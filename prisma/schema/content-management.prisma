@@ -4,6 +4,8 @@ model AboutPage {
   site              SiteType @default(FLORIDA)
   aboutTitle        String?  @db.VarChar(255)
   aboutDescription  String?
+  mission           String?
+  vision            String?
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt

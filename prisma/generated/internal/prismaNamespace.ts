@@ -436,6 +436,7 @@ export const ModelName = {
   FileInstance: 'FileInstance',
   Notification: 'Notification',
   UserNotification: 'UserNotification',
+  OurTeam: 'OurTeam',
   packageBanner: 'packageBanner',
   Setting: 'Setting',
   VisitorSession: 'VisitorSession',
@@ -491,6 +492,7 @@ export type TypeMap<
       | 'fileInstance'
       | 'notification'
       | 'userNotification'
+      | 'ourTeam'
       | 'packageBanner'
       | 'setting'
       | 'visitorSession'
@@ -2327,6 +2329,82 @@ export type TypeMap<
         };
       };
     };
+    OurTeam: {
+      payload: Prisma.$OurTeamPayload<ExtArgs>;
+      fields: Prisma.OurTeamFieldRefs;
+      operations: {
+        findUnique: {
+          args: Prisma.OurTeamFindUniqueArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$OurTeamPayload> | null;
+        };
+        findUniqueOrThrow: {
+          args: Prisma.OurTeamFindUniqueOrThrowArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$OurTeamPayload>;
+        };
+        findFirst: {
+          args: Prisma.OurTeamFindFirstArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$OurTeamPayload> | null;
+        };
+        findFirstOrThrow: {
+          args: Prisma.OurTeamFindFirstOrThrowArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$OurTeamPayload>;
+        };
+        findMany: {
+          args: Prisma.OurTeamFindManyArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$OurTeamPayload>[];
+        };
+        create: {
+          args: Prisma.OurTeamCreateArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$OurTeamPayload>;
+        };
+        createMany: {
+          args: Prisma.OurTeamCreateManyArgs<ExtArgs>;
+          result: BatchPayload;
+        };
+        createManyAndReturn: {
+          args: Prisma.OurTeamCreateManyAndReturnArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$OurTeamPayload>[];
+        };
+        delete: {
+          args: Prisma.OurTeamDeleteArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$OurTeamPayload>;
+        };
+        update: {
+          args: Prisma.OurTeamUpdateArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$OurTeamPayload>;
+        };
+        deleteMany: {
+          args: Prisma.OurTeamDeleteManyArgs<ExtArgs>;
+          result: BatchPayload;
+        };
+        updateMany: {
+          args: Prisma.OurTeamUpdateManyArgs<ExtArgs>;
+          result: BatchPayload;
+        };
+        updateManyAndReturn: {
+          args: Prisma.OurTeamUpdateManyAndReturnArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$OurTeamPayload>[];
+        };
+        upsert: {
+          args: Prisma.OurTeamUpsertArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$OurTeamPayload>;
+        };
+        aggregate: {
+          args: Prisma.OurTeamAggregateArgs<ExtArgs>;
+          result: runtime.Types.Utils.Optional<Prisma.AggregateOurTeam>;
+        };
+        groupBy: {
+          args: Prisma.OurTeamGroupByArgs<ExtArgs>;
+          result: runtime.Types.Utils.Optional<Prisma.OurTeamGroupByOutputType>[];
+        };
+        count: {
+          args: Prisma.OurTeamCountArgs<ExtArgs>;
+          result:
+            | runtime.Types.Utils.Optional<Prisma.OurTeamCountAggregateOutputType>
+            | number;
+        };
+      };
+    };
     packageBanner: {
       payload: Prisma.$packageBannerPayload<ExtArgs>;
       fields: Prisma.packageBannerFieldRefs;
@@ -3234,6 +3312,8 @@ export const AboutPageScalarFieldEnum = {
   site: 'site',
   aboutTitle: 'aboutTitle',
   aboutDescription: 'aboutDescription',
+  mission: 'mission',
+  vision: 'vision',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
 } as const;
@@ -3408,6 +3488,20 @@ export const UserNotificationScalarFieldEnum = {
 
 export type UserNotificationScalarFieldEnum =
   (typeof UserNotificationScalarFieldEnum)[keyof typeof UserNotificationScalarFieldEnum];
+
+export const OurTeamScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  designation: 'designation',
+  imageId: 'imageId',
+  order: 'order',
+  isActive: 'isActive',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+} as const;
+
+export type OurTeamScalarFieldEnum =
+  (typeof OurTeamScalarFieldEnum)[keyof typeof OurTeamScalarFieldEnum];
 
 export const PackageBannerScalarFieldEnum = {
   id: 'id',
@@ -4101,6 +4195,7 @@ export type GlobalOmitConfig = {
   fileInstance?: Prisma.FileInstanceOmit;
   notification?: Prisma.NotificationOmit;
   userNotification?: Prisma.UserNotificationOmit;
+  ourTeam?: Prisma.OurTeamOmit;
   packageBanner?: Prisma.packageBannerOmit;
   setting?: Prisma.SettingOmit;
   visitorSession?: Prisma.VisitorSessionOmit;

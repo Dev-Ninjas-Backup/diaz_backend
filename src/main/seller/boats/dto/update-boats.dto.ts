@@ -11,7 +11,8 @@ export class UpdateListingDto extends BoatsInfoDto {
       '550e8400-e29b-41d4-a716-446655440000',
       '550e8400-e29b-41d4-a716-446655440001',
     ],
-    description: 'UUId of images to delete',
+    description:
+      'UUID of images to delete. To replace a cover photo: (1) provide the old cover photo UUID in this array, (2) upload the new cover photo in the covers field',
   })
   @IsArray()
   @IsUUID('4', { each: true })

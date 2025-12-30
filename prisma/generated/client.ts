@@ -163,6 +163,11 @@ export type Notification = Prisma.NotificationModel;
  */
 export type UserNotification = Prisma.UserNotificationModel;
 /**
+ * Model OurTeam
+ *
+ */
+export type OurTeam = Prisma.OurTeamModel;
+/**
  * Model packageBanner
  *
  */

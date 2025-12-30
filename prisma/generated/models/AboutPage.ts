@@ -29,6 +29,8 @@ export type AboutPageMinAggregateOutputType = {
   site: $Enums.SiteType | null;
   aboutTitle: string | null;
   aboutDescription: string | null;
+  mission: string | null;
+  vision: string | null;
   createdAt: Date | null;
   updatedAt: Date | null;
 };
@@ -38,6 +40,8 @@ export type AboutPageMaxAggregateOutputType = {
   site: $Enums.SiteType | null;
   aboutTitle: string | null;
   aboutDescription: string | null;
+  mission: string | null;
+  vision: string | null;
   createdAt: Date | null;
   updatedAt: Date | null;
 };
@@ -47,6 +51,8 @@ export type AboutPageCountAggregateOutputType = {
   site: number;
   aboutTitle: number;
   aboutDescription: number;
+  mission: number;
+  vision: number;
   createdAt: number;
   updatedAt: number;
   _all: number;
@@ -57,6 +63,8 @@ export type AboutPageMinAggregateInputType = {
   site?: true;
   aboutTitle?: true;
   aboutDescription?: true;
+  mission?: true;
+  vision?: true;
   createdAt?: true;
   updatedAt?: true;
 };
@@ -66,6 +74,8 @@ export type AboutPageMaxAggregateInputType = {
   site?: true;
   aboutTitle?: true;
   aboutDescription?: true;
+  mission?: true;
+  vision?: true;
   createdAt?: true;
   updatedAt?: true;
 };
@@ -75,6 +85,8 @@ export type AboutPageCountAggregateInputType = {
   site?: true;
   aboutTitle?: true;
   aboutDescription?: true;
+  mission?: true;
+  vision?: true;
   createdAt?: true;
   updatedAt?: true;
   _all?: true;
@@ -164,6 +176,8 @@ export type AboutPageGroupByOutputType = {
   site: $Enums.SiteType;
   aboutTitle: string | null;
   aboutDescription: string | null;
+  mission: string | null;
+  vision: string | null;
   createdAt: Date;
   updatedAt: Date;
   _count: AboutPageCountAggregateOutputType | null;
@@ -192,6 +206,8 @@ export type AboutPageWhereInput = {
   site?: Prisma.EnumSiteTypeFilter<'AboutPage'> | $Enums.SiteType;
   aboutTitle?: Prisma.StringNullableFilter<'AboutPage'> | string | null;
   aboutDescription?: Prisma.StringNullableFilter<'AboutPage'> | string | null;
+  mission?: Prisma.StringNullableFilter<'AboutPage'> | string | null;
+  vision?: Prisma.StringNullableFilter<'AboutPage'> | string | null;
   createdAt?: Prisma.DateTimeFilter<'AboutPage'> | Date | string;
   updatedAt?: Prisma.DateTimeFilter<'AboutPage'> | Date | string;
 };
@@ -201,6 +217,8 @@ export type AboutPageOrderByWithRelationInput = {
   site?: Prisma.SortOrder;
   aboutTitle?: Prisma.SortOrderInput | Prisma.SortOrder;
   aboutDescription?: Prisma.SortOrderInput | Prisma.SortOrder;
+  mission?: Prisma.SortOrderInput | Prisma.SortOrder;
+  vision?: Prisma.SortOrderInput | Prisma.SortOrder;
   createdAt?: Prisma.SortOrder;
   updatedAt?: Prisma.SortOrder;
 };
@@ -214,6 +232,8 @@ export type AboutPageWhereUniqueInput = Prisma.AtLeast<
     NOT?: Prisma.AboutPageWhereInput | Prisma.AboutPageWhereInput[];
     aboutTitle?: Prisma.StringNullableFilter<'AboutPage'> | string | null;
     aboutDescription?: Prisma.StringNullableFilter<'AboutPage'> | string | null;
+    mission?: Prisma.StringNullableFilter<'AboutPage'> | string | null;
+    vision?: Prisma.StringNullableFilter<'AboutPage'> | string | null;
     createdAt?: Prisma.DateTimeFilter<'AboutPage'> | Date | string;
     updatedAt?: Prisma.DateTimeFilter<'AboutPage'> | Date | string;
   },
@@ -225,6 +245,8 @@ export type AboutPageOrderByWithAggregationInput = {
   site?: Prisma.SortOrder;
   aboutTitle?: Prisma.SortOrderInput | Prisma.SortOrder;
   aboutDescription?: Prisma.SortOrderInput | Prisma.SortOrder;
+  mission?: Prisma.SortOrderInput | Prisma.SortOrder;
+  vision?: Prisma.SortOrderInput | Prisma.SortOrder;
   createdAt?: Prisma.SortOrder;
   updatedAt?: Prisma.SortOrder;
   _count?: Prisma.AboutPageCountOrderByAggregateInput;
@@ -250,6 +272,14 @@ export type AboutPageScalarWhereWithAggregatesInput = {
     | Prisma.StringNullableWithAggregatesFilter<'AboutPage'>
     | string
     | null;
+  mission?:
+    | Prisma.StringNullableWithAggregatesFilter<'AboutPage'>
+    | string
+    | null;
+  vision?:
+    | Prisma.StringNullableWithAggregatesFilter<'AboutPage'>
+    | string
+    | null;
   createdAt?: Prisma.DateTimeWithAggregatesFilter<'AboutPage'> | Date | string;
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<'AboutPage'> | Date | string;
 };
@@ -259,6 +289,8 @@ export type AboutPageCreateInput = {
   site?: $Enums.SiteType;
   aboutTitle?: string | null;
   aboutDescription?: string | null;
+  mission?: string | null;
+  vision?: string | null;
   createdAt?: Date | string;
   updatedAt?: Date | string;
 };
@@ -268,6 +300,8 @@ export type AboutPageUncheckedCreateInput = {
   site?: $Enums.SiteType;
   aboutTitle?: string | null;
   aboutDescription?: string | null;
+  mission?: string | null;
+  vision?: string | null;
   createdAt?: Date | string;
   updatedAt?: Date | string;
 };
@@ -280,6 +314,8 @@ export type AboutPageUpdateInput = {
     | Prisma.NullableStringFieldUpdateOperationsInput
     | string
     | null;
+  mission?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  vision?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
 };
@@ -292,6 +328,8 @@ export type AboutPageUncheckedUpdateInput = {
     | Prisma.NullableStringFieldUpdateOperationsInput
     | string
     | null;
+  mission?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  vision?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
 };
@@ -301,6 +339,8 @@ export type AboutPageCreateManyInput = {
   site?: $Enums.SiteType;
   aboutTitle?: string | null;
   aboutDescription?: string | null;
+  mission?: string | null;
+  vision?: string | null;
   createdAt?: Date | string;
   updatedAt?: Date | string;
 };
@@ -313,6 +353,8 @@ export type AboutPageUpdateManyMutationInput = {
     | Prisma.NullableStringFieldUpdateOperationsInput
     | string
     | null;
+  mission?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  vision?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
 };
@@ -325,6 +367,8 @@ export type AboutPageUncheckedUpdateManyInput = {
     | Prisma.NullableStringFieldUpdateOperationsInput
     | string
     | null;
+  mission?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  vision?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
 };
@@ -334,6 +378,8 @@ export type AboutPageCountOrderByAggregateInput = {
   site?: Prisma.SortOrder;
   aboutTitle?: Prisma.SortOrder;
   aboutDescription?: Prisma.SortOrder;
+  mission?: Prisma.SortOrder;
+  vision?: Prisma.SortOrder;
   createdAt?: Prisma.SortOrder;
   updatedAt?: Prisma.SortOrder;
 };
@@ -343,6 +389,8 @@ export type AboutPageMaxOrderByAggregateInput = {
   site?: Prisma.SortOrder;
   aboutTitle?: Prisma.SortOrder;
   aboutDescription?: Prisma.SortOrder;
+  mission?: Prisma.SortOrder;
+  vision?: Prisma.SortOrder;
   createdAt?: Prisma.SortOrder;
   updatedAt?: Prisma.SortOrder;
 };
@@ -352,6 +400,8 @@ export type AboutPageMinOrderByAggregateInput = {
   site?: Prisma.SortOrder;
   aboutTitle?: Prisma.SortOrder;
   aboutDescription?: Prisma.SortOrder;
+  mission?: Prisma.SortOrder;
+  vision?: Prisma.SortOrder;
   createdAt?: Prisma.SortOrder;
   updatedAt?: Prisma.SortOrder;
 };
@@ -365,6 +415,8 @@ export type AboutPageSelect<
     site?: boolean;
     aboutTitle?: boolean;
     aboutDescription?: boolean;
+    mission?: boolean;
+    vision?: boolean;
     createdAt?: boolean;
     updatedAt?: boolean;
   },
@@ -380,6 +432,8 @@ export type AboutPageSelectCreateManyAndReturn<
     site?: boolean;
     aboutTitle?: boolean;
     aboutDescription?: boolean;
+    mission?: boolean;
+    vision?: boolean;
     createdAt?: boolean;
     updatedAt?: boolean;
   },
@@ -395,6 +449,8 @@ export type AboutPageSelectUpdateManyAndReturn<
     site?: boolean;
     aboutTitle?: boolean;
     aboutDescription?: boolean;
+    mission?: boolean;
+    vision?: boolean;
     createdAt?: boolean;
     updatedAt?: boolean;
   },
@@ -406,6 +462,8 @@ export type AboutPageSelectScalar = {
   site?: boolean;
   aboutTitle?: boolean;
   aboutDescription?: boolean;
+  mission?: boolean;
+  vision?: boolean;
   createdAt?: boolean;
   updatedAt?: boolean;
 };
@@ -414,7 +472,14 @@ export type AboutPageOmit<
   ExtArgs extends runtime.Types.Extensions.InternalArgs =
     runtime.Types.Extensions.DefaultArgs,
 > = runtime.Types.Extensions.GetOmit<
-  'id' | 'site' | 'aboutTitle' | 'aboutDescription' | 'createdAt' | 'updatedAt',
+  | 'id'
+  | 'site'
+  | 'aboutTitle'
+  | 'aboutDescription'
+  | 'mission'
+  | 'vision'
+  | 'createdAt'
+  | 'updatedAt',
   ExtArgs['result']['aboutPage']
 >;
 
@@ -430,6 +495,8 @@ export type $AboutPagePayload<
       site: $Enums.SiteType;
       aboutTitle: string | null;
       aboutDescription: string | null;
+      mission: string | null;
+      vision: string | null;
       createdAt: Date;
       updatedAt: Date;
     },
@@ -1028,6 +1095,8 @@ export interface AboutPageFieldRefs {
   readonly site: Prisma.FieldRef<'AboutPage', 'SiteType'>;
   readonly aboutTitle: Prisma.FieldRef<'AboutPage', 'String'>;
   readonly aboutDescription: Prisma.FieldRef<'AboutPage', 'String'>;
+  readonly mission: Prisma.FieldRef<'AboutPage', 'String'>;
+  readonly vision: Prisma.FieldRef<'AboutPage', 'String'>;
   readonly createdAt: Prisma.FieldRef<'AboutPage', 'DateTime'>;
   readonly updatedAt: Prisma.FieldRef<'AboutPage', 'DateTime'>;
 }

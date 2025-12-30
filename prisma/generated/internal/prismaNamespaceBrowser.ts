@@ -78,6 +78,7 @@ export const ModelName = {
   FileInstance: 'FileInstance',
   Notification: 'Notification',
   UserNotification: 'UserNotification',
+  OurTeam: 'OurTeam',
   packageBanner: 'packageBanner',
   Setting: 'Setting',
   VisitorSession: 'VisitorSession',
@@ -289,6 +290,8 @@ export const AboutPageScalarFieldEnum = {
   site: 'site',
   aboutTitle: 'aboutTitle',
   aboutDescription: 'aboutDescription',
+  mission: 'mission',
+  vision: 'vision',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
 } as const;
@@ -463,6 +466,20 @@ export const UserNotificationScalarFieldEnum = {
 
 export type UserNotificationScalarFieldEnum =
   (typeof UserNotificationScalarFieldEnum)[keyof typeof UserNotificationScalarFieldEnum];
+
+export const OurTeamScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  designation: 'designation',
+  imageId: 'imageId',
+  order: 'order',
+  isActive: 'isActive',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+} as const;
+
+export type OurTeamScalarFieldEnum =
+  (typeof OurTeamScalarFieldEnum)[keyof typeof OurTeamScalarFieldEnum];
 
 export const PackageBannerScalarFieldEnum = {
   id: 'id',

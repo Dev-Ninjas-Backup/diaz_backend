@@ -281,6 +281,7 @@ export type FileInstanceWhereInput = {
   whyUsImage1?: Prisma.WhyUsListRelationFilter;
   whyUsImage2?: Prisma.WhyUsListRelationFilter;
   whyUsImage3?: Prisma.WhyUsListRelationFilter;
+  ourTeamImages?: Prisma.OurTeamListRelationFilter;
 };
 
 export type FileInstanceOrderByWithRelationInput = {
@@ -308,6 +309,7 @@ export type FileInstanceOrderByWithRelationInput = {
   whyUsImage1?: Prisma.WhyUsOrderByRelationAggregateInput;
   whyUsImage2?: Prisma.WhyUsOrderByRelationAggregateInput;
   whyUsImage3?: Prisma.WhyUsOrderByRelationAggregateInput;
+  ourTeamImages?: Prisma.OurTeamOrderByRelationAggregateInput;
 };
 
 export type FileInstanceWhereUniqueInput = Prisma.AtLeast<
@@ -345,6 +347,7 @@ export type FileInstanceWhereUniqueInput = Prisma.AtLeast<
     whyUsImage1?: Prisma.WhyUsListRelationFilter;
     whyUsImage2?: Prisma.WhyUsListRelationFilter;
     whyUsImage3?: Prisma.WhyUsListRelationFilter;
+    ourTeamImages?: Prisma.OurTeamListRelationFilter;
   },
   'id'
 >;
@@ -420,6 +423,7 @@ export type FileInstanceCreateInput = {
   whyUsImage1?: Prisma.WhyUsCreateNestedManyWithoutImage1Input;
   whyUsImage2?: Prisma.WhyUsCreateNestedManyWithoutImage2Input;
   whyUsImage3?: Prisma.WhyUsCreateNestedManyWithoutImage3Input;
+  ourTeamImages?: Prisma.OurTeamCreateNestedManyWithoutImageInput;
 };
 
 export type FileInstanceUncheckedCreateInput = {
@@ -447,6 +451,7 @@ export type FileInstanceUncheckedCreateInput = {
   whyUsImage1?: Prisma.WhyUsUncheckedCreateNestedManyWithoutImage1Input;
   whyUsImage2?: Prisma.WhyUsUncheckedCreateNestedManyWithoutImage2Input;
   whyUsImage3?: Prisma.WhyUsUncheckedCreateNestedManyWithoutImage3Input;
+  ourTeamImages?: Prisma.OurTeamUncheckedCreateNestedManyWithoutImageInput;
 };
 
 export type FileInstanceUpdateInput = {
@@ -474,6 +479,7 @@ export type FileInstanceUpdateInput = {
   whyUsImage1?: Prisma.WhyUsUpdateManyWithoutImage1NestedInput;
   whyUsImage2?: Prisma.WhyUsUpdateManyWithoutImage2NestedInput;
   whyUsImage3?: Prisma.WhyUsUpdateManyWithoutImage3NestedInput;
+  ourTeamImages?: Prisma.OurTeamUpdateManyWithoutImageNestedInput;
 };
 
 export type FileInstanceUncheckedUpdateInput = {
@@ -501,6 +507,7 @@ export type FileInstanceUncheckedUpdateInput = {
   whyUsImage1?: Prisma.WhyUsUncheckedUpdateManyWithoutImage1NestedInput;
   whyUsImage2?: Prisma.WhyUsUncheckedUpdateManyWithoutImage2NestedInput;
   whyUsImage3?: Prisma.WhyUsUncheckedUpdateManyWithoutImage3NestedInput;
+  ourTeamImages?: Prisma.OurTeamUncheckedUpdateManyWithoutImageNestedInput;
 };
 
 export type FileInstanceCreateManyInput = {
@@ -1025,6 +1032,34 @@ export type EnumFileTypeFieldUpdateOperationsInput = {
   set?: $Enums.FileType;
 };
 
+export type FileInstanceCreateNestedOneWithoutOurTeamImagesInput = {
+  create?: Prisma.XOR<
+    Prisma.FileInstanceCreateWithoutOurTeamImagesInput,
+    Prisma.FileInstanceUncheckedCreateWithoutOurTeamImagesInput
+  >;
+  connectOrCreate?: Prisma.FileInstanceCreateOrConnectWithoutOurTeamImagesInput;
+  connect?: Prisma.FileInstanceWhereUniqueInput;
+};
+
+export type FileInstanceUpdateOneWithoutOurTeamImagesNestedInput = {
+  create?: Prisma.XOR<
+    Prisma.FileInstanceCreateWithoutOurTeamImagesInput,
+    Prisma.FileInstanceUncheckedCreateWithoutOurTeamImagesInput
+  >;
+  connectOrCreate?: Prisma.FileInstanceCreateOrConnectWithoutOurTeamImagesInput;
+  upsert?: Prisma.FileInstanceUpsertWithoutOurTeamImagesInput;
+  disconnect?: Prisma.FileInstanceWhereInput | boolean;
+  delete?: Prisma.FileInstanceWhereInput | boolean;
+  connect?: Prisma.FileInstanceWhereUniqueInput;
+  update?: Prisma.XOR<
+    Prisma.XOR<
+      Prisma.FileInstanceUpdateToOneWithWhereWithoutOurTeamImagesInput,
+      Prisma.FileInstanceUpdateWithoutOurTeamImagesInput
+    >,
+    Prisma.FileInstanceUncheckedUpdateWithoutOurTeamImagesInput
+  >;
+};
+
 export type FileInstanceCreateNestedOneWithoutPackageBannersInput = {
   create?: Prisma.XOR<
     Prisma.FileInstanceCreateWithoutPackageBannersInput,
@@ -1105,6 +1140,7 @@ export type FileInstanceCreateWithoutAiSearchBannersInput = {
   whyUsImage1?: Prisma.WhyUsCreateNestedManyWithoutImage1Input;
   whyUsImage2?: Prisma.WhyUsCreateNestedManyWithoutImage2Input;
   whyUsImage3?: Prisma.WhyUsCreateNestedManyWithoutImage3Input;
+  ourTeamImages?: Prisma.OurTeamCreateNestedManyWithoutImageInput;
 };
 
 export type FileInstanceUncheckedCreateWithoutAiSearchBannersInput = {
@@ -1131,6 +1167,7 @@ export type FileInstanceUncheckedCreateWithoutAiSearchBannersInput = {
   whyUsImage1?: Prisma.WhyUsUncheckedCreateNestedManyWithoutImage1Input;
   whyUsImage2?: Prisma.WhyUsUncheckedCreateNestedManyWithoutImage2Input;
   whyUsImage3?: Prisma.WhyUsUncheckedCreateNestedManyWithoutImage3Input;
+  ourTeamImages?: Prisma.OurTeamUncheckedCreateNestedManyWithoutImageInput;
 };
 
 export type FileInstanceCreateOrConnectWithoutAiSearchBannersInput = {
@@ -1185,6 +1222,7 @@ export type FileInstanceUpdateWithoutAiSearchBannersInput = {
   whyUsImage1?: Prisma.WhyUsUpdateManyWithoutImage1NestedInput;
   whyUsImage2?: Prisma.WhyUsUpdateManyWithoutImage2NestedInput;
   whyUsImage3?: Prisma.WhyUsUpdateManyWithoutImage3NestedInput;
+  ourTeamImages?: Prisma.OurTeamUpdateManyWithoutImageNestedInput;
 };
 
 export type FileInstanceUncheckedUpdateWithoutAiSearchBannersInput = {
@@ -1211,6 +1249,7 @@ export type FileInstanceUncheckedUpdateWithoutAiSearchBannersInput = {
   whyUsImage1?: Prisma.WhyUsUncheckedUpdateManyWithoutImage1NestedInput;
   whyUsImage2?: Prisma.WhyUsUncheckedUpdateManyWithoutImage2NestedInput;
   whyUsImage3?: Prisma.WhyUsUncheckedUpdateManyWithoutImage3NestedInput;
+  ourTeamImages?: Prisma.OurTeamUncheckedUpdateManyWithoutImageNestedInput;
 };
 
 export type FileInstanceCreateWithoutPageBannersBackgroundInput = {
@@ -1237,6 +1276,7 @@ export type FileInstanceCreateWithoutPageBannersBackgroundInput = {
   whyUsImage1?: Prisma.WhyUsCreateNestedManyWithoutImage1Input;
   whyUsImage2?: Prisma.WhyUsCreateNestedManyWithoutImage2Input;
   whyUsImage3?: Prisma.WhyUsCreateNestedManyWithoutImage3Input;
+  ourTeamImages?: Prisma.OurTeamCreateNestedManyWithoutImageInput;
 };
 
 export type FileInstanceUncheckedCreateWithoutPageBannersBackgroundInput = {
@@ -1263,6 +1303,7 @@ export type FileInstanceUncheckedCreateWithoutPageBannersBackgroundInput = {
   whyUsImage1?: Prisma.WhyUsUncheckedCreateNestedManyWithoutImage1Input;
   whyUsImage2?: Prisma.WhyUsUncheckedCreateNestedManyWithoutImage2Input;
   whyUsImage3?: Prisma.WhyUsUncheckedCreateNestedManyWithoutImage3Input;
+  ourTeamImages?: Prisma.OurTeamUncheckedCreateNestedManyWithoutImageInput;
 };
 
 export type FileInstanceCreateOrConnectWithoutPageBannersBackgroundInput = {
@@ -1318,6 +1359,7 @@ export type FileInstanceUpdateWithoutPageBannersBackgroundInput = {
   whyUsImage1?: Prisma.WhyUsUpdateManyWithoutImage1NestedInput;
   whyUsImage2?: Prisma.WhyUsUpdateManyWithoutImage2NestedInput;
   whyUsImage3?: Prisma.WhyUsUpdateManyWithoutImage3NestedInput;
+  ourTeamImages?: Prisma.OurTeamUpdateManyWithoutImageNestedInput;
 };
 
 export type FileInstanceUncheckedUpdateWithoutPageBannersBackgroundInput = {
@@ -1344,6 +1386,7 @@ export type FileInstanceUncheckedUpdateWithoutPageBannersBackgroundInput = {
   whyUsImage1?: Prisma.WhyUsUncheckedUpdateManyWithoutImage1NestedInput;
   whyUsImage2?: Prisma.WhyUsUncheckedUpdateManyWithoutImage2NestedInput;
   whyUsImage3?: Prisma.WhyUsUncheckedUpdateManyWithoutImage3NestedInput;
+  ourTeamImages?: Prisma.OurTeamUncheckedUpdateManyWithoutImageNestedInput;
 };
 
 export type FileInstanceCreateWithoutBlogsInput = {
@@ -1370,6 +1413,7 @@ export type FileInstanceCreateWithoutBlogsInput = {
   whyUsImage1?: Prisma.WhyUsCreateNestedManyWithoutImage1Input;
   whyUsImage2?: Prisma.WhyUsCreateNestedManyWithoutImage2Input;
   whyUsImage3?: Prisma.WhyUsCreateNestedManyWithoutImage3Input;
+  ourTeamImages?: Prisma.OurTeamCreateNestedManyWithoutImageInput;
 };
 
 export type FileInstanceUncheckedCreateWithoutBlogsInput = {
@@ -1396,6 +1440,7 @@ export type FileInstanceUncheckedCreateWithoutBlogsInput = {
   whyUsImage1?: Prisma.WhyUsUncheckedCreateNestedManyWithoutImage1Input;
   whyUsImage2?: Prisma.WhyUsUncheckedCreateNestedManyWithoutImage2Input;
   whyUsImage3?: Prisma.WhyUsUncheckedCreateNestedManyWithoutImage3Input;
+  ourTeamImages?: Prisma.OurTeamUncheckedCreateNestedManyWithoutImageInput;
 };
 
 export type FileInstanceCreateOrConnectWithoutBlogsInput = {
@@ -1430,6 +1475,7 @@ export type FileInstanceCreateWithoutBlogInput = {
   whyUsImage1?: Prisma.WhyUsCreateNestedManyWithoutImage1Input;
   whyUsImage2?: Prisma.WhyUsCreateNestedManyWithoutImage2Input;
   whyUsImage3?: Prisma.WhyUsCreateNestedManyWithoutImage3Input;
+  ourTeamImages?: Prisma.OurTeamCreateNestedManyWithoutImageInput;
 };
 
 export type FileInstanceUncheckedCreateWithoutBlogInput = {
@@ -1456,6 +1502,7 @@ export type FileInstanceUncheckedCreateWithoutBlogInput = {
   whyUsImage1?: Prisma.WhyUsUncheckedCreateNestedManyWithoutImage1Input;
   whyUsImage2?: Prisma.WhyUsUncheckedCreateNestedManyWithoutImage2Input;
   whyUsImage3?: Prisma.WhyUsUncheckedCreateNestedManyWithoutImage3Input;
+  ourTeamImages?: Prisma.OurTeamUncheckedCreateNestedManyWithoutImageInput;
 };
 
 export type FileInstanceCreateOrConnectWithoutBlogInput = {
@@ -1510,6 +1557,7 @@ export type FileInstanceUpdateWithoutBlogsInput = {
   whyUsImage1?: Prisma.WhyUsUpdateManyWithoutImage1NestedInput;
   whyUsImage2?: Prisma.WhyUsUpdateManyWithoutImage2NestedInput;
   whyUsImage3?: Prisma.WhyUsUpdateManyWithoutImage3NestedInput;
+  ourTeamImages?: Prisma.OurTeamUpdateManyWithoutImageNestedInput;
 };
 
 export type FileInstanceUncheckedUpdateWithoutBlogsInput = {
@@ -1536,6 +1584,7 @@ export type FileInstanceUncheckedUpdateWithoutBlogsInput = {
   whyUsImage1?: Prisma.WhyUsUncheckedUpdateManyWithoutImage1NestedInput;
   whyUsImage2?: Prisma.WhyUsUncheckedUpdateManyWithoutImage2NestedInput;
   whyUsImage3?: Prisma.WhyUsUncheckedUpdateManyWithoutImage3NestedInput;
+  ourTeamImages?: Prisma.OurTeamUncheckedUpdateManyWithoutImageNestedInput;
 };
 
 export type FileInstanceUpsertWithWhereUniqueWithoutBlogInput = {
@@ -1610,6 +1659,7 @@ export type FileInstanceCreateWithoutBoatImagesInput = {
   whyUsImage1?: Prisma.WhyUsCreateNestedManyWithoutImage1Input;
   whyUsImage2?: Prisma.WhyUsCreateNestedManyWithoutImage2Input;
   whyUsImage3?: Prisma.WhyUsCreateNestedManyWithoutImage3Input;
+  ourTeamImages?: Prisma.OurTeamCreateNestedManyWithoutImageInput;
 };
 
 export type FileInstanceUncheckedCreateWithoutBoatImagesInput = {
@@ -1636,6 +1686,7 @@ export type FileInstanceUncheckedCreateWithoutBoatImagesInput = {
   whyUsImage1?: Prisma.WhyUsUncheckedCreateNestedManyWithoutImage1Input;
   whyUsImage2?: Prisma.WhyUsUncheckedCreateNestedManyWithoutImage2Input;
   whyUsImage3?: Prisma.WhyUsUncheckedCreateNestedManyWithoutImage3Input;
+  ourTeamImages?: Prisma.OurTeamUncheckedCreateNestedManyWithoutImageInput;
 };
 
 export type FileInstanceCreateOrConnectWithoutBoatImagesInput = {
@@ -1690,6 +1741,7 @@ export type FileInstanceUpdateWithoutBoatImagesInput = {
   whyUsImage1?: Prisma.WhyUsUpdateManyWithoutImage1NestedInput;
   whyUsImage2?: Prisma.WhyUsUpdateManyWithoutImage2NestedInput;
   whyUsImage3?: Prisma.WhyUsUpdateManyWithoutImage3NestedInput;
+  ourTeamImages?: Prisma.OurTeamUpdateManyWithoutImageNestedInput;
 };
 
 export type FileInstanceUncheckedUpdateWithoutBoatImagesInput = {
@@ -1716,6 +1768,7 @@ export type FileInstanceUncheckedUpdateWithoutBoatImagesInput = {
   whyUsImage1?: Prisma.WhyUsUncheckedUpdateManyWithoutImage1NestedInput;
   whyUsImage2?: Prisma.WhyUsUncheckedUpdateManyWithoutImage2NestedInput;
   whyUsImage3?: Prisma.WhyUsUncheckedUpdateManyWithoutImage3NestedInput;
+  ourTeamImages?: Prisma.OurTeamUncheckedUpdateManyWithoutImageNestedInput;
 };
 
 export type FileInstanceCreateWithoutCategoryImagesInput = {
@@ -1742,6 +1795,7 @@ export type FileInstanceCreateWithoutCategoryImagesInput = {
   whyUsImage1?: Prisma.WhyUsCreateNestedManyWithoutImage1Input;
   whyUsImage2?: Prisma.WhyUsCreateNestedManyWithoutImage2Input;
   whyUsImage3?: Prisma.WhyUsCreateNestedManyWithoutImage3Input;
+  ourTeamImages?: Prisma.OurTeamCreateNestedManyWithoutImageInput;
 };
 
 export type FileInstanceUncheckedCreateWithoutCategoryImagesInput = {
@@ -1768,6 +1822,7 @@ export type FileInstanceUncheckedCreateWithoutCategoryImagesInput = {
   whyUsImage1?: Prisma.WhyUsUncheckedCreateNestedManyWithoutImage1Input;
   whyUsImage2?: Prisma.WhyUsUncheckedCreateNestedManyWithoutImage2Input;
   whyUsImage3?: Prisma.WhyUsUncheckedCreateNestedManyWithoutImage3Input;
+  ourTeamImages?: Prisma.OurTeamUncheckedCreateNestedManyWithoutImageInput;
 };
 
 export type FileInstanceCreateOrConnectWithoutCategoryImagesInput = {
@@ -1822,6 +1877,7 @@ export type FileInstanceUpdateWithoutCategoryImagesInput = {
   whyUsImage1?: Prisma.WhyUsUpdateManyWithoutImage1NestedInput;
   whyUsImage2?: Prisma.WhyUsUpdateManyWithoutImage2NestedInput;
   whyUsImage3?: Prisma.WhyUsUpdateManyWithoutImage3NestedInput;
+  ourTeamImages?: Prisma.OurTeamUpdateManyWithoutImageNestedInput;
 };
 
 export type FileInstanceUncheckedUpdateWithoutCategoryImagesInput = {
@@ -1848,6 +1904,7 @@ export type FileInstanceUncheckedUpdateWithoutCategoryImagesInput = {
   whyUsImage1?: Prisma.WhyUsUncheckedUpdateManyWithoutImage1NestedInput;
   whyUsImage2?: Prisma.WhyUsUncheckedUpdateManyWithoutImage2NestedInput;
   whyUsImage3?: Prisma.WhyUsUncheckedUpdateManyWithoutImage3NestedInput;
+  ourTeamImages?: Prisma.OurTeamUncheckedUpdateManyWithoutImageNestedInput;
 };
 
 export type FileInstanceCreateWithoutContactTopImagesInput = {
@@ -1874,6 +1931,7 @@ export type FileInstanceCreateWithoutContactTopImagesInput = {
   whyUsImage1?: Prisma.WhyUsCreateNestedManyWithoutImage1Input;
   whyUsImage2?: Prisma.WhyUsCreateNestedManyWithoutImage2Input;
   whyUsImage3?: Prisma.WhyUsCreateNestedManyWithoutImage3Input;
+  ourTeamImages?: Prisma.OurTeamCreateNestedManyWithoutImageInput;
 };
 
 export type FileInstanceUncheckedCreateWithoutContactTopImagesInput = {
@@ -1900,6 +1958,7 @@ export type FileInstanceUncheckedCreateWithoutContactTopImagesInput = {
   whyUsImage1?: Prisma.WhyUsUncheckedCreateNestedManyWithoutImage1Input;
   whyUsImage2?: Prisma.WhyUsUncheckedCreateNestedManyWithoutImage2Input;
   whyUsImage3?: Prisma.WhyUsUncheckedCreateNestedManyWithoutImage3Input;
+  ourTeamImages?: Prisma.OurTeamUncheckedCreateNestedManyWithoutImageInput;
 };
 
 export type FileInstanceCreateOrConnectWithoutContactTopImagesInput = {
@@ -1934,6 +1993,7 @@ export type FileInstanceCreateWithoutContactBottomImagesInput = {
   whyUsImage1?: Prisma.WhyUsCreateNestedManyWithoutImage1Input;
   whyUsImage2?: Prisma.WhyUsCreateNestedManyWithoutImage2Input;
   whyUsImage3?: Prisma.WhyUsCreateNestedManyWithoutImage3Input;
+  ourTeamImages?: Prisma.OurTeamCreateNestedManyWithoutImageInput;
 };
 
 export type FileInstanceUncheckedCreateWithoutContactBottomImagesInput = {
@@ -1960,6 +2020,7 @@ export type FileInstanceUncheckedCreateWithoutContactBottomImagesInput = {
   whyUsImage1?: Prisma.WhyUsUncheckedCreateNestedManyWithoutImage1Input;
   whyUsImage2?: Prisma.WhyUsUncheckedCreateNestedManyWithoutImage2Input;
   whyUsImage3?: Prisma.WhyUsUncheckedCreateNestedManyWithoutImage3Input;
+  ourTeamImages?: Prisma.OurTeamUncheckedCreateNestedManyWithoutImageInput;
 };
 
 export type FileInstanceCreateOrConnectWithoutContactBottomImagesInput = {
@@ -2014,6 +2075,7 @@ export type FileInstanceUpdateWithoutContactTopImagesInput = {
   whyUsImage1?: Prisma.WhyUsUpdateManyWithoutImage1NestedInput;
   whyUsImage2?: Prisma.WhyUsUpdateManyWithoutImage2NestedInput;
   whyUsImage3?: Prisma.WhyUsUpdateManyWithoutImage3NestedInput;
+  ourTeamImages?: Prisma.OurTeamUpdateManyWithoutImageNestedInput;
 };
 
 export type FileInstanceUncheckedUpdateWithoutContactTopImagesInput = {
@@ -2040,6 +2102,7 @@ export type FileInstanceUncheckedUpdateWithoutContactTopImagesInput = {
   whyUsImage1?: Prisma.WhyUsUncheckedUpdateManyWithoutImage1NestedInput;
   whyUsImage2?: Prisma.WhyUsUncheckedUpdateManyWithoutImage2NestedInput;
   whyUsImage3?: Prisma.WhyUsUncheckedUpdateManyWithoutImage3NestedInput;
+  ourTeamImages?: Prisma.OurTeamUncheckedUpdateManyWithoutImageNestedInput;
 };
 
 export type FileInstanceUpsertWithoutContactBottomImagesInput = {
@@ -2086,6 +2149,7 @@ export type FileInstanceUpdateWithoutContactBottomImagesInput = {
   whyUsImage1?: Prisma.WhyUsUpdateManyWithoutImage1NestedInput;
   whyUsImage2?: Prisma.WhyUsUpdateManyWithoutImage2NestedInput;
   whyUsImage3?: Prisma.WhyUsUpdateManyWithoutImage3NestedInput;
+  ourTeamImages?: Prisma.OurTeamUpdateManyWithoutImageNestedInput;
 };
 
 export type FileInstanceUncheckedUpdateWithoutContactBottomImagesInput = {
@@ -2112,6 +2176,7 @@ export type FileInstanceUncheckedUpdateWithoutContactBottomImagesInput = {
   whyUsImage1?: Prisma.WhyUsUncheckedUpdateManyWithoutImage1NestedInput;
   whyUsImage2?: Prisma.WhyUsUncheckedUpdateManyWithoutImage2NestedInput;
   whyUsImage3?: Prisma.WhyUsUncheckedUpdateManyWithoutImage3NestedInput;
+  ourTeamImages?: Prisma.OurTeamUncheckedUpdateManyWithoutImageNestedInput;
 };
 
 export type FileInstanceCreateWithoutWhyUsImage1Input = {
@@ -2138,6 +2203,7 @@ export type FileInstanceCreateWithoutWhyUsImage1Input = {
   categoryImages?: Prisma.CategoryCreateNestedManyWithoutImageInput;
   whyUsImage2?: Prisma.WhyUsCreateNestedManyWithoutImage2Input;
   whyUsImage3?: Prisma.WhyUsCreateNestedManyWithoutImage3Input;
+  ourTeamImages?: Prisma.OurTeamCreateNestedManyWithoutImageInput;
 };
 
 export type FileInstanceUncheckedCreateWithoutWhyUsImage1Input = {
@@ -2164,6 +2230,7 @@ export type FileInstanceUncheckedCreateWithoutWhyUsImage1Input = {
   categoryImages?: Prisma.CategoryUncheckedCreateNestedManyWithoutImageInput;
   whyUsImage2?: Prisma.WhyUsUncheckedCreateNestedManyWithoutImage2Input;
   whyUsImage3?: Prisma.WhyUsUncheckedCreateNestedManyWithoutImage3Input;
+  ourTeamImages?: Prisma.OurTeamUncheckedCreateNestedManyWithoutImageInput;
 };
 
 export type FileInstanceCreateOrConnectWithoutWhyUsImage1Input = {
@@ -2198,6 +2265,7 @@ export type FileInstanceCreateWithoutWhyUsImage2Input = {
   categoryImages?: Prisma.CategoryCreateNestedManyWithoutImageInput;
   whyUsImage1?: Prisma.WhyUsCreateNestedManyWithoutImage1Input;
   whyUsImage3?: Prisma.WhyUsCreateNestedManyWithoutImage3Input;
+  ourTeamImages?: Prisma.OurTeamCreateNestedManyWithoutImageInput;
 };
 
 export type FileInstanceUncheckedCreateWithoutWhyUsImage2Input = {
@@ -2224,6 +2292,7 @@ export type FileInstanceUncheckedCreateWithoutWhyUsImage2Input = {
   categoryImages?: Prisma.CategoryUncheckedCreateNestedManyWithoutImageInput;
   whyUsImage1?: Prisma.WhyUsUncheckedCreateNestedManyWithoutImage1Input;
   whyUsImage3?: Prisma.WhyUsUncheckedCreateNestedManyWithoutImage3Input;
+  ourTeamImages?: Prisma.OurTeamUncheckedCreateNestedManyWithoutImageInput;
 };
 
 export type FileInstanceCreateOrConnectWithoutWhyUsImage2Input = {
@@ -2258,6 +2327,7 @@ export type FileInstanceCreateWithoutWhyUsImage3Input = {
   categoryImages?: Prisma.CategoryCreateNestedManyWithoutImageInput;
   whyUsImage1?: Prisma.WhyUsCreateNestedManyWithoutImage1Input;
   whyUsImage2?: Prisma.WhyUsCreateNestedManyWithoutImage2Input;
+  ourTeamImages?: Prisma.OurTeamCreateNestedManyWithoutImageInput;
 };
 
 export type FileInstanceUncheckedCreateWithoutWhyUsImage3Input = {
@@ -2284,6 +2354,7 @@ export type FileInstanceUncheckedCreateWithoutWhyUsImage3Input = {
   categoryImages?: Prisma.CategoryUncheckedCreateNestedManyWithoutImageInput;
   whyUsImage1?: Prisma.WhyUsUncheckedCreateNestedManyWithoutImage1Input;
   whyUsImage2?: Prisma.WhyUsUncheckedCreateNestedManyWithoutImage2Input;
+  ourTeamImages?: Prisma.OurTeamUncheckedCreateNestedManyWithoutImageInput;
 };
 
 export type FileInstanceCreateOrConnectWithoutWhyUsImage3Input = {
@@ -2338,6 +2409,7 @@ export type FileInstanceUpdateWithoutWhyUsImage1Input = {
   categoryImages?: Prisma.CategoryUpdateManyWithoutImageNestedInput;
   whyUsImage2?: Prisma.WhyUsUpdateManyWithoutImage2NestedInput;
   whyUsImage3?: Prisma.WhyUsUpdateManyWithoutImage3NestedInput;
+  ourTeamImages?: Prisma.OurTeamUpdateManyWithoutImageNestedInput;
 };
 
 export type FileInstanceUncheckedUpdateWithoutWhyUsImage1Input = {
@@ -2364,6 +2436,7 @@ export type FileInstanceUncheckedUpdateWithoutWhyUsImage1Input = {
   categoryImages?: Prisma.CategoryUncheckedUpdateManyWithoutImageNestedInput;
   whyUsImage2?: Prisma.WhyUsUncheckedUpdateManyWithoutImage2NestedInput;
   whyUsImage3?: Prisma.WhyUsUncheckedUpdateManyWithoutImage3NestedInput;
+  ourTeamImages?: Prisma.OurTeamUncheckedUpdateManyWithoutImageNestedInput;
 };
 
 export type FileInstanceUpsertWithoutWhyUsImage2Input = {
@@ -2410,6 +2483,7 @@ export type FileInstanceUpdateWithoutWhyUsImage2Input = {
   categoryImages?: Prisma.CategoryUpdateManyWithoutImageNestedInput;
   whyUsImage1?: Prisma.WhyUsUpdateManyWithoutImage1NestedInput;
   whyUsImage3?: Prisma.WhyUsUpdateManyWithoutImage3NestedInput;
+  ourTeamImages?: Prisma.OurTeamUpdateManyWithoutImageNestedInput;
 };
 
 export type FileInstanceUncheckedUpdateWithoutWhyUsImage2Input = {
@@ -2436,6 +2510,7 @@ export type FileInstanceUncheckedUpdateWithoutWhyUsImage2Input = {
   categoryImages?: Prisma.CategoryUncheckedUpdateManyWithoutImageNestedInput;
   whyUsImage1?: Prisma.WhyUsUncheckedUpdateManyWithoutImage1NestedInput;
   whyUsImage3?: Prisma.WhyUsUncheckedUpdateManyWithoutImage3NestedInput;
+  ourTeamImages?: Prisma.OurTeamUncheckedUpdateManyWithoutImageNestedInput;
 };
 
 export type FileInstanceUpsertWithoutWhyUsImage3Input = {
@@ -2482,6 +2557,7 @@ export type FileInstanceUpdateWithoutWhyUsImage3Input = {
   categoryImages?: Prisma.CategoryUpdateManyWithoutImageNestedInput;
   whyUsImage1?: Prisma.WhyUsUpdateManyWithoutImage1NestedInput;
   whyUsImage2?: Prisma.WhyUsUpdateManyWithoutImage2NestedInput;
+  ourTeamImages?: Prisma.OurTeamUpdateManyWithoutImageNestedInput;
 };
 
 export type FileInstanceUncheckedUpdateWithoutWhyUsImage3Input = {
@@ -2508,6 +2584,7 @@ export type FileInstanceUncheckedUpdateWithoutWhyUsImage3Input = {
   categoryImages?: Prisma.CategoryUncheckedUpdateManyWithoutImageNestedInput;
   whyUsImage1?: Prisma.WhyUsUncheckedUpdateManyWithoutImage1NestedInput;
   whyUsImage2?: Prisma.WhyUsUncheckedUpdateManyWithoutImage2NestedInput;
+  ourTeamImages?: Prisma.OurTeamUncheckedUpdateManyWithoutImageNestedInput;
 };
 
 export type FileInstanceCreateWithoutFeaturedBrandLogosInput = {
@@ -2534,6 +2611,7 @@ export type FileInstanceCreateWithoutFeaturedBrandLogosInput = {
   whyUsImage1?: Prisma.WhyUsCreateNestedManyWithoutImage1Input;
   whyUsImage2?: Prisma.WhyUsCreateNestedManyWithoutImage2Input;
   whyUsImage3?: Prisma.WhyUsCreateNestedManyWithoutImage3Input;
+  ourTeamImages?: Prisma.OurTeamCreateNestedManyWithoutImageInput;
 };
 
 export type FileInstanceUncheckedCreateWithoutFeaturedBrandLogosInput = {
@@ -2560,6 +2638,7 @@ export type FileInstanceUncheckedCreateWithoutFeaturedBrandLogosInput = {
   whyUsImage1?: Prisma.WhyUsUncheckedCreateNestedManyWithoutImage1Input;
   whyUsImage2?: Prisma.WhyUsUncheckedCreateNestedManyWithoutImage2Input;
   whyUsImage3?: Prisma.WhyUsUncheckedCreateNestedManyWithoutImage3Input;
+  ourTeamImages?: Prisma.OurTeamUncheckedCreateNestedManyWithoutImageInput;
 };
 
 export type FileInstanceCreateOrConnectWithoutFeaturedBrandLogosInput = {
@@ -2614,6 +2693,7 @@ export type FileInstanceUpdateWithoutFeaturedBrandLogosInput = {
   whyUsImage1?: Prisma.WhyUsUpdateManyWithoutImage1NestedInput;
   whyUsImage2?: Prisma.WhyUsUpdateManyWithoutImage2NestedInput;
   whyUsImage3?: Prisma.WhyUsUpdateManyWithoutImage3NestedInput;
+  ourTeamImages?: Prisma.OurTeamUpdateManyWithoutImageNestedInput;
 };
 
 export type FileInstanceUncheckedUpdateWithoutFeaturedBrandLogosInput = {
@@ -2632,6 +2712,143 @@ export type FileInstanceUncheckedUpdateWithoutFeaturedBrandLogosInput = {
   boatImages?: Prisma.BoatImageUncheckedUpdateManyWithoutFileNestedInput;
   contactTopImages?: Prisma.ContactPageUncheckedUpdateOneWithoutContactTopImageNestedInput;
   contactBottomImages?: Prisma.ContactPageUncheckedUpdateOneWithoutContactBottomImageNestedInput;
+  blogs?: Prisma.BlogUncheckedUpdateManyWithoutBlogImageNestedInput;
+  settings?: Prisma.SettingUncheckedUpdateManyWithoutLogoNestedInput;
+  packageBanners?: Prisma.packageBannerUncheckedUpdateManyWithoutPackageBannerNestedInput;
+  aiSearchBanners?: Prisma.AiSearchBannerUncheckedUpdateManyWithoutAiSearchBannerNestedInput;
+  categoryImages?: Prisma.CategoryUncheckedUpdateManyWithoutImageNestedInput;
+  whyUsImage1?: Prisma.WhyUsUncheckedUpdateManyWithoutImage1NestedInput;
+  whyUsImage2?: Prisma.WhyUsUncheckedUpdateManyWithoutImage2NestedInput;
+  whyUsImage3?: Prisma.WhyUsUncheckedUpdateManyWithoutImage3NestedInput;
+  ourTeamImages?: Prisma.OurTeamUncheckedUpdateManyWithoutImageNestedInput;
+};
+
+export type FileInstanceCreateWithoutOurTeamImagesInput = {
+  id?: string;
+  filename: string;
+  originalFilename: string;
+  path: string;
+  url: string;
+  fileType?: $Enums.FileType;
+  mimeType: string;
+  size: number;
+  createdAt?: Date | string;
+  updatedAt?: Date | string;
+  pageBannersBackground?: Prisma.PageBannerCreateNestedManyWithoutBackgroundInput;
+  blog?: Prisma.BlogCreateNestedManyWithoutFileInstancesInput;
+  boatImages?: Prisma.BoatImageCreateNestedManyWithoutFileInput;
+  contactTopImages?: Prisma.ContactPageCreateNestedOneWithoutContactTopImageInput;
+  contactBottomImages?: Prisma.ContactPageCreateNestedOneWithoutContactBottomImageInput;
+  featuredBrandLogos?: Prisma.FeaturedBrandsCreateNestedManyWithoutFeaturedbrandLogoInput;
+  blogs?: Prisma.BlogCreateNestedManyWithoutBlogImageInput;
+  settings?: Prisma.SettingCreateNestedManyWithoutLogoInput;
+  packageBanners?: Prisma.packageBannerCreateNestedManyWithoutPackageBannerInput;
+  aiSearchBanners?: Prisma.AiSearchBannerCreateNestedManyWithoutAiSearchBannerInput;
+  categoryImages?: Prisma.CategoryCreateNestedManyWithoutImageInput;
+  whyUsImage1?: Prisma.WhyUsCreateNestedManyWithoutImage1Input;
+  whyUsImage2?: Prisma.WhyUsCreateNestedManyWithoutImage2Input;
+  whyUsImage3?: Prisma.WhyUsCreateNestedManyWithoutImage3Input;
+};
+
+export type FileInstanceUncheckedCreateWithoutOurTeamImagesInput = {
+  id?: string;
+  filename: string;
+  originalFilename: string;
+  path: string;
+  url: string;
+  fileType?: $Enums.FileType;
+  mimeType: string;
+  size: number;
+  createdAt?: Date | string;
+  updatedAt?: Date | string;
+  pageBannersBackground?: Prisma.PageBannerUncheckedCreateNestedManyWithoutBackgroundInput;
+  blog?: Prisma.BlogUncheckedCreateNestedManyWithoutFileInstancesInput;
+  boatImages?: Prisma.BoatImageUncheckedCreateNestedManyWithoutFileInput;
+  contactTopImages?: Prisma.ContactPageUncheckedCreateNestedOneWithoutContactTopImageInput;
+  contactBottomImages?: Prisma.ContactPageUncheckedCreateNestedOneWithoutContactBottomImageInput;
+  featuredBrandLogos?: Prisma.FeaturedBrandsUncheckedCreateNestedManyWithoutFeaturedbrandLogoInput;
+  blogs?: Prisma.BlogUncheckedCreateNestedManyWithoutBlogImageInput;
+  settings?: Prisma.SettingUncheckedCreateNestedManyWithoutLogoInput;
+  packageBanners?: Prisma.packageBannerUncheckedCreateNestedManyWithoutPackageBannerInput;
+  aiSearchBanners?: Prisma.AiSearchBannerUncheckedCreateNestedManyWithoutAiSearchBannerInput;
+  categoryImages?: Prisma.CategoryUncheckedCreateNestedManyWithoutImageInput;
+  whyUsImage1?: Prisma.WhyUsUncheckedCreateNestedManyWithoutImage1Input;
+  whyUsImage2?: Prisma.WhyUsUncheckedCreateNestedManyWithoutImage2Input;
+  whyUsImage3?: Prisma.WhyUsUncheckedCreateNestedManyWithoutImage3Input;
+};
+
+export type FileInstanceCreateOrConnectWithoutOurTeamImagesInput = {
+  where: Prisma.FileInstanceWhereUniqueInput;
+  create: Prisma.XOR<
+    Prisma.FileInstanceCreateWithoutOurTeamImagesInput,
+    Prisma.FileInstanceUncheckedCreateWithoutOurTeamImagesInput
+  >;
+};
+
+export type FileInstanceUpsertWithoutOurTeamImagesInput = {
+  update: Prisma.XOR<
+    Prisma.FileInstanceUpdateWithoutOurTeamImagesInput,
+    Prisma.FileInstanceUncheckedUpdateWithoutOurTeamImagesInput
+  >;
+  create: Prisma.XOR<
+    Prisma.FileInstanceCreateWithoutOurTeamImagesInput,
+    Prisma.FileInstanceUncheckedCreateWithoutOurTeamImagesInput
+  >;
+  where?: Prisma.FileInstanceWhereInput;
+};
+
+export type FileInstanceUpdateToOneWithWhereWithoutOurTeamImagesInput = {
+  where?: Prisma.FileInstanceWhereInput;
+  data: Prisma.XOR<
+    Prisma.FileInstanceUpdateWithoutOurTeamImagesInput,
+    Prisma.FileInstanceUncheckedUpdateWithoutOurTeamImagesInput
+  >;
+};
+
+export type FileInstanceUpdateWithoutOurTeamImagesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string;
+  filename?: Prisma.StringFieldUpdateOperationsInput | string;
+  originalFilename?: Prisma.StringFieldUpdateOperationsInput | string;
+  path?: Prisma.StringFieldUpdateOperationsInput | string;
+  url?: Prisma.StringFieldUpdateOperationsInput | string;
+  fileType?: Prisma.EnumFileTypeFieldUpdateOperationsInput | $Enums.FileType;
+  mimeType?: Prisma.StringFieldUpdateOperationsInput | string;
+  size?: Prisma.IntFieldUpdateOperationsInput | number;
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  pageBannersBackground?: Prisma.PageBannerUpdateManyWithoutBackgroundNestedInput;
+  blog?: Prisma.BlogUpdateManyWithoutFileInstancesNestedInput;
+  boatImages?: Prisma.BoatImageUpdateManyWithoutFileNestedInput;
+  contactTopImages?: Prisma.ContactPageUpdateOneWithoutContactTopImageNestedInput;
+  contactBottomImages?: Prisma.ContactPageUpdateOneWithoutContactBottomImageNestedInput;
+  featuredBrandLogos?: Prisma.FeaturedBrandsUpdateManyWithoutFeaturedbrandLogoNestedInput;
+  blogs?: Prisma.BlogUpdateManyWithoutBlogImageNestedInput;
+  settings?: Prisma.SettingUpdateManyWithoutLogoNestedInput;
+  packageBanners?: Prisma.packageBannerUpdateManyWithoutPackageBannerNestedInput;
+  aiSearchBanners?: Prisma.AiSearchBannerUpdateManyWithoutAiSearchBannerNestedInput;
+  categoryImages?: Prisma.CategoryUpdateManyWithoutImageNestedInput;
+  whyUsImage1?: Prisma.WhyUsUpdateManyWithoutImage1NestedInput;
+  whyUsImage2?: Prisma.WhyUsUpdateManyWithoutImage2NestedInput;
+  whyUsImage3?: Prisma.WhyUsUpdateManyWithoutImage3NestedInput;
+};
+
+export type FileInstanceUncheckedUpdateWithoutOurTeamImagesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string;
+  filename?: Prisma.StringFieldUpdateOperationsInput | string;
+  originalFilename?: Prisma.StringFieldUpdateOperationsInput | string;
+  path?: Prisma.StringFieldUpdateOperationsInput | string;
+  url?: Prisma.StringFieldUpdateOperationsInput | string;
+  fileType?: Prisma.EnumFileTypeFieldUpdateOperationsInput | $Enums.FileType;
+  mimeType?: Prisma.StringFieldUpdateOperationsInput | string;
+  size?: Prisma.IntFieldUpdateOperationsInput | number;
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  pageBannersBackground?: Prisma.PageBannerUncheckedUpdateManyWithoutBackgroundNestedInput;
+  blog?: Prisma.BlogUncheckedUpdateManyWithoutFileInstancesNestedInput;
+  boatImages?: Prisma.BoatImageUncheckedUpdateManyWithoutFileNestedInput;
+  contactTopImages?: Prisma.ContactPageUncheckedUpdateOneWithoutContactTopImageNestedInput;
+  contactBottomImages?: Prisma.ContactPageUncheckedUpdateOneWithoutContactBottomImageNestedInput;
+  featuredBrandLogos?: Prisma.FeaturedBrandsUncheckedUpdateManyWithoutFeaturedbrandLogoNestedInput;
   blogs?: Prisma.BlogUncheckedUpdateManyWithoutBlogImageNestedInput;
   settings?: Prisma.SettingUncheckedUpdateManyWithoutLogoNestedInput;
   packageBanners?: Prisma.packageBannerUncheckedUpdateManyWithoutPackageBannerNestedInput;
@@ -2666,6 +2883,7 @@ export type FileInstanceCreateWithoutPackageBannersInput = {
   whyUsImage1?: Prisma.WhyUsCreateNestedManyWithoutImage1Input;
   whyUsImage2?: Prisma.WhyUsCreateNestedManyWithoutImage2Input;
   whyUsImage3?: Prisma.WhyUsCreateNestedManyWithoutImage3Input;
+  ourTeamImages?: Prisma.OurTeamCreateNestedManyWithoutImageInput;
 };
 
 export type FileInstanceUncheckedCreateWithoutPackageBannersInput = {
@@ -2692,6 +2910,7 @@ export type FileInstanceUncheckedCreateWithoutPackageBannersInput = {
   whyUsImage1?: Prisma.WhyUsUncheckedCreateNestedManyWithoutImage1Input;
   whyUsImage2?: Prisma.WhyUsUncheckedCreateNestedManyWithoutImage2Input;
   whyUsImage3?: Prisma.WhyUsUncheckedCreateNestedManyWithoutImage3Input;
+  ourTeamImages?: Prisma.OurTeamUncheckedCreateNestedManyWithoutImageInput;
 };
 
 export type FileInstanceCreateOrConnectWithoutPackageBannersInput = {
@@ -2746,6 +2965,7 @@ export type FileInstanceUpdateWithoutPackageBannersInput = {
   whyUsImage1?: Prisma.WhyUsUpdateManyWithoutImage1NestedInput;
   whyUsImage2?: Prisma.WhyUsUpdateManyWithoutImage2NestedInput;
   whyUsImage3?: Prisma.WhyUsUpdateManyWithoutImage3NestedInput;
+  ourTeamImages?: Prisma.OurTeamUpdateManyWithoutImageNestedInput;
 };
 
 export type FileInstanceUncheckedUpdateWithoutPackageBannersInput = {
@@ -2772,6 +2992,7 @@ export type FileInstanceUncheckedUpdateWithoutPackageBannersInput = {
   whyUsImage1?: Prisma.WhyUsUncheckedUpdateManyWithoutImage1NestedInput;
   whyUsImage2?: Prisma.WhyUsUncheckedUpdateManyWithoutImage2NestedInput;
   whyUsImage3?: Prisma.WhyUsUncheckedUpdateManyWithoutImage3NestedInput;
+  ourTeamImages?: Prisma.OurTeamUncheckedUpdateManyWithoutImageNestedInput;
 };
 
 export type FileInstanceCreateWithoutSettingsInput = {
@@ -2798,6 +3019,7 @@ export type FileInstanceCreateWithoutSettingsInput = {
   whyUsImage1?: Prisma.WhyUsCreateNestedManyWithoutImage1Input;
   whyUsImage2?: Prisma.WhyUsCreateNestedManyWithoutImage2Input;
   whyUsImage3?: Prisma.WhyUsCreateNestedManyWithoutImage3Input;
+  ourTeamImages?: Prisma.OurTeamCreateNestedManyWithoutImageInput;
 };
 
 export type FileInstanceUncheckedCreateWithoutSettingsInput = {
@@ -2824,6 +3046,7 @@ export type FileInstanceUncheckedCreateWithoutSettingsInput = {
   whyUsImage1?: Prisma.WhyUsUncheckedCreateNestedManyWithoutImage1Input;
   whyUsImage2?: Prisma.WhyUsUncheckedCreateNestedManyWithoutImage2Input;
   whyUsImage3?: Prisma.WhyUsUncheckedCreateNestedManyWithoutImage3Input;
+  ourTeamImages?: Prisma.OurTeamUncheckedCreateNestedManyWithoutImageInput;
 };
 
 export type FileInstanceCreateOrConnectWithoutSettingsInput = {
@@ -2878,6 +3101,7 @@ export type FileInstanceUpdateWithoutSettingsInput = {
   whyUsImage1?: Prisma.WhyUsUpdateManyWithoutImage1NestedInput;
   whyUsImage2?: Prisma.WhyUsUpdateManyWithoutImage2NestedInput;
   whyUsImage3?: Prisma.WhyUsUpdateManyWithoutImage3NestedInput;
+  ourTeamImages?: Prisma.OurTeamUpdateManyWithoutImageNestedInput;
 };
 
 export type FileInstanceUncheckedUpdateWithoutSettingsInput = {
@@ -2904,6 +3128,7 @@ export type FileInstanceUncheckedUpdateWithoutSettingsInput = {
   whyUsImage1?: Prisma.WhyUsUncheckedUpdateManyWithoutImage1NestedInput;
   whyUsImage2?: Prisma.WhyUsUncheckedUpdateManyWithoutImage2NestedInput;
   whyUsImage3?: Prisma.WhyUsUncheckedUpdateManyWithoutImage3NestedInput;
+  ourTeamImages?: Prisma.OurTeamUncheckedUpdateManyWithoutImageNestedInput;
 };
 
 export type FileInstanceUpdateWithoutBlogInput = {
@@ -2930,6 +3155,7 @@ export type FileInstanceUpdateWithoutBlogInput = {
   whyUsImage1?: Prisma.WhyUsUpdateManyWithoutImage1NestedInput;
   whyUsImage2?: Prisma.WhyUsUpdateManyWithoutImage2NestedInput;
   whyUsImage3?: Prisma.WhyUsUpdateManyWithoutImage3NestedInput;
+  ourTeamImages?: Prisma.OurTeamUpdateManyWithoutImageNestedInput;
 };
 
 export type FileInstanceUncheckedUpdateWithoutBlogInput = {
@@ -2956,6 +3182,7 @@ export type FileInstanceUncheckedUpdateWithoutBlogInput = {
   whyUsImage1?: Prisma.WhyUsUncheckedUpdateManyWithoutImage1NestedInput;
   whyUsImage2?: Prisma.WhyUsUncheckedUpdateManyWithoutImage2NestedInput;
   whyUsImage3?: Prisma.WhyUsUncheckedUpdateManyWithoutImage3NestedInput;
+  ourTeamImages?: Prisma.OurTeamUncheckedUpdateManyWithoutImageNestedInput;
 };
 
 export type FileInstanceUncheckedUpdateManyWithoutBlogInput = {
@@ -2988,6 +3215,7 @@ export type FileInstanceCountOutputType = {
   whyUsImage1: number;
   whyUsImage2: number;
   whyUsImage3: number;
+  ourTeamImages: number;
 };
 
 export type FileInstanceCountOutputTypeSelect<
@@ -3012,6 +3240,7 @@ export type FileInstanceCountOutputTypeSelect<
   whyUsImage1?: boolean | FileInstanceCountOutputTypeCountWhyUsImage1Args;
   whyUsImage2?: boolean | FileInstanceCountOutputTypeCountWhyUsImage2Args;
   whyUsImage3?: boolean | FileInstanceCountOutputTypeCountWhyUsImage3Args;
+  ourTeamImages?: boolean | FileInstanceCountOutputTypeCountOurTeamImagesArgs;
 };
 
 /**
@@ -3147,6 +3376,16 @@ export type FileInstanceCountOutputTypeCountWhyUsImage3Args<
   where?: Prisma.WhyUsWhereInput;
 };
 
+/**
+ * FileInstanceCountOutputType without action
+ */
+export type FileInstanceCountOutputTypeCountOurTeamImagesArgs<
+  ExtArgs extends runtime.Types.Extensions.InternalArgs =
+    runtime.Types.Extensions.DefaultArgs,
+> = {
+  where?: Prisma.OurTeamWhereInput;
+};
+
 export type FileInstanceSelect<
   ExtArgs extends runtime.Types.Extensions.InternalArgs =
     runtime.Types.Extensions.DefaultArgs,
@@ -3186,6 +3425,7 @@ export type FileInstanceSelect<
     whyUsImage1?: boolean | Prisma.FileInstance$whyUsImage1Args<ExtArgs>;
     whyUsImage2?: boolean | Prisma.FileInstance$whyUsImage2Args<ExtArgs>;
     whyUsImage3?: boolean | Prisma.FileInstance$whyUsImage3Args<ExtArgs>;
+    ourTeamImages?: boolean | Prisma.FileInstance$ourTeamImagesArgs<ExtArgs>;
     _count?: boolean | Prisma.FileInstanceCountOutputTypeDefaultArgs<ExtArgs>;
   },
   ExtArgs['result']['fileInstance']
@@ -3284,6 +3524,7 @@ export type FileInstanceInclude<
   whyUsImage1?: boolean | Prisma.FileInstance$whyUsImage1Args<ExtArgs>;
   whyUsImage2?: boolean | Prisma.FileInstance$whyUsImage2Args<ExtArgs>;
   whyUsImage3?: boolean | Prisma.FileInstance$whyUsImage3Args<ExtArgs>;
+  ourTeamImages?: boolean | Prisma.FileInstance$ourTeamImagesArgs<ExtArgs>;
   _count?: boolean | Prisma.FileInstanceCountOutputTypeDefaultArgs<ExtArgs>;
 };
 export type FileInstanceIncludeCreateManyAndReturn<
@@ -3315,6 +3556,7 @@ export type $FileInstancePayload<
     whyUsImage1: Prisma.$WhyUsPayload<ExtArgs>[];
     whyUsImage2: Prisma.$WhyUsPayload<ExtArgs>[];
     whyUsImage3: Prisma.$WhyUsPayload<ExtArgs>[];
+    ourTeamImages: Prisma.$OurTeamPayload<ExtArgs>[];
   };
   scalars: runtime.Types.Extensions.GetPayloadResult<
     {
@@ -4059,6 +4301,17 @@ export interface Prisma__FileInstanceClient<
   ): Prisma.PrismaPromise<
     | runtime.Types.Result.GetResult<
         Prisma.$WhyUsPayload<ExtArgs>,
+        T,
+        'findMany',
+        GlobalOmitOptions
+      >
+    | Null
+  >;
+  ourTeamImages<T extends Prisma.FileInstance$ourTeamImagesArgs<ExtArgs> = {}>(
+    args?: Prisma.Subset<T, Prisma.FileInstance$ourTeamImagesArgs<ExtArgs>>,
+  ): Prisma.PrismaPromise<
+    | runtime.Types.Result.GetResult<
+        Prisma.$OurTeamPayload<ExtArgs>,
         T,
         'findMany',
         GlobalOmitOptions
@@ -4979,6 +5232,35 @@ export type FileInstance$whyUsImage3Args<
   take?: number;
   skip?: number;
   distinct?: Prisma.WhyUsScalarFieldEnum | Prisma.WhyUsScalarFieldEnum[];
+};
+
+/**
+ * FileInstance.ourTeamImages
+ */
+export type FileInstance$ourTeamImagesArgs<
+  ExtArgs extends runtime.Types.Extensions.InternalArgs =
+    runtime.Types.Extensions.DefaultArgs,
+> = {
+  /**
+   * Select specific fields to fetch from the OurTeam
+   */
+  select?: Prisma.OurTeamSelect<ExtArgs> | null;
+  /**
+   * Omit specific fields from the OurTeam
+   */
+  omit?: Prisma.OurTeamOmit<ExtArgs> | null;
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.OurTeamInclude<ExtArgs> | null;
+  where?: Prisma.OurTeamWhereInput;
+  orderBy?:
+    | Prisma.OurTeamOrderByWithRelationInput
+    | Prisma.OurTeamOrderByWithRelationInput[];
+  cursor?: Prisma.OurTeamWhereUniqueInput;
+  take?: number;
+  skip?: number;
+  distinct?: Prisma.OurTeamScalarFieldEnum | Prisma.OurTeamScalarFieldEnum[];
 };
 
 /**

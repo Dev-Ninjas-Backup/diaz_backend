@@ -38,6 +38,6 @@ import { SyncBoatsWithGmcService } from './worker/sync-boats-with-gmc.service';
     SyncBoatsWithGmcService,
     FeaturedYachtCronService,
   ],
-  exports: [BullModule],
+  exports: [BullModule, FeaturedYachtCronService],
 })
 export class QueueModule {}

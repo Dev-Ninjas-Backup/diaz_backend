@@ -7,8 +7,8 @@
   "private": true,
   "license": "UNLICENSED",
   "scripts": {
-    "dev": "npx prisma migrate deploy && nest start --watch",
-    "build": "nest build",
+    "dev": "NODE_OPTIONS='--max-old-space-size=4096' npx prisma migrate deploy && nest start --watch",
+    "build": "NODE_OPTIONS='--max-old-space-size=4096' nest build",
     "start": "npx prisma migrate deploy && node dist/src/main",
     "start:debug": "nest start --debug --watch",
     "lint": "eslint . --ext .ts",

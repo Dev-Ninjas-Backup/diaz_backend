@@ -1,0 +1,18 @@
+model OurTeam {
+  id String @id @default(uuid())
+
+  name        String
+  designation String
+
+  imageId String?
+  image   FileInstance? @relation("OurTeamImage", fields: [imageId], references: [id], onDelete: SetNull)
+
+  order Int @default(autoincrement())
+
+  isActive Boolean @default(true)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @default(now()) @updatedAt
+
+  @@map("our_team")
+}
