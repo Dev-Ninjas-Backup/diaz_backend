@@ -7,8 +7,8 @@
   "private": true,
   "license": "UNLICENSED",
   "scripts": {
-    "dev": "NODE_OPTIONS='--max-old-space-size=4096' npx prisma migrate deploy && nest start --watch",
-    "build": "NODE_OPTIONS='--max-old-space-size=4096' nest build",
+    "dev": "cross-env NODE_OPTIONS='--max-old-space-size=4096' npx prisma migrate deploy && nest start --watch",
+    "build": "cross-env NODE_OPTIONS='--max-old-space-size=4096' nest build",
     "start": "npx prisma migrate deploy && node dist/src/main",
     "start:debug": "nest start --debug --watch",
     "lint": "eslint . --ext .ts",
@@ -95,6 +95,7 @@
     "@types/passport-jwt": "^4.0.1",
     "@types/pg": "^8.15.6",
     "chalk": "^5.6.2",
+    "cross-env": "^10.1.0",
     "eslint": "^9.39.1",
     "eslint-config-prettier": "^10.1.8",
     "eslint-plugin-prettier": "^5.5.4",
