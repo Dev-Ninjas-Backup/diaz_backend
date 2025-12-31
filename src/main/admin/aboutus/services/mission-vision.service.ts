@@ -115,8 +115,10 @@ export class MissionVisionService {
       const result = await this.prisma.client.missionVision.create({
         data: {
           site,
-          mission: createMissionVisionDto.mission,
+          title: createMissionVisionDto.title,
+          missionTitle: createMissionVisionDto.missionTitle,
           description: createMissionVisionDto.description,
+          visionTitle: createMissionVisionDto.visionTitle,
           visionDescription: createMissionVisionDto.visionDescription,
           ...imageIds,
         },
@@ -195,19 +197,27 @@ export class MissionVisionService {
 
       // Build update data object, only including fields that are provided
       const updateData: {
-        mission?: string;
+        title?: string;
+        missionTitle?: string;
         description?: string;
+        visionTitle?: string;
         visionDescription?: string;
         image1Id?: string | null;
         image2Id?: string | null;
         image3Id?: string | null;
       } = {};
 
-      if (updateMissionVisionDto.mission !== undefined) {
-        updateData.mission = updateMissionVisionDto.mission;
+      if (updateMissionVisionDto.title !== undefined) {
+        updateData.title = updateMissionVisionDto.title;
+      }
+      if (updateMissionVisionDto.missionTitle !== undefined) {
+        updateData.missionTitle = updateMissionVisionDto.missionTitle;
       }
       if (updateMissionVisionDto.description !== undefined) {
         updateData.description = updateMissionVisionDto.description;
+      }
+      if (updateMissionVisionDto.visionTitle !== undefined) {
+        updateData.visionTitle = updateMissionVisionDto.visionTitle;
       }
       if (updateMissionVisionDto.visionDescription !== undefined) {
         updateData.visionDescription = updateMissionVisionDto.visionDescription;

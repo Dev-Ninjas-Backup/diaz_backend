@@ -203,8 +203,10 @@ model MissionVision {
 
   site SiteType @default(FLORIDA)
 
-  mission           String  @db.VarChar(255)
+  title           String  @db.VarChar(255)
+  missionTitle      String? @db.Text
   description       String? @db.Text
+  visionTitle       String? @db.Text
   visionDescription String? @db.Text
 
   // Images (3 images)

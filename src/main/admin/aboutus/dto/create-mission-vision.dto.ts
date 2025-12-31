@@ -3,12 +3,22 @@ import { IsOptional, IsString } from 'class-validator';
 
 export class CreateMissionVisionDto {
   @ApiProperty({
-    example: 'Our Mission',
-    description: 'Mission title',
+    example: 'Mission & Vision',
+    description: 'Main title for Mission & Vision section',
     type: 'string',
   })
   @IsString()
-  mission: string;
+  title: string;
+
+  @ApiProperty({
+    example: 'Our Mission',
+    description: 'Mission title',
+    required: false,
+    type: 'string',
+  })
+  @IsString()
+  @IsOptional()
+  missionTitle?: string;
 
   @ApiProperty({
     example: 'This is our mission description...',
@@ -19,6 +29,16 @@ export class CreateMissionVisionDto {
   @IsString()
   @IsOptional()
   description?: string;
+
+  @ApiProperty({
+    example: 'Our Vision',
+    description: 'Vision title',
+    required: false,
+    type: 'string',
+  })
+  @IsString()
+  @IsOptional()
+  visionTitle?: string;
 
   @ApiProperty({
     example: 'This is our vision description...',

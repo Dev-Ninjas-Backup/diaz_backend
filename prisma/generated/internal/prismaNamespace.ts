@@ -3864,8 +3864,10 @@ export type OurStoryScalarFieldEnum =
 export const MissionVisionScalarFieldEnum = {
   id: 'id',
   site: 'site',
-  mission: 'mission',
+  title: 'title',
+  missionTitle: 'missionTitle',
   description: 'description',
+  visionTitle: 'visionTitle',
   visionDescription: 'visionDescription',
   image1Id: 'image1Id',
   image2Id: 'image2Id',

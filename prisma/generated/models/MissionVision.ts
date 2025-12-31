@@ -27,8 +27,10 @@ export type AggregateMissionVision = {
 export type MissionVisionMinAggregateOutputType = {
   id: string | null;
   site: $Enums.SiteType | null;
-  mission: string | null;
+  title: string | null;
+  missionTitle: string | null;
   description: string | null;
+  visionTitle: string | null;
   visionDescription: string | null;
   image1Id: string | null;
   image2Id: string | null;
@@ -40,8 +42,10 @@ export type MissionVisionMinAggregateOutputType = {
 export type MissionVisionMaxAggregateOutputType = {
   id: string | null;
   site: $Enums.SiteType | null;
-  mission: string | null;
+  title: string | null;
+  missionTitle: string | null;
   description: string | null;
+  visionTitle: string | null;
   visionDescription: string | null;
   image1Id: string | null;
   image2Id: string | null;
@@ -53,8 +57,10 @@ export type MissionVisionMaxAggregateOutputType = {
 export type MissionVisionCountAggregateOutputType = {
   id: number;
   site: number;
-  mission: number;
+  title: number;
+  missionTitle: number;
   description: number;
+  visionTitle: number;
   visionDescription: number;
   image1Id: number;
   image2Id: number;
@@ -67,8 +73,10 @@ export type MissionVisionCountAggregateOutputType = {
 export type MissionVisionMinAggregateInputType = {
   id?: true;
   site?: true;
-  mission?: true;
+  title?: true;
+  missionTitle?: true;
   description?: true;
+  visionTitle?: true;
   visionDescription?: true;
   image1Id?: true;
   image2Id?: true;
@@ -80,8 +88,10 @@ export type MissionVisionMinAggregateInputType = {
 export type MissionVisionMaxAggregateInputType = {
   id?: true;
   site?: true;
-  mission?: true;
+  title?: true;
+  missionTitle?: true;
   description?: true;
+  visionTitle?: true;
   visionDescription?: true;
   image1Id?: true;
   image2Id?: true;
@@ -93,8 +103,10 @@ export type MissionVisionMaxAggregateInputType = {
 export type MissionVisionCountAggregateInputType = {
   id?: true;
   site?: true;
-  mission?: true;
+  title?: true;
+  missionTitle?: true;
   description?: true;
+  visionTitle?: true;
   visionDescription?: true;
   image1Id?: true;
   image2Id?: true;
@@ -190,8 +202,10 @@ export type MissionVisionGroupByArgs<
 export type MissionVisionGroupByOutputType = {
   id: string;
   site: $Enums.SiteType;
-  mission: string;
+  title: string;
+  missionTitle: string | null;
   description: string | null;
+  visionTitle: string | null;
   visionDescription: string | null;
   image1Id: string | null;
   image2Id: string | null;
@@ -223,8 +237,10 @@ export type MissionVisionWhereInput = {
   NOT?: Prisma.MissionVisionWhereInput | Prisma.MissionVisionWhereInput[];
   id?: Prisma.StringFilter<'MissionVision'> | string;
   site?: Prisma.EnumSiteTypeFilter<'MissionVision'> | $Enums.SiteType;
-  mission?: Prisma.StringFilter<'MissionVision'> | string;
+  title?: Prisma.StringFilter<'MissionVision'> | string;
+  missionTitle?: Prisma.StringNullableFilter<'MissionVision'> | string | null;
   description?: Prisma.StringNullableFilter<'MissionVision'> | string | null;
+  visionTitle?: Prisma.StringNullableFilter<'MissionVision'> | string | null;
   visionDescription?:
     | Prisma.StringNullableFilter<'MissionVision'>
     | string
@@ -252,8 +268,10 @@ export type MissionVisionWhereInput = {
 export type MissionVisionOrderByWithRelationInput = {
   id?: Prisma.SortOrder;
   site?: Prisma.SortOrder;
-  mission?: Prisma.SortOrder;
+  title?: Prisma.SortOrder;
+  missionTitle?: Prisma.SortOrderInput | Prisma.SortOrder;
   description?: Prisma.SortOrderInput | Prisma.SortOrder;
+  visionTitle?: Prisma.SortOrderInput | Prisma.SortOrder;
   visionDescription?: Prisma.SortOrderInput | Prisma.SortOrder;
   image1Id?: Prisma.SortOrderInput | Prisma.SortOrder;
   image2Id?: Prisma.SortOrderInput | Prisma.SortOrder;
@@ -276,8 +294,10 @@ export type MissionVisionWhereUniqueInput = Prisma.AtLeast<
     AND?: Prisma.MissionVisionWhereInput | Prisma.MissionVisionWhereInput[];
     OR?: Prisma.MissionVisionWhereInput[];
     NOT?: Prisma.MissionVisionWhereInput | Prisma.MissionVisionWhereInput[];
-    mission?: Prisma.StringFilter<'MissionVision'> | string;
+    title?: Prisma.StringFilter<'MissionVision'> | string;
+    missionTitle?: Prisma.StringNullableFilter<'MissionVision'> | string | null;
     description?: Prisma.StringNullableFilter<'MissionVision'> | string | null;
+    visionTitle?: Prisma.StringNullableFilter<'MissionVision'> | string | null;
     visionDescription?:
       | Prisma.StringNullableFilter<'MissionVision'>
       | string
@@ -304,8 +324,10 @@ export type MissionVisionWhereUniqueInput = Prisma.AtLeast<
 export type MissionVisionOrderByWithAggregationInput = {
   id?: Prisma.SortOrder;
   site?: Prisma.SortOrder;
-  mission?: Prisma.SortOrder;
+  title?: Prisma.SortOrder;
+  missionTitle?: Prisma.SortOrderInput | Prisma.SortOrder;
   description?: Prisma.SortOrderInput | Prisma.SortOrder;
+  visionTitle?: Prisma.SortOrderInput | Prisma.SortOrder;
   visionDescription?: Prisma.SortOrderInput | Prisma.SortOrder;
   image1Id?: Prisma.SortOrderInput | Prisma.SortOrder;
   image2Id?: Prisma.SortOrderInput | Prisma.SortOrder;
@@ -329,8 +351,16 @@ export type MissionVisionScalarWhereWithAggregatesInput = {
   site?:
     | Prisma.EnumSiteTypeWithAggregatesFilter<'MissionVision'>
     | $Enums.SiteType;
-  mission?: Prisma.StringWithAggregatesFilter<'MissionVision'> | string;
+  title?: Prisma.StringWithAggregatesFilter<'MissionVision'> | string;
+  missionTitle?:
+    | Prisma.StringNullableWithAggregatesFilter<'MissionVision'>
+    | string
+    | null;
   description?:
+    | Prisma.StringNullableWithAggregatesFilter<'MissionVision'>
+    | string
+    | null;
+  visionTitle?:
     | Prisma.StringNullableWithAggregatesFilter<'MissionVision'>
     | string
     | null;
@@ -363,8 +393,10 @@ export type MissionVisionScalarWhereWithAggregatesInput = {
 export type MissionVisionCreateInput = {
   id?: string;
   site?: $Enums.SiteType;
-  mission: string;
+  title: string;
+  missionTitle?: string | null;
   description?: string | null;
+  visionTitle?: string | null;
   visionDescription?: string | null;
   createdAt?: Date | string;
   updatedAt?: Date | string;
@@ -377,8 +409,10 @@ export type MissionVisionCreateInput = {
 export type MissionVisionUncheckedCreateInput = {
   id?: string;
   site?: $Enums.SiteType;
-  mission: string;
+  title: string;
+  missionTitle?: string | null;
   description?: string | null;
+  visionTitle?: string | null;
   visionDescription?: string | null;
   image1Id?: string | null;
   image2Id?: string | null;
@@ -391,8 +425,13 @@ export type MissionVisionUncheckedCreateInput = {
 export type MissionVisionUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string;
   site?: Prisma.EnumSiteTypeFieldUpdateOperationsInput | $Enums.SiteType;
-  mission?: Prisma.StringFieldUpdateOperationsInput | string;
+  title?: Prisma.StringFieldUpdateOperationsInput | string;
+  missionTitle?:
+    | Prisma.NullableStringFieldUpdateOperationsInput
+    | string
+    | null;
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  visionTitle?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
   visionDescription?:
     | Prisma.NullableStringFieldUpdateOperationsInput
     | string
@@ -408,8 +447,13 @@ export type MissionVisionUpdateInput = {
 export type MissionVisionUncheckedUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string;
   site?: Prisma.EnumSiteTypeFieldUpdateOperationsInput | $Enums.SiteType;
-  mission?: Prisma.StringFieldUpdateOperationsInput | string;
+  title?: Prisma.StringFieldUpdateOperationsInput | string;
+  missionTitle?:
+    | Prisma.NullableStringFieldUpdateOperationsInput
+    | string
+    | null;
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  visionTitle?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
   visionDescription?:
     | Prisma.NullableStringFieldUpdateOperationsInput
     | string
@@ -425,8 +469,10 @@ export type MissionVisionUncheckedUpdateInput = {
 export type MissionVisionCreateManyInput = {
   id?: string;
   site?: $Enums.SiteType;
-  mission: string;
+  title: string;
+  missionTitle?: string | null;
   description?: string | null;
+  visionTitle?: string | null;
   visionDescription?: string | null;
   image1Id?: string | null;
   image2Id?: string | null;
@@ -438,8 +484,13 @@ export type MissionVisionCreateManyInput = {
 export type MissionVisionUpdateManyMutationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string;
   site?: Prisma.EnumSiteTypeFieldUpdateOperationsInput | $Enums.SiteType;
-  mission?: Prisma.StringFieldUpdateOperationsInput | string;
+  title?: Prisma.StringFieldUpdateOperationsInput | string;
+  missionTitle?:
+    | Prisma.NullableStringFieldUpdateOperationsInput
+    | string
+    | null;
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  visionTitle?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
   visionDescription?:
     | Prisma.NullableStringFieldUpdateOperationsInput
     | string
@@ -451,8 +502,13 @@ export type MissionVisionUpdateManyMutationInput = {
 export type MissionVisionUncheckedUpdateManyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string;
   site?: Prisma.EnumSiteTypeFieldUpdateOperationsInput | $Enums.SiteType;
-  mission?: Prisma.StringFieldUpdateOperationsInput | string;
+  title?: Prisma.StringFieldUpdateOperationsInput | string;
+  missionTitle?:
+    | Prisma.NullableStringFieldUpdateOperationsInput
+    | string
+    | null;
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  visionTitle?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
   visionDescription?:
     | Prisma.NullableStringFieldUpdateOperationsInput
     | string
@@ -467,8 +523,10 @@ export type MissionVisionUncheckedUpdateManyInput = {
 export type MissionVisionCountOrderByAggregateInput = {
   id?: Prisma.SortOrder;
   site?: Prisma.SortOrder;
-  mission?: Prisma.SortOrder;
+  title?: Prisma.SortOrder;
+  missionTitle?: Prisma.SortOrder;
   description?: Prisma.SortOrder;
+  visionTitle?: Prisma.SortOrder;
   visionDescription?: Prisma.SortOrder;
   image1Id?: Prisma.SortOrder;
   image2Id?: Prisma.SortOrder;
@@ -480,8 +538,10 @@ export type MissionVisionCountOrderByAggregateInput = {
 export type MissionVisionMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder;
   site?: Prisma.SortOrder;
-  mission?: Prisma.SortOrder;
+  title?: Prisma.SortOrder;
+  missionTitle?: Prisma.SortOrder;
   description?: Prisma.SortOrder;
+  visionTitle?: Prisma.SortOrder;
   visionDescription?: Prisma.SortOrder;
   image1Id?: Prisma.SortOrder;
   image2Id?: Prisma.SortOrder;
@@ -493,8 +553,10 @@ export type MissionVisionMaxOrderByAggregateInput = {
 export type MissionVisionMinOrderByAggregateInput = {
   id?: Prisma.SortOrder;
   site?: Prisma.SortOrder;
-  mission?: Prisma.SortOrder;
+  title?: Prisma.SortOrder;
+  missionTitle?: Prisma.SortOrder;
   description?: Prisma.SortOrder;
+  visionTitle?: Prisma.SortOrder;
   visionDescription?: Prisma.SortOrder;
   image1Id?: Prisma.SortOrder;
   image2Id?: Prisma.SortOrder;
@@ -952,8 +1014,10 @@ export type MissionVisionUncheckedUpdateManyWithoutFileInstancesNestedInput = {
 export type MissionVisionCreateWithoutImage1Input = {
   id?: string;
   site?: $Enums.SiteType;
-  mission: string;
+  title: string;
+  missionTitle?: string | null;
   description?: string | null;
+  visionTitle?: string | null;
   visionDescription?: string | null;
   createdAt?: Date | string;
   updatedAt?: Date | string;
@@ -965,8 +1029,10 @@ export type MissionVisionCreateWithoutImage1Input = {
 export type MissionVisionUncheckedCreateWithoutImage1Input = {
   id?: string;
   site?: $Enums.SiteType;
-  mission: string;
+  title: string;
+  missionTitle?: string | null;
   description?: string | null;
+  visionTitle?: string | null;
   visionDescription?: string | null;
   image2Id?: string | null;
   image3Id?: string | null;
@@ -993,8 +1059,10 @@ export type MissionVisionCreateManyImage1InputEnvelope = {
 export type MissionVisionCreateWithoutImage2Input = {
   id?: string;
   site?: $Enums.SiteType;
-  mission: string;
+  title: string;
+  missionTitle?: string | null;
   description?: string | null;
+  visionTitle?: string | null;
   visionDescription?: string | null;
   createdAt?: Date | string;
   updatedAt?: Date | string;
@@ -1006,8 +1074,10 @@ export type MissionVisionCreateWithoutImage2Input = {
 export type MissionVisionUncheckedCreateWithoutImage2Input = {
   id?: string;
   site?: $Enums.SiteType;
-  mission: string;
+  title: string;
+  missionTitle?: string | null;
   description?: string | null;
+  visionTitle?: string | null;
   visionDescription?: string | null;
   image1Id?: string | null;
   image3Id?: string | null;
@@ -1034,8 +1104,10 @@ export type MissionVisionCreateManyImage2InputEnvelope = {
 export type MissionVisionCreateWithoutImage3Input = {
   id?: string;
   site?: $Enums.SiteType;
-  mission: string;
+  title: string;
+  missionTitle?: string | null;
   description?: string | null;
+  visionTitle?: string | null;
   visionDescription?: string | null;
   createdAt?: Date | string;
   updatedAt?: Date | string;
@@ -1047,8 +1119,10 @@ export type MissionVisionCreateWithoutImage3Input = {
 export type MissionVisionUncheckedCreateWithoutImage3Input = {
   id?: string;
   site?: $Enums.SiteType;
-  mission: string;
+  title: string;
+  missionTitle?: string | null;
   description?: string | null;
+  visionTitle?: string | null;
   visionDescription?: string | null;
   image1Id?: string | null;
   image2Id?: string | null;
@@ -1075,8 +1149,10 @@ export type MissionVisionCreateManyImage3InputEnvelope = {
 export type MissionVisionCreateWithoutFileInstancesInput = {
   id?: string;
   site?: $Enums.SiteType;
-  mission: string;
+  title: string;
+  missionTitle?: string | null;
   description?: string | null;
+  visionTitle?: string | null;
   visionDescription?: string | null;
   createdAt?: Date | string;
   updatedAt?: Date | string;
@@ -1088,8 +1164,10 @@ export type MissionVisionCreateWithoutFileInstancesInput = {
 export type MissionVisionUncheckedCreateWithoutFileInstancesInput = {
   id?: string;
   site?: $Enums.SiteType;
-  mission: string;
+  title: string;
+  missionTitle?: string | null;
   description?: string | null;
+  visionTitle?: string | null;
   visionDescription?: string | null;
   image1Id?: string | null;
   image2Id?: string | null;
@@ -1144,8 +1222,10 @@ export type MissionVisionScalarWhereInput = {
     | Prisma.MissionVisionScalarWhereInput[];
   id?: Prisma.StringFilter<'MissionVision'> | string;
   site?: Prisma.EnumSiteTypeFilter<'MissionVision'> | $Enums.SiteType;
-  mission?: Prisma.StringFilter<'MissionVision'> | string;
+  title?: Prisma.StringFilter<'MissionVision'> | string;
+  missionTitle?: Prisma.StringNullableFilter<'MissionVision'> | string | null;
   description?: Prisma.StringNullableFilter<'MissionVision'> | string | null;
+  visionTitle?: Prisma.StringNullableFilter<'MissionVision'> | string | null;
   visionDescription?:
     | Prisma.StringNullableFilter<'MissionVision'>
     | string
@@ -1244,8 +1324,10 @@ export type MissionVisionUpdateManyWithWhereWithoutFileInstancesInput = {
 export type MissionVisionCreateManyImage1Input = {
   id?: string;
   site?: $Enums.SiteType;
-  mission: string;
+  title: string;
+  missionTitle?: string | null;
   description?: string | null;
+  visionTitle?: string | null;
   visionDescription?: string | null;
   image2Id?: string | null;
   image3Id?: string | null;
@@ -1256,8 +1338,10 @@ export type MissionVisionCreateManyImage1Input = {
 export type MissionVisionCreateManyImage2Input = {
   id?: string;
   site?: $Enums.SiteType;
-  mission: string;
+  title: string;
+  missionTitle?: string | null;
   description?: string | null;
+  visionTitle?: string | null;
   visionDescription?: string | null;
   image1Id?: string | null;
   image3Id?: string | null;
@@ -1268,8 +1352,10 @@ export type MissionVisionCreateManyImage2Input = {
 export type MissionVisionCreateManyImage3Input = {
   id?: string;
   site?: $Enums.SiteType;
-  mission: string;
+  title: string;
+  missionTitle?: string | null;
   description?: string | null;
+  visionTitle?: string | null;
   visionDescription?: string | null;
   image1Id?: string | null;
   image2Id?: string | null;
@@ -1280,8 +1366,13 @@ export type MissionVisionCreateManyImage3Input = {
 export type MissionVisionUpdateWithoutImage1Input = {
   id?: Prisma.StringFieldUpdateOperationsInput | string;
   site?: Prisma.EnumSiteTypeFieldUpdateOperationsInput | $Enums.SiteType;
-  mission?: Prisma.StringFieldUpdateOperationsInput | string;
+  title?: Prisma.StringFieldUpdateOperationsInput | string;
+  missionTitle?:
+    | Prisma.NullableStringFieldUpdateOperationsInput
+    | string
+    | null;
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  visionTitle?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
   visionDescription?:
     | Prisma.NullableStringFieldUpdateOperationsInput
     | string
@@ -1296,8 +1387,13 @@ export type MissionVisionUpdateWithoutImage1Input = {
 export type MissionVisionUncheckedUpdateWithoutImage1Input = {
   id?: Prisma.StringFieldUpdateOperationsInput | string;
   site?: Prisma.EnumSiteTypeFieldUpdateOperationsInput | $Enums.SiteType;
-  mission?: Prisma.StringFieldUpdateOperationsInput | string;
+  title?: Prisma.StringFieldUpdateOperationsInput | string;
+  missionTitle?:
+    | Prisma.NullableStringFieldUpdateOperationsInput
+    | string
+    | null;
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  visionTitle?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
   visionDescription?:
     | Prisma.NullableStringFieldUpdateOperationsInput
     | string
@@ -1312,8 +1408,13 @@ export type MissionVisionUncheckedUpdateWithoutImage1Input = {
 export type MissionVisionUncheckedUpdateManyWithoutImage1Input = {
   id?: Prisma.StringFieldUpdateOperationsInput | string;
   site?: Prisma.EnumSiteTypeFieldUpdateOperationsInput | $Enums.SiteType;
-  mission?: Prisma.StringFieldUpdateOperationsInput | string;
+  title?: Prisma.StringFieldUpdateOperationsInput | string;
+  missionTitle?:
+    | Prisma.NullableStringFieldUpdateOperationsInput
+    | string
+    | null;
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  visionTitle?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
   visionDescription?:
     | Prisma.NullableStringFieldUpdateOperationsInput
     | string
@@ -1327,8 +1428,13 @@ export type MissionVisionUncheckedUpdateManyWithoutImage1Input = {
 export type MissionVisionUpdateWithoutImage2Input = {
   id?: Prisma.StringFieldUpdateOperationsInput | string;
   site?: Prisma.EnumSiteTypeFieldUpdateOperationsInput | $Enums.SiteType;
-  mission?: Prisma.StringFieldUpdateOperationsInput | string;
+  title?: Prisma.StringFieldUpdateOperationsInput | string;
+  missionTitle?:
+    | Prisma.NullableStringFieldUpdateOperationsInput
+    | string
+    | null;
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  visionTitle?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
   visionDescription?:
     | Prisma.NullableStringFieldUpdateOperationsInput
     | string
@@ -1343,8 +1449,13 @@ export type MissionVisionUpdateWithoutImage2Input = {
 export type MissionVisionUncheckedUpdateWithoutImage2Input = {
   id?: Prisma.StringFieldUpdateOperationsInput | string;
   site?: Prisma.EnumSiteTypeFieldUpdateOperationsInput | $Enums.SiteType;
-  mission?: Prisma.StringFieldUpdateOperationsInput | string;
+  title?: Prisma.StringFieldUpdateOperationsInput | string;
+  missionTitle?:
+    | Prisma.NullableStringFieldUpdateOperationsInput
+    | string
+    | null;
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  visionTitle?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
   visionDescription?:
     | Prisma.NullableStringFieldUpdateOperationsInput
     | string
@@ -1359,8 +1470,13 @@ export type MissionVisionUncheckedUpdateWithoutImage2Input = {
 export type MissionVisionUncheckedUpdateManyWithoutImage2Input = {
   id?: Prisma.StringFieldUpdateOperationsInput | string;
   site?: Prisma.EnumSiteTypeFieldUpdateOperationsInput | $Enums.SiteType;
-  mission?: Prisma.StringFieldUpdateOperationsInput | string;
+  title?: Prisma.StringFieldUpdateOperationsInput | string;
+  missionTitle?:
+    | Prisma.NullableStringFieldUpdateOperationsInput
+    | string
+    | null;
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  visionTitle?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
   visionDescription?:
     | Prisma.NullableStringFieldUpdateOperationsInput
     | string
@@ -1374,8 +1490,13 @@ export type MissionVisionUncheckedUpdateManyWithoutImage2Input = {
 export type MissionVisionUpdateWithoutImage3Input = {
   id?: Prisma.StringFieldUpdateOperationsInput | string;
   site?: Prisma.EnumSiteTypeFieldUpdateOperationsInput | $Enums.SiteType;
-  mission?: Prisma.StringFieldUpdateOperationsInput | string;
+  title?: Prisma.StringFieldUpdateOperationsInput | string;
+  missionTitle?:
+    | Prisma.NullableStringFieldUpdateOperationsInput
+    | string
+    | null;
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  visionTitle?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
   visionDescription?:
     | Prisma.NullableStringFieldUpdateOperationsInput
     | string
@@ -1390,8 +1511,13 @@ export type MissionVisionUpdateWithoutImage3Input = {
 export type MissionVisionUncheckedUpdateWithoutImage3Input = {
   id?: Prisma.StringFieldUpdateOperationsInput | string;
   site?: Prisma.EnumSiteTypeFieldUpdateOperationsInput | $Enums.SiteType;
-  mission?: Prisma.StringFieldUpdateOperationsInput | string;
+  title?: Prisma.StringFieldUpdateOperationsInput | string;
+  missionTitle?:
+    | Prisma.NullableStringFieldUpdateOperationsInput
+    | string
+    | null;
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  visionTitle?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
   visionDescription?:
     | Prisma.NullableStringFieldUpdateOperationsInput
     | string
@@ -1406,8 +1532,13 @@ export type MissionVisionUncheckedUpdateWithoutImage3Input = {
 export type MissionVisionUncheckedUpdateManyWithoutImage3Input = {
   id?: Prisma.StringFieldUpdateOperationsInput | string;
   site?: Prisma.EnumSiteTypeFieldUpdateOperationsInput | $Enums.SiteType;
-  mission?: Prisma.StringFieldUpdateOperationsInput | string;
+  title?: Prisma.StringFieldUpdateOperationsInput | string;
+  missionTitle?:
+    | Prisma.NullableStringFieldUpdateOperationsInput
+    | string
+    | null;
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  visionTitle?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
   visionDescription?:
     | Prisma.NullableStringFieldUpdateOperationsInput
     | string
@@ -1421,8 +1552,13 @@ export type MissionVisionUncheckedUpdateManyWithoutImage3Input = {
 export type MissionVisionUpdateWithoutFileInstancesInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string;
   site?: Prisma.EnumSiteTypeFieldUpdateOperationsInput | $Enums.SiteType;
-  mission?: Prisma.StringFieldUpdateOperationsInput | string;
+  title?: Prisma.StringFieldUpdateOperationsInput | string;
+  missionTitle?:
+    | Prisma.NullableStringFieldUpdateOperationsInput
+    | string
+    | null;
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  visionTitle?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
   visionDescription?:
     | Prisma.NullableStringFieldUpdateOperationsInput
     | string
@@ -1437,8 +1573,13 @@ export type MissionVisionUpdateWithoutFileInstancesInput = {
 export type MissionVisionUncheckedUpdateWithoutFileInstancesInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string;
   site?: Prisma.EnumSiteTypeFieldUpdateOperationsInput | $Enums.SiteType;
-  mission?: Prisma.StringFieldUpdateOperationsInput | string;
+  title?: Prisma.StringFieldUpdateOperationsInput | string;
+  missionTitle?:
+    | Prisma.NullableStringFieldUpdateOperationsInput
+    | string
+    | null;
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  visionTitle?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
   visionDescription?:
     | Prisma.NullableStringFieldUpdateOperationsInput
     | string
@@ -1453,8 +1594,13 @@ export type MissionVisionUncheckedUpdateWithoutFileInstancesInput = {
 export type MissionVisionUncheckedUpdateManyWithoutFileInstancesInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string;
   site?: Prisma.EnumSiteTypeFieldUpdateOperationsInput | $Enums.SiteType;
-  mission?: Prisma.StringFieldUpdateOperationsInput | string;
+  title?: Prisma.StringFieldUpdateOperationsInput | string;
+  missionTitle?:
+    | Prisma.NullableStringFieldUpdateOperationsInput
+    | string
+    | null;
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  visionTitle?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
   visionDescription?:
     | Prisma.NullableStringFieldUpdateOperationsInput
     | string
@@ -1511,8 +1657,10 @@ export type MissionVisionSelect<
   {
     id?: boolean;
     site?: boolean;
-    mission?: boolean;
+    title?: boolean;
+    missionTitle?: boolean;
     description?: boolean;
+    visionTitle?: boolean;
     visionDescription?: boolean;
     image1Id?: boolean;
     image2Id?: boolean;
@@ -1535,8 +1683,10 @@ export type MissionVisionSelectCreateManyAndReturn<
   {
     id?: boolean;
     site?: boolean;
-    mission?: boolean;
+    title?: boolean;
+    missionTitle?: boolean;
     description?: boolean;
+    visionTitle?: boolean;
     visionDescription?: boolean;
     image1Id?: boolean;
     image2Id?: boolean;
@@ -1557,8 +1707,10 @@ export type MissionVisionSelectUpdateManyAndReturn<
   {
     id?: boolean;
     site?: boolean;
-    mission?: boolean;
+    title?: boolean;
+    missionTitle?: boolean;
     description?: boolean;
+    visionTitle?: boolean;
     visionDescription?: boolean;
     image1Id?: boolean;
     image2Id?: boolean;
@@ -1575,8 +1727,10 @@ export type MissionVisionSelectUpdateManyAndReturn<
 export type MissionVisionSelectScalar = {
   id?: boolean;
   site?: boolean;
-  mission?: boolean;
+  title?: boolean;
+  missionTitle?: boolean;
   description?: boolean;
+  visionTitle?: boolean;
   visionDescription?: boolean;
   image1Id?: boolean;
   image2Id?: boolean;
@@ -1591,8 +1745,10 @@ export type MissionVisionOmit<
 > = runtime.Types.Extensions.GetOmit<
   | 'id'
   | 'site'
-  | 'mission'
+  | 'title'
+  | 'missionTitle'
   | 'description'
+  | 'visionTitle'
   | 'visionDescription'
   | 'image1Id'
   | 'image2Id'
@@ -1643,8 +1799,10 @@ export type $MissionVisionPayload<
     {
       id: string;
       site: $Enums.SiteType;
-      mission: string;
+      title: string;
+      missionTitle: string | null;
       description: string | null;
+      visionTitle: string | null;
       visionDescription: string | null;
       image1Id: string | null;
       image2Id: string | null;
@@ -2304,8 +2462,10 @@ export interface Prisma__MissionVisionClient<
 export interface MissionVisionFieldRefs {
   readonly id: Prisma.FieldRef<'MissionVision', 'String'>;
   readonly site: Prisma.FieldRef<'MissionVision', 'SiteType'>;
-  readonly mission: Prisma.FieldRef<'MissionVision', 'String'>;
+  readonly title: Prisma.FieldRef<'MissionVision', 'String'>;
+  readonly missionTitle: Prisma.FieldRef<'MissionVision', 'String'>;
   readonly description: Prisma.FieldRef<'MissionVision', 'String'>;
+  readonly visionTitle: Prisma.FieldRef<'MissionVision', 'String'>;
   readonly visionDescription: Prisma.FieldRef<'MissionVision', 'String'>;
   readonly image1Id: Prisma.FieldRef<'MissionVision', 'String'>;
   readonly image2Id: Prisma.FieldRef<'MissionVision', 'String'>;
