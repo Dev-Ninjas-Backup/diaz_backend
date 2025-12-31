@@ -19,7 +19,7 @@ import {
   ApiTags,
 } from '@nestjs/swagger';
 import { UserRole } from 'generated/enums';
-import { CreateAdminUserDto } from './dto/admin.dto';
+import { AdminUserResponseDto, CreateAdminUserDto } from './dto/admin.dto';
 import { changeRole } from './enum/changerole.enum';
 import { UserPermissionsService } from './user-permissions.services';
 
@@ -33,8 +33,16 @@ export class UserPermissionsController {
   @Post('add-admin')
   @ApiOperation({ summary: 'Create a new admin user' })
   @ApiBody({ type: CreateAdminUserDto })
-  @ApiResponse({ status: 201, description: 'Admin created successfully.' })
+  @ApiResponse({
+    status: 201,
+    description: 'Admin created successfully.',
+    type: AdminUserResponseDto,
+  })
   @ApiResponse({ status: 400, description: 'Bad Request.' })
+  @ApiResponse({
+    status: 409,
+    description: 'Conflict - Email or username already exists.',
+  })
   async addAdmin(@Body() createAdminUserDto: CreateAdminUserDto) {
     return this.userPermissionsServices.addAdmin(createAdminUserDto);
   }

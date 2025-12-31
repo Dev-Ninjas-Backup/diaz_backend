@@ -59,7 +59,7 @@ model Boats {
   engines        BoatEngine[]
   images         BoatImage[]
   floridaLeads   FloridaLead[]
-  featuredYachts  FeaturedYacht[]
+  featuredYachts FeaturedYacht[]
 
   @@map("boats")
 }

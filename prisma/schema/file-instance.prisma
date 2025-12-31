@@ -25,13 +25,30 @@ model FileInstance {
   settings        Setting[]
   packageBanners  packageBanner[]  @relation("packageBanner")
   aiSearchBanners AiSearchBanner[] @relation("AiSearchBanner")
-  categoryImages  Category[]        @relation("CategoryImage")
+  categoryImages  Category[]       @relation("CategoryImage")
 
   whyUsImage1 WhyUs[] @relation("WhyUsImage1")
   whyUsImage2 WhyUs[] @relation("WhyUsImage2")
   whyUsImage3 WhyUs[] @relation("WhyUsImage3")
 
   ourTeamImages OurTeam[] @relation("OurTeamImage")
+
+  ourStoryImage1 OurStory[]    @relation("OurStoryImage1")
+  ourStoryImage2 OurStory[]    @relation("OurStoryImage2")
+  ourStoryImage3 OurStory[]    @relation("OurStoryImage3")
+  ourStoryImage4 OurStory[]    @relation("OurStoryImage4")
+  ourStoryImage5 OurStory[]    @relation("OurStoryImage5")
+  contactInfos   ContactInfo[]
+  ourStories     OurStory[]    @relation("OurStories")
+
+  missionVisionImage1 MissionVision[] @relation("MissionVisionImage1")
+  missionVisionImage2 MissionVision[] @relation("MissionVisionImage2")
+  missionVisionImage3 MissionVision[] @relation("MissionVisionImage3")
+  missionVisions      MissionVision[] @relation("MissionVisions")
+
+  whatSetsUsApartImage1 WhatSetsUsApart[] @relation("WhatSetsUsApartImage1")
+  whatSetsUsApartImage2 WhatSetsUsApart[] @relation("WhatSetsUsApartImage2")
+  whatSetsUsAparts      WhatSetsUsApart[] @relation("WhatSetsUsAparts")
 
   @@map("file_instances")
 }

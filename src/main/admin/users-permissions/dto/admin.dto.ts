@@ -1,13 +1,14 @@
 import { ApiProperty } from '@nestjs/swagger';
 import {
-  IsEnum,
-  IsString,
-  IsEmail,
-  MinLength,
-  MaxLength,
-  IsNotEmpty,
-  Matches,
   IsBoolean,
+  IsEmail,
+  IsEnum,
+  IsNotEmpty,
+  IsOptional,
+  IsString,
+  Matches,
+  MaxLength,
+  MinLength,
 } from 'class-validator';
 import { UserRole } from 'generated/enums';
 
@@ -70,9 +71,10 @@ export class CreateAdminUserDto {
   })
   password: string;
 
-  @ApiProperty()
+  @ApiProperty({ required: false })
   @IsString()
-  googleId: string;
+  @IsOptional()
+  googleId?: string;
 
   @ApiProperty({
     example: 'John Doe',
@@ -83,9 +85,10 @@ export class CreateAdminUserDto {
   @MinLength(2)
   name: string;
 
-  @ApiProperty()
+  @ApiProperty({ required: false })
   @IsString()
-  avatarUrl: string;
+  @IsOptional()
+  avatarUrl?: string;
 
   @ApiProperty({
     enum: UserRole,
@@ -97,7 +100,70 @@ export class CreateAdminUserDto {
   @IsNotEmpty()
   role: UserRole;
 
-  @ApiProperty()
+  @ApiProperty({ required: false })
   @IsBoolean()
-  isVerified: boolean;
+  @IsOptional()
+  isVerified?: boolean;
+}
+
+export class AdminUserResponseDto {
+  @ApiProperty({ example: '123456789' })
+  @IsString()
+  id: string;
+
+  @ApiProperty({ example: 'admin@example.com' })
+  @IsString()
+  email: string;
+
+  @ApiProperty({ example: 'johndoe' })
+  @IsString()
+  username: string;
+
+  @ApiProperty({ example: 'John Doe' })
+  @IsString()
+  name: string;
+
+  @ApiProperty({ required: false })
+  @IsString()
+  @IsOptional()
+  googleId?: string;
+
+  @ApiProperty({ required: false })
+  @IsString()
+  @IsOptional()
+  avatarUrl?: string;
+
+  @ApiProperty({ enum: UserRole, example: UserRole.ADMIN })
+  @IsEnum(UserRole)
+  role: UserRole;
+
+  @ApiProperty({ required: false })
+  @IsBoolean()
+  @IsOptional()
+  isVerified?: boolean;
+
+  @ApiProperty({ required: false })
+  @IsString()
+  @IsOptional()
+  phone?: string;
+
+  @ApiProperty({ required: false })
+  @IsString()
+  @IsOptional()
+  country?: string;
+
+  @ApiProperty({ required: false })
+  @IsString()
+  @IsOptional()
+  city?: string;
+
+  @ApiProperty({ required: false })
+  @IsString()
+  @IsOptional()
+  state?: string;
+
+  @ApiProperty({ required: false })
+  @IsString()
+  @IsOptional()
+  zip?: string;
 }
