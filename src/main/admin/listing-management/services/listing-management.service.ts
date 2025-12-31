@@ -1,5 +1,6 @@
 import { PrismaService } from '@/lib/prisma/prisma.service';
 import { Injectable, NotFoundException } from '@nestjs/common';
+import { Prisma } from 'generated/client';
 import { BoatListingStatus } from 'generated/client';
 import { ListingFilterDto } from '../dto/listing-filter.dto';
 import { UpdateListingDto } from '../dto/update-listing.dto';
@@ -96,9 +97,21 @@ export class ListingManagementService {
 
   async update(id: string, dto: UpdateListingDto) {
     await this.getById(id);
+
+    // Transform extraDetails from DTO array to JSON format for Prisma
+    const { extraDetails, ...rest } = dto;
+    const updateData: Prisma.BoatsUpdateInput = {
+      ...rest,
+      ...(extraDetails !== undefined && {
+        extraDetails: JSON.parse(
+          JSON.stringify(extraDetails),
+        ) as Prisma.InputJsonValue,
+      }),
+    };
+
     return this.prisma.client.boats.update({
       where: { id },
-      data: dto,
+      data: updateData,
     });
   }
 

@@ -20,16 +20,19 @@ import {
   ApiBearerAuth,
   ApiBody,
   ApiConsumes,
+  ApiExtraModels,
   ApiOperation,
   ApiTags,
 } from '@nestjs/swagger';
 import { BoatImageType } from 'generated/enums';
+import { ExtraDetailItemDto } from '@/main/seller/boats/dto/boats.dto';
 import { ListingFilterDto } from './dto/listing-filter.dto';
 import { UpdateListingDto } from './dto/update-listing.dto';
 import { AdminCreateListingService } from './services/admincreate-listing.service';
 import { ListingManagementService } from './services/listing-management.service';
 
 @ApiTags('Admin -- Listing Management')
+@ApiExtraModels(UpdateListingDto, ExtraDetailItemDto)
 @Controller('admin/listings')
 export class ListingManagementController {
   constructor(
@@ -51,6 +54,25 @@ export class ListingManagementController {
 
   @Patch(':id')
   @ApiOperation({ summary: 'Update a yacht listing' })
+  @ApiBody({
+    type: UpdateListingDto,
+    description: 'Update yacht listing fields. All fields are optional.',
+    examples: {
+      example1: {
+        summary: 'Update name and price',
+        value: {
+          name: 'Sapphire',
+          price: 125000.5,
+        },
+      },
+      example2: {
+        summary: 'Update status',
+        value: {
+          status: 'ACTIVE',
+        },
+      },
+    },
+  })
   update(@Param('id') id: string, @Body() dto: UpdateListingDto) {
     return this.service.update(id, dto);
   }

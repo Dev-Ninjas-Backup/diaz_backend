@@ -272,6 +272,7 @@ export const ContactScalarFieldEnum = {
   type: 'type',
   listingId: 'listingId',
   listingSource: 'listingSource',
+  status: 'status',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
 } as const;
