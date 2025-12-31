@@ -20,6 +20,41 @@ model Contact {
   @@map("contact")
 }
 
+model ContactUs {
+  id String @id @default(uuid())
+
+  fullName        String
+  phone           String
+  email           String
+  boatInformation String?
+  comments        String?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @default(now()) @updatedAt
+
+  @@map("contact_us")
+}
+
+model ContactInfo {
+  id String @id @default(uuid())
+
+  address      String
+  email        String
+  phone        String
+  workingHours Json
+  socialMedia  Json?
+
+  backgroundImageId String?       @unique
+  backgroundImage   FileInstance? @relation(fields: [backgroundImageId], references: [id], onDelete: SetNull)
+
+  site SiteType @unique
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @default(now()) @updatedAt
+
+  @@map("contact_info")
+}
+
 enum ContactSource {
   FLORIDA
   JUPITER

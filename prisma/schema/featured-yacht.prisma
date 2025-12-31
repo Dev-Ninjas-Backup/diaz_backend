@@ -2,7 +2,7 @@ model FeaturedYacht {
   id String @id @default(uuid())
 
   boatId String
-  boat   Boats @relation(fields: [boatId], references: [id], onDelete: Cascade)
+  boat   Boats  @relation(fields: [boatId], references: [id], onDelete: Cascade)
 
   site SiteType
 

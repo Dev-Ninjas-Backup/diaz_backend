@@ -64,6 +64,8 @@ export const ModelName = {
   BoatImage: 'BoatImage',
   Category: 'Category',
   Contact: 'Contact',
+  ContactUs: 'ContactUs',
+  ContactInfo: 'ContactInfo',
   FloridaLead: 'FloridaLead',
   AboutPage: 'AboutPage',
   ContactPage: 'ContactPage',
@@ -73,6 +75,9 @@ export const ModelName = {
   EmailSubscription: 'EmailSubscription',
   FAQ: 'FAQ',
   WhyUs: 'WhyUs',
+  OurStory: 'OurStory',
+  MissionVision: 'MissionVision',
+  WhatSetsUsApart: 'WhatSetsUsApart',
   FeaturedYacht: 'FeaturedYacht',
   FeaturedBrands: 'FeaturedBrands',
   FileInstance: 'FileInstance',
@@ -274,6 +279,36 @@ export const ContactScalarFieldEnum = {
 export type ContactScalarFieldEnum =
   (typeof ContactScalarFieldEnum)[keyof typeof ContactScalarFieldEnum];
 
+export const ContactUsScalarFieldEnum = {
+  id: 'id',
+  fullName: 'fullName',
+  phone: 'phone',
+  email: 'email',
+  boatInformation: 'boatInformation',
+  comments: 'comments',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+} as const;
+
+export type ContactUsScalarFieldEnum =
+  (typeof ContactUsScalarFieldEnum)[keyof typeof ContactUsScalarFieldEnum];
+
+export const ContactInfoScalarFieldEnum = {
+  id: 'id',
+  address: 'address',
+  email: 'email',
+  phone: 'phone',
+  workingHours: 'workingHours',
+  socialMedia: 'socialMedia',
+  backgroundImageId: 'backgroundImageId',
+  site: 'site',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+} as const;
+
+export type ContactInfoScalarFieldEnum =
+  (typeof ContactInfoScalarFieldEnum)[keyof typeof ContactInfoScalarFieldEnum];
+
 export const FloridaLeadScalarFieldEnum = {
   id: 'id',
   contactId: 'contactId',
@@ -401,6 +436,56 @@ export const WhyUsScalarFieldEnum = {
 
 export type WhyUsScalarFieldEnum =
   (typeof WhyUsScalarFieldEnum)[keyof typeof WhyUsScalarFieldEnum];
+
+export const OurStoryScalarFieldEnum = {
+  id: 'id',
+  site: 'site',
+  title: 'title',
+  description: 'description',
+  image1Id: 'image1Id',
+  image2Id: 'image2Id',
+  image3Id: 'image3Id',
+  image4Id: 'image4Id',
+  image5Id: 'image5Id',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+} as const;
+
+export type OurStoryScalarFieldEnum =
+  (typeof OurStoryScalarFieldEnum)[keyof typeof OurStoryScalarFieldEnum];
+
+export const MissionVisionScalarFieldEnum = {
+  id: 'id',
+  site: 'site',
+  mission: 'mission',
+  description: 'description',
+  visionDescription: 'visionDescription',
+  image1Id: 'image1Id',
+  image2Id: 'image2Id',
+  image3Id: 'image3Id',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+} as const;
+
+export type MissionVisionScalarFieldEnum =
+  (typeof MissionVisionScalarFieldEnum)[keyof typeof MissionVisionScalarFieldEnum];
+
+export const WhatSetsUsApartScalarFieldEnum = {
+  id: 'id',
+  site: 'site',
+  title: 'title',
+  description: 'description',
+  yearsOfYachtingExcellence: 'yearsOfYachtingExcellence',
+  boatsSoldIn2024: 'boatsSoldIn2024',
+  listingsViewedMonthly: 'listingsViewedMonthly',
+  image1Id: 'image1Id',
+  image2Id: 'image2Id',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+} as const;
+
+export type WhatSetsUsApartScalarFieldEnum =
+  (typeof WhatSetsUsApartScalarFieldEnum)[keyof typeof WhatSetsUsApartScalarFieldEnum];
 
 export const FeaturedYachtScalarFieldEnum = {
   id: 'id',

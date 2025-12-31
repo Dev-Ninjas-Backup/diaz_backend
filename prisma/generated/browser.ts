@@ -67,6 +67,16 @@ export type Category = Prisma.CategoryModel;
  */
 export type Contact = Prisma.ContactModel;
 /**
+ * Model ContactUs
+ *
+ */
+export type ContactUs = Prisma.ContactUsModel;
+/**
+ * Model ContactInfo
+ *
+ */
+export type ContactInfo = Prisma.ContactInfoModel;
+/**
  * Model FloridaLead
  *
  */
@@ -111,6 +121,21 @@ export type FAQ = Prisma.FAQModel;
  *
  */
 export type WhyUs = Prisma.WhyUsModel;
+/**
+ * Model OurStory
+ *
+ */
+export type OurStory = Prisma.OurStoryModel;
+/**
+ * Model MissionVision
+ *
+ */
+export type MissionVision = Prisma.MissionVisionModel;
+/**
+ * Model WhatSetsUsApart
+ *
+ */
+export type WhatSetsUsApart = Prisma.WhatSetsUsApartModel;
 /**
  * Model FeaturedYacht
  *

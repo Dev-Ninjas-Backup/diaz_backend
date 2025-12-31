@@ -1,11 +1,11 @@
 model AboutPage {
   id String @id @default(uuid())
 
-  site              SiteType @default(FLORIDA)
-  aboutTitle        String?  @db.VarChar(255)
-  aboutDescription  String?
-  mission           String?
-  vision            String?
+  site             SiteType @default(FLORIDA)
+  aboutTitle       String?  @db.VarChar(255)
+  aboutDescription String?
+  mission          String?
+  vision           String?
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -17,9 +17,9 @@ model AboutPage {
 model ContactPage {
   id String @id @default(uuid())
 
-  site                SiteType @default(FLORIDA)
-  contactTitle        String?  @db.VarChar(255)
-  contactDescription  String?
+  site               SiteType @default(FLORIDA)
+  contactTitle       String?  @db.VarChar(255)
+  contactDescription String?
 
   contactTopImageId String?       @unique
   contactTopImage   FileInstance? @relation("contactTopImage", fields: [contactTopImageId], references: [id])
@@ -37,11 +37,11 @@ model ContactPage {
 model PrivacyPolicy {
   id String @id @default(uuid())
 
-  site              SiteType @default(FLORIDA)
-  privacyTitle      String   @db.VarChar(255)
+  site               SiteType @default(FLORIDA)
+  privacyTitle       String   @db.VarChar(255)
   privacyDescription String
-  createdAt         DateTime @default(now())
-  updatedAt         DateTime @updatedAt
+  createdAt          DateTime @default(now())
+  updatedAt          DateTime @updatedAt
 
   @@unique([site])
   @@map("privacypolicy")
@@ -50,11 +50,11 @@ model PrivacyPolicy {
 model TermsOfServices {
   id String @id @default(uuid())
 
-  site              SiteType @default(FLORIDA)
-  termsTitle        String   @db.VarChar(255)
-  termsDescription  String
-  createdAt         DateTime @default(now())
-  updatedAt         DateTime @updatedAt
+  site             SiteType @default(FLORIDA)
+  termsTitle       String   @db.VarChar(255)
+  termsDescription String
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
 
   @@unique([site])
   @@map("terms_of_services")
@@ -66,7 +66,7 @@ model FooterSettings {
   site SiteType @default(FLORIDA)
 
   // Company Information
-  companyName        String?  @db.VarChar(255)
+  companyName        String? @db.VarChar(255)
   companyDescription String?
 
   // Quick Links
@@ -95,12 +95,12 @@ model FooterSettings {
 model EmailSubscription {
   id String @id @default(uuid())
 
-  email String @db.VarChar(255)
+  email String   @db.VarChar(255)
   site  SiteType @default(FLORIDA)
 
   isActive Boolean @default(true)
 
-  subscribedAt DateTime @default(now())
+  subscribedAt   DateTime  @default(now())
   unsubscribedAt DateTime?
 
   createdAt DateTime @default(now())
@@ -163,4 +163,94 @@ model WhyUs {
   @@unique([site])
   @@index([site])
   @@map("why_us")
+}
+
+model OurStory {
+  id String @id @default(uuid())
+
+  site SiteType @default(FLORIDA)
+
+  title       String  @db.VarChar(255)
+  description String? @db.Text
+
+  // Images (5 images)
+  image1Id String?       @unique
+  image1   FileInstance? @relation("OurStoryImage1", fields: [image1Id], references: [id], onDelete: SetNull)
+
+  image2Id String?       @unique
+  image2   FileInstance? @relation("OurStoryImage2", fields: [image2Id], references: [id], onDelete: SetNull)
+
+  image3Id String?       @unique
+  image3   FileInstance? @relation("OurStoryImage3", fields: [image3Id], references: [id], onDelete: SetNull)
+
+  image4Id String?       @unique
+  image4   FileInstance? @relation("OurStoryImage4", fields: [image4Id], references: [id], onDelete: SetNull)
+
+  image5Id String?       @unique
+  image5   FileInstance? @relation("OurStoryImage5", fields: [image5Id], references: [id], onDelete: SetNull)
+
+  createdAt     DateTime       @default(now())
+  updatedAt     DateTime       @updatedAt
+  fileInstances FileInstance[] @relation("OurStories")
+
+  @@unique([site])
+  @@index([site])
+  @@map("our_story")
+}
+
+model MissionVision {
+  id String @id @default(uuid())
+
+  site SiteType @default(FLORIDA)
+
+  mission           String  @db.VarChar(255)
+  description       String? @db.Text
+  visionDescription String? @db.Text
+
+  // Images (3 images)
+  image1Id String?       @unique
+  image1   FileInstance? @relation("MissionVisionImage1", fields: [image1Id], references: [id], onDelete: SetNull)
+
+  image2Id String?       @unique
+  image2   FileInstance? @relation("MissionVisionImage2", fields: [image2Id], references: [id], onDelete: SetNull)
+
+  image3Id String?       @unique
+  image3   FileInstance? @relation("MissionVisionImage3", fields: [image3Id], references: [id], onDelete: SetNull)
+
+  createdAt     DateTime       @default(now())
+  updatedAt     DateTime       @updatedAt
+  fileInstances FileInstance[] @relation("MissionVisions")
+
+  @@unique([site])
+  @@index([site])
+  @@map("mission_vision")
+}
+
+model WhatSetsUsApart {
+  id String @id @default(uuid())
+
+  site SiteType @default(FLORIDA)
+
+  title       String  @db.VarChar(255)
+  description String? @db.Text
+
+  // Statistics
+  yearsOfYachtingExcellence String? @db.VarChar(100) // e.g., "20+"
+  boatsSoldIn2024           String? @db.VarChar(100) // e.g., "1000+"
+  listingsViewedMonthly     String? @db.VarChar(100) // e.g., "10M+"
+
+  // Images (2 images)
+  image1Id String?       @unique
+  image1   FileInstance? @relation("WhatSetsUsApartImage1", fields: [image1Id], references: [id], onDelete: SetNull)
+
+  image2Id String?       @unique
+  image2   FileInstance? @relation("WhatSetsUsApartImage2", fields: [image2Id], references: [id], onDelete: SetNull)
+
+  createdAt     DateTime       @default(now())
+  updatedAt     DateTime       @updatedAt
+  fileInstances FileInstance[] @relation("WhatSetsUsAparts")
+
+  @@unique([site])
+  @@index([site])
+  @@map("what_sets_us_apart")
 }

@@ -282,6 +282,20 @@ export type FileInstanceWhereInput = {
   whyUsImage2?: Prisma.WhyUsListRelationFilter;
   whyUsImage3?: Prisma.WhyUsListRelationFilter;
   ourTeamImages?: Prisma.OurTeamListRelationFilter;
+  ourStoryImage1?: Prisma.OurStoryListRelationFilter;
+  ourStoryImage2?: Prisma.OurStoryListRelationFilter;
+  ourStoryImage3?: Prisma.OurStoryListRelationFilter;
+  ourStoryImage4?: Prisma.OurStoryListRelationFilter;
+  ourStoryImage5?: Prisma.OurStoryListRelationFilter;
+  contactInfos?: Prisma.ContactInfoListRelationFilter;
+  ourStories?: Prisma.OurStoryListRelationFilter;
+  missionVisionImage1?: Prisma.MissionVisionListRelationFilter;
+  missionVisionImage2?: Prisma.MissionVisionListRelationFilter;
+  missionVisionImage3?: Prisma.MissionVisionListRelationFilter;
+  missionVisions?: Prisma.MissionVisionListRelationFilter;
+  whatSetsUsApartImage1?: Prisma.WhatSetsUsApartListRelationFilter;
+  whatSetsUsApartImage2?: Prisma.WhatSetsUsApartListRelationFilter;
+  whatSetsUsAparts?: Prisma.WhatSetsUsApartListRelationFilter;
 };
 
 export type FileInstanceOrderByWithRelationInput = {
@@ -310,6 +324,20 @@ export type FileInstanceOrderByWithRelationInput = {
   whyUsImage2?: Prisma.WhyUsOrderByRelationAggregateInput;
   whyUsImage3?: Prisma.WhyUsOrderByRelationAggregateInput;
   ourTeamImages?: Prisma.OurTeamOrderByRelationAggregateInput;
+  ourStoryImage1?: Prisma.OurStoryOrderByRelationAggregateInput;
+  ourStoryImage2?: Prisma.OurStoryOrderByRelationAggregateInput;
+  ourStoryImage3?: Prisma.OurStoryOrderByRelationAggregateInput;
+  ourStoryImage4?: Prisma.OurStoryOrderByRelationAggregateInput;
+  ourStoryImage5?: Prisma.OurStoryOrderByRelationAggregateInput;
+  contactInfos?: Prisma.ContactInfoOrderByRelationAggregateInput;
+  ourStories?: Prisma.OurStoryOrderByRelationAggregateInput;
+  missionVisionImage1?: Prisma.MissionVisionOrderByRelationAggregateInput;
+  missionVisionImage2?: Prisma.MissionVisionOrderByRelationAggregateInput;
+  missionVisionImage3?: Prisma.MissionVisionOrderByRelationAggregateInput;
+  missionVisions?: Prisma.MissionVisionOrderByRelationAggregateInput;
+  whatSetsUsApartImage1?: Prisma.WhatSetsUsApartOrderByRelationAggregateInput;
+  whatSetsUsApartImage2?: Prisma.WhatSetsUsApartOrderByRelationAggregateInput;
+  whatSetsUsAparts?: Prisma.WhatSetsUsApartOrderByRelationAggregateInput;
 };
 
 export type FileInstanceWhereUniqueInput = Prisma.AtLeast<
@@ -348,6 +376,20 @@ export type FileInstanceWhereUniqueInput = Prisma.AtLeast<
     whyUsImage2?: Prisma.WhyUsListRelationFilter;
     whyUsImage3?: Prisma.WhyUsListRelationFilter;
     ourTeamImages?: Prisma.OurTeamListRelationFilter;
+    ourStoryImage1?: Prisma.OurStoryListRelationFilter;
+    ourStoryImage2?: Prisma.OurStoryListRelationFilter;
+    ourStoryImage3?: Prisma.OurStoryListRelationFilter;
+    ourStoryImage4?: Prisma.OurStoryListRelationFilter;
+    ourStoryImage5?: Prisma.OurStoryListRelationFilter;
+    contactInfos?: Prisma.ContactInfoListRelationFilter;
+    ourStories?: Prisma.OurStoryListRelationFilter;
+    missionVisionImage1?: Prisma.MissionVisionListRelationFilter;
+    missionVisionImage2?: Prisma.MissionVisionListRelationFilter;
+    missionVisionImage3?: Prisma.MissionVisionListRelationFilter;
+    missionVisions?: Prisma.MissionVisionListRelationFilter;
+    whatSetsUsApartImage1?: Prisma.WhatSetsUsApartListRelationFilter;
+    whatSetsUsApartImage2?: Prisma.WhatSetsUsApartListRelationFilter;
+    whatSetsUsAparts?: Prisma.WhatSetsUsApartListRelationFilter;
   },
   'id'
 >;
@@ -424,6 +466,20 @@ export type FileInstanceCreateInput = {
   whyUsImage2?: Prisma.WhyUsCreateNestedManyWithoutImage2Input;
   whyUsImage3?: Prisma.WhyUsCreateNestedManyWithoutImage3Input;
   ourTeamImages?: Prisma.OurTeamCreateNestedManyWithoutImageInput;
+  ourStoryImage1?: Prisma.OurStoryCreateNestedManyWithoutImage1Input;
+  ourStoryImage2?: Prisma.OurStoryCreateNestedManyWithoutImage2Input;
+  ourStoryImage3?: Prisma.OurStoryCreateNestedManyWithoutImage3Input;
+  ourStoryImage4?: Prisma.OurStoryCreateNestedManyWithoutImage4Input;
+  ourStoryImage5?: Prisma.OurStoryCreateNestedManyWithoutImage5Input;
+  contactInfos?: Prisma.ContactInfoCreateNestedManyWithoutBackgroundImageInput;
+  ourStories?: Prisma.OurStoryCreateNestedManyWithoutFileInstancesInput;
+  missionVisionImage1?: Prisma.MissionVisionCreateNestedManyWithoutImage1Input;
+  missionVisionImage2?: Prisma.MissionVisionCreateNestedManyWithoutImage2Input;
+  missionVisionImage3?: Prisma.MissionVisionCreateNestedManyWithoutImage3Input;
+  missionVisions?: Prisma.MissionVisionCreateNestedManyWithoutFileInstancesInput;
+  whatSetsUsApartImage1?: Prisma.WhatSetsUsApartCreateNestedManyWithoutImage1Input;
+  whatSetsUsApartImage2?: Prisma.WhatSetsUsApartCreateNestedManyWithoutImage2Input;
+  whatSetsUsAparts?: Prisma.WhatSetsUsApartCreateNestedManyWithoutFileInstancesInput;
 };
 
 export type FileInstanceUncheckedCreateInput = {
@@ -452,6 +508,20 @@ export type FileInstanceUncheckedCreateInput = {
   whyUsImage2?: Prisma.WhyUsUncheckedCreateNestedManyWithoutImage2Input;
   whyUsImage3?: Prisma.WhyUsUncheckedCreateNestedManyWithoutImage3Input;
   ourTeamImages?: Prisma.OurTeamUncheckedCreateNestedManyWithoutImageInput;
+  ourStoryImage1?: Prisma.OurStoryUncheckedCreateNestedManyWithoutImage1Input;
+  ourStoryImage2?: Prisma.OurStoryUncheckedCreateNestedManyWithoutImage2Input;
+  ourStoryImage3?: Prisma.OurStoryUncheckedCreateNestedManyWithoutImage3Input;
+  ourStoryImage4?: Prisma.OurStoryUncheckedCreateNestedManyWithoutImage4Input;
+  ourStoryImage5?: Prisma.OurStoryUncheckedCreateNestedManyWithoutImage5Input;
+  contactInfos?: Prisma.ContactInfoUncheckedCreateNestedManyWithoutBackgroundImageInput;
+  ourStories?: Prisma.OurStoryUncheckedCreateNestedManyWithoutFileInstancesInput;
+  missionVisionImage1?: Prisma.MissionVisionUncheckedCreateNestedManyWithoutImage1Input;
+  missionVisionImage2?: Prisma.MissionVisionUncheckedCreateNestedManyWithoutImage2Input;
+  missionVisionImage3?: Prisma.MissionVisionUncheckedCreateNestedManyWithoutImage3Input;
+  missionVisions?: Prisma.MissionVisionUncheckedCreateNestedManyWithoutFileInstancesInput;
+  whatSetsUsApartImage1?: Prisma.WhatSetsUsApartUncheckedCreateNestedManyWithoutImage1Input;
+  whatSetsUsApartImage2?: Prisma.WhatSetsUsApartUncheckedCreateNestedManyWithoutImage2Input;
+  whatSetsUsAparts?: Prisma.WhatSetsUsApartUncheckedCreateNestedManyWithoutFileInstancesInput;
 };
 
 export type FileInstanceUpdateInput = {
@@ -480,6 +550,20 @@ export type FileInstanceUpdateInput = {
   whyUsImage2?: Prisma.WhyUsUpdateManyWithoutImage2NestedInput;
   whyUsImage3?: Prisma.WhyUsUpdateManyWithoutImage3NestedInput;
   ourTeamImages?: Prisma.OurTeamUpdateManyWithoutImageNestedInput;
+  ourStoryImage1?: Prisma.OurStoryUpdateManyWithoutImage1NestedInput;
+  ourStoryImage2?: Prisma.OurStoryUpdateManyWithoutImage2NestedInput;
+  ourStoryImage3?: Prisma.OurStoryUpdateManyWithoutImage3NestedInput;
+  ourStoryImage4?: Prisma.OurStoryUpdateManyWithoutImage4NestedInput;
+  ourStoryImage5?: Prisma.OurStoryUpdateManyWithoutImage5NestedInput;
+  contactInfos?: Prisma.ContactInfoUpdateManyWithoutBackgroundImageNestedInput;
+  ourStories?: Prisma.OurStoryUpdateManyWithoutFileInstancesNestedInput;
+  missionVisionImage1?: Prisma.MissionVisionUpdateManyWithoutImage1NestedInput;
+  missionVisionImage2?: Prisma.MissionVisionUpdateManyWithoutImage2NestedInput;
+  missionVisionImage3?: Prisma.MissionVisionUpdateManyWithoutImage3NestedInput;
+  missionVisions?: Prisma.MissionVisionUpdateManyWithoutFileInstancesNestedInput;
+  whatSetsUsApartImage1?: Prisma.WhatSetsUsApartUpdateManyWithoutImage1NestedInput;
+  whatSetsUsApartImage2?: Prisma.WhatSetsUsApartUpdateManyWithoutImage2NestedInput;
+  whatSetsUsAparts?: Prisma.WhatSetsUsApartUpdateManyWithoutFileInstancesNestedInput;
 };
 
 export type FileInstanceUncheckedUpdateInput = {
@@ -508,6 +592,20 @@ export type FileInstanceUncheckedUpdateInput = {
   whyUsImage2?: Prisma.WhyUsUncheckedUpdateManyWithoutImage2NestedInput;
   whyUsImage3?: Prisma.WhyUsUncheckedUpdateManyWithoutImage3NestedInput;
   ourTeamImages?: Prisma.OurTeamUncheckedUpdateManyWithoutImageNestedInput;
+  ourStoryImage1?: Prisma.OurStoryUncheckedUpdateManyWithoutImage1NestedInput;
+  ourStoryImage2?: Prisma.OurStoryUncheckedUpdateManyWithoutImage2NestedInput;
+  ourStoryImage3?: Prisma.OurStoryUncheckedUpdateManyWithoutImage3NestedInput;
+  ourStoryImage4?: Prisma.OurStoryUncheckedUpdateManyWithoutImage4NestedInput;
+  ourStoryImage5?: Prisma.OurStoryUncheckedUpdateManyWithoutImage5NestedInput;
+  contactInfos?: Prisma.ContactInfoUncheckedUpdateManyWithoutBackgroundImageNestedInput;
+  ourStories?: Prisma.OurStoryUncheckedUpdateManyWithoutFileInstancesNestedInput;
+  missionVisionImage1?: Prisma.MissionVisionUncheckedUpdateManyWithoutImage1NestedInput;
+  missionVisionImage2?: Prisma.MissionVisionUncheckedUpdateManyWithoutImage2NestedInput;
+  missionVisionImage3?: Prisma.MissionVisionUncheckedUpdateManyWithoutImage3NestedInput;
+  missionVisions?: Prisma.MissionVisionUncheckedUpdateManyWithoutFileInstancesNestedInput;
+  whatSetsUsApartImage1?: Prisma.WhatSetsUsApartUncheckedUpdateManyWithoutImage1NestedInput;
+  whatSetsUsApartImage2?: Prisma.WhatSetsUsApartUncheckedUpdateManyWithoutImage2NestedInput;
+  whatSetsUsAparts?: Prisma.WhatSetsUsApartUncheckedUpdateManyWithoutFileInstancesNestedInput;
 };
 
 export type FileInstanceCreateManyInput = {
@@ -860,6 +958,34 @@ export type FileInstanceUpdateOneWithoutCategoryImagesNestedInput = {
   >;
 };
 
+export type FileInstanceCreateNestedOneWithoutContactInfosInput = {
+  create?: Prisma.XOR<
+    Prisma.FileInstanceCreateWithoutContactInfosInput,
+    Prisma.FileInstanceUncheckedCreateWithoutContactInfosInput
+  >;
+  connectOrCreate?: Prisma.FileInstanceCreateOrConnectWithoutContactInfosInput;
+  connect?: Prisma.FileInstanceWhereUniqueInput;
+};
+
+export type FileInstanceUpdateOneWithoutContactInfosNestedInput = {
+  create?: Prisma.XOR<
+    Prisma.FileInstanceCreateWithoutContactInfosInput,
+    Prisma.FileInstanceUncheckedCreateWithoutContactInfosInput
+  >;
+  connectOrCreate?: Prisma.FileInstanceCreateOrConnectWithoutContactInfosInput;
+  upsert?: Prisma.FileInstanceUpsertWithoutContactInfosInput;
+  disconnect?: Prisma.FileInstanceWhereInput | boolean;
+  delete?: Prisma.FileInstanceWhereInput | boolean;
+  connect?: Prisma.FileInstanceWhereUniqueInput;
+  update?: Prisma.XOR<
+    Prisma.XOR<
+      Prisma.FileInstanceUpdateToOneWithWhereWithoutContactInfosInput,
+      Prisma.FileInstanceUpdateWithoutContactInfosInput
+    >,
+    Prisma.FileInstanceUncheckedUpdateWithoutContactInfosInput
+  >;
+};
+
 export type FileInstanceCreateNestedOneWithoutContactTopImagesInput = {
   create?: Prisma.XOR<
     Prisma.FileInstanceCreateWithoutContactTopImagesInput,
@@ -999,6 +1125,606 @@ export type FileInstanceUpdateOneWithoutWhyUsImage3NestedInput = {
     Prisma.FileInstanceUncheckedUpdateWithoutWhyUsImage3Input
   >;
 };
+
+export type FileInstanceCreateNestedOneWithoutOurStoryImage1Input = {
+  create?: Prisma.XOR<
+    Prisma.FileInstanceCreateWithoutOurStoryImage1Input,
+    Prisma.FileInstanceUncheckedCreateWithoutOurStoryImage1Input
+  >;
+  connectOrCreate?: Prisma.FileInstanceCreateOrConnectWithoutOurStoryImage1Input;
+  connect?: Prisma.FileInstanceWhereUniqueInput;
+};
+
+export type FileInstanceCreateNestedOneWithoutOurStoryImage2Input = {
+  create?: Prisma.XOR<
+    Prisma.FileInstanceCreateWithoutOurStoryImage2Input,
+    Prisma.FileInstanceUncheckedCreateWithoutOurStoryImage2Input
+  >;
+  connectOrCreate?: Prisma.FileInstanceCreateOrConnectWithoutOurStoryImage2Input;
+  connect?: Prisma.FileInstanceWhereUniqueInput;
+};
+
+export type FileInstanceCreateNestedOneWithoutOurStoryImage3Input = {
+  create?: Prisma.XOR<
+    Prisma.FileInstanceCreateWithoutOurStoryImage3Input,
+    Prisma.FileInstanceUncheckedCreateWithoutOurStoryImage3Input
+  >;
+  connectOrCreate?: Prisma.FileInstanceCreateOrConnectWithoutOurStoryImage3Input;
+  connect?: Prisma.FileInstanceWhereUniqueInput;
+};
+
+export type FileInstanceCreateNestedOneWithoutOurStoryImage4Input = {
+  create?: Prisma.XOR<
+    Prisma.FileInstanceCreateWithoutOurStoryImage4Input,
+    Prisma.FileInstanceUncheckedCreateWithoutOurStoryImage4Input
+  >;
+  connectOrCreate?: Prisma.FileInstanceCreateOrConnectWithoutOurStoryImage4Input;
+  connect?: Prisma.FileInstanceWhereUniqueInput;
+};
+
+export type FileInstanceCreateNestedOneWithoutOurStoryImage5Input = {
+  create?: Prisma.XOR<
+    Prisma.FileInstanceCreateWithoutOurStoryImage5Input,
+    Prisma.FileInstanceUncheckedCreateWithoutOurStoryImage5Input
+  >;
+  connectOrCreate?: Prisma.FileInstanceCreateOrConnectWithoutOurStoryImage5Input;
+  connect?: Prisma.FileInstanceWhereUniqueInput;
+};
+
+export type FileInstanceCreateNestedManyWithoutOurStoriesInput = {
+  create?:
+    | Prisma.XOR<
+        Prisma.FileInstanceCreateWithoutOurStoriesInput,
+        Prisma.FileInstanceUncheckedCreateWithoutOurStoriesInput
+      >
+    | Prisma.FileInstanceCreateWithoutOurStoriesInput[]
+    | Prisma.FileInstanceUncheckedCreateWithoutOurStoriesInput[];
+  connectOrCreate?:
+    | Prisma.FileInstanceCreateOrConnectWithoutOurStoriesInput
+    | Prisma.FileInstanceCreateOrConnectWithoutOurStoriesInput[];
+  connect?:
+    | Prisma.FileInstanceWhereUniqueInput
+    | Prisma.FileInstanceWhereUniqueInput[];
+};
+
+export type FileInstanceUncheckedCreateNestedManyWithoutOurStoriesInput = {
+  create?:
+    | Prisma.XOR<
+        Prisma.FileInstanceCreateWithoutOurStoriesInput,
+        Prisma.FileInstanceUncheckedCreateWithoutOurStoriesInput
+      >
+    | Prisma.FileInstanceCreateWithoutOurStoriesInput[]
+    | Prisma.FileInstanceUncheckedCreateWithoutOurStoriesInput[];
+  connectOrCreate?:
+    | Prisma.FileInstanceCreateOrConnectWithoutOurStoriesInput
+    | Prisma.FileInstanceCreateOrConnectWithoutOurStoriesInput[];
+  connect?:
+    | Prisma.FileInstanceWhereUniqueInput
+    | Prisma.FileInstanceWhereUniqueInput[];
+};
+
+export type FileInstanceUpdateOneWithoutOurStoryImage1NestedInput = {
+  create?: Prisma.XOR<
+    Prisma.FileInstanceCreateWithoutOurStoryImage1Input,
+    Prisma.FileInstanceUncheckedCreateWithoutOurStoryImage1Input
+  >;
+  connectOrCreate?: Prisma.FileInstanceCreateOrConnectWithoutOurStoryImage1Input;
+  upsert?: Prisma.FileInstanceUpsertWithoutOurStoryImage1Input;
+  disconnect?: Prisma.FileInstanceWhereInput | boolean;
+  delete?: Prisma.FileInstanceWhereInput | boolean;
+  connect?: Prisma.FileInstanceWhereUniqueInput;
+  update?: Prisma.XOR<
+    Prisma.XOR<
+      Prisma.FileInstanceUpdateToOneWithWhereWithoutOurStoryImage1Input,
+      Prisma.FileInstanceUpdateWithoutOurStoryImage1Input
+    >,
+    Prisma.FileInstanceUncheckedUpdateWithoutOurStoryImage1Input
+  >;
+};
+
+export type FileInstanceUpdateOneWithoutOurStoryImage2NestedInput = {
+  create?: Prisma.XOR<
+    Prisma.FileInstanceCreateWithoutOurStoryImage2Input,
+    Prisma.FileInstanceUncheckedCreateWithoutOurStoryImage2Input
+  >;
+  connectOrCreate?: Prisma.FileInstanceCreateOrConnectWithoutOurStoryImage2Input;
+  upsert?: Prisma.FileInstanceUpsertWithoutOurStoryImage2Input;
+  disconnect?: Prisma.FileInstanceWhereInput | boolean;
+  delete?: Prisma.FileInstanceWhereInput | boolean;
+  connect?: Prisma.FileInstanceWhereUniqueInput;
+  update?: Prisma.XOR<
+    Prisma.XOR<
+      Prisma.FileInstanceUpdateToOneWithWhereWithoutOurStoryImage2Input,
+      Prisma.FileInstanceUpdateWithoutOurStoryImage2Input
+    >,
+    Prisma.FileInstanceUncheckedUpdateWithoutOurStoryImage2Input
+  >;
+};
+
+export type FileInstanceUpdateOneWithoutOurStoryImage3NestedInput = {
+  create?: Prisma.XOR<
+    Prisma.FileInstanceCreateWithoutOurStoryImage3Input,
+    Prisma.FileInstanceUncheckedCreateWithoutOurStoryImage3Input
+  >;
+  connectOrCreate?: Prisma.FileInstanceCreateOrConnectWithoutOurStoryImage3Input;
+  upsert?: Prisma.FileInstanceUpsertWithoutOurStoryImage3Input;
+  disconnect?: Prisma.FileInstanceWhereInput | boolean;
+  delete?: Prisma.FileInstanceWhereInput | boolean;
+  connect?: Prisma.FileInstanceWhereUniqueInput;
+  update?: Prisma.XOR<
+    Prisma.XOR<
+      Prisma.FileInstanceUpdateToOneWithWhereWithoutOurStoryImage3Input,
+      Prisma.FileInstanceUpdateWithoutOurStoryImage3Input
+    >,
+    Prisma.FileInstanceUncheckedUpdateWithoutOurStoryImage3Input
+  >;
+};
+
+export type FileInstanceUpdateOneWithoutOurStoryImage4NestedInput = {
+  create?: Prisma.XOR<
+    Prisma.FileInstanceCreateWithoutOurStoryImage4Input,
+    Prisma.FileInstanceUncheckedCreateWithoutOurStoryImage4Input
+  >;
+  connectOrCreate?: Prisma.FileInstanceCreateOrConnectWithoutOurStoryImage4Input;
+  upsert?: Prisma.FileInstanceUpsertWithoutOurStoryImage4Input;
+  disconnect?: Prisma.FileInstanceWhereInput | boolean;
+  delete?: Prisma.FileInstanceWhereInput | boolean;
+  connect?: Prisma.FileInstanceWhereUniqueInput;
+  update?: Prisma.XOR<
+    Prisma.XOR<
+      Prisma.FileInstanceUpdateToOneWithWhereWithoutOurStoryImage4Input,
+      Prisma.FileInstanceUpdateWithoutOurStoryImage4Input
+    >,
+    Prisma.FileInstanceUncheckedUpdateWithoutOurStoryImage4Input
+  >;
+};
+
+export type FileInstanceUpdateOneWithoutOurStoryImage5NestedInput = {
+  create?: Prisma.XOR<
+    Prisma.FileInstanceCreateWithoutOurStoryImage5Input,
+    Prisma.FileInstanceUncheckedCreateWithoutOurStoryImage5Input
+  >;
+  connectOrCreate?: Prisma.FileInstanceCreateOrConnectWithoutOurStoryImage5Input;
+  upsert?: Prisma.FileInstanceUpsertWithoutOurStoryImage5Input;
+  disconnect?: Prisma.FileInstanceWhereInput | boolean;
+  delete?: Prisma.FileInstanceWhereInput | boolean;
+  connect?: Prisma.FileInstanceWhereUniqueInput;
+  update?: Prisma.XOR<
+    Prisma.XOR<
+      Prisma.FileInstanceUpdateToOneWithWhereWithoutOurStoryImage5Input,
+      Prisma.FileInstanceUpdateWithoutOurStoryImage5Input
+    >,
+    Prisma.FileInstanceUncheckedUpdateWithoutOurStoryImage5Input
+  >;
+};
+
+export type FileInstanceUpdateManyWithoutOurStoriesNestedInput = {
+  create?:
+    | Prisma.XOR<
+        Prisma.FileInstanceCreateWithoutOurStoriesInput,
+        Prisma.FileInstanceUncheckedCreateWithoutOurStoriesInput
+      >
+    | Prisma.FileInstanceCreateWithoutOurStoriesInput[]
+    | Prisma.FileInstanceUncheckedCreateWithoutOurStoriesInput[];
+  connectOrCreate?:
+    | Prisma.FileInstanceCreateOrConnectWithoutOurStoriesInput
+    | Prisma.FileInstanceCreateOrConnectWithoutOurStoriesInput[];
+  upsert?:
+    | Prisma.FileInstanceUpsertWithWhereUniqueWithoutOurStoriesInput
+    | Prisma.FileInstanceUpsertWithWhereUniqueWithoutOurStoriesInput[];
+  set?:
+    | Prisma.FileInstanceWhereUniqueInput
+    | Prisma.FileInstanceWhereUniqueInput[];
+  disconnect?:
+    | Prisma.FileInstanceWhereUniqueInput
+    | Prisma.FileInstanceWhereUniqueInput[];
+  delete?:
+    | Prisma.FileInstanceWhereUniqueInput
+    | Prisma.FileInstanceWhereUniqueInput[];
+  connect?:
+    | Prisma.FileInstanceWhereUniqueInput
+    | Prisma.FileInstanceWhereUniqueInput[];
+  update?:
+    | Prisma.FileInstanceUpdateWithWhereUniqueWithoutOurStoriesInput
+    | Prisma.FileInstanceUpdateWithWhereUniqueWithoutOurStoriesInput[];
+  updateMany?:
+    | Prisma.FileInstanceUpdateManyWithWhereWithoutOurStoriesInput
+    | Prisma.FileInstanceUpdateManyWithWhereWithoutOurStoriesInput[];
+  deleteMany?:
+    | Prisma.FileInstanceScalarWhereInput
+    | Prisma.FileInstanceScalarWhereInput[];
+};
+
+export type FileInstanceUncheckedUpdateManyWithoutOurStoriesNestedInput = {
+  create?:
+    | Prisma.XOR<
+        Prisma.FileInstanceCreateWithoutOurStoriesInput,
+        Prisma.FileInstanceUncheckedCreateWithoutOurStoriesInput
+      >
+    | Prisma.FileInstanceCreateWithoutOurStoriesInput[]
+    | Prisma.FileInstanceUncheckedCreateWithoutOurStoriesInput[];
+  connectOrCreate?:
+    | Prisma.FileInstanceCreateOrConnectWithoutOurStoriesInput
+    | Prisma.FileInstanceCreateOrConnectWithoutOurStoriesInput[];
+  upsert?:
+    | Prisma.FileInstanceUpsertWithWhereUniqueWithoutOurStoriesInput
+    | Prisma.FileInstanceUpsertWithWhereUniqueWithoutOurStoriesInput[];
+  set?:
+    | Prisma.FileInstanceWhereUniqueInput
+    | Prisma.FileInstanceWhereUniqueInput[];
+  disconnect?:
+    | Prisma.FileInstanceWhereUniqueInput
+    | Prisma.FileInstanceWhereUniqueInput[];
+  delete?:
+    | Prisma.FileInstanceWhereUniqueInput
+    | Prisma.FileInstanceWhereUniqueInput[];
+  connect?:
+    | Prisma.FileInstanceWhereUniqueInput
+    | Prisma.FileInstanceWhereUniqueInput[];
+  update?:
+    | Prisma.FileInstanceUpdateWithWhereUniqueWithoutOurStoriesInput
+    | Prisma.FileInstanceUpdateWithWhereUniqueWithoutOurStoriesInput[];
+  updateMany?:
+    | Prisma.FileInstanceUpdateManyWithWhereWithoutOurStoriesInput
+    | Prisma.FileInstanceUpdateManyWithWhereWithoutOurStoriesInput[];
+  deleteMany?:
+    | Prisma.FileInstanceScalarWhereInput
+    | Prisma.FileInstanceScalarWhereInput[];
+};
+
+export type FileInstanceCreateNestedOneWithoutMissionVisionImage1Input = {
+  create?: Prisma.XOR<
+    Prisma.FileInstanceCreateWithoutMissionVisionImage1Input,
+    Prisma.FileInstanceUncheckedCreateWithoutMissionVisionImage1Input
+  >;
+  connectOrCreate?: Prisma.FileInstanceCreateOrConnectWithoutMissionVisionImage1Input;
+  connect?: Prisma.FileInstanceWhereUniqueInput;
+};
+
+export type FileInstanceCreateNestedOneWithoutMissionVisionImage2Input = {
+  create?: Prisma.XOR<
+    Prisma.FileInstanceCreateWithoutMissionVisionImage2Input,
+    Prisma.FileInstanceUncheckedCreateWithoutMissionVisionImage2Input
+  >;
+  connectOrCreate?: Prisma.FileInstanceCreateOrConnectWithoutMissionVisionImage2Input;
+  connect?: Prisma.FileInstanceWhereUniqueInput;
+};
+
+export type FileInstanceCreateNestedOneWithoutMissionVisionImage3Input = {
+  create?: Prisma.XOR<
+    Prisma.FileInstanceCreateWithoutMissionVisionImage3Input,
+    Prisma.FileInstanceUncheckedCreateWithoutMissionVisionImage3Input
+  >;
+  connectOrCreate?: Prisma.FileInstanceCreateOrConnectWithoutMissionVisionImage3Input;
+  connect?: Prisma.FileInstanceWhereUniqueInput;
+};
+
+export type FileInstanceCreateNestedManyWithoutMissionVisionsInput = {
+  create?:
+    | Prisma.XOR<
+        Prisma.FileInstanceCreateWithoutMissionVisionsInput,
+        Prisma.FileInstanceUncheckedCreateWithoutMissionVisionsInput
+      >
+    | Prisma.FileInstanceCreateWithoutMissionVisionsInput[]
+    | Prisma.FileInstanceUncheckedCreateWithoutMissionVisionsInput[];
+  connectOrCreate?:
+    | Prisma.FileInstanceCreateOrConnectWithoutMissionVisionsInput
+    | Prisma.FileInstanceCreateOrConnectWithoutMissionVisionsInput[];
+  connect?:
+    | Prisma.FileInstanceWhereUniqueInput
+    | Prisma.FileInstanceWhereUniqueInput[];
+};
+
+export type FileInstanceUncheckedCreateNestedManyWithoutMissionVisionsInput = {
+  create?:
+    | Prisma.XOR<
+        Prisma.FileInstanceCreateWithoutMissionVisionsInput,
+        Prisma.FileInstanceUncheckedCreateWithoutMissionVisionsInput
+      >
+    | Prisma.FileInstanceCreateWithoutMissionVisionsInput[]
+    | Prisma.FileInstanceUncheckedCreateWithoutMissionVisionsInput[];
+  connectOrCreate?:
+    | Prisma.FileInstanceCreateOrConnectWithoutMissionVisionsInput
+    | Prisma.FileInstanceCreateOrConnectWithoutMissionVisionsInput[];
+  connect?:
+    | Prisma.FileInstanceWhereUniqueInput
+    | Prisma.FileInstanceWhereUniqueInput[];
+};
+
+export type FileInstanceUpdateOneWithoutMissionVisionImage1NestedInput = {
+  create?: Prisma.XOR<
+    Prisma.FileInstanceCreateWithoutMissionVisionImage1Input,
+    Prisma.FileInstanceUncheckedCreateWithoutMissionVisionImage1Input
+  >;
+  connectOrCreate?: Prisma.FileInstanceCreateOrConnectWithoutMissionVisionImage1Input;
+  upsert?: Prisma.FileInstanceUpsertWithoutMissionVisionImage1Input;
+  disconnect?: Prisma.FileInstanceWhereInput | boolean;
+  delete?: Prisma.FileInstanceWhereInput | boolean;
+  connect?: Prisma.FileInstanceWhereUniqueInput;
+  update?: Prisma.XOR<
+    Prisma.XOR<
+      Prisma.FileInstanceUpdateToOneWithWhereWithoutMissionVisionImage1Input,
+      Prisma.FileInstanceUpdateWithoutMissionVisionImage1Input
+    >,
+    Prisma.FileInstanceUncheckedUpdateWithoutMissionVisionImage1Input
+  >;
+};
+
+export type FileInstanceUpdateOneWithoutMissionVisionImage2NestedInput = {
+  create?: Prisma.XOR<
+    Prisma.FileInstanceCreateWithoutMissionVisionImage2Input,
+    Prisma.FileInstanceUncheckedCreateWithoutMissionVisionImage2Input
+  >;
+  connectOrCreate?: Prisma.FileInstanceCreateOrConnectWithoutMissionVisionImage2Input;
+  upsert?: Prisma.FileInstanceUpsertWithoutMissionVisionImage2Input;
+  disconnect?: Prisma.FileInstanceWhereInput | boolean;
+  delete?: Prisma.FileInstanceWhereInput | boolean;
+  connect?: Prisma.FileInstanceWhereUniqueInput;
+  update?: Prisma.XOR<
+    Prisma.XOR<
+      Prisma.FileInstanceUpdateToOneWithWhereWithoutMissionVisionImage2Input,
+      Prisma.FileInstanceUpdateWithoutMissionVisionImage2Input
+    >,
+    Prisma.FileInstanceUncheckedUpdateWithoutMissionVisionImage2Input
+  >;
+};
+
+export type FileInstanceUpdateOneWithoutMissionVisionImage3NestedInput = {
+  create?: Prisma.XOR<
+    Prisma.FileInstanceCreateWithoutMissionVisionImage3Input,
+    Prisma.FileInstanceUncheckedCreateWithoutMissionVisionImage3Input
+  >;
+  connectOrCreate?: Prisma.FileInstanceCreateOrConnectWithoutMissionVisionImage3Input;
+  upsert?: Prisma.FileInstanceUpsertWithoutMissionVisionImage3Input;
+  disconnect?: Prisma.FileInstanceWhereInput | boolean;
+  delete?: Prisma.FileInstanceWhereInput | boolean;
+  connect?: Prisma.FileInstanceWhereUniqueInput;
+  update?: Prisma.XOR<
+    Prisma.XOR<
+      Prisma.FileInstanceUpdateToOneWithWhereWithoutMissionVisionImage3Input,
+      Prisma.FileInstanceUpdateWithoutMissionVisionImage3Input
+    >,
+    Prisma.FileInstanceUncheckedUpdateWithoutMissionVisionImage3Input
+  >;
+};
+
+export type FileInstanceUpdateManyWithoutMissionVisionsNestedInput = {
+  create?:
+    | Prisma.XOR<
+        Prisma.FileInstanceCreateWithoutMissionVisionsInput,
+        Prisma.FileInstanceUncheckedCreateWithoutMissionVisionsInput
+      >
+    | Prisma.FileInstanceCreateWithoutMissionVisionsInput[]
+    | Prisma.FileInstanceUncheckedCreateWithoutMissionVisionsInput[];
+  connectOrCreate?:
+    | Prisma.FileInstanceCreateOrConnectWithoutMissionVisionsInput
+    | Prisma.FileInstanceCreateOrConnectWithoutMissionVisionsInput[];
+  upsert?:
+    | Prisma.FileInstanceUpsertWithWhereUniqueWithoutMissionVisionsInput
+    | Prisma.FileInstanceUpsertWithWhereUniqueWithoutMissionVisionsInput[];
+  set?:
+    | Prisma.FileInstanceWhereUniqueInput
+    | Prisma.FileInstanceWhereUniqueInput[];
+  disconnect?:
+    | Prisma.FileInstanceWhereUniqueInput
+    | Prisma.FileInstanceWhereUniqueInput[];
+  delete?:
+    | Prisma.FileInstanceWhereUniqueInput
+    | Prisma.FileInstanceWhereUniqueInput[];
+  connect?:
+    | Prisma.FileInstanceWhereUniqueInput
+    | Prisma.FileInstanceWhereUniqueInput[];
+  update?:
+    | Prisma.FileInstanceUpdateWithWhereUniqueWithoutMissionVisionsInput
+    | Prisma.FileInstanceUpdateWithWhereUniqueWithoutMissionVisionsInput[];
+  updateMany?:
+    | Prisma.FileInstanceUpdateManyWithWhereWithoutMissionVisionsInput
+    | Prisma.FileInstanceUpdateManyWithWhereWithoutMissionVisionsInput[];
+  deleteMany?:
+    | Prisma.FileInstanceScalarWhereInput
+    | Prisma.FileInstanceScalarWhereInput[];
+};
+
+export type FileInstanceUncheckedUpdateManyWithoutMissionVisionsNestedInput = {
+  create?:
+    | Prisma.XOR<
+        Prisma.FileInstanceCreateWithoutMissionVisionsInput,
+        Prisma.FileInstanceUncheckedCreateWithoutMissionVisionsInput
+      >
+    | Prisma.FileInstanceCreateWithoutMissionVisionsInput[]
+    | Prisma.FileInstanceUncheckedCreateWithoutMissionVisionsInput[];
+  connectOrCreate?:
+    | Prisma.FileInstanceCreateOrConnectWithoutMissionVisionsInput
+    | Prisma.FileInstanceCreateOrConnectWithoutMissionVisionsInput[];
+  upsert?:
+    | Prisma.FileInstanceUpsertWithWhereUniqueWithoutMissionVisionsInput
+    | Prisma.FileInstanceUpsertWithWhereUniqueWithoutMissionVisionsInput[];
+  set?:
+    | Prisma.FileInstanceWhereUniqueInput
+    | Prisma.FileInstanceWhereUniqueInput[];
+  disconnect?:
+    | Prisma.FileInstanceWhereUniqueInput
+    | Prisma.FileInstanceWhereUniqueInput[];
+  delete?:
+    | Prisma.FileInstanceWhereUniqueInput
+    | Prisma.FileInstanceWhereUniqueInput[];
+  connect?:
+    | Prisma.FileInstanceWhereUniqueInput
+    | Prisma.FileInstanceWhereUniqueInput[];
+  update?:
+    | Prisma.FileInstanceUpdateWithWhereUniqueWithoutMissionVisionsInput
+    | Prisma.FileInstanceUpdateWithWhereUniqueWithoutMissionVisionsInput[];
+  updateMany?:
+    | Prisma.FileInstanceUpdateManyWithWhereWithoutMissionVisionsInput
+    | Prisma.FileInstanceUpdateManyWithWhereWithoutMissionVisionsInput[];
+  deleteMany?:
+    | Prisma.FileInstanceScalarWhereInput
+    | Prisma.FileInstanceScalarWhereInput[];
+};
+
+export type FileInstanceCreateNestedOneWithoutWhatSetsUsApartImage1Input = {
+  create?: Prisma.XOR<
+    Prisma.FileInstanceCreateWithoutWhatSetsUsApartImage1Input,
+    Prisma.FileInstanceUncheckedCreateWithoutWhatSetsUsApartImage1Input
+  >;
+  connectOrCreate?: Prisma.FileInstanceCreateOrConnectWithoutWhatSetsUsApartImage1Input;
+  connect?: Prisma.FileInstanceWhereUniqueInput;
+};
+
+export type FileInstanceCreateNestedOneWithoutWhatSetsUsApartImage2Input = {
+  create?: Prisma.XOR<
+    Prisma.FileInstanceCreateWithoutWhatSetsUsApartImage2Input,
+    Prisma.FileInstanceUncheckedCreateWithoutWhatSetsUsApartImage2Input
+  >;
+  connectOrCreate?: Prisma.FileInstanceCreateOrConnectWithoutWhatSetsUsApartImage2Input;
+  connect?: Prisma.FileInstanceWhereUniqueInput;
+};
+
+export type FileInstanceCreateNestedManyWithoutWhatSetsUsApartsInput = {
+  create?:
+    | Prisma.XOR<
+        Prisma.FileInstanceCreateWithoutWhatSetsUsApartsInput,
+        Prisma.FileInstanceUncheckedCreateWithoutWhatSetsUsApartsInput
+      >
+    | Prisma.FileInstanceCreateWithoutWhatSetsUsApartsInput[]
+    | Prisma.FileInstanceUncheckedCreateWithoutWhatSetsUsApartsInput[];
+  connectOrCreate?:
+    | Prisma.FileInstanceCreateOrConnectWithoutWhatSetsUsApartsInput
+    | Prisma.FileInstanceCreateOrConnectWithoutWhatSetsUsApartsInput[];
+  connect?:
+    | Prisma.FileInstanceWhereUniqueInput
+    | Prisma.FileInstanceWhereUniqueInput[];
+};
+
+export type FileInstanceUncheckedCreateNestedManyWithoutWhatSetsUsApartsInput =
+  {
+    create?:
+      | Prisma.XOR<
+          Prisma.FileInstanceCreateWithoutWhatSetsUsApartsInput,
+          Prisma.FileInstanceUncheckedCreateWithoutWhatSetsUsApartsInput
+        >
+      | Prisma.FileInstanceCreateWithoutWhatSetsUsApartsInput[]
+      | Prisma.FileInstanceUncheckedCreateWithoutWhatSetsUsApartsInput[];
+    connectOrCreate?:
+      | Prisma.FileInstanceCreateOrConnectWithoutWhatSetsUsApartsInput
+      | Prisma.FileInstanceCreateOrConnectWithoutWhatSetsUsApartsInput[];
+    connect?:
+      | Prisma.FileInstanceWhereUniqueInput
+      | Prisma.FileInstanceWhereUniqueInput[];
+  };
+
+export type FileInstanceUpdateOneWithoutWhatSetsUsApartImage1NestedInput = {
+  create?: Prisma.XOR<
+    Prisma.FileInstanceCreateWithoutWhatSetsUsApartImage1Input,
+    Prisma.FileInstanceUncheckedCreateWithoutWhatSetsUsApartImage1Input
+  >;
+  connectOrCreate?: Prisma.FileInstanceCreateOrConnectWithoutWhatSetsUsApartImage1Input;
+  upsert?: Prisma.FileInstanceUpsertWithoutWhatSetsUsApartImage1Input;
+  disconnect?: Prisma.FileInstanceWhereInput | boolean;
+  delete?: Prisma.FileInstanceWhereInput | boolean;
+  connect?: Prisma.FileInstanceWhereUniqueInput;
+  update?: Prisma.XOR<
+    Prisma.XOR<
+      Prisma.FileInstanceUpdateToOneWithWhereWithoutWhatSetsUsApartImage1Input,
+      Prisma.FileInstanceUpdateWithoutWhatSetsUsApartImage1Input
+    >,
+    Prisma.FileInstanceUncheckedUpdateWithoutWhatSetsUsApartImage1Input
+  >;
+};
+
+export type FileInstanceUpdateOneWithoutWhatSetsUsApartImage2NestedInput = {
+  create?: Prisma.XOR<
+    Prisma.FileInstanceCreateWithoutWhatSetsUsApartImage2Input,
+    Prisma.FileInstanceUncheckedCreateWithoutWhatSetsUsApartImage2Input
+  >;
+  connectOrCreate?: Prisma.FileInstanceCreateOrConnectWithoutWhatSetsUsApartImage2Input;
+  upsert?: Prisma.FileInstanceUpsertWithoutWhatSetsUsApartImage2Input;
+  disconnect?: Prisma.FileInstanceWhereInput | boolean;
+  delete?: Prisma.FileInstanceWhereInput | boolean;
+  connect?: Prisma.FileInstanceWhereUniqueInput;
+  update?: Prisma.XOR<
+    Prisma.XOR<
+      Prisma.FileInstanceUpdateToOneWithWhereWithoutWhatSetsUsApartImage2Input,
+      Prisma.FileInstanceUpdateWithoutWhatSetsUsApartImage2Input
+    >,
+    Prisma.FileInstanceUncheckedUpdateWithoutWhatSetsUsApartImage2Input
+  >;
+};
+
+export type FileInstanceUpdateManyWithoutWhatSetsUsApartsNestedInput = {
+  create?:
+    | Prisma.XOR<
+        Prisma.FileInstanceCreateWithoutWhatSetsUsApartsInput,
+        Prisma.FileInstanceUncheckedCreateWithoutWhatSetsUsApartsInput
+      >
+    | Prisma.FileInstanceCreateWithoutWhatSetsUsApartsInput[]
+    | Prisma.FileInstanceUncheckedCreateWithoutWhatSetsUsApartsInput[];
+  connectOrCreate?:
+    | Prisma.FileInstanceCreateOrConnectWithoutWhatSetsUsApartsInput
+    | Prisma.FileInstanceCreateOrConnectWithoutWhatSetsUsApartsInput[];
+  upsert?:
+    | Prisma.FileInstanceUpsertWithWhereUniqueWithoutWhatSetsUsApartsInput
+    | Prisma.FileInstanceUpsertWithWhereUniqueWithoutWhatSetsUsApartsInput[];
+  set?:
+    | Prisma.FileInstanceWhereUniqueInput
+    | Prisma.FileInstanceWhereUniqueInput[];
+  disconnect?:
+    | Prisma.FileInstanceWhereUniqueInput
+    | Prisma.FileInstanceWhereUniqueInput[];
+  delete?:
+    | Prisma.FileInstanceWhereUniqueInput
+    | Prisma.FileInstanceWhereUniqueInput[];
+  connect?:
+    | Prisma.FileInstanceWhereUniqueInput
+    | Prisma.FileInstanceWhereUniqueInput[];
+  update?:
+    | Prisma.FileInstanceUpdateWithWhereUniqueWithoutWhatSetsUsApartsInput
+    | Prisma.FileInstanceUpdateWithWhereUniqueWithoutWhatSetsUsApartsInput[];
+  updateMany?:
+    | Prisma.FileInstanceUpdateManyWithWhereWithoutWhatSetsUsApartsInput
+    | Prisma.FileInstanceUpdateManyWithWhereWithoutWhatSetsUsApartsInput[];
+  deleteMany?:
+    | Prisma.FileInstanceScalarWhereInput
+    | Prisma.FileInstanceScalarWhereInput[];
+};
+
+export type FileInstanceUncheckedUpdateManyWithoutWhatSetsUsApartsNestedInput =
+  {
+    create?:
+      | Prisma.XOR<
+          Prisma.FileInstanceCreateWithoutWhatSetsUsApartsInput,
+          Prisma.FileInstanceUncheckedCreateWithoutWhatSetsUsApartsInput
+        >
+      | Prisma.FileInstanceCreateWithoutWhatSetsUsApartsInput[]
+      | Prisma.FileInstanceUncheckedCreateWithoutWhatSetsUsApartsInput[];
+    connectOrCreate?:
+      | Prisma.FileInstanceCreateOrConnectWithoutWhatSetsUsApartsInput
+      | Prisma.FileInstanceCreateOrConnectWithoutWhatSetsUsApartsInput[];
+    upsert?:
+      | Prisma.FileInstanceUpsertWithWhereUniqueWithoutWhatSetsUsApartsInput
+      | Prisma.FileInstanceUpsertWithWhereUniqueWithoutWhatSetsUsApartsInput[];
+    set?:
+      | Prisma.FileInstanceWhereUniqueInput
+      | Prisma.FileInstanceWhereUniqueInput[];
+    disconnect?:
+      | Prisma.FileInstanceWhereUniqueInput
+      | Prisma.FileInstanceWhereUniqueInput[];
+    delete?:
+      | Prisma.FileInstanceWhereUniqueInput
+      | Prisma.FileInstanceWhereUniqueInput[];
+    connect?:
+      | Prisma.FileInstanceWhereUniqueInput
+      | Prisma.FileInstanceWhereUniqueInput[];
+    update?:
+      | Prisma.FileInstanceUpdateWithWhereUniqueWithoutWhatSetsUsApartsInput
+      | Prisma.FileInstanceUpdateWithWhereUniqueWithoutWhatSetsUsApartsInput[];
+    updateMany?:
+      | Prisma.FileInstanceUpdateManyWithWhereWithoutWhatSetsUsApartsInput
+      | Prisma.FileInstanceUpdateManyWithWhereWithoutWhatSetsUsApartsInput[];
+    deleteMany?:
+      | Prisma.FileInstanceScalarWhereInput
+      | Prisma.FileInstanceScalarWhereInput[];
+  };
 
 export type FileInstanceCreateNestedOneWithoutFeaturedBrandLogosInput = {
   create?: Prisma.XOR<
@@ -1141,6 +1867,20 @@ export type FileInstanceCreateWithoutAiSearchBannersInput = {
   whyUsImage2?: Prisma.WhyUsCreateNestedManyWithoutImage2Input;
   whyUsImage3?: Prisma.WhyUsCreateNestedManyWithoutImage3Input;
   ourTeamImages?: Prisma.OurTeamCreateNestedManyWithoutImageInput;
+  ourStoryImage1?: Prisma.OurStoryCreateNestedManyWithoutImage1Input;
+  ourStoryImage2?: Prisma.OurStoryCreateNestedManyWithoutImage2Input;
+  ourStoryImage3?: Prisma.OurStoryCreateNestedManyWithoutImage3Input;
+  ourStoryImage4?: Prisma.OurStoryCreateNestedManyWithoutImage4Input;
+  ourStoryImage5?: Prisma.OurStoryCreateNestedManyWithoutImage5Input;
+  contactInfos?: Prisma.ContactInfoCreateNestedManyWithoutBackgroundImageInput;
+  ourStories?: Prisma.OurStoryCreateNestedManyWithoutFileInstancesInput;
+  missionVisionImage1?: Prisma.MissionVisionCreateNestedManyWithoutImage1Input;
+  missionVisionImage2?: Prisma.MissionVisionCreateNestedManyWithoutImage2Input;
+  missionVisionImage3?: Prisma.MissionVisionCreateNestedManyWithoutImage3Input;
+  missionVisions?: Prisma.MissionVisionCreateNestedManyWithoutFileInstancesInput;
+  whatSetsUsApartImage1?: Prisma.WhatSetsUsApartCreateNestedManyWithoutImage1Input;
+  whatSetsUsApartImage2?: Prisma.WhatSetsUsApartCreateNestedManyWithoutImage2Input;
+  whatSetsUsAparts?: Prisma.WhatSetsUsApartCreateNestedManyWithoutFileInstancesInput;
 };
 
 export type FileInstanceUncheckedCreateWithoutAiSearchBannersInput = {
@@ -1168,6 +1908,20 @@ export type FileInstanceUncheckedCreateWithoutAiSearchBannersInput = {
   whyUsImage2?: Prisma.WhyUsUncheckedCreateNestedManyWithoutImage2Input;
   whyUsImage3?: Prisma.WhyUsUncheckedCreateNestedManyWithoutImage3Input;
   ourTeamImages?: Prisma.OurTeamUncheckedCreateNestedManyWithoutImageInput;
+  ourStoryImage1?: Prisma.OurStoryUncheckedCreateNestedManyWithoutImage1Input;
+  ourStoryImage2?: Prisma.OurStoryUncheckedCreateNestedManyWithoutImage2Input;
+  ourStoryImage3?: Prisma.OurStoryUncheckedCreateNestedManyWithoutImage3Input;
+  ourStoryImage4?: Prisma.OurStoryUncheckedCreateNestedManyWithoutImage4Input;
+  ourStoryImage5?: Prisma.OurStoryUncheckedCreateNestedManyWithoutImage5Input;
+  contactInfos?: Prisma.ContactInfoUncheckedCreateNestedManyWithoutBackgroundImageInput;
+  ourStories?: Prisma.OurStoryUncheckedCreateNestedManyWithoutFileInstancesInput;
+  missionVisionImage1?: Prisma.MissionVisionUncheckedCreateNestedManyWithoutImage1Input;
+  missionVisionImage2?: Prisma.MissionVisionUncheckedCreateNestedManyWithoutImage2Input;
+  missionVisionImage3?: Prisma.MissionVisionUncheckedCreateNestedManyWithoutImage3Input;
+  missionVisions?: Prisma.MissionVisionUncheckedCreateNestedManyWithoutFileInstancesInput;
+  whatSetsUsApartImage1?: Prisma.WhatSetsUsApartUncheckedCreateNestedManyWithoutImage1Input;
+  whatSetsUsApartImage2?: Prisma.WhatSetsUsApartUncheckedCreateNestedManyWithoutImage2Input;
+  whatSetsUsAparts?: Prisma.WhatSetsUsApartUncheckedCreateNestedManyWithoutFileInstancesInput;
 };
 
 export type FileInstanceCreateOrConnectWithoutAiSearchBannersInput = {
@@ -1223,6 +1977,20 @@ export type FileInstanceUpdateWithoutAiSearchBannersInput = {
   whyUsImage2?: Prisma.WhyUsUpdateManyWithoutImage2NestedInput;
   whyUsImage3?: Prisma.WhyUsUpdateManyWithoutImage3NestedInput;
   ourTeamImages?: Prisma.OurTeamUpdateManyWithoutImageNestedInput;
+  ourStoryImage1?: Prisma.OurStoryUpdateManyWithoutImage1NestedInput;
+  ourStoryImage2?: Prisma.OurStoryUpdateManyWithoutImage2NestedInput;
+  ourStoryImage3?: Prisma.OurStoryUpdateManyWithoutImage3NestedInput;
+  ourStoryImage4?: Prisma.OurStoryUpdateManyWithoutImage4NestedInput;
+  ourStoryImage5?: Prisma.OurStoryUpdateManyWithoutImage5NestedInput;
+  contactInfos?: Prisma.ContactInfoUpdateManyWithoutBackgroundImageNestedInput;
+  ourStories?: Prisma.OurStoryUpdateManyWithoutFileInstancesNestedInput;
+  missionVisionImage1?: Prisma.MissionVisionUpdateManyWithoutImage1NestedInput;
+  missionVisionImage2?: Prisma.MissionVisionUpdateManyWithoutImage2NestedInput;
+  missionVisionImage3?: Prisma.MissionVisionUpdateManyWithoutImage3NestedInput;
+  missionVisions?: Prisma.MissionVisionUpdateManyWithoutFileInstancesNestedInput;
+  whatSetsUsApartImage1?: Prisma.WhatSetsUsApartUpdateManyWithoutImage1NestedInput;
+  whatSetsUsApartImage2?: Prisma.WhatSetsUsApartUpdateManyWithoutImage2NestedInput;
+  whatSetsUsAparts?: Prisma.WhatSetsUsApartUpdateManyWithoutFileInstancesNestedInput;
 };
 
 export type FileInstanceUncheckedUpdateWithoutAiSearchBannersInput = {
@@ -1250,6 +2018,20 @@ export type FileInstanceUncheckedUpdateWithoutAiSearchBannersInput = {
   whyUsImage2?: Prisma.WhyUsUncheckedUpdateManyWithoutImage2NestedInput;
   whyUsImage3?: Prisma.WhyUsUncheckedUpdateManyWithoutImage3NestedInput;
   ourTeamImages?: Prisma.OurTeamUncheckedUpdateManyWithoutImageNestedInput;
+  ourStoryImage1?: Prisma.OurStoryUncheckedUpdateManyWithoutImage1NestedInput;
+  ourStoryImage2?: Prisma.OurStoryUncheckedUpdateManyWithoutImage2NestedInput;
+  ourStoryImage3?: Prisma.OurStoryUncheckedUpdateManyWithoutImage3NestedInput;
+  ourStoryImage4?: Prisma.OurStoryUncheckedUpdateManyWithoutImage4NestedInput;
+  ourStoryImage5?: Prisma.OurStoryUncheckedUpdateManyWithoutImage5NestedInput;
+  contactInfos?: Prisma.ContactInfoUncheckedUpdateManyWithoutBackgroundImageNestedInput;
+  ourStories?: Prisma.OurStoryUncheckedUpdateManyWithoutFileInstancesNestedInput;
+  missionVisionImage1?: Prisma.MissionVisionUncheckedUpdateManyWithoutImage1NestedInput;
+  missionVisionImage2?: Prisma.MissionVisionUncheckedUpdateManyWithoutImage2NestedInput;
+  missionVisionImage3?: Prisma.MissionVisionUncheckedUpdateManyWithoutImage3NestedInput;
+  missionVisions?: Prisma.MissionVisionUncheckedUpdateManyWithoutFileInstancesNestedInput;
+  whatSetsUsApartImage1?: Prisma.WhatSetsUsApartUncheckedUpdateManyWithoutImage1NestedInput;
+  whatSetsUsApartImage2?: Prisma.WhatSetsUsApartUncheckedUpdateManyWithoutImage2NestedInput;
+  whatSetsUsAparts?: Prisma.WhatSetsUsApartUncheckedUpdateManyWithoutFileInstancesNestedInput;
 };
 
 export type FileInstanceCreateWithoutPageBannersBackgroundInput = {
@@ -1277,6 +2059,20 @@ export type FileInstanceCreateWithoutPageBannersBackgroundInput = {
   whyUsImage2?: Prisma.WhyUsCreateNestedManyWithoutImage2Input;
   whyUsImage3?: Prisma.WhyUsCreateNestedManyWithoutImage3Input;
   ourTeamImages?: Prisma.OurTeamCreateNestedManyWithoutImageInput;
+  ourStoryImage1?: Prisma.OurStoryCreateNestedManyWithoutImage1Input;
+  ourStoryImage2?: Prisma.OurStoryCreateNestedManyWithoutImage2Input;
+  ourStoryImage3?: Prisma.OurStoryCreateNestedManyWithoutImage3Input;
+  ourStoryImage4?: Prisma.OurStoryCreateNestedManyWithoutImage4Input;
+  ourStoryImage5?: Prisma.OurStoryCreateNestedManyWithoutImage5Input;
+  contactInfos?: Prisma.ContactInfoCreateNestedManyWithoutBackgroundImageInput;
+  ourStories?: Prisma.OurStoryCreateNestedManyWithoutFileInstancesInput;
+  missionVisionImage1?: Prisma.MissionVisionCreateNestedManyWithoutImage1Input;
+  missionVisionImage2?: Prisma.MissionVisionCreateNestedManyWithoutImage2Input;
+  missionVisionImage3?: Prisma.MissionVisionCreateNestedManyWithoutImage3Input;
+  missionVisions?: Prisma.MissionVisionCreateNestedManyWithoutFileInstancesInput;
+  whatSetsUsApartImage1?: Prisma.WhatSetsUsApartCreateNestedManyWithoutImage1Input;
+  whatSetsUsApartImage2?: Prisma.WhatSetsUsApartCreateNestedManyWithoutImage2Input;
+  whatSetsUsAparts?: Prisma.WhatSetsUsApartCreateNestedManyWithoutFileInstancesInput;
 };
 
 export type FileInstanceUncheckedCreateWithoutPageBannersBackgroundInput = {
@@ -1304,6 +2100,20 @@ export type FileInstanceUncheckedCreateWithoutPageBannersBackgroundInput = {
   whyUsImage2?: Prisma.WhyUsUncheckedCreateNestedManyWithoutImage2Input;
   whyUsImage3?: Prisma.WhyUsUncheckedCreateNestedManyWithoutImage3Input;
   ourTeamImages?: Prisma.OurTeamUncheckedCreateNestedManyWithoutImageInput;
+  ourStoryImage1?: Prisma.OurStoryUncheckedCreateNestedManyWithoutImage1Input;
+  ourStoryImage2?: Prisma.OurStoryUncheckedCreateNestedManyWithoutImage2Input;
+  ourStoryImage3?: Prisma.OurStoryUncheckedCreateNestedManyWithoutImage3Input;
+  ourStoryImage4?: Prisma.OurStoryUncheckedCreateNestedManyWithoutImage4Input;
+  ourStoryImage5?: Prisma.OurStoryUncheckedCreateNestedManyWithoutImage5Input;
+  contactInfos?: Prisma.ContactInfoUncheckedCreateNestedManyWithoutBackgroundImageInput;
+  ourStories?: Prisma.OurStoryUncheckedCreateNestedManyWithoutFileInstancesInput;
+  missionVisionImage1?: Prisma.MissionVisionUncheckedCreateNestedManyWithoutImage1Input;
+  missionVisionImage2?: Prisma.MissionVisionUncheckedCreateNestedManyWithoutImage2Input;
+  missionVisionImage3?: Prisma.MissionVisionUncheckedCreateNestedManyWithoutImage3Input;
+  missionVisions?: Prisma.MissionVisionUncheckedCreateNestedManyWithoutFileInstancesInput;
+  whatSetsUsApartImage1?: Prisma.WhatSetsUsApartUncheckedCreateNestedManyWithoutImage1Input;
+  whatSetsUsApartImage2?: Prisma.WhatSetsUsApartUncheckedCreateNestedManyWithoutImage2Input;
+  whatSetsUsAparts?: Prisma.WhatSetsUsApartUncheckedCreateNestedManyWithoutFileInstancesInput;
 };
 
 export type FileInstanceCreateOrConnectWithoutPageBannersBackgroundInput = {
@@ -1360,6 +2170,20 @@ export type FileInstanceUpdateWithoutPageBannersBackgroundInput = {
   whyUsImage2?: Prisma.WhyUsUpdateManyWithoutImage2NestedInput;
   whyUsImage3?: Prisma.WhyUsUpdateManyWithoutImage3NestedInput;
   ourTeamImages?: Prisma.OurTeamUpdateManyWithoutImageNestedInput;
+  ourStoryImage1?: Prisma.OurStoryUpdateManyWithoutImage1NestedInput;
+  ourStoryImage2?: Prisma.OurStoryUpdateManyWithoutImage2NestedInput;
+  ourStoryImage3?: Prisma.OurStoryUpdateManyWithoutImage3NestedInput;
+  ourStoryImage4?: Prisma.OurStoryUpdateManyWithoutImage4NestedInput;
+  ourStoryImage5?: Prisma.OurStoryUpdateManyWithoutImage5NestedInput;
+  contactInfos?: Prisma.ContactInfoUpdateManyWithoutBackgroundImageNestedInput;
+  ourStories?: Prisma.OurStoryUpdateManyWithoutFileInstancesNestedInput;
+  missionVisionImage1?: Prisma.MissionVisionUpdateManyWithoutImage1NestedInput;
+  missionVisionImage2?: Prisma.MissionVisionUpdateManyWithoutImage2NestedInput;
+  missionVisionImage3?: Prisma.MissionVisionUpdateManyWithoutImage3NestedInput;
+  missionVisions?: Prisma.MissionVisionUpdateManyWithoutFileInstancesNestedInput;
+  whatSetsUsApartImage1?: Prisma.WhatSetsUsApartUpdateManyWithoutImage1NestedInput;
+  whatSetsUsApartImage2?: Prisma.WhatSetsUsApartUpdateManyWithoutImage2NestedInput;
+  whatSetsUsAparts?: Prisma.WhatSetsUsApartUpdateManyWithoutFileInstancesNestedInput;
 };
 
 export type FileInstanceUncheckedUpdateWithoutPageBannersBackgroundInput = {
@@ -1387,6 +2211,20 @@ export type FileInstanceUncheckedUpdateWithoutPageBannersBackgroundInput = {
   whyUsImage2?: Prisma.WhyUsUncheckedUpdateManyWithoutImage2NestedInput;
   whyUsImage3?: Prisma.WhyUsUncheckedUpdateManyWithoutImage3NestedInput;
   ourTeamImages?: Prisma.OurTeamUncheckedUpdateManyWithoutImageNestedInput;
+  ourStoryImage1?: Prisma.OurStoryUncheckedUpdateManyWithoutImage1NestedInput;
+  ourStoryImage2?: Prisma.OurStoryUncheckedUpdateManyWithoutImage2NestedInput;
+  ourStoryImage3?: Prisma.OurStoryUncheckedUpdateManyWithoutImage3NestedInput;
+  ourStoryImage4?: Prisma.OurStoryUncheckedUpdateManyWithoutImage4NestedInput;
+  ourStoryImage5?: Prisma.OurStoryUncheckedUpdateManyWithoutImage5NestedInput;
+  contactInfos?: Prisma.ContactInfoUncheckedUpdateManyWithoutBackgroundImageNestedInput;
+  ourStories?: Prisma.OurStoryUncheckedUpdateManyWithoutFileInstancesNestedInput;
+  missionVisionImage1?: Prisma.MissionVisionUncheckedUpdateManyWithoutImage1NestedInput;
+  missionVisionImage2?: Prisma.MissionVisionUncheckedUpdateManyWithoutImage2NestedInput;
+  missionVisionImage3?: Prisma.MissionVisionUncheckedUpdateManyWithoutImage3NestedInput;
+  missionVisions?: Prisma.MissionVisionUncheckedUpdateManyWithoutFileInstancesNestedInput;
+  whatSetsUsApartImage1?: Prisma.WhatSetsUsApartUncheckedUpdateManyWithoutImage1NestedInput;
+  whatSetsUsApartImage2?: Prisma.WhatSetsUsApartUncheckedUpdateManyWithoutImage2NestedInput;
+  whatSetsUsAparts?: Prisma.WhatSetsUsApartUncheckedUpdateManyWithoutFileInstancesNestedInput;
 };
 
 export type FileInstanceCreateWithoutBlogsInput = {
@@ -1414,6 +2252,20 @@ export type FileInstanceCreateWithoutBlogsInput = {
   whyUsImage2?: Prisma.WhyUsCreateNestedManyWithoutImage2Input;
   whyUsImage3?: Prisma.WhyUsCreateNestedManyWithoutImage3Input;
   ourTeamImages?: Prisma.OurTeamCreateNestedManyWithoutImageInput;
+  ourStoryImage1?: Prisma.OurStoryCreateNestedManyWithoutImage1Input;
+  ourStoryImage2?: Prisma.OurStoryCreateNestedManyWithoutImage2Input;
+  ourStoryImage3?: Prisma.OurStoryCreateNestedManyWithoutImage3Input;
+  ourStoryImage4?: Prisma.OurStoryCreateNestedManyWithoutImage4Input;
+  ourStoryImage5?: Prisma.OurStoryCreateNestedManyWithoutImage5Input;
+  contactInfos?: Prisma.ContactInfoCreateNestedManyWithoutBackgroundImageInput;
+  ourStories?: Prisma.OurStoryCreateNestedManyWithoutFileInstancesInput;
+  missionVisionImage1?: Prisma.MissionVisionCreateNestedManyWithoutImage1Input;
+  missionVisionImage2?: Prisma.MissionVisionCreateNestedManyWithoutImage2Input;
+  missionVisionImage3?: Prisma.MissionVisionCreateNestedManyWithoutImage3Input;
+  missionVisions?: Prisma.MissionVisionCreateNestedManyWithoutFileInstancesInput;
+  whatSetsUsApartImage1?: Prisma.WhatSetsUsApartCreateNestedManyWithoutImage1Input;
+  whatSetsUsApartImage2?: Prisma.WhatSetsUsApartCreateNestedManyWithoutImage2Input;
+  whatSetsUsAparts?: Prisma.WhatSetsUsApartCreateNestedManyWithoutFileInstancesInput;
 };
 
 export type FileInstanceUncheckedCreateWithoutBlogsInput = {
@@ -1441,6 +2293,20 @@ export type FileInstanceUncheckedCreateWithoutBlogsInput = {
   whyUsImage2?: Prisma.WhyUsUncheckedCreateNestedManyWithoutImage2Input;
   whyUsImage3?: Prisma.WhyUsUncheckedCreateNestedManyWithoutImage3Input;
   ourTeamImages?: Prisma.OurTeamUncheckedCreateNestedManyWithoutImageInput;
+  ourStoryImage1?: Prisma.OurStoryUncheckedCreateNestedManyWithoutImage1Input;
+  ourStoryImage2?: Prisma.OurStoryUncheckedCreateNestedManyWithoutImage2Input;
+  ourStoryImage3?: Prisma.OurStoryUncheckedCreateNestedManyWithoutImage3Input;
+  ourStoryImage4?: Prisma.OurStoryUncheckedCreateNestedManyWithoutImage4Input;
+  ourStoryImage5?: Prisma.OurStoryUncheckedCreateNestedManyWithoutImage5Input;
+  contactInfos?: Prisma.ContactInfoUncheckedCreateNestedManyWithoutBackgroundImageInput;
+  ourStories?: Prisma.OurStoryUncheckedCreateNestedManyWithoutFileInstancesInput;
+  missionVisionImage1?: Prisma.MissionVisionUncheckedCreateNestedManyWithoutImage1Input;
+  missionVisionImage2?: Prisma.MissionVisionUncheckedCreateNestedManyWithoutImage2Input;
+  missionVisionImage3?: Prisma.MissionVisionUncheckedCreateNestedManyWithoutImage3Input;
+  missionVisions?: Prisma.MissionVisionUncheckedCreateNestedManyWithoutFileInstancesInput;
+  whatSetsUsApartImage1?: Prisma.WhatSetsUsApartUncheckedCreateNestedManyWithoutImage1Input;
+  whatSetsUsApartImage2?: Prisma.WhatSetsUsApartUncheckedCreateNestedManyWithoutImage2Input;
+  whatSetsUsAparts?: Prisma.WhatSetsUsApartUncheckedCreateNestedManyWithoutFileInstancesInput;
 };
 
 export type FileInstanceCreateOrConnectWithoutBlogsInput = {
@@ -1476,6 +2342,20 @@ export type FileInstanceCreateWithoutBlogInput = {
   whyUsImage2?: Prisma.WhyUsCreateNestedManyWithoutImage2Input;
   whyUsImage3?: Prisma.WhyUsCreateNestedManyWithoutImage3Input;
   ourTeamImages?: Prisma.OurTeamCreateNestedManyWithoutImageInput;
+  ourStoryImage1?: Prisma.OurStoryCreateNestedManyWithoutImage1Input;
+  ourStoryImage2?: Prisma.OurStoryCreateNestedManyWithoutImage2Input;
+  ourStoryImage3?: Prisma.OurStoryCreateNestedManyWithoutImage3Input;
+  ourStoryImage4?: Prisma.OurStoryCreateNestedManyWithoutImage4Input;
+  ourStoryImage5?: Prisma.OurStoryCreateNestedManyWithoutImage5Input;
+  contactInfos?: Prisma.ContactInfoCreateNestedManyWithoutBackgroundImageInput;
+  ourStories?: Prisma.OurStoryCreateNestedManyWithoutFileInstancesInput;
+  missionVisionImage1?: Prisma.MissionVisionCreateNestedManyWithoutImage1Input;
+  missionVisionImage2?: Prisma.MissionVisionCreateNestedManyWithoutImage2Input;
+  missionVisionImage3?: Prisma.MissionVisionCreateNestedManyWithoutImage3Input;
+  missionVisions?: Prisma.MissionVisionCreateNestedManyWithoutFileInstancesInput;
+  whatSetsUsApartImage1?: Prisma.WhatSetsUsApartCreateNestedManyWithoutImage1Input;
+  whatSetsUsApartImage2?: Prisma.WhatSetsUsApartCreateNestedManyWithoutImage2Input;
+  whatSetsUsAparts?: Prisma.WhatSetsUsApartCreateNestedManyWithoutFileInstancesInput;
 };
 
 export type FileInstanceUncheckedCreateWithoutBlogInput = {
@@ -1503,6 +2383,20 @@ export type FileInstanceUncheckedCreateWithoutBlogInput = {
   whyUsImage2?: Prisma.WhyUsUncheckedCreateNestedManyWithoutImage2Input;
   whyUsImage3?: Prisma.WhyUsUncheckedCreateNestedManyWithoutImage3Input;
   ourTeamImages?: Prisma.OurTeamUncheckedCreateNestedManyWithoutImageInput;
+  ourStoryImage1?: Prisma.OurStoryUncheckedCreateNestedManyWithoutImage1Input;
+  ourStoryImage2?: Prisma.OurStoryUncheckedCreateNestedManyWithoutImage2Input;
+  ourStoryImage3?: Prisma.OurStoryUncheckedCreateNestedManyWithoutImage3Input;
+  ourStoryImage4?: Prisma.OurStoryUncheckedCreateNestedManyWithoutImage4Input;
+  ourStoryImage5?: Prisma.OurStoryUncheckedCreateNestedManyWithoutImage5Input;
+  contactInfos?: Prisma.ContactInfoUncheckedCreateNestedManyWithoutBackgroundImageInput;
+  ourStories?: Prisma.OurStoryUncheckedCreateNestedManyWithoutFileInstancesInput;
+  missionVisionImage1?: Prisma.MissionVisionUncheckedCreateNestedManyWithoutImage1Input;
+  missionVisionImage2?: Prisma.MissionVisionUncheckedCreateNestedManyWithoutImage2Input;
+  missionVisionImage3?: Prisma.MissionVisionUncheckedCreateNestedManyWithoutImage3Input;
+  missionVisions?: Prisma.MissionVisionUncheckedCreateNestedManyWithoutFileInstancesInput;
+  whatSetsUsApartImage1?: Prisma.WhatSetsUsApartUncheckedCreateNestedManyWithoutImage1Input;
+  whatSetsUsApartImage2?: Prisma.WhatSetsUsApartUncheckedCreateNestedManyWithoutImage2Input;
+  whatSetsUsAparts?: Prisma.WhatSetsUsApartUncheckedCreateNestedManyWithoutFileInstancesInput;
 };
 
 export type FileInstanceCreateOrConnectWithoutBlogInput = {
@@ -1558,6 +2452,20 @@ export type FileInstanceUpdateWithoutBlogsInput = {
   whyUsImage2?: Prisma.WhyUsUpdateManyWithoutImage2NestedInput;
   whyUsImage3?: Prisma.WhyUsUpdateManyWithoutImage3NestedInput;
   ourTeamImages?: Prisma.OurTeamUpdateManyWithoutImageNestedInput;
+  ourStoryImage1?: Prisma.OurStoryUpdateManyWithoutImage1NestedInput;
+  ourStoryImage2?: Prisma.OurStoryUpdateManyWithoutImage2NestedInput;
+  ourStoryImage3?: Prisma.OurStoryUpdateManyWithoutImage3NestedInput;
+  ourStoryImage4?: Prisma.OurStoryUpdateManyWithoutImage4NestedInput;
+  ourStoryImage5?: Prisma.OurStoryUpdateManyWithoutImage5NestedInput;
+  contactInfos?: Prisma.ContactInfoUpdateManyWithoutBackgroundImageNestedInput;
+  ourStories?: Prisma.OurStoryUpdateManyWithoutFileInstancesNestedInput;
+  missionVisionImage1?: Prisma.MissionVisionUpdateManyWithoutImage1NestedInput;
+  missionVisionImage2?: Prisma.MissionVisionUpdateManyWithoutImage2NestedInput;
+  missionVisionImage3?: Prisma.MissionVisionUpdateManyWithoutImage3NestedInput;
+  missionVisions?: Prisma.MissionVisionUpdateManyWithoutFileInstancesNestedInput;
+  whatSetsUsApartImage1?: Prisma.WhatSetsUsApartUpdateManyWithoutImage1NestedInput;
+  whatSetsUsApartImage2?: Prisma.WhatSetsUsApartUpdateManyWithoutImage2NestedInput;
+  whatSetsUsAparts?: Prisma.WhatSetsUsApartUpdateManyWithoutFileInstancesNestedInput;
 };
 
 export type FileInstanceUncheckedUpdateWithoutBlogsInput = {
@@ -1585,6 +2493,20 @@ export type FileInstanceUncheckedUpdateWithoutBlogsInput = {
   whyUsImage2?: Prisma.WhyUsUncheckedUpdateManyWithoutImage2NestedInput;
   whyUsImage3?: Prisma.WhyUsUncheckedUpdateManyWithoutImage3NestedInput;
   ourTeamImages?: Prisma.OurTeamUncheckedUpdateManyWithoutImageNestedInput;
+  ourStoryImage1?: Prisma.OurStoryUncheckedUpdateManyWithoutImage1NestedInput;
+  ourStoryImage2?: Prisma.OurStoryUncheckedUpdateManyWithoutImage2NestedInput;
+  ourStoryImage3?: Prisma.OurStoryUncheckedUpdateManyWithoutImage3NestedInput;
+  ourStoryImage4?: Prisma.OurStoryUncheckedUpdateManyWithoutImage4NestedInput;
+  ourStoryImage5?: Prisma.OurStoryUncheckedUpdateManyWithoutImage5NestedInput;
+  contactInfos?: Prisma.ContactInfoUncheckedUpdateManyWithoutBackgroundImageNestedInput;
+  ourStories?: Prisma.OurStoryUncheckedUpdateManyWithoutFileInstancesNestedInput;
+  missionVisionImage1?: Prisma.MissionVisionUncheckedUpdateManyWithoutImage1NestedInput;
+  missionVisionImage2?: Prisma.MissionVisionUncheckedUpdateManyWithoutImage2NestedInput;
+  missionVisionImage3?: Prisma.MissionVisionUncheckedUpdateManyWithoutImage3NestedInput;
+  missionVisions?: Prisma.MissionVisionUncheckedUpdateManyWithoutFileInstancesNestedInput;
+  whatSetsUsApartImage1?: Prisma.WhatSetsUsApartUncheckedUpdateManyWithoutImage1NestedInput;
+  whatSetsUsApartImage2?: Prisma.WhatSetsUsApartUncheckedUpdateManyWithoutImage2NestedInput;
+  whatSetsUsAparts?: Prisma.WhatSetsUsApartUncheckedUpdateManyWithoutFileInstancesNestedInput;
 };
 
 export type FileInstanceUpsertWithWhereUniqueWithoutBlogInput = {
@@ -1660,6 +2582,20 @@ export type FileInstanceCreateWithoutBoatImagesInput = {
   whyUsImage2?: Prisma.WhyUsCreateNestedManyWithoutImage2Input;
   whyUsImage3?: Prisma.WhyUsCreateNestedManyWithoutImage3Input;
   ourTeamImages?: Prisma.OurTeamCreateNestedManyWithoutImageInput;
+  ourStoryImage1?: Prisma.OurStoryCreateNestedManyWithoutImage1Input;
+  ourStoryImage2?: Prisma.OurStoryCreateNestedManyWithoutImage2Input;
+  ourStoryImage3?: Prisma.OurStoryCreateNestedManyWithoutImage3Input;
+  ourStoryImage4?: Prisma.OurStoryCreateNestedManyWithoutImage4Input;
+  ourStoryImage5?: Prisma.OurStoryCreateNestedManyWithoutImage5Input;
+  contactInfos?: Prisma.ContactInfoCreateNestedManyWithoutBackgroundImageInput;
+  ourStories?: Prisma.OurStoryCreateNestedManyWithoutFileInstancesInput;
+  missionVisionImage1?: Prisma.MissionVisionCreateNestedManyWithoutImage1Input;
+  missionVisionImage2?: Prisma.MissionVisionCreateNestedManyWithoutImage2Input;
+  missionVisionImage3?: Prisma.MissionVisionCreateNestedManyWithoutImage3Input;
+  missionVisions?: Prisma.MissionVisionCreateNestedManyWithoutFileInstancesInput;
+  whatSetsUsApartImage1?: Prisma.WhatSetsUsApartCreateNestedManyWithoutImage1Input;
+  whatSetsUsApartImage2?: Prisma.WhatSetsUsApartCreateNestedManyWithoutImage2Input;
+  whatSetsUsAparts?: Prisma.WhatSetsUsApartCreateNestedManyWithoutFileInstancesInput;
 };
 
 export type FileInstanceUncheckedCreateWithoutBoatImagesInput = {
@@ -1687,6 +2623,20 @@ export type FileInstanceUncheckedCreateWithoutBoatImagesInput = {
   whyUsImage2?: Prisma.WhyUsUncheckedCreateNestedManyWithoutImage2Input;
   whyUsImage3?: Prisma.WhyUsUncheckedCreateNestedManyWithoutImage3Input;
   ourTeamImages?: Prisma.OurTeamUncheckedCreateNestedManyWithoutImageInput;
+  ourStoryImage1?: Prisma.OurStoryUncheckedCreateNestedManyWithoutImage1Input;
+  ourStoryImage2?: Prisma.OurStoryUncheckedCreateNestedManyWithoutImage2Input;
+  ourStoryImage3?: Prisma.OurStoryUncheckedCreateNestedManyWithoutImage3Input;
+  ourStoryImage4?: Prisma.OurStoryUncheckedCreateNestedManyWithoutImage4Input;
+  ourStoryImage5?: Prisma.OurStoryUncheckedCreateNestedManyWithoutImage5Input;
+  contactInfos?: Prisma.ContactInfoUncheckedCreateNestedManyWithoutBackgroundImageInput;
+  ourStories?: Prisma.OurStoryUncheckedCreateNestedManyWithoutFileInstancesInput;
+  missionVisionImage1?: Prisma.MissionVisionUncheckedCreateNestedManyWithoutImage1Input;
+  missionVisionImage2?: Prisma.MissionVisionUncheckedCreateNestedManyWithoutImage2Input;
+  missionVisionImage3?: Prisma.MissionVisionUncheckedCreateNestedManyWithoutImage3Input;
+  missionVisions?: Prisma.MissionVisionUncheckedCreateNestedManyWithoutFileInstancesInput;
+  whatSetsUsApartImage1?: Prisma.WhatSetsUsApartUncheckedCreateNestedManyWithoutImage1Input;
+  whatSetsUsApartImage2?: Prisma.WhatSetsUsApartUncheckedCreateNestedManyWithoutImage2Input;
+  whatSetsUsAparts?: Prisma.WhatSetsUsApartUncheckedCreateNestedManyWithoutFileInstancesInput;
 };
 
 export type FileInstanceCreateOrConnectWithoutBoatImagesInput = {
@@ -1742,6 +2692,20 @@ export type FileInstanceUpdateWithoutBoatImagesInput = {
   whyUsImage2?: Prisma.WhyUsUpdateManyWithoutImage2NestedInput;
   whyUsImage3?: Prisma.WhyUsUpdateManyWithoutImage3NestedInput;
   ourTeamImages?: Prisma.OurTeamUpdateManyWithoutImageNestedInput;
+  ourStoryImage1?: Prisma.OurStoryUpdateManyWithoutImage1NestedInput;
+  ourStoryImage2?: Prisma.OurStoryUpdateManyWithoutImage2NestedInput;
+  ourStoryImage3?: Prisma.OurStoryUpdateManyWithoutImage3NestedInput;
+  ourStoryImage4?: Prisma.OurStoryUpdateManyWithoutImage4NestedInput;
+  ourStoryImage5?: Prisma.OurStoryUpdateManyWithoutImage5NestedInput;
+  contactInfos?: Prisma.ContactInfoUpdateManyWithoutBackgroundImageNestedInput;
+  ourStories?: Prisma.OurStoryUpdateManyWithoutFileInstancesNestedInput;
+  missionVisionImage1?: Prisma.MissionVisionUpdateManyWithoutImage1NestedInput;
+  missionVisionImage2?: Prisma.MissionVisionUpdateManyWithoutImage2NestedInput;
+  missionVisionImage3?: Prisma.MissionVisionUpdateManyWithoutImage3NestedInput;
+  missionVisions?: Prisma.MissionVisionUpdateManyWithoutFileInstancesNestedInput;
+  whatSetsUsApartImage1?: Prisma.WhatSetsUsApartUpdateManyWithoutImage1NestedInput;
+  whatSetsUsApartImage2?: Prisma.WhatSetsUsApartUpdateManyWithoutImage2NestedInput;
+  whatSetsUsAparts?: Prisma.WhatSetsUsApartUpdateManyWithoutFileInstancesNestedInput;
 };
 
 export type FileInstanceUncheckedUpdateWithoutBoatImagesInput = {
@@ -1769,6 +2733,20 @@ export type FileInstanceUncheckedUpdateWithoutBoatImagesInput = {
   whyUsImage2?: Prisma.WhyUsUncheckedUpdateManyWithoutImage2NestedInput;
   whyUsImage3?: Prisma.WhyUsUncheckedUpdateManyWithoutImage3NestedInput;
   ourTeamImages?: Prisma.OurTeamUncheckedUpdateManyWithoutImageNestedInput;
+  ourStoryImage1?: Prisma.OurStoryUncheckedUpdateManyWithoutImage1NestedInput;
+  ourStoryImage2?: Prisma.OurStoryUncheckedUpdateManyWithoutImage2NestedInput;
+  ourStoryImage3?: Prisma.OurStoryUncheckedUpdateManyWithoutImage3NestedInput;
+  ourStoryImage4?: Prisma.OurStoryUncheckedUpdateManyWithoutImage4NestedInput;
+  ourStoryImage5?: Prisma.OurStoryUncheckedUpdateManyWithoutImage5NestedInput;
+  contactInfos?: Prisma.ContactInfoUncheckedUpdateManyWithoutBackgroundImageNestedInput;
+  ourStories?: Prisma.OurStoryUncheckedUpdateManyWithoutFileInstancesNestedInput;
+  missionVisionImage1?: Prisma.MissionVisionUncheckedUpdateManyWithoutImage1NestedInput;
+  missionVisionImage2?: Prisma.MissionVisionUncheckedUpdateManyWithoutImage2NestedInput;
+  missionVisionImage3?: Prisma.MissionVisionUncheckedUpdateManyWithoutImage3NestedInput;
+  missionVisions?: Prisma.MissionVisionUncheckedUpdateManyWithoutFileInstancesNestedInput;
+  whatSetsUsApartImage1?: Prisma.WhatSetsUsApartUncheckedUpdateManyWithoutImage1NestedInput;
+  whatSetsUsApartImage2?: Prisma.WhatSetsUsApartUncheckedUpdateManyWithoutImage2NestedInput;
+  whatSetsUsAparts?: Prisma.WhatSetsUsApartUncheckedUpdateManyWithoutFileInstancesNestedInput;
 };
 
 export type FileInstanceCreateWithoutCategoryImagesInput = {
@@ -1796,6 +2774,20 @@ export type FileInstanceCreateWithoutCategoryImagesInput = {
   whyUsImage2?: Prisma.WhyUsCreateNestedManyWithoutImage2Input;
   whyUsImage3?: Prisma.WhyUsCreateNestedManyWithoutImage3Input;
   ourTeamImages?: Prisma.OurTeamCreateNestedManyWithoutImageInput;
+  ourStoryImage1?: Prisma.OurStoryCreateNestedManyWithoutImage1Input;
+  ourStoryImage2?: Prisma.OurStoryCreateNestedManyWithoutImage2Input;
+  ourStoryImage3?: Prisma.OurStoryCreateNestedManyWithoutImage3Input;
+  ourStoryImage4?: Prisma.OurStoryCreateNestedManyWithoutImage4Input;
+  ourStoryImage5?: Prisma.OurStoryCreateNestedManyWithoutImage5Input;
+  contactInfos?: Prisma.ContactInfoCreateNestedManyWithoutBackgroundImageInput;
+  ourStories?: Prisma.OurStoryCreateNestedManyWithoutFileInstancesInput;
+  missionVisionImage1?: Prisma.MissionVisionCreateNestedManyWithoutImage1Input;
+  missionVisionImage2?: Prisma.MissionVisionCreateNestedManyWithoutImage2Input;
+  missionVisionImage3?: Prisma.MissionVisionCreateNestedManyWithoutImage3Input;
+  missionVisions?: Prisma.MissionVisionCreateNestedManyWithoutFileInstancesInput;
+  whatSetsUsApartImage1?: Prisma.WhatSetsUsApartCreateNestedManyWithoutImage1Input;
+  whatSetsUsApartImage2?: Prisma.WhatSetsUsApartCreateNestedManyWithoutImage2Input;
+  whatSetsUsAparts?: Prisma.WhatSetsUsApartCreateNestedManyWithoutFileInstancesInput;
 };
 
 export type FileInstanceUncheckedCreateWithoutCategoryImagesInput = {
@@ -1823,6 +2815,20 @@ export type FileInstanceUncheckedCreateWithoutCategoryImagesInput = {
   whyUsImage2?: Prisma.WhyUsUncheckedCreateNestedManyWithoutImage2Input;
   whyUsImage3?: Prisma.WhyUsUncheckedCreateNestedManyWithoutImage3Input;
   ourTeamImages?: Prisma.OurTeamUncheckedCreateNestedManyWithoutImageInput;
+  ourStoryImage1?: Prisma.OurStoryUncheckedCreateNestedManyWithoutImage1Input;
+  ourStoryImage2?: Prisma.OurStoryUncheckedCreateNestedManyWithoutImage2Input;
+  ourStoryImage3?: Prisma.OurStoryUncheckedCreateNestedManyWithoutImage3Input;
+  ourStoryImage4?: Prisma.OurStoryUncheckedCreateNestedManyWithoutImage4Input;
+  ourStoryImage5?: Prisma.OurStoryUncheckedCreateNestedManyWithoutImage5Input;
+  contactInfos?: Prisma.ContactInfoUncheckedCreateNestedManyWithoutBackgroundImageInput;
+  ourStories?: Prisma.OurStoryUncheckedCreateNestedManyWithoutFileInstancesInput;
+  missionVisionImage1?: Prisma.MissionVisionUncheckedCreateNestedManyWithoutImage1Input;
+  missionVisionImage2?: Prisma.MissionVisionUncheckedCreateNestedManyWithoutImage2Input;
+  missionVisionImage3?: Prisma.MissionVisionUncheckedCreateNestedManyWithoutImage3Input;
+  missionVisions?: Prisma.MissionVisionUncheckedCreateNestedManyWithoutFileInstancesInput;
+  whatSetsUsApartImage1?: Prisma.WhatSetsUsApartUncheckedCreateNestedManyWithoutImage1Input;
+  whatSetsUsApartImage2?: Prisma.WhatSetsUsApartUncheckedCreateNestedManyWithoutImage2Input;
+  whatSetsUsAparts?: Prisma.WhatSetsUsApartUncheckedCreateNestedManyWithoutFileInstancesInput;
 };
 
 export type FileInstanceCreateOrConnectWithoutCategoryImagesInput = {
@@ -1878,6 +2884,20 @@ export type FileInstanceUpdateWithoutCategoryImagesInput = {
   whyUsImage2?: Prisma.WhyUsUpdateManyWithoutImage2NestedInput;
   whyUsImage3?: Prisma.WhyUsUpdateManyWithoutImage3NestedInput;
   ourTeamImages?: Prisma.OurTeamUpdateManyWithoutImageNestedInput;
+  ourStoryImage1?: Prisma.OurStoryUpdateManyWithoutImage1NestedInput;
+  ourStoryImage2?: Prisma.OurStoryUpdateManyWithoutImage2NestedInput;
+  ourStoryImage3?: Prisma.OurStoryUpdateManyWithoutImage3NestedInput;
+  ourStoryImage4?: Prisma.OurStoryUpdateManyWithoutImage4NestedInput;
+  ourStoryImage5?: Prisma.OurStoryUpdateManyWithoutImage5NestedInput;
+  contactInfos?: Prisma.ContactInfoUpdateManyWithoutBackgroundImageNestedInput;
+  ourStories?: Prisma.OurStoryUpdateManyWithoutFileInstancesNestedInput;
+  missionVisionImage1?: Prisma.MissionVisionUpdateManyWithoutImage1NestedInput;
+  missionVisionImage2?: Prisma.MissionVisionUpdateManyWithoutImage2NestedInput;
+  missionVisionImage3?: Prisma.MissionVisionUpdateManyWithoutImage3NestedInput;
+  missionVisions?: Prisma.MissionVisionUpdateManyWithoutFileInstancesNestedInput;
+  whatSetsUsApartImage1?: Prisma.WhatSetsUsApartUpdateManyWithoutImage1NestedInput;
+  whatSetsUsApartImage2?: Prisma.WhatSetsUsApartUpdateManyWithoutImage2NestedInput;
+  whatSetsUsAparts?: Prisma.WhatSetsUsApartUpdateManyWithoutFileInstancesNestedInput;
 };
 
 export type FileInstanceUncheckedUpdateWithoutCategoryImagesInput = {
@@ -1905,6 +2925,212 @@ export type FileInstanceUncheckedUpdateWithoutCategoryImagesInput = {
   whyUsImage2?: Prisma.WhyUsUncheckedUpdateManyWithoutImage2NestedInput;
   whyUsImage3?: Prisma.WhyUsUncheckedUpdateManyWithoutImage3NestedInput;
   ourTeamImages?: Prisma.OurTeamUncheckedUpdateManyWithoutImageNestedInput;
+  ourStoryImage1?: Prisma.OurStoryUncheckedUpdateManyWithoutImage1NestedInput;
+  ourStoryImage2?: Prisma.OurStoryUncheckedUpdateManyWithoutImage2NestedInput;
+  ourStoryImage3?: Prisma.OurStoryUncheckedUpdateManyWithoutImage3NestedInput;
+  ourStoryImage4?: Prisma.OurStoryUncheckedUpdateManyWithoutImage4NestedInput;
+  ourStoryImage5?: Prisma.OurStoryUncheckedUpdateManyWithoutImage5NestedInput;
+  contactInfos?: Prisma.ContactInfoUncheckedUpdateManyWithoutBackgroundImageNestedInput;
+  ourStories?: Prisma.OurStoryUncheckedUpdateManyWithoutFileInstancesNestedInput;
+  missionVisionImage1?: Prisma.MissionVisionUncheckedUpdateManyWithoutImage1NestedInput;
+  missionVisionImage2?: Prisma.MissionVisionUncheckedUpdateManyWithoutImage2NestedInput;
+  missionVisionImage3?: Prisma.MissionVisionUncheckedUpdateManyWithoutImage3NestedInput;
+  missionVisions?: Prisma.MissionVisionUncheckedUpdateManyWithoutFileInstancesNestedInput;
+  whatSetsUsApartImage1?: Prisma.WhatSetsUsApartUncheckedUpdateManyWithoutImage1NestedInput;
+  whatSetsUsApartImage2?: Prisma.WhatSetsUsApartUncheckedUpdateManyWithoutImage2NestedInput;
+  whatSetsUsAparts?: Prisma.WhatSetsUsApartUncheckedUpdateManyWithoutFileInstancesNestedInput;
+};
+
+export type FileInstanceCreateWithoutContactInfosInput = {
+  id?: string;
+  filename: string;
+  originalFilename: string;
+  path: string;
+  url: string;
+  fileType?: $Enums.FileType;
+  mimeType: string;
+  size: number;
+  createdAt?: Date | string;
+  updatedAt?: Date | string;
+  pageBannersBackground?: Prisma.PageBannerCreateNestedManyWithoutBackgroundInput;
+  blog?: Prisma.BlogCreateNestedManyWithoutFileInstancesInput;
+  boatImages?: Prisma.BoatImageCreateNestedManyWithoutFileInput;
+  contactTopImages?: Prisma.ContactPageCreateNestedOneWithoutContactTopImageInput;
+  contactBottomImages?: Prisma.ContactPageCreateNestedOneWithoutContactBottomImageInput;
+  featuredBrandLogos?: Prisma.FeaturedBrandsCreateNestedManyWithoutFeaturedbrandLogoInput;
+  blogs?: Prisma.BlogCreateNestedManyWithoutBlogImageInput;
+  settings?: Prisma.SettingCreateNestedManyWithoutLogoInput;
+  packageBanners?: Prisma.packageBannerCreateNestedManyWithoutPackageBannerInput;
+  aiSearchBanners?: Prisma.AiSearchBannerCreateNestedManyWithoutAiSearchBannerInput;
+  categoryImages?: Prisma.CategoryCreateNestedManyWithoutImageInput;
+  whyUsImage1?: Prisma.WhyUsCreateNestedManyWithoutImage1Input;
+  whyUsImage2?: Prisma.WhyUsCreateNestedManyWithoutImage2Input;
+  whyUsImage3?: Prisma.WhyUsCreateNestedManyWithoutImage3Input;
+  ourTeamImages?: Prisma.OurTeamCreateNestedManyWithoutImageInput;
+  ourStoryImage1?: Prisma.OurStoryCreateNestedManyWithoutImage1Input;
+  ourStoryImage2?: Prisma.OurStoryCreateNestedManyWithoutImage2Input;
+  ourStoryImage3?: Prisma.OurStoryCreateNestedManyWithoutImage3Input;
+  ourStoryImage4?: Prisma.OurStoryCreateNestedManyWithoutImage4Input;
+  ourStoryImage5?: Prisma.OurStoryCreateNestedManyWithoutImage5Input;
+  ourStories?: Prisma.OurStoryCreateNestedManyWithoutFileInstancesInput;
+  missionVisionImage1?: Prisma.MissionVisionCreateNestedManyWithoutImage1Input;
+  missionVisionImage2?: Prisma.MissionVisionCreateNestedManyWithoutImage2Input;
+  missionVisionImage3?: Prisma.MissionVisionCreateNestedManyWithoutImage3Input;
+  missionVisions?: Prisma.MissionVisionCreateNestedManyWithoutFileInstancesInput;
+  whatSetsUsApartImage1?: Prisma.WhatSetsUsApartCreateNestedManyWithoutImage1Input;
+  whatSetsUsApartImage2?: Prisma.WhatSetsUsApartCreateNestedManyWithoutImage2Input;
+  whatSetsUsAparts?: Prisma.WhatSetsUsApartCreateNestedManyWithoutFileInstancesInput;
+};
+
+export type FileInstanceUncheckedCreateWithoutContactInfosInput = {
+  id?: string;
+  filename: string;
+  originalFilename: string;
+  path: string;
+  url: string;
+  fileType?: $Enums.FileType;
+  mimeType: string;
+  size: number;
+  createdAt?: Date | string;
+  updatedAt?: Date | string;
+  pageBannersBackground?: Prisma.PageBannerUncheckedCreateNestedManyWithoutBackgroundInput;
+  blog?: Prisma.BlogUncheckedCreateNestedManyWithoutFileInstancesInput;
+  boatImages?: Prisma.BoatImageUncheckedCreateNestedManyWithoutFileInput;
+  contactTopImages?: Prisma.ContactPageUncheckedCreateNestedOneWithoutContactTopImageInput;
+  contactBottomImages?: Prisma.ContactPageUncheckedCreateNestedOneWithoutContactBottomImageInput;
+  featuredBrandLogos?: Prisma.FeaturedBrandsUncheckedCreateNestedManyWithoutFeaturedbrandLogoInput;
+  blogs?: Prisma.BlogUncheckedCreateNestedManyWithoutBlogImageInput;
+  settings?: Prisma.SettingUncheckedCreateNestedManyWithoutLogoInput;
+  packageBanners?: Prisma.packageBannerUncheckedCreateNestedManyWithoutPackageBannerInput;
+  aiSearchBanners?: Prisma.AiSearchBannerUncheckedCreateNestedManyWithoutAiSearchBannerInput;
+  categoryImages?: Prisma.CategoryUncheckedCreateNestedManyWithoutImageInput;
+  whyUsImage1?: Prisma.WhyUsUncheckedCreateNestedManyWithoutImage1Input;
+  whyUsImage2?: Prisma.WhyUsUncheckedCreateNestedManyWithoutImage2Input;
+  whyUsImage3?: Prisma.WhyUsUncheckedCreateNestedManyWithoutImage3Input;
+  ourTeamImages?: Prisma.OurTeamUncheckedCreateNestedManyWithoutImageInput;
+  ourStoryImage1?: Prisma.OurStoryUncheckedCreateNestedManyWithoutImage1Input;
+  ourStoryImage2?: Prisma.OurStoryUncheckedCreateNestedManyWithoutImage2Input;
+  ourStoryImage3?: Prisma.OurStoryUncheckedCreateNestedManyWithoutImage3Input;
+  ourStoryImage4?: Prisma.OurStoryUncheckedCreateNestedManyWithoutImage4Input;
+  ourStoryImage5?: Prisma.OurStoryUncheckedCreateNestedManyWithoutImage5Input;
+  ourStories?: Prisma.OurStoryUncheckedCreateNestedManyWithoutFileInstancesInput;
+  missionVisionImage1?: Prisma.MissionVisionUncheckedCreateNestedManyWithoutImage1Input;
+  missionVisionImage2?: Prisma.MissionVisionUncheckedCreateNestedManyWithoutImage2Input;
+  missionVisionImage3?: Prisma.MissionVisionUncheckedCreateNestedManyWithoutImage3Input;
+  missionVisions?: Prisma.MissionVisionUncheckedCreateNestedManyWithoutFileInstancesInput;
+  whatSetsUsApartImage1?: Prisma.WhatSetsUsApartUncheckedCreateNestedManyWithoutImage1Input;
+  whatSetsUsApartImage2?: Prisma.WhatSetsUsApartUncheckedCreateNestedManyWithoutImage2Input;
+  whatSetsUsAparts?: Prisma.WhatSetsUsApartUncheckedCreateNestedManyWithoutFileInstancesInput;
+};
+
+export type FileInstanceCreateOrConnectWithoutContactInfosInput = {
+  where: Prisma.FileInstanceWhereUniqueInput;
+  create: Prisma.XOR<
+    Prisma.FileInstanceCreateWithoutContactInfosInput,
+    Prisma.FileInstanceUncheckedCreateWithoutContactInfosInput
+  >;
+};
+
+export type FileInstanceUpsertWithoutContactInfosInput = {
+  update: Prisma.XOR<
+    Prisma.FileInstanceUpdateWithoutContactInfosInput,
+    Prisma.FileInstanceUncheckedUpdateWithoutContactInfosInput
+  >;
+  create: Prisma.XOR<
+    Prisma.FileInstanceCreateWithoutContactInfosInput,
+    Prisma.FileInstanceUncheckedCreateWithoutContactInfosInput
+  >;
+  where?: Prisma.FileInstanceWhereInput;
+};
+
+export type FileInstanceUpdateToOneWithWhereWithoutContactInfosInput = {
+  where?: Prisma.FileInstanceWhereInput;
+  data: Prisma.XOR<
+    Prisma.FileInstanceUpdateWithoutContactInfosInput,
+    Prisma.FileInstanceUncheckedUpdateWithoutContactInfosInput
+  >;
+};
+
+export type FileInstanceUpdateWithoutContactInfosInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string;
+  filename?: Prisma.StringFieldUpdateOperationsInput | string;
+  originalFilename?: Prisma.StringFieldUpdateOperationsInput | string;
+  path?: Prisma.StringFieldUpdateOperationsInput | string;
+  url?: Prisma.StringFieldUpdateOperationsInput | string;
+  fileType?: Prisma.EnumFileTypeFieldUpdateOperationsInput | $Enums.FileType;
+  mimeType?: Prisma.StringFieldUpdateOperationsInput | string;
+  size?: Prisma.IntFieldUpdateOperationsInput | number;
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  pageBannersBackground?: Prisma.PageBannerUpdateManyWithoutBackgroundNestedInput;
+  blog?: Prisma.BlogUpdateManyWithoutFileInstancesNestedInput;
+  boatImages?: Prisma.BoatImageUpdateManyWithoutFileNestedInput;
+  contactTopImages?: Prisma.ContactPageUpdateOneWithoutContactTopImageNestedInput;
+  contactBottomImages?: Prisma.ContactPageUpdateOneWithoutContactBottomImageNestedInput;
+  featuredBrandLogos?: Prisma.FeaturedBrandsUpdateManyWithoutFeaturedbrandLogoNestedInput;
+  blogs?: Prisma.BlogUpdateManyWithoutBlogImageNestedInput;
+  settings?: Prisma.SettingUpdateManyWithoutLogoNestedInput;
+  packageBanners?: Prisma.packageBannerUpdateManyWithoutPackageBannerNestedInput;
+  aiSearchBanners?: Prisma.AiSearchBannerUpdateManyWithoutAiSearchBannerNestedInput;
+  categoryImages?: Prisma.CategoryUpdateManyWithoutImageNestedInput;
+  whyUsImage1?: Prisma.WhyUsUpdateManyWithoutImage1NestedInput;
+  whyUsImage2?: Prisma.WhyUsUpdateManyWithoutImage2NestedInput;
+  whyUsImage3?: Prisma.WhyUsUpdateManyWithoutImage3NestedInput;
+  ourTeamImages?: Prisma.OurTeamUpdateManyWithoutImageNestedInput;
+  ourStoryImage1?: Prisma.OurStoryUpdateManyWithoutImage1NestedInput;
+  ourStoryImage2?: Prisma.OurStoryUpdateManyWithoutImage2NestedInput;
+  ourStoryImage3?: Prisma.OurStoryUpdateManyWithoutImage3NestedInput;
+  ourStoryImage4?: Prisma.OurStoryUpdateManyWithoutImage4NestedInput;
+  ourStoryImage5?: Prisma.OurStoryUpdateManyWithoutImage5NestedInput;
+  ourStories?: Prisma.OurStoryUpdateManyWithoutFileInstancesNestedInput;
+  missionVisionImage1?: Prisma.MissionVisionUpdateManyWithoutImage1NestedInput;
+  missionVisionImage2?: Prisma.MissionVisionUpdateManyWithoutImage2NestedInput;
+  missionVisionImage3?: Prisma.MissionVisionUpdateManyWithoutImage3NestedInput;
+  missionVisions?: Prisma.MissionVisionUpdateManyWithoutFileInstancesNestedInput;
+  whatSetsUsApartImage1?: Prisma.WhatSetsUsApartUpdateManyWithoutImage1NestedInput;
+  whatSetsUsApartImage2?: Prisma.WhatSetsUsApartUpdateManyWithoutImage2NestedInput;
+  whatSetsUsAparts?: Prisma.WhatSetsUsApartUpdateManyWithoutFileInstancesNestedInput;
+};
+
+export type FileInstanceUncheckedUpdateWithoutContactInfosInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string;
+  filename?: Prisma.StringFieldUpdateOperationsInput | string;
+  originalFilename?: Prisma.StringFieldUpdateOperationsInput | string;
+  path?: Prisma.StringFieldUpdateOperationsInput | string;
+  url?: Prisma.StringFieldUpdateOperationsInput | string;
+  fileType?: Prisma.EnumFileTypeFieldUpdateOperationsInput | $Enums.FileType;
+  mimeType?: Prisma.StringFieldUpdateOperationsInput | string;
+  size?: Prisma.IntFieldUpdateOperationsInput | number;
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  pageBannersBackground?: Prisma.PageBannerUncheckedUpdateManyWithoutBackgroundNestedInput;
+  blog?: Prisma.BlogUncheckedUpdateManyWithoutFileInstancesNestedInput;
+  boatImages?: Prisma.BoatImageUncheckedUpdateManyWithoutFileNestedInput;
+  contactTopImages?: Prisma.ContactPageUncheckedUpdateOneWithoutContactTopImageNestedInput;
+  contactBottomImages?: Prisma.ContactPageUncheckedUpdateOneWithoutContactBottomImageNestedInput;
+  featuredBrandLogos?: Prisma.FeaturedBrandsUncheckedUpdateManyWithoutFeaturedbrandLogoNestedInput;
+  blogs?: Prisma.BlogUncheckedUpdateManyWithoutBlogImageNestedInput;
+  settings?: Prisma.SettingUncheckedUpdateManyWithoutLogoNestedInput;
+  packageBanners?: Prisma.packageBannerUncheckedUpdateManyWithoutPackageBannerNestedInput;
+  aiSearchBanners?: Prisma.AiSearchBannerUncheckedUpdateManyWithoutAiSearchBannerNestedInput;
+  categoryImages?: Prisma.CategoryUncheckedUpdateManyWithoutImageNestedInput;
+  whyUsImage1?: Prisma.WhyUsUncheckedUpdateManyWithoutImage1NestedInput;
+  whyUsImage2?: Prisma.WhyUsUncheckedUpdateManyWithoutImage2NestedInput;
+  whyUsImage3?: Prisma.WhyUsUncheckedUpdateManyWithoutImage3NestedInput;
+  ourTeamImages?: Prisma.OurTeamUncheckedUpdateManyWithoutImageNestedInput;
+  ourStoryImage1?: Prisma.OurStoryUncheckedUpdateManyWithoutImage1NestedInput;
+  ourStoryImage2?: Prisma.OurStoryUncheckedUpdateManyWithoutImage2NestedInput;
+  ourStoryImage3?: Prisma.OurStoryUncheckedUpdateManyWithoutImage3NestedInput;
+  ourStoryImage4?: Prisma.OurStoryUncheckedUpdateManyWithoutImage4NestedInput;
+  ourStoryImage5?: Prisma.OurStoryUncheckedUpdateManyWithoutImage5NestedInput;
+  ourStories?: Prisma.OurStoryUncheckedUpdateManyWithoutFileInstancesNestedInput;
+  missionVisionImage1?: Prisma.MissionVisionUncheckedUpdateManyWithoutImage1NestedInput;
+  missionVisionImage2?: Prisma.MissionVisionUncheckedUpdateManyWithoutImage2NestedInput;
+  missionVisionImage3?: Prisma.MissionVisionUncheckedUpdateManyWithoutImage3NestedInput;
+  missionVisions?: Prisma.MissionVisionUncheckedUpdateManyWithoutFileInstancesNestedInput;
+  whatSetsUsApartImage1?: Prisma.WhatSetsUsApartUncheckedUpdateManyWithoutImage1NestedInput;
+  whatSetsUsApartImage2?: Prisma.WhatSetsUsApartUncheckedUpdateManyWithoutImage2NestedInput;
+  whatSetsUsAparts?: Prisma.WhatSetsUsApartUncheckedUpdateManyWithoutFileInstancesNestedInput;
 };
 
 export type FileInstanceCreateWithoutContactTopImagesInput = {
@@ -1932,6 +3158,20 @@ export type FileInstanceCreateWithoutContactTopImagesInput = {
   whyUsImage2?: Prisma.WhyUsCreateNestedManyWithoutImage2Input;
   whyUsImage3?: Prisma.WhyUsCreateNestedManyWithoutImage3Input;
   ourTeamImages?: Prisma.OurTeamCreateNestedManyWithoutImageInput;
+  ourStoryImage1?: Prisma.OurStoryCreateNestedManyWithoutImage1Input;
+  ourStoryImage2?: Prisma.OurStoryCreateNestedManyWithoutImage2Input;
+  ourStoryImage3?: Prisma.OurStoryCreateNestedManyWithoutImage3Input;
+  ourStoryImage4?: Prisma.OurStoryCreateNestedManyWithoutImage4Input;
+  ourStoryImage5?: Prisma.OurStoryCreateNestedManyWithoutImage5Input;
+  contactInfos?: Prisma.ContactInfoCreateNestedManyWithoutBackgroundImageInput;
+  ourStories?: Prisma.OurStoryCreateNestedManyWithoutFileInstancesInput;
+  missionVisionImage1?: Prisma.MissionVisionCreateNestedManyWithoutImage1Input;
+  missionVisionImage2?: Prisma.MissionVisionCreateNestedManyWithoutImage2Input;
+  missionVisionImage3?: Prisma.MissionVisionCreateNestedManyWithoutImage3Input;
+  missionVisions?: Prisma.MissionVisionCreateNestedManyWithoutFileInstancesInput;
+  whatSetsUsApartImage1?: Prisma.WhatSetsUsApartCreateNestedManyWithoutImage1Input;
+  whatSetsUsApartImage2?: Prisma.WhatSetsUsApartCreateNestedManyWithoutImage2Input;
+  whatSetsUsAparts?: Prisma.WhatSetsUsApartCreateNestedManyWithoutFileInstancesInput;
 };
 
 export type FileInstanceUncheckedCreateWithoutContactTopImagesInput = {
@@ -1959,6 +3199,20 @@ export type FileInstanceUncheckedCreateWithoutContactTopImagesInput = {
   whyUsImage2?: Prisma.WhyUsUncheckedCreateNestedManyWithoutImage2Input;
   whyUsImage3?: Prisma.WhyUsUncheckedCreateNestedManyWithoutImage3Input;
   ourTeamImages?: Prisma.OurTeamUncheckedCreateNestedManyWithoutImageInput;
+  ourStoryImage1?: Prisma.OurStoryUncheckedCreateNestedManyWithoutImage1Input;
+  ourStoryImage2?: Prisma.OurStoryUncheckedCreateNestedManyWithoutImage2Input;
+  ourStoryImage3?: Prisma.OurStoryUncheckedCreateNestedManyWithoutImage3Input;
+  ourStoryImage4?: Prisma.OurStoryUncheckedCreateNestedManyWithoutImage4Input;
+  ourStoryImage5?: Prisma.OurStoryUncheckedCreateNestedManyWithoutImage5Input;
+  contactInfos?: Prisma.ContactInfoUncheckedCreateNestedManyWithoutBackgroundImageInput;
+  ourStories?: Prisma.OurStoryUncheckedCreateNestedManyWithoutFileInstancesInput;
+  missionVisionImage1?: Prisma.MissionVisionUncheckedCreateNestedManyWithoutImage1Input;
+  missionVisionImage2?: Prisma.MissionVisionUncheckedCreateNestedManyWithoutImage2Input;
+  missionVisionImage3?: Prisma.MissionVisionUncheckedCreateNestedManyWithoutImage3Input;
+  missionVisions?: Prisma.MissionVisionUncheckedCreateNestedManyWithoutFileInstancesInput;
+  whatSetsUsApartImage1?: Prisma.WhatSetsUsApartUncheckedCreateNestedManyWithoutImage1Input;
+  whatSetsUsApartImage2?: Prisma.WhatSetsUsApartUncheckedCreateNestedManyWithoutImage2Input;
+  whatSetsUsAparts?: Prisma.WhatSetsUsApartUncheckedCreateNestedManyWithoutFileInstancesInput;
 };
 
 export type FileInstanceCreateOrConnectWithoutContactTopImagesInput = {
@@ -1994,6 +3248,20 @@ export type FileInstanceCreateWithoutContactBottomImagesInput = {
   whyUsImage2?: Prisma.WhyUsCreateNestedManyWithoutImage2Input;
   whyUsImage3?: Prisma.WhyUsCreateNestedManyWithoutImage3Input;
   ourTeamImages?: Prisma.OurTeamCreateNestedManyWithoutImageInput;
+  ourStoryImage1?: Prisma.OurStoryCreateNestedManyWithoutImage1Input;
+  ourStoryImage2?: Prisma.OurStoryCreateNestedManyWithoutImage2Input;
+  ourStoryImage3?: Prisma.OurStoryCreateNestedManyWithoutImage3Input;
+  ourStoryImage4?: Prisma.OurStoryCreateNestedManyWithoutImage4Input;
+  ourStoryImage5?: Prisma.OurStoryCreateNestedManyWithoutImage5Input;
+  contactInfos?: Prisma.ContactInfoCreateNestedManyWithoutBackgroundImageInput;
+  ourStories?: Prisma.OurStoryCreateNestedManyWithoutFileInstancesInput;
+  missionVisionImage1?: Prisma.MissionVisionCreateNestedManyWithoutImage1Input;
+  missionVisionImage2?: Prisma.MissionVisionCreateNestedManyWithoutImage2Input;
+  missionVisionImage3?: Prisma.MissionVisionCreateNestedManyWithoutImage3Input;
+  missionVisions?: Prisma.MissionVisionCreateNestedManyWithoutFileInstancesInput;
+  whatSetsUsApartImage1?: Prisma.WhatSetsUsApartCreateNestedManyWithoutImage1Input;
+  whatSetsUsApartImage2?: Prisma.WhatSetsUsApartCreateNestedManyWithoutImage2Input;
+  whatSetsUsAparts?: Prisma.WhatSetsUsApartCreateNestedManyWithoutFileInstancesInput;
 };
 
 export type FileInstanceUncheckedCreateWithoutContactBottomImagesInput = {
@@ -2021,6 +3289,20 @@ export type FileInstanceUncheckedCreateWithoutContactBottomImagesInput = {
   whyUsImage2?: Prisma.WhyUsUncheckedCreateNestedManyWithoutImage2Input;
   whyUsImage3?: Prisma.WhyUsUncheckedCreateNestedManyWithoutImage3Input;
   ourTeamImages?: Prisma.OurTeamUncheckedCreateNestedManyWithoutImageInput;
+  ourStoryImage1?: Prisma.OurStoryUncheckedCreateNestedManyWithoutImage1Input;
+  ourStoryImage2?: Prisma.OurStoryUncheckedCreateNestedManyWithoutImage2Input;
+  ourStoryImage3?: Prisma.OurStoryUncheckedCreateNestedManyWithoutImage3Input;
+  ourStoryImage4?: Prisma.OurStoryUncheckedCreateNestedManyWithoutImage4Input;
+  ourStoryImage5?: Prisma.OurStoryUncheckedCreateNestedManyWithoutImage5Input;
+  contactInfos?: Prisma.ContactInfoUncheckedCreateNestedManyWithoutBackgroundImageInput;
+  ourStories?: Prisma.OurStoryUncheckedCreateNestedManyWithoutFileInstancesInput;
+  missionVisionImage1?: Prisma.MissionVisionUncheckedCreateNestedManyWithoutImage1Input;
+  missionVisionImage2?: Prisma.MissionVisionUncheckedCreateNestedManyWithoutImage2Input;
+  missionVisionImage3?: Prisma.MissionVisionUncheckedCreateNestedManyWithoutImage3Input;
+  missionVisions?: Prisma.MissionVisionUncheckedCreateNestedManyWithoutFileInstancesInput;
+  whatSetsUsApartImage1?: Prisma.WhatSetsUsApartUncheckedCreateNestedManyWithoutImage1Input;
+  whatSetsUsApartImage2?: Prisma.WhatSetsUsApartUncheckedCreateNestedManyWithoutImage2Input;
+  whatSetsUsAparts?: Prisma.WhatSetsUsApartUncheckedCreateNestedManyWithoutFileInstancesInput;
 };
 
 export type FileInstanceCreateOrConnectWithoutContactBottomImagesInput = {
@@ -2076,6 +3358,20 @@ export type FileInstanceUpdateWithoutContactTopImagesInput = {
   whyUsImage2?: Prisma.WhyUsUpdateManyWithoutImage2NestedInput;
   whyUsImage3?: Prisma.WhyUsUpdateManyWithoutImage3NestedInput;
   ourTeamImages?: Prisma.OurTeamUpdateManyWithoutImageNestedInput;
+  ourStoryImage1?: Prisma.OurStoryUpdateManyWithoutImage1NestedInput;
+  ourStoryImage2?: Prisma.OurStoryUpdateManyWithoutImage2NestedInput;
+  ourStoryImage3?: Prisma.OurStoryUpdateManyWithoutImage3NestedInput;
+  ourStoryImage4?: Prisma.OurStoryUpdateManyWithoutImage4NestedInput;
+  ourStoryImage5?: Prisma.OurStoryUpdateManyWithoutImage5NestedInput;
+  contactInfos?: Prisma.ContactInfoUpdateManyWithoutBackgroundImageNestedInput;
+  ourStories?: Prisma.OurStoryUpdateManyWithoutFileInstancesNestedInput;
+  missionVisionImage1?: Prisma.MissionVisionUpdateManyWithoutImage1NestedInput;
+  missionVisionImage2?: Prisma.MissionVisionUpdateManyWithoutImage2NestedInput;
+  missionVisionImage3?: Prisma.MissionVisionUpdateManyWithoutImage3NestedInput;
+  missionVisions?: Prisma.MissionVisionUpdateManyWithoutFileInstancesNestedInput;
+  whatSetsUsApartImage1?: Prisma.WhatSetsUsApartUpdateManyWithoutImage1NestedInput;
+  whatSetsUsApartImage2?: Prisma.WhatSetsUsApartUpdateManyWithoutImage2NestedInput;
+  whatSetsUsAparts?: Prisma.WhatSetsUsApartUpdateManyWithoutFileInstancesNestedInput;
 };
 
 export type FileInstanceUncheckedUpdateWithoutContactTopImagesInput = {
@@ -2103,6 +3399,20 @@ export type FileInstanceUncheckedUpdateWithoutContactTopImagesInput = {
   whyUsImage2?: Prisma.WhyUsUncheckedUpdateManyWithoutImage2NestedInput;
   whyUsImage3?: Prisma.WhyUsUncheckedUpdateManyWithoutImage3NestedInput;
   ourTeamImages?: Prisma.OurTeamUncheckedUpdateManyWithoutImageNestedInput;
+  ourStoryImage1?: Prisma.OurStoryUncheckedUpdateManyWithoutImage1NestedInput;
+  ourStoryImage2?: Prisma.OurStoryUncheckedUpdateManyWithoutImage2NestedInput;
+  ourStoryImage3?: Prisma.OurStoryUncheckedUpdateManyWithoutImage3NestedInput;
+  ourStoryImage4?: Prisma.OurStoryUncheckedUpdateManyWithoutImage4NestedInput;
+  ourStoryImage5?: Prisma.OurStoryUncheckedUpdateManyWithoutImage5NestedInput;
+  contactInfos?: Prisma.ContactInfoUncheckedUpdateManyWithoutBackgroundImageNestedInput;
+  ourStories?: Prisma.OurStoryUncheckedUpdateManyWithoutFileInstancesNestedInput;
+  missionVisionImage1?: Prisma.MissionVisionUncheckedUpdateManyWithoutImage1NestedInput;
+  missionVisionImage2?: Prisma.MissionVisionUncheckedUpdateManyWithoutImage2NestedInput;
+  missionVisionImage3?: Prisma.MissionVisionUncheckedUpdateManyWithoutImage3NestedInput;
+  missionVisions?: Prisma.MissionVisionUncheckedUpdateManyWithoutFileInstancesNestedInput;
+  whatSetsUsApartImage1?: Prisma.WhatSetsUsApartUncheckedUpdateManyWithoutImage1NestedInput;
+  whatSetsUsApartImage2?: Prisma.WhatSetsUsApartUncheckedUpdateManyWithoutImage2NestedInput;
+  whatSetsUsAparts?: Prisma.WhatSetsUsApartUncheckedUpdateManyWithoutFileInstancesNestedInput;
 };
 
 export type FileInstanceUpsertWithoutContactBottomImagesInput = {
@@ -2150,6 +3460,20 @@ export type FileInstanceUpdateWithoutContactBottomImagesInput = {
   whyUsImage2?: Prisma.WhyUsUpdateManyWithoutImage2NestedInput;
   whyUsImage3?: Prisma.WhyUsUpdateManyWithoutImage3NestedInput;
   ourTeamImages?: Prisma.OurTeamUpdateManyWithoutImageNestedInput;
+  ourStoryImage1?: Prisma.OurStoryUpdateManyWithoutImage1NestedInput;
+  ourStoryImage2?: Prisma.OurStoryUpdateManyWithoutImage2NestedInput;
+  ourStoryImage3?: Prisma.OurStoryUpdateManyWithoutImage3NestedInput;
+  ourStoryImage4?: Prisma.OurStoryUpdateManyWithoutImage4NestedInput;
+  ourStoryImage5?: Prisma.OurStoryUpdateManyWithoutImage5NestedInput;
+  contactInfos?: Prisma.ContactInfoUpdateManyWithoutBackgroundImageNestedInput;
+  ourStories?: Prisma.OurStoryUpdateManyWithoutFileInstancesNestedInput;
+  missionVisionImage1?: Prisma.MissionVisionUpdateManyWithoutImage1NestedInput;
+  missionVisionImage2?: Prisma.MissionVisionUpdateManyWithoutImage2NestedInput;
+  missionVisionImage3?: Prisma.MissionVisionUpdateManyWithoutImage3NestedInput;
+  missionVisions?: Prisma.MissionVisionUpdateManyWithoutFileInstancesNestedInput;
+  whatSetsUsApartImage1?: Prisma.WhatSetsUsApartUpdateManyWithoutImage1NestedInput;
+  whatSetsUsApartImage2?: Prisma.WhatSetsUsApartUpdateManyWithoutImage2NestedInput;
+  whatSetsUsAparts?: Prisma.WhatSetsUsApartUpdateManyWithoutFileInstancesNestedInput;
 };
 
 export type FileInstanceUncheckedUpdateWithoutContactBottomImagesInput = {
@@ -2177,6 +3501,20 @@ export type FileInstanceUncheckedUpdateWithoutContactBottomImagesInput = {
   whyUsImage2?: Prisma.WhyUsUncheckedUpdateManyWithoutImage2NestedInput;
   whyUsImage3?: Prisma.WhyUsUncheckedUpdateManyWithoutImage3NestedInput;
   ourTeamImages?: Prisma.OurTeamUncheckedUpdateManyWithoutImageNestedInput;
+  ourStoryImage1?: Prisma.OurStoryUncheckedUpdateManyWithoutImage1NestedInput;
+  ourStoryImage2?: Prisma.OurStoryUncheckedUpdateManyWithoutImage2NestedInput;
+  ourStoryImage3?: Prisma.OurStoryUncheckedUpdateManyWithoutImage3NestedInput;
+  ourStoryImage4?: Prisma.OurStoryUncheckedUpdateManyWithoutImage4NestedInput;
+  ourStoryImage5?: Prisma.OurStoryUncheckedUpdateManyWithoutImage5NestedInput;
+  contactInfos?: Prisma.ContactInfoUncheckedUpdateManyWithoutBackgroundImageNestedInput;
+  ourStories?: Prisma.OurStoryUncheckedUpdateManyWithoutFileInstancesNestedInput;
+  missionVisionImage1?: Prisma.MissionVisionUncheckedUpdateManyWithoutImage1NestedInput;
+  missionVisionImage2?: Prisma.MissionVisionUncheckedUpdateManyWithoutImage2NestedInput;
+  missionVisionImage3?: Prisma.MissionVisionUncheckedUpdateManyWithoutImage3NestedInput;
+  missionVisions?: Prisma.MissionVisionUncheckedUpdateManyWithoutFileInstancesNestedInput;
+  whatSetsUsApartImage1?: Prisma.WhatSetsUsApartUncheckedUpdateManyWithoutImage1NestedInput;
+  whatSetsUsApartImage2?: Prisma.WhatSetsUsApartUncheckedUpdateManyWithoutImage2NestedInput;
+  whatSetsUsAparts?: Prisma.WhatSetsUsApartUncheckedUpdateManyWithoutFileInstancesNestedInput;
 };
 
 export type FileInstanceCreateWithoutWhyUsImage1Input = {
@@ -2204,6 +3542,20 @@ export type FileInstanceCreateWithoutWhyUsImage1Input = {
   whyUsImage2?: Prisma.WhyUsCreateNestedManyWithoutImage2Input;
   whyUsImage3?: Prisma.WhyUsCreateNestedManyWithoutImage3Input;
   ourTeamImages?: Prisma.OurTeamCreateNestedManyWithoutImageInput;
+  ourStoryImage1?: Prisma.OurStoryCreateNestedManyWithoutImage1Input;
+  ourStoryImage2?: Prisma.OurStoryCreateNestedManyWithoutImage2Input;
+  ourStoryImage3?: Prisma.OurStoryCreateNestedManyWithoutImage3Input;
+  ourStoryImage4?: Prisma.OurStoryCreateNestedManyWithoutImage4Input;
+  ourStoryImage5?: Prisma.OurStoryCreateNestedManyWithoutImage5Input;
+  contactInfos?: Prisma.ContactInfoCreateNestedManyWithoutBackgroundImageInput;
+  ourStories?: Prisma.OurStoryCreateNestedManyWithoutFileInstancesInput;
+  missionVisionImage1?: Prisma.MissionVisionCreateNestedManyWithoutImage1Input;
+  missionVisionImage2?: Prisma.MissionVisionCreateNestedManyWithoutImage2Input;
+  missionVisionImage3?: Prisma.MissionVisionCreateNestedManyWithoutImage3Input;
+  missionVisions?: Prisma.MissionVisionCreateNestedManyWithoutFileInstancesInput;
+  whatSetsUsApartImage1?: Prisma.WhatSetsUsApartCreateNestedManyWithoutImage1Input;
+  whatSetsUsApartImage2?: Prisma.WhatSetsUsApartCreateNestedManyWithoutImage2Input;
+  whatSetsUsAparts?: Prisma.WhatSetsUsApartCreateNestedManyWithoutFileInstancesInput;
 };
 
 export type FileInstanceUncheckedCreateWithoutWhyUsImage1Input = {
@@ -2231,6 +3583,20 @@ export type FileInstanceUncheckedCreateWithoutWhyUsImage1Input = {
   whyUsImage2?: Prisma.WhyUsUncheckedCreateNestedManyWithoutImage2Input;
   whyUsImage3?: Prisma.WhyUsUncheckedCreateNestedManyWithoutImage3Input;
   ourTeamImages?: Prisma.OurTeamUncheckedCreateNestedManyWithoutImageInput;
+  ourStoryImage1?: Prisma.OurStoryUncheckedCreateNestedManyWithoutImage1Input;
+  ourStoryImage2?: Prisma.OurStoryUncheckedCreateNestedManyWithoutImage2Input;
+  ourStoryImage3?: Prisma.OurStoryUncheckedCreateNestedManyWithoutImage3Input;
+  ourStoryImage4?: Prisma.OurStoryUncheckedCreateNestedManyWithoutImage4Input;
+  ourStoryImage5?: Prisma.OurStoryUncheckedCreateNestedManyWithoutImage5Input;
+  contactInfos?: Prisma.ContactInfoUncheckedCreateNestedManyWithoutBackgroundImageInput;
+  ourStories?: Prisma.OurStoryUncheckedCreateNestedManyWithoutFileInstancesInput;
+  missionVisionImage1?: Prisma.MissionVisionUncheckedCreateNestedManyWithoutImage1Input;
+  missionVisionImage2?: Prisma.MissionVisionUncheckedCreateNestedManyWithoutImage2Input;
+  missionVisionImage3?: Prisma.MissionVisionUncheckedCreateNestedManyWithoutImage3Input;
+  missionVisions?: Prisma.MissionVisionUncheckedCreateNestedManyWithoutFileInstancesInput;
+  whatSetsUsApartImage1?: Prisma.WhatSetsUsApartUncheckedCreateNestedManyWithoutImage1Input;
+  whatSetsUsApartImage2?: Prisma.WhatSetsUsApartUncheckedCreateNestedManyWithoutImage2Input;
+  whatSetsUsAparts?: Prisma.WhatSetsUsApartUncheckedCreateNestedManyWithoutFileInstancesInput;
 };
 
 export type FileInstanceCreateOrConnectWithoutWhyUsImage1Input = {
@@ -2266,6 +3632,20 @@ export type FileInstanceCreateWithoutWhyUsImage2Input = {
   whyUsImage1?: Prisma.WhyUsCreateNestedManyWithoutImage1Input;
   whyUsImage3?: Prisma.WhyUsCreateNestedManyWithoutImage3Input;
   ourTeamImages?: Prisma.OurTeamCreateNestedManyWithoutImageInput;
+  ourStoryImage1?: Prisma.OurStoryCreateNestedManyWithoutImage1Input;
+  ourStoryImage2?: Prisma.OurStoryCreateNestedManyWithoutImage2Input;
+  ourStoryImage3?: Prisma.OurStoryCreateNestedManyWithoutImage3Input;
+  ourStoryImage4?: Prisma.OurStoryCreateNestedManyWithoutImage4Input;
+  ourStoryImage5?: Prisma.OurStoryCreateNestedManyWithoutImage5Input;
+  contactInfos?: Prisma.ContactInfoCreateNestedManyWithoutBackgroundImageInput;
+  ourStories?: Prisma.OurStoryCreateNestedManyWithoutFileInstancesInput;
+  missionVisionImage1?: Prisma.MissionVisionCreateNestedManyWithoutImage1Input;
+  missionVisionImage2?: Prisma.MissionVisionCreateNestedManyWithoutImage2Input;
+  missionVisionImage3?: Prisma.MissionVisionCreateNestedManyWithoutImage3Input;
+  missionVisions?: Prisma.MissionVisionCreateNestedManyWithoutFileInstancesInput;
+  whatSetsUsApartImage1?: Prisma.WhatSetsUsApartCreateNestedManyWithoutImage1Input;
+  whatSetsUsApartImage2?: Prisma.WhatSetsUsApartCreateNestedManyWithoutImage2Input;
+  whatSetsUsAparts?: Prisma.WhatSetsUsApartCreateNestedManyWithoutFileInstancesInput;
 };
 
 export type FileInstanceUncheckedCreateWithoutWhyUsImage2Input = {
@@ -2293,6 +3673,20 @@ export type FileInstanceUncheckedCreateWithoutWhyUsImage2Input = {
   whyUsImage1?: Prisma.WhyUsUncheckedCreateNestedManyWithoutImage1Input;
   whyUsImage3?: Prisma.WhyUsUncheckedCreateNestedManyWithoutImage3Input;
   ourTeamImages?: Prisma.OurTeamUncheckedCreateNestedManyWithoutImageInput;
+  ourStoryImage1?: Prisma.OurStoryUncheckedCreateNestedManyWithoutImage1Input;
+  ourStoryImage2?: Prisma.OurStoryUncheckedCreateNestedManyWithoutImage2Input;
+  ourStoryImage3?: Prisma.OurStoryUncheckedCreateNestedManyWithoutImage3Input;
+  ourStoryImage4?: Prisma.OurStoryUncheckedCreateNestedManyWithoutImage4Input;
+  ourStoryImage5?: Prisma.OurStoryUncheckedCreateNestedManyWithoutImage5Input;
+  contactInfos?: Prisma.ContactInfoUncheckedCreateNestedManyWithoutBackgroundImageInput;
+  ourStories?: Prisma.OurStoryUncheckedCreateNestedManyWithoutFileInstancesInput;
+  missionVisionImage1?: Prisma.MissionVisionUncheckedCreateNestedManyWithoutImage1Input;
+  missionVisionImage2?: Prisma.MissionVisionUncheckedCreateNestedManyWithoutImage2Input;
+  missionVisionImage3?: Prisma.MissionVisionUncheckedCreateNestedManyWithoutImage3Input;
+  missionVisions?: Prisma.MissionVisionUncheckedCreateNestedManyWithoutFileInstancesInput;
+  whatSetsUsApartImage1?: Prisma.WhatSetsUsApartUncheckedCreateNestedManyWithoutImage1Input;
+  whatSetsUsApartImage2?: Prisma.WhatSetsUsApartUncheckedCreateNestedManyWithoutImage2Input;
+  whatSetsUsAparts?: Prisma.WhatSetsUsApartUncheckedCreateNestedManyWithoutFileInstancesInput;
 };
 
 export type FileInstanceCreateOrConnectWithoutWhyUsImage2Input = {
@@ -2328,6 +3722,20 @@ export type FileInstanceCreateWithoutWhyUsImage3Input = {
   whyUsImage1?: Prisma.WhyUsCreateNestedManyWithoutImage1Input;
   whyUsImage2?: Prisma.WhyUsCreateNestedManyWithoutImage2Input;
   ourTeamImages?: Prisma.OurTeamCreateNestedManyWithoutImageInput;
+  ourStoryImage1?: Prisma.OurStoryCreateNestedManyWithoutImage1Input;
+  ourStoryImage2?: Prisma.OurStoryCreateNestedManyWithoutImage2Input;
+  ourStoryImage3?: Prisma.OurStoryCreateNestedManyWithoutImage3Input;
+  ourStoryImage4?: Prisma.OurStoryCreateNestedManyWithoutImage4Input;
+  ourStoryImage5?: Prisma.OurStoryCreateNestedManyWithoutImage5Input;
+  contactInfos?: Prisma.ContactInfoCreateNestedManyWithoutBackgroundImageInput;
+  ourStories?: Prisma.OurStoryCreateNestedManyWithoutFileInstancesInput;
+  missionVisionImage1?: Prisma.MissionVisionCreateNestedManyWithoutImage1Input;
+  missionVisionImage2?: Prisma.MissionVisionCreateNestedManyWithoutImage2Input;
+  missionVisionImage3?: Prisma.MissionVisionCreateNestedManyWithoutImage3Input;
+  missionVisions?: Prisma.MissionVisionCreateNestedManyWithoutFileInstancesInput;
+  whatSetsUsApartImage1?: Prisma.WhatSetsUsApartCreateNestedManyWithoutImage1Input;
+  whatSetsUsApartImage2?: Prisma.WhatSetsUsApartCreateNestedManyWithoutImage2Input;
+  whatSetsUsAparts?: Prisma.WhatSetsUsApartCreateNestedManyWithoutFileInstancesInput;
 };
 
 export type FileInstanceUncheckedCreateWithoutWhyUsImage3Input = {
@@ -2355,6 +3763,20 @@ export type FileInstanceUncheckedCreateWithoutWhyUsImage3Input = {
   whyUsImage1?: Prisma.WhyUsUncheckedCreateNestedManyWithoutImage1Input;
   whyUsImage2?: Prisma.WhyUsUncheckedCreateNestedManyWithoutImage2Input;
   ourTeamImages?: Prisma.OurTeamUncheckedCreateNestedManyWithoutImageInput;
+  ourStoryImage1?: Prisma.OurStoryUncheckedCreateNestedManyWithoutImage1Input;
+  ourStoryImage2?: Prisma.OurStoryUncheckedCreateNestedManyWithoutImage2Input;
+  ourStoryImage3?: Prisma.OurStoryUncheckedCreateNestedManyWithoutImage3Input;
+  ourStoryImage4?: Prisma.OurStoryUncheckedCreateNestedManyWithoutImage4Input;
+  ourStoryImage5?: Prisma.OurStoryUncheckedCreateNestedManyWithoutImage5Input;
+  contactInfos?: Prisma.ContactInfoUncheckedCreateNestedManyWithoutBackgroundImageInput;
+  ourStories?: Prisma.OurStoryUncheckedCreateNestedManyWithoutFileInstancesInput;
+  missionVisionImage1?: Prisma.MissionVisionUncheckedCreateNestedManyWithoutImage1Input;
+  missionVisionImage2?: Prisma.MissionVisionUncheckedCreateNestedManyWithoutImage2Input;
+  missionVisionImage3?: Prisma.MissionVisionUncheckedCreateNestedManyWithoutImage3Input;
+  missionVisions?: Prisma.MissionVisionUncheckedCreateNestedManyWithoutFileInstancesInput;
+  whatSetsUsApartImage1?: Prisma.WhatSetsUsApartUncheckedCreateNestedManyWithoutImage1Input;
+  whatSetsUsApartImage2?: Prisma.WhatSetsUsApartUncheckedCreateNestedManyWithoutImage2Input;
+  whatSetsUsAparts?: Prisma.WhatSetsUsApartUncheckedCreateNestedManyWithoutFileInstancesInput;
 };
 
 export type FileInstanceCreateOrConnectWithoutWhyUsImage3Input = {
@@ -2410,6 +3832,20 @@ export type FileInstanceUpdateWithoutWhyUsImage1Input = {
   whyUsImage2?: Prisma.WhyUsUpdateManyWithoutImage2NestedInput;
   whyUsImage3?: Prisma.WhyUsUpdateManyWithoutImage3NestedInput;
   ourTeamImages?: Prisma.OurTeamUpdateManyWithoutImageNestedInput;
+  ourStoryImage1?: Prisma.OurStoryUpdateManyWithoutImage1NestedInput;
+  ourStoryImage2?: Prisma.OurStoryUpdateManyWithoutImage2NestedInput;
+  ourStoryImage3?: Prisma.OurStoryUpdateManyWithoutImage3NestedInput;
+  ourStoryImage4?: Prisma.OurStoryUpdateManyWithoutImage4NestedInput;
+  ourStoryImage5?: Prisma.OurStoryUpdateManyWithoutImage5NestedInput;
+  contactInfos?: Prisma.ContactInfoUpdateManyWithoutBackgroundImageNestedInput;
+  ourStories?: Prisma.OurStoryUpdateManyWithoutFileInstancesNestedInput;
+  missionVisionImage1?: Prisma.MissionVisionUpdateManyWithoutImage1NestedInput;
+  missionVisionImage2?: Prisma.MissionVisionUpdateManyWithoutImage2NestedInput;
+  missionVisionImage3?: Prisma.MissionVisionUpdateManyWithoutImage3NestedInput;
+  missionVisions?: Prisma.MissionVisionUpdateManyWithoutFileInstancesNestedInput;
+  whatSetsUsApartImage1?: Prisma.WhatSetsUsApartUpdateManyWithoutImage1NestedInput;
+  whatSetsUsApartImage2?: Prisma.WhatSetsUsApartUpdateManyWithoutImage2NestedInput;
+  whatSetsUsAparts?: Prisma.WhatSetsUsApartUpdateManyWithoutFileInstancesNestedInput;
 };
 
 export type FileInstanceUncheckedUpdateWithoutWhyUsImage1Input = {
@@ -2437,6 +3873,20 @@ export type FileInstanceUncheckedUpdateWithoutWhyUsImage1Input = {
   whyUsImage2?: Prisma.WhyUsUncheckedUpdateManyWithoutImage2NestedInput;
   whyUsImage3?: Prisma.WhyUsUncheckedUpdateManyWithoutImage3NestedInput;
   ourTeamImages?: Prisma.OurTeamUncheckedUpdateManyWithoutImageNestedInput;
+  ourStoryImage1?: Prisma.OurStoryUncheckedUpdateManyWithoutImage1NestedInput;
+  ourStoryImage2?: Prisma.OurStoryUncheckedUpdateManyWithoutImage2NestedInput;
+  ourStoryImage3?: Prisma.OurStoryUncheckedUpdateManyWithoutImage3NestedInput;
+  ourStoryImage4?: Prisma.OurStoryUncheckedUpdateManyWithoutImage4NestedInput;
+  ourStoryImage5?: Prisma.OurStoryUncheckedUpdateManyWithoutImage5NestedInput;
+  contactInfos?: Prisma.ContactInfoUncheckedUpdateManyWithoutBackgroundImageNestedInput;
+  ourStories?: Prisma.OurStoryUncheckedUpdateManyWithoutFileInstancesNestedInput;
+  missionVisionImage1?: Prisma.MissionVisionUncheckedUpdateManyWithoutImage1NestedInput;
+  missionVisionImage2?: Prisma.MissionVisionUncheckedUpdateManyWithoutImage2NestedInput;
+  missionVisionImage3?: Prisma.MissionVisionUncheckedUpdateManyWithoutImage3NestedInput;
+  missionVisions?: Prisma.MissionVisionUncheckedUpdateManyWithoutFileInstancesNestedInput;
+  whatSetsUsApartImage1?: Prisma.WhatSetsUsApartUncheckedUpdateManyWithoutImage1NestedInput;
+  whatSetsUsApartImage2?: Prisma.WhatSetsUsApartUncheckedUpdateManyWithoutImage2NestedInput;
+  whatSetsUsAparts?: Prisma.WhatSetsUsApartUncheckedUpdateManyWithoutFileInstancesNestedInput;
 };
 
 export type FileInstanceUpsertWithoutWhyUsImage2Input = {
@@ -2484,6 +3934,20 @@ export type FileInstanceUpdateWithoutWhyUsImage2Input = {
   whyUsImage1?: Prisma.WhyUsUpdateManyWithoutImage1NestedInput;
   whyUsImage3?: Prisma.WhyUsUpdateManyWithoutImage3NestedInput;
   ourTeamImages?: Prisma.OurTeamUpdateManyWithoutImageNestedInput;
+  ourStoryImage1?: Prisma.OurStoryUpdateManyWithoutImage1NestedInput;
+  ourStoryImage2?: Prisma.OurStoryUpdateManyWithoutImage2NestedInput;
+  ourStoryImage3?: Prisma.OurStoryUpdateManyWithoutImage3NestedInput;
+  ourStoryImage4?: Prisma.OurStoryUpdateManyWithoutImage4NestedInput;
+  ourStoryImage5?: Prisma.OurStoryUpdateManyWithoutImage5NestedInput;
+  contactInfos?: Prisma.ContactInfoUpdateManyWithoutBackgroundImageNestedInput;
+  ourStories?: Prisma.OurStoryUpdateManyWithoutFileInstancesNestedInput;
+  missionVisionImage1?: Prisma.MissionVisionUpdateManyWithoutImage1NestedInput;
+  missionVisionImage2?: Prisma.MissionVisionUpdateManyWithoutImage2NestedInput;
+  missionVisionImage3?: Prisma.MissionVisionUpdateManyWithoutImage3NestedInput;
+  missionVisions?: Prisma.MissionVisionUpdateManyWithoutFileInstancesNestedInput;
+  whatSetsUsApartImage1?: Prisma.WhatSetsUsApartUpdateManyWithoutImage1NestedInput;
+  whatSetsUsApartImage2?: Prisma.WhatSetsUsApartUpdateManyWithoutImage2NestedInput;
+  whatSetsUsAparts?: Prisma.WhatSetsUsApartUpdateManyWithoutFileInstancesNestedInput;
 };
 
 export type FileInstanceUncheckedUpdateWithoutWhyUsImage2Input = {
@@ -2511,6 +3975,20 @@ export type FileInstanceUncheckedUpdateWithoutWhyUsImage2Input = {
   whyUsImage1?: Prisma.WhyUsUncheckedUpdateManyWithoutImage1NestedInput;
   whyUsImage3?: Prisma.WhyUsUncheckedUpdateManyWithoutImage3NestedInput;
   ourTeamImages?: Prisma.OurTeamUncheckedUpdateManyWithoutImageNestedInput;
+  ourStoryImage1?: Prisma.OurStoryUncheckedUpdateManyWithoutImage1NestedInput;
+  ourStoryImage2?: Prisma.OurStoryUncheckedUpdateManyWithoutImage2NestedInput;
+  ourStoryImage3?: Prisma.OurStoryUncheckedUpdateManyWithoutImage3NestedInput;
+  ourStoryImage4?: Prisma.OurStoryUncheckedUpdateManyWithoutImage4NestedInput;
+  ourStoryImage5?: Prisma.OurStoryUncheckedUpdateManyWithoutImage5NestedInput;
+  contactInfos?: Prisma.ContactInfoUncheckedUpdateManyWithoutBackgroundImageNestedInput;
+  ourStories?: Prisma.OurStoryUncheckedUpdateManyWithoutFileInstancesNestedInput;
+  missionVisionImage1?: Prisma.MissionVisionUncheckedUpdateManyWithoutImage1NestedInput;
+  missionVisionImage2?: Prisma.MissionVisionUncheckedUpdateManyWithoutImage2NestedInput;
+  missionVisionImage3?: Prisma.MissionVisionUncheckedUpdateManyWithoutImage3NestedInput;
+  missionVisions?: Prisma.MissionVisionUncheckedUpdateManyWithoutFileInstancesNestedInput;
+  whatSetsUsApartImage1?: Prisma.WhatSetsUsApartUncheckedUpdateManyWithoutImage1NestedInput;
+  whatSetsUsApartImage2?: Prisma.WhatSetsUsApartUncheckedUpdateManyWithoutImage2NestedInput;
+  whatSetsUsAparts?: Prisma.WhatSetsUsApartUncheckedUpdateManyWithoutFileInstancesNestedInput;
 };
 
 export type FileInstanceUpsertWithoutWhyUsImage3Input = {
@@ -2558,6 +4036,20 @@ export type FileInstanceUpdateWithoutWhyUsImage3Input = {
   whyUsImage1?: Prisma.WhyUsUpdateManyWithoutImage1NestedInput;
   whyUsImage2?: Prisma.WhyUsUpdateManyWithoutImage2NestedInput;
   ourTeamImages?: Prisma.OurTeamUpdateManyWithoutImageNestedInput;
+  ourStoryImage1?: Prisma.OurStoryUpdateManyWithoutImage1NestedInput;
+  ourStoryImage2?: Prisma.OurStoryUpdateManyWithoutImage2NestedInput;
+  ourStoryImage3?: Prisma.OurStoryUpdateManyWithoutImage3NestedInput;
+  ourStoryImage4?: Prisma.OurStoryUpdateManyWithoutImage4NestedInput;
+  ourStoryImage5?: Prisma.OurStoryUpdateManyWithoutImage5NestedInput;
+  contactInfos?: Prisma.ContactInfoUpdateManyWithoutBackgroundImageNestedInput;
+  ourStories?: Prisma.OurStoryUpdateManyWithoutFileInstancesNestedInput;
+  missionVisionImage1?: Prisma.MissionVisionUpdateManyWithoutImage1NestedInput;
+  missionVisionImage2?: Prisma.MissionVisionUpdateManyWithoutImage2NestedInput;
+  missionVisionImage3?: Prisma.MissionVisionUpdateManyWithoutImage3NestedInput;
+  missionVisions?: Prisma.MissionVisionUpdateManyWithoutFileInstancesNestedInput;
+  whatSetsUsApartImage1?: Prisma.WhatSetsUsApartUpdateManyWithoutImage1NestedInput;
+  whatSetsUsApartImage2?: Prisma.WhatSetsUsApartUpdateManyWithoutImage2NestedInput;
+  whatSetsUsAparts?: Prisma.WhatSetsUsApartUpdateManyWithoutFileInstancesNestedInput;
 };
 
 export type FileInstanceUncheckedUpdateWithoutWhyUsImage3Input = {
@@ -2585,6 +4077,2296 @@ export type FileInstanceUncheckedUpdateWithoutWhyUsImage3Input = {
   whyUsImage1?: Prisma.WhyUsUncheckedUpdateManyWithoutImage1NestedInput;
   whyUsImage2?: Prisma.WhyUsUncheckedUpdateManyWithoutImage2NestedInput;
   ourTeamImages?: Prisma.OurTeamUncheckedUpdateManyWithoutImageNestedInput;
+  ourStoryImage1?: Prisma.OurStoryUncheckedUpdateManyWithoutImage1NestedInput;
+  ourStoryImage2?: Prisma.OurStoryUncheckedUpdateManyWithoutImage2NestedInput;
+  ourStoryImage3?: Prisma.OurStoryUncheckedUpdateManyWithoutImage3NestedInput;
+  ourStoryImage4?: Prisma.OurStoryUncheckedUpdateManyWithoutImage4NestedInput;
+  ourStoryImage5?: Prisma.OurStoryUncheckedUpdateManyWithoutImage5NestedInput;
+  contactInfos?: Prisma.ContactInfoUncheckedUpdateManyWithoutBackgroundImageNestedInput;
+  ourStories?: Prisma.OurStoryUncheckedUpdateManyWithoutFileInstancesNestedInput;
+  missionVisionImage1?: Prisma.MissionVisionUncheckedUpdateManyWithoutImage1NestedInput;
+  missionVisionImage2?: Prisma.MissionVisionUncheckedUpdateManyWithoutImage2NestedInput;
+  missionVisionImage3?: Prisma.MissionVisionUncheckedUpdateManyWithoutImage3NestedInput;
+  missionVisions?: Prisma.MissionVisionUncheckedUpdateManyWithoutFileInstancesNestedInput;
+  whatSetsUsApartImage1?: Prisma.WhatSetsUsApartUncheckedUpdateManyWithoutImage1NestedInput;
+  whatSetsUsApartImage2?: Prisma.WhatSetsUsApartUncheckedUpdateManyWithoutImage2NestedInput;
+  whatSetsUsAparts?: Prisma.WhatSetsUsApartUncheckedUpdateManyWithoutFileInstancesNestedInput;
+};
+
+export type FileInstanceCreateWithoutOurStoryImage1Input = {
+  id?: string;
+  filename: string;
+  originalFilename: string;
+  path: string;
+  url: string;
+  fileType?: $Enums.FileType;
+  mimeType: string;
+  size: number;
+  createdAt?: Date | string;
+  updatedAt?: Date | string;
+  pageBannersBackground?: Prisma.PageBannerCreateNestedManyWithoutBackgroundInput;
+  blog?: Prisma.BlogCreateNestedManyWithoutFileInstancesInput;
+  boatImages?: Prisma.BoatImageCreateNestedManyWithoutFileInput;
+  contactTopImages?: Prisma.ContactPageCreateNestedOneWithoutContactTopImageInput;
+  contactBottomImages?: Prisma.ContactPageCreateNestedOneWithoutContactBottomImageInput;
+  featuredBrandLogos?: Prisma.FeaturedBrandsCreateNestedManyWithoutFeaturedbrandLogoInput;
+  blogs?: Prisma.BlogCreateNestedManyWithoutBlogImageInput;
+  settings?: Prisma.SettingCreateNestedManyWithoutLogoInput;
+  packageBanners?: Prisma.packageBannerCreateNestedManyWithoutPackageBannerInput;
+  aiSearchBanners?: Prisma.AiSearchBannerCreateNestedManyWithoutAiSearchBannerInput;
+  categoryImages?: Prisma.CategoryCreateNestedManyWithoutImageInput;
+  whyUsImage1?: Prisma.WhyUsCreateNestedManyWithoutImage1Input;
+  whyUsImage2?: Prisma.WhyUsCreateNestedManyWithoutImage2Input;
+  whyUsImage3?: Prisma.WhyUsCreateNestedManyWithoutImage3Input;
+  ourTeamImages?: Prisma.OurTeamCreateNestedManyWithoutImageInput;
+  ourStoryImage2?: Prisma.OurStoryCreateNestedManyWithoutImage2Input;
+  ourStoryImage3?: Prisma.OurStoryCreateNestedManyWithoutImage3Input;
+  ourStoryImage4?: Prisma.OurStoryCreateNestedManyWithoutImage4Input;
+  ourStoryImage5?: Prisma.OurStoryCreateNestedManyWithoutImage5Input;
+  contactInfos?: Prisma.ContactInfoCreateNestedManyWithoutBackgroundImageInput;
+  ourStories?: Prisma.OurStoryCreateNestedManyWithoutFileInstancesInput;
+  missionVisionImage1?: Prisma.MissionVisionCreateNestedManyWithoutImage1Input;
+  missionVisionImage2?: Prisma.MissionVisionCreateNestedManyWithoutImage2Input;
+  missionVisionImage3?: Prisma.MissionVisionCreateNestedManyWithoutImage3Input;
+  missionVisions?: Prisma.MissionVisionCreateNestedManyWithoutFileInstancesInput;
+  whatSetsUsApartImage1?: Prisma.WhatSetsUsApartCreateNestedManyWithoutImage1Input;
+  whatSetsUsApartImage2?: Prisma.WhatSetsUsApartCreateNestedManyWithoutImage2Input;
+  whatSetsUsAparts?: Prisma.WhatSetsUsApartCreateNestedManyWithoutFileInstancesInput;
+};
+
+export type FileInstanceUncheckedCreateWithoutOurStoryImage1Input = {
+  id?: string;
+  filename: string;
+  originalFilename: string;
+  path: string;
+  url: string;
+  fileType?: $Enums.FileType;
+  mimeType: string;
+  size: number;
+  createdAt?: Date | string;
+  updatedAt?: Date | string;
+  pageBannersBackground?: Prisma.PageBannerUncheckedCreateNestedManyWithoutBackgroundInput;
+  blog?: Prisma.BlogUncheckedCreateNestedManyWithoutFileInstancesInput;
+  boatImages?: Prisma.BoatImageUncheckedCreateNestedManyWithoutFileInput;
+  contactTopImages?: Prisma.ContactPageUncheckedCreateNestedOneWithoutContactTopImageInput;
+  contactBottomImages?: Prisma.ContactPageUncheckedCreateNestedOneWithoutContactBottomImageInput;
+  featuredBrandLogos?: Prisma.FeaturedBrandsUncheckedCreateNestedManyWithoutFeaturedbrandLogoInput;
+  blogs?: Prisma.BlogUncheckedCreateNestedManyWithoutBlogImageInput;
+  settings?: Prisma.SettingUncheckedCreateNestedManyWithoutLogoInput;
+  packageBanners?: Prisma.packageBannerUncheckedCreateNestedManyWithoutPackageBannerInput;
+  aiSearchBanners?: Prisma.AiSearchBannerUncheckedCreateNestedManyWithoutAiSearchBannerInput;
+  categoryImages?: Prisma.CategoryUncheckedCreateNestedManyWithoutImageInput;
+  whyUsImage1?: Prisma.WhyUsUncheckedCreateNestedManyWithoutImage1Input;
+  whyUsImage2?: Prisma.WhyUsUncheckedCreateNestedManyWithoutImage2Input;
+  whyUsImage3?: Prisma.WhyUsUncheckedCreateNestedManyWithoutImage3Input;
+  ourTeamImages?: Prisma.OurTeamUncheckedCreateNestedManyWithoutImageInput;
+  ourStoryImage2?: Prisma.OurStoryUncheckedCreateNestedManyWithoutImage2Input;
+  ourStoryImage3?: Prisma.OurStoryUncheckedCreateNestedManyWithoutImage3Input;
+  ourStoryImage4?: Prisma.OurStoryUncheckedCreateNestedManyWithoutImage4Input;
+  ourStoryImage5?: Prisma.OurStoryUncheckedCreateNestedManyWithoutImage5Input;
+  contactInfos?: Prisma.ContactInfoUncheckedCreateNestedManyWithoutBackgroundImageInput;
+  ourStories?: Prisma.OurStoryUncheckedCreateNestedManyWithoutFileInstancesInput;
+  missionVisionImage1?: Prisma.MissionVisionUncheckedCreateNestedManyWithoutImage1Input;
+  missionVisionImage2?: Prisma.MissionVisionUncheckedCreateNestedManyWithoutImage2Input;
+  missionVisionImage3?: Prisma.MissionVisionUncheckedCreateNestedManyWithoutImage3Input;
+  missionVisions?: Prisma.MissionVisionUncheckedCreateNestedManyWithoutFileInstancesInput;
+  whatSetsUsApartImage1?: Prisma.WhatSetsUsApartUncheckedCreateNestedManyWithoutImage1Input;
+  whatSetsUsApartImage2?: Prisma.WhatSetsUsApartUncheckedCreateNestedManyWithoutImage2Input;
+  whatSetsUsAparts?: Prisma.WhatSetsUsApartUncheckedCreateNestedManyWithoutFileInstancesInput;
+};
+
+export type FileInstanceCreateOrConnectWithoutOurStoryImage1Input = {
+  where: Prisma.FileInstanceWhereUniqueInput;
+  create: Prisma.XOR<
+    Prisma.FileInstanceCreateWithoutOurStoryImage1Input,
+    Prisma.FileInstanceUncheckedCreateWithoutOurStoryImage1Input
+  >;
+};
+
+export type FileInstanceCreateWithoutOurStoryImage2Input = {
+  id?: string;
+  filename: string;
+  originalFilename: string;
+  path: string;
+  url: string;
+  fileType?: $Enums.FileType;
+  mimeType: string;
+  size: number;
+  createdAt?: Date | string;
+  updatedAt?: Date | string;
+  pageBannersBackground?: Prisma.PageBannerCreateNestedManyWithoutBackgroundInput;
+  blog?: Prisma.BlogCreateNestedManyWithoutFileInstancesInput;
+  boatImages?: Prisma.BoatImageCreateNestedManyWithoutFileInput;
+  contactTopImages?: Prisma.ContactPageCreateNestedOneWithoutContactTopImageInput;
+  contactBottomImages?: Prisma.ContactPageCreateNestedOneWithoutContactBottomImageInput;
+  featuredBrandLogos?: Prisma.FeaturedBrandsCreateNestedManyWithoutFeaturedbrandLogoInput;
+  blogs?: Prisma.BlogCreateNestedManyWithoutBlogImageInput;
+  settings?: Prisma.SettingCreateNestedManyWithoutLogoInput;
+  packageBanners?: Prisma.packageBannerCreateNestedManyWithoutPackageBannerInput;
+  aiSearchBanners?: Prisma.AiSearchBannerCreateNestedManyWithoutAiSearchBannerInput;
+  categoryImages?: Prisma.CategoryCreateNestedManyWithoutImageInput;
+  whyUsImage1?: Prisma.WhyUsCreateNestedManyWithoutImage1Input;
+  whyUsImage2?: Prisma.WhyUsCreateNestedManyWithoutImage2Input;
+  whyUsImage3?: Prisma.WhyUsCreateNestedManyWithoutImage3Input;
+  ourTeamImages?: Prisma.OurTeamCreateNestedManyWithoutImageInput;
+  ourStoryImage1?: Prisma.OurStoryCreateNestedManyWithoutImage1Input;
+  ourStoryImage3?: Prisma.OurStoryCreateNestedManyWithoutImage3Input;
+  ourStoryImage4?: Prisma.OurStoryCreateNestedManyWithoutImage4Input;
+  ourStoryImage5?: Prisma.OurStoryCreateNestedManyWithoutImage5Input;
+  contactInfos?: Prisma.ContactInfoCreateNestedManyWithoutBackgroundImageInput;
+  ourStories?: Prisma.OurStoryCreateNestedManyWithoutFileInstancesInput;
+  missionVisionImage1?: Prisma.MissionVisionCreateNestedManyWithoutImage1Input;
+  missionVisionImage2?: Prisma.MissionVisionCreateNestedManyWithoutImage2Input;
+  missionVisionImage3?: Prisma.MissionVisionCreateNestedManyWithoutImage3Input;
+  missionVisions?: Prisma.MissionVisionCreateNestedManyWithoutFileInstancesInput;
+  whatSetsUsApartImage1?: Prisma.WhatSetsUsApartCreateNestedManyWithoutImage1Input;
+  whatSetsUsApartImage2?: Prisma.WhatSetsUsApartCreateNestedManyWithoutImage2Input;
+  whatSetsUsAparts?: Prisma.WhatSetsUsApartCreateNestedManyWithoutFileInstancesInput;
+};
+
+export type FileInstanceUncheckedCreateWithoutOurStoryImage2Input = {
+  id?: string;
+  filename: string;
+  originalFilename: string;
+  path: string;
+  url: string;
+  fileType?: $Enums.FileType;
+  mimeType: string;
+  size: number;
+  createdAt?: Date | string;
+  updatedAt?: Date | string;
+  pageBannersBackground?: Prisma.PageBannerUncheckedCreateNestedManyWithoutBackgroundInput;
+  blog?: Prisma.BlogUncheckedCreateNestedManyWithoutFileInstancesInput;
+  boatImages?: Prisma.BoatImageUncheckedCreateNestedManyWithoutFileInput;
+  contactTopImages?: Prisma.ContactPageUncheckedCreateNestedOneWithoutContactTopImageInput;
+  contactBottomImages?: Prisma.ContactPageUncheckedCreateNestedOneWithoutContactBottomImageInput;
+  featuredBrandLogos?: Prisma.FeaturedBrandsUncheckedCreateNestedManyWithoutFeaturedbrandLogoInput;
+  blogs?: Prisma.BlogUncheckedCreateNestedManyWithoutBlogImageInput;
+  settings?: Prisma.SettingUncheckedCreateNestedManyWithoutLogoInput;
+  packageBanners?: Prisma.packageBannerUncheckedCreateNestedManyWithoutPackageBannerInput;
+  aiSearchBanners?: Prisma.AiSearchBannerUncheckedCreateNestedManyWithoutAiSearchBannerInput;
+  categoryImages?: Prisma.CategoryUncheckedCreateNestedManyWithoutImageInput;
+  whyUsImage1?: Prisma.WhyUsUncheckedCreateNestedManyWithoutImage1Input;
+  whyUsImage2?: Prisma.WhyUsUncheckedCreateNestedManyWithoutImage2Input;
+  whyUsImage3?: Prisma.WhyUsUncheckedCreateNestedManyWithoutImage3Input;
+  ourTeamImages?: Prisma.OurTeamUncheckedCreateNestedManyWithoutImageInput;
+  ourStoryImage1?: Prisma.OurStoryUncheckedCreateNestedManyWithoutImage1Input;
+  ourStoryImage3?: Prisma.OurStoryUncheckedCreateNestedManyWithoutImage3Input;
+  ourStoryImage4?: Prisma.OurStoryUncheckedCreateNestedManyWithoutImage4Input;
+  ourStoryImage5?: Prisma.OurStoryUncheckedCreateNestedManyWithoutImage5Input;
+  contactInfos?: Prisma.ContactInfoUncheckedCreateNestedManyWithoutBackgroundImageInput;
+  ourStories?: Prisma.OurStoryUncheckedCreateNestedManyWithoutFileInstancesInput;
+  missionVisionImage1?: Prisma.MissionVisionUncheckedCreateNestedManyWithoutImage1Input;
+  missionVisionImage2?: Prisma.MissionVisionUncheckedCreateNestedManyWithoutImage2Input;
+  missionVisionImage3?: Prisma.MissionVisionUncheckedCreateNestedManyWithoutImage3Input;
+  missionVisions?: Prisma.MissionVisionUncheckedCreateNestedManyWithoutFileInstancesInput;
+  whatSetsUsApartImage1?: Prisma.WhatSetsUsApartUncheckedCreateNestedManyWithoutImage1Input;
+  whatSetsUsApartImage2?: Prisma.WhatSetsUsApartUncheckedCreateNestedManyWithoutImage2Input;
+  whatSetsUsAparts?: Prisma.WhatSetsUsApartUncheckedCreateNestedManyWithoutFileInstancesInput;
+};
+
+export type FileInstanceCreateOrConnectWithoutOurStoryImage2Input = {
+  where: Prisma.FileInstanceWhereUniqueInput;
+  create: Prisma.XOR<
+    Prisma.FileInstanceCreateWithoutOurStoryImage2Input,
+    Prisma.FileInstanceUncheckedCreateWithoutOurStoryImage2Input
+  >;
+};
+
+export type FileInstanceCreateWithoutOurStoryImage3Input = {
+  id?: string;
+  filename: string;
+  originalFilename: string;
+  path: string;
+  url: string;
+  fileType?: $Enums.FileType;
+  mimeType: string;
+  size: number;
+  createdAt?: Date | string;
+  updatedAt?: Date | string;
+  pageBannersBackground?: Prisma.PageBannerCreateNestedManyWithoutBackgroundInput;
+  blog?: Prisma.BlogCreateNestedManyWithoutFileInstancesInput;
+  boatImages?: Prisma.BoatImageCreateNestedManyWithoutFileInput;
+  contactTopImages?: Prisma.ContactPageCreateNestedOneWithoutContactTopImageInput;
+  contactBottomImages?: Prisma.ContactPageCreateNestedOneWithoutContactBottomImageInput;
+  featuredBrandLogos?: Prisma.FeaturedBrandsCreateNestedManyWithoutFeaturedbrandLogoInput;
+  blogs?: Prisma.BlogCreateNestedManyWithoutBlogImageInput;
+  settings?: Prisma.SettingCreateNestedManyWithoutLogoInput;
+  packageBanners?: Prisma.packageBannerCreateNestedManyWithoutPackageBannerInput;
+  aiSearchBanners?: Prisma.AiSearchBannerCreateNestedManyWithoutAiSearchBannerInput;
+  categoryImages?: Prisma.CategoryCreateNestedManyWithoutImageInput;
+  whyUsImage1?: Prisma.WhyUsCreateNestedManyWithoutImage1Input;
+  whyUsImage2?: Prisma.WhyUsCreateNestedManyWithoutImage2Input;
+  whyUsImage3?: Prisma.WhyUsCreateNestedManyWithoutImage3Input;
+  ourTeamImages?: Prisma.OurTeamCreateNestedManyWithoutImageInput;
+  ourStoryImage1?: Prisma.OurStoryCreateNestedManyWithoutImage1Input;
+  ourStoryImage2?: Prisma.OurStoryCreateNestedManyWithoutImage2Input;
+  ourStoryImage4?: Prisma.OurStoryCreateNestedManyWithoutImage4Input;
+  ourStoryImage5?: Prisma.OurStoryCreateNestedManyWithoutImage5Input;
+  contactInfos?: Prisma.ContactInfoCreateNestedManyWithoutBackgroundImageInput;
+  ourStories?: Prisma.OurStoryCreateNestedManyWithoutFileInstancesInput;
+  missionVisionImage1?: Prisma.MissionVisionCreateNestedManyWithoutImage1Input;
+  missionVisionImage2?: Prisma.MissionVisionCreateNestedManyWithoutImage2Input;
+  missionVisionImage3?: Prisma.MissionVisionCreateNestedManyWithoutImage3Input;
+  missionVisions?: Prisma.MissionVisionCreateNestedManyWithoutFileInstancesInput;
+  whatSetsUsApartImage1?: Prisma.WhatSetsUsApartCreateNestedManyWithoutImage1Input;
+  whatSetsUsApartImage2?: Prisma.WhatSetsUsApartCreateNestedManyWithoutImage2Input;
+  whatSetsUsAparts?: Prisma.WhatSetsUsApartCreateNestedManyWithoutFileInstancesInput;
+};
+
+export type FileInstanceUncheckedCreateWithoutOurStoryImage3Input = {
+  id?: string;
+  filename: string;
+  originalFilename: string;
+  path: string;
+  url: string;
+  fileType?: $Enums.FileType;
+  mimeType: string;
+  size: number;
+  createdAt?: Date | string;
+  updatedAt?: Date | string;
+  pageBannersBackground?: Prisma.PageBannerUncheckedCreateNestedManyWithoutBackgroundInput;
+  blog?: Prisma.BlogUncheckedCreateNestedManyWithoutFileInstancesInput;
+  boatImages?: Prisma.BoatImageUncheckedCreateNestedManyWithoutFileInput;
+  contactTopImages?: Prisma.ContactPageUncheckedCreateNestedOneWithoutContactTopImageInput;
+  contactBottomImages?: Prisma.ContactPageUncheckedCreateNestedOneWithoutContactBottomImageInput;
+  featuredBrandLogos?: Prisma.FeaturedBrandsUncheckedCreateNestedManyWithoutFeaturedbrandLogoInput;
+  blogs?: Prisma.BlogUncheckedCreateNestedManyWithoutBlogImageInput;
+  settings?: Prisma.SettingUncheckedCreateNestedManyWithoutLogoInput;
+  packageBanners?: Prisma.packageBannerUncheckedCreateNestedManyWithoutPackageBannerInput;
+  aiSearchBanners?: Prisma.AiSearchBannerUncheckedCreateNestedManyWithoutAiSearchBannerInput;
+  categoryImages?: Prisma.CategoryUncheckedCreateNestedManyWithoutImageInput;
+  whyUsImage1?: Prisma.WhyUsUncheckedCreateNestedManyWithoutImage1Input;
+  whyUsImage2?: Prisma.WhyUsUncheckedCreateNestedManyWithoutImage2Input;
+  whyUsImage3?: Prisma.WhyUsUncheckedCreateNestedManyWithoutImage3Input;
+  ourTeamImages?: Prisma.OurTeamUncheckedCreateNestedManyWithoutImageInput;
+  ourStoryImage1?: Prisma.OurStoryUncheckedCreateNestedManyWithoutImage1Input;
+  ourStoryImage2?: Prisma.OurStoryUncheckedCreateNestedManyWithoutImage2Input;
+  ourStoryImage4?: Prisma.OurStoryUncheckedCreateNestedManyWithoutImage4Input;
+  ourStoryImage5?: Prisma.OurStoryUncheckedCreateNestedManyWithoutImage5Input;
+  contactInfos?: Prisma.ContactInfoUncheckedCreateNestedManyWithoutBackgroundImageInput;
+  ourStories?: Prisma.OurStoryUncheckedCreateNestedManyWithoutFileInstancesInput;
+  missionVisionImage1?: Prisma.MissionVisionUncheckedCreateNestedManyWithoutImage1Input;
+  missionVisionImage2?: Prisma.MissionVisionUncheckedCreateNestedManyWithoutImage2Input;
+  missionVisionImage3?: Prisma.MissionVisionUncheckedCreateNestedManyWithoutImage3Input;
+  missionVisions?: Prisma.MissionVisionUncheckedCreateNestedManyWithoutFileInstancesInput;
+  whatSetsUsApartImage1?: Prisma.WhatSetsUsApartUncheckedCreateNestedManyWithoutImage1Input;
+  whatSetsUsApartImage2?: Prisma.WhatSetsUsApartUncheckedCreateNestedManyWithoutImage2Input;
+  whatSetsUsAparts?: Prisma.WhatSetsUsApartUncheckedCreateNestedManyWithoutFileInstancesInput;
+};
+
+export type FileInstanceCreateOrConnectWithoutOurStoryImage3Input = {
+  where: Prisma.FileInstanceWhereUniqueInput;
+  create: Prisma.XOR<
+    Prisma.FileInstanceCreateWithoutOurStoryImage3Input,
+    Prisma.FileInstanceUncheckedCreateWithoutOurStoryImage3Input
+  >;
+};
+
+export type FileInstanceCreateWithoutOurStoryImage4Input = {
+  id?: string;
+  filename: string;
+  originalFilename: string;
+  path: string;
+  url: string;
+  fileType?: $Enums.FileType;
+  mimeType: string;
+  size: number;
+  createdAt?: Date | string;
+  updatedAt?: Date | string;
+  pageBannersBackground?: Prisma.PageBannerCreateNestedManyWithoutBackgroundInput;
+  blog?: Prisma.BlogCreateNestedManyWithoutFileInstancesInput;
+  boatImages?: Prisma.BoatImageCreateNestedManyWithoutFileInput;
+  contactTopImages?: Prisma.ContactPageCreateNestedOneWithoutContactTopImageInput;
+  contactBottomImages?: Prisma.ContactPageCreateNestedOneWithoutContactBottomImageInput;
+  featuredBrandLogos?: Prisma.FeaturedBrandsCreateNestedManyWithoutFeaturedbrandLogoInput;
+  blogs?: Prisma.BlogCreateNestedManyWithoutBlogImageInput;
+  settings?: Prisma.SettingCreateNestedManyWithoutLogoInput;
+  packageBanners?: Prisma.packageBannerCreateNestedManyWithoutPackageBannerInput;
+  aiSearchBanners?: Prisma.AiSearchBannerCreateNestedManyWithoutAiSearchBannerInput;
+  categoryImages?: Prisma.CategoryCreateNestedManyWithoutImageInput;
+  whyUsImage1?: Prisma.WhyUsCreateNestedManyWithoutImage1Input;
+  whyUsImage2?: Prisma.WhyUsCreateNestedManyWithoutImage2Input;
+  whyUsImage3?: Prisma.WhyUsCreateNestedManyWithoutImage3Input;
+  ourTeamImages?: Prisma.OurTeamCreateNestedManyWithoutImageInput;
+  ourStoryImage1?: Prisma.OurStoryCreateNestedManyWithoutImage1Input;
+  ourStoryImage2?: Prisma.OurStoryCreateNestedManyWithoutImage2Input;
+  ourStoryImage3?: Prisma.OurStoryCreateNestedManyWithoutImage3Input;
+  ourStoryImage5?: Prisma.OurStoryCreateNestedManyWithoutImage5Input;
+  contactInfos?: Prisma.ContactInfoCreateNestedManyWithoutBackgroundImageInput;
+  ourStories?: Prisma.OurStoryCreateNestedManyWithoutFileInstancesInput;
+  missionVisionImage1?: Prisma.MissionVisionCreateNestedManyWithoutImage1Input;
+  missionVisionImage2?: Prisma.MissionVisionCreateNestedManyWithoutImage2Input;
+  missionVisionImage3?: Prisma.MissionVisionCreateNestedManyWithoutImage3Input;
+  missionVisions?: Prisma.MissionVisionCreateNestedManyWithoutFileInstancesInput;
+  whatSetsUsApartImage1?: Prisma.WhatSetsUsApartCreateNestedManyWithoutImage1Input;
+  whatSetsUsApartImage2?: Prisma.WhatSetsUsApartCreateNestedManyWithoutImage2Input;
+  whatSetsUsAparts?: Prisma.WhatSetsUsApartCreateNestedManyWithoutFileInstancesInput;
+};
+
+export type FileInstanceUncheckedCreateWithoutOurStoryImage4Input = {
+  id?: string;
+  filename: string;
+  originalFilename: string;
+  path: string;
+  url: string;
+  fileType?: $Enums.FileType;
+  mimeType: string;
+  size: number;
+  createdAt?: Date | string;
+  updatedAt?: Date | string;
+  pageBannersBackground?: Prisma.PageBannerUncheckedCreateNestedManyWithoutBackgroundInput;
+  blog?: Prisma.BlogUncheckedCreateNestedManyWithoutFileInstancesInput;
+  boatImages?: Prisma.BoatImageUncheckedCreateNestedManyWithoutFileInput;
+  contactTopImages?: Prisma.ContactPageUncheckedCreateNestedOneWithoutContactTopImageInput;
+  contactBottomImages?: Prisma.ContactPageUncheckedCreateNestedOneWithoutContactBottomImageInput;
+  featuredBrandLogos?: Prisma.FeaturedBrandsUncheckedCreateNestedManyWithoutFeaturedbrandLogoInput;
+  blogs?: Prisma.BlogUncheckedCreateNestedManyWithoutBlogImageInput;
+  settings?: Prisma.SettingUncheckedCreateNestedManyWithoutLogoInput;
+  packageBanners?: Prisma.packageBannerUncheckedCreateNestedManyWithoutPackageBannerInput;
+  aiSearchBanners?: Prisma.AiSearchBannerUncheckedCreateNestedManyWithoutAiSearchBannerInput;
+  categoryImages?: Prisma.CategoryUncheckedCreateNestedManyWithoutImageInput;
+  whyUsImage1?: Prisma.WhyUsUncheckedCreateNestedManyWithoutImage1Input;
+  whyUsImage2?: Prisma.WhyUsUncheckedCreateNestedManyWithoutImage2Input;
+  whyUsImage3?: Prisma.WhyUsUncheckedCreateNestedManyWithoutImage3Input;
+  ourTeamImages?: Prisma.OurTeamUncheckedCreateNestedManyWithoutImageInput;
+  ourStoryImage1?: Prisma.OurStoryUncheckedCreateNestedManyWithoutImage1Input;
+  ourStoryImage2?: Prisma.OurStoryUncheckedCreateNestedManyWithoutImage2Input;
+  ourStoryImage3?: Prisma.OurStoryUncheckedCreateNestedManyWithoutImage3Input;
+  ourStoryImage5?: Prisma.OurStoryUncheckedCreateNestedManyWithoutImage5Input;
+  contactInfos?: Prisma.ContactInfoUncheckedCreateNestedManyWithoutBackgroundImageInput;
+  ourStories?: Prisma.OurStoryUncheckedCreateNestedManyWithoutFileInstancesInput;
+  missionVisionImage1?: Prisma.MissionVisionUncheckedCreateNestedManyWithoutImage1Input;
+  missionVisionImage2?: Prisma.MissionVisionUncheckedCreateNestedManyWithoutImage2Input;
+  missionVisionImage3?: Prisma.MissionVisionUncheckedCreateNestedManyWithoutImage3Input;
+  missionVisions?: Prisma.MissionVisionUncheckedCreateNestedManyWithoutFileInstancesInput;
+  whatSetsUsApartImage1?: Prisma.WhatSetsUsApartUncheckedCreateNestedManyWithoutImage1Input;
+  whatSetsUsApartImage2?: Prisma.WhatSetsUsApartUncheckedCreateNestedManyWithoutImage2Input;
+  whatSetsUsAparts?: Prisma.WhatSetsUsApartUncheckedCreateNestedManyWithoutFileInstancesInput;
+};
+
+export type FileInstanceCreateOrConnectWithoutOurStoryImage4Input = {
+  where: Prisma.FileInstanceWhereUniqueInput;
+  create: Prisma.XOR<
+    Prisma.FileInstanceCreateWithoutOurStoryImage4Input,
+    Prisma.FileInstanceUncheckedCreateWithoutOurStoryImage4Input
+  >;
+};
+
+export type FileInstanceCreateWithoutOurStoryImage5Input = {
+  id?: string;
+  filename: string;
+  originalFilename: string;
+  path: string;
+  url: string;
+  fileType?: $Enums.FileType;
+  mimeType: string;
+  size: number;
+  createdAt?: Date | string;
+  updatedAt?: Date | string;
+  pageBannersBackground?: Prisma.PageBannerCreateNestedManyWithoutBackgroundInput;
+  blog?: Prisma.BlogCreateNestedManyWithoutFileInstancesInput;
+  boatImages?: Prisma.BoatImageCreateNestedManyWithoutFileInput;
+  contactTopImages?: Prisma.ContactPageCreateNestedOneWithoutContactTopImageInput;
+  contactBottomImages?: Prisma.ContactPageCreateNestedOneWithoutContactBottomImageInput;
+  featuredBrandLogos?: Prisma.FeaturedBrandsCreateNestedManyWithoutFeaturedbrandLogoInput;
+  blogs?: Prisma.BlogCreateNestedManyWithoutBlogImageInput;
+  settings?: Prisma.SettingCreateNestedManyWithoutLogoInput;
+  packageBanners?: Prisma.packageBannerCreateNestedManyWithoutPackageBannerInput;
+  aiSearchBanners?: Prisma.AiSearchBannerCreateNestedManyWithoutAiSearchBannerInput;
+  categoryImages?: Prisma.CategoryCreateNestedManyWithoutImageInput;
+  whyUsImage1?: Prisma.WhyUsCreateNestedManyWithoutImage1Input;
+  whyUsImage2?: Prisma.WhyUsCreateNestedManyWithoutImage2Input;
+  whyUsImage3?: Prisma.WhyUsCreateNestedManyWithoutImage3Input;
+  ourTeamImages?: Prisma.OurTeamCreateNestedManyWithoutImageInput;
+  ourStoryImage1?: Prisma.OurStoryCreateNestedManyWithoutImage1Input;
+  ourStoryImage2?: Prisma.OurStoryCreateNestedManyWithoutImage2Input;
+  ourStoryImage3?: Prisma.OurStoryCreateNestedManyWithoutImage3Input;
+  ourStoryImage4?: Prisma.OurStoryCreateNestedManyWithoutImage4Input;
+  contactInfos?: Prisma.ContactInfoCreateNestedManyWithoutBackgroundImageInput;
+  ourStories?: Prisma.OurStoryCreateNestedManyWithoutFileInstancesInput;
+  missionVisionImage1?: Prisma.MissionVisionCreateNestedManyWithoutImage1Input;
+  missionVisionImage2?: Prisma.MissionVisionCreateNestedManyWithoutImage2Input;
+  missionVisionImage3?: Prisma.MissionVisionCreateNestedManyWithoutImage3Input;
+  missionVisions?: Prisma.MissionVisionCreateNestedManyWithoutFileInstancesInput;
+  whatSetsUsApartImage1?: Prisma.WhatSetsUsApartCreateNestedManyWithoutImage1Input;
+  whatSetsUsApartImage2?: Prisma.WhatSetsUsApartCreateNestedManyWithoutImage2Input;
+  whatSetsUsAparts?: Prisma.WhatSetsUsApartCreateNestedManyWithoutFileInstancesInput;
+};
+
+export type FileInstanceUncheckedCreateWithoutOurStoryImage5Input = {
+  id?: string;
+  filename: string;
+  originalFilename: string;
+  path: string;
+  url: string;
+  fileType?: $Enums.FileType;
+  mimeType: string;
+  size: number;
+  createdAt?: Date | string;
+  updatedAt?: Date | string;
+  pageBannersBackground?: Prisma.PageBannerUncheckedCreateNestedManyWithoutBackgroundInput;
+  blog?: Prisma.BlogUncheckedCreateNestedManyWithoutFileInstancesInput;
+  boatImages?: Prisma.BoatImageUncheckedCreateNestedManyWithoutFileInput;
+  contactTopImages?: Prisma.ContactPageUncheckedCreateNestedOneWithoutContactTopImageInput;
+  contactBottomImages?: Prisma.ContactPageUncheckedCreateNestedOneWithoutContactBottomImageInput;
+  featuredBrandLogos?: Prisma.FeaturedBrandsUncheckedCreateNestedManyWithoutFeaturedbrandLogoInput;
+  blogs?: Prisma.BlogUncheckedCreateNestedManyWithoutBlogImageInput;
+  settings?: Prisma.SettingUncheckedCreateNestedManyWithoutLogoInput;
+  packageBanners?: Prisma.packageBannerUncheckedCreateNestedManyWithoutPackageBannerInput;
+  aiSearchBanners?: Prisma.AiSearchBannerUncheckedCreateNestedManyWithoutAiSearchBannerInput;
+  categoryImages?: Prisma.CategoryUncheckedCreateNestedManyWithoutImageInput;
+  whyUsImage1?: Prisma.WhyUsUncheckedCreateNestedManyWithoutImage1Input;
+  whyUsImage2?: Prisma.WhyUsUncheckedCreateNestedManyWithoutImage2Input;
+  whyUsImage3?: Prisma.WhyUsUncheckedCreateNestedManyWithoutImage3Input;
+  ourTeamImages?: Prisma.OurTeamUncheckedCreateNestedManyWithoutImageInput;
+  ourStoryImage1?: Prisma.OurStoryUncheckedCreateNestedManyWithoutImage1Input;
+  ourStoryImage2?: Prisma.OurStoryUncheckedCreateNestedManyWithoutImage2Input;
+  ourStoryImage3?: Prisma.OurStoryUncheckedCreateNestedManyWithoutImage3Input;
+  ourStoryImage4?: Prisma.OurStoryUncheckedCreateNestedManyWithoutImage4Input;
+  contactInfos?: Prisma.ContactInfoUncheckedCreateNestedManyWithoutBackgroundImageInput;
+  ourStories?: Prisma.OurStoryUncheckedCreateNestedManyWithoutFileInstancesInput;
+  missionVisionImage1?: Prisma.MissionVisionUncheckedCreateNestedManyWithoutImage1Input;
+  missionVisionImage2?: Prisma.MissionVisionUncheckedCreateNestedManyWithoutImage2Input;
+  missionVisionImage3?: Prisma.MissionVisionUncheckedCreateNestedManyWithoutImage3Input;
+  missionVisions?: Prisma.MissionVisionUncheckedCreateNestedManyWithoutFileInstancesInput;
+  whatSetsUsApartImage1?: Prisma.WhatSetsUsApartUncheckedCreateNestedManyWithoutImage1Input;
+  whatSetsUsApartImage2?: Prisma.WhatSetsUsApartUncheckedCreateNestedManyWithoutImage2Input;
+  whatSetsUsAparts?: Prisma.WhatSetsUsApartUncheckedCreateNestedManyWithoutFileInstancesInput;
+};
+
+export type FileInstanceCreateOrConnectWithoutOurStoryImage5Input = {
+  where: Prisma.FileInstanceWhereUniqueInput;
+  create: Prisma.XOR<
+    Prisma.FileInstanceCreateWithoutOurStoryImage5Input,
+    Prisma.FileInstanceUncheckedCreateWithoutOurStoryImage5Input
+  >;
+};
+
+export type FileInstanceCreateWithoutOurStoriesInput = {
+  id?: string;
+  filename: string;
+  originalFilename: string;
+  path: string;
+  url: string;
+  fileType?: $Enums.FileType;
+  mimeType: string;
+  size: number;
+  createdAt?: Date | string;
+  updatedAt?: Date | string;
+  pageBannersBackground?: Prisma.PageBannerCreateNestedManyWithoutBackgroundInput;
+  blog?: Prisma.BlogCreateNestedManyWithoutFileInstancesInput;
+  boatImages?: Prisma.BoatImageCreateNestedManyWithoutFileInput;
+  contactTopImages?: Prisma.ContactPageCreateNestedOneWithoutContactTopImageInput;
+  contactBottomImages?: Prisma.ContactPageCreateNestedOneWithoutContactBottomImageInput;
+  featuredBrandLogos?: Prisma.FeaturedBrandsCreateNestedManyWithoutFeaturedbrandLogoInput;
+  blogs?: Prisma.BlogCreateNestedManyWithoutBlogImageInput;
+  settings?: Prisma.SettingCreateNestedManyWithoutLogoInput;
+  packageBanners?: Prisma.packageBannerCreateNestedManyWithoutPackageBannerInput;
+  aiSearchBanners?: Prisma.AiSearchBannerCreateNestedManyWithoutAiSearchBannerInput;
+  categoryImages?: Prisma.CategoryCreateNestedManyWithoutImageInput;
+  whyUsImage1?: Prisma.WhyUsCreateNestedManyWithoutImage1Input;
+  whyUsImage2?: Prisma.WhyUsCreateNestedManyWithoutImage2Input;
+  whyUsImage3?: Prisma.WhyUsCreateNestedManyWithoutImage3Input;
+  ourTeamImages?: Prisma.OurTeamCreateNestedManyWithoutImageInput;
+  ourStoryImage1?: Prisma.OurStoryCreateNestedManyWithoutImage1Input;
+  ourStoryImage2?: Prisma.OurStoryCreateNestedManyWithoutImage2Input;
+  ourStoryImage3?: Prisma.OurStoryCreateNestedManyWithoutImage3Input;
+  ourStoryImage4?: Prisma.OurStoryCreateNestedManyWithoutImage4Input;
+  ourStoryImage5?: Prisma.OurStoryCreateNestedManyWithoutImage5Input;
+  contactInfos?: Prisma.ContactInfoCreateNestedManyWithoutBackgroundImageInput;
+  missionVisionImage1?: Prisma.MissionVisionCreateNestedManyWithoutImage1Input;
+  missionVisionImage2?: Prisma.MissionVisionCreateNestedManyWithoutImage2Input;
+  missionVisionImage3?: Prisma.MissionVisionCreateNestedManyWithoutImage3Input;
+  missionVisions?: Prisma.MissionVisionCreateNestedManyWithoutFileInstancesInput;
+  whatSetsUsApartImage1?: Prisma.WhatSetsUsApartCreateNestedManyWithoutImage1Input;
+  whatSetsUsApartImage2?: Prisma.WhatSetsUsApartCreateNestedManyWithoutImage2Input;
+  whatSetsUsAparts?: Prisma.WhatSetsUsApartCreateNestedManyWithoutFileInstancesInput;
+};
+
+export type FileInstanceUncheckedCreateWithoutOurStoriesInput = {
+  id?: string;
+  filename: string;
+  originalFilename: string;
+  path: string;
+  url: string;
+  fileType?: $Enums.FileType;
+  mimeType: string;
+  size: number;
+  createdAt?: Date | string;
+  updatedAt?: Date | string;
+  pageBannersBackground?: Prisma.PageBannerUncheckedCreateNestedManyWithoutBackgroundInput;
+  blog?: Prisma.BlogUncheckedCreateNestedManyWithoutFileInstancesInput;
+  boatImages?: Prisma.BoatImageUncheckedCreateNestedManyWithoutFileInput;
+  contactTopImages?: Prisma.ContactPageUncheckedCreateNestedOneWithoutContactTopImageInput;
+  contactBottomImages?: Prisma.ContactPageUncheckedCreateNestedOneWithoutContactBottomImageInput;
+  featuredBrandLogos?: Prisma.FeaturedBrandsUncheckedCreateNestedManyWithoutFeaturedbrandLogoInput;
+  blogs?: Prisma.BlogUncheckedCreateNestedManyWithoutBlogImageInput;
+  settings?: Prisma.SettingUncheckedCreateNestedManyWithoutLogoInput;
+  packageBanners?: Prisma.packageBannerUncheckedCreateNestedManyWithoutPackageBannerInput;
+  aiSearchBanners?: Prisma.AiSearchBannerUncheckedCreateNestedManyWithoutAiSearchBannerInput;
+  categoryImages?: Prisma.CategoryUncheckedCreateNestedManyWithoutImageInput;
+  whyUsImage1?: Prisma.WhyUsUncheckedCreateNestedManyWithoutImage1Input;
+  whyUsImage2?: Prisma.WhyUsUncheckedCreateNestedManyWithoutImage2Input;
+  whyUsImage3?: Prisma.WhyUsUncheckedCreateNestedManyWithoutImage3Input;
+  ourTeamImages?: Prisma.OurTeamUncheckedCreateNestedManyWithoutImageInput;
+  ourStoryImage1?: Prisma.OurStoryUncheckedCreateNestedManyWithoutImage1Input;
+  ourStoryImage2?: Prisma.OurStoryUncheckedCreateNestedManyWithoutImage2Input;
+  ourStoryImage3?: Prisma.OurStoryUncheckedCreateNestedManyWithoutImage3Input;
+  ourStoryImage4?: Prisma.OurStoryUncheckedCreateNestedManyWithoutImage4Input;
+  ourStoryImage5?: Prisma.OurStoryUncheckedCreateNestedManyWithoutImage5Input;
+  contactInfos?: Prisma.ContactInfoUncheckedCreateNestedManyWithoutBackgroundImageInput;
+  missionVisionImage1?: Prisma.MissionVisionUncheckedCreateNestedManyWithoutImage1Input;
+  missionVisionImage2?: Prisma.MissionVisionUncheckedCreateNestedManyWithoutImage2Input;
+  missionVisionImage3?: Prisma.MissionVisionUncheckedCreateNestedManyWithoutImage3Input;
+  missionVisions?: Prisma.MissionVisionUncheckedCreateNestedManyWithoutFileInstancesInput;
+  whatSetsUsApartImage1?: Prisma.WhatSetsUsApartUncheckedCreateNestedManyWithoutImage1Input;
+  whatSetsUsApartImage2?: Prisma.WhatSetsUsApartUncheckedCreateNestedManyWithoutImage2Input;
+  whatSetsUsAparts?: Prisma.WhatSetsUsApartUncheckedCreateNestedManyWithoutFileInstancesInput;
+};
+
+export type FileInstanceCreateOrConnectWithoutOurStoriesInput = {
+  where: Prisma.FileInstanceWhereUniqueInput;
+  create: Prisma.XOR<
+    Prisma.FileInstanceCreateWithoutOurStoriesInput,
+    Prisma.FileInstanceUncheckedCreateWithoutOurStoriesInput
+  >;
+};
+
+export type FileInstanceUpsertWithoutOurStoryImage1Input = {
+  update: Prisma.XOR<
+    Prisma.FileInstanceUpdateWithoutOurStoryImage1Input,
+    Prisma.FileInstanceUncheckedUpdateWithoutOurStoryImage1Input
+  >;
+  create: Prisma.XOR<
+    Prisma.FileInstanceCreateWithoutOurStoryImage1Input,
+    Prisma.FileInstanceUncheckedCreateWithoutOurStoryImage1Input
+  >;
+  where?: Prisma.FileInstanceWhereInput;
+};
+
+export type FileInstanceUpdateToOneWithWhereWithoutOurStoryImage1Input = {
+  where?: Prisma.FileInstanceWhereInput;
+  data: Prisma.XOR<
+    Prisma.FileInstanceUpdateWithoutOurStoryImage1Input,
+    Prisma.FileInstanceUncheckedUpdateWithoutOurStoryImage1Input
+  >;
+};
+
+export type FileInstanceUpdateWithoutOurStoryImage1Input = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string;
+  filename?: Prisma.StringFieldUpdateOperationsInput | string;
+  originalFilename?: Prisma.StringFieldUpdateOperationsInput | string;
+  path?: Prisma.StringFieldUpdateOperationsInput | string;
+  url?: Prisma.StringFieldUpdateOperationsInput | string;
+  fileType?: Prisma.EnumFileTypeFieldUpdateOperationsInput | $Enums.FileType;
+  mimeType?: Prisma.StringFieldUpdateOperationsInput | string;
+  size?: Prisma.IntFieldUpdateOperationsInput | number;
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  pageBannersBackground?: Prisma.PageBannerUpdateManyWithoutBackgroundNestedInput;
+  blog?: Prisma.BlogUpdateManyWithoutFileInstancesNestedInput;
+  boatImages?: Prisma.BoatImageUpdateManyWithoutFileNestedInput;
+  contactTopImages?: Prisma.ContactPageUpdateOneWithoutContactTopImageNestedInput;
+  contactBottomImages?: Prisma.ContactPageUpdateOneWithoutContactBottomImageNestedInput;
+  featuredBrandLogos?: Prisma.FeaturedBrandsUpdateManyWithoutFeaturedbrandLogoNestedInput;
+  blogs?: Prisma.BlogUpdateManyWithoutBlogImageNestedInput;
+  settings?: Prisma.SettingUpdateManyWithoutLogoNestedInput;
+  packageBanners?: Prisma.packageBannerUpdateManyWithoutPackageBannerNestedInput;
+  aiSearchBanners?: Prisma.AiSearchBannerUpdateManyWithoutAiSearchBannerNestedInput;
+  categoryImages?: Prisma.CategoryUpdateManyWithoutImageNestedInput;
+  whyUsImage1?: Prisma.WhyUsUpdateManyWithoutImage1NestedInput;
+  whyUsImage2?: Prisma.WhyUsUpdateManyWithoutImage2NestedInput;
+  whyUsImage3?: Prisma.WhyUsUpdateManyWithoutImage3NestedInput;
+  ourTeamImages?: Prisma.OurTeamUpdateManyWithoutImageNestedInput;
+  ourStoryImage2?: Prisma.OurStoryUpdateManyWithoutImage2NestedInput;
+  ourStoryImage3?: Prisma.OurStoryUpdateManyWithoutImage3NestedInput;
+  ourStoryImage4?: Prisma.OurStoryUpdateManyWithoutImage4NestedInput;
+  ourStoryImage5?: Prisma.OurStoryUpdateManyWithoutImage5NestedInput;
+  contactInfos?: Prisma.ContactInfoUpdateManyWithoutBackgroundImageNestedInput;
+  ourStories?: Prisma.OurStoryUpdateManyWithoutFileInstancesNestedInput;
+  missionVisionImage1?: Prisma.MissionVisionUpdateManyWithoutImage1NestedInput;
+  missionVisionImage2?: Prisma.MissionVisionUpdateManyWithoutImage2NestedInput;
+  missionVisionImage3?: Prisma.MissionVisionUpdateManyWithoutImage3NestedInput;
+  missionVisions?: Prisma.MissionVisionUpdateManyWithoutFileInstancesNestedInput;
+  whatSetsUsApartImage1?: Prisma.WhatSetsUsApartUpdateManyWithoutImage1NestedInput;
+  whatSetsUsApartImage2?: Prisma.WhatSetsUsApartUpdateManyWithoutImage2NestedInput;
+  whatSetsUsAparts?: Prisma.WhatSetsUsApartUpdateManyWithoutFileInstancesNestedInput;
+};
+
+export type FileInstanceUncheckedUpdateWithoutOurStoryImage1Input = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string;
+  filename?: Prisma.StringFieldUpdateOperationsInput | string;
+  originalFilename?: Prisma.StringFieldUpdateOperationsInput | string;
+  path?: Prisma.StringFieldUpdateOperationsInput | string;
+  url?: Prisma.StringFieldUpdateOperationsInput | string;
+  fileType?: Prisma.EnumFileTypeFieldUpdateOperationsInput | $Enums.FileType;
+  mimeType?: Prisma.StringFieldUpdateOperationsInput | string;
+  size?: Prisma.IntFieldUpdateOperationsInput | number;
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  pageBannersBackground?: Prisma.PageBannerUncheckedUpdateManyWithoutBackgroundNestedInput;
+  blog?: Prisma.BlogUncheckedUpdateManyWithoutFileInstancesNestedInput;
+  boatImages?: Prisma.BoatImageUncheckedUpdateManyWithoutFileNestedInput;
+  contactTopImages?: Prisma.ContactPageUncheckedUpdateOneWithoutContactTopImageNestedInput;
+  contactBottomImages?: Prisma.ContactPageUncheckedUpdateOneWithoutContactBottomImageNestedInput;
+  featuredBrandLogos?: Prisma.FeaturedBrandsUncheckedUpdateManyWithoutFeaturedbrandLogoNestedInput;
+  blogs?: Prisma.BlogUncheckedUpdateManyWithoutBlogImageNestedInput;
+  settings?: Prisma.SettingUncheckedUpdateManyWithoutLogoNestedInput;
+  packageBanners?: Prisma.packageBannerUncheckedUpdateManyWithoutPackageBannerNestedInput;
+  aiSearchBanners?: Prisma.AiSearchBannerUncheckedUpdateManyWithoutAiSearchBannerNestedInput;
+  categoryImages?: Prisma.CategoryUncheckedUpdateManyWithoutImageNestedInput;
+  whyUsImage1?: Prisma.WhyUsUncheckedUpdateManyWithoutImage1NestedInput;
+  whyUsImage2?: Prisma.WhyUsUncheckedUpdateManyWithoutImage2NestedInput;
+  whyUsImage3?: Prisma.WhyUsUncheckedUpdateManyWithoutImage3NestedInput;
+  ourTeamImages?: Prisma.OurTeamUncheckedUpdateManyWithoutImageNestedInput;
+  ourStoryImage2?: Prisma.OurStoryUncheckedUpdateManyWithoutImage2NestedInput;
+  ourStoryImage3?: Prisma.OurStoryUncheckedUpdateManyWithoutImage3NestedInput;
+  ourStoryImage4?: Prisma.OurStoryUncheckedUpdateManyWithoutImage4NestedInput;
+  ourStoryImage5?: Prisma.OurStoryUncheckedUpdateManyWithoutImage5NestedInput;
+  contactInfos?: Prisma.ContactInfoUncheckedUpdateManyWithoutBackgroundImageNestedInput;
+  ourStories?: Prisma.OurStoryUncheckedUpdateManyWithoutFileInstancesNestedInput;
+  missionVisionImage1?: Prisma.MissionVisionUncheckedUpdateManyWithoutImage1NestedInput;
+  missionVisionImage2?: Prisma.MissionVisionUncheckedUpdateManyWithoutImage2NestedInput;
+  missionVisionImage3?: Prisma.MissionVisionUncheckedUpdateManyWithoutImage3NestedInput;
+  missionVisions?: Prisma.MissionVisionUncheckedUpdateManyWithoutFileInstancesNestedInput;
+  whatSetsUsApartImage1?: Prisma.WhatSetsUsApartUncheckedUpdateManyWithoutImage1NestedInput;
+  whatSetsUsApartImage2?: Prisma.WhatSetsUsApartUncheckedUpdateManyWithoutImage2NestedInput;
+  whatSetsUsAparts?: Prisma.WhatSetsUsApartUncheckedUpdateManyWithoutFileInstancesNestedInput;
+};
+
+export type FileInstanceUpsertWithoutOurStoryImage2Input = {
+  update: Prisma.XOR<
+    Prisma.FileInstanceUpdateWithoutOurStoryImage2Input,
+    Prisma.FileInstanceUncheckedUpdateWithoutOurStoryImage2Input
+  >;
+  create: Prisma.XOR<
+    Prisma.FileInstanceCreateWithoutOurStoryImage2Input,
+    Prisma.FileInstanceUncheckedCreateWithoutOurStoryImage2Input
+  >;
+  where?: Prisma.FileInstanceWhereInput;
+};
+
+export type FileInstanceUpdateToOneWithWhereWithoutOurStoryImage2Input = {
+  where?: Prisma.FileInstanceWhereInput;
+  data: Prisma.XOR<
+    Prisma.FileInstanceUpdateWithoutOurStoryImage2Input,
+    Prisma.FileInstanceUncheckedUpdateWithoutOurStoryImage2Input
+  >;
+};
+
+export type FileInstanceUpdateWithoutOurStoryImage2Input = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string;
+  filename?: Prisma.StringFieldUpdateOperationsInput | string;
+  originalFilename?: Prisma.StringFieldUpdateOperationsInput | string;
+  path?: Prisma.StringFieldUpdateOperationsInput | string;
+  url?: Prisma.StringFieldUpdateOperationsInput | string;
+  fileType?: Prisma.EnumFileTypeFieldUpdateOperationsInput | $Enums.FileType;
+  mimeType?: Prisma.StringFieldUpdateOperationsInput | string;
+  size?: Prisma.IntFieldUpdateOperationsInput | number;
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  pageBannersBackground?: Prisma.PageBannerUpdateManyWithoutBackgroundNestedInput;
+  blog?: Prisma.BlogUpdateManyWithoutFileInstancesNestedInput;
+  boatImages?: Prisma.BoatImageUpdateManyWithoutFileNestedInput;
+  contactTopImages?: Prisma.ContactPageUpdateOneWithoutContactTopImageNestedInput;
+  contactBottomImages?: Prisma.ContactPageUpdateOneWithoutContactBottomImageNestedInput;
+  featuredBrandLogos?: Prisma.FeaturedBrandsUpdateManyWithoutFeaturedbrandLogoNestedInput;
+  blogs?: Prisma.BlogUpdateManyWithoutBlogImageNestedInput;
+  settings?: Prisma.SettingUpdateManyWithoutLogoNestedInput;
+  packageBanners?: Prisma.packageBannerUpdateManyWithoutPackageBannerNestedInput;
+  aiSearchBanners?: Prisma.AiSearchBannerUpdateManyWithoutAiSearchBannerNestedInput;
+  categoryImages?: Prisma.CategoryUpdateManyWithoutImageNestedInput;
+  whyUsImage1?: Prisma.WhyUsUpdateManyWithoutImage1NestedInput;
+  whyUsImage2?: Prisma.WhyUsUpdateManyWithoutImage2NestedInput;
+  whyUsImage3?: Prisma.WhyUsUpdateManyWithoutImage3NestedInput;
+  ourTeamImages?: Prisma.OurTeamUpdateManyWithoutImageNestedInput;
+  ourStoryImage1?: Prisma.OurStoryUpdateManyWithoutImage1NestedInput;
+  ourStoryImage3?: Prisma.OurStoryUpdateManyWithoutImage3NestedInput;
+  ourStoryImage4?: Prisma.OurStoryUpdateManyWithoutImage4NestedInput;
+  ourStoryImage5?: Prisma.OurStoryUpdateManyWithoutImage5NestedInput;
+  contactInfos?: Prisma.ContactInfoUpdateManyWithoutBackgroundImageNestedInput;
+  ourStories?: Prisma.OurStoryUpdateManyWithoutFileInstancesNestedInput;
+  missionVisionImage1?: Prisma.MissionVisionUpdateManyWithoutImage1NestedInput;
+  missionVisionImage2?: Prisma.MissionVisionUpdateManyWithoutImage2NestedInput;
+  missionVisionImage3?: Prisma.MissionVisionUpdateManyWithoutImage3NestedInput;
+  missionVisions?: Prisma.MissionVisionUpdateManyWithoutFileInstancesNestedInput;
+  whatSetsUsApartImage1?: Prisma.WhatSetsUsApartUpdateManyWithoutImage1NestedInput;
+  whatSetsUsApartImage2?: Prisma.WhatSetsUsApartUpdateManyWithoutImage2NestedInput;
+  whatSetsUsAparts?: Prisma.WhatSetsUsApartUpdateManyWithoutFileInstancesNestedInput;
+};
+
+export type FileInstanceUncheckedUpdateWithoutOurStoryImage2Input = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string;
+  filename?: Prisma.StringFieldUpdateOperationsInput | string;
+  originalFilename?: Prisma.StringFieldUpdateOperationsInput | string;
+  path?: Prisma.StringFieldUpdateOperationsInput | string;
+  url?: Prisma.StringFieldUpdateOperationsInput | string;
+  fileType?: Prisma.EnumFileTypeFieldUpdateOperationsInput | $Enums.FileType;
+  mimeType?: Prisma.StringFieldUpdateOperationsInput | string;
+  size?: Prisma.IntFieldUpdateOperationsInput | number;
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  pageBannersBackground?: Prisma.PageBannerUncheckedUpdateManyWithoutBackgroundNestedInput;
+  blog?: Prisma.BlogUncheckedUpdateManyWithoutFileInstancesNestedInput;
+  boatImages?: Prisma.BoatImageUncheckedUpdateManyWithoutFileNestedInput;
+  contactTopImages?: Prisma.ContactPageUncheckedUpdateOneWithoutContactTopImageNestedInput;
+  contactBottomImages?: Prisma.ContactPageUncheckedUpdateOneWithoutContactBottomImageNestedInput;
+  featuredBrandLogos?: Prisma.FeaturedBrandsUncheckedUpdateManyWithoutFeaturedbrandLogoNestedInput;
+  blogs?: Prisma.BlogUncheckedUpdateManyWithoutBlogImageNestedInput;
+  settings?: Prisma.SettingUncheckedUpdateManyWithoutLogoNestedInput;
+  packageBanners?: Prisma.packageBannerUncheckedUpdateManyWithoutPackageBannerNestedInput;
+  aiSearchBanners?: Prisma.AiSearchBannerUncheckedUpdateManyWithoutAiSearchBannerNestedInput;
+  categoryImages?: Prisma.CategoryUncheckedUpdateManyWithoutImageNestedInput;
+  whyUsImage1?: Prisma.WhyUsUncheckedUpdateManyWithoutImage1NestedInput;
+  whyUsImage2?: Prisma.WhyUsUncheckedUpdateManyWithoutImage2NestedInput;
+  whyUsImage3?: Prisma.WhyUsUncheckedUpdateManyWithoutImage3NestedInput;
+  ourTeamImages?: Prisma.OurTeamUncheckedUpdateManyWithoutImageNestedInput;
+  ourStoryImage1?: Prisma.OurStoryUncheckedUpdateManyWithoutImage1NestedInput;
+  ourStoryImage3?: Prisma.OurStoryUncheckedUpdateManyWithoutImage3NestedInput;
+  ourStoryImage4?: Prisma.OurStoryUncheckedUpdateManyWithoutImage4NestedInput;
+  ourStoryImage5?: Prisma.OurStoryUncheckedUpdateManyWithoutImage5NestedInput;
+  contactInfos?: Prisma.ContactInfoUncheckedUpdateManyWithoutBackgroundImageNestedInput;
+  ourStories?: Prisma.OurStoryUncheckedUpdateManyWithoutFileInstancesNestedInput;
+  missionVisionImage1?: Prisma.MissionVisionUncheckedUpdateManyWithoutImage1NestedInput;
+  missionVisionImage2?: Prisma.MissionVisionUncheckedUpdateManyWithoutImage2NestedInput;
+  missionVisionImage3?: Prisma.MissionVisionUncheckedUpdateManyWithoutImage3NestedInput;
+  missionVisions?: Prisma.MissionVisionUncheckedUpdateManyWithoutFileInstancesNestedInput;
+  whatSetsUsApartImage1?: Prisma.WhatSetsUsApartUncheckedUpdateManyWithoutImage1NestedInput;
+  whatSetsUsApartImage2?: Prisma.WhatSetsUsApartUncheckedUpdateManyWithoutImage2NestedInput;
+  whatSetsUsAparts?: Prisma.WhatSetsUsApartUncheckedUpdateManyWithoutFileInstancesNestedInput;
+};
+
+export type FileInstanceUpsertWithoutOurStoryImage3Input = {
+  update: Prisma.XOR<
+    Prisma.FileInstanceUpdateWithoutOurStoryImage3Input,
+    Prisma.FileInstanceUncheckedUpdateWithoutOurStoryImage3Input
+  >;
+  create: Prisma.XOR<
+    Prisma.FileInstanceCreateWithoutOurStoryImage3Input,
+    Prisma.FileInstanceUncheckedCreateWithoutOurStoryImage3Input
+  >;
+  where?: Prisma.FileInstanceWhereInput;
+};
+
+export type FileInstanceUpdateToOneWithWhereWithoutOurStoryImage3Input = {
+  where?: Prisma.FileInstanceWhereInput;
+  data: Prisma.XOR<
+    Prisma.FileInstanceUpdateWithoutOurStoryImage3Input,
+    Prisma.FileInstanceUncheckedUpdateWithoutOurStoryImage3Input
+  >;
+};
+
+export type FileInstanceUpdateWithoutOurStoryImage3Input = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string;
+  filename?: Prisma.StringFieldUpdateOperationsInput | string;
+  originalFilename?: Prisma.StringFieldUpdateOperationsInput | string;
+  path?: Prisma.StringFieldUpdateOperationsInput | string;
+  url?: Prisma.StringFieldUpdateOperationsInput | string;
+  fileType?: Prisma.EnumFileTypeFieldUpdateOperationsInput | $Enums.FileType;
+  mimeType?: Prisma.StringFieldUpdateOperationsInput | string;
+  size?: Prisma.IntFieldUpdateOperationsInput | number;
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  pageBannersBackground?: Prisma.PageBannerUpdateManyWithoutBackgroundNestedInput;
+  blog?: Prisma.BlogUpdateManyWithoutFileInstancesNestedInput;
+  boatImages?: Prisma.BoatImageUpdateManyWithoutFileNestedInput;
+  contactTopImages?: Prisma.ContactPageUpdateOneWithoutContactTopImageNestedInput;
+  contactBottomImages?: Prisma.ContactPageUpdateOneWithoutContactBottomImageNestedInput;
+  featuredBrandLogos?: Prisma.FeaturedBrandsUpdateManyWithoutFeaturedbrandLogoNestedInput;
+  blogs?: Prisma.BlogUpdateManyWithoutBlogImageNestedInput;
+  settings?: Prisma.SettingUpdateManyWithoutLogoNestedInput;
+  packageBanners?: Prisma.packageBannerUpdateManyWithoutPackageBannerNestedInput;
+  aiSearchBanners?: Prisma.AiSearchBannerUpdateManyWithoutAiSearchBannerNestedInput;
+  categoryImages?: Prisma.CategoryUpdateManyWithoutImageNestedInput;
+  whyUsImage1?: Prisma.WhyUsUpdateManyWithoutImage1NestedInput;
+  whyUsImage2?: Prisma.WhyUsUpdateManyWithoutImage2NestedInput;
+  whyUsImage3?: Prisma.WhyUsUpdateManyWithoutImage3NestedInput;
+  ourTeamImages?: Prisma.OurTeamUpdateManyWithoutImageNestedInput;
+  ourStoryImage1?: Prisma.OurStoryUpdateManyWithoutImage1NestedInput;
+  ourStoryImage2?: Prisma.OurStoryUpdateManyWithoutImage2NestedInput;
+  ourStoryImage4?: Prisma.OurStoryUpdateManyWithoutImage4NestedInput;
+  ourStoryImage5?: Prisma.OurStoryUpdateManyWithoutImage5NestedInput;
+  contactInfos?: Prisma.ContactInfoUpdateManyWithoutBackgroundImageNestedInput;
+  ourStories?: Prisma.OurStoryUpdateManyWithoutFileInstancesNestedInput;
+  missionVisionImage1?: Prisma.MissionVisionUpdateManyWithoutImage1NestedInput;
+  missionVisionImage2?: Prisma.MissionVisionUpdateManyWithoutImage2NestedInput;
+  missionVisionImage3?: Prisma.MissionVisionUpdateManyWithoutImage3NestedInput;
+  missionVisions?: Prisma.MissionVisionUpdateManyWithoutFileInstancesNestedInput;
+  whatSetsUsApartImage1?: Prisma.WhatSetsUsApartUpdateManyWithoutImage1NestedInput;
+  whatSetsUsApartImage2?: Prisma.WhatSetsUsApartUpdateManyWithoutImage2NestedInput;
+  whatSetsUsAparts?: Prisma.WhatSetsUsApartUpdateManyWithoutFileInstancesNestedInput;
+};
+
+export type FileInstanceUncheckedUpdateWithoutOurStoryImage3Input = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string;
+  filename?: Prisma.StringFieldUpdateOperationsInput | string;
+  originalFilename?: Prisma.StringFieldUpdateOperationsInput | string;
+  path?: Prisma.StringFieldUpdateOperationsInput | string;
+  url?: Prisma.StringFieldUpdateOperationsInput | string;
+  fileType?: Prisma.EnumFileTypeFieldUpdateOperationsInput | $Enums.FileType;
+  mimeType?: Prisma.StringFieldUpdateOperationsInput | string;
+  size?: Prisma.IntFieldUpdateOperationsInput | number;
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  pageBannersBackground?: Prisma.PageBannerUncheckedUpdateManyWithoutBackgroundNestedInput;
+  blog?: Prisma.BlogUncheckedUpdateManyWithoutFileInstancesNestedInput;
+  boatImages?: Prisma.BoatImageUncheckedUpdateManyWithoutFileNestedInput;
+  contactTopImages?: Prisma.ContactPageUncheckedUpdateOneWithoutContactTopImageNestedInput;
+  contactBottomImages?: Prisma.ContactPageUncheckedUpdateOneWithoutContactBottomImageNestedInput;
+  featuredBrandLogos?: Prisma.FeaturedBrandsUncheckedUpdateManyWithoutFeaturedbrandLogoNestedInput;
+  blogs?: Prisma.BlogUncheckedUpdateManyWithoutBlogImageNestedInput;
+  settings?: Prisma.SettingUncheckedUpdateManyWithoutLogoNestedInput;
+  packageBanners?: Prisma.packageBannerUncheckedUpdateManyWithoutPackageBannerNestedInput;
+  aiSearchBanners?: Prisma.AiSearchBannerUncheckedUpdateManyWithoutAiSearchBannerNestedInput;
+  categoryImages?: Prisma.CategoryUncheckedUpdateManyWithoutImageNestedInput;
+  whyUsImage1?: Prisma.WhyUsUncheckedUpdateManyWithoutImage1NestedInput;
+  whyUsImage2?: Prisma.WhyUsUncheckedUpdateManyWithoutImage2NestedInput;
+  whyUsImage3?: Prisma.WhyUsUncheckedUpdateManyWithoutImage3NestedInput;
+  ourTeamImages?: Prisma.OurTeamUncheckedUpdateManyWithoutImageNestedInput;
+  ourStoryImage1?: Prisma.OurStoryUncheckedUpdateManyWithoutImage1NestedInput;
+  ourStoryImage2?: Prisma.OurStoryUncheckedUpdateManyWithoutImage2NestedInput;
+  ourStoryImage4?: Prisma.OurStoryUncheckedUpdateManyWithoutImage4NestedInput;
+  ourStoryImage5?: Prisma.OurStoryUncheckedUpdateManyWithoutImage5NestedInput;
+  contactInfos?: Prisma.ContactInfoUncheckedUpdateManyWithoutBackgroundImageNestedInput;
+  ourStories?: Prisma.OurStoryUncheckedUpdateManyWithoutFileInstancesNestedInput;
+  missionVisionImage1?: Prisma.MissionVisionUncheckedUpdateManyWithoutImage1NestedInput;
+  missionVisionImage2?: Prisma.MissionVisionUncheckedUpdateManyWithoutImage2NestedInput;
+  missionVisionImage3?: Prisma.MissionVisionUncheckedUpdateManyWithoutImage3NestedInput;
+  missionVisions?: Prisma.MissionVisionUncheckedUpdateManyWithoutFileInstancesNestedInput;
+  whatSetsUsApartImage1?: Prisma.WhatSetsUsApartUncheckedUpdateManyWithoutImage1NestedInput;
+  whatSetsUsApartImage2?: Prisma.WhatSetsUsApartUncheckedUpdateManyWithoutImage2NestedInput;
+  whatSetsUsAparts?: Prisma.WhatSetsUsApartUncheckedUpdateManyWithoutFileInstancesNestedInput;
+};
+
+export type FileInstanceUpsertWithoutOurStoryImage4Input = {
+  update: Prisma.XOR<
+    Prisma.FileInstanceUpdateWithoutOurStoryImage4Input,
+    Prisma.FileInstanceUncheckedUpdateWithoutOurStoryImage4Input
+  >;
+  create: Prisma.XOR<
+    Prisma.FileInstanceCreateWithoutOurStoryImage4Input,
+    Prisma.FileInstanceUncheckedCreateWithoutOurStoryImage4Input
+  >;
+  where?: Prisma.FileInstanceWhereInput;
+};
+
+export type FileInstanceUpdateToOneWithWhereWithoutOurStoryImage4Input = {
+  where?: Prisma.FileInstanceWhereInput;
+  data: Prisma.XOR<
+    Prisma.FileInstanceUpdateWithoutOurStoryImage4Input,
+    Prisma.FileInstanceUncheckedUpdateWithoutOurStoryImage4Input
+  >;
+};
+
+export type FileInstanceUpdateWithoutOurStoryImage4Input = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string;
+  filename?: Prisma.StringFieldUpdateOperationsInput | string;
+  originalFilename?: Prisma.StringFieldUpdateOperationsInput | string;
+  path?: Prisma.StringFieldUpdateOperationsInput | string;
+  url?: Prisma.StringFieldUpdateOperationsInput | string;
+  fileType?: Prisma.EnumFileTypeFieldUpdateOperationsInput | $Enums.FileType;
+  mimeType?: Prisma.StringFieldUpdateOperationsInput | string;
+  size?: Prisma.IntFieldUpdateOperationsInput | number;
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  pageBannersBackground?: Prisma.PageBannerUpdateManyWithoutBackgroundNestedInput;
+  blog?: Prisma.BlogUpdateManyWithoutFileInstancesNestedInput;
+  boatImages?: Prisma.BoatImageUpdateManyWithoutFileNestedInput;
+  contactTopImages?: Prisma.ContactPageUpdateOneWithoutContactTopImageNestedInput;
+  contactBottomImages?: Prisma.ContactPageUpdateOneWithoutContactBottomImageNestedInput;
+  featuredBrandLogos?: Prisma.FeaturedBrandsUpdateManyWithoutFeaturedbrandLogoNestedInput;
+  blogs?: Prisma.BlogUpdateManyWithoutBlogImageNestedInput;
+  settings?: Prisma.SettingUpdateManyWithoutLogoNestedInput;
+  packageBanners?: Prisma.packageBannerUpdateManyWithoutPackageBannerNestedInput;
+  aiSearchBanners?: Prisma.AiSearchBannerUpdateManyWithoutAiSearchBannerNestedInput;
+  categoryImages?: Prisma.CategoryUpdateManyWithoutImageNestedInput;
+  whyUsImage1?: Prisma.WhyUsUpdateManyWithoutImage1NestedInput;
+  whyUsImage2?: Prisma.WhyUsUpdateManyWithoutImage2NestedInput;
+  whyUsImage3?: Prisma.WhyUsUpdateManyWithoutImage3NestedInput;
+  ourTeamImages?: Prisma.OurTeamUpdateManyWithoutImageNestedInput;
+  ourStoryImage1?: Prisma.OurStoryUpdateManyWithoutImage1NestedInput;
+  ourStoryImage2?: Prisma.OurStoryUpdateManyWithoutImage2NestedInput;
+  ourStoryImage3?: Prisma.OurStoryUpdateManyWithoutImage3NestedInput;
+  ourStoryImage5?: Prisma.OurStoryUpdateManyWithoutImage5NestedInput;
+  contactInfos?: Prisma.ContactInfoUpdateManyWithoutBackgroundImageNestedInput;
+  ourStories?: Prisma.OurStoryUpdateManyWithoutFileInstancesNestedInput;
+  missionVisionImage1?: Prisma.MissionVisionUpdateManyWithoutImage1NestedInput;
+  missionVisionImage2?: Prisma.MissionVisionUpdateManyWithoutImage2NestedInput;
+  missionVisionImage3?: Prisma.MissionVisionUpdateManyWithoutImage3NestedInput;
+  missionVisions?: Prisma.MissionVisionUpdateManyWithoutFileInstancesNestedInput;
+  whatSetsUsApartImage1?: Prisma.WhatSetsUsApartUpdateManyWithoutImage1NestedInput;
+  whatSetsUsApartImage2?: Prisma.WhatSetsUsApartUpdateManyWithoutImage2NestedInput;
+  whatSetsUsAparts?: Prisma.WhatSetsUsApartUpdateManyWithoutFileInstancesNestedInput;
+};
+
+export type FileInstanceUncheckedUpdateWithoutOurStoryImage4Input = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string;
+  filename?: Prisma.StringFieldUpdateOperationsInput | string;
+  originalFilename?: Prisma.StringFieldUpdateOperationsInput | string;
+  path?: Prisma.StringFieldUpdateOperationsInput | string;
+  url?: Prisma.StringFieldUpdateOperationsInput | string;
+  fileType?: Prisma.EnumFileTypeFieldUpdateOperationsInput | $Enums.FileType;
+  mimeType?: Prisma.StringFieldUpdateOperationsInput | string;
+  size?: Prisma.IntFieldUpdateOperationsInput | number;
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  pageBannersBackground?: Prisma.PageBannerUncheckedUpdateManyWithoutBackgroundNestedInput;
+  blog?: Prisma.BlogUncheckedUpdateManyWithoutFileInstancesNestedInput;
+  boatImages?: Prisma.BoatImageUncheckedUpdateManyWithoutFileNestedInput;
+  contactTopImages?: Prisma.ContactPageUncheckedUpdateOneWithoutContactTopImageNestedInput;
+  contactBottomImages?: Prisma.ContactPageUncheckedUpdateOneWithoutContactBottomImageNestedInput;
+  featuredBrandLogos?: Prisma.FeaturedBrandsUncheckedUpdateManyWithoutFeaturedbrandLogoNestedInput;
+  blogs?: Prisma.BlogUncheckedUpdateManyWithoutBlogImageNestedInput;
+  settings?: Prisma.SettingUncheckedUpdateManyWithoutLogoNestedInput;
+  packageBanners?: Prisma.packageBannerUncheckedUpdateManyWithoutPackageBannerNestedInput;
+  aiSearchBanners?: Prisma.AiSearchBannerUncheckedUpdateManyWithoutAiSearchBannerNestedInput;
+  categoryImages?: Prisma.CategoryUncheckedUpdateManyWithoutImageNestedInput;
+  whyUsImage1?: Prisma.WhyUsUncheckedUpdateManyWithoutImage1NestedInput;
+  whyUsImage2?: Prisma.WhyUsUncheckedUpdateManyWithoutImage2NestedInput;
+  whyUsImage3?: Prisma.WhyUsUncheckedUpdateManyWithoutImage3NestedInput;
+  ourTeamImages?: Prisma.OurTeamUncheckedUpdateManyWithoutImageNestedInput;
+  ourStoryImage1?: Prisma.OurStoryUncheckedUpdateManyWithoutImage1NestedInput;
+  ourStoryImage2?: Prisma.OurStoryUncheckedUpdateManyWithoutImage2NestedInput;
+  ourStoryImage3?: Prisma.OurStoryUncheckedUpdateManyWithoutImage3NestedInput;
+  ourStoryImage5?: Prisma.OurStoryUncheckedUpdateManyWithoutImage5NestedInput;
+  contactInfos?: Prisma.ContactInfoUncheckedUpdateManyWithoutBackgroundImageNestedInput;
+  ourStories?: Prisma.OurStoryUncheckedUpdateManyWithoutFileInstancesNestedInput;
+  missionVisionImage1?: Prisma.MissionVisionUncheckedUpdateManyWithoutImage1NestedInput;
+  missionVisionImage2?: Prisma.MissionVisionUncheckedUpdateManyWithoutImage2NestedInput;
+  missionVisionImage3?: Prisma.MissionVisionUncheckedUpdateManyWithoutImage3NestedInput;
+  missionVisions?: Prisma.MissionVisionUncheckedUpdateManyWithoutFileInstancesNestedInput;
+  whatSetsUsApartImage1?: Prisma.WhatSetsUsApartUncheckedUpdateManyWithoutImage1NestedInput;
+  whatSetsUsApartImage2?: Prisma.WhatSetsUsApartUncheckedUpdateManyWithoutImage2NestedInput;
+  whatSetsUsAparts?: Prisma.WhatSetsUsApartUncheckedUpdateManyWithoutFileInstancesNestedInput;
+};
+
+export type FileInstanceUpsertWithoutOurStoryImage5Input = {
+  update: Prisma.XOR<
+    Prisma.FileInstanceUpdateWithoutOurStoryImage5Input,
+    Prisma.FileInstanceUncheckedUpdateWithoutOurStoryImage5Input
+  >;
+  create: Prisma.XOR<
+    Prisma.FileInstanceCreateWithoutOurStoryImage5Input,
+    Prisma.FileInstanceUncheckedCreateWithoutOurStoryImage5Input
+  >;
+  where?: Prisma.FileInstanceWhereInput;
+};
+
+export type FileInstanceUpdateToOneWithWhereWithoutOurStoryImage5Input = {
+  where?: Prisma.FileInstanceWhereInput;
+  data: Prisma.XOR<
+    Prisma.FileInstanceUpdateWithoutOurStoryImage5Input,
+    Prisma.FileInstanceUncheckedUpdateWithoutOurStoryImage5Input
+  >;
+};
+
+export type FileInstanceUpdateWithoutOurStoryImage5Input = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string;
+  filename?: Prisma.StringFieldUpdateOperationsInput | string;
+  originalFilename?: Prisma.StringFieldUpdateOperationsInput | string;
+  path?: Prisma.StringFieldUpdateOperationsInput | string;
+  url?: Prisma.StringFieldUpdateOperationsInput | string;
+  fileType?: Prisma.EnumFileTypeFieldUpdateOperationsInput | $Enums.FileType;
+  mimeType?: Prisma.StringFieldUpdateOperationsInput | string;
+  size?: Prisma.IntFieldUpdateOperationsInput | number;
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  pageBannersBackground?: Prisma.PageBannerUpdateManyWithoutBackgroundNestedInput;
+  blog?: Prisma.BlogUpdateManyWithoutFileInstancesNestedInput;
+  boatImages?: Prisma.BoatImageUpdateManyWithoutFileNestedInput;
+  contactTopImages?: Prisma.ContactPageUpdateOneWithoutContactTopImageNestedInput;
+  contactBottomImages?: Prisma.ContactPageUpdateOneWithoutContactBottomImageNestedInput;
+  featuredBrandLogos?: Prisma.FeaturedBrandsUpdateManyWithoutFeaturedbrandLogoNestedInput;
+  blogs?: Prisma.BlogUpdateManyWithoutBlogImageNestedInput;
+  settings?: Prisma.SettingUpdateManyWithoutLogoNestedInput;
+  packageBanners?: Prisma.packageBannerUpdateManyWithoutPackageBannerNestedInput;
+  aiSearchBanners?: Prisma.AiSearchBannerUpdateManyWithoutAiSearchBannerNestedInput;
+  categoryImages?: Prisma.CategoryUpdateManyWithoutImageNestedInput;
+  whyUsImage1?: Prisma.WhyUsUpdateManyWithoutImage1NestedInput;
+  whyUsImage2?: Prisma.WhyUsUpdateManyWithoutImage2NestedInput;
+  whyUsImage3?: Prisma.WhyUsUpdateManyWithoutImage3NestedInput;
+  ourTeamImages?: Prisma.OurTeamUpdateManyWithoutImageNestedInput;
+  ourStoryImage1?: Prisma.OurStoryUpdateManyWithoutImage1NestedInput;
+  ourStoryImage2?: Prisma.OurStoryUpdateManyWithoutImage2NestedInput;
+  ourStoryImage3?: Prisma.OurStoryUpdateManyWithoutImage3NestedInput;
+  ourStoryImage4?: Prisma.OurStoryUpdateManyWithoutImage4NestedInput;
+  contactInfos?: Prisma.ContactInfoUpdateManyWithoutBackgroundImageNestedInput;
+  ourStories?: Prisma.OurStoryUpdateManyWithoutFileInstancesNestedInput;
+  missionVisionImage1?: Prisma.MissionVisionUpdateManyWithoutImage1NestedInput;
+  missionVisionImage2?: Prisma.MissionVisionUpdateManyWithoutImage2NestedInput;
+  missionVisionImage3?: Prisma.MissionVisionUpdateManyWithoutImage3NestedInput;
+  missionVisions?: Prisma.MissionVisionUpdateManyWithoutFileInstancesNestedInput;
+  whatSetsUsApartImage1?: Prisma.WhatSetsUsApartUpdateManyWithoutImage1NestedInput;
+  whatSetsUsApartImage2?: Prisma.WhatSetsUsApartUpdateManyWithoutImage2NestedInput;
+  whatSetsUsAparts?: Prisma.WhatSetsUsApartUpdateManyWithoutFileInstancesNestedInput;
+};
+
+export type FileInstanceUncheckedUpdateWithoutOurStoryImage5Input = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string;
+  filename?: Prisma.StringFieldUpdateOperationsInput | string;
+  originalFilename?: Prisma.StringFieldUpdateOperationsInput | string;
+  path?: Prisma.StringFieldUpdateOperationsInput | string;
+  url?: Prisma.StringFieldUpdateOperationsInput | string;
+  fileType?: Prisma.EnumFileTypeFieldUpdateOperationsInput | $Enums.FileType;
+  mimeType?: Prisma.StringFieldUpdateOperationsInput | string;
+  size?: Prisma.IntFieldUpdateOperationsInput | number;
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  pageBannersBackground?: Prisma.PageBannerUncheckedUpdateManyWithoutBackgroundNestedInput;
+  blog?: Prisma.BlogUncheckedUpdateManyWithoutFileInstancesNestedInput;
+  boatImages?: Prisma.BoatImageUncheckedUpdateManyWithoutFileNestedInput;
+  contactTopImages?: Prisma.ContactPageUncheckedUpdateOneWithoutContactTopImageNestedInput;
+  contactBottomImages?: Prisma.ContactPageUncheckedUpdateOneWithoutContactBottomImageNestedInput;
+  featuredBrandLogos?: Prisma.FeaturedBrandsUncheckedUpdateManyWithoutFeaturedbrandLogoNestedInput;
+  blogs?: Prisma.BlogUncheckedUpdateManyWithoutBlogImageNestedInput;
+  settings?: Prisma.SettingUncheckedUpdateManyWithoutLogoNestedInput;
+  packageBanners?: Prisma.packageBannerUncheckedUpdateManyWithoutPackageBannerNestedInput;
+  aiSearchBanners?: Prisma.AiSearchBannerUncheckedUpdateManyWithoutAiSearchBannerNestedInput;
+  categoryImages?: Prisma.CategoryUncheckedUpdateManyWithoutImageNestedInput;
+  whyUsImage1?: Prisma.WhyUsUncheckedUpdateManyWithoutImage1NestedInput;
+  whyUsImage2?: Prisma.WhyUsUncheckedUpdateManyWithoutImage2NestedInput;
+  whyUsImage3?: Prisma.WhyUsUncheckedUpdateManyWithoutImage3NestedInput;
+  ourTeamImages?: Prisma.OurTeamUncheckedUpdateManyWithoutImageNestedInput;
+  ourStoryImage1?: Prisma.OurStoryUncheckedUpdateManyWithoutImage1NestedInput;
+  ourStoryImage2?: Prisma.OurStoryUncheckedUpdateManyWithoutImage2NestedInput;
+  ourStoryImage3?: Prisma.OurStoryUncheckedUpdateManyWithoutImage3NestedInput;
+  ourStoryImage4?: Prisma.OurStoryUncheckedUpdateManyWithoutImage4NestedInput;
+  contactInfos?: Prisma.ContactInfoUncheckedUpdateManyWithoutBackgroundImageNestedInput;
+  ourStories?: Prisma.OurStoryUncheckedUpdateManyWithoutFileInstancesNestedInput;
+  missionVisionImage1?: Prisma.MissionVisionUncheckedUpdateManyWithoutImage1NestedInput;
+  missionVisionImage2?: Prisma.MissionVisionUncheckedUpdateManyWithoutImage2NestedInput;
+  missionVisionImage3?: Prisma.MissionVisionUncheckedUpdateManyWithoutImage3NestedInput;
+  missionVisions?: Prisma.MissionVisionUncheckedUpdateManyWithoutFileInstancesNestedInput;
+  whatSetsUsApartImage1?: Prisma.WhatSetsUsApartUncheckedUpdateManyWithoutImage1NestedInput;
+  whatSetsUsApartImage2?: Prisma.WhatSetsUsApartUncheckedUpdateManyWithoutImage2NestedInput;
+  whatSetsUsAparts?: Prisma.WhatSetsUsApartUncheckedUpdateManyWithoutFileInstancesNestedInput;
+};
+
+export type FileInstanceUpsertWithWhereUniqueWithoutOurStoriesInput = {
+  where: Prisma.FileInstanceWhereUniqueInput;
+  update: Prisma.XOR<
+    Prisma.FileInstanceUpdateWithoutOurStoriesInput,
+    Prisma.FileInstanceUncheckedUpdateWithoutOurStoriesInput
+  >;
+  create: Prisma.XOR<
+    Prisma.FileInstanceCreateWithoutOurStoriesInput,
+    Prisma.FileInstanceUncheckedCreateWithoutOurStoriesInput
+  >;
+};
+
+export type FileInstanceUpdateWithWhereUniqueWithoutOurStoriesInput = {
+  where: Prisma.FileInstanceWhereUniqueInput;
+  data: Prisma.XOR<
+    Prisma.FileInstanceUpdateWithoutOurStoriesInput,
+    Prisma.FileInstanceUncheckedUpdateWithoutOurStoriesInput
+  >;
+};
+
+export type FileInstanceUpdateManyWithWhereWithoutOurStoriesInput = {
+  where: Prisma.FileInstanceScalarWhereInput;
+  data: Prisma.XOR<
+    Prisma.FileInstanceUpdateManyMutationInput,
+    Prisma.FileInstanceUncheckedUpdateManyWithoutOurStoriesInput
+  >;
+};
+
+export type FileInstanceCreateWithoutMissionVisionImage1Input = {
+  id?: string;
+  filename: string;
+  originalFilename: string;
+  path: string;
+  url: string;
+  fileType?: $Enums.FileType;
+  mimeType: string;
+  size: number;
+  createdAt?: Date | string;
+  updatedAt?: Date | string;
+  pageBannersBackground?: Prisma.PageBannerCreateNestedManyWithoutBackgroundInput;
+  blog?: Prisma.BlogCreateNestedManyWithoutFileInstancesInput;
+  boatImages?: Prisma.BoatImageCreateNestedManyWithoutFileInput;
+  contactTopImages?: Prisma.ContactPageCreateNestedOneWithoutContactTopImageInput;
+  contactBottomImages?: Prisma.ContactPageCreateNestedOneWithoutContactBottomImageInput;
+  featuredBrandLogos?: Prisma.FeaturedBrandsCreateNestedManyWithoutFeaturedbrandLogoInput;
+  blogs?: Prisma.BlogCreateNestedManyWithoutBlogImageInput;
+  settings?: Prisma.SettingCreateNestedManyWithoutLogoInput;
+  packageBanners?: Prisma.packageBannerCreateNestedManyWithoutPackageBannerInput;
+  aiSearchBanners?: Prisma.AiSearchBannerCreateNestedManyWithoutAiSearchBannerInput;
+  categoryImages?: Prisma.CategoryCreateNestedManyWithoutImageInput;
+  whyUsImage1?: Prisma.WhyUsCreateNestedManyWithoutImage1Input;
+  whyUsImage2?: Prisma.WhyUsCreateNestedManyWithoutImage2Input;
+  whyUsImage3?: Prisma.WhyUsCreateNestedManyWithoutImage3Input;
+  ourTeamImages?: Prisma.OurTeamCreateNestedManyWithoutImageInput;
+  ourStoryImage1?: Prisma.OurStoryCreateNestedManyWithoutImage1Input;
+  ourStoryImage2?: Prisma.OurStoryCreateNestedManyWithoutImage2Input;
+  ourStoryImage3?: Prisma.OurStoryCreateNestedManyWithoutImage3Input;
+  ourStoryImage4?: Prisma.OurStoryCreateNestedManyWithoutImage4Input;
+  ourStoryImage5?: Prisma.OurStoryCreateNestedManyWithoutImage5Input;
+  contactInfos?: Prisma.ContactInfoCreateNestedManyWithoutBackgroundImageInput;
+  ourStories?: Prisma.OurStoryCreateNestedManyWithoutFileInstancesInput;
+  missionVisionImage2?: Prisma.MissionVisionCreateNestedManyWithoutImage2Input;
+  missionVisionImage3?: Prisma.MissionVisionCreateNestedManyWithoutImage3Input;
+  missionVisions?: Prisma.MissionVisionCreateNestedManyWithoutFileInstancesInput;
+  whatSetsUsApartImage1?: Prisma.WhatSetsUsApartCreateNestedManyWithoutImage1Input;
+  whatSetsUsApartImage2?: Prisma.WhatSetsUsApartCreateNestedManyWithoutImage2Input;
+  whatSetsUsAparts?: Prisma.WhatSetsUsApartCreateNestedManyWithoutFileInstancesInput;
+};
+
+export type FileInstanceUncheckedCreateWithoutMissionVisionImage1Input = {
+  id?: string;
+  filename: string;
+  originalFilename: string;
+  path: string;
+  url: string;
+  fileType?: $Enums.FileType;
+  mimeType: string;
+  size: number;
+  createdAt?: Date | string;
+  updatedAt?: Date | string;
+  pageBannersBackground?: Prisma.PageBannerUncheckedCreateNestedManyWithoutBackgroundInput;
+  blog?: Prisma.BlogUncheckedCreateNestedManyWithoutFileInstancesInput;
+  boatImages?: Prisma.BoatImageUncheckedCreateNestedManyWithoutFileInput;
+  contactTopImages?: Prisma.ContactPageUncheckedCreateNestedOneWithoutContactTopImageInput;
+  contactBottomImages?: Prisma.ContactPageUncheckedCreateNestedOneWithoutContactBottomImageInput;
+  featuredBrandLogos?: Prisma.FeaturedBrandsUncheckedCreateNestedManyWithoutFeaturedbrandLogoInput;
+  blogs?: Prisma.BlogUncheckedCreateNestedManyWithoutBlogImageInput;
+  settings?: Prisma.SettingUncheckedCreateNestedManyWithoutLogoInput;
+  packageBanners?: Prisma.packageBannerUncheckedCreateNestedManyWithoutPackageBannerInput;
+  aiSearchBanners?: Prisma.AiSearchBannerUncheckedCreateNestedManyWithoutAiSearchBannerInput;
+  categoryImages?: Prisma.CategoryUncheckedCreateNestedManyWithoutImageInput;
+  whyUsImage1?: Prisma.WhyUsUncheckedCreateNestedManyWithoutImage1Input;
+  whyUsImage2?: Prisma.WhyUsUncheckedCreateNestedManyWithoutImage2Input;
+  whyUsImage3?: Prisma.WhyUsUncheckedCreateNestedManyWithoutImage3Input;
+  ourTeamImages?: Prisma.OurTeamUncheckedCreateNestedManyWithoutImageInput;
+  ourStoryImage1?: Prisma.OurStoryUncheckedCreateNestedManyWithoutImage1Input;
+  ourStoryImage2?: Prisma.OurStoryUncheckedCreateNestedManyWithoutImage2Input;
+  ourStoryImage3?: Prisma.OurStoryUncheckedCreateNestedManyWithoutImage3Input;
+  ourStoryImage4?: Prisma.OurStoryUncheckedCreateNestedManyWithoutImage4Input;
+  ourStoryImage5?: Prisma.OurStoryUncheckedCreateNestedManyWithoutImage5Input;
+  contactInfos?: Prisma.ContactInfoUncheckedCreateNestedManyWithoutBackgroundImageInput;
+  ourStories?: Prisma.OurStoryUncheckedCreateNestedManyWithoutFileInstancesInput;
+  missionVisionImage2?: Prisma.MissionVisionUncheckedCreateNestedManyWithoutImage2Input;
+  missionVisionImage3?: Prisma.MissionVisionUncheckedCreateNestedManyWithoutImage3Input;
+  missionVisions?: Prisma.MissionVisionUncheckedCreateNestedManyWithoutFileInstancesInput;
+  whatSetsUsApartImage1?: Prisma.WhatSetsUsApartUncheckedCreateNestedManyWithoutImage1Input;
+  whatSetsUsApartImage2?: Prisma.WhatSetsUsApartUncheckedCreateNestedManyWithoutImage2Input;
+  whatSetsUsAparts?: Prisma.WhatSetsUsApartUncheckedCreateNestedManyWithoutFileInstancesInput;
+};
+
+export type FileInstanceCreateOrConnectWithoutMissionVisionImage1Input = {
+  where: Prisma.FileInstanceWhereUniqueInput;
+  create: Prisma.XOR<
+    Prisma.FileInstanceCreateWithoutMissionVisionImage1Input,
+    Prisma.FileInstanceUncheckedCreateWithoutMissionVisionImage1Input
+  >;
+};
+
+export type FileInstanceCreateWithoutMissionVisionImage2Input = {
+  id?: string;
+  filename: string;
+  originalFilename: string;
+  path: string;
+  url: string;
+  fileType?: $Enums.FileType;
+  mimeType: string;
+  size: number;
+  createdAt?: Date | string;
+  updatedAt?: Date | string;
+  pageBannersBackground?: Prisma.PageBannerCreateNestedManyWithoutBackgroundInput;
+  blog?: Prisma.BlogCreateNestedManyWithoutFileInstancesInput;
+  boatImages?: Prisma.BoatImageCreateNestedManyWithoutFileInput;
+  contactTopImages?: Prisma.ContactPageCreateNestedOneWithoutContactTopImageInput;
+  contactBottomImages?: Prisma.ContactPageCreateNestedOneWithoutContactBottomImageInput;
+  featuredBrandLogos?: Prisma.FeaturedBrandsCreateNestedManyWithoutFeaturedbrandLogoInput;
+  blogs?: Prisma.BlogCreateNestedManyWithoutBlogImageInput;
+  settings?: Prisma.SettingCreateNestedManyWithoutLogoInput;
+  packageBanners?: Prisma.packageBannerCreateNestedManyWithoutPackageBannerInput;
+  aiSearchBanners?: Prisma.AiSearchBannerCreateNestedManyWithoutAiSearchBannerInput;
+  categoryImages?: Prisma.CategoryCreateNestedManyWithoutImageInput;
+  whyUsImage1?: Prisma.WhyUsCreateNestedManyWithoutImage1Input;
+  whyUsImage2?: Prisma.WhyUsCreateNestedManyWithoutImage2Input;
+  whyUsImage3?: Prisma.WhyUsCreateNestedManyWithoutImage3Input;
+  ourTeamImages?: Prisma.OurTeamCreateNestedManyWithoutImageInput;
+  ourStoryImage1?: Prisma.OurStoryCreateNestedManyWithoutImage1Input;
+  ourStoryImage2?: Prisma.OurStoryCreateNestedManyWithoutImage2Input;
+  ourStoryImage3?: Prisma.OurStoryCreateNestedManyWithoutImage3Input;
+  ourStoryImage4?: Prisma.OurStoryCreateNestedManyWithoutImage4Input;
+  ourStoryImage5?: Prisma.OurStoryCreateNestedManyWithoutImage5Input;
+  contactInfos?: Prisma.ContactInfoCreateNestedManyWithoutBackgroundImageInput;
+  ourStories?: Prisma.OurStoryCreateNestedManyWithoutFileInstancesInput;
+  missionVisionImage1?: Prisma.MissionVisionCreateNestedManyWithoutImage1Input;
+  missionVisionImage3?: Prisma.MissionVisionCreateNestedManyWithoutImage3Input;
+  missionVisions?: Prisma.MissionVisionCreateNestedManyWithoutFileInstancesInput;
+  whatSetsUsApartImage1?: Prisma.WhatSetsUsApartCreateNestedManyWithoutImage1Input;
+  whatSetsUsApartImage2?: Prisma.WhatSetsUsApartCreateNestedManyWithoutImage2Input;
+  whatSetsUsAparts?: Prisma.WhatSetsUsApartCreateNestedManyWithoutFileInstancesInput;
+};
+
+export type FileInstanceUncheckedCreateWithoutMissionVisionImage2Input = {
+  id?: string;
+  filename: string;
+  originalFilename: string;
+  path: string;
+  url: string;
+  fileType?: $Enums.FileType;
+  mimeType: string;
+  size: number;
+  createdAt?: Date | string;
+  updatedAt?: Date | string;
+  pageBannersBackground?: Prisma.PageBannerUncheckedCreateNestedManyWithoutBackgroundInput;
+  blog?: Prisma.BlogUncheckedCreateNestedManyWithoutFileInstancesInput;
+  boatImages?: Prisma.BoatImageUncheckedCreateNestedManyWithoutFileInput;
+  contactTopImages?: Prisma.ContactPageUncheckedCreateNestedOneWithoutContactTopImageInput;
+  contactBottomImages?: Prisma.ContactPageUncheckedCreateNestedOneWithoutContactBottomImageInput;
+  featuredBrandLogos?: Prisma.FeaturedBrandsUncheckedCreateNestedManyWithoutFeaturedbrandLogoInput;
+  blogs?: Prisma.BlogUncheckedCreateNestedManyWithoutBlogImageInput;
+  settings?: Prisma.SettingUncheckedCreateNestedManyWithoutLogoInput;
+  packageBanners?: Prisma.packageBannerUncheckedCreateNestedManyWithoutPackageBannerInput;
+  aiSearchBanners?: Prisma.AiSearchBannerUncheckedCreateNestedManyWithoutAiSearchBannerInput;
+  categoryImages?: Prisma.CategoryUncheckedCreateNestedManyWithoutImageInput;
+  whyUsImage1?: Prisma.WhyUsUncheckedCreateNestedManyWithoutImage1Input;
+  whyUsImage2?: Prisma.WhyUsUncheckedCreateNestedManyWithoutImage2Input;
+  whyUsImage3?: Prisma.WhyUsUncheckedCreateNestedManyWithoutImage3Input;
+  ourTeamImages?: Prisma.OurTeamUncheckedCreateNestedManyWithoutImageInput;
+  ourStoryImage1?: Prisma.OurStoryUncheckedCreateNestedManyWithoutImage1Input;
+  ourStoryImage2?: Prisma.OurStoryUncheckedCreateNestedManyWithoutImage2Input;
+  ourStoryImage3?: Prisma.OurStoryUncheckedCreateNestedManyWithoutImage3Input;
+  ourStoryImage4?: Prisma.OurStoryUncheckedCreateNestedManyWithoutImage4Input;
+  ourStoryImage5?: Prisma.OurStoryUncheckedCreateNestedManyWithoutImage5Input;
+  contactInfos?: Prisma.ContactInfoUncheckedCreateNestedManyWithoutBackgroundImageInput;
+  ourStories?: Prisma.OurStoryUncheckedCreateNestedManyWithoutFileInstancesInput;
+  missionVisionImage1?: Prisma.MissionVisionUncheckedCreateNestedManyWithoutImage1Input;
+  missionVisionImage3?: Prisma.MissionVisionUncheckedCreateNestedManyWithoutImage3Input;
+  missionVisions?: Prisma.MissionVisionUncheckedCreateNestedManyWithoutFileInstancesInput;
+  whatSetsUsApartImage1?: Prisma.WhatSetsUsApartUncheckedCreateNestedManyWithoutImage1Input;
+  whatSetsUsApartImage2?: Prisma.WhatSetsUsApartUncheckedCreateNestedManyWithoutImage2Input;
+  whatSetsUsAparts?: Prisma.WhatSetsUsApartUncheckedCreateNestedManyWithoutFileInstancesInput;
+};
+
+export type FileInstanceCreateOrConnectWithoutMissionVisionImage2Input = {
+  where: Prisma.FileInstanceWhereUniqueInput;
+  create: Prisma.XOR<
+    Prisma.FileInstanceCreateWithoutMissionVisionImage2Input,
+    Prisma.FileInstanceUncheckedCreateWithoutMissionVisionImage2Input
+  >;
+};
+
+export type FileInstanceCreateWithoutMissionVisionImage3Input = {
+  id?: string;
+  filename: string;
+  originalFilename: string;
+  path: string;
+  url: string;
+  fileType?: $Enums.FileType;
+  mimeType: string;
+  size: number;
+  createdAt?: Date | string;
+  updatedAt?: Date | string;
+  pageBannersBackground?: Prisma.PageBannerCreateNestedManyWithoutBackgroundInput;
+  blog?: Prisma.BlogCreateNestedManyWithoutFileInstancesInput;
+  boatImages?: Prisma.BoatImageCreateNestedManyWithoutFileInput;
+  contactTopImages?: Prisma.ContactPageCreateNestedOneWithoutContactTopImageInput;
+  contactBottomImages?: Prisma.ContactPageCreateNestedOneWithoutContactBottomImageInput;
+  featuredBrandLogos?: Prisma.FeaturedBrandsCreateNestedManyWithoutFeaturedbrandLogoInput;
+  blogs?: Prisma.BlogCreateNestedManyWithoutBlogImageInput;
+  settings?: Prisma.SettingCreateNestedManyWithoutLogoInput;
+  packageBanners?: Prisma.packageBannerCreateNestedManyWithoutPackageBannerInput;
+  aiSearchBanners?: Prisma.AiSearchBannerCreateNestedManyWithoutAiSearchBannerInput;
+  categoryImages?: Prisma.CategoryCreateNestedManyWithoutImageInput;
+  whyUsImage1?: Prisma.WhyUsCreateNestedManyWithoutImage1Input;
+  whyUsImage2?: Prisma.WhyUsCreateNestedManyWithoutImage2Input;
+  whyUsImage3?: Prisma.WhyUsCreateNestedManyWithoutImage3Input;
+  ourTeamImages?: Prisma.OurTeamCreateNestedManyWithoutImageInput;
+  ourStoryImage1?: Prisma.OurStoryCreateNestedManyWithoutImage1Input;
+  ourStoryImage2?: Prisma.OurStoryCreateNestedManyWithoutImage2Input;
+  ourStoryImage3?: Prisma.OurStoryCreateNestedManyWithoutImage3Input;
+  ourStoryImage4?: Prisma.OurStoryCreateNestedManyWithoutImage4Input;
+  ourStoryImage5?: Prisma.OurStoryCreateNestedManyWithoutImage5Input;
+  contactInfos?: Prisma.ContactInfoCreateNestedManyWithoutBackgroundImageInput;
+  ourStories?: Prisma.OurStoryCreateNestedManyWithoutFileInstancesInput;
+  missionVisionImage1?: Prisma.MissionVisionCreateNestedManyWithoutImage1Input;
+  missionVisionImage2?: Prisma.MissionVisionCreateNestedManyWithoutImage2Input;
+  missionVisions?: Prisma.MissionVisionCreateNestedManyWithoutFileInstancesInput;
+  whatSetsUsApartImage1?: Prisma.WhatSetsUsApartCreateNestedManyWithoutImage1Input;
+  whatSetsUsApartImage2?: Prisma.WhatSetsUsApartCreateNestedManyWithoutImage2Input;
+  whatSetsUsAparts?: Prisma.WhatSetsUsApartCreateNestedManyWithoutFileInstancesInput;
+};
+
+export type FileInstanceUncheckedCreateWithoutMissionVisionImage3Input = {
+  id?: string;
+  filename: string;
+  originalFilename: string;
+  path: string;
+  url: string;
+  fileType?: $Enums.FileType;
+  mimeType: string;
+  size: number;
+  createdAt?: Date | string;
+  updatedAt?: Date | string;
+  pageBannersBackground?: Prisma.PageBannerUncheckedCreateNestedManyWithoutBackgroundInput;
+  blog?: Prisma.BlogUncheckedCreateNestedManyWithoutFileInstancesInput;
+  boatImages?: Prisma.BoatImageUncheckedCreateNestedManyWithoutFileInput;
+  contactTopImages?: Prisma.ContactPageUncheckedCreateNestedOneWithoutContactTopImageInput;
+  contactBottomImages?: Prisma.ContactPageUncheckedCreateNestedOneWithoutContactBottomImageInput;
+  featuredBrandLogos?: Prisma.FeaturedBrandsUncheckedCreateNestedManyWithoutFeaturedbrandLogoInput;
+  blogs?: Prisma.BlogUncheckedCreateNestedManyWithoutBlogImageInput;
+  settings?: Prisma.SettingUncheckedCreateNestedManyWithoutLogoInput;
+  packageBanners?: Prisma.packageBannerUncheckedCreateNestedManyWithoutPackageBannerInput;
+  aiSearchBanners?: Prisma.AiSearchBannerUncheckedCreateNestedManyWithoutAiSearchBannerInput;
+  categoryImages?: Prisma.CategoryUncheckedCreateNestedManyWithoutImageInput;
+  whyUsImage1?: Prisma.WhyUsUncheckedCreateNestedManyWithoutImage1Input;
+  whyUsImage2?: Prisma.WhyUsUncheckedCreateNestedManyWithoutImage2Input;
+  whyUsImage3?: Prisma.WhyUsUncheckedCreateNestedManyWithoutImage3Input;
+  ourTeamImages?: Prisma.OurTeamUncheckedCreateNestedManyWithoutImageInput;
+  ourStoryImage1?: Prisma.OurStoryUncheckedCreateNestedManyWithoutImage1Input;
+  ourStoryImage2?: Prisma.OurStoryUncheckedCreateNestedManyWithoutImage2Input;
+  ourStoryImage3?: Prisma.OurStoryUncheckedCreateNestedManyWithoutImage3Input;
+  ourStoryImage4?: Prisma.OurStoryUncheckedCreateNestedManyWithoutImage4Input;
+  ourStoryImage5?: Prisma.OurStoryUncheckedCreateNestedManyWithoutImage5Input;
+  contactInfos?: Prisma.ContactInfoUncheckedCreateNestedManyWithoutBackgroundImageInput;
+  ourStories?: Prisma.OurStoryUncheckedCreateNestedManyWithoutFileInstancesInput;
+  missionVisionImage1?: Prisma.MissionVisionUncheckedCreateNestedManyWithoutImage1Input;
+  missionVisionImage2?: Prisma.MissionVisionUncheckedCreateNestedManyWithoutImage2Input;
+  missionVisions?: Prisma.MissionVisionUncheckedCreateNestedManyWithoutFileInstancesInput;
+  whatSetsUsApartImage1?: Prisma.WhatSetsUsApartUncheckedCreateNestedManyWithoutImage1Input;
+  whatSetsUsApartImage2?: Prisma.WhatSetsUsApartUncheckedCreateNestedManyWithoutImage2Input;
+  whatSetsUsAparts?: Prisma.WhatSetsUsApartUncheckedCreateNestedManyWithoutFileInstancesInput;
+};
+
+export type FileInstanceCreateOrConnectWithoutMissionVisionImage3Input = {
+  where: Prisma.FileInstanceWhereUniqueInput;
+  create: Prisma.XOR<
+    Prisma.FileInstanceCreateWithoutMissionVisionImage3Input,
+    Prisma.FileInstanceUncheckedCreateWithoutMissionVisionImage3Input
+  >;
+};
+
+export type FileInstanceCreateWithoutMissionVisionsInput = {
+  id?: string;
+  filename: string;
+  originalFilename: string;
+  path: string;
+  url: string;
+  fileType?: $Enums.FileType;
+  mimeType: string;
+  size: number;
+  createdAt?: Date | string;
+  updatedAt?: Date | string;
+  pageBannersBackground?: Prisma.PageBannerCreateNestedManyWithoutBackgroundInput;
+  blog?: Prisma.BlogCreateNestedManyWithoutFileInstancesInput;
+  boatImages?: Prisma.BoatImageCreateNestedManyWithoutFileInput;
+  contactTopImages?: Prisma.ContactPageCreateNestedOneWithoutContactTopImageInput;
+  contactBottomImages?: Prisma.ContactPageCreateNestedOneWithoutContactBottomImageInput;
+  featuredBrandLogos?: Prisma.FeaturedBrandsCreateNestedManyWithoutFeaturedbrandLogoInput;
+  blogs?: Prisma.BlogCreateNestedManyWithoutBlogImageInput;
+  settings?: Prisma.SettingCreateNestedManyWithoutLogoInput;
+  packageBanners?: Prisma.packageBannerCreateNestedManyWithoutPackageBannerInput;
+  aiSearchBanners?: Prisma.AiSearchBannerCreateNestedManyWithoutAiSearchBannerInput;
+  categoryImages?: Prisma.CategoryCreateNestedManyWithoutImageInput;
+  whyUsImage1?: Prisma.WhyUsCreateNestedManyWithoutImage1Input;
+  whyUsImage2?: Prisma.WhyUsCreateNestedManyWithoutImage2Input;
+  whyUsImage3?: Prisma.WhyUsCreateNestedManyWithoutImage3Input;
+  ourTeamImages?: Prisma.OurTeamCreateNestedManyWithoutImageInput;
+  ourStoryImage1?: Prisma.OurStoryCreateNestedManyWithoutImage1Input;
+  ourStoryImage2?: Prisma.OurStoryCreateNestedManyWithoutImage2Input;
+  ourStoryImage3?: Prisma.OurStoryCreateNestedManyWithoutImage3Input;
+  ourStoryImage4?: Prisma.OurStoryCreateNestedManyWithoutImage4Input;
+  ourStoryImage5?: Prisma.OurStoryCreateNestedManyWithoutImage5Input;
+  contactInfos?: Prisma.ContactInfoCreateNestedManyWithoutBackgroundImageInput;
+  ourStories?: Prisma.OurStoryCreateNestedManyWithoutFileInstancesInput;
+  missionVisionImage1?: Prisma.MissionVisionCreateNestedManyWithoutImage1Input;
+  missionVisionImage2?: Prisma.MissionVisionCreateNestedManyWithoutImage2Input;
+  missionVisionImage3?: Prisma.MissionVisionCreateNestedManyWithoutImage3Input;
+  whatSetsUsApartImage1?: Prisma.WhatSetsUsApartCreateNestedManyWithoutImage1Input;
+  whatSetsUsApartImage2?: Prisma.WhatSetsUsApartCreateNestedManyWithoutImage2Input;
+  whatSetsUsAparts?: Prisma.WhatSetsUsApartCreateNestedManyWithoutFileInstancesInput;
+};
+
+export type FileInstanceUncheckedCreateWithoutMissionVisionsInput = {
+  id?: string;
+  filename: string;
+  originalFilename: string;
+  path: string;
+  url: string;
+  fileType?: $Enums.FileType;
+  mimeType: string;
+  size: number;
+  createdAt?: Date | string;
+  updatedAt?: Date | string;
+  pageBannersBackground?: Prisma.PageBannerUncheckedCreateNestedManyWithoutBackgroundInput;
+  blog?: Prisma.BlogUncheckedCreateNestedManyWithoutFileInstancesInput;
+  boatImages?: Prisma.BoatImageUncheckedCreateNestedManyWithoutFileInput;
+  contactTopImages?: Prisma.ContactPageUncheckedCreateNestedOneWithoutContactTopImageInput;
+  contactBottomImages?: Prisma.ContactPageUncheckedCreateNestedOneWithoutContactBottomImageInput;
+  featuredBrandLogos?: Prisma.FeaturedBrandsUncheckedCreateNestedManyWithoutFeaturedbrandLogoInput;
+  blogs?: Prisma.BlogUncheckedCreateNestedManyWithoutBlogImageInput;
+  settings?: Prisma.SettingUncheckedCreateNestedManyWithoutLogoInput;
+  packageBanners?: Prisma.packageBannerUncheckedCreateNestedManyWithoutPackageBannerInput;
+  aiSearchBanners?: Prisma.AiSearchBannerUncheckedCreateNestedManyWithoutAiSearchBannerInput;
+  categoryImages?: Prisma.CategoryUncheckedCreateNestedManyWithoutImageInput;
+  whyUsImage1?: Prisma.WhyUsUncheckedCreateNestedManyWithoutImage1Input;
+  whyUsImage2?: Prisma.WhyUsUncheckedCreateNestedManyWithoutImage2Input;
+  whyUsImage3?: Prisma.WhyUsUncheckedCreateNestedManyWithoutImage3Input;
+  ourTeamImages?: Prisma.OurTeamUncheckedCreateNestedManyWithoutImageInput;
+  ourStoryImage1?: Prisma.OurStoryUncheckedCreateNestedManyWithoutImage1Input;
+  ourStoryImage2?: Prisma.OurStoryUncheckedCreateNestedManyWithoutImage2Input;
+  ourStoryImage3?: Prisma.OurStoryUncheckedCreateNestedManyWithoutImage3Input;
+  ourStoryImage4?: Prisma.OurStoryUncheckedCreateNestedManyWithoutImage4Input;
+  ourStoryImage5?: Prisma.OurStoryUncheckedCreateNestedManyWithoutImage5Input;
+  contactInfos?: Prisma.ContactInfoUncheckedCreateNestedManyWithoutBackgroundImageInput;
+  ourStories?: Prisma.OurStoryUncheckedCreateNestedManyWithoutFileInstancesInput;
+  missionVisionImage1?: Prisma.MissionVisionUncheckedCreateNestedManyWithoutImage1Input;
+  missionVisionImage2?: Prisma.MissionVisionUncheckedCreateNestedManyWithoutImage2Input;
+  missionVisionImage3?: Prisma.MissionVisionUncheckedCreateNestedManyWithoutImage3Input;
+  whatSetsUsApartImage1?: Prisma.WhatSetsUsApartUncheckedCreateNestedManyWithoutImage1Input;
+  whatSetsUsApartImage2?: Prisma.WhatSetsUsApartUncheckedCreateNestedManyWithoutImage2Input;
+  whatSetsUsAparts?: Prisma.WhatSetsUsApartUncheckedCreateNestedManyWithoutFileInstancesInput;
+};
+
+export type FileInstanceCreateOrConnectWithoutMissionVisionsInput = {
+  where: Prisma.FileInstanceWhereUniqueInput;
+  create: Prisma.XOR<
+    Prisma.FileInstanceCreateWithoutMissionVisionsInput,
+    Prisma.FileInstanceUncheckedCreateWithoutMissionVisionsInput
+  >;
+};
+
+export type FileInstanceUpsertWithoutMissionVisionImage1Input = {
+  update: Prisma.XOR<
+    Prisma.FileInstanceUpdateWithoutMissionVisionImage1Input,
+    Prisma.FileInstanceUncheckedUpdateWithoutMissionVisionImage1Input
+  >;
+  create: Prisma.XOR<
+    Prisma.FileInstanceCreateWithoutMissionVisionImage1Input,
+    Prisma.FileInstanceUncheckedCreateWithoutMissionVisionImage1Input
+  >;
+  where?: Prisma.FileInstanceWhereInput;
+};
+
+export type FileInstanceUpdateToOneWithWhereWithoutMissionVisionImage1Input = {
+  where?: Prisma.FileInstanceWhereInput;
+  data: Prisma.XOR<
+    Prisma.FileInstanceUpdateWithoutMissionVisionImage1Input,
+    Prisma.FileInstanceUncheckedUpdateWithoutMissionVisionImage1Input
+  >;
+};
+
+export type FileInstanceUpdateWithoutMissionVisionImage1Input = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string;
+  filename?: Prisma.StringFieldUpdateOperationsInput | string;
+  originalFilename?: Prisma.StringFieldUpdateOperationsInput | string;
+  path?: Prisma.StringFieldUpdateOperationsInput | string;
+  url?: Prisma.StringFieldUpdateOperationsInput | string;
+  fileType?: Prisma.EnumFileTypeFieldUpdateOperationsInput | $Enums.FileType;
+  mimeType?: Prisma.StringFieldUpdateOperationsInput | string;
+  size?: Prisma.IntFieldUpdateOperationsInput | number;
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  pageBannersBackground?: Prisma.PageBannerUpdateManyWithoutBackgroundNestedInput;
+  blog?: Prisma.BlogUpdateManyWithoutFileInstancesNestedInput;
+  boatImages?: Prisma.BoatImageUpdateManyWithoutFileNestedInput;
+  contactTopImages?: Prisma.ContactPageUpdateOneWithoutContactTopImageNestedInput;
+  contactBottomImages?: Prisma.ContactPageUpdateOneWithoutContactBottomImageNestedInput;
+  featuredBrandLogos?: Prisma.FeaturedBrandsUpdateManyWithoutFeaturedbrandLogoNestedInput;
+  blogs?: Prisma.BlogUpdateManyWithoutBlogImageNestedInput;
+  settings?: Prisma.SettingUpdateManyWithoutLogoNestedInput;
+  packageBanners?: Prisma.packageBannerUpdateManyWithoutPackageBannerNestedInput;
+  aiSearchBanners?: Prisma.AiSearchBannerUpdateManyWithoutAiSearchBannerNestedInput;
+  categoryImages?: Prisma.CategoryUpdateManyWithoutImageNestedInput;
+  whyUsImage1?: Prisma.WhyUsUpdateManyWithoutImage1NestedInput;
+  whyUsImage2?: Prisma.WhyUsUpdateManyWithoutImage2NestedInput;
+  whyUsImage3?: Prisma.WhyUsUpdateManyWithoutImage3NestedInput;
+  ourTeamImages?: Prisma.OurTeamUpdateManyWithoutImageNestedInput;
+  ourStoryImage1?: Prisma.OurStoryUpdateManyWithoutImage1NestedInput;
+  ourStoryImage2?: Prisma.OurStoryUpdateManyWithoutImage2NestedInput;
+  ourStoryImage3?: Prisma.OurStoryUpdateManyWithoutImage3NestedInput;
+  ourStoryImage4?: Prisma.OurStoryUpdateManyWithoutImage4NestedInput;
+  ourStoryImage5?: Prisma.OurStoryUpdateManyWithoutImage5NestedInput;
+  contactInfos?: Prisma.ContactInfoUpdateManyWithoutBackgroundImageNestedInput;
+  ourStories?: Prisma.OurStoryUpdateManyWithoutFileInstancesNestedInput;
+  missionVisionImage2?: Prisma.MissionVisionUpdateManyWithoutImage2NestedInput;
+  missionVisionImage3?: Prisma.MissionVisionUpdateManyWithoutImage3NestedInput;
+  missionVisions?: Prisma.MissionVisionUpdateManyWithoutFileInstancesNestedInput;
+  whatSetsUsApartImage1?: Prisma.WhatSetsUsApartUpdateManyWithoutImage1NestedInput;
+  whatSetsUsApartImage2?: Prisma.WhatSetsUsApartUpdateManyWithoutImage2NestedInput;
+  whatSetsUsAparts?: Prisma.WhatSetsUsApartUpdateManyWithoutFileInstancesNestedInput;
+};
+
+export type FileInstanceUncheckedUpdateWithoutMissionVisionImage1Input = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string;
+  filename?: Prisma.StringFieldUpdateOperationsInput | string;
+  originalFilename?: Prisma.StringFieldUpdateOperationsInput | string;
+  path?: Prisma.StringFieldUpdateOperationsInput | string;
+  url?: Prisma.StringFieldUpdateOperationsInput | string;
+  fileType?: Prisma.EnumFileTypeFieldUpdateOperationsInput | $Enums.FileType;
+  mimeType?: Prisma.StringFieldUpdateOperationsInput | string;
+  size?: Prisma.IntFieldUpdateOperationsInput | number;
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  pageBannersBackground?: Prisma.PageBannerUncheckedUpdateManyWithoutBackgroundNestedInput;
+  blog?: Prisma.BlogUncheckedUpdateManyWithoutFileInstancesNestedInput;
+  boatImages?: Prisma.BoatImageUncheckedUpdateManyWithoutFileNestedInput;
+  contactTopImages?: Prisma.ContactPageUncheckedUpdateOneWithoutContactTopImageNestedInput;
+  contactBottomImages?: Prisma.ContactPageUncheckedUpdateOneWithoutContactBottomImageNestedInput;
+  featuredBrandLogos?: Prisma.FeaturedBrandsUncheckedUpdateManyWithoutFeaturedbrandLogoNestedInput;
+  blogs?: Prisma.BlogUncheckedUpdateManyWithoutBlogImageNestedInput;
+  settings?: Prisma.SettingUncheckedUpdateManyWithoutLogoNestedInput;
+  packageBanners?: Prisma.packageBannerUncheckedUpdateManyWithoutPackageBannerNestedInput;
+  aiSearchBanners?: Prisma.AiSearchBannerUncheckedUpdateManyWithoutAiSearchBannerNestedInput;
+  categoryImages?: Prisma.CategoryUncheckedUpdateManyWithoutImageNestedInput;
+  whyUsImage1?: Prisma.WhyUsUncheckedUpdateManyWithoutImage1NestedInput;
+  whyUsImage2?: Prisma.WhyUsUncheckedUpdateManyWithoutImage2NestedInput;
+  whyUsImage3?: Prisma.WhyUsUncheckedUpdateManyWithoutImage3NestedInput;
+  ourTeamImages?: Prisma.OurTeamUncheckedUpdateManyWithoutImageNestedInput;
+  ourStoryImage1?: Prisma.OurStoryUncheckedUpdateManyWithoutImage1NestedInput;
+  ourStoryImage2?: Prisma.OurStoryUncheckedUpdateManyWithoutImage2NestedInput;
+  ourStoryImage3?: Prisma.OurStoryUncheckedUpdateManyWithoutImage3NestedInput;
+  ourStoryImage4?: Prisma.OurStoryUncheckedUpdateManyWithoutImage4NestedInput;
+  ourStoryImage5?: Prisma.OurStoryUncheckedUpdateManyWithoutImage5NestedInput;
+  contactInfos?: Prisma.ContactInfoUncheckedUpdateManyWithoutBackgroundImageNestedInput;
+  ourStories?: Prisma.OurStoryUncheckedUpdateManyWithoutFileInstancesNestedInput;
+  missionVisionImage2?: Prisma.MissionVisionUncheckedUpdateManyWithoutImage2NestedInput;
+  missionVisionImage3?: Prisma.MissionVisionUncheckedUpdateManyWithoutImage3NestedInput;
+  missionVisions?: Prisma.MissionVisionUncheckedUpdateManyWithoutFileInstancesNestedInput;
+  whatSetsUsApartImage1?: Prisma.WhatSetsUsApartUncheckedUpdateManyWithoutImage1NestedInput;
+  whatSetsUsApartImage2?: Prisma.WhatSetsUsApartUncheckedUpdateManyWithoutImage2NestedInput;
+  whatSetsUsAparts?: Prisma.WhatSetsUsApartUncheckedUpdateManyWithoutFileInstancesNestedInput;
+};
+
+export type FileInstanceUpsertWithoutMissionVisionImage2Input = {
+  update: Prisma.XOR<
+    Prisma.FileInstanceUpdateWithoutMissionVisionImage2Input,
+    Prisma.FileInstanceUncheckedUpdateWithoutMissionVisionImage2Input
+  >;
+  create: Prisma.XOR<
+    Prisma.FileInstanceCreateWithoutMissionVisionImage2Input,
+    Prisma.FileInstanceUncheckedCreateWithoutMissionVisionImage2Input
+  >;
+  where?: Prisma.FileInstanceWhereInput;
+};
+
+export type FileInstanceUpdateToOneWithWhereWithoutMissionVisionImage2Input = {
+  where?: Prisma.FileInstanceWhereInput;
+  data: Prisma.XOR<
+    Prisma.FileInstanceUpdateWithoutMissionVisionImage2Input,
+    Prisma.FileInstanceUncheckedUpdateWithoutMissionVisionImage2Input
+  >;
+};
+
+export type FileInstanceUpdateWithoutMissionVisionImage2Input = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string;
+  filename?: Prisma.StringFieldUpdateOperationsInput | string;
+  originalFilename?: Prisma.StringFieldUpdateOperationsInput | string;
+  path?: Prisma.StringFieldUpdateOperationsInput | string;
+  url?: Prisma.StringFieldUpdateOperationsInput | string;
+  fileType?: Prisma.EnumFileTypeFieldUpdateOperationsInput | $Enums.FileType;
+  mimeType?: Prisma.StringFieldUpdateOperationsInput | string;
+  size?: Prisma.IntFieldUpdateOperationsInput | number;
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  pageBannersBackground?: Prisma.PageBannerUpdateManyWithoutBackgroundNestedInput;
+  blog?: Prisma.BlogUpdateManyWithoutFileInstancesNestedInput;
+  boatImages?: Prisma.BoatImageUpdateManyWithoutFileNestedInput;
+  contactTopImages?: Prisma.ContactPageUpdateOneWithoutContactTopImageNestedInput;
+  contactBottomImages?: Prisma.ContactPageUpdateOneWithoutContactBottomImageNestedInput;
+  featuredBrandLogos?: Prisma.FeaturedBrandsUpdateManyWithoutFeaturedbrandLogoNestedInput;
+  blogs?: Prisma.BlogUpdateManyWithoutBlogImageNestedInput;
+  settings?: Prisma.SettingUpdateManyWithoutLogoNestedInput;
+  packageBanners?: Prisma.packageBannerUpdateManyWithoutPackageBannerNestedInput;
+  aiSearchBanners?: Prisma.AiSearchBannerUpdateManyWithoutAiSearchBannerNestedInput;
+  categoryImages?: Prisma.CategoryUpdateManyWithoutImageNestedInput;
+  whyUsImage1?: Prisma.WhyUsUpdateManyWithoutImage1NestedInput;
+  whyUsImage2?: Prisma.WhyUsUpdateManyWithoutImage2NestedInput;
+  whyUsImage3?: Prisma.WhyUsUpdateManyWithoutImage3NestedInput;
+  ourTeamImages?: Prisma.OurTeamUpdateManyWithoutImageNestedInput;
+  ourStoryImage1?: Prisma.OurStoryUpdateManyWithoutImage1NestedInput;
+  ourStoryImage2?: Prisma.OurStoryUpdateManyWithoutImage2NestedInput;
+  ourStoryImage3?: Prisma.OurStoryUpdateManyWithoutImage3NestedInput;
+  ourStoryImage4?: Prisma.OurStoryUpdateManyWithoutImage4NestedInput;
+  ourStoryImage5?: Prisma.OurStoryUpdateManyWithoutImage5NestedInput;
+  contactInfos?: Prisma.ContactInfoUpdateManyWithoutBackgroundImageNestedInput;
+  ourStories?: Prisma.OurStoryUpdateManyWithoutFileInstancesNestedInput;
+  missionVisionImage1?: Prisma.MissionVisionUpdateManyWithoutImage1NestedInput;
+  missionVisionImage3?: Prisma.MissionVisionUpdateManyWithoutImage3NestedInput;
+  missionVisions?: Prisma.MissionVisionUpdateManyWithoutFileInstancesNestedInput;
+  whatSetsUsApartImage1?: Prisma.WhatSetsUsApartUpdateManyWithoutImage1NestedInput;
+  whatSetsUsApartImage2?: Prisma.WhatSetsUsApartUpdateManyWithoutImage2NestedInput;
+  whatSetsUsAparts?: Prisma.WhatSetsUsApartUpdateManyWithoutFileInstancesNestedInput;
+};
+
+export type FileInstanceUncheckedUpdateWithoutMissionVisionImage2Input = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string;
+  filename?: Prisma.StringFieldUpdateOperationsInput | string;
+  originalFilename?: Prisma.StringFieldUpdateOperationsInput | string;
+  path?: Prisma.StringFieldUpdateOperationsInput | string;
+  url?: Prisma.StringFieldUpdateOperationsInput | string;
+  fileType?: Prisma.EnumFileTypeFieldUpdateOperationsInput | $Enums.FileType;
+  mimeType?: Prisma.StringFieldUpdateOperationsInput | string;
+  size?: Prisma.IntFieldUpdateOperationsInput | number;
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  pageBannersBackground?: Prisma.PageBannerUncheckedUpdateManyWithoutBackgroundNestedInput;
+  blog?: Prisma.BlogUncheckedUpdateManyWithoutFileInstancesNestedInput;
+  boatImages?: Prisma.BoatImageUncheckedUpdateManyWithoutFileNestedInput;
+  contactTopImages?: Prisma.ContactPageUncheckedUpdateOneWithoutContactTopImageNestedInput;
+  contactBottomImages?: Prisma.ContactPageUncheckedUpdateOneWithoutContactBottomImageNestedInput;
+  featuredBrandLogos?: Prisma.FeaturedBrandsUncheckedUpdateManyWithoutFeaturedbrandLogoNestedInput;
+  blogs?: Prisma.BlogUncheckedUpdateManyWithoutBlogImageNestedInput;
+  settings?: Prisma.SettingUncheckedUpdateManyWithoutLogoNestedInput;
+  packageBanners?: Prisma.packageBannerUncheckedUpdateManyWithoutPackageBannerNestedInput;
+  aiSearchBanners?: Prisma.AiSearchBannerUncheckedUpdateManyWithoutAiSearchBannerNestedInput;
+  categoryImages?: Prisma.CategoryUncheckedUpdateManyWithoutImageNestedInput;
+  whyUsImage1?: Prisma.WhyUsUncheckedUpdateManyWithoutImage1NestedInput;
+  whyUsImage2?: Prisma.WhyUsUncheckedUpdateManyWithoutImage2NestedInput;
+  whyUsImage3?: Prisma.WhyUsUncheckedUpdateManyWithoutImage3NestedInput;
+  ourTeamImages?: Prisma.OurTeamUncheckedUpdateManyWithoutImageNestedInput;
+  ourStoryImage1?: Prisma.OurStoryUncheckedUpdateManyWithoutImage1NestedInput;
+  ourStoryImage2?: Prisma.OurStoryUncheckedUpdateManyWithoutImage2NestedInput;
+  ourStoryImage3?: Prisma.OurStoryUncheckedUpdateManyWithoutImage3NestedInput;
+  ourStoryImage4?: Prisma.OurStoryUncheckedUpdateManyWithoutImage4NestedInput;
+  ourStoryImage5?: Prisma.OurStoryUncheckedUpdateManyWithoutImage5NestedInput;
+  contactInfos?: Prisma.ContactInfoUncheckedUpdateManyWithoutBackgroundImageNestedInput;
+  ourStories?: Prisma.OurStoryUncheckedUpdateManyWithoutFileInstancesNestedInput;
+  missionVisionImage1?: Prisma.MissionVisionUncheckedUpdateManyWithoutImage1NestedInput;
+  missionVisionImage3?: Prisma.MissionVisionUncheckedUpdateManyWithoutImage3NestedInput;
+  missionVisions?: Prisma.MissionVisionUncheckedUpdateManyWithoutFileInstancesNestedInput;
+  whatSetsUsApartImage1?: Prisma.WhatSetsUsApartUncheckedUpdateManyWithoutImage1NestedInput;
+  whatSetsUsApartImage2?: Prisma.WhatSetsUsApartUncheckedUpdateManyWithoutImage2NestedInput;
+  whatSetsUsAparts?: Prisma.WhatSetsUsApartUncheckedUpdateManyWithoutFileInstancesNestedInput;
+};
+
+export type FileInstanceUpsertWithoutMissionVisionImage3Input = {
+  update: Prisma.XOR<
+    Prisma.FileInstanceUpdateWithoutMissionVisionImage3Input,
+    Prisma.FileInstanceUncheckedUpdateWithoutMissionVisionImage3Input
+  >;
+  create: Prisma.XOR<
+    Prisma.FileInstanceCreateWithoutMissionVisionImage3Input,
+    Prisma.FileInstanceUncheckedCreateWithoutMissionVisionImage3Input
+  >;
+  where?: Prisma.FileInstanceWhereInput;
+};
+
+export type FileInstanceUpdateToOneWithWhereWithoutMissionVisionImage3Input = {
+  where?: Prisma.FileInstanceWhereInput;
+  data: Prisma.XOR<
+    Prisma.FileInstanceUpdateWithoutMissionVisionImage3Input,
+    Prisma.FileInstanceUncheckedUpdateWithoutMissionVisionImage3Input
+  >;
+};
+
+export type FileInstanceUpdateWithoutMissionVisionImage3Input = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string;
+  filename?: Prisma.StringFieldUpdateOperationsInput | string;
+  originalFilename?: Prisma.StringFieldUpdateOperationsInput | string;
+  path?: Prisma.StringFieldUpdateOperationsInput | string;
+  url?: Prisma.StringFieldUpdateOperationsInput | string;
+  fileType?: Prisma.EnumFileTypeFieldUpdateOperationsInput | $Enums.FileType;
+  mimeType?: Prisma.StringFieldUpdateOperationsInput | string;
+  size?: Prisma.IntFieldUpdateOperationsInput | number;
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  pageBannersBackground?: Prisma.PageBannerUpdateManyWithoutBackgroundNestedInput;
+  blog?: Prisma.BlogUpdateManyWithoutFileInstancesNestedInput;
+  boatImages?: Prisma.BoatImageUpdateManyWithoutFileNestedInput;
+  contactTopImages?: Prisma.ContactPageUpdateOneWithoutContactTopImageNestedInput;
+  contactBottomImages?: Prisma.ContactPageUpdateOneWithoutContactBottomImageNestedInput;
+  featuredBrandLogos?: Prisma.FeaturedBrandsUpdateManyWithoutFeaturedbrandLogoNestedInput;
+  blogs?: Prisma.BlogUpdateManyWithoutBlogImageNestedInput;
+  settings?: Prisma.SettingUpdateManyWithoutLogoNestedInput;
+  packageBanners?: Prisma.packageBannerUpdateManyWithoutPackageBannerNestedInput;
+  aiSearchBanners?: Prisma.AiSearchBannerUpdateManyWithoutAiSearchBannerNestedInput;
+  categoryImages?: Prisma.CategoryUpdateManyWithoutImageNestedInput;
+  whyUsImage1?: Prisma.WhyUsUpdateManyWithoutImage1NestedInput;
+  whyUsImage2?: Prisma.WhyUsUpdateManyWithoutImage2NestedInput;
+  whyUsImage3?: Prisma.WhyUsUpdateManyWithoutImage3NestedInput;
+  ourTeamImages?: Prisma.OurTeamUpdateManyWithoutImageNestedInput;
+  ourStoryImage1?: Prisma.OurStoryUpdateManyWithoutImage1NestedInput;
+  ourStoryImage2?: Prisma.OurStoryUpdateManyWithoutImage2NestedInput;
+  ourStoryImage3?: Prisma.OurStoryUpdateManyWithoutImage3NestedInput;
+  ourStoryImage4?: Prisma.OurStoryUpdateManyWithoutImage4NestedInput;
+  ourStoryImage5?: Prisma.OurStoryUpdateManyWithoutImage5NestedInput;
+  contactInfos?: Prisma.ContactInfoUpdateManyWithoutBackgroundImageNestedInput;
+  ourStories?: Prisma.OurStoryUpdateManyWithoutFileInstancesNestedInput;
+  missionVisionImage1?: Prisma.MissionVisionUpdateManyWithoutImage1NestedInput;
+  missionVisionImage2?: Prisma.MissionVisionUpdateManyWithoutImage2NestedInput;
+  missionVisions?: Prisma.MissionVisionUpdateManyWithoutFileInstancesNestedInput;
+  whatSetsUsApartImage1?: Prisma.WhatSetsUsApartUpdateManyWithoutImage1NestedInput;
+  whatSetsUsApartImage2?: Prisma.WhatSetsUsApartUpdateManyWithoutImage2NestedInput;
+  whatSetsUsAparts?: Prisma.WhatSetsUsApartUpdateManyWithoutFileInstancesNestedInput;
+};
+
+export type FileInstanceUncheckedUpdateWithoutMissionVisionImage3Input = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string;
+  filename?: Prisma.StringFieldUpdateOperationsInput | string;
+  originalFilename?: Prisma.StringFieldUpdateOperationsInput | string;
+  path?: Prisma.StringFieldUpdateOperationsInput | string;
+  url?: Prisma.StringFieldUpdateOperationsInput | string;
+  fileType?: Prisma.EnumFileTypeFieldUpdateOperationsInput | $Enums.FileType;
+  mimeType?: Prisma.StringFieldUpdateOperationsInput | string;
+  size?: Prisma.IntFieldUpdateOperationsInput | number;
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  pageBannersBackground?: Prisma.PageBannerUncheckedUpdateManyWithoutBackgroundNestedInput;
+  blog?: Prisma.BlogUncheckedUpdateManyWithoutFileInstancesNestedInput;
+  boatImages?: Prisma.BoatImageUncheckedUpdateManyWithoutFileNestedInput;
+  contactTopImages?: Prisma.ContactPageUncheckedUpdateOneWithoutContactTopImageNestedInput;
+  contactBottomImages?: Prisma.ContactPageUncheckedUpdateOneWithoutContactBottomImageNestedInput;
+  featuredBrandLogos?: Prisma.FeaturedBrandsUncheckedUpdateManyWithoutFeaturedbrandLogoNestedInput;
+  blogs?: Prisma.BlogUncheckedUpdateManyWithoutBlogImageNestedInput;
+  settings?: Prisma.SettingUncheckedUpdateManyWithoutLogoNestedInput;
+  packageBanners?: Prisma.packageBannerUncheckedUpdateManyWithoutPackageBannerNestedInput;
+  aiSearchBanners?: Prisma.AiSearchBannerUncheckedUpdateManyWithoutAiSearchBannerNestedInput;
+  categoryImages?: Prisma.CategoryUncheckedUpdateManyWithoutImageNestedInput;
+  whyUsImage1?: Prisma.WhyUsUncheckedUpdateManyWithoutImage1NestedInput;
+  whyUsImage2?: Prisma.WhyUsUncheckedUpdateManyWithoutImage2NestedInput;
+  whyUsImage3?: Prisma.WhyUsUncheckedUpdateManyWithoutImage3NestedInput;
+  ourTeamImages?: Prisma.OurTeamUncheckedUpdateManyWithoutImageNestedInput;
+  ourStoryImage1?: Prisma.OurStoryUncheckedUpdateManyWithoutImage1NestedInput;
+  ourStoryImage2?: Prisma.OurStoryUncheckedUpdateManyWithoutImage2NestedInput;
+  ourStoryImage3?: Prisma.OurStoryUncheckedUpdateManyWithoutImage3NestedInput;
+  ourStoryImage4?: Prisma.OurStoryUncheckedUpdateManyWithoutImage4NestedInput;
+  ourStoryImage5?: Prisma.OurStoryUncheckedUpdateManyWithoutImage5NestedInput;
+  contactInfos?: Prisma.ContactInfoUncheckedUpdateManyWithoutBackgroundImageNestedInput;
+  ourStories?: Prisma.OurStoryUncheckedUpdateManyWithoutFileInstancesNestedInput;
+  missionVisionImage1?: Prisma.MissionVisionUncheckedUpdateManyWithoutImage1NestedInput;
+  missionVisionImage2?: Prisma.MissionVisionUncheckedUpdateManyWithoutImage2NestedInput;
+  missionVisions?: Prisma.MissionVisionUncheckedUpdateManyWithoutFileInstancesNestedInput;
+  whatSetsUsApartImage1?: Prisma.WhatSetsUsApartUncheckedUpdateManyWithoutImage1NestedInput;
+  whatSetsUsApartImage2?: Prisma.WhatSetsUsApartUncheckedUpdateManyWithoutImage2NestedInput;
+  whatSetsUsAparts?: Prisma.WhatSetsUsApartUncheckedUpdateManyWithoutFileInstancesNestedInput;
+};
+
+export type FileInstanceUpsertWithWhereUniqueWithoutMissionVisionsInput = {
+  where: Prisma.FileInstanceWhereUniqueInput;
+  update: Prisma.XOR<
+    Prisma.FileInstanceUpdateWithoutMissionVisionsInput,
+    Prisma.FileInstanceUncheckedUpdateWithoutMissionVisionsInput
+  >;
+  create: Prisma.XOR<
+    Prisma.FileInstanceCreateWithoutMissionVisionsInput,
+    Prisma.FileInstanceUncheckedCreateWithoutMissionVisionsInput
+  >;
+};
+
+export type FileInstanceUpdateWithWhereUniqueWithoutMissionVisionsInput = {
+  where: Prisma.FileInstanceWhereUniqueInput;
+  data: Prisma.XOR<
+    Prisma.FileInstanceUpdateWithoutMissionVisionsInput,
+    Prisma.FileInstanceUncheckedUpdateWithoutMissionVisionsInput
+  >;
+};
+
+export type FileInstanceUpdateManyWithWhereWithoutMissionVisionsInput = {
+  where: Prisma.FileInstanceScalarWhereInput;
+  data: Prisma.XOR<
+    Prisma.FileInstanceUpdateManyMutationInput,
+    Prisma.FileInstanceUncheckedUpdateManyWithoutMissionVisionsInput
+  >;
+};
+
+export type FileInstanceCreateWithoutWhatSetsUsApartImage1Input = {
+  id?: string;
+  filename: string;
+  originalFilename: string;
+  path: string;
+  url: string;
+  fileType?: $Enums.FileType;
+  mimeType: string;
+  size: number;
+  createdAt?: Date | string;
+  updatedAt?: Date | string;
+  pageBannersBackground?: Prisma.PageBannerCreateNestedManyWithoutBackgroundInput;
+  blog?: Prisma.BlogCreateNestedManyWithoutFileInstancesInput;
+  boatImages?: Prisma.BoatImageCreateNestedManyWithoutFileInput;
+  contactTopImages?: Prisma.ContactPageCreateNestedOneWithoutContactTopImageInput;
+  contactBottomImages?: Prisma.ContactPageCreateNestedOneWithoutContactBottomImageInput;
+  featuredBrandLogos?: Prisma.FeaturedBrandsCreateNestedManyWithoutFeaturedbrandLogoInput;
+  blogs?: Prisma.BlogCreateNestedManyWithoutBlogImageInput;
+  settings?: Prisma.SettingCreateNestedManyWithoutLogoInput;
+  packageBanners?: Prisma.packageBannerCreateNestedManyWithoutPackageBannerInput;
+  aiSearchBanners?: Prisma.AiSearchBannerCreateNestedManyWithoutAiSearchBannerInput;
+  categoryImages?: Prisma.CategoryCreateNestedManyWithoutImageInput;
+  whyUsImage1?: Prisma.WhyUsCreateNestedManyWithoutImage1Input;
+  whyUsImage2?: Prisma.WhyUsCreateNestedManyWithoutImage2Input;
+  whyUsImage3?: Prisma.WhyUsCreateNestedManyWithoutImage3Input;
+  ourTeamImages?: Prisma.OurTeamCreateNestedManyWithoutImageInput;
+  ourStoryImage1?: Prisma.OurStoryCreateNestedManyWithoutImage1Input;
+  ourStoryImage2?: Prisma.OurStoryCreateNestedManyWithoutImage2Input;
+  ourStoryImage3?: Prisma.OurStoryCreateNestedManyWithoutImage3Input;
+  ourStoryImage4?: Prisma.OurStoryCreateNestedManyWithoutImage4Input;
+  ourStoryImage5?: Prisma.OurStoryCreateNestedManyWithoutImage5Input;
+  contactInfos?: Prisma.ContactInfoCreateNestedManyWithoutBackgroundImageInput;
+  ourStories?: Prisma.OurStoryCreateNestedManyWithoutFileInstancesInput;
+  missionVisionImage1?: Prisma.MissionVisionCreateNestedManyWithoutImage1Input;
+  missionVisionImage2?: Prisma.MissionVisionCreateNestedManyWithoutImage2Input;
+  missionVisionImage3?: Prisma.MissionVisionCreateNestedManyWithoutImage3Input;
+  missionVisions?: Prisma.MissionVisionCreateNestedManyWithoutFileInstancesInput;
+  whatSetsUsApartImage2?: Prisma.WhatSetsUsApartCreateNestedManyWithoutImage2Input;
+  whatSetsUsAparts?: Prisma.WhatSetsUsApartCreateNestedManyWithoutFileInstancesInput;
+};
+
+export type FileInstanceUncheckedCreateWithoutWhatSetsUsApartImage1Input = {
+  id?: string;
+  filename: string;
+  originalFilename: string;
+  path: string;
+  url: string;
+  fileType?: $Enums.FileType;
+  mimeType: string;
+  size: number;
+  createdAt?: Date | string;
+  updatedAt?: Date | string;
+  pageBannersBackground?: Prisma.PageBannerUncheckedCreateNestedManyWithoutBackgroundInput;
+  blog?: Prisma.BlogUncheckedCreateNestedManyWithoutFileInstancesInput;
+  boatImages?: Prisma.BoatImageUncheckedCreateNestedManyWithoutFileInput;
+  contactTopImages?: Prisma.ContactPageUncheckedCreateNestedOneWithoutContactTopImageInput;
+  contactBottomImages?: Prisma.ContactPageUncheckedCreateNestedOneWithoutContactBottomImageInput;
+  featuredBrandLogos?: Prisma.FeaturedBrandsUncheckedCreateNestedManyWithoutFeaturedbrandLogoInput;
+  blogs?: Prisma.BlogUncheckedCreateNestedManyWithoutBlogImageInput;
+  settings?: Prisma.SettingUncheckedCreateNestedManyWithoutLogoInput;
+  packageBanners?: Prisma.packageBannerUncheckedCreateNestedManyWithoutPackageBannerInput;
+  aiSearchBanners?: Prisma.AiSearchBannerUncheckedCreateNestedManyWithoutAiSearchBannerInput;
+  categoryImages?: Prisma.CategoryUncheckedCreateNestedManyWithoutImageInput;
+  whyUsImage1?: Prisma.WhyUsUncheckedCreateNestedManyWithoutImage1Input;
+  whyUsImage2?: Prisma.WhyUsUncheckedCreateNestedManyWithoutImage2Input;
+  whyUsImage3?: Prisma.WhyUsUncheckedCreateNestedManyWithoutImage3Input;
+  ourTeamImages?: Prisma.OurTeamUncheckedCreateNestedManyWithoutImageInput;
+  ourStoryImage1?: Prisma.OurStoryUncheckedCreateNestedManyWithoutImage1Input;
+  ourStoryImage2?: Prisma.OurStoryUncheckedCreateNestedManyWithoutImage2Input;
+  ourStoryImage3?: Prisma.OurStoryUncheckedCreateNestedManyWithoutImage3Input;
+  ourStoryImage4?: Prisma.OurStoryUncheckedCreateNestedManyWithoutImage4Input;
+  ourStoryImage5?: Prisma.OurStoryUncheckedCreateNestedManyWithoutImage5Input;
+  contactInfos?: Prisma.ContactInfoUncheckedCreateNestedManyWithoutBackgroundImageInput;
+  ourStories?: Prisma.OurStoryUncheckedCreateNestedManyWithoutFileInstancesInput;
+  missionVisionImage1?: Prisma.MissionVisionUncheckedCreateNestedManyWithoutImage1Input;
+  missionVisionImage2?: Prisma.MissionVisionUncheckedCreateNestedManyWithoutImage2Input;
+  missionVisionImage3?: Prisma.MissionVisionUncheckedCreateNestedManyWithoutImage3Input;
+  missionVisions?: Prisma.MissionVisionUncheckedCreateNestedManyWithoutFileInstancesInput;
+  whatSetsUsApartImage2?: Prisma.WhatSetsUsApartUncheckedCreateNestedManyWithoutImage2Input;
+  whatSetsUsAparts?: Prisma.WhatSetsUsApartUncheckedCreateNestedManyWithoutFileInstancesInput;
+};
+
+export type FileInstanceCreateOrConnectWithoutWhatSetsUsApartImage1Input = {
+  where: Prisma.FileInstanceWhereUniqueInput;
+  create: Prisma.XOR<
+    Prisma.FileInstanceCreateWithoutWhatSetsUsApartImage1Input,
+    Prisma.FileInstanceUncheckedCreateWithoutWhatSetsUsApartImage1Input
+  >;
+};
+
+export type FileInstanceCreateWithoutWhatSetsUsApartImage2Input = {
+  id?: string;
+  filename: string;
+  originalFilename: string;
+  path: string;
+  url: string;
+  fileType?: $Enums.FileType;
+  mimeType: string;
+  size: number;
+  createdAt?: Date | string;
+  updatedAt?: Date | string;
+  pageBannersBackground?: Prisma.PageBannerCreateNestedManyWithoutBackgroundInput;
+  blog?: Prisma.BlogCreateNestedManyWithoutFileInstancesInput;
+  boatImages?: Prisma.BoatImageCreateNestedManyWithoutFileInput;
+  contactTopImages?: Prisma.ContactPageCreateNestedOneWithoutContactTopImageInput;
+  contactBottomImages?: Prisma.ContactPageCreateNestedOneWithoutContactBottomImageInput;
+  featuredBrandLogos?: Prisma.FeaturedBrandsCreateNestedManyWithoutFeaturedbrandLogoInput;
+  blogs?: Prisma.BlogCreateNestedManyWithoutBlogImageInput;
+  settings?: Prisma.SettingCreateNestedManyWithoutLogoInput;
+  packageBanners?: Prisma.packageBannerCreateNestedManyWithoutPackageBannerInput;
+  aiSearchBanners?: Prisma.AiSearchBannerCreateNestedManyWithoutAiSearchBannerInput;
+  categoryImages?: Prisma.CategoryCreateNestedManyWithoutImageInput;
+  whyUsImage1?: Prisma.WhyUsCreateNestedManyWithoutImage1Input;
+  whyUsImage2?: Prisma.WhyUsCreateNestedManyWithoutImage2Input;
+  whyUsImage3?: Prisma.WhyUsCreateNestedManyWithoutImage3Input;
+  ourTeamImages?: Prisma.OurTeamCreateNestedManyWithoutImageInput;
+  ourStoryImage1?: Prisma.OurStoryCreateNestedManyWithoutImage1Input;
+  ourStoryImage2?: Prisma.OurStoryCreateNestedManyWithoutImage2Input;
+  ourStoryImage3?: Prisma.OurStoryCreateNestedManyWithoutImage3Input;
+  ourStoryImage4?: Prisma.OurStoryCreateNestedManyWithoutImage4Input;
+  ourStoryImage5?: Prisma.OurStoryCreateNestedManyWithoutImage5Input;
+  contactInfos?: Prisma.ContactInfoCreateNestedManyWithoutBackgroundImageInput;
+  ourStories?: Prisma.OurStoryCreateNestedManyWithoutFileInstancesInput;
+  missionVisionImage1?: Prisma.MissionVisionCreateNestedManyWithoutImage1Input;
+  missionVisionImage2?: Prisma.MissionVisionCreateNestedManyWithoutImage2Input;
+  missionVisionImage3?: Prisma.MissionVisionCreateNestedManyWithoutImage3Input;
+  missionVisions?: Prisma.MissionVisionCreateNestedManyWithoutFileInstancesInput;
+  whatSetsUsApartImage1?: Prisma.WhatSetsUsApartCreateNestedManyWithoutImage1Input;
+  whatSetsUsAparts?: Prisma.WhatSetsUsApartCreateNestedManyWithoutFileInstancesInput;
+};
+
+export type FileInstanceUncheckedCreateWithoutWhatSetsUsApartImage2Input = {
+  id?: string;
+  filename: string;
+  originalFilename: string;
+  path: string;
+  url: string;
+  fileType?: $Enums.FileType;
+  mimeType: string;
+  size: number;
+  createdAt?: Date | string;
+  updatedAt?: Date | string;
+  pageBannersBackground?: Prisma.PageBannerUncheckedCreateNestedManyWithoutBackgroundInput;
+  blog?: Prisma.BlogUncheckedCreateNestedManyWithoutFileInstancesInput;
+  boatImages?: Prisma.BoatImageUncheckedCreateNestedManyWithoutFileInput;
+  contactTopImages?: Prisma.ContactPageUncheckedCreateNestedOneWithoutContactTopImageInput;
+  contactBottomImages?: Prisma.ContactPageUncheckedCreateNestedOneWithoutContactBottomImageInput;
+  featuredBrandLogos?: Prisma.FeaturedBrandsUncheckedCreateNestedManyWithoutFeaturedbrandLogoInput;
+  blogs?: Prisma.BlogUncheckedCreateNestedManyWithoutBlogImageInput;
+  settings?: Prisma.SettingUncheckedCreateNestedManyWithoutLogoInput;
+  packageBanners?: Prisma.packageBannerUncheckedCreateNestedManyWithoutPackageBannerInput;
+  aiSearchBanners?: Prisma.AiSearchBannerUncheckedCreateNestedManyWithoutAiSearchBannerInput;
+  categoryImages?: Prisma.CategoryUncheckedCreateNestedManyWithoutImageInput;
+  whyUsImage1?: Prisma.WhyUsUncheckedCreateNestedManyWithoutImage1Input;
+  whyUsImage2?: Prisma.WhyUsUncheckedCreateNestedManyWithoutImage2Input;
+  whyUsImage3?: Prisma.WhyUsUncheckedCreateNestedManyWithoutImage3Input;
+  ourTeamImages?: Prisma.OurTeamUncheckedCreateNestedManyWithoutImageInput;
+  ourStoryImage1?: Prisma.OurStoryUncheckedCreateNestedManyWithoutImage1Input;
+  ourStoryImage2?: Prisma.OurStoryUncheckedCreateNestedManyWithoutImage2Input;
+  ourStoryImage3?: Prisma.OurStoryUncheckedCreateNestedManyWithoutImage3Input;
+  ourStoryImage4?: Prisma.OurStoryUncheckedCreateNestedManyWithoutImage4Input;
+  ourStoryImage5?: Prisma.OurStoryUncheckedCreateNestedManyWithoutImage5Input;
+  contactInfos?: Prisma.ContactInfoUncheckedCreateNestedManyWithoutBackgroundImageInput;
+  ourStories?: Prisma.OurStoryUncheckedCreateNestedManyWithoutFileInstancesInput;
+  missionVisionImage1?: Prisma.MissionVisionUncheckedCreateNestedManyWithoutImage1Input;
+  missionVisionImage2?: Prisma.MissionVisionUncheckedCreateNestedManyWithoutImage2Input;
+  missionVisionImage3?: Prisma.MissionVisionUncheckedCreateNestedManyWithoutImage3Input;
+  missionVisions?: Prisma.MissionVisionUncheckedCreateNestedManyWithoutFileInstancesInput;
+  whatSetsUsApartImage1?: Prisma.WhatSetsUsApartUncheckedCreateNestedManyWithoutImage1Input;
+  whatSetsUsAparts?: Prisma.WhatSetsUsApartUncheckedCreateNestedManyWithoutFileInstancesInput;
+};
+
+export type FileInstanceCreateOrConnectWithoutWhatSetsUsApartImage2Input = {
+  where: Prisma.FileInstanceWhereUniqueInput;
+  create: Prisma.XOR<
+    Prisma.FileInstanceCreateWithoutWhatSetsUsApartImage2Input,
+    Prisma.FileInstanceUncheckedCreateWithoutWhatSetsUsApartImage2Input
+  >;
+};
+
+export type FileInstanceCreateWithoutWhatSetsUsApartsInput = {
+  id?: string;
+  filename: string;
+  originalFilename: string;
+  path: string;
+  url: string;
+  fileType?: $Enums.FileType;
+  mimeType: string;
+  size: number;
+  createdAt?: Date | string;
+  updatedAt?: Date | string;
+  pageBannersBackground?: Prisma.PageBannerCreateNestedManyWithoutBackgroundInput;
+  blog?: Prisma.BlogCreateNestedManyWithoutFileInstancesInput;
+  boatImages?: Prisma.BoatImageCreateNestedManyWithoutFileInput;
+  contactTopImages?: Prisma.ContactPageCreateNestedOneWithoutContactTopImageInput;
+  contactBottomImages?: Prisma.ContactPageCreateNestedOneWithoutContactBottomImageInput;
+  featuredBrandLogos?: Prisma.FeaturedBrandsCreateNestedManyWithoutFeaturedbrandLogoInput;
+  blogs?: Prisma.BlogCreateNestedManyWithoutBlogImageInput;
+  settings?: Prisma.SettingCreateNestedManyWithoutLogoInput;
+  packageBanners?: Prisma.packageBannerCreateNestedManyWithoutPackageBannerInput;
+  aiSearchBanners?: Prisma.AiSearchBannerCreateNestedManyWithoutAiSearchBannerInput;
+  categoryImages?: Prisma.CategoryCreateNestedManyWithoutImageInput;
+  whyUsImage1?: Prisma.WhyUsCreateNestedManyWithoutImage1Input;
+  whyUsImage2?: Prisma.WhyUsCreateNestedManyWithoutImage2Input;
+  whyUsImage3?: Prisma.WhyUsCreateNestedManyWithoutImage3Input;
+  ourTeamImages?: Prisma.OurTeamCreateNestedManyWithoutImageInput;
+  ourStoryImage1?: Prisma.OurStoryCreateNestedManyWithoutImage1Input;
+  ourStoryImage2?: Prisma.OurStoryCreateNestedManyWithoutImage2Input;
+  ourStoryImage3?: Prisma.OurStoryCreateNestedManyWithoutImage3Input;
+  ourStoryImage4?: Prisma.OurStoryCreateNestedManyWithoutImage4Input;
+  ourStoryImage5?: Prisma.OurStoryCreateNestedManyWithoutImage5Input;
+  contactInfos?: Prisma.ContactInfoCreateNestedManyWithoutBackgroundImageInput;
+  ourStories?: Prisma.OurStoryCreateNestedManyWithoutFileInstancesInput;
+  missionVisionImage1?: Prisma.MissionVisionCreateNestedManyWithoutImage1Input;
+  missionVisionImage2?: Prisma.MissionVisionCreateNestedManyWithoutImage2Input;
+  missionVisionImage3?: Prisma.MissionVisionCreateNestedManyWithoutImage3Input;
+  missionVisions?: Prisma.MissionVisionCreateNestedManyWithoutFileInstancesInput;
+  whatSetsUsApartImage1?: Prisma.WhatSetsUsApartCreateNestedManyWithoutImage1Input;
+  whatSetsUsApartImage2?: Prisma.WhatSetsUsApartCreateNestedManyWithoutImage2Input;
+};
+
+export type FileInstanceUncheckedCreateWithoutWhatSetsUsApartsInput = {
+  id?: string;
+  filename: string;
+  originalFilename: string;
+  path: string;
+  url: string;
+  fileType?: $Enums.FileType;
+  mimeType: string;
+  size: number;
+  createdAt?: Date | string;
+  updatedAt?: Date | string;
+  pageBannersBackground?: Prisma.PageBannerUncheckedCreateNestedManyWithoutBackgroundInput;
+  blog?: Prisma.BlogUncheckedCreateNestedManyWithoutFileInstancesInput;
+  boatImages?: Prisma.BoatImageUncheckedCreateNestedManyWithoutFileInput;
+  contactTopImages?: Prisma.ContactPageUncheckedCreateNestedOneWithoutContactTopImageInput;
+  contactBottomImages?: Prisma.ContactPageUncheckedCreateNestedOneWithoutContactBottomImageInput;
+  featuredBrandLogos?: Prisma.FeaturedBrandsUncheckedCreateNestedManyWithoutFeaturedbrandLogoInput;
+  blogs?: Prisma.BlogUncheckedCreateNestedManyWithoutBlogImageInput;
+  settings?: Prisma.SettingUncheckedCreateNestedManyWithoutLogoInput;
+  packageBanners?: Prisma.packageBannerUncheckedCreateNestedManyWithoutPackageBannerInput;
+  aiSearchBanners?: Prisma.AiSearchBannerUncheckedCreateNestedManyWithoutAiSearchBannerInput;
+  categoryImages?: Prisma.CategoryUncheckedCreateNestedManyWithoutImageInput;
+  whyUsImage1?: Prisma.WhyUsUncheckedCreateNestedManyWithoutImage1Input;
+  whyUsImage2?: Prisma.WhyUsUncheckedCreateNestedManyWithoutImage2Input;
+  whyUsImage3?: Prisma.WhyUsUncheckedCreateNestedManyWithoutImage3Input;
+  ourTeamImages?: Prisma.OurTeamUncheckedCreateNestedManyWithoutImageInput;
+  ourStoryImage1?: Prisma.OurStoryUncheckedCreateNestedManyWithoutImage1Input;
+  ourStoryImage2?: Prisma.OurStoryUncheckedCreateNestedManyWithoutImage2Input;
+  ourStoryImage3?: Prisma.OurStoryUncheckedCreateNestedManyWithoutImage3Input;
+  ourStoryImage4?: Prisma.OurStoryUncheckedCreateNestedManyWithoutImage4Input;
+  ourStoryImage5?: Prisma.OurStoryUncheckedCreateNestedManyWithoutImage5Input;
+  contactInfos?: Prisma.ContactInfoUncheckedCreateNestedManyWithoutBackgroundImageInput;
+  ourStories?: Prisma.OurStoryUncheckedCreateNestedManyWithoutFileInstancesInput;
+  missionVisionImage1?: Prisma.MissionVisionUncheckedCreateNestedManyWithoutImage1Input;
+  missionVisionImage2?: Prisma.MissionVisionUncheckedCreateNestedManyWithoutImage2Input;
+  missionVisionImage3?: Prisma.MissionVisionUncheckedCreateNestedManyWithoutImage3Input;
+  missionVisions?: Prisma.MissionVisionUncheckedCreateNestedManyWithoutFileInstancesInput;
+  whatSetsUsApartImage1?: Prisma.WhatSetsUsApartUncheckedCreateNestedManyWithoutImage1Input;
+  whatSetsUsApartImage2?: Prisma.WhatSetsUsApartUncheckedCreateNestedManyWithoutImage2Input;
+};
+
+export type FileInstanceCreateOrConnectWithoutWhatSetsUsApartsInput = {
+  where: Prisma.FileInstanceWhereUniqueInput;
+  create: Prisma.XOR<
+    Prisma.FileInstanceCreateWithoutWhatSetsUsApartsInput,
+    Prisma.FileInstanceUncheckedCreateWithoutWhatSetsUsApartsInput
+  >;
+};
+
+export type FileInstanceUpsertWithoutWhatSetsUsApartImage1Input = {
+  update: Prisma.XOR<
+    Prisma.FileInstanceUpdateWithoutWhatSetsUsApartImage1Input,
+    Prisma.FileInstanceUncheckedUpdateWithoutWhatSetsUsApartImage1Input
+  >;
+  create: Prisma.XOR<
+    Prisma.FileInstanceCreateWithoutWhatSetsUsApartImage1Input,
+    Prisma.FileInstanceUncheckedCreateWithoutWhatSetsUsApartImage1Input
+  >;
+  where?: Prisma.FileInstanceWhereInput;
+};
+
+export type FileInstanceUpdateToOneWithWhereWithoutWhatSetsUsApartImage1Input =
+  {
+    where?: Prisma.FileInstanceWhereInput;
+    data: Prisma.XOR<
+      Prisma.FileInstanceUpdateWithoutWhatSetsUsApartImage1Input,
+      Prisma.FileInstanceUncheckedUpdateWithoutWhatSetsUsApartImage1Input
+    >;
+  };
+
+export type FileInstanceUpdateWithoutWhatSetsUsApartImage1Input = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string;
+  filename?: Prisma.StringFieldUpdateOperationsInput | string;
+  originalFilename?: Prisma.StringFieldUpdateOperationsInput | string;
+  path?: Prisma.StringFieldUpdateOperationsInput | string;
+  url?: Prisma.StringFieldUpdateOperationsInput | string;
+  fileType?: Prisma.EnumFileTypeFieldUpdateOperationsInput | $Enums.FileType;
+  mimeType?: Prisma.StringFieldUpdateOperationsInput | string;
+  size?: Prisma.IntFieldUpdateOperationsInput | number;
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  pageBannersBackground?: Prisma.PageBannerUpdateManyWithoutBackgroundNestedInput;
+  blog?: Prisma.BlogUpdateManyWithoutFileInstancesNestedInput;
+  boatImages?: Prisma.BoatImageUpdateManyWithoutFileNestedInput;
+  contactTopImages?: Prisma.ContactPageUpdateOneWithoutContactTopImageNestedInput;
+  contactBottomImages?: Prisma.ContactPageUpdateOneWithoutContactBottomImageNestedInput;
+  featuredBrandLogos?: Prisma.FeaturedBrandsUpdateManyWithoutFeaturedbrandLogoNestedInput;
+  blogs?: Prisma.BlogUpdateManyWithoutBlogImageNestedInput;
+  settings?: Prisma.SettingUpdateManyWithoutLogoNestedInput;
+  packageBanners?: Prisma.packageBannerUpdateManyWithoutPackageBannerNestedInput;
+  aiSearchBanners?: Prisma.AiSearchBannerUpdateManyWithoutAiSearchBannerNestedInput;
+  categoryImages?: Prisma.CategoryUpdateManyWithoutImageNestedInput;
+  whyUsImage1?: Prisma.WhyUsUpdateManyWithoutImage1NestedInput;
+  whyUsImage2?: Prisma.WhyUsUpdateManyWithoutImage2NestedInput;
+  whyUsImage3?: Prisma.WhyUsUpdateManyWithoutImage3NestedInput;
+  ourTeamImages?: Prisma.OurTeamUpdateManyWithoutImageNestedInput;
+  ourStoryImage1?: Prisma.OurStoryUpdateManyWithoutImage1NestedInput;
+  ourStoryImage2?: Prisma.OurStoryUpdateManyWithoutImage2NestedInput;
+  ourStoryImage3?: Prisma.OurStoryUpdateManyWithoutImage3NestedInput;
+  ourStoryImage4?: Prisma.OurStoryUpdateManyWithoutImage4NestedInput;
+  ourStoryImage5?: Prisma.OurStoryUpdateManyWithoutImage5NestedInput;
+  contactInfos?: Prisma.ContactInfoUpdateManyWithoutBackgroundImageNestedInput;
+  ourStories?: Prisma.OurStoryUpdateManyWithoutFileInstancesNestedInput;
+  missionVisionImage1?: Prisma.MissionVisionUpdateManyWithoutImage1NestedInput;
+  missionVisionImage2?: Prisma.MissionVisionUpdateManyWithoutImage2NestedInput;
+  missionVisionImage3?: Prisma.MissionVisionUpdateManyWithoutImage3NestedInput;
+  missionVisions?: Prisma.MissionVisionUpdateManyWithoutFileInstancesNestedInput;
+  whatSetsUsApartImage2?: Prisma.WhatSetsUsApartUpdateManyWithoutImage2NestedInput;
+  whatSetsUsAparts?: Prisma.WhatSetsUsApartUpdateManyWithoutFileInstancesNestedInput;
+};
+
+export type FileInstanceUncheckedUpdateWithoutWhatSetsUsApartImage1Input = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string;
+  filename?: Prisma.StringFieldUpdateOperationsInput | string;
+  originalFilename?: Prisma.StringFieldUpdateOperationsInput | string;
+  path?: Prisma.StringFieldUpdateOperationsInput | string;
+  url?: Prisma.StringFieldUpdateOperationsInput | string;
+  fileType?: Prisma.EnumFileTypeFieldUpdateOperationsInput | $Enums.FileType;
+  mimeType?: Prisma.StringFieldUpdateOperationsInput | string;
+  size?: Prisma.IntFieldUpdateOperationsInput | number;
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  pageBannersBackground?: Prisma.PageBannerUncheckedUpdateManyWithoutBackgroundNestedInput;
+  blog?: Prisma.BlogUncheckedUpdateManyWithoutFileInstancesNestedInput;
+  boatImages?: Prisma.BoatImageUncheckedUpdateManyWithoutFileNestedInput;
+  contactTopImages?: Prisma.ContactPageUncheckedUpdateOneWithoutContactTopImageNestedInput;
+  contactBottomImages?: Prisma.ContactPageUncheckedUpdateOneWithoutContactBottomImageNestedInput;
+  featuredBrandLogos?: Prisma.FeaturedBrandsUncheckedUpdateManyWithoutFeaturedbrandLogoNestedInput;
+  blogs?: Prisma.BlogUncheckedUpdateManyWithoutBlogImageNestedInput;
+  settings?: Prisma.SettingUncheckedUpdateManyWithoutLogoNestedInput;
+  packageBanners?: Prisma.packageBannerUncheckedUpdateManyWithoutPackageBannerNestedInput;
+  aiSearchBanners?: Prisma.AiSearchBannerUncheckedUpdateManyWithoutAiSearchBannerNestedInput;
+  categoryImages?: Prisma.CategoryUncheckedUpdateManyWithoutImageNestedInput;
+  whyUsImage1?: Prisma.WhyUsUncheckedUpdateManyWithoutImage1NestedInput;
+  whyUsImage2?: Prisma.WhyUsUncheckedUpdateManyWithoutImage2NestedInput;
+  whyUsImage3?: Prisma.WhyUsUncheckedUpdateManyWithoutImage3NestedInput;
+  ourTeamImages?: Prisma.OurTeamUncheckedUpdateManyWithoutImageNestedInput;
+  ourStoryImage1?: Prisma.OurStoryUncheckedUpdateManyWithoutImage1NestedInput;
+  ourStoryImage2?: Prisma.OurStoryUncheckedUpdateManyWithoutImage2NestedInput;
+  ourStoryImage3?: Prisma.OurStoryUncheckedUpdateManyWithoutImage3NestedInput;
+  ourStoryImage4?: Prisma.OurStoryUncheckedUpdateManyWithoutImage4NestedInput;
+  ourStoryImage5?: Prisma.OurStoryUncheckedUpdateManyWithoutImage5NestedInput;
+  contactInfos?: Prisma.ContactInfoUncheckedUpdateManyWithoutBackgroundImageNestedInput;
+  ourStories?: Prisma.OurStoryUncheckedUpdateManyWithoutFileInstancesNestedInput;
+  missionVisionImage1?: Prisma.MissionVisionUncheckedUpdateManyWithoutImage1NestedInput;
+  missionVisionImage2?: Prisma.MissionVisionUncheckedUpdateManyWithoutImage2NestedInput;
+  missionVisionImage3?: Prisma.MissionVisionUncheckedUpdateManyWithoutImage3NestedInput;
+  missionVisions?: Prisma.MissionVisionUncheckedUpdateManyWithoutFileInstancesNestedInput;
+  whatSetsUsApartImage2?: Prisma.WhatSetsUsApartUncheckedUpdateManyWithoutImage2NestedInput;
+  whatSetsUsAparts?: Prisma.WhatSetsUsApartUncheckedUpdateManyWithoutFileInstancesNestedInput;
+};
+
+export type FileInstanceUpsertWithoutWhatSetsUsApartImage2Input = {
+  update: Prisma.XOR<
+    Prisma.FileInstanceUpdateWithoutWhatSetsUsApartImage2Input,
+    Prisma.FileInstanceUncheckedUpdateWithoutWhatSetsUsApartImage2Input
+  >;
+  create: Prisma.XOR<
+    Prisma.FileInstanceCreateWithoutWhatSetsUsApartImage2Input,
+    Prisma.FileInstanceUncheckedCreateWithoutWhatSetsUsApartImage2Input
+  >;
+  where?: Prisma.FileInstanceWhereInput;
+};
+
+export type FileInstanceUpdateToOneWithWhereWithoutWhatSetsUsApartImage2Input =
+  {
+    where?: Prisma.FileInstanceWhereInput;
+    data: Prisma.XOR<
+      Prisma.FileInstanceUpdateWithoutWhatSetsUsApartImage2Input,
+      Prisma.FileInstanceUncheckedUpdateWithoutWhatSetsUsApartImage2Input
+    >;
+  };
+
+export type FileInstanceUpdateWithoutWhatSetsUsApartImage2Input = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string;
+  filename?: Prisma.StringFieldUpdateOperationsInput | string;
+  originalFilename?: Prisma.StringFieldUpdateOperationsInput | string;
+  path?: Prisma.StringFieldUpdateOperationsInput | string;
+  url?: Prisma.StringFieldUpdateOperationsInput | string;
+  fileType?: Prisma.EnumFileTypeFieldUpdateOperationsInput | $Enums.FileType;
+  mimeType?: Prisma.StringFieldUpdateOperationsInput | string;
+  size?: Prisma.IntFieldUpdateOperationsInput | number;
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  pageBannersBackground?: Prisma.PageBannerUpdateManyWithoutBackgroundNestedInput;
+  blog?: Prisma.BlogUpdateManyWithoutFileInstancesNestedInput;
+  boatImages?: Prisma.BoatImageUpdateManyWithoutFileNestedInput;
+  contactTopImages?: Prisma.ContactPageUpdateOneWithoutContactTopImageNestedInput;
+  contactBottomImages?: Prisma.ContactPageUpdateOneWithoutContactBottomImageNestedInput;
+  featuredBrandLogos?: Prisma.FeaturedBrandsUpdateManyWithoutFeaturedbrandLogoNestedInput;
+  blogs?: Prisma.BlogUpdateManyWithoutBlogImageNestedInput;
+  settings?: Prisma.SettingUpdateManyWithoutLogoNestedInput;
+  packageBanners?: Prisma.packageBannerUpdateManyWithoutPackageBannerNestedInput;
+  aiSearchBanners?: Prisma.AiSearchBannerUpdateManyWithoutAiSearchBannerNestedInput;
+  categoryImages?: Prisma.CategoryUpdateManyWithoutImageNestedInput;
+  whyUsImage1?: Prisma.WhyUsUpdateManyWithoutImage1NestedInput;
+  whyUsImage2?: Prisma.WhyUsUpdateManyWithoutImage2NestedInput;
+  whyUsImage3?: Prisma.WhyUsUpdateManyWithoutImage3NestedInput;
+  ourTeamImages?: Prisma.OurTeamUpdateManyWithoutImageNestedInput;
+  ourStoryImage1?: Prisma.OurStoryUpdateManyWithoutImage1NestedInput;
+  ourStoryImage2?: Prisma.OurStoryUpdateManyWithoutImage2NestedInput;
+  ourStoryImage3?: Prisma.OurStoryUpdateManyWithoutImage3NestedInput;
+  ourStoryImage4?: Prisma.OurStoryUpdateManyWithoutImage4NestedInput;
+  ourStoryImage5?: Prisma.OurStoryUpdateManyWithoutImage5NestedInput;
+  contactInfos?: Prisma.ContactInfoUpdateManyWithoutBackgroundImageNestedInput;
+  ourStories?: Prisma.OurStoryUpdateManyWithoutFileInstancesNestedInput;
+  missionVisionImage1?: Prisma.MissionVisionUpdateManyWithoutImage1NestedInput;
+  missionVisionImage2?: Prisma.MissionVisionUpdateManyWithoutImage2NestedInput;
+  missionVisionImage3?: Prisma.MissionVisionUpdateManyWithoutImage3NestedInput;
+  missionVisions?: Prisma.MissionVisionUpdateManyWithoutFileInstancesNestedInput;
+  whatSetsUsApartImage1?: Prisma.WhatSetsUsApartUpdateManyWithoutImage1NestedInput;
+  whatSetsUsAparts?: Prisma.WhatSetsUsApartUpdateManyWithoutFileInstancesNestedInput;
+};
+
+export type FileInstanceUncheckedUpdateWithoutWhatSetsUsApartImage2Input = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string;
+  filename?: Prisma.StringFieldUpdateOperationsInput | string;
+  originalFilename?: Prisma.StringFieldUpdateOperationsInput | string;
+  path?: Prisma.StringFieldUpdateOperationsInput | string;
+  url?: Prisma.StringFieldUpdateOperationsInput | string;
+  fileType?: Prisma.EnumFileTypeFieldUpdateOperationsInput | $Enums.FileType;
+  mimeType?: Prisma.StringFieldUpdateOperationsInput | string;
+  size?: Prisma.IntFieldUpdateOperationsInput | number;
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  pageBannersBackground?: Prisma.PageBannerUncheckedUpdateManyWithoutBackgroundNestedInput;
+  blog?: Prisma.BlogUncheckedUpdateManyWithoutFileInstancesNestedInput;
+  boatImages?: Prisma.BoatImageUncheckedUpdateManyWithoutFileNestedInput;
+  contactTopImages?: Prisma.ContactPageUncheckedUpdateOneWithoutContactTopImageNestedInput;
+  contactBottomImages?: Prisma.ContactPageUncheckedUpdateOneWithoutContactBottomImageNestedInput;
+  featuredBrandLogos?: Prisma.FeaturedBrandsUncheckedUpdateManyWithoutFeaturedbrandLogoNestedInput;
+  blogs?: Prisma.BlogUncheckedUpdateManyWithoutBlogImageNestedInput;
+  settings?: Prisma.SettingUncheckedUpdateManyWithoutLogoNestedInput;
+  packageBanners?: Prisma.packageBannerUncheckedUpdateManyWithoutPackageBannerNestedInput;
+  aiSearchBanners?: Prisma.AiSearchBannerUncheckedUpdateManyWithoutAiSearchBannerNestedInput;
+  categoryImages?: Prisma.CategoryUncheckedUpdateManyWithoutImageNestedInput;
+  whyUsImage1?: Prisma.WhyUsUncheckedUpdateManyWithoutImage1NestedInput;
+  whyUsImage2?: Prisma.WhyUsUncheckedUpdateManyWithoutImage2NestedInput;
+  whyUsImage3?: Prisma.WhyUsUncheckedUpdateManyWithoutImage3NestedInput;
+  ourTeamImages?: Prisma.OurTeamUncheckedUpdateManyWithoutImageNestedInput;
+  ourStoryImage1?: Prisma.OurStoryUncheckedUpdateManyWithoutImage1NestedInput;
+  ourStoryImage2?: Prisma.OurStoryUncheckedUpdateManyWithoutImage2NestedInput;
+  ourStoryImage3?: Prisma.OurStoryUncheckedUpdateManyWithoutImage3NestedInput;
+  ourStoryImage4?: Prisma.OurStoryUncheckedUpdateManyWithoutImage4NestedInput;
+  ourStoryImage5?: Prisma.OurStoryUncheckedUpdateManyWithoutImage5NestedInput;
+  contactInfos?: Prisma.ContactInfoUncheckedUpdateManyWithoutBackgroundImageNestedInput;
+  ourStories?: Prisma.OurStoryUncheckedUpdateManyWithoutFileInstancesNestedInput;
+  missionVisionImage1?: Prisma.MissionVisionUncheckedUpdateManyWithoutImage1NestedInput;
+  missionVisionImage2?: Prisma.MissionVisionUncheckedUpdateManyWithoutImage2NestedInput;
+  missionVisionImage3?: Prisma.MissionVisionUncheckedUpdateManyWithoutImage3NestedInput;
+  missionVisions?: Prisma.MissionVisionUncheckedUpdateManyWithoutFileInstancesNestedInput;
+  whatSetsUsApartImage1?: Prisma.WhatSetsUsApartUncheckedUpdateManyWithoutImage1NestedInput;
+  whatSetsUsAparts?: Prisma.WhatSetsUsApartUncheckedUpdateManyWithoutFileInstancesNestedInput;
+};
+
+export type FileInstanceUpsertWithWhereUniqueWithoutWhatSetsUsApartsInput = {
+  where: Prisma.FileInstanceWhereUniqueInput;
+  update: Prisma.XOR<
+    Prisma.FileInstanceUpdateWithoutWhatSetsUsApartsInput,
+    Prisma.FileInstanceUncheckedUpdateWithoutWhatSetsUsApartsInput
+  >;
+  create: Prisma.XOR<
+    Prisma.FileInstanceCreateWithoutWhatSetsUsApartsInput,
+    Prisma.FileInstanceUncheckedCreateWithoutWhatSetsUsApartsInput
+  >;
+};
+
+export type FileInstanceUpdateWithWhereUniqueWithoutWhatSetsUsApartsInput = {
+  where: Prisma.FileInstanceWhereUniqueInput;
+  data: Prisma.XOR<
+    Prisma.FileInstanceUpdateWithoutWhatSetsUsApartsInput,
+    Prisma.FileInstanceUncheckedUpdateWithoutWhatSetsUsApartsInput
+  >;
+};
+
+export type FileInstanceUpdateManyWithWhereWithoutWhatSetsUsApartsInput = {
+  where: Prisma.FileInstanceScalarWhereInput;
+  data: Prisma.XOR<
+    Prisma.FileInstanceUpdateManyMutationInput,
+    Prisma.FileInstanceUncheckedUpdateManyWithoutWhatSetsUsApartsInput
+  >;
 };
 
 export type FileInstanceCreateWithoutFeaturedBrandLogosInput = {
@@ -2612,6 +6394,20 @@ export type FileInstanceCreateWithoutFeaturedBrandLogosInput = {
   whyUsImage2?: Prisma.WhyUsCreateNestedManyWithoutImage2Input;
   whyUsImage3?: Prisma.WhyUsCreateNestedManyWithoutImage3Input;
   ourTeamImages?: Prisma.OurTeamCreateNestedManyWithoutImageInput;
+  ourStoryImage1?: Prisma.OurStoryCreateNestedManyWithoutImage1Input;
+  ourStoryImage2?: Prisma.OurStoryCreateNestedManyWithoutImage2Input;
+  ourStoryImage3?: Prisma.OurStoryCreateNestedManyWithoutImage3Input;
+  ourStoryImage4?: Prisma.OurStoryCreateNestedManyWithoutImage4Input;
+  ourStoryImage5?: Prisma.OurStoryCreateNestedManyWithoutImage5Input;
+  contactInfos?: Prisma.ContactInfoCreateNestedManyWithoutBackgroundImageInput;
+  ourStories?: Prisma.OurStoryCreateNestedManyWithoutFileInstancesInput;
+  missionVisionImage1?: Prisma.MissionVisionCreateNestedManyWithoutImage1Input;
+  missionVisionImage2?: Prisma.MissionVisionCreateNestedManyWithoutImage2Input;
+  missionVisionImage3?: Prisma.MissionVisionCreateNestedManyWithoutImage3Input;
+  missionVisions?: Prisma.MissionVisionCreateNestedManyWithoutFileInstancesInput;
+  whatSetsUsApartImage1?: Prisma.WhatSetsUsApartCreateNestedManyWithoutImage1Input;
+  whatSetsUsApartImage2?: Prisma.WhatSetsUsApartCreateNestedManyWithoutImage2Input;
+  whatSetsUsAparts?: Prisma.WhatSetsUsApartCreateNestedManyWithoutFileInstancesInput;
 };
 
 export type FileInstanceUncheckedCreateWithoutFeaturedBrandLogosInput = {
@@ -2639,6 +6435,20 @@ export type FileInstanceUncheckedCreateWithoutFeaturedBrandLogosInput = {
   whyUsImage2?: Prisma.WhyUsUncheckedCreateNestedManyWithoutImage2Input;
   whyUsImage3?: Prisma.WhyUsUncheckedCreateNestedManyWithoutImage3Input;
   ourTeamImages?: Prisma.OurTeamUncheckedCreateNestedManyWithoutImageInput;
+  ourStoryImage1?: Prisma.OurStoryUncheckedCreateNestedManyWithoutImage1Input;
+  ourStoryImage2?: Prisma.OurStoryUncheckedCreateNestedManyWithoutImage2Input;
+  ourStoryImage3?: Prisma.OurStoryUncheckedCreateNestedManyWithoutImage3Input;
+  ourStoryImage4?: Prisma.OurStoryUncheckedCreateNestedManyWithoutImage4Input;
+  ourStoryImage5?: Prisma.OurStoryUncheckedCreateNestedManyWithoutImage5Input;
+  contactInfos?: Prisma.ContactInfoUncheckedCreateNestedManyWithoutBackgroundImageInput;
+  ourStories?: Prisma.OurStoryUncheckedCreateNestedManyWithoutFileInstancesInput;
+  missionVisionImage1?: Prisma.MissionVisionUncheckedCreateNestedManyWithoutImage1Input;
+  missionVisionImage2?: Prisma.MissionVisionUncheckedCreateNestedManyWithoutImage2Input;
+  missionVisionImage3?: Prisma.MissionVisionUncheckedCreateNestedManyWithoutImage3Input;
+  missionVisions?: Prisma.MissionVisionUncheckedCreateNestedManyWithoutFileInstancesInput;
+  whatSetsUsApartImage1?: Prisma.WhatSetsUsApartUncheckedCreateNestedManyWithoutImage1Input;
+  whatSetsUsApartImage2?: Prisma.WhatSetsUsApartUncheckedCreateNestedManyWithoutImage2Input;
+  whatSetsUsAparts?: Prisma.WhatSetsUsApartUncheckedCreateNestedManyWithoutFileInstancesInput;
 };
 
 export type FileInstanceCreateOrConnectWithoutFeaturedBrandLogosInput = {
@@ -2694,6 +6504,20 @@ export type FileInstanceUpdateWithoutFeaturedBrandLogosInput = {
   whyUsImage2?: Prisma.WhyUsUpdateManyWithoutImage2NestedInput;
   whyUsImage3?: Prisma.WhyUsUpdateManyWithoutImage3NestedInput;
   ourTeamImages?: Prisma.OurTeamUpdateManyWithoutImageNestedInput;
+  ourStoryImage1?: Prisma.OurStoryUpdateManyWithoutImage1NestedInput;
+  ourStoryImage2?: Prisma.OurStoryUpdateManyWithoutImage2NestedInput;
+  ourStoryImage3?: Prisma.OurStoryUpdateManyWithoutImage3NestedInput;
+  ourStoryImage4?: Prisma.OurStoryUpdateManyWithoutImage4NestedInput;
+  ourStoryImage5?: Prisma.OurStoryUpdateManyWithoutImage5NestedInput;
+  contactInfos?: Prisma.ContactInfoUpdateManyWithoutBackgroundImageNestedInput;
+  ourStories?: Prisma.OurStoryUpdateManyWithoutFileInstancesNestedInput;
+  missionVisionImage1?: Prisma.MissionVisionUpdateManyWithoutImage1NestedInput;
+  missionVisionImage2?: Prisma.MissionVisionUpdateManyWithoutImage2NestedInput;
+  missionVisionImage3?: Prisma.MissionVisionUpdateManyWithoutImage3NestedInput;
+  missionVisions?: Prisma.MissionVisionUpdateManyWithoutFileInstancesNestedInput;
+  whatSetsUsApartImage1?: Prisma.WhatSetsUsApartUpdateManyWithoutImage1NestedInput;
+  whatSetsUsApartImage2?: Prisma.WhatSetsUsApartUpdateManyWithoutImage2NestedInput;
+  whatSetsUsAparts?: Prisma.WhatSetsUsApartUpdateManyWithoutFileInstancesNestedInput;
 };
 
 export type FileInstanceUncheckedUpdateWithoutFeaturedBrandLogosInput = {
@@ -2721,6 +6545,20 @@ export type FileInstanceUncheckedUpdateWithoutFeaturedBrandLogosInput = {
   whyUsImage2?: Prisma.WhyUsUncheckedUpdateManyWithoutImage2NestedInput;
   whyUsImage3?: Prisma.WhyUsUncheckedUpdateManyWithoutImage3NestedInput;
   ourTeamImages?: Prisma.OurTeamUncheckedUpdateManyWithoutImageNestedInput;
+  ourStoryImage1?: Prisma.OurStoryUncheckedUpdateManyWithoutImage1NestedInput;
+  ourStoryImage2?: Prisma.OurStoryUncheckedUpdateManyWithoutImage2NestedInput;
+  ourStoryImage3?: Prisma.OurStoryUncheckedUpdateManyWithoutImage3NestedInput;
+  ourStoryImage4?: Prisma.OurStoryUncheckedUpdateManyWithoutImage4NestedInput;
+  ourStoryImage5?: Prisma.OurStoryUncheckedUpdateManyWithoutImage5NestedInput;
+  contactInfos?: Prisma.ContactInfoUncheckedUpdateManyWithoutBackgroundImageNestedInput;
+  ourStories?: Prisma.OurStoryUncheckedUpdateManyWithoutFileInstancesNestedInput;
+  missionVisionImage1?: Prisma.MissionVisionUncheckedUpdateManyWithoutImage1NestedInput;
+  missionVisionImage2?: Prisma.MissionVisionUncheckedUpdateManyWithoutImage2NestedInput;
+  missionVisionImage3?: Prisma.MissionVisionUncheckedUpdateManyWithoutImage3NestedInput;
+  missionVisions?: Prisma.MissionVisionUncheckedUpdateManyWithoutFileInstancesNestedInput;
+  whatSetsUsApartImage1?: Prisma.WhatSetsUsApartUncheckedUpdateManyWithoutImage1NestedInput;
+  whatSetsUsApartImage2?: Prisma.WhatSetsUsApartUncheckedUpdateManyWithoutImage2NestedInput;
+  whatSetsUsAparts?: Prisma.WhatSetsUsApartUncheckedUpdateManyWithoutFileInstancesNestedInput;
 };
 
 export type FileInstanceCreateWithoutOurTeamImagesInput = {
@@ -2748,6 +6586,20 @@ export type FileInstanceCreateWithoutOurTeamImagesInput = {
   whyUsImage1?: Prisma.WhyUsCreateNestedManyWithoutImage1Input;
   whyUsImage2?: Prisma.WhyUsCreateNestedManyWithoutImage2Input;
   whyUsImage3?: Prisma.WhyUsCreateNestedManyWithoutImage3Input;
+  ourStoryImage1?: Prisma.OurStoryCreateNestedManyWithoutImage1Input;
+  ourStoryImage2?: Prisma.OurStoryCreateNestedManyWithoutImage2Input;
+  ourStoryImage3?: Prisma.OurStoryCreateNestedManyWithoutImage3Input;
+  ourStoryImage4?: Prisma.OurStoryCreateNestedManyWithoutImage4Input;
+  ourStoryImage5?: Prisma.OurStoryCreateNestedManyWithoutImage5Input;
+  contactInfos?: Prisma.ContactInfoCreateNestedManyWithoutBackgroundImageInput;
+  ourStories?: Prisma.OurStoryCreateNestedManyWithoutFileInstancesInput;
+  missionVisionImage1?: Prisma.MissionVisionCreateNestedManyWithoutImage1Input;
+  missionVisionImage2?: Prisma.MissionVisionCreateNestedManyWithoutImage2Input;
+  missionVisionImage3?: Prisma.MissionVisionCreateNestedManyWithoutImage3Input;
+  missionVisions?: Prisma.MissionVisionCreateNestedManyWithoutFileInstancesInput;
+  whatSetsUsApartImage1?: Prisma.WhatSetsUsApartCreateNestedManyWithoutImage1Input;
+  whatSetsUsApartImage2?: Prisma.WhatSetsUsApartCreateNestedManyWithoutImage2Input;
+  whatSetsUsAparts?: Prisma.WhatSetsUsApartCreateNestedManyWithoutFileInstancesInput;
 };
 
 export type FileInstanceUncheckedCreateWithoutOurTeamImagesInput = {
@@ -2775,6 +6627,20 @@ export type FileInstanceUncheckedCreateWithoutOurTeamImagesInput = {
   whyUsImage1?: Prisma.WhyUsUncheckedCreateNestedManyWithoutImage1Input;
   whyUsImage2?: Prisma.WhyUsUncheckedCreateNestedManyWithoutImage2Input;
   whyUsImage3?: Prisma.WhyUsUncheckedCreateNestedManyWithoutImage3Input;
+  ourStoryImage1?: Prisma.OurStoryUncheckedCreateNestedManyWithoutImage1Input;
+  ourStoryImage2?: Prisma.OurStoryUncheckedCreateNestedManyWithoutImage2Input;
+  ourStoryImage3?: Prisma.OurStoryUncheckedCreateNestedManyWithoutImage3Input;
+  ourStoryImage4?: Prisma.OurStoryUncheckedCreateNestedManyWithoutImage4Input;
+  ourStoryImage5?: Prisma.OurStoryUncheckedCreateNestedManyWithoutImage5Input;
+  contactInfos?: Prisma.ContactInfoUncheckedCreateNestedManyWithoutBackgroundImageInput;
+  ourStories?: Prisma.OurStoryUncheckedCreateNestedManyWithoutFileInstancesInput;
+  missionVisionImage1?: Prisma.MissionVisionUncheckedCreateNestedManyWithoutImage1Input;
+  missionVisionImage2?: Prisma.MissionVisionUncheckedCreateNestedManyWithoutImage2Input;
+  missionVisionImage3?: Prisma.MissionVisionUncheckedCreateNestedManyWithoutImage3Input;
+  missionVisions?: Prisma.MissionVisionUncheckedCreateNestedManyWithoutFileInstancesInput;
+  whatSetsUsApartImage1?: Prisma.WhatSetsUsApartUncheckedCreateNestedManyWithoutImage1Input;
+  whatSetsUsApartImage2?: Prisma.WhatSetsUsApartUncheckedCreateNestedManyWithoutImage2Input;
+  whatSetsUsAparts?: Prisma.WhatSetsUsApartUncheckedCreateNestedManyWithoutFileInstancesInput;
 };
 
 export type FileInstanceCreateOrConnectWithoutOurTeamImagesInput = {
@@ -2830,6 +6696,20 @@ export type FileInstanceUpdateWithoutOurTeamImagesInput = {
   whyUsImage1?: Prisma.WhyUsUpdateManyWithoutImage1NestedInput;
   whyUsImage2?: Prisma.WhyUsUpdateManyWithoutImage2NestedInput;
   whyUsImage3?: Prisma.WhyUsUpdateManyWithoutImage3NestedInput;
+  ourStoryImage1?: Prisma.OurStoryUpdateManyWithoutImage1NestedInput;
+  ourStoryImage2?: Prisma.OurStoryUpdateManyWithoutImage2NestedInput;
+  ourStoryImage3?: Prisma.OurStoryUpdateManyWithoutImage3NestedInput;
+  ourStoryImage4?: Prisma.OurStoryUpdateManyWithoutImage4NestedInput;
+  ourStoryImage5?: Prisma.OurStoryUpdateManyWithoutImage5NestedInput;
+  contactInfos?: Prisma.ContactInfoUpdateManyWithoutBackgroundImageNestedInput;
+  ourStories?: Prisma.OurStoryUpdateManyWithoutFileInstancesNestedInput;
+  missionVisionImage1?: Prisma.MissionVisionUpdateManyWithoutImage1NestedInput;
+  missionVisionImage2?: Prisma.MissionVisionUpdateManyWithoutImage2NestedInput;
+  missionVisionImage3?: Prisma.MissionVisionUpdateManyWithoutImage3NestedInput;
+  missionVisions?: Prisma.MissionVisionUpdateManyWithoutFileInstancesNestedInput;
+  whatSetsUsApartImage1?: Prisma.WhatSetsUsApartUpdateManyWithoutImage1NestedInput;
+  whatSetsUsApartImage2?: Prisma.WhatSetsUsApartUpdateManyWithoutImage2NestedInput;
+  whatSetsUsAparts?: Prisma.WhatSetsUsApartUpdateManyWithoutFileInstancesNestedInput;
 };
 
 export type FileInstanceUncheckedUpdateWithoutOurTeamImagesInput = {
@@ -2857,6 +6737,20 @@ export type FileInstanceUncheckedUpdateWithoutOurTeamImagesInput = {
   whyUsImage1?: Prisma.WhyUsUncheckedUpdateManyWithoutImage1NestedInput;
   whyUsImage2?: Prisma.WhyUsUncheckedUpdateManyWithoutImage2NestedInput;
   whyUsImage3?: Prisma.WhyUsUncheckedUpdateManyWithoutImage3NestedInput;
+  ourStoryImage1?: Prisma.OurStoryUncheckedUpdateManyWithoutImage1NestedInput;
+  ourStoryImage2?: Prisma.OurStoryUncheckedUpdateManyWithoutImage2NestedInput;
+  ourStoryImage3?: Prisma.OurStoryUncheckedUpdateManyWithoutImage3NestedInput;
+  ourStoryImage4?: Prisma.OurStoryUncheckedUpdateManyWithoutImage4NestedInput;
+  ourStoryImage5?: Prisma.OurStoryUncheckedUpdateManyWithoutImage5NestedInput;
+  contactInfos?: Prisma.ContactInfoUncheckedUpdateManyWithoutBackgroundImageNestedInput;
+  ourStories?: Prisma.OurStoryUncheckedUpdateManyWithoutFileInstancesNestedInput;
+  missionVisionImage1?: Prisma.MissionVisionUncheckedUpdateManyWithoutImage1NestedInput;
+  missionVisionImage2?: Prisma.MissionVisionUncheckedUpdateManyWithoutImage2NestedInput;
+  missionVisionImage3?: Prisma.MissionVisionUncheckedUpdateManyWithoutImage3NestedInput;
+  missionVisions?: Prisma.MissionVisionUncheckedUpdateManyWithoutFileInstancesNestedInput;
+  whatSetsUsApartImage1?: Prisma.WhatSetsUsApartUncheckedUpdateManyWithoutImage1NestedInput;
+  whatSetsUsApartImage2?: Prisma.WhatSetsUsApartUncheckedUpdateManyWithoutImage2NestedInput;
+  whatSetsUsAparts?: Prisma.WhatSetsUsApartUncheckedUpdateManyWithoutFileInstancesNestedInput;
 };
 
 export type FileInstanceCreateWithoutPackageBannersInput = {
@@ -2884,6 +6778,20 @@ export type FileInstanceCreateWithoutPackageBannersInput = {
   whyUsImage2?: Prisma.WhyUsCreateNestedManyWithoutImage2Input;
   whyUsImage3?: Prisma.WhyUsCreateNestedManyWithoutImage3Input;
   ourTeamImages?: Prisma.OurTeamCreateNestedManyWithoutImageInput;
+  ourStoryImage1?: Prisma.OurStoryCreateNestedManyWithoutImage1Input;
+  ourStoryImage2?: Prisma.OurStoryCreateNestedManyWithoutImage2Input;
+  ourStoryImage3?: Prisma.OurStoryCreateNestedManyWithoutImage3Input;
+  ourStoryImage4?: Prisma.OurStoryCreateNestedManyWithoutImage4Input;
+  ourStoryImage5?: Prisma.OurStoryCreateNestedManyWithoutImage5Input;
+  contactInfos?: Prisma.ContactInfoCreateNestedManyWithoutBackgroundImageInput;
+  ourStories?: Prisma.OurStoryCreateNestedManyWithoutFileInstancesInput;
+  missionVisionImage1?: Prisma.MissionVisionCreateNestedManyWithoutImage1Input;
+  missionVisionImage2?: Prisma.MissionVisionCreateNestedManyWithoutImage2Input;
+  missionVisionImage3?: Prisma.MissionVisionCreateNestedManyWithoutImage3Input;
+  missionVisions?: Prisma.MissionVisionCreateNestedManyWithoutFileInstancesInput;
+  whatSetsUsApartImage1?: Prisma.WhatSetsUsApartCreateNestedManyWithoutImage1Input;
+  whatSetsUsApartImage2?: Prisma.WhatSetsUsApartCreateNestedManyWithoutImage2Input;
+  whatSetsUsAparts?: Prisma.WhatSetsUsApartCreateNestedManyWithoutFileInstancesInput;
 };
 
 export type FileInstanceUncheckedCreateWithoutPackageBannersInput = {
@@ -2911,6 +6819,20 @@ export type FileInstanceUncheckedCreateWithoutPackageBannersInput = {
   whyUsImage2?: Prisma.WhyUsUncheckedCreateNestedManyWithoutImage2Input;
   whyUsImage3?: Prisma.WhyUsUncheckedCreateNestedManyWithoutImage3Input;
   ourTeamImages?: Prisma.OurTeamUncheckedCreateNestedManyWithoutImageInput;
+  ourStoryImage1?: Prisma.OurStoryUncheckedCreateNestedManyWithoutImage1Input;
+  ourStoryImage2?: Prisma.OurStoryUncheckedCreateNestedManyWithoutImage2Input;
+  ourStoryImage3?: Prisma.OurStoryUncheckedCreateNestedManyWithoutImage3Input;
+  ourStoryImage4?: Prisma.OurStoryUncheckedCreateNestedManyWithoutImage4Input;
+  ourStoryImage5?: Prisma.OurStoryUncheckedCreateNestedManyWithoutImage5Input;
+  contactInfos?: Prisma.ContactInfoUncheckedCreateNestedManyWithoutBackgroundImageInput;
+  ourStories?: Prisma.OurStoryUncheckedCreateNestedManyWithoutFileInstancesInput;
+  missionVisionImage1?: Prisma.MissionVisionUncheckedCreateNestedManyWithoutImage1Input;
+  missionVisionImage2?: Prisma.MissionVisionUncheckedCreateNestedManyWithoutImage2Input;
+  missionVisionImage3?: Prisma.MissionVisionUncheckedCreateNestedManyWithoutImage3Input;
+  missionVisions?: Prisma.MissionVisionUncheckedCreateNestedManyWithoutFileInstancesInput;
+  whatSetsUsApartImage1?: Prisma.WhatSetsUsApartUncheckedCreateNestedManyWithoutImage1Input;
+  whatSetsUsApartImage2?: Prisma.WhatSetsUsApartUncheckedCreateNestedManyWithoutImage2Input;
+  whatSetsUsAparts?: Prisma.WhatSetsUsApartUncheckedCreateNestedManyWithoutFileInstancesInput;
 };
 
 export type FileInstanceCreateOrConnectWithoutPackageBannersInput = {
@@ -2966,6 +6888,20 @@ export type FileInstanceUpdateWithoutPackageBannersInput = {
   whyUsImage2?: Prisma.WhyUsUpdateManyWithoutImage2NestedInput;
   whyUsImage3?: Prisma.WhyUsUpdateManyWithoutImage3NestedInput;
   ourTeamImages?: Prisma.OurTeamUpdateManyWithoutImageNestedInput;
+  ourStoryImage1?: Prisma.OurStoryUpdateManyWithoutImage1NestedInput;
+  ourStoryImage2?: Prisma.OurStoryUpdateManyWithoutImage2NestedInput;
+  ourStoryImage3?: Prisma.OurStoryUpdateManyWithoutImage3NestedInput;
+  ourStoryImage4?: Prisma.OurStoryUpdateManyWithoutImage4NestedInput;
+  ourStoryImage5?: Prisma.OurStoryUpdateManyWithoutImage5NestedInput;
+  contactInfos?: Prisma.ContactInfoUpdateManyWithoutBackgroundImageNestedInput;
+  ourStories?: Prisma.OurStoryUpdateManyWithoutFileInstancesNestedInput;
+  missionVisionImage1?: Prisma.MissionVisionUpdateManyWithoutImage1NestedInput;
+  missionVisionImage2?: Prisma.MissionVisionUpdateManyWithoutImage2NestedInput;
+  missionVisionImage3?: Prisma.MissionVisionUpdateManyWithoutImage3NestedInput;
+  missionVisions?: Prisma.MissionVisionUpdateManyWithoutFileInstancesNestedInput;
+  whatSetsUsApartImage1?: Prisma.WhatSetsUsApartUpdateManyWithoutImage1NestedInput;
+  whatSetsUsApartImage2?: Prisma.WhatSetsUsApartUpdateManyWithoutImage2NestedInput;
+  whatSetsUsAparts?: Prisma.WhatSetsUsApartUpdateManyWithoutFileInstancesNestedInput;
 };
 
 export type FileInstanceUncheckedUpdateWithoutPackageBannersInput = {
@@ -2993,6 +6929,20 @@ export type FileInstanceUncheckedUpdateWithoutPackageBannersInput = {
   whyUsImage2?: Prisma.WhyUsUncheckedUpdateManyWithoutImage2NestedInput;
   whyUsImage3?: Prisma.WhyUsUncheckedUpdateManyWithoutImage3NestedInput;
   ourTeamImages?: Prisma.OurTeamUncheckedUpdateManyWithoutImageNestedInput;
+  ourStoryImage1?: Prisma.OurStoryUncheckedUpdateManyWithoutImage1NestedInput;
+  ourStoryImage2?: Prisma.OurStoryUncheckedUpdateManyWithoutImage2NestedInput;
+  ourStoryImage3?: Prisma.OurStoryUncheckedUpdateManyWithoutImage3NestedInput;
+  ourStoryImage4?: Prisma.OurStoryUncheckedUpdateManyWithoutImage4NestedInput;
+  ourStoryImage5?: Prisma.OurStoryUncheckedUpdateManyWithoutImage5NestedInput;
+  contactInfos?: Prisma.ContactInfoUncheckedUpdateManyWithoutBackgroundImageNestedInput;
+  ourStories?: Prisma.OurStoryUncheckedUpdateManyWithoutFileInstancesNestedInput;
+  missionVisionImage1?: Prisma.MissionVisionUncheckedUpdateManyWithoutImage1NestedInput;
+  missionVisionImage2?: Prisma.MissionVisionUncheckedUpdateManyWithoutImage2NestedInput;
+  missionVisionImage3?: Prisma.MissionVisionUncheckedUpdateManyWithoutImage3NestedInput;
+  missionVisions?: Prisma.MissionVisionUncheckedUpdateManyWithoutFileInstancesNestedInput;
+  whatSetsUsApartImage1?: Prisma.WhatSetsUsApartUncheckedUpdateManyWithoutImage1NestedInput;
+  whatSetsUsApartImage2?: Prisma.WhatSetsUsApartUncheckedUpdateManyWithoutImage2NestedInput;
+  whatSetsUsAparts?: Prisma.WhatSetsUsApartUncheckedUpdateManyWithoutFileInstancesNestedInput;
 };
 
 export type FileInstanceCreateWithoutSettingsInput = {
@@ -3020,6 +6970,20 @@ export type FileInstanceCreateWithoutSettingsInput = {
   whyUsImage2?: Prisma.WhyUsCreateNestedManyWithoutImage2Input;
   whyUsImage3?: Prisma.WhyUsCreateNestedManyWithoutImage3Input;
   ourTeamImages?: Prisma.OurTeamCreateNestedManyWithoutImageInput;
+  ourStoryImage1?: Prisma.OurStoryCreateNestedManyWithoutImage1Input;
+  ourStoryImage2?: Prisma.OurStoryCreateNestedManyWithoutImage2Input;
+  ourStoryImage3?: Prisma.OurStoryCreateNestedManyWithoutImage3Input;
+  ourStoryImage4?: Prisma.OurStoryCreateNestedManyWithoutImage4Input;
+  ourStoryImage5?: Prisma.OurStoryCreateNestedManyWithoutImage5Input;
+  contactInfos?: Prisma.ContactInfoCreateNestedManyWithoutBackgroundImageInput;
+  ourStories?: Prisma.OurStoryCreateNestedManyWithoutFileInstancesInput;
+  missionVisionImage1?: Prisma.MissionVisionCreateNestedManyWithoutImage1Input;
+  missionVisionImage2?: Prisma.MissionVisionCreateNestedManyWithoutImage2Input;
+  missionVisionImage3?: Prisma.MissionVisionCreateNestedManyWithoutImage3Input;
+  missionVisions?: Prisma.MissionVisionCreateNestedManyWithoutFileInstancesInput;
+  whatSetsUsApartImage1?: Prisma.WhatSetsUsApartCreateNestedManyWithoutImage1Input;
+  whatSetsUsApartImage2?: Prisma.WhatSetsUsApartCreateNestedManyWithoutImage2Input;
+  whatSetsUsAparts?: Prisma.WhatSetsUsApartCreateNestedManyWithoutFileInstancesInput;
 };
 
 export type FileInstanceUncheckedCreateWithoutSettingsInput = {
@@ -3047,6 +7011,20 @@ export type FileInstanceUncheckedCreateWithoutSettingsInput = {
   whyUsImage2?: Prisma.WhyUsUncheckedCreateNestedManyWithoutImage2Input;
   whyUsImage3?: Prisma.WhyUsUncheckedCreateNestedManyWithoutImage3Input;
   ourTeamImages?: Prisma.OurTeamUncheckedCreateNestedManyWithoutImageInput;
+  ourStoryImage1?: Prisma.OurStoryUncheckedCreateNestedManyWithoutImage1Input;
+  ourStoryImage2?: Prisma.OurStoryUncheckedCreateNestedManyWithoutImage2Input;
+  ourStoryImage3?: Prisma.OurStoryUncheckedCreateNestedManyWithoutImage3Input;
+  ourStoryImage4?: Prisma.OurStoryUncheckedCreateNestedManyWithoutImage4Input;
+  ourStoryImage5?: Prisma.OurStoryUncheckedCreateNestedManyWithoutImage5Input;
+  contactInfos?: Prisma.ContactInfoUncheckedCreateNestedManyWithoutBackgroundImageInput;
+  ourStories?: Prisma.OurStoryUncheckedCreateNestedManyWithoutFileInstancesInput;
+  missionVisionImage1?: Prisma.MissionVisionUncheckedCreateNestedManyWithoutImage1Input;
+  missionVisionImage2?: Prisma.MissionVisionUncheckedCreateNestedManyWithoutImage2Input;
+  missionVisionImage3?: Prisma.MissionVisionUncheckedCreateNestedManyWithoutImage3Input;
+  missionVisions?: Prisma.MissionVisionUncheckedCreateNestedManyWithoutFileInstancesInput;
+  whatSetsUsApartImage1?: Prisma.WhatSetsUsApartUncheckedCreateNestedManyWithoutImage1Input;
+  whatSetsUsApartImage2?: Prisma.WhatSetsUsApartUncheckedCreateNestedManyWithoutImage2Input;
+  whatSetsUsAparts?: Prisma.WhatSetsUsApartUncheckedCreateNestedManyWithoutFileInstancesInput;
 };
 
 export type FileInstanceCreateOrConnectWithoutSettingsInput = {
@@ -3102,6 +7080,20 @@ export type FileInstanceUpdateWithoutSettingsInput = {
   whyUsImage2?: Prisma.WhyUsUpdateManyWithoutImage2NestedInput;
   whyUsImage3?: Prisma.WhyUsUpdateManyWithoutImage3NestedInput;
   ourTeamImages?: Prisma.OurTeamUpdateManyWithoutImageNestedInput;
+  ourStoryImage1?: Prisma.OurStoryUpdateManyWithoutImage1NestedInput;
+  ourStoryImage2?: Prisma.OurStoryUpdateManyWithoutImage2NestedInput;
+  ourStoryImage3?: Prisma.OurStoryUpdateManyWithoutImage3NestedInput;
+  ourStoryImage4?: Prisma.OurStoryUpdateManyWithoutImage4NestedInput;
+  ourStoryImage5?: Prisma.OurStoryUpdateManyWithoutImage5NestedInput;
+  contactInfos?: Prisma.ContactInfoUpdateManyWithoutBackgroundImageNestedInput;
+  ourStories?: Prisma.OurStoryUpdateManyWithoutFileInstancesNestedInput;
+  missionVisionImage1?: Prisma.MissionVisionUpdateManyWithoutImage1NestedInput;
+  missionVisionImage2?: Prisma.MissionVisionUpdateManyWithoutImage2NestedInput;
+  missionVisionImage3?: Prisma.MissionVisionUpdateManyWithoutImage3NestedInput;
+  missionVisions?: Prisma.MissionVisionUpdateManyWithoutFileInstancesNestedInput;
+  whatSetsUsApartImage1?: Prisma.WhatSetsUsApartUpdateManyWithoutImage1NestedInput;
+  whatSetsUsApartImage2?: Prisma.WhatSetsUsApartUpdateManyWithoutImage2NestedInput;
+  whatSetsUsAparts?: Prisma.WhatSetsUsApartUpdateManyWithoutFileInstancesNestedInput;
 };
 
 export type FileInstanceUncheckedUpdateWithoutSettingsInput = {
@@ -3129,6 +7121,20 @@ export type FileInstanceUncheckedUpdateWithoutSettingsInput = {
   whyUsImage2?: Prisma.WhyUsUncheckedUpdateManyWithoutImage2NestedInput;
   whyUsImage3?: Prisma.WhyUsUncheckedUpdateManyWithoutImage3NestedInput;
   ourTeamImages?: Prisma.OurTeamUncheckedUpdateManyWithoutImageNestedInput;
+  ourStoryImage1?: Prisma.OurStoryUncheckedUpdateManyWithoutImage1NestedInput;
+  ourStoryImage2?: Prisma.OurStoryUncheckedUpdateManyWithoutImage2NestedInput;
+  ourStoryImage3?: Prisma.OurStoryUncheckedUpdateManyWithoutImage3NestedInput;
+  ourStoryImage4?: Prisma.OurStoryUncheckedUpdateManyWithoutImage4NestedInput;
+  ourStoryImage5?: Prisma.OurStoryUncheckedUpdateManyWithoutImage5NestedInput;
+  contactInfos?: Prisma.ContactInfoUncheckedUpdateManyWithoutBackgroundImageNestedInput;
+  ourStories?: Prisma.OurStoryUncheckedUpdateManyWithoutFileInstancesNestedInput;
+  missionVisionImage1?: Prisma.MissionVisionUncheckedUpdateManyWithoutImage1NestedInput;
+  missionVisionImage2?: Prisma.MissionVisionUncheckedUpdateManyWithoutImage2NestedInput;
+  missionVisionImage3?: Prisma.MissionVisionUncheckedUpdateManyWithoutImage3NestedInput;
+  missionVisions?: Prisma.MissionVisionUncheckedUpdateManyWithoutFileInstancesNestedInput;
+  whatSetsUsApartImage1?: Prisma.WhatSetsUsApartUncheckedUpdateManyWithoutImage1NestedInput;
+  whatSetsUsApartImage2?: Prisma.WhatSetsUsApartUncheckedUpdateManyWithoutImage2NestedInput;
+  whatSetsUsAparts?: Prisma.WhatSetsUsApartUncheckedUpdateManyWithoutFileInstancesNestedInput;
 };
 
 export type FileInstanceUpdateWithoutBlogInput = {
@@ -3156,6 +7162,20 @@ export type FileInstanceUpdateWithoutBlogInput = {
   whyUsImage2?: Prisma.WhyUsUpdateManyWithoutImage2NestedInput;
   whyUsImage3?: Prisma.WhyUsUpdateManyWithoutImage3NestedInput;
   ourTeamImages?: Prisma.OurTeamUpdateManyWithoutImageNestedInput;
+  ourStoryImage1?: Prisma.OurStoryUpdateManyWithoutImage1NestedInput;
+  ourStoryImage2?: Prisma.OurStoryUpdateManyWithoutImage2NestedInput;
+  ourStoryImage3?: Prisma.OurStoryUpdateManyWithoutImage3NestedInput;
+  ourStoryImage4?: Prisma.OurStoryUpdateManyWithoutImage4NestedInput;
+  ourStoryImage5?: Prisma.OurStoryUpdateManyWithoutImage5NestedInput;
+  contactInfos?: Prisma.ContactInfoUpdateManyWithoutBackgroundImageNestedInput;
+  ourStories?: Prisma.OurStoryUpdateManyWithoutFileInstancesNestedInput;
+  missionVisionImage1?: Prisma.MissionVisionUpdateManyWithoutImage1NestedInput;
+  missionVisionImage2?: Prisma.MissionVisionUpdateManyWithoutImage2NestedInput;
+  missionVisionImage3?: Prisma.MissionVisionUpdateManyWithoutImage3NestedInput;
+  missionVisions?: Prisma.MissionVisionUpdateManyWithoutFileInstancesNestedInput;
+  whatSetsUsApartImage1?: Prisma.WhatSetsUsApartUpdateManyWithoutImage1NestedInput;
+  whatSetsUsApartImage2?: Prisma.WhatSetsUsApartUpdateManyWithoutImage2NestedInput;
+  whatSetsUsAparts?: Prisma.WhatSetsUsApartUpdateManyWithoutFileInstancesNestedInput;
 };
 
 export type FileInstanceUncheckedUpdateWithoutBlogInput = {
@@ -3183,9 +7203,308 @@ export type FileInstanceUncheckedUpdateWithoutBlogInput = {
   whyUsImage2?: Prisma.WhyUsUncheckedUpdateManyWithoutImage2NestedInput;
   whyUsImage3?: Prisma.WhyUsUncheckedUpdateManyWithoutImage3NestedInput;
   ourTeamImages?: Prisma.OurTeamUncheckedUpdateManyWithoutImageNestedInput;
+  ourStoryImage1?: Prisma.OurStoryUncheckedUpdateManyWithoutImage1NestedInput;
+  ourStoryImage2?: Prisma.OurStoryUncheckedUpdateManyWithoutImage2NestedInput;
+  ourStoryImage3?: Prisma.OurStoryUncheckedUpdateManyWithoutImage3NestedInput;
+  ourStoryImage4?: Prisma.OurStoryUncheckedUpdateManyWithoutImage4NestedInput;
+  ourStoryImage5?: Prisma.OurStoryUncheckedUpdateManyWithoutImage5NestedInput;
+  contactInfos?: Prisma.ContactInfoUncheckedUpdateManyWithoutBackgroundImageNestedInput;
+  ourStories?: Prisma.OurStoryUncheckedUpdateManyWithoutFileInstancesNestedInput;
+  missionVisionImage1?: Prisma.MissionVisionUncheckedUpdateManyWithoutImage1NestedInput;
+  missionVisionImage2?: Prisma.MissionVisionUncheckedUpdateManyWithoutImage2NestedInput;
+  missionVisionImage3?: Prisma.MissionVisionUncheckedUpdateManyWithoutImage3NestedInput;
+  missionVisions?: Prisma.MissionVisionUncheckedUpdateManyWithoutFileInstancesNestedInput;
+  whatSetsUsApartImage1?: Prisma.WhatSetsUsApartUncheckedUpdateManyWithoutImage1NestedInput;
+  whatSetsUsApartImage2?: Prisma.WhatSetsUsApartUncheckedUpdateManyWithoutImage2NestedInput;
+  whatSetsUsAparts?: Prisma.WhatSetsUsApartUncheckedUpdateManyWithoutFileInstancesNestedInput;
 };
 
 export type FileInstanceUncheckedUpdateManyWithoutBlogInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string;
+  filename?: Prisma.StringFieldUpdateOperationsInput | string;
+  originalFilename?: Prisma.StringFieldUpdateOperationsInput | string;
+  path?: Prisma.StringFieldUpdateOperationsInput | string;
+  url?: Prisma.StringFieldUpdateOperationsInput | string;
+  fileType?: Prisma.EnumFileTypeFieldUpdateOperationsInput | $Enums.FileType;
+  mimeType?: Prisma.StringFieldUpdateOperationsInput | string;
+  size?: Prisma.IntFieldUpdateOperationsInput | number;
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+};
+
+export type FileInstanceUpdateWithoutOurStoriesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string;
+  filename?: Prisma.StringFieldUpdateOperationsInput | string;
+  originalFilename?: Prisma.StringFieldUpdateOperationsInput | string;
+  path?: Prisma.StringFieldUpdateOperationsInput | string;
+  url?: Prisma.StringFieldUpdateOperationsInput | string;
+  fileType?: Prisma.EnumFileTypeFieldUpdateOperationsInput | $Enums.FileType;
+  mimeType?: Prisma.StringFieldUpdateOperationsInput | string;
+  size?: Prisma.IntFieldUpdateOperationsInput | number;
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  pageBannersBackground?: Prisma.PageBannerUpdateManyWithoutBackgroundNestedInput;
+  blog?: Prisma.BlogUpdateManyWithoutFileInstancesNestedInput;
+  boatImages?: Prisma.BoatImageUpdateManyWithoutFileNestedInput;
+  contactTopImages?: Prisma.ContactPageUpdateOneWithoutContactTopImageNestedInput;
+  contactBottomImages?: Prisma.ContactPageUpdateOneWithoutContactBottomImageNestedInput;
+  featuredBrandLogos?: Prisma.FeaturedBrandsUpdateManyWithoutFeaturedbrandLogoNestedInput;
+  blogs?: Prisma.BlogUpdateManyWithoutBlogImageNestedInput;
+  settings?: Prisma.SettingUpdateManyWithoutLogoNestedInput;
+  packageBanners?: Prisma.packageBannerUpdateManyWithoutPackageBannerNestedInput;
+  aiSearchBanners?: Prisma.AiSearchBannerUpdateManyWithoutAiSearchBannerNestedInput;
+  categoryImages?: Prisma.CategoryUpdateManyWithoutImageNestedInput;
+  whyUsImage1?: Prisma.WhyUsUpdateManyWithoutImage1NestedInput;
+  whyUsImage2?: Prisma.WhyUsUpdateManyWithoutImage2NestedInput;
+  whyUsImage3?: Prisma.WhyUsUpdateManyWithoutImage3NestedInput;
+  ourTeamImages?: Prisma.OurTeamUpdateManyWithoutImageNestedInput;
+  ourStoryImage1?: Prisma.OurStoryUpdateManyWithoutImage1NestedInput;
+  ourStoryImage2?: Prisma.OurStoryUpdateManyWithoutImage2NestedInput;
+  ourStoryImage3?: Prisma.OurStoryUpdateManyWithoutImage3NestedInput;
+  ourStoryImage4?: Prisma.OurStoryUpdateManyWithoutImage4NestedInput;
+  ourStoryImage5?: Prisma.OurStoryUpdateManyWithoutImage5NestedInput;
+  contactInfos?: Prisma.ContactInfoUpdateManyWithoutBackgroundImageNestedInput;
+  missionVisionImage1?: Prisma.MissionVisionUpdateManyWithoutImage1NestedInput;
+  missionVisionImage2?: Prisma.MissionVisionUpdateManyWithoutImage2NestedInput;
+  missionVisionImage3?: Prisma.MissionVisionUpdateManyWithoutImage3NestedInput;
+  missionVisions?: Prisma.MissionVisionUpdateManyWithoutFileInstancesNestedInput;
+  whatSetsUsApartImage1?: Prisma.WhatSetsUsApartUpdateManyWithoutImage1NestedInput;
+  whatSetsUsApartImage2?: Prisma.WhatSetsUsApartUpdateManyWithoutImage2NestedInput;
+  whatSetsUsAparts?: Prisma.WhatSetsUsApartUpdateManyWithoutFileInstancesNestedInput;
+};
+
+export type FileInstanceUncheckedUpdateWithoutOurStoriesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string;
+  filename?: Prisma.StringFieldUpdateOperationsInput | string;
+  originalFilename?: Prisma.StringFieldUpdateOperationsInput | string;
+  path?: Prisma.StringFieldUpdateOperationsInput | string;
+  url?: Prisma.StringFieldUpdateOperationsInput | string;
+  fileType?: Prisma.EnumFileTypeFieldUpdateOperationsInput | $Enums.FileType;
+  mimeType?: Prisma.StringFieldUpdateOperationsInput | string;
+  size?: Prisma.IntFieldUpdateOperationsInput | number;
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  pageBannersBackground?: Prisma.PageBannerUncheckedUpdateManyWithoutBackgroundNestedInput;
+  blog?: Prisma.BlogUncheckedUpdateManyWithoutFileInstancesNestedInput;
+  boatImages?: Prisma.BoatImageUncheckedUpdateManyWithoutFileNestedInput;
+  contactTopImages?: Prisma.ContactPageUncheckedUpdateOneWithoutContactTopImageNestedInput;
+  contactBottomImages?: Prisma.ContactPageUncheckedUpdateOneWithoutContactBottomImageNestedInput;
+  featuredBrandLogos?: Prisma.FeaturedBrandsUncheckedUpdateManyWithoutFeaturedbrandLogoNestedInput;
+  blogs?: Prisma.BlogUncheckedUpdateManyWithoutBlogImageNestedInput;
+  settings?: Prisma.SettingUncheckedUpdateManyWithoutLogoNestedInput;
+  packageBanners?: Prisma.packageBannerUncheckedUpdateManyWithoutPackageBannerNestedInput;
+  aiSearchBanners?: Prisma.AiSearchBannerUncheckedUpdateManyWithoutAiSearchBannerNestedInput;
+  categoryImages?: Prisma.CategoryUncheckedUpdateManyWithoutImageNestedInput;
+  whyUsImage1?: Prisma.WhyUsUncheckedUpdateManyWithoutImage1NestedInput;
+  whyUsImage2?: Prisma.WhyUsUncheckedUpdateManyWithoutImage2NestedInput;
+  whyUsImage3?: Prisma.WhyUsUncheckedUpdateManyWithoutImage3NestedInput;
+  ourTeamImages?: Prisma.OurTeamUncheckedUpdateManyWithoutImageNestedInput;
+  ourStoryImage1?: Prisma.OurStoryUncheckedUpdateManyWithoutImage1NestedInput;
+  ourStoryImage2?: Prisma.OurStoryUncheckedUpdateManyWithoutImage2NestedInput;
+  ourStoryImage3?: Prisma.OurStoryUncheckedUpdateManyWithoutImage3NestedInput;
+  ourStoryImage4?: Prisma.OurStoryUncheckedUpdateManyWithoutImage4NestedInput;
+  ourStoryImage5?: Prisma.OurStoryUncheckedUpdateManyWithoutImage5NestedInput;
+  contactInfos?: Prisma.ContactInfoUncheckedUpdateManyWithoutBackgroundImageNestedInput;
+  missionVisionImage1?: Prisma.MissionVisionUncheckedUpdateManyWithoutImage1NestedInput;
+  missionVisionImage2?: Prisma.MissionVisionUncheckedUpdateManyWithoutImage2NestedInput;
+  missionVisionImage3?: Prisma.MissionVisionUncheckedUpdateManyWithoutImage3NestedInput;
+  missionVisions?: Prisma.MissionVisionUncheckedUpdateManyWithoutFileInstancesNestedInput;
+  whatSetsUsApartImage1?: Prisma.WhatSetsUsApartUncheckedUpdateManyWithoutImage1NestedInput;
+  whatSetsUsApartImage2?: Prisma.WhatSetsUsApartUncheckedUpdateManyWithoutImage2NestedInput;
+  whatSetsUsAparts?: Prisma.WhatSetsUsApartUncheckedUpdateManyWithoutFileInstancesNestedInput;
+};
+
+export type FileInstanceUncheckedUpdateManyWithoutOurStoriesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string;
+  filename?: Prisma.StringFieldUpdateOperationsInput | string;
+  originalFilename?: Prisma.StringFieldUpdateOperationsInput | string;
+  path?: Prisma.StringFieldUpdateOperationsInput | string;
+  url?: Prisma.StringFieldUpdateOperationsInput | string;
+  fileType?: Prisma.EnumFileTypeFieldUpdateOperationsInput | $Enums.FileType;
+  mimeType?: Prisma.StringFieldUpdateOperationsInput | string;
+  size?: Prisma.IntFieldUpdateOperationsInput | number;
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+};
+
+export type FileInstanceUpdateWithoutMissionVisionsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string;
+  filename?: Prisma.StringFieldUpdateOperationsInput | string;
+  originalFilename?: Prisma.StringFieldUpdateOperationsInput | string;
+  path?: Prisma.StringFieldUpdateOperationsInput | string;
+  url?: Prisma.StringFieldUpdateOperationsInput | string;
+  fileType?: Prisma.EnumFileTypeFieldUpdateOperationsInput | $Enums.FileType;
+  mimeType?: Prisma.StringFieldUpdateOperationsInput | string;
+  size?: Prisma.IntFieldUpdateOperationsInput | number;
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  pageBannersBackground?: Prisma.PageBannerUpdateManyWithoutBackgroundNestedInput;
+  blog?: Prisma.BlogUpdateManyWithoutFileInstancesNestedInput;
+  boatImages?: Prisma.BoatImageUpdateManyWithoutFileNestedInput;
+  contactTopImages?: Prisma.ContactPageUpdateOneWithoutContactTopImageNestedInput;
+  contactBottomImages?: Prisma.ContactPageUpdateOneWithoutContactBottomImageNestedInput;
+  featuredBrandLogos?: Prisma.FeaturedBrandsUpdateManyWithoutFeaturedbrandLogoNestedInput;
+  blogs?: Prisma.BlogUpdateManyWithoutBlogImageNestedInput;
+  settings?: Prisma.SettingUpdateManyWithoutLogoNestedInput;
+  packageBanners?: Prisma.packageBannerUpdateManyWithoutPackageBannerNestedInput;
+  aiSearchBanners?: Prisma.AiSearchBannerUpdateManyWithoutAiSearchBannerNestedInput;
+  categoryImages?: Prisma.CategoryUpdateManyWithoutImageNestedInput;
+  whyUsImage1?: Prisma.WhyUsUpdateManyWithoutImage1NestedInput;
+  whyUsImage2?: Prisma.WhyUsUpdateManyWithoutImage2NestedInput;
+  whyUsImage3?: Prisma.WhyUsUpdateManyWithoutImage3NestedInput;
+  ourTeamImages?: Prisma.OurTeamUpdateManyWithoutImageNestedInput;
+  ourStoryImage1?: Prisma.OurStoryUpdateManyWithoutImage1NestedInput;
+  ourStoryImage2?: Prisma.OurStoryUpdateManyWithoutImage2NestedInput;
+  ourStoryImage3?: Prisma.OurStoryUpdateManyWithoutImage3NestedInput;
+  ourStoryImage4?: Prisma.OurStoryUpdateManyWithoutImage4NestedInput;
+  ourStoryImage5?: Prisma.OurStoryUpdateManyWithoutImage5NestedInput;
+  contactInfos?: Prisma.ContactInfoUpdateManyWithoutBackgroundImageNestedInput;
+  ourStories?: Prisma.OurStoryUpdateManyWithoutFileInstancesNestedInput;
+  missionVisionImage1?: Prisma.MissionVisionUpdateManyWithoutImage1NestedInput;
+  missionVisionImage2?: Prisma.MissionVisionUpdateManyWithoutImage2NestedInput;
+  missionVisionImage3?: Prisma.MissionVisionUpdateManyWithoutImage3NestedInput;
+  whatSetsUsApartImage1?: Prisma.WhatSetsUsApartUpdateManyWithoutImage1NestedInput;
+  whatSetsUsApartImage2?: Prisma.WhatSetsUsApartUpdateManyWithoutImage2NestedInput;
+  whatSetsUsAparts?: Prisma.WhatSetsUsApartUpdateManyWithoutFileInstancesNestedInput;
+};
+
+export type FileInstanceUncheckedUpdateWithoutMissionVisionsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string;
+  filename?: Prisma.StringFieldUpdateOperationsInput | string;
+  originalFilename?: Prisma.StringFieldUpdateOperationsInput | string;
+  path?: Prisma.StringFieldUpdateOperationsInput | string;
+  url?: Prisma.StringFieldUpdateOperationsInput | string;
+  fileType?: Prisma.EnumFileTypeFieldUpdateOperationsInput | $Enums.FileType;
+  mimeType?: Prisma.StringFieldUpdateOperationsInput | string;
+  size?: Prisma.IntFieldUpdateOperationsInput | number;
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  pageBannersBackground?: Prisma.PageBannerUncheckedUpdateManyWithoutBackgroundNestedInput;
+  blog?: Prisma.BlogUncheckedUpdateManyWithoutFileInstancesNestedInput;
+  boatImages?: Prisma.BoatImageUncheckedUpdateManyWithoutFileNestedInput;
+  contactTopImages?: Prisma.ContactPageUncheckedUpdateOneWithoutContactTopImageNestedInput;
+  contactBottomImages?: Prisma.ContactPageUncheckedUpdateOneWithoutContactBottomImageNestedInput;
+  featuredBrandLogos?: Prisma.FeaturedBrandsUncheckedUpdateManyWithoutFeaturedbrandLogoNestedInput;
+  blogs?: Prisma.BlogUncheckedUpdateManyWithoutBlogImageNestedInput;
+  settings?: Prisma.SettingUncheckedUpdateManyWithoutLogoNestedInput;
+  packageBanners?: Prisma.packageBannerUncheckedUpdateManyWithoutPackageBannerNestedInput;
+  aiSearchBanners?: Prisma.AiSearchBannerUncheckedUpdateManyWithoutAiSearchBannerNestedInput;
+  categoryImages?: Prisma.CategoryUncheckedUpdateManyWithoutImageNestedInput;
+  whyUsImage1?: Prisma.WhyUsUncheckedUpdateManyWithoutImage1NestedInput;
+  whyUsImage2?: Prisma.WhyUsUncheckedUpdateManyWithoutImage2NestedInput;
+  whyUsImage3?: Prisma.WhyUsUncheckedUpdateManyWithoutImage3NestedInput;
+  ourTeamImages?: Prisma.OurTeamUncheckedUpdateManyWithoutImageNestedInput;
+  ourStoryImage1?: Prisma.OurStoryUncheckedUpdateManyWithoutImage1NestedInput;
+  ourStoryImage2?: Prisma.OurStoryUncheckedUpdateManyWithoutImage2NestedInput;
+  ourStoryImage3?: Prisma.OurStoryUncheckedUpdateManyWithoutImage3NestedInput;
+  ourStoryImage4?: Prisma.OurStoryUncheckedUpdateManyWithoutImage4NestedInput;
+  ourStoryImage5?: Prisma.OurStoryUncheckedUpdateManyWithoutImage5NestedInput;
+  contactInfos?: Prisma.ContactInfoUncheckedUpdateManyWithoutBackgroundImageNestedInput;
+  ourStories?: Prisma.OurStoryUncheckedUpdateManyWithoutFileInstancesNestedInput;
+  missionVisionImage1?: Prisma.MissionVisionUncheckedUpdateManyWithoutImage1NestedInput;
+  missionVisionImage2?: Prisma.MissionVisionUncheckedUpdateManyWithoutImage2NestedInput;
+  missionVisionImage3?: Prisma.MissionVisionUncheckedUpdateManyWithoutImage3NestedInput;
+  whatSetsUsApartImage1?: Prisma.WhatSetsUsApartUncheckedUpdateManyWithoutImage1NestedInput;
+  whatSetsUsApartImage2?: Prisma.WhatSetsUsApartUncheckedUpdateManyWithoutImage2NestedInput;
+  whatSetsUsAparts?: Prisma.WhatSetsUsApartUncheckedUpdateManyWithoutFileInstancesNestedInput;
+};
+
+export type FileInstanceUncheckedUpdateManyWithoutMissionVisionsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string;
+  filename?: Prisma.StringFieldUpdateOperationsInput | string;
+  originalFilename?: Prisma.StringFieldUpdateOperationsInput | string;
+  path?: Prisma.StringFieldUpdateOperationsInput | string;
+  url?: Prisma.StringFieldUpdateOperationsInput | string;
+  fileType?: Prisma.EnumFileTypeFieldUpdateOperationsInput | $Enums.FileType;
+  mimeType?: Prisma.StringFieldUpdateOperationsInput | string;
+  size?: Prisma.IntFieldUpdateOperationsInput | number;
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+};
+
+export type FileInstanceUpdateWithoutWhatSetsUsApartsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string;
+  filename?: Prisma.StringFieldUpdateOperationsInput | string;
+  originalFilename?: Prisma.StringFieldUpdateOperationsInput | string;
+  path?: Prisma.StringFieldUpdateOperationsInput | string;
+  url?: Prisma.StringFieldUpdateOperationsInput | string;
+  fileType?: Prisma.EnumFileTypeFieldUpdateOperationsInput | $Enums.FileType;
+  mimeType?: Prisma.StringFieldUpdateOperationsInput | string;
+  size?: Prisma.IntFieldUpdateOperationsInput | number;
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  pageBannersBackground?: Prisma.PageBannerUpdateManyWithoutBackgroundNestedInput;
+  blog?: Prisma.BlogUpdateManyWithoutFileInstancesNestedInput;
+  boatImages?: Prisma.BoatImageUpdateManyWithoutFileNestedInput;
+  contactTopImages?: Prisma.ContactPageUpdateOneWithoutContactTopImageNestedInput;
+  contactBottomImages?: Prisma.ContactPageUpdateOneWithoutContactBottomImageNestedInput;
+  featuredBrandLogos?: Prisma.FeaturedBrandsUpdateManyWithoutFeaturedbrandLogoNestedInput;
+  blogs?: Prisma.BlogUpdateManyWithoutBlogImageNestedInput;
+  settings?: Prisma.SettingUpdateManyWithoutLogoNestedInput;
+  packageBanners?: Prisma.packageBannerUpdateManyWithoutPackageBannerNestedInput;
+  aiSearchBanners?: Prisma.AiSearchBannerUpdateManyWithoutAiSearchBannerNestedInput;
+  categoryImages?: Prisma.CategoryUpdateManyWithoutImageNestedInput;
+  whyUsImage1?: Prisma.WhyUsUpdateManyWithoutImage1NestedInput;
+  whyUsImage2?: Prisma.WhyUsUpdateManyWithoutImage2NestedInput;
+  whyUsImage3?: Prisma.WhyUsUpdateManyWithoutImage3NestedInput;
+  ourTeamImages?: Prisma.OurTeamUpdateManyWithoutImageNestedInput;
+  ourStoryImage1?: Prisma.OurStoryUpdateManyWithoutImage1NestedInput;
+  ourStoryImage2?: Prisma.OurStoryUpdateManyWithoutImage2NestedInput;
+  ourStoryImage3?: Prisma.OurStoryUpdateManyWithoutImage3NestedInput;
+  ourStoryImage4?: Prisma.OurStoryUpdateManyWithoutImage4NestedInput;
+  ourStoryImage5?: Prisma.OurStoryUpdateManyWithoutImage5NestedInput;
+  contactInfos?: Prisma.ContactInfoUpdateManyWithoutBackgroundImageNestedInput;
+  ourStories?: Prisma.OurStoryUpdateManyWithoutFileInstancesNestedInput;
+  missionVisionImage1?: Prisma.MissionVisionUpdateManyWithoutImage1NestedInput;
+  missionVisionImage2?: Prisma.MissionVisionUpdateManyWithoutImage2NestedInput;
+  missionVisionImage3?: Prisma.MissionVisionUpdateManyWithoutImage3NestedInput;
+  missionVisions?: Prisma.MissionVisionUpdateManyWithoutFileInstancesNestedInput;
+  whatSetsUsApartImage1?: Prisma.WhatSetsUsApartUpdateManyWithoutImage1NestedInput;
+  whatSetsUsApartImage2?: Prisma.WhatSetsUsApartUpdateManyWithoutImage2NestedInput;
+};
+
+export type FileInstanceUncheckedUpdateWithoutWhatSetsUsApartsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string;
+  filename?: Prisma.StringFieldUpdateOperationsInput | string;
+  originalFilename?: Prisma.StringFieldUpdateOperationsInput | string;
+  path?: Prisma.StringFieldUpdateOperationsInput | string;
+  url?: Prisma.StringFieldUpdateOperationsInput | string;
+  fileType?: Prisma.EnumFileTypeFieldUpdateOperationsInput | $Enums.FileType;
+  mimeType?: Prisma.StringFieldUpdateOperationsInput | string;
+  size?: Prisma.IntFieldUpdateOperationsInput | number;
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  pageBannersBackground?: Prisma.PageBannerUncheckedUpdateManyWithoutBackgroundNestedInput;
+  blog?: Prisma.BlogUncheckedUpdateManyWithoutFileInstancesNestedInput;
+  boatImages?: Prisma.BoatImageUncheckedUpdateManyWithoutFileNestedInput;
+  contactTopImages?: Prisma.ContactPageUncheckedUpdateOneWithoutContactTopImageNestedInput;
+  contactBottomImages?: Prisma.ContactPageUncheckedUpdateOneWithoutContactBottomImageNestedInput;
+  featuredBrandLogos?: Prisma.FeaturedBrandsUncheckedUpdateManyWithoutFeaturedbrandLogoNestedInput;
+  blogs?: Prisma.BlogUncheckedUpdateManyWithoutBlogImageNestedInput;
+  settings?: Prisma.SettingUncheckedUpdateManyWithoutLogoNestedInput;
+  packageBanners?: Prisma.packageBannerUncheckedUpdateManyWithoutPackageBannerNestedInput;
+  aiSearchBanners?: Prisma.AiSearchBannerUncheckedUpdateManyWithoutAiSearchBannerNestedInput;
+  categoryImages?: Prisma.CategoryUncheckedUpdateManyWithoutImageNestedInput;
+  whyUsImage1?: Prisma.WhyUsUncheckedUpdateManyWithoutImage1NestedInput;
+  whyUsImage2?: Prisma.WhyUsUncheckedUpdateManyWithoutImage2NestedInput;
+  whyUsImage3?: Prisma.WhyUsUncheckedUpdateManyWithoutImage3NestedInput;
+  ourTeamImages?: Prisma.OurTeamUncheckedUpdateManyWithoutImageNestedInput;
+  ourStoryImage1?: Prisma.OurStoryUncheckedUpdateManyWithoutImage1NestedInput;
+  ourStoryImage2?: Prisma.OurStoryUncheckedUpdateManyWithoutImage2NestedInput;
+  ourStoryImage3?: Prisma.OurStoryUncheckedUpdateManyWithoutImage3NestedInput;
+  ourStoryImage4?: Prisma.OurStoryUncheckedUpdateManyWithoutImage4NestedInput;
+  ourStoryImage5?: Prisma.OurStoryUncheckedUpdateManyWithoutImage5NestedInput;
+  contactInfos?: Prisma.ContactInfoUncheckedUpdateManyWithoutBackgroundImageNestedInput;
+  ourStories?: Prisma.OurStoryUncheckedUpdateManyWithoutFileInstancesNestedInput;
+  missionVisionImage1?: Prisma.MissionVisionUncheckedUpdateManyWithoutImage1NestedInput;
+  missionVisionImage2?: Prisma.MissionVisionUncheckedUpdateManyWithoutImage2NestedInput;
+  missionVisionImage3?: Prisma.MissionVisionUncheckedUpdateManyWithoutImage3NestedInput;
+  missionVisions?: Prisma.MissionVisionUncheckedUpdateManyWithoutFileInstancesNestedInput;
+  whatSetsUsApartImage1?: Prisma.WhatSetsUsApartUncheckedUpdateManyWithoutImage1NestedInput;
+  whatSetsUsApartImage2?: Prisma.WhatSetsUsApartUncheckedUpdateManyWithoutImage2NestedInput;
+};
+
+export type FileInstanceUncheckedUpdateManyWithoutWhatSetsUsApartsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string;
   filename?: Prisma.StringFieldUpdateOperationsInput | string;
   originalFilename?: Prisma.StringFieldUpdateOperationsInput | string;
@@ -3216,6 +7535,20 @@ export type FileInstanceCountOutputType = {
   whyUsImage2: number;
   whyUsImage3: number;
   ourTeamImages: number;
+  ourStoryImage1: number;
+  ourStoryImage2: number;
+  ourStoryImage3: number;
+  ourStoryImage4: number;
+  ourStoryImage5: number;
+  contactInfos: number;
+  ourStories: number;
+  missionVisionImage1: number;
+  missionVisionImage2: number;
+  missionVisionImage3: number;
+  missionVisions: number;
+  whatSetsUsApartImage1: number;
+  whatSetsUsApartImage2: number;
+  whatSetsUsAparts: number;
 };
 
 export type FileInstanceCountOutputTypeSelect<
@@ -3241,6 +7574,32 @@ export type FileInstanceCountOutputTypeSelect<
   whyUsImage2?: boolean | FileInstanceCountOutputTypeCountWhyUsImage2Args;
   whyUsImage3?: boolean | FileInstanceCountOutputTypeCountWhyUsImage3Args;
   ourTeamImages?: boolean | FileInstanceCountOutputTypeCountOurTeamImagesArgs;
+  ourStoryImage1?: boolean | FileInstanceCountOutputTypeCountOurStoryImage1Args;
+  ourStoryImage2?: boolean | FileInstanceCountOutputTypeCountOurStoryImage2Args;
+  ourStoryImage3?: boolean | FileInstanceCountOutputTypeCountOurStoryImage3Args;
+  ourStoryImage4?: boolean | FileInstanceCountOutputTypeCountOurStoryImage4Args;
+  ourStoryImage5?: boolean | FileInstanceCountOutputTypeCountOurStoryImage5Args;
+  contactInfos?: boolean | FileInstanceCountOutputTypeCountContactInfosArgs;
+  ourStories?: boolean | FileInstanceCountOutputTypeCountOurStoriesArgs;
+  missionVisionImage1?:
+    | boolean
+    | FileInstanceCountOutputTypeCountMissionVisionImage1Args;
+  missionVisionImage2?:
+    | boolean
+    | FileInstanceCountOutputTypeCountMissionVisionImage2Args;
+  missionVisionImage3?:
+    | boolean
+    | FileInstanceCountOutputTypeCountMissionVisionImage3Args;
+  missionVisions?: boolean | FileInstanceCountOutputTypeCountMissionVisionsArgs;
+  whatSetsUsApartImage1?:
+    | boolean
+    | FileInstanceCountOutputTypeCountWhatSetsUsApartImage1Args;
+  whatSetsUsApartImage2?:
+    | boolean
+    | FileInstanceCountOutputTypeCountWhatSetsUsApartImage2Args;
+  whatSetsUsAparts?:
+    | boolean
+    | FileInstanceCountOutputTypeCountWhatSetsUsApartsArgs;
 };
 
 /**
@@ -3386,6 +7745,146 @@ export type FileInstanceCountOutputTypeCountOurTeamImagesArgs<
   where?: Prisma.OurTeamWhereInput;
 };
 
+/**
+ * FileInstanceCountOutputType without action
+ */
+export type FileInstanceCountOutputTypeCountOurStoryImage1Args<
+  ExtArgs extends runtime.Types.Extensions.InternalArgs =
+    runtime.Types.Extensions.DefaultArgs,
+> = {
+  where?: Prisma.OurStoryWhereInput;
+};
+
+/**
+ * FileInstanceCountOutputType without action
+ */
+export type FileInstanceCountOutputTypeCountOurStoryImage2Args<
+  ExtArgs extends runtime.Types.Extensions.InternalArgs =
+    runtime.Types.Extensions.DefaultArgs,
+> = {
+  where?: Prisma.OurStoryWhereInput;
+};
+
+/**
+ * FileInstanceCountOutputType without action
+ */
+export type FileInstanceCountOutputTypeCountOurStoryImage3Args<
+  ExtArgs extends runtime.Types.Extensions.InternalArgs =
+    runtime.Types.Extensions.DefaultArgs,
+> = {
+  where?: Prisma.OurStoryWhereInput;
+};
+
+/**
+ * FileInstanceCountOutputType without action
+ */
+export type FileInstanceCountOutputTypeCountOurStoryImage4Args<
+  ExtArgs extends runtime.Types.Extensions.InternalArgs =
+    runtime.Types.Extensions.DefaultArgs,
+> = {
+  where?: Prisma.OurStoryWhereInput;
+};
+
+/**
+ * FileInstanceCountOutputType without action
+ */
+export type FileInstanceCountOutputTypeCountOurStoryImage5Args<
+  ExtArgs extends runtime.Types.Extensions.InternalArgs =
+    runtime.Types.Extensions.DefaultArgs,
+> = {
+  where?: Prisma.OurStoryWhereInput;
+};
+
+/**
+ * FileInstanceCountOutputType without action
+ */
+export type FileInstanceCountOutputTypeCountContactInfosArgs<
+  ExtArgs extends runtime.Types.Extensions.InternalArgs =
+    runtime.Types.Extensions.DefaultArgs,
+> = {
+  where?: Prisma.ContactInfoWhereInput;
+};
+
+/**
+ * FileInstanceCountOutputType without action
+ */
+export type FileInstanceCountOutputTypeCountOurStoriesArgs<
+  ExtArgs extends runtime.Types.Extensions.InternalArgs =
+    runtime.Types.Extensions.DefaultArgs,
+> = {
+  where?: Prisma.OurStoryWhereInput;
+};
+
+/**
+ * FileInstanceCountOutputType without action
+ */
+export type FileInstanceCountOutputTypeCountMissionVisionImage1Args<
+  ExtArgs extends runtime.Types.Extensions.InternalArgs =
+    runtime.Types.Extensions.DefaultArgs,
+> = {
+  where?: Prisma.MissionVisionWhereInput;
+};
+
+/**
+ * FileInstanceCountOutputType without action
+ */
+export type FileInstanceCountOutputTypeCountMissionVisionImage2Args<
+  ExtArgs extends runtime.Types.Extensions.InternalArgs =
+    runtime.Types.Extensions.DefaultArgs,
+> = {
+  where?: Prisma.MissionVisionWhereInput;
+};
+
+/**
+ * FileInstanceCountOutputType without action
+ */
+export type FileInstanceCountOutputTypeCountMissionVisionImage3Args<
+  ExtArgs extends runtime.Types.Extensions.InternalArgs =
+    runtime.Types.Extensions.DefaultArgs,
+> = {
+  where?: Prisma.MissionVisionWhereInput;
+};
+
+/**
+ * FileInstanceCountOutputType without action
+ */
+export type FileInstanceCountOutputTypeCountMissionVisionsArgs<
+  ExtArgs extends runtime.Types.Extensions.InternalArgs =
+    runtime.Types.Extensions.DefaultArgs,
+> = {
+  where?: Prisma.MissionVisionWhereInput;
+};
+
+/**
+ * FileInstanceCountOutputType without action
+ */
+export type FileInstanceCountOutputTypeCountWhatSetsUsApartImage1Args<
+  ExtArgs extends runtime.Types.Extensions.InternalArgs =
+    runtime.Types.Extensions.DefaultArgs,
+> = {
+  where?: Prisma.WhatSetsUsApartWhereInput;
+};
+
+/**
+ * FileInstanceCountOutputType without action
+ */
+export type FileInstanceCountOutputTypeCountWhatSetsUsApartImage2Args<
+  ExtArgs extends runtime.Types.Extensions.InternalArgs =
+    runtime.Types.Extensions.DefaultArgs,
+> = {
+  where?: Prisma.WhatSetsUsApartWhereInput;
+};
+
+/**
+ * FileInstanceCountOutputType without action
+ */
+export type FileInstanceCountOutputTypeCountWhatSetsUsApartsArgs<
+  ExtArgs extends runtime.Types.Extensions.InternalArgs =
+    runtime.Types.Extensions.DefaultArgs,
+> = {
+  where?: Prisma.WhatSetsUsApartWhereInput;
+};
+
 export type FileInstanceSelect<
   ExtArgs extends runtime.Types.Extensions.InternalArgs =
     runtime.Types.Extensions.DefaultArgs,
@@ -3426,6 +7925,32 @@ export type FileInstanceSelect<
     whyUsImage2?: boolean | Prisma.FileInstance$whyUsImage2Args<ExtArgs>;
     whyUsImage3?: boolean | Prisma.FileInstance$whyUsImage3Args<ExtArgs>;
     ourTeamImages?: boolean | Prisma.FileInstance$ourTeamImagesArgs<ExtArgs>;
+    ourStoryImage1?: boolean | Prisma.FileInstance$ourStoryImage1Args<ExtArgs>;
+    ourStoryImage2?: boolean | Prisma.FileInstance$ourStoryImage2Args<ExtArgs>;
+    ourStoryImage3?: boolean | Prisma.FileInstance$ourStoryImage3Args<ExtArgs>;
+    ourStoryImage4?: boolean | Prisma.FileInstance$ourStoryImage4Args<ExtArgs>;
+    ourStoryImage5?: boolean | Prisma.FileInstance$ourStoryImage5Args<ExtArgs>;
+    contactInfos?: boolean | Prisma.FileInstance$contactInfosArgs<ExtArgs>;
+    ourStories?: boolean | Prisma.FileInstance$ourStoriesArgs<ExtArgs>;
+    missionVisionImage1?:
+      | boolean
+      | Prisma.FileInstance$missionVisionImage1Args<ExtArgs>;
+    missionVisionImage2?:
+      | boolean
+      | Prisma.FileInstance$missionVisionImage2Args<ExtArgs>;
+    missionVisionImage3?:
+      | boolean
+      | Prisma.FileInstance$missionVisionImage3Args<ExtArgs>;
+    missionVisions?: boolean | Prisma.FileInstance$missionVisionsArgs<ExtArgs>;
+    whatSetsUsApartImage1?:
+      | boolean
+      | Prisma.FileInstance$whatSetsUsApartImage1Args<ExtArgs>;
+    whatSetsUsApartImage2?:
+      | boolean
+      | Prisma.FileInstance$whatSetsUsApartImage2Args<ExtArgs>;
+    whatSetsUsAparts?:
+      | boolean
+      | Prisma.FileInstance$whatSetsUsApartsArgs<ExtArgs>;
     _count?: boolean | Prisma.FileInstanceCountOutputTypeDefaultArgs<ExtArgs>;
   },
   ExtArgs['result']['fileInstance']
@@ -3525,6 +8050,32 @@ export type FileInstanceInclude<
   whyUsImage2?: boolean | Prisma.FileInstance$whyUsImage2Args<ExtArgs>;
   whyUsImage3?: boolean | Prisma.FileInstance$whyUsImage3Args<ExtArgs>;
   ourTeamImages?: boolean | Prisma.FileInstance$ourTeamImagesArgs<ExtArgs>;
+  ourStoryImage1?: boolean | Prisma.FileInstance$ourStoryImage1Args<ExtArgs>;
+  ourStoryImage2?: boolean | Prisma.FileInstance$ourStoryImage2Args<ExtArgs>;
+  ourStoryImage3?: boolean | Prisma.FileInstance$ourStoryImage3Args<ExtArgs>;
+  ourStoryImage4?: boolean | Prisma.FileInstance$ourStoryImage4Args<ExtArgs>;
+  ourStoryImage5?: boolean | Prisma.FileInstance$ourStoryImage5Args<ExtArgs>;
+  contactInfos?: boolean | Prisma.FileInstance$contactInfosArgs<ExtArgs>;
+  ourStories?: boolean | Prisma.FileInstance$ourStoriesArgs<ExtArgs>;
+  missionVisionImage1?:
+    | boolean
+    | Prisma.FileInstance$missionVisionImage1Args<ExtArgs>;
+  missionVisionImage2?:
+    | boolean
+    | Prisma.FileInstance$missionVisionImage2Args<ExtArgs>;
+  missionVisionImage3?:
+    | boolean
+    | Prisma.FileInstance$missionVisionImage3Args<ExtArgs>;
+  missionVisions?: boolean | Prisma.FileInstance$missionVisionsArgs<ExtArgs>;
+  whatSetsUsApartImage1?:
+    | boolean
+    | Prisma.FileInstance$whatSetsUsApartImage1Args<ExtArgs>;
+  whatSetsUsApartImage2?:
+    | boolean
+    | Prisma.FileInstance$whatSetsUsApartImage2Args<ExtArgs>;
+  whatSetsUsAparts?:
+    | boolean
+    | Prisma.FileInstance$whatSetsUsApartsArgs<ExtArgs>;
   _count?: boolean | Prisma.FileInstanceCountOutputTypeDefaultArgs<ExtArgs>;
 };
 export type FileInstanceIncludeCreateManyAndReturn<
@@ -3557,6 +8108,20 @@ export type $FileInstancePayload<
     whyUsImage2: Prisma.$WhyUsPayload<ExtArgs>[];
     whyUsImage3: Prisma.$WhyUsPayload<ExtArgs>[];
     ourTeamImages: Prisma.$OurTeamPayload<ExtArgs>[];
+    ourStoryImage1: Prisma.$OurStoryPayload<ExtArgs>[];
+    ourStoryImage2: Prisma.$OurStoryPayload<ExtArgs>[];
+    ourStoryImage3: Prisma.$OurStoryPayload<ExtArgs>[];
+    ourStoryImage4: Prisma.$OurStoryPayload<ExtArgs>[];
+    ourStoryImage5: Prisma.$OurStoryPayload<ExtArgs>[];
+    contactInfos: Prisma.$ContactInfoPayload<ExtArgs>[];
+    ourStories: Prisma.$OurStoryPayload<ExtArgs>[];
+    missionVisionImage1: Prisma.$MissionVisionPayload<ExtArgs>[];
+    missionVisionImage2: Prisma.$MissionVisionPayload<ExtArgs>[];
+    missionVisionImage3: Prisma.$MissionVisionPayload<ExtArgs>[];
+    missionVisions: Prisma.$MissionVisionPayload<ExtArgs>[];
+    whatSetsUsApartImage1: Prisma.$WhatSetsUsApartPayload<ExtArgs>[];
+    whatSetsUsApartImage2: Prisma.$WhatSetsUsApartPayload<ExtArgs>[];
+    whatSetsUsAparts: Prisma.$WhatSetsUsApartPayload<ExtArgs>[];
   };
   scalars: runtime.Types.Extensions.GetPayloadResult<
     {
@@ -4312,6 +8877,199 @@ export interface Prisma__FileInstanceClient<
   ): Prisma.PrismaPromise<
     | runtime.Types.Result.GetResult<
         Prisma.$OurTeamPayload<ExtArgs>,
+        T,
+        'findMany',
+        GlobalOmitOptions
+      >
+    | Null
+  >;
+  ourStoryImage1<
+    T extends Prisma.FileInstance$ourStoryImage1Args<ExtArgs> = {},
+  >(
+    args?: Prisma.Subset<T, Prisma.FileInstance$ourStoryImage1Args<ExtArgs>>,
+  ): Prisma.PrismaPromise<
+    | runtime.Types.Result.GetResult<
+        Prisma.$OurStoryPayload<ExtArgs>,
+        T,
+        'findMany',
+        GlobalOmitOptions
+      >
+    | Null
+  >;
+  ourStoryImage2<
+    T extends Prisma.FileInstance$ourStoryImage2Args<ExtArgs> = {},
+  >(
+    args?: Prisma.Subset<T, Prisma.FileInstance$ourStoryImage2Args<ExtArgs>>,
+  ): Prisma.PrismaPromise<
+    | runtime.Types.Result.GetResult<
+        Prisma.$OurStoryPayload<ExtArgs>,
+        T,
+        'findMany',
+        GlobalOmitOptions
+      >
+    | Null
+  >;
+  ourStoryImage3<
+    T extends Prisma.FileInstance$ourStoryImage3Args<ExtArgs> = {},
+  >(
+    args?: Prisma.Subset<T, Prisma.FileInstance$ourStoryImage3Args<ExtArgs>>,
+  ): Prisma.PrismaPromise<
+    | runtime.Types.Result.GetResult<
+        Prisma.$OurStoryPayload<ExtArgs>,
+        T,
+        'findMany',
+        GlobalOmitOptions
+      >
+    | Null
+  >;
+  ourStoryImage4<
+    T extends Prisma.FileInstance$ourStoryImage4Args<ExtArgs> = {},
+  >(
+    args?: Prisma.Subset<T, Prisma.FileInstance$ourStoryImage4Args<ExtArgs>>,
+  ): Prisma.PrismaPromise<
+    | runtime.Types.Result.GetResult<
+        Prisma.$OurStoryPayload<ExtArgs>,
+        T,
+        'findMany',
+        GlobalOmitOptions
+      >
+    | Null
+  >;
+  ourStoryImage5<
+    T extends Prisma.FileInstance$ourStoryImage5Args<ExtArgs> = {},
+  >(
+    args?: Prisma.Subset<T, Prisma.FileInstance$ourStoryImage5Args<ExtArgs>>,
+  ): Prisma.PrismaPromise<
+    | runtime.Types.Result.GetResult<
+        Prisma.$OurStoryPayload<ExtArgs>,
+        T,
+        'findMany',
+        GlobalOmitOptions
+      >
+    | Null
+  >;
+  contactInfos<T extends Prisma.FileInstance$contactInfosArgs<ExtArgs> = {}>(
+    args?: Prisma.Subset<T, Prisma.FileInstance$contactInfosArgs<ExtArgs>>,
+  ): Prisma.PrismaPromise<
+    | runtime.Types.Result.GetResult<
+        Prisma.$ContactInfoPayload<ExtArgs>,
+        T,
+        'findMany',
+        GlobalOmitOptions
+      >
+    | Null
+  >;
+  ourStories<T extends Prisma.FileInstance$ourStoriesArgs<ExtArgs> = {}>(
+    args?: Prisma.Subset<T, Prisma.FileInstance$ourStoriesArgs<ExtArgs>>,
+  ): Prisma.PrismaPromise<
+    | runtime.Types.Result.GetResult<
+        Prisma.$OurStoryPayload<ExtArgs>,
+        T,
+        'findMany',
+        GlobalOmitOptions
+      >
+    | Null
+  >;
+  missionVisionImage1<
+    T extends Prisma.FileInstance$missionVisionImage1Args<ExtArgs> = {},
+  >(
+    args?: Prisma.Subset<
+      T,
+      Prisma.FileInstance$missionVisionImage1Args<ExtArgs>
+    >,
+  ): Prisma.PrismaPromise<
+    | runtime.Types.Result.GetResult<
+        Prisma.$MissionVisionPayload<ExtArgs>,
+        T,
+        'findMany',
+        GlobalOmitOptions
+      >
+    | Null
+  >;
+  missionVisionImage2<
+    T extends Prisma.FileInstance$missionVisionImage2Args<ExtArgs> = {},
+  >(
+    args?: Prisma.Subset<
+      T,
+      Prisma.FileInstance$missionVisionImage2Args<ExtArgs>
+    >,
+  ): Prisma.PrismaPromise<
+    | runtime.Types.Result.GetResult<
+        Prisma.$MissionVisionPayload<ExtArgs>,
+        T,
+        'findMany',
+        GlobalOmitOptions
+      >
+    | Null
+  >;
+  missionVisionImage3<
+    T extends Prisma.FileInstance$missionVisionImage3Args<ExtArgs> = {},
+  >(
+    args?: Prisma.Subset<
+      T,
+      Prisma.FileInstance$missionVisionImage3Args<ExtArgs>
+    >,
+  ): Prisma.PrismaPromise<
+    | runtime.Types.Result.GetResult<
+        Prisma.$MissionVisionPayload<ExtArgs>,
+        T,
+        'findMany',
+        GlobalOmitOptions
+      >
+    | Null
+  >;
+  missionVisions<
+    T extends Prisma.FileInstance$missionVisionsArgs<ExtArgs> = {},
+  >(
+    args?: Prisma.Subset<T, Prisma.FileInstance$missionVisionsArgs<ExtArgs>>,
+  ): Prisma.PrismaPromise<
+    | runtime.Types.Result.GetResult<
+        Prisma.$MissionVisionPayload<ExtArgs>,
+        T,
+        'findMany',
+        GlobalOmitOptions
+      >
+    | Null
+  >;
+  whatSetsUsApartImage1<
+    T extends Prisma.FileInstance$whatSetsUsApartImage1Args<ExtArgs> = {},
+  >(
+    args?: Prisma.Subset<
+      T,
+      Prisma.FileInstance$whatSetsUsApartImage1Args<ExtArgs>
+    >,
+  ): Prisma.PrismaPromise<
+    | runtime.Types.Result.GetResult<
+        Prisma.$WhatSetsUsApartPayload<ExtArgs>,
+        T,
+        'findMany',
+        GlobalOmitOptions
+      >
+    | Null
+  >;
+  whatSetsUsApartImage2<
+    T extends Prisma.FileInstance$whatSetsUsApartImage2Args<ExtArgs> = {},
+  >(
+    args?: Prisma.Subset<
+      T,
+      Prisma.FileInstance$whatSetsUsApartImage2Args<ExtArgs>
+    >,
+  ): Prisma.PrismaPromise<
+    | runtime.Types.Result.GetResult<
+        Prisma.$WhatSetsUsApartPayload<ExtArgs>,
+        T,
+        'findMany',
+        GlobalOmitOptions
+      >
+    | Null
+  >;
+  whatSetsUsAparts<
+    T extends Prisma.FileInstance$whatSetsUsApartsArgs<ExtArgs> = {},
+  >(
+    args?: Prisma.Subset<T, Prisma.FileInstance$whatSetsUsApartsArgs<ExtArgs>>,
+  ): Prisma.PrismaPromise<
+    | runtime.Types.Result.GetResult<
+        Prisma.$WhatSetsUsApartPayload<ExtArgs>,
         T,
         'findMany',
         GlobalOmitOptions
@@ -5261,6 +10019,428 @@ export type FileInstance$ourTeamImagesArgs<
   take?: number;
   skip?: number;
   distinct?: Prisma.OurTeamScalarFieldEnum | Prisma.OurTeamScalarFieldEnum[];
+};
+
+/**
+ * FileInstance.ourStoryImage1
+ */
+export type FileInstance$ourStoryImage1Args<
+  ExtArgs extends runtime.Types.Extensions.InternalArgs =
+    runtime.Types.Extensions.DefaultArgs,
+> = {
+  /**
+   * Select specific fields to fetch from the OurStory
+   */
+  select?: Prisma.OurStorySelect<ExtArgs> | null;
+  /**
+   * Omit specific fields from the OurStory
+   */
+  omit?: Prisma.OurStoryOmit<ExtArgs> | null;
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.OurStoryInclude<ExtArgs> | null;
+  where?: Prisma.OurStoryWhereInput;
+  orderBy?:
+    | Prisma.OurStoryOrderByWithRelationInput
+    | Prisma.OurStoryOrderByWithRelationInput[];
+  cursor?: Prisma.OurStoryWhereUniqueInput;
+  take?: number;
+  skip?: number;
+  distinct?: Prisma.OurStoryScalarFieldEnum | Prisma.OurStoryScalarFieldEnum[];
+};
+
+/**
+ * FileInstance.ourStoryImage2
+ */
+export type FileInstance$ourStoryImage2Args<
+  ExtArgs extends runtime.Types.Extensions.InternalArgs =
+    runtime.Types.Extensions.DefaultArgs,
+> = {
+  /**
+   * Select specific fields to fetch from the OurStory
+   */
+  select?: Prisma.OurStorySelect<ExtArgs> | null;
+  /**
+   * Omit specific fields from the OurStory
+   */
+  omit?: Prisma.OurStoryOmit<ExtArgs> | null;
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.OurStoryInclude<ExtArgs> | null;
+  where?: Prisma.OurStoryWhereInput;
+  orderBy?:
+    | Prisma.OurStoryOrderByWithRelationInput
+    | Prisma.OurStoryOrderByWithRelationInput[];
+  cursor?: Prisma.OurStoryWhereUniqueInput;
+  take?: number;
+  skip?: number;
+  distinct?: Prisma.OurStoryScalarFieldEnum | Prisma.OurStoryScalarFieldEnum[];
+};
+
+/**
+ * FileInstance.ourStoryImage3
+ */
+export type FileInstance$ourStoryImage3Args<
+  ExtArgs extends runtime.Types.Extensions.InternalArgs =
+    runtime.Types.Extensions.DefaultArgs,
+> = {
+  /**
+   * Select specific fields to fetch from the OurStory
+   */
+  select?: Prisma.OurStorySelect<ExtArgs> | null;
+  /**
+   * Omit specific fields from the OurStory
+   */
+  omit?: Prisma.OurStoryOmit<ExtArgs> | null;
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.OurStoryInclude<ExtArgs> | null;
+  where?: Prisma.OurStoryWhereInput;
+  orderBy?:
+    | Prisma.OurStoryOrderByWithRelationInput
+    | Prisma.OurStoryOrderByWithRelationInput[];
+  cursor?: Prisma.OurStoryWhereUniqueInput;
+  take?: number;
+  skip?: number;
+  distinct?: Prisma.OurStoryScalarFieldEnum | Prisma.OurStoryScalarFieldEnum[];
+};
+
+/**
+ * FileInstance.ourStoryImage4
+ */
+export type FileInstance$ourStoryImage4Args<
+  ExtArgs extends runtime.Types.Extensions.InternalArgs =
+    runtime.Types.Extensions.DefaultArgs,
+> = {
+  /**
+   * Select specific fields to fetch from the OurStory
+   */
+  select?: Prisma.OurStorySelect<ExtArgs> | null;
+  /**
+   * Omit specific fields from the OurStory
+   */
+  omit?: Prisma.OurStoryOmit<ExtArgs> | null;
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.OurStoryInclude<ExtArgs> | null;
+  where?: Prisma.OurStoryWhereInput;
+  orderBy?:
+    | Prisma.OurStoryOrderByWithRelationInput
+    | Prisma.OurStoryOrderByWithRelationInput[];
+  cursor?: Prisma.OurStoryWhereUniqueInput;
+  take?: number;
+  skip?: number;
+  distinct?: Prisma.OurStoryScalarFieldEnum | Prisma.OurStoryScalarFieldEnum[];
+};
+
+/**
+ * FileInstance.ourStoryImage5
+ */
+export type FileInstance$ourStoryImage5Args<
+  ExtArgs extends runtime.Types.Extensions.InternalArgs =
+    runtime.Types.Extensions.DefaultArgs,
+> = {
+  /**
+   * Select specific fields to fetch from the OurStory
+   */
+  select?: Prisma.OurStorySelect<ExtArgs> | null;
+  /**
+   * Omit specific fields from the OurStory
+   */
+  omit?: Prisma.OurStoryOmit<ExtArgs> | null;
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.OurStoryInclude<ExtArgs> | null;
+  where?: Prisma.OurStoryWhereInput;
+  orderBy?:
+    | Prisma.OurStoryOrderByWithRelationInput
+    | Prisma.OurStoryOrderByWithRelationInput[];
+  cursor?: Prisma.OurStoryWhereUniqueInput;
+  take?: number;
+  skip?: number;
+  distinct?: Prisma.OurStoryScalarFieldEnum | Prisma.OurStoryScalarFieldEnum[];
+};
+
+/**
+ * FileInstance.contactInfos
+ */
+export type FileInstance$contactInfosArgs<
+  ExtArgs extends runtime.Types.Extensions.InternalArgs =
+    runtime.Types.Extensions.DefaultArgs,
+> = {
+  /**
+   * Select specific fields to fetch from the ContactInfo
+   */
+  select?: Prisma.ContactInfoSelect<ExtArgs> | null;
+  /**
+   * Omit specific fields from the ContactInfo
+   */
+  omit?: Prisma.ContactInfoOmit<ExtArgs> | null;
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ContactInfoInclude<ExtArgs> | null;
+  where?: Prisma.ContactInfoWhereInput;
+  orderBy?:
+    | Prisma.ContactInfoOrderByWithRelationInput
+    | Prisma.ContactInfoOrderByWithRelationInput[];
+  cursor?: Prisma.ContactInfoWhereUniqueInput;
+  take?: number;
+  skip?: number;
+  distinct?:
+    | Prisma.ContactInfoScalarFieldEnum
+    | Prisma.ContactInfoScalarFieldEnum[];
+};
+
+/**
+ * FileInstance.ourStories
+ */
+export type FileInstance$ourStoriesArgs<
+  ExtArgs extends runtime.Types.Extensions.InternalArgs =
+    runtime.Types.Extensions.DefaultArgs,
+> = {
+  /**
+   * Select specific fields to fetch from the OurStory
+   */
+  select?: Prisma.OurStorySelect<ExtArgs> | null;
+  /**
+   * Omit specific fields from the OurStory
+   */
+  omit?: Prisma.OurStoryOmit<ExtArgs> | null;
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.OurStoryInclude<ExtArgs> | null;
+  where?: Prisma.OurStoryWhereInput;
+  orderBy?:
+    | Prisma.OurStoryOrderByWithRelationInput
+    | Prisma.OurStoryOrderByWithRelationInput[];
+  cursor?: Prisma.OurStoryWhereUniqueInput;
+  take?: number;
+  skip?: number;
+  distinct?: Prisma.OurStoryScalarFieldEnum | Prisma.OurStoryScalarFieldEnum[];
+};
+
+/**
+ * FileInstance.missionVisionImage1
+ */
+export type FileInstance$missionVisionImage1Args<
+  ExtArgs extends runtime.Types.Extensions.InternalArgs =
+    runtime.Types.Extensions.DefaultArgs,
+> = {
+  /**
+   * Select specific fields to fetch from the MissionVision
+   */
+  select?: Prisma.MissionVisionSelect<ExtArgs> | null;
+  /**
+   * Omit specific fields from the MissionVision
+   */
+  omit?: Prisma.MissionVisionOmit<ExtArgs> | null;
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.MissionVisionInclude<ExtArgs> | null;
+  where?: Prisma.MissionVisionWhereInput;
+  orderBy?:
+    | Prisma.MissionVisionOrderByWithRelationInput
+    | Prisma.MissionVisionOrderByWithRelationInput[];
+  cursor?: Prisma.MissionVisionWhereUniqueInput;
+  take?: number;
+  skip?: number;
+  distinct?:
+    | Prisma.MissionVisionScalarFieldEnum
+    | Prisma.MissionVisionScalarFieldEnum[];
+};
+
+/**
+ * FileInstance.missionVisionImage2
+ */
+export type FileInstance$missionVisionImage2Args<
+  ExtArgs extends runtime.Types.Extensions.InternalArgs =
+    runtime.Types.Extensions.DefaultArgs,
+> = {
+  /**
+   * Select specific fields to fetch from the MissionVision
+   */
+  select?: Prisma.MissionVisionSelect<ExtArgs> | null;
+  /**
+   * Omit specific fields from the MissionVision
+   */
+  omit?: Prisma.MissionVisionOmit<ExtArgs> | null;
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.MissionVisionInclude<ExtArgs> | null;
+  where?: Prisma.MissionVisionWhereInput;
+  orderBy?:
+    | Prisma.MissionVisionOrderByWithRelationInput
+    | Prisma.MissionVisionOrderByWithRelationInput[];
+  cursor?: Prisma.MissionVisionWhereUniqueInput;
+  take?: number;
+  skip?: number;
+  distinct?:
+    | Prisma.MissionVisionScalarFieldEnum
+    | Prisma.MissionVisionScalarFieldEnum[];
+};
+
+/**
+ * FileInstance.missionVisionImage3
+ */
+export type FileInstance$missionVisionImage3Args<
+  ExtArgs extends runtime.Types.Extensions.InternalArgs =
+    runtime.Types.Extensions.DefaultArgs,
+> = {
+  /**
+   * Select specific fields to fetch from the MissionVision
+   */
+  select?: Prisma.MissionVisionSelect<ExtArgs> | null;
+  /**
+   * Omit specific fields from the MissionVision
+   */
+  omit?: Prisma.MissionVisionOmit<ExtArgs> | null;
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.MissionVisionInclude<ExtArgs> | null;
+  where?: Prisma.MissionVisionWhereInput;
+  orderBy?:
+    | Prisma.MissionVisionOrderByWithRelationInput
+    | Prisma.MissionVisionOrderByWithRelationInput[];
+  cursor?: Prisma.MissionVisionWhereUniqueInput;
+  take?: number;
+  skip?: number;
+  distinct?:
+    | Prisma.MissionVisionScalarFieldEnum
+    | Prisma.MissionVisionScalarFieldEnum[];
+};
+
+/**
+ * FileInstance.missionVisions
+ */
+export type FileInstance$missionVisionsArgs<
+  ExtArgs extends runtime.Types.Extensions.InternalArgs =
+    runtime.Types.Extensions.DefaultArgs,
+> = {
+  /**
+   * Select specific fields to fetch from the MissionVision
+   */
+  select?: Prisma.MissionVisionSelect<ExtArgs> | null;
+  /**
+   * Omit specific fields from the MissionVision
+   */
+  omit?: Prisma.MissionVisionOmit<ExtArgs> | null;
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.MissionVisionInclude<ExtArgs> | null;
+  where?: Prisma.MissionVisionWhereInput;
+  orderBy?:
+    | Prisma.MissionVisionOrderByWithRelationInput
+    | Prisma.MissionVisionOrderByWithRelationInput[];
+  cursor?: Prisma.MissionVisionWhereUniqueInput;
+  take?: number;
+  skip?: number;
+  distinct?:
+    | Prisma.MissionVisionScalarFieldEnum
+    | Prisma.MissionVisionScalarFieldEnum[];
+};
+
+/**
+ * FileInstance.whatSetsUsApartImage1
+ */
+export type FileInstance$whatSetsUsApartImage1Args<
+  ExtArgs extends runtime.Types.Extensions.InternalArgs =
+    runtime.Types.Extensions.DefaultArgs,
+> = {
+  /**
+   * Select specific fields to fetch from the WhatSetsUsApart
+   */
+  select?: Prisma.WhatSetsUsApartSelect<ExtArgs> | null;
+  /**
+   * Omit specific fields from the WhatSetsUsApart
+   */
+  omit?: Prisma.WhatSetsUsApartOmit<ExtArgs> | null;
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.WhatSetsUsApartInclude<ExtArgs> | null;
+  where?: Prisma.WhatSetsUsApartWhereInput;
+  orderBy?:
+    | Prisma.WhatSetsUsApartOrderByWithRelationInput
+    | Prisma.WhatSetsUsApartOrderByWithRelationInput[];
+  cursor?: Prisma.WhatSetsUsApartWhereUniqueInput;
+  take?: number;
+  skip?: number;
+  distinct?:
+    | Prisma.WhatSetsUsApartScalarFieldEnum
+    | Prisma.WhatSetsUsApartScalarFieldEnum[];
+};
+
+/**
+ * FileInstance.whatSetsUsApartImage2
+ */
+export type FileInstance$whatSetsUsApartImage2Args<
+  ExtArgs extends runtime.Types.Extensions.InternalArgs =
+    runtime.Types.Extensions.DefaultArgs,
+> = {
+  /**
+   * Select specific fields to fetch from the WhatSetsUsApart
+   */
+  select?: Prisma.WhatSetsUsApartSelect<ExtArgs> | null;
+  /**
+   * Omit specific fields from the WhatSetsUsApart
+   */
+  omit?: Prisma.WhatSetsUsApartOmit<ExtArgs> | null;
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.WhatSetsUsApartInclude<ExtArgs> | null;
+  where?: Prisma.WhatSetsUsApartWhereInput;
+  orderBy?:
+    | Prisma.WhatSetsUsApartOrderByWithRelationInput
+    | Prisma.WhatSetsUsApartOrderByWithRelationInput[];
+  cursor?: Prisma.WhatSetsUsApartWhereUniqueInput;
+  take?: number;
+  skip?: number;
+  distinct?:
+    | Prisma.WhatSetsUsApartScalarFieldEnum
+    | Prisma.WhatSetsUsApartScalarFieldEnum[];
+};
+
+/**
+ * FileInstance.whatSetsUsAparts
+ */
+export type FileInstance$whatSetsUsApartsArgs<
+  ExtArgs extends runtime.Types.Extensions.InternalArgs =
+    runtime.Types.Extensions.DefaultArgs,
+> = {
+  /**
+   * Select specific fields to fetch from the WhatSetsUsApart
+   */
+  select?: Prisma.WhatSetsUsApartSelect<ExtArgs> | null;
+  /**
+   * Omit specific fields from the WhatSetsUsApart
+   */
+  omit?: Prisma.WhatSetsUsApartOmit<ExtArgs> | null;
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.WhatSetsUsApartInclude<ExtArgs> | null;
+  where?: Prisma.WhatSetsUsApartWhereInput;
+  orderBy?:
+    | Prisma.WhatSetsUsApartOrderByWithRelationInput
+    | Prisma.WhatSetsUsApartOrderByWithRelationInput[];
+  cursor?: Prisma.WhatSetsUsApartWhereUniqueInput;
+  take?: number;
+  skip?: number;
+  distinct?:
+    | Prisma.WhatSetsUsApartScalarFieldEnum
+    | Prisma.WhatSetsUsApartScalarFieldEnum[];
 };
 
 /**

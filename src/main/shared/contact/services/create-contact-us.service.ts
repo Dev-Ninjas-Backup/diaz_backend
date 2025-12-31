@@ -5,12 +5,11 @@ import { MailService } from '@/lib/mail/mail.service';
 import { PrismaService } from '@/lib/prisma/prisma.service';
 import { Injectable, Logger } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
-import { ContactSource, ContactType } from 'generated/client';
-import { CreateContactUsDto } from '../dto/create-contact-us.dto';
 import {
   ContactUsResponseDataDto,
   CreateContactUsResponseDataDto,
 } from '../dto/contact-us-response.dto';
+import { CreateContactUsDto } from '../dto/create-contact-us.dto';
 
 @Injectable()
 export class CreateContactUsService {
@@ -83,26 +82,14 @@ export class CreateContactUsService {
   async createContactUs(
     data: CreateContactUsDto,
   ): Promise<TResponse<CreateContactUsResponseDataDto>> {
-    let message = '';
-    if (data.boatInformation) {
-      message += `Boat Information:\n${data.boatInformation}\n\n`;
-    }
-    if (data.comments) {
-      message += `Comments:\n${data.comments}`;
-    }
-    if (!message) {
-      message = 'No additional information provided.';
-    }
-
-    // Create contact record
-    const contact = await this.prisma.client.contact.create({
+    // Create contact us record
+    const contact = await this.prisma.client.contactUs.create({
       data: {
-        name: data.fullName,
+        fullName: data.fullName,
         email: data.email,
         phone: data.phone,
-        message: message.trim(),
-        source: ContactSource.FLORIDA,
-        type: ContactType.GLOBAL,
+        boatInformation: data.boatInformation || null,
+        comments: data.comments || null,
       },
     });
 
