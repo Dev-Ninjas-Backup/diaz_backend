@@ -12,6 +12,8 @@ model Contact {
   listingId     String?
   listingSource String?
 
+  status String @default("Not Contacted")
+
   createdAt DateTime @default(now())
   updatedAt DateTime @default(now()) @updatedAt
 

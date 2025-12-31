@@ -34,6 +34,7 @@ export type ContactMinAggregateOutputType = {
   type: $Enums.ContactType | null;
   listingId: string | null;
   listingSource: string | null;
+  status: string | null;
   createdAt: Date | null;
   updatedAt: Date | null;
 };
@@ -48,6 +49,7 @@ export type ContactMaxAggregateOutputType = {
   type: $Enums.ContactType | null;
   listingId: string | null;
   listingSource: string | null;
+  status: string | null;
   createdAt: Date | null;
   updatedAt: Date | null;
 };
@@ -62,6 +64,7 @@ export type ContactCountAggregateOutputType = {
   type: number;
   listingId: number;
   listingSource: number;
+  status: number;
   createdAt: number;
   updatedAt: number;
   _all: number;
@@ -77,6 +80,7 @@ export type ContactMinAggregateInputType = {
   type?: true;
   listingId?: true;
   listingSource?: true;
+  status?: true;
   createdAt?: true;
   updatedAt?: true;
 };
@@ -91,6 +95,7 @@ export type ContactMaxAggregateInputType = {
   type?: true;
   listingId?: true;
   listingSource?: true;
+  status?: true;
   createdAt?: true;
   updatedAt?: true;
 };
@@ -105,6 +110,7 @@ export type ContactCountAggregateInputType = {
   type?: true;
   listingId?: true;
   listingSource?: true;
+  status?: true;
   createdAt?: true;
   updatedAt?: true;
   _all?: true;
@@ -199,6 +205,7 @@ export type ContactGroupByOutputType = {
   type: $Enums.ContactType;
   listingId: string | null;
   listingSource: string | null;
+  status: string;
   createdAt: Date;
   updatedAt: Date;
   _count: ContactCountAggregateOutputType | null;
@@ -232,6 +239,7 @@ export type ContactWhereInput = {
   type?: Prisma.EnumContactTypeFilter<'Contact'> | $Enums.ContactType;
   listingId?: Prisma.StringNullableFilter<'Contact'> | string | null;
   listingSource?: Prisma.StringNullableFilter<'Contact'> | string | null;
+  status?: Prisma.StringFilter<'Contact'> | string;
   createdAt?: Prisma.DateTimeFilter<'Contact'> | Date | string;
   updatedAt?: Prisma.DateTimeFilter<'Contact'> | Date | string;
   floridaLeads?: Prisma.FloridaLeadListRelationFilter;
@@ -247,6 +255,7 @@ export type ContactOrderByWithRelationInput = {
   type?: Prisma.SortOrder;
   listingId?: Prisma.SortOrderInput | Prisma.SortOrder;
   listingSource?: Prisma.SortOrderInput | Prisma.SortOrder;
+  status?: Prisma.SortOrder;
   createdAt?: Prisma.SortOrder;
   updatedAt?: Prisma.SortOrder;
   floridaLeads?: Prisma.FloridaLeadOrderByRelationAggregateInput;
@@ -266,6 +275,7 @@ export type ContactWhereUniqueInput = Prisma.AtLeast<
     type?: Prisma.EnumContactTypeFilter<'Contact'> | $Enums.ContactType;
     listingId?: Prisma.StringNullableFilter<'Contact'> | string | null;
     listingSource?: Prisma.StringNullableFilter<'Contact'> | string | null;
+    status?: Prisma.StringFilter<'Contact'> | string;
     createdAt?: Prisma.DateTimeFilter<'Contact'> | Date | string;
     updatedAt?: Prisma.DateTimeFilter<'Contact'> | Date | string;
     floridaLeads?: Prisma.FloridaLeadListRelationFilter;
@@ -283,6 +293,7 @@ export type ContactOrderByWithAggregationInput = {
   type?: Prisma.SortOrder;
   listingId?: Prisma.SortOrderInput | Prisma.SortOrder;
   listingSource?: Prisma.SortOrderInput | Prisma.SortOrder;
+  status?: Prisma.SortOrder;
   createdAt?: Prisma.SortOrder;
   updatedAt?: Prisma.SortOrder;
   _count?: Prisma.ContactCountOrderByAggregateInput;
@@ -317,6 +328,7 @@ export type ContactScalarWhereWithAggregatesInput = {
     | Prisma.StringNullableWithAggregatesFilter<'Contact'>
     | string
     | null;
+  status?: Prisma.StringWithAggregatesFilter<'Contact'> | string;
   createdAt?: Prisma.DateTimeWithAggregatesFilter<'Contact'> | Date | string;
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<'Contact'> | Date | string;
 };
@@ -331,6 +343,7 @@ export type ContactCreateInput = {
   type: $Enums.ContactType;
   listingId?: string | null;
   listingSource?: string | null;
+  status?: string;
   createdAt?: Date | string;
   updatedAt?: Date | string;
   floridaLeads?: Prisma.FloridaLeadCreateNestedManyWithoutContactInput;
@@ -346,6 +359,7 @@ export type ContactUncheckedCreateInput = {
   type: $Enums.ContactType;
   listingId?: string | null;
   listingSource?: string | null;
+  status?: string;
   createdAt?: Date | string;
   updatedAt?: Date | string;
   floridaLeads?: Prisma.FloridaLeadUncheckedCreateNestedManyWithoutContactInput;
@@ -366,6 +380,7 @@ export type ContactUpdateInput = {
     | Prisma.NullableStringFieldUpdateOperationsInput
     | string
     | null;
+  status?: Prisma.StringFieldUpdateOperationsInput | string;
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   floridaLeads?: Prisma.FloridaLeadUpdateManyWithoutContactNestedInput;
@@ -386,6 +401,7 @@ export type ContactUncheckedUpdateInput = {
     | Prisma.NullableStringFieldUpdateOperationsInput
     | string
     | null;
+  status?: Prisma.StringFieldUpdateOperationsInput | string;
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   floridaLeads?: Prisma.FloridaLeadUncheckedUpdateManyWithoutContactNestedInput;
@@ -401,6 +417,7 @@ export type ContactCreateManyInput = {
   type: $Enums.ContactType;
   listingId?: string | null;
   listingSource?: string | null;
+  status?: string;
   createdAt?: Date | string;
   updatedAt?: Date | string;
 };
@@ -420,6 +437,7 @@ export type ContactUpdateManyMutationInput = {
     | Prisma.NullableStringFieldUpdateOperationsInput
     | string
     | null;
+  status?: Prisma.StringFieldUpdateOperationsInput | string;
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
 };
@@ -439,6 +457,7 @@ export type ContactUncheckedUpdateManyInput = {
     | Prisma.NullableStringFieldUpdateOperationsInput
     | string
     | null;
+  status?: Prisma.StringFieldUpdateOperationsInput | string;
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
 };
@@ -453,6 +472,7 @@ export type ContactCountOrderByAggregateInput = {
   type?: Prisma.SortOrder;
   listingId?: Prisma.SortOrder;
   listingSource?: Prisma.SortOrder;
+  status?: Prisma.SortOrder;
   createdAt?: Prisma.SortOrder;
   updatedAt?: Prisma.SortOrder;
 };
@@ -467,6 +487,7 @@ export type ContactMaxOrderByAggregateInput = {
   type?: Prisma.SortOrder;
   listingId?: Prisma.SortOrder;
   listingSource?: Prisma.SortOrder;
+  status?: Prisma.SortOrder;
   createdAt?: Prisma.SortOrder;
   updatedAt?: Prisma.SortOrder;
 };
@@ -481,6 +502,7 @@ export type ContactMinOrderByAggregateInput = {
   type?: Prisma.SortOrder;
   listingId?: Prisma.SortOrder;
   listingSource?: Prisma.SortOrder;
+  status?: Prisma.SortOrder;
   createdAt?: Prisma.SortOrder;
   updatedAt?: Prisma.SortOrder;
 };
@@ -534,6 +556,7 @@ export type ContactCreateWithoutFloridaLeadsInput = {
   type: $Enums.ContactType;
   listingId?: string | null;
   listingSource?: string | null;
+  status?: string;
   createdAt?: Date | string;
   updatedAt?: Date | string;
 };
@@ -548,6 +571,7 @@ export type ContactUncheckedCreateWithoutFloridaLeadsInput = {
   type: $Enums.ContactType;
   listingId?: string | null;
   listingSource?: string | null;
+  status?: string;
   createdAt?: Date | string;
   updatedAt?: Date | string;
 };
@@ -595,6 +619,7 @@ export type ContactUpdateWithoutFloridaLeadsInput = {
     | Prisma.NullableStringFieldUpdateOperationsInput
     | string
     | null;
+  status?: Prisma.StringFieldUpdateOperationsInput | string;
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
 };
@@ -614,6 +639,7 @@ export type ContactUncheckedUpdateWithoutFloridaLeadsInput = {
     | Prisma.NullableStringFieldUpdateOperationsInput
     | string
     | null;
+  status?: Prisma.StringFieldUpdateOperationsInput | string;
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
 };
@@ -670,6 +696,7 @@ export type ContactSelect<
     type?: boolean;
     listingId?: boolean;
     listingSource?: boolean;
+    status?: boolean;
     createdAt?: boolean;
     updatedAt?: boolean;
     floridaLeads?: boolean | Prisma.Contact$floridaLeadsArgs<ExtArgs>;
@@ -692,6 +719,7 @@ export type ContactSelectCreateManyAndReturn<
     type?: boolean;
     listingId?: boolean;
     listingSource?: boolean;
+    status?: boolean;
     createdAt?: boolean;
     updatedAt?: boolean;
   },
@@ -712,6 +740,7 @@ export type ContactSelectUpdateManyAndReturn<
     type?: boolean;
     listingId?: boolean;
     listingSource?: boolean;
+    status?: boolean;
     createdAt?: boolean;
     updatedAt?: boolean;
   },
@@ -728,6 +757,7 @@ export type ContactSelectScalar = {
   type?: boolean;
   listingId?: boolean;
   listingSource?: boolean;
+  status?: boolean;
   createdAt?: boolean;
   updatedAt?: boolean;
 };
@@ -745,6 +775,7 @@ export type ContactOmit<
   | 'type'
   | 'listingId'
   | 'listingSource'
+  | 'status'
   | 'createdAt'
   | 'updatedAt',
   ExtArgs['result']['contact']
@@ -784,6 +815,7 @@ export type $ContactPayload<
       type: $Enums.ContactType;
       listingId: string | null;
       listingSource: string | null;
+      status: string;
       createdAt: Date;
       updatedAt: Date;
     },
@@ -1398,6 +1430,7 @@ export interface ContactFieldRefs {
   readonly type: Prisma.FieldRef<'Contact', 'ContactType'>;
   readonly listingId: Prisma.FieldRef<'Contact', 'String'>;
   readonly listingSource: Prisma.FieldRef<'Contact', 'String'>;
+  readonly status: Prisma.FieldRef<'Contact', 'String'>;
   readonly createdAt: Prisma.FieldRef<'Contact', 'DateTime'>;
   readonly updatedAt: Prisma.FieldRef<'Contact', 'DateTime'>;
 }

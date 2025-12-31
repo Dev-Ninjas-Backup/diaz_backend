@@ -70,4 +70,13 @@ export class CreateContactDto {
   @IsOptional()
   @IsEnum(BoatsSourceEnum)
   listingSource?: BoatsSourceEnum;
+
+  @ApiPropertyOptional({
+    description: 'Status of the contact',
+    example: 'Not Contacted',
+    default: 'Not Contacted',
+  })
+  @IsOptional()
+  @IsString()
+  status?: string;
 }
