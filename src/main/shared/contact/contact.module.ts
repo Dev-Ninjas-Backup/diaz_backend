@@ -8,6 +8,7 @@ import { ContactService } from './services/contact.service';
 import { CreateContactUsService } from './services/create-contact-us.service';
 import { CreateContactService } from './services/create-contact.service';
 import { GetContactUsService } from './services/get-contact-us.service';
+import { UpdateContactStatusService } from './services/update-contact-status.service';
 
 @Module({
   imports: [MailModule, S3BucketModule],
@@ -19,6 +20,7 @@ import { GetContactUsService } from './services/get-contact-us.service';
     GetContactUsService,
     ContactInfoService,
     GetAllBoatsService,
+    UpdateContactStatusService,
   ],
 })
 export class ContactModule {}

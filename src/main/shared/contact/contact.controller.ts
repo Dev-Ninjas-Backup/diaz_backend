@@ -6,6 +6,7 @@ import {
   Get,
   HttpCode,
   HttpStatus,
+  Param,
   Patch,
   Post,
   Query,
@@ -29,11 +30,13 @@ import { CreateContactUsResponseDataDto } from './dto/contact-us-response.dto';
 import { CreateContactUsDto } from './dto/create-contact-us.dto';
 import { CreateContactDto } from './dto/create-contact.dto';
 import { GetContactsDto } from './dto/get-contacts.dto';
+import { UpdateContactStatusDto } from './dto/update-contact-status.dto';
 import { ContactInfoService } from './services/contact-info.service';
 import { ContactService } from './services/contact.service';
 import { CreateContactUsService } from './services/create-contact-us.service';
 import { CreateContactService } from './services/create-contact.service';
 import { GetContactUsService } from './services/get-contact-us.service';
+import { UpdateContactStatusService } from './services/update-contact-status.service';
 
 @ApiTags('Shared -- Contact')
 @ApiExtraModels(CreateContactUsResponseDataDto)
@@ -45,6 +48,7 @@ export class ContactController {
     private readonly createContactUsService: CreateContactUsService,
     private readonly getContactUsService: GetContactUsService,
     private readonly contactInfoService: ContactInfoService,
+    private readonly updateContactStatusService: UpdateContactStatusService,
   ) {}
 
   @ApiOperation({ summary: 'Get all contacts' })
@@ -59,6 +63,19 @@ export class ContactController {
   @Post()
   async createContact(@Body() dto: CreateContactDto): Promise<TResponse<any>> {
     return await this.createContactService.createContact(dto);
+  }
+
+  @ApiOperation({ summary: 'Update contact status' })
+  @Patch(':id/status')
+  @HttpCode(HttpStatus.OK)
+  @ApiOkResponse({
+    description: 'Contact status updated successfully',
+  })
+  async updateContactStatus(
+    @Param('id') id: string,
+    @Body() dto: UpdateContactStatusDto,
+  ): Promise<TResponse<any>> {
+    return await this.updateContactStatusService.updateContactStatus(id, dto);
   }
 
   @Get('contact-us')
