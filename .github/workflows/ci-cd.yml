@@ -106,6 +106,6 @@ jobs:
           script: |
             cd ~/server
             sudo docker compose --profile prod pull
-            sudo docker compose --profile prod down --remove-orphans
+            sudo docker compose --profile prod down
             sudo docker compose --profile prod up -d
             sudo docker system prune -f
