@@ -11,6 +11,7 @@ import { GetAllBoatsMergedService } from '../services/get-all-boats-merged.servi
 import { GetAllBoatsService } from '../services/get-all-boats.service';
 import { GetAllCustomBoatsFloridaService } from '../services/get-all-custom-boats-florida.service';
 import { GetCustomBoatsService } from '../services/get-custom-boats.service';
+import { GetFilterOptionsService } from '../services/get-filter-options.service';
 import { PremiumDealsFloridaService } from '../services/premium-deals-florida.service';
 
 @ApiTags('Shared -- Boats')
@@ -22,12 +23,22 @@ export class BoatsController {
     private readonly getAllBoatsMergedService: GetAllBoatsMergedService,
     private readonly getAllCustomBoatsService: GetAllCustomBoatsFloridaService,
     private readonly premiumDealsFloridaService: PremiumDealsFloridaService,
+    private readonly getFilterOptionsService: GetFilterOptionsService,
   ) {}
 
   @ApiOperation({ summary: 'Get all custom boats' })
   @Get()
   async getAllBoats(@Query() query: GetAllBoatsCustomDto) {
     return this.getAllCustomBoatsService.getAllBoats(query);
+  }
+
+  @ApiOperation({
+    summary:
+      'Get available filter options (makes, models, years, cities, states, classes)',
+  })
+  @Get('filter-options')
+  async getFilterOptions() {
+    return this.getFilterOptionsService.getFilterOptions();
   }
 
   @ApiOperation({ summary: 'Get single custom boat details' })

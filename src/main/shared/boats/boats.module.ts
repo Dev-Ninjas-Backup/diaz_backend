@@ -10,8 +10,9 @@ import { GetAllBoatsMergedService } from './services/get-all-boats-merged.servic
 import { GetAllBoatsService } from './services/get-all-boats.service';
 import { GetAllCustomBoatsFloridaService } from './services/get-all-custom-boats-florida.service';
 import { GetCustomBoatsService } from './services/get-custom-boats.service';
-import { TopViewedBoatsService } from './services/top-viewed-boats.service';
+import { GetFilterOptionsService } from './services/get-filter-options.service';
 import { PremiumDealsFloridaService } from './services/premium-deals-florida.service';
+import { TopViewedBoatsService } from './services/top-viewed-boats.service';
 
 @Module({
   controllers: [
@@ -27,6 +28,7 @@ import { PremiumDealsFloridaService } from './services/premium-deals-florida.ser
     BoatsFeatureService,
     GetAllBoatsMergedService,
     GetAllCustomBoatsFloridaService,
+    GetFilterOptionsService,
     TopViewedBoatsService,
     PremiumDealsFloridaService,
     FeaturedYachtService,
