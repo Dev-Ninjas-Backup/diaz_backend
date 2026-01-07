@@ -16,6 +16,14 @@ export class GetAllBoatsCustomDto extends PaginationDto {
   @Transform(({ value }) => (value?.trim() === '' ? undefined : value))
   model?: string;
 
+  @ApiPropertyOptional({
+    description:
+      'Boat class. Fetch available values from GET /boats/filter-options',
+  })
+  @IsOptional()
+  @IsString()
+  class?: string;
+
   @ApiPropertyOptional({ description: 'Exact build year' })
   @IsOptional()
   @Type(() => Number)

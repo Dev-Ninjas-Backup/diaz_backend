@@ -47,7 +47,9 @@ export class GetAllCustomBoatsFloridaService {
     if (options?.model) {
       and.push({ model: { contains: options.model, mode: 'insensitive' } });
     }
-
+    if (options?.class) {
+      and.push({ class: { contains: options.class, mode: 'insensitive' } });
+    }
     // Build year exact or range
     if (
       typeof options?.buildYear === 'number' &&
