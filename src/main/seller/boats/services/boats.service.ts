@@ -147,4 +147,34 @@ export class BoatsService {
       'Subscription confirmation fetched successfully',
     );
   }
+
+  @HandleError('Failed to delete boat')
+  async deleteBoat(userId: string, boatId: string): Promise<TResponse<any>> {
+    // First, check if the boat exists and belongs to the user
+    const boat = await this.prisma.client.boats.findUnique({
+      where: { id: boatId },
+      select: { userId: true, listingId: true, name: true },
+    });
+
+    if (!boat) {
+      throw new AppError(HttpStatus.NOT_FOUND, 'Boat not found');
+    }
+
+    if (boat.userId !== userId) {
+      throw new AppError(
+        HttpStatus.FORBIDDEN,
+        'You are not authorized to delete this boat',
+      );
+    }
+
+    // Delete the boat (cascade will handle related records like images and engines)
+    await this.prisma.client.boats.delete({
+      where: { id: boatId },
+    });
+
+    return successResponse(
+      { id: boatId, name: boat.name },
+      'Boat deleted successfully',
+    );
+  }
 }

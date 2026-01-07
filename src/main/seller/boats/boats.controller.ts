@@ -4,6 +4,7 @@ import { QueueFile } from '@/lib/queue/interface/image-process.payload';
 import {
   Body,
   Controller,
+  Delete,
   Get,
   Param,
   Patch,
@@ -123,6 +124,15 @@ export class BoatsController {
     @Param('boatId') boatId: string,
   ) {
     return this.boatsService.getSingleBoat(userId, boatId);
+  }
+
+  @ApiOperation({ summary: 'Delete Boat Listing' })
+  @Delete('delete-listing/:boatId')
+  async deleteBoat(
+    @GetUser('sub') userId: string,
+    @Param('boatId') boatId: string,
+  ) {
+    return this.boatsService.deleteBoat(userId, boatId);
   }
 
   @ApiOperation({ summary: 'Create Boat Listing' })
