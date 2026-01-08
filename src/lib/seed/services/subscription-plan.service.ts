@@ -1,5 +1,9 @@
 import { PrismaService } from '@/lib/prisma/prisma.service';
-import { couponSeedData, planSeedData } from '@/lib/seed/data/stripe.data';
+import {
+  couponSeedData,
+  freeCouponSeedData,
+  planSeedData,
+} from '@/lib/seed/data/stripe.data';
 import { StripeService } from '@/lib/stripe/stripe.service';
 import { Injectable, Logger, OnModuleInit } from '@nestjs/common';
 
@@ -17,8 +21,12 @@ export class SubscriptionPlanService implements OnModuleInit {
     await this.seedPlans();
     // wait for 5 seconds before seeding coupons
     await new Promise((resolve) => setTimeout(resolve, 5000));
-    // seed coupons
+    // seed standard coupons
     await this.seedCoupons();
+    // wait for 5 seconds before seeding free coupons
+    await new Promise((resolve) => setTimeout(resolve, 5000));
+    // seed global free coupons
+    await this.seedFreeCoupons();
   }
 
   async seedPlans() {
@@ -77,60 +85,37 @@ export class SubscriptionPlanService implements OnModuleInit {
   }
 
   async seedCoupons() {
-    for (const coupon of couponSeedData) {
-      // 1. Find plan
-      const plan = await this.prisma.client.subscriptionPlan.findFirst({
-        where: { planType: coupon.planType },
+    this.logger.log('Seeding standard coupons...');
+    await this.processCouponSeeding(couponSeedData);
+  }
+
+  async seedFreeCoupons() {
+    this.logger.log('Seeding global trial-based free coupons...');
+    await this.processCouponSeeding(freeCouponSeedData);
+  }
+
+  private async processCouponSeeding(data: any[]) {
+    for (const item of data) {
+      // 1. Check if already exists
+      const existing = await this.prisma.client.promoCode.findUnique({
+        where: { code: item.code },
       });
 
-      if (!plan) {
-        this.logger.error(
-          `[SKIP] Plan not found for ${coupon.planType}, skipping coupon...`,
-        );
+      if (existing) {
+        this.logger.log(`[EXIST] PromoCode ${item.code} already exists`);
         continue;
       }
 
-      // 2. Check DB
-      const existingPromo = await this.prisma.client.promoCode.findFirst({
-        where: { code: coupon.code },
-      });
-
-      if (existingPromo) {
-        this.logger.log(
-          `[EXIST] PromoCode ${coupon.code} already exists in DB, skipping DB create...`,
-        );
-        continue;
-      }
-
-      // 3. Check Stripe
-      let stripeCoupon = await this.stripe.getCouponByPlanType(coupon.planType);
-
-      if (!stripeCoupon) {
-        stripeCoupon = await this.stripe.createStripeCoupon(
-          coupon.discount,
-          coupon.planType,
-        );
-        this.logger.log(
-          `[CREATED] Stripe Coupon ${stripeCoupon.id} (${coupon.code})`,
-        );
-      } else {
-        this.logger.log(
-          `[REUSE] Reusing Stripe Coupon ${stripeCoupon.id} for ${coupon.code}`,
-        );
-      }
-
-      // 4. Create Promo in DB
+      // 2. Create Promo in DB (No planId, no Stripe ID necessary if it's 100% free trial)
       await this.prisma.client.promoCode.create({
         data: {
-          code: coupon.code,
-          discount: coupon.discount,
-          freeMonths: coupon.freeMonths,
-          planId: plan.id,
-          stripeCouponId: stripeCoupon.id,
+          code: item.code,
+          freeDays: item.freeDays,
+          discount: 100,
         },
       });
 
-      this.logger.log(`[CREATED] DB PromoCode: ${coupon.code}`);
+      this.logger.log(`[CREATED] Global PromoCode: ${item.code}`);
     }
   }
 }

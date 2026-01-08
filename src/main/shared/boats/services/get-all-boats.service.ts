@@ -218,8 +218,7 @@ export class GetAllBoatsService {
       return out;
     };
 
-    // ---- PRIMARY SPECIFICATIONS ----
-    // We only expose 12 primary specifications in `specifications` (frontend requirement).
+    // Only expose 12 primary specifications in `specifications`.
     // Any other fields are pushed into `additionalInfo`.
     const PRIMARY_SPECS: Array<{ key: string; getter: (b: any) => any }> = [
       {
@@ -382,23 +381,6 @@ export class GetAllBoatsService {
     // Additional info (descriptions + office/contact + external links + leftover fields)
     const buildAdditional = (b: any, enginesArr: any[]) => {
       const out: Array<{ key: string; value: string | null }> = [];
-
-      // // Combined description fields
-      // const descriptionParts: string[] = [];
-      // if (Array.isArray(b?.GeneralBoatDescription)) {
-      //   descriptionParts.push(...b.GeneralBoatDescription);
-      // }
-      // if (Array.isArray(b?.AdditionalDetailDescription)) {
-      //   descriptionParts.push(...b.AdditionalDetailDescription);
-      // }
-      // if (b?.description && typeof b.description === 'string') {
-      //   descriptionParts.push(b.description);
-      // }
-
-      // out.push({
-      //   key: 'description',
-      //   value: descriptionParts.length ? descriptionParts.join('\n') : null,
-      // });
 
       // Office / contact
       if (b?.Office) {

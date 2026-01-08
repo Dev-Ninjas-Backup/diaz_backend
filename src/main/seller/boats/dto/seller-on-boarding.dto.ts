@@ -67,4 +67,10 @@ export class SellerOnboardingBodyDto {
   @ValidateNested()
   @Type(() => SellerInfoOnBoardingDto)
   sellerInfo: SellerInfoOnBoardingDto;
+
+  @ApiPropertyOptional({
+    description: 'Promo Code',
+    example: 'FREE30',
+  })
+  promoCode?: string;
 }

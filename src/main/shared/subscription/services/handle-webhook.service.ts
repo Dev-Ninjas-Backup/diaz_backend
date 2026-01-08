@@ -90,11 +90,38 @@ export class HandleWebhookService {
     try {
       const paymentMethodId = setupIntent.payment_method as string;
 
+      // Check for promo code in metadata or local DB
+      const promoCodeCode = metadata.promoCode;
+      let coupon: string | undefined;
+      let trialPeriodDays: number | undefined;
+
+      if (promoCodeCode) {
+        const promo = await this.prisma.client.promoCode.findUnique({
+          where: { code: promoCodeCode },
+        });
+
+        if (promo) {
+          if (
+            promo.stripeCouponId &&
+            !promo.stripeCouponId.startsWith('trial_')
+          ) {
+            coupon = promo.stripeCouponId;
+          }
+
+          // Apply trial days from DB
+          if (promo.freeDays) {
+            trialPeriodDays = promo.freeDays;
+          }
+        }
+      }
+
       const stripeSub = await this.stripeService.createSubscription({
         customerId,
         priceId: metadata.stripePriceId,
         metadata,
         paymentMethodId,
+        coupon,
+        trialPeriodDays,
       });
 
       await this.prisma.client.$transaction([
