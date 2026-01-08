@@ -8,4 +8,5 @@ export type PaymentMetadata = {
   priceCents: number;
   stripeProductId: string;
   stripePriceId: string;
+  promoCode?: string;
 };

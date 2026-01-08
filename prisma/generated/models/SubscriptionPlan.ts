@@ -322,7 +322,6 @@ export type SubscriptionPlanWhereInput = {
   createdAt?: Prisma.DateTimeFilter<'SubscriptionPlan'> | Date | string;
   updatedAt?: Prisma.DateTimeFilter<'SubscriptionPlan'> | Date | string;
   userSubscriptions?: Prisma.UserSubscriptionListRelationFilter;
-  promoCodes?: Prisma.PromoCodeListRelationFilter;
   users?: Prisma.UserListRelationFilter;
 };
 
@@ -344,7 +343,6 @@ export type SubscriptionPlanOrderByWithRelationInput = {
   createdAt?: Prisma.SortOrder;
   updatedAt?: Prisma.SortOrder;
   userSubscriptions?: Prisma.UserSubscriptionOrderByRelationAggregateInput;
-  promoCodes?: Prisma.PromoCodeOrderByRelationAggregateInput;
   users?: Prisma.UserOrderByRelationAggregateInput;
 };
 
@@ -377,7 +375,6 @@ export type SubscriptionPlanWhereUniqueInput = Prisma.AtLeast<
     createdAt?: Prisma.DateTimeFilter<'SubscriptionPlan'> | Date | string;
     updatedAt?: Prisma.DateTimeFilter<'SubscriptionPlan'> | Date | string;
     userSubscriptions?: Prisma.UserSubscriptionListRelationFilter;
-    promoCodes?: Prisma.PromoCodeListRelationFilter;
     users?: Prisma.UserListRelationFilter;
   },
   'id' | 'stripeProductId' | 'stripePriceId'
@@ -468,7 +465,6 @@ export type SubscriptionPlanCreateInput = {
   createdAt?: Date | string;
   updatedAt?: Date | string;
   userSubscriptions?: Prisma.UserSubscriptionCreateNestedManyWithoutPlanInput;
-  promoCodes?: Prisma.PromoCodeCreateNestedManyWithoutPlanInput;
   users?: Prisma.UserCreateNestedManyWithoutCurrentPlanInput;
 };
 
@@ -490,7 +486,6 @@ export type SubscriptionPlanUncheckedCreateInput = {
   createdAt?: Date | string;
   updatedAt?: Date | string;
   userSubscriptions?: Prisma.UserSubscriptionUncheckedCreateNestedManyWithoutPlanInput;
-  promoCodes?: Prisma.PromoCodeUncheckedCreateNestedManyWithoutPlanInput;
   users?: Prisma.UserUncheckedCreateNestedManyWithoutCurrentPlanInput;
 };
 
@@ -512,7 +507,6 @@ export type SubscriptionPlanUpdateInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   userSubscriptions?: Prisma.UserSubscriptionUpdateManyWithoutPlanNestedInput;
-  promoCodes?: Prisma.PromoCodeUpdateManyWithoutPlanNestedInput;
   users?: Prisma.UserUpdateManyWithoutCurrentPlanNestedInput;
 };
 
@@ -534,7 +528,6 @@ export type SubscriptionPlanUncheckedUpdateInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   userSubscriptions?: Prisma.UserSubscriptionUncheckedUpdateManyWithoutPlanNestedInput;
-  promoCodes?: Prisma.PromoCodeUncheckedUpdateManyWithoutPlanNestedInput;
   users?: Prisma.UserUncheckedUpdateManyWithoutCurrentPlanNestedInput;
 };
 
@@ -714,32 +707,6 @@ export type SubscriptionPlanUpdateOneRequiredWithoutUserSubscriptionsNestedInput
     >;
   };
 
-export type SubscriptionPlanCreateNestedOneWithoutPromoCodesInput = {
-  create?: Prisma.XOR<
-    Prisma.SubscriptionPlanCreateWithoutPromoCodesInput,
-    Prisma.SubscriptionPlanUncheckedCreateWithoutPromoCodesInput
-  >;
-  connectOrCreate?: Prisma.SubscriptionPlanCreateOrConnectWithoutPromoCodesInput;
-  connect?: Prisma.SubscriptionPlanWhereUniqueInput;
-};
-
-export type SubscriptionPlanUpdateOneRequiredWithoutPromoCodesNestedInput = {
-  create?: Prisma.XOR<
-    Prisma.SubscriptionPlanCreateWithoutPromoCodesInput,
-    Prisma.SubscriptionPlanUncheckedCreateWithoutPromoCodesInput
-  >;
-  connectOrCreate?: Prisma.SubscriptionPlanCreateOrConnectWithoutPromoCodesInput;
-  upsert?: Prisma.SubscriptionPlanUpsertWithoutPromoCodesInput;
-  connect?: Prisma.SubscriptionPlanWhereUniqueInput;
-  update?: Prisma.XOR<
-    Prisma.XOR<
-      Prisma.SubscriptionPlanUpdateToOneWithWhereWithoutPromoCodesInput,
-      Prisma.SubscriptionPlanUpdateWithoutPromoCodesInput
-    >,
-    Prisma.SubscriptionPlanUncheckedUpdateWithoutPromoCodesInput
-  >;
-};
-
 export type SubscriptionPlanCreateNestedOneWithoutUsersInput = {
   create?: Prisma.XOR<
     Prisma.SubscriptionPlanCreateWithoutUsersInput,
@@ -785,7 +752,6 @@ export type SubscriptionPlanCreateWithoutUserSubscriptionsInput = {
   billingPeriodMonths?: number;
   createdAt?: Date | string;
   updatedAt?: Date | string;
-  promoCodes?: Prisma.PromoCodeCreateNestedManyWithoutPlanInput;
   users?: Prisma.UserCreateNestedManyWithoutCurrentPlanInput;
 };
 
@@ -806,7 +772,6 @@ export type SubscriptionPlanUncheckedCreateWithoutUserSubscriptionsInput = {
   billingPeriodMonths?: number;
   createdAt?: Date | string;
   updatedAt?: Date | string;
-  promoCodes?: Prisma.PromoCodeUncheckedCreateNestedManyWithoutPlanInput;
   users?: Prisma.UserUncheckedCreateNestedManyWithoutCurrentPlanInput;
 };
 
@@ -856,7 +821,6 @@ export type SubscriptionPlanUpdateWithoutUserSubscriptionsInput = {
   billingPeriodMonths?: Prisma.IntFieldUpdateOperationsInput | number;
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
-  promoCodes?: Prisma.PromoCodeUpdateManyWithoutPlanNestedInput;
   users?: Prisma.UserUpdateManyWithoutCurrentPlanNestedInput;
 };
 
@@ -877,119 +841,6 @@ export type SubscriptionPlanUncheckedUpdateWithoutUserSubscriptionsInput = {
   billingPeriodMonths?: Prisma.IntFieldUpdateOperationsInput | number;
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
-  promoCodes?: Prisma.PromoCodeUncheckedUpdateManyWithoutPlanNestedInput;
-  users?: Prisma.UserUncheckedUpdateManyWithoutCurrentPlanNestedInput;
-};
-
-export type SubscriptionPlanCreateWithoutPromoCodesInput = {
-  id?: string;
-  title: string;
-  planType: $Enums.PlanType;
-  description?: string | null;
-  benefits?: Prisma.SubscriptionPlanCreatebenefitsInput | string[];
-  picLimit?: number;
-  wordLimit?: number;
-  isBest?: boolean;
-  isActive?: boolean;
-  stripeProductId: string;
-  stripePriceId: string;
-  currency?: string;
-  price: number;
-  billingPeriodMonths?: number;
-  createdAt?: Date | string;
-  updatedAt?: Date | string;
-  userSubscriptions?: Prisma.UserSubscriptionCreateNestedManyWithoutPlanInput;
-  users?: Prisma.UserCreateNestedManyWithoutCurrentPlanInput;
-};
-
-export type SubscriptionPlanUncheckedCreateWithoutPromoCodesInput = {
-  id?: string;
-  title: string;
-  planType: $Enums.PlanType;
-  description?: string | null;
-  benefits?: Prisma.SubscriptionPlanCreatebenefitsInput | string[];
-  picLimit?: number;
-  wordLimit?: number;
-  isBest?: boolean;
-  isActive?: boolean;
-  stripeProductId: string;
-  stripePriceId: string;
-  currency?: string;
-  price: number;
-  billingPeriodMonths?: number;
-  createdAt?: Date | string;
-  updatedAt?: Date | string;
-  userSubscriptions?: Prisma.UserSubscriptionUncheckedCreateNestedManyWithoutPlanInput;
-  users?: Prisma.UserUncheckedCreateNestedManyWithoutCurrentPlanInput;
-};
-
-export type SubscriptionPlanCreateOrConnectWithoutPromoCodesInput = {
-  where: Prisma.SubscriptionPlanWhereUniqueInput;
-  create: Prisma.XOR<
-    Prisma.SubscriptionPlanCreateWithoutPromoCodesInput,
-    Prisma.SubscriptionPlanUncheckedCreateWithoutPromoCodesInput
-  >;
-};
-
-export type SubscriptionPlanUpsertWithoutPromoCodesInput = {
-  update: Prisma.XOR<
-    Prisma.SubscriptionPlanUpdateWithoutPromoCodesInput,
-    Prisma.SubscriptionPlanUncheckedUpdateWithoutPromoCodesInput
-  >;
-  create: Prisma.XOR<
-    Prisma.SubscriptionPlanCreateWithoutPromoCodesInput,
-    Prisma.SubscriptionPlanUncheckedCreateWithoutPromoCodesInput
-  >;
-  where?: Prisma.SubscriptionPlanWhereInput;
-};
-
-export type SubscriptionPlanUpdateToOneWithWhereWithoutPromoCodesInput = {
-  where?: Prisma.SubscriptionPlanWhereInput;
-  data: Prisma.XOR<
-    Prisma.SubscriptionPlanUpdateWithoutPromoCodesInput,
-    Prisma.SubscriptionPlanUncheckedUpdateWithoutPromoCodesInput
-  >;
-};
-
-export type SubscriptionPlanUpdateWithoutPromoCodesInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string;
-  title?: Prisma.StringFieldUpdateOperationsInput | string;
-  planType?: Prisma.EnumPlanTypeFieldUpdateOperationsInput | $Enums.PlanType;
-  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-  benefits?: Prisma.SubscriptionPlanUpdatebenefitsInput | string[];
-  picLimit?: Prisma.IntFieldUpdateOperationsInput | number;
-  wordLimit?: Prisma.IntFieldUpdateOperationsInput | number;
-  isBest?: Prisma.BoolFieldUpdateOperationsInput | boolean;
-  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean;
-  stripeProductId?: Prisma.StringFieldUpdateOperationsInput | string;
-  stripePriceId?: Prisma.StringFieldUpdateOperationsInput | string;
-  currency?: Prisma.StringFieldUpdateOperationsInput | string;
-  price?: Prisma.FloatFieldUpdateOperationsInput | number;
-  billingPeriodMonths?: Prisma.IntFieldUpdateOperationsInput | number;
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
-  userSubscriptions?: Prisma.UserSubscriptionUpdateManyWithoutPlanNestedInput;
-  users?: Prisma.UserUpdateManyWithoutCurrentPlanNestedInput;
-};
-
-export type SubscriptionPlanUncheckedUpdateWithoutPromoCodesInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string;
-  title?: Prisma.StringFieldUpdateOperationsInput | string;
-  planType?: Prisma.EnumPlanTypeFieldUpdateOperationsInput | $Enums.PlanType;
-  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-  benefits?: Prisma.SubscriptionPlanUpdatebenefitsInput | string[];
-  picLimit?: Prisma.IntFieldUpdateOperationsInput | number;
-  wordLimit?: Prisma.IntFieldUpdateOperationsInput | number;
-  isBest?: Prisma.BoolFieldUpdateOperationsInput | boolean;
-  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean;
-  stripeProductId?: Prisma.StringFieldUpdateOperationsInput | string;
-  stripePriceId?: Prisma.StringFieldUpdateOperationsInput | string;
-  currency?: Prisma.StringFieldUpdateOperationsInput | string;
-  price?: Prisma.FloatFieldUpdateOperationsInput | number;
-  billingPeriodMonths?: Prisma.IntFieldUpdateOperationsInput | number;
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
-  userSubscriptions?: Prisma.UserSubscriptionUncheckedUpdateManyWithoutPlanNestedInput;
   users?: Prisma.UserUncheckedUpdateManyWithoutCurrentPlanNestedInput;
 };
 
@@ -1011,7 +862,6 @@ export type SubscriptionPlanCreateWithoutUsersInput = {
   createdAt?: Date | string;
   updatedAt?: Date | string;
   userSubscriptions?: Prisma.UserSubscriptionCreateNestedManyWithoutPlanInput;
-  promoCodes?: Prisma.PromoCodeCreateNestedManyWithoutPlanInput;
 };
 
 export type SubscriptionPlanUncheckedCreateWithoutUsersInput = {
@@ -1032,7 +882,6 @@ export type SubscriptionPlanUncheckedCreateWithoutUsersInput = {
   createdAt?: Date | string;
   updatedAt?: Date | string;
   userSubscriptions?: Prisma.UserSubscriptionUncheckedCreateNestedManyWithoutPlanInput;
-  promoCodes?: Prisma.PromoCodeUncheckedCreateNestedManyWithoutPlanInput;
 };
 
 export type SubscriptionPlanCreateOrConnectWithoutUsersInput = {
@@ -1081,7 +930,6 @@ export type SubscriptionPlanUpdateWithoutUsersInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   userSubscriptions?: Prisma.UserSubscriptionUpdateManyWithoutPlanNestedInput;
-  promoCodes?: Prisma.PromoCodeUpdateManyWithoutPlanNestedInput;
 };
 
 export type SubscriptionPlanUncheckedUpdateWithoutUsersInput = {
@@ -1102,7 +950,6 @@ export type SubscriptionPlanUncheckedUpdateWithoutUsersInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   userSubscriptions?: Prisma.UserSubscriptionUncheckedUpdateManyWithoutPlanNestedInput;
-  promoCodes?: Prisma.PromoCodeUncheckedUpdateManyWithoutPlanNestedInput;
 };
 
 /**
@@ -1111,7 +958,6 @@ export type SubscriptionPlanUncheckedUpdateWithoutUsersInput = {
 
 export type SubscriptionPlanCountOutputType = {
   userSubscriptions: number;
-  promoCodes: number;
   users: number;
 };
 
@@ -1122,7 +968,6 @@ export type SubscriptionPlanCountOutputTypeSelect<
   userSubscriptions?:
     | boolean
     | SubscriptionPlanCountOutputTypeCountUserSubscriptionsArgs;
-  promoCodes?: boolean | SubscriptionPlanCountOutputTypeCountPromoCodesArgs;
   users?: boolean | SubscriptionPlanCountOutputTypeCountUsersArgs;
 };
 
@@ -1147,16 +992,6 @@ export type SubscriptionPlanCountOutputTypeCountUserSubscriptionsArgs<
     runtime.Types.Extensions.DefaultArgs,
 > = {
   where?: Prisma.UserSubscriptionWhereInput;
-};
-
-/**
- * SubscriptionPlanCountOutputType without action
- */
-export type SubscriptionPlanCountOutputTypeCountPromoCodesArgs<
-  ExtArgs extends runtime.Types.Extensions.InternalArgs =
-    runtime.Types.Extensions.DefaultArgs,
-> = {
-  where?: Prisma.PromoCodeWhereInput;
 };
 
 /**
@@ -1193,7 +1028,6 @@ export type SubscriptionPlanSelect<
     userSubscriptions?:
       | boolean
       | Prisma.SubscriptionPlan$userSubscriptionsArgs<ExtArgs>;
-    promoCodes?: boolean | Prisma.SubscriptionPlan$promoCodesArgs<ExtArgs>;
     users?: boolean | Prisma.SubscriptionPlan$usersArgs<ExtArgs>;
     _count?:
       | boolean
@@ -1300,7 +1134,6 @@ export type SubscriptionPlanInclude<
   userSubscriptions?:
     | boolean
     | Prisma.SubscriptionPlan$userSubscriptionsArgs<ExtArgs>;
-  promoCodes?: boolean | Prisma.SubscriptionPlan$promoCodesArgs<ExtArgs>;
   users?: boolean | Prisma.SubscriptionPlan$usersArgs<ExtArgs>;
   _count?: boolean | Prisma.SubscriptionPlanCountOutputTypeDefaultArgs<ExtArgs>;
 };
@@ -1320,7 +1153,6 @@ export type $SubscriptionPlanPayload<
   name: 'SubscriptionPlan';
   objects: {
     userSubscriptions: Prisma.$UserSubscriptionPayload<ExtArgs>[];
-    promoCodes: Prisma.$PromoCodePayload<ExtArgs>[];
     users: Prisma.$UserPayload<ExtArgs>[];
   };
   scalars: runtime.Types.Extensions.GetPayloadResult<
@@ -1929,17 +1761,6 @@ export interface Prisma__SubscriptionPlanClient<
       >
     | Null
   >;
-  promoCodes<T extends Prisma.SubscriptionPlan$promoCodesArgs<ExtArgs> = {}>(
-    args?: Prisma.Subset<T, Prisma.SubscriptionPlan$promoCodesArgs<ExtArgs>>,
-  ): Prisma.PrismaPromise<
-    | runtime.Types.Result.GetResult<
-        Prisma.$PromoCodePayload<ExtArgs>,
-        T,
-        'findMany',
-        GlobalOmitOptions
-      >
-    | Null
-  >;
   users<T extends Prisma.SubscriptionPlan$usersArgs<ExtArgs> = {}>(
     args?: Prisma.Subset<T, Prisma.SubscriptionPlan$usersArgs<ExtArgs>>,
   ): Prisma.PrismaPromise<
@@ -2500,37 +2321,6 @@ export type SubscriptionPlan$userSubscriptionsArgs<
   distinct?:
     | Prisma.UserSubscriptionScalarFieldEnum
     | Prisma.UserSubscriptionScalarFieldEnum[];
-};
-
-/**
- * SubscriptionPlan.promoCodes
- */
-export type SubscriptionPlan$promoCodesArgs<
-  ExtArgs extends runtime.Types.Extensions.InternalArgs =
-    runtime.Types.Extensions.DefaultArgs,
-> = {
-  /**
-   * Select specific fields to fetch from the PromoCode
-   */
-  select?: Prisma.PromoCodeSelect<ExtArgs> | null;
-  /**
-   * Omit specific fields from the PromoCode
-   */
-  omit?: Prisma.PromoCodeOmit<ExtArgs> | null;
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.PromoCodeInclude<ExtArgs> | null;
-  where?: Prisma.PromoCodeWhereInput;
-  orderBy?:
-    | Prisma.PromoCodeOrderByWithRelationInput
-    | Prisma.PromoCodeOrderByWithRelationInput[];
-  cursor?: Prisma.PromoCodeWhereUniqueInput;
-  take?: number;
-  skip?: number;
-  distinct?:
-    | Prisma.PromoCodeScalarFieldEnum
-    | Prisma.PromoCodeScalarFieldEnum[];
 };
 
 /**

@@ -5,17 +5,13 @@ import {
 } from '@/common/utils/response.util';
 import { BoatFromBoatsGroup } from '@/lib/boatsgroup/interface/boats.interface';
 import { BoatsGroupService } from '@/lib/boatsgroup/services/boats-group.service';
-import { GetAllCustomBoatsService } from '@/lib/boatsgroup/services/get-all-custom-boats.service';
 import { Injectable } from '@nestjs/common';
 import { DateTime } from 'luxon';
 import { GetMergedBoatsDto } from '../dto/get-boats.dto';
 
 @Injectable()
 export class GetAllBoatsMergedService {
-  constructor(
-    private readonly getAllCustomBoatsService: GetAllCustomBoatsService,
-    private readonly boatsGroupService: BoatsGroupService,
-  ) {}
+  constructor(private readonly boatsGroupService: BoatsGroupService) {}
 
   private parseDateMillis(dateStr?: string) {
     if (!dateStr) return 0;
@@ -57,18 +53,6 @@ export class GetAllBoatsMergedService {
       {
         fetchPage: (p, l) =>
           this.boatsGroupService.getServiceBoats(p, l, fields),
-        page: 1,
-        buffer: [],
-        exhausted: false,
-        total: 0,
-      },
-      {
-        fetchPage: (p, l) =>
-          this.getAllCustomBoatsService.getAllBoats({
-            page: p,
-            limit: l,
-            fields,
-          }),
         page: 1,
         buffer: [],
         exhausted: false,
@@ -127,11 +111,6 @@ export class GetAllBoatsMergedService {
     // compute total as sum of totals from sources
     const total = fetchers.reduce((acc, s) => acc + (s.total ?? 0), 0);
 
-    // Now we have 'limit' newest items across sources; apply the requested 'page'
-    // (we fetched the first 'limit' of the *global* first page). For arbitrary page > 1,
-    // you can either:
-    //  - compute offset = (page-1)*limit and keep pulling until you have offset+limit items (more requests), OR
-    //  - restrict merged endpoint to only support cursor/nextToken for better efficiency.
     const offset = (page - 1) * limit;
     let dataToReturn: BoatFromBoatsGroup[];
 

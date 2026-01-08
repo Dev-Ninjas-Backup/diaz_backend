@@ -58,10 +58,17 @@ export class HandleWebhookService {
       case 'invoice.paid':
       case 'invoice.payment_succeeded':
         await this.handleInvoicePaid(event.data.object as Stripe.Invoice);
+        this.logger.log(
+          `Handled invoice.paid for invoice ${event.data.object.id}`,
+          JSON.stringify(event.data.object, null, 2),
+        );
         break;
 
       default:
-        this.logger.log(`Unhandled Stripe event type: ${event.type}`);
+        this.logger.log(
+          `Unhandled Stripe event type: ${event.type}`,
+          // JSON.stringify(event, null, 2),
+        );
     }
   }
 
@@ -90,11 +97,38 @@ export class HandleWebhookService {
     try {
       const paymentMethodId = setupIntent.payment_method as string;
 
+      // Check for promo code in metadata or local DB
+      const promoCodeCode = metadata.promoCode;
+      let coupon: string | undefined;
+      let trialPeriodDays: number | undefined;
+
+      if (promoCodeCode) {
+        const promo = await this.prisma.client.promoCode.findUnique({
+          where: { code: promoCodeCode },
+        });
+
+        if (promo) {
+          if (
+            promo.stripeCouponId &&
+            !promo.stripeCouponId.startsWith('trial_')
+          ) {
+            coupon = promo.stripeCouponId;
+          }
+
+          // Apply trial days from DB
+          if (promo.freeDays) {
+            trialPeriodDays = promo.freeDays;
+          }
+        }
+      }
+
       const stripeSub = await this.stripeService.createSubscription({
         customerId,
         priceId: metadata.stripePriceId,
         metadata,
         paymentMethodId,
+        coupon,
+        trialPeriodDays,
       });
 
       await this.prisma.client.$transaction([

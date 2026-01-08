@@ -291,17 +291,23 @@ export class StripeService {
     priceId,
     metadata,
     paymentMethodId,
+    coupon,
+    trialPeriodDays,
   }: {
     customerId: string;
     priceId: string;
     metadata: PaymentMetadata;
     paymentMethodId: string;
+    coupon?: string;
+    trialPeriodDays?: number;
   }) {
     const subscription = await this.stripe.subscriptions.create({
       customer: customerId,
       items: [{ price: priceId }],
       default_payment_method: paymentMethodId,
       metadata,
+      discounts: coupon ? [{ coupon }] : undefined,
+      trial_period_days: trialPeriodDays,
       expand: ['latest_invoice.payment_intent'],
     });
 

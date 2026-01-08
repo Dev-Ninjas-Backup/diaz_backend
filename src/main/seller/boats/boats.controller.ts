@@ -77,6 +77,7 @@ export class BoatsController {
     @Body()
     data: {
       planId: SellerOnboardingPlanDto['planId'];
+      promoCode?: SellerOnboardingPlanDto['promoCode'];
       boatInfo: CreateBoatsInfoDto;
       sellerInfo: SellerInfoOnBoardingDto;
     },

@@ -27,14 +27,12 @@ export type AggregatePromoCode = {
 };
 
 export type PromoCodeAvgAggregateOutputType = {
-  discount: number | null;
-  freeMonths: number | null;
+  freeDays: number | null;
   maxRedemptions: number | null;
 };
 
 export type PromoCodeSumAggregateOutputType = {
-  discount: number | null;
-  freeMonths: number | null;
+  freeDays: number | null;
   maxRedemptions: number | null;
 };
 
@@ -42,11 +40,9 @@ export type PromoCodeMinAggregateOutputType = {
   id: string | null;
   stripeCouponId: string | null;
   code: string | null;
-  discount: number | null;
-  freeMonths: number | null;
+  freeDays: number | null;
   maxRedemptions: number | null;
   expiresAt: Date | null;
-  planId: string | null;
   createdAt: Date | null;
   updatedAt: Date | null;
 };
@@ -55,11 +51,9 @@ export type PromoCodeMaxAggregateOutputType = {
   id: string | null;
   stripeCouponId: string | null;
   code: string | null;
-  discount: number | null;
-  freeMonths: number | null;
+  freeDays: number | null;
   maxRedemptions: number | null;
   expiresAt: Date | null;
-  planId: string | null;
   createdAt: Date | null;
   updatedAt: Date | null;
 };
@@ -68,25 +62,21 @@ export type PromoCodeCountAggregateOutputType = {
   id: number;
   stripeCouponId: number;
   code: number;
-  discount: number;
-  freeMonths: number;
+  freeDays: number;
   maxRedemptions: number;
   expiresAt: number;
-  planId: number;
   createdAt: number;
   updatedAt: number;
   _all: number;
 };
 
 export type PromoCodeAvgAggregateInputType = {
-  discount?: true;
-  freeMonths?: true;
+  freeDays?: true;
   maxRedemptions?: true;
 };
 
 export type PromoCodeSumAggregateInputType = {
-  discount?: true;
-  freeMonths?: true;
+  freeDays?: true;
   maxRedemptions?: true;
 };
 
@@ -94,11 +84,9 @@ export type PromoCodeMinAggregateInputType = {
   id?: true;
   stripeCouponId?: true;
   code?: true;
-  discount?: true;
-  freeMonths?: true;
+  freeDays?: true;
   maxRedemptions?: true;
   expiresAt?: true;
-  planId?: true;
   createdAt?: true;
   updatedAt?: true;
 };
@@ -107,11 +95,9 @@ export type PromoCodeMaxAggregateInputType = {
   id?: true;
   stripeCouponId?: true;
   code?: true;
-  discount?: true;
-  freeMonths?: true;
+  freeDays?: true;
   maxRedemptions?: true;
   expiresAt?: true;
-  planId?: true;
   createdAt?: true;
   updatedAt?: true;
 };
@@ -120,11 +106,9 @@ export type PromoCodeCountAggregateInputType = {
   id?: true;
   stripeCouponId?: true;
   code?: true;
-  discount?: true;
-  freeMonths?: true;
+  freeDays?: true;
   maxRedemptions?: true;
   expiresAt?: true;
-  planId?: true;
   createdAt?: true;
   updatedAt?: true;
   _all?: true;
@@ -225,13 +209,11 @@ export type PromoCodeGroupByArgs<
 
 export type PromoCodeGroupByOutputType = {
   id: string;
-  stripeCouponId: string;
+  stripeCouponId: string | null;
   code: string;
-  discount: number | null;
-  freeMonths: number | null;
+  freeDays: number;
   maxRedemptions: number | null;
   expiresAt: Date | null;
-  planId: string;
   createdAt: Date;
   updatedAt: Date;
   _count: PromoCodeCountAggregateOutputType | null;
@@ -259,34 +241,25 @@ export type PromoCodeWhereInput = {
   OR?: Prisma.PromoCodeWhereInput[];
   NOT?: Prisma.PromoCodeWhereInput | Prisma.PromoCodeWhereInput[];
   id?: Prisma.StringFilter<'PromoCode'> | string;
-  stripeCouponId?: Prisma.StringFilter<'PromoCode'> | string;
+  stripeCouponId?: Prisma.StringNullableFilter<'PromoCode'> | string | null;
   code?: Prisma.StringFilter<'PromoCode'> | string;
-  discount?: Prisma.FloatNullableFilter<'PromoCode'> | number | null;
-  freeMonths?: Prisma.IntNullableFilter<'PromoCode'> | number | null;
+  freeDays?: Prisma.IntFilter<'PromoCode'> | number;
   maxRedemptions?: Prisma.IntNullableFilter<'PromoCode'> | number | null;
   expiresAt?: Prisma.DateTimeNullableFilter<'PromoCode'> | Date | string | null;
-  planId?: Prisma.StringFilter<'PromoCode'> | string;
   createdAt?: Prisma.DateTimeFilter<'PromoCode'> | Date | string;
   updatedAt?: Prisma.DateTimeFilter<'PromoCode'> | Date | string;
-  plan?: Prisma.XOR<
-    Prisma.SubscriptionPlanScalarRelationFilter,
-    Prisma.SubscriptionPlanWhereInput
-  >;
   usedBy?: Prisma.UserSubscriptionListRelationFilter;
 };
 
 export type PromoCodeOrderByWithRelationInput = {
   id?: Prisma.SortOrder;
-  stripeCouponId?: Prisma.SortOrder;
+  stripeCouponId?: Prisma.SortOrderInput | Prisma.SortOrder;
   code?: Prisma.SortOrder;
-  discount?: Prisma.SortOrderInput | Prisma.SortOrder;
-  freeMonths?: Prisma.SortOrderInput | Prisma.SortOrder;
+  freeDays?: Prisma.SortOrder;
   maxRedemptions?: Prisma.SortOrderInput | Prisma.SortOrder;
   expiresAt?: Prisma.SortOrderInput | Prisma.SortOrder;
-  planId?: Prisma.SortOrder;
   createdAt?: Prisma.SortOrder;
   updatedAt?: Prisma.SortOrder;
-  plan?: Prisma.SubscriptionPlanOrderByWithRelationInput;
   usedBy?: Prisma.UserSubscriptionOrderByRelationAggregateInput;
 };
 
@@ -298,21 +271,15 @@ export type PromoCodeWhereUniqueInput = Prisma.AtLeast<
     AND?: Prisma.PromoCodeWhereInput | Prisma.PromoCodeWhereInput[];
     OR?: Prisma.PromoCodeWhereInput[];
     NOT?: Prisma.PromoCodeWhereInput | Prisma.PromoCodeWhereInput[];
-    discount?: Prisma.FloatNullableFilter<'PromoCode'> | number | null;
-    freeMonths?: Prisma.IntNullableFilter<'PromoCode'> | number | null;
+    freeDays?: Prisma.IntFilter<'PromoCode'> | number;
     maxRedemptions?: Prisma.IntNullableFilter<'PromoCode'> | number | null;
     expiresAt?:
       | Prisma.DateTimeNullableFilter<'PromoCode'>
       | Date
       | string
       | null;
-    planId?: Prisma.StringFilter<'PromoCode'> | string;
     createdAt?: Prisma.DateTimeFilter<'PromoCode'> | Date | string;
     updatedAt?: Prisma.DateTimeFilter<'PromoCode'> | Date | string;
-    plan?: Prisma.XOR<
-      Prisma.SubscriptionPlanScalarRelationFilter,
-      Prisma.SubscriptionPlanWhereInput
-    >;
     usedBy?: Prisma.UserSubscriptionListRelationFilter;
   },
   'id' | 'stripeCouponId' | 'code'
@@ -320,13 +287,11 @@ export type PromoCodeWhereUniqueInput = Prisma.AtLeast<
 
 export type PromoCodeOrderByWithAggregationInput = {
   id?: Prisma.SortOrder;
-  stripeCouponId?: Prisma.SortOrder;
+  stripeCouponId?: Prisma.SortOrderInput | Prisma.SortOrder;
   code?: Prisma.SortOrder;
-  discount?: Prisma.SortOrderInput | Prisma.SortOrder;
-  freeMonths?: Prisma.SortOrderInput | Prisma.SortOrder;
+  freeDays?: Prisma.SortOrder;
   maxRedemptions?: Prisma.SortOrderInput | Prisma.SortOrder;
   expiresAt?: Prisma.SortOrderInput | Prisma.SortOrder;
-  planId?: Prisma.SortOrder;
   createdAt?: Prisma.SortOrder;
   updatedAt?: Prisma.SortOrder;
   _count?: Prisma.PromoCodeCountOrderByAggregateInput;
@@ -345,16 +310,12 @@ export type PromoCodeScalarWhereWithAggregatesInput = {
     | Prisma.PromoCodeScalarWhereWithAggregatesInput
     | Prisma.PromoCodeScalarWhereWithAggregatesInput[];
   id?: Prisma.StringWithAggregatesFilter<'PromoCode'> | string;
-  stripeCouponId?: Prisma.StringWithAggregatesFilter<'PromoCode'> | string;
+  stripeCouponId?:
+    | Prisma.StringNullableWithAggregatesFilter<'PromoCode'>
+    | string
+    | null;
   code?: Prisma.StringWithAggregatesFilter<'PromoCode'> | string;
-  discount?:
-    | Prisma.FloatNullableWithAggregatesFilter<'PromoCode'>
-    | number
-    | null;
-  freeMonths?:
-    | Prisma.IntNullableWithAggregatesFilter<'PromoCode'>
-    | number
-    | null;
+  freeDays?: Prisma.IntWithAggregatesFilter<'PromoCode'> | number;
   maxRedemptions?:
     | Prisma.IntNullableWithAggregatesFilter<'PromoCode'>
     | number
@@ -364,34 +325,29 @@ export type PromoCodeScalarWhereWithAggregatesInput = {
     | Date
     | string
     | null;
-  planId?: Prisma.StringWithAggregatesFilter<'PromoCode'> | string;
   createdAt?: Prisma.DateTimeWithAggregatesFilter<'PromoCode'> | Date | string;
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<'PromoCode'> | Date | string;
 };
 
 export type PromoCodeCreateInput = {
   id?: string;
-  stripeCouponId: string;
+  stripeCouponId?: string | null;
   code: string;
-  discount?: number | null;
-  freeMonths?: number | null;
+  freeDays?: number;
   maxRedemptions?: number | null;
   expiresAt?: Date | string | null;
   createdAt?: Date | string;
   updatedAt?: Date | string;
-  plan: Prisma.SubscriptionPlanCreateNestedOneWithoutPromoCodesInput;
   usedBy?: Prisma.UserSubscriptionCreateNestedManyWithoutPromoCodeInput;
 };
 
 export type PromoCodeUncheckedCreateInput = {
   id?: string;
-  stripeCouponId: string;
+  stripeCouponId?: string | null;
   code: string;
-  discount?: number | null;
-  freeMonths?: number | null;
+  freeDays?: number;
   maxRedemptions?: number | null;
   expiresAt?: Date | string | null;
-  planId: string;
   createdAt?: Date | string;
   updatedAt?: Date | string;
   usedBy?: Prisma.UserSubscriptionUncheckedCreateNestedManyWithoutPromoCodeInput;
@@ -399,10 +355,12 @@ export type PromoCodeUncheckedCreateInput = {
 
 export type PromoCodeUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string;
-  stripeCouponId?: Prisma.StringFieldUpdateOperationsInput | string;
+  stripeCouponId?:
+    | Prisma.NullableStringFieldUpdateOperationsInput
+    | string
+    | null;
   code?: Prisma.StringFieldUpdateOperationsInput | string;
-  discount?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null;
-  freeMonths?: Prisma.NullableIntFieldUpdateOperationsInput | number | null;
+  freeDays?: Prisma.IntFieldUpdateOperationsInput | number;
   maxRedemptions?: Prisma.NullableIntFieldUpdateOperationsInput | number | null;
   expiresAt?:
     | Prisma.NullableDateTimeFieldUpdateOperationsInput
@@ -411,23 +369,23 @@ export type PromoCodeUpdateInput = {
     | null;
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
-  plan?: Prisma.SubscriptionPlanUpdateOneRequiredWithoutPromoCodesNestedInput;
   usedBy?: Prisma.UserSubscriptionUpdateManyWithoutPromoCodeNestedInput;
 };
 
 export type PromoCodeUncheckedUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string;
-  stripeCouponId?: Prisma.StringFieldUpdateOperationsInput | string;
+  stripeCouponId?:
+    | Prisma.NullableStringFieldUpdateOperationsInput
+    | string
+    | null;
   code?: Prisma.StringFieldUpdateOperationsInput | string;
-  discount?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null;
-  freeMonths?: Prisma.NullableIntFieldUpdateOperationsInput | number | null;
+  freeDays?: Prisma.IntFieldUpdateOperationsInput | number;
   maxRedemptions?: Prisma.NullableIntFieldUpdateOperationsInput | number | null;
   expiresAt?:
     | Prisma.NullableDateTimeFieldUpdateOperationsInput
     | Date
     | string
     | null;
-  planId?: Prisma.StringFieldUpdateOperationsInput | string;
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   usedBy?: Prisma.UserSubscriptionUncheckedUpdateManyWithoutPromoCodeNestedInput;
@@ -435,23 +393,23 @@ export type PromoCodeUncheckedUpdateInput = {
 
 export type PromoCodeCreateManyInput = {
   id?: string;
-  stripeCouponId: string;
+  stripeCouponId?: string | null;
   code: string;
-  discount?: number | null;
-  freeMonths?: number | null;
+  freeDays?: number;
   maxRedemptions?: number | null;
   expiresAt?: Date | string | null;
-  planId: string;
   createdAt?: Date | string;
   updatedAt?: Date | string;
 };
 
 export type PromoCodeUpdateManyMutationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string;
-  stripeCouponId?: Prisma.StringFieldUpdateOperationsInput | string;
+  stripeCouponId?:
+    | Prisma.NullableStringFieldUpdateOperationsInput
+    | string
+    | null;
   code?: Prisma.StringFieldUpdateOperationsInput | string;
-  discount?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null;
-  freeMonths?: Prisma.NullableIntFieldUpdateOperationsInput | number | null;
+  freeDays?: Prisma.IntFieldUpdateOperationsInput | number;
   maxRedemptions?: Prisma.NullableIntFieldUpdateOperationsInput | number | null;
   expiresAt?:
     | Prisma.NullableDateTimeFieldUpdateOperationsInput
@@ -464,29 +422,20 @@ export type PromoCodeUpdateManyMutationInput = {
 
 export type PromoCodeUncheckedUpdateManyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string;
-  stripeCouponId?: Prisma.StringFieldUpdateOperationsInput | string;
+  stripeCouponId?:
+    | Prisma.NullableStringFieldUpdateOperationsInput
+    | string
+    | null;
   code?: Prisma.StringFieldUpdateOperationsInput | string;
-  discount?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null;
-  freeMonths?: Prisma.NullableIntFieldUpdateOperationsInput | number | null;
+  freeDays?: Prisma.IntFieldUpdateOperationsInput | number;
   maxRedemptions?: Prisma.NullableIntFieldUpdateOperationsInput | number | null;
   expiresAt?:
     | Prisma.NullableDateTimeFieldUpdateOperationsInput
     | Date
     | string
     | null;
-  planId?: Prisma.StringFieldUpdateOperationsInput | string;
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
-};
-
-export type PromoCodeListRelationFilter = {
-  every?: Prisma.PromoCodeWhereInput;
-  some?: Prisma.PromoCodeWhereInput;
-  none?: Prisma.PromoCodeWhereInput;
-};
-
-export type PromoCodeOrderByRelationAggregateInput = {
-  _count?: Prisma.SortOrder;
 };
 
 export type PromoCodeNullableScalarRelationFilter = {
@@ -498,18 +447,15 @@ export type PromoCodeCountOrderByAggregateInput = {
   id?: Prisma.SortOrder;
   stripeCouponId?: Prisma.SortOrder;
   code?: Prisma.SortOrder;
-  discount?: Prisma.SortOrder;
-  freeMonths?: Prisma.SortOrder;
+  freeDays?: Prisma.SortOrder;
   maxRedemptions?: Prisma.SortOrder;
   expiresAt?: Prisma.SortOrder;
-  planId?: Prisma.SortOrder;
   createdAt?: Prisma.SortOrder;
   updatedAt?: Prisma.SortOrder;
 };
 
 export type PromoCodeAvgOrderByAggregateInput = {
-  discount?: Prisma.SortOrder;
-  freeMonths?: Prisma.SortOrder;
+  freeDays?: Prisma.SortOrder;
   maxRedemptions?: Prisma.SortOrder;
 };
 
@@ -517,11 +463,9 @@ export type PromoCodeMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder;
   stripeCouponId?: Prisma.SortOrder;
   code?: Prisma.SortOrder;
-  discount?: Prisma.SortOrder;
-  freeMonths?: Prisma.SortOrder;
+  freeDays?: Prisma.SortOrder;
   maxRedemptions?: Prisma.SortOrder;
   expiresAt?: Prisma.SortOrder;
-  planId?: Prisma.SortOrder;
   createdAt?: Prisma.SortOrder;
   updatedAt?: Prisma.SortOrder;
 };
@@ -530,125 +474,16 @@ export type PromoCodeMinOrderByAggregateInput = {
   id?: Prisma.SortOrder;
   stripeCouponId?: Prisma.SortOrder;
   code?: Prisma.SortOrder;
-  discount?: Prisma.SortOrder;
-  freeMonths?: Prisma.SortOrder;
+  freeDays?: Prisma.SortOrder;
   maxRedemptions?: Prisma.SortOrder;
   expiresAt?: Prisma.SortOrder;
-  planId?: Prisma.SortOrder;
   createdAt?: Prisma.SortOrder;
   updatedAt?: Prisma.SortOrder;
 };
 
 export type PromoCodeSumOrderByAggregateInput = {
-  discount?: Prisma.SortOrder;
-  freeMonths?: Prisma.SortOrder;
+  freeDays?: Prisma.SortOrder;
   maxRedemptions?: Prisma.SortOrder;
-};
-
-export type PromoCodeCreateNestedManyWithoutPlanInput = {
-  create?:
-    | Prisma.XOR<
-        Prisma.PromoCodeCreateWithoutPlanInput,
-        Prisma.PromoCodeUncheckedCreateWithoutPlanInput
-      >
-    | Prisma.PromoCodeCreateWithoutPlanInput[]
-    | Prisma.PromoCodeUncheckedCreateWithoutPlanInput[];
-  connectOrCreate?:
-    | Prisma.PromoCodeCreateOrConnectWithoutPlanInput
-    | Prisma.PromoCodeCreateOrConnectWithoutPlanInput[];
-  createMany?: Prisma.PromoCodeCreateManyPlanInputEnvelope;
-  connect?:
-    | Prisma.PromoCodeWhereUniqueInput
-    | Prisma.PromoCodeWhereUniqueInput[];
-};
-
-export type PromoCodeUncheckedCreateNestedManyWithoutPlanInput = {
-  create?:
-    | Prisma.XOR<
-        Prisma.PromoCodeCreateWithoutPlanInput,
-        Prisma.PromoCodeUncheckedCreateWithoutPlanInput
-      >
-    | Prisma.PromoCodeCreateWithoutPlanInput[]
-    | Prisma.PromoCodeUncheckedCreateWithoutPlanInput[];
-  connectOrCreate?:
-    | Prisma.PromoCodeCreateOrConnectWithoutPlanInput
-    | Prisma.PromoCodeCreateOrConnectWithoutPlanInput[];
-  createMany?: Prisma.PromoCodeCreateManyPlanInputEnvelope;
-  connect?:
-    | Prisma.PromoCodeWhereUniqueInput
-    | Prisma.PromoCodeWhereUniqueInput[];
-};
-
-export type PromoCodeUpdateManyWithoutPlanNestedInput = {
-  create?:
-    | Prisma.XOR<
-        Prisma.PromoCodeCreateWithoutPlanInput,
-        Prisma.PromoCodeUncheckedCreateWithoutPlanInput
-      >
-    | Prisma.PromoCodeCreateWithoutPlanInput[]
-    | Prisma.PromoCodeUncheckedCreateWithoutPlanInput[];
-  connectOrCreate?:
-    | Prisma.PromoCodeCreateOrConnectWithoutPlanInput
-    | Prisma.PromoCodeCreateOrConnectWithoutPlanInput[];
-  upsert?:
-    | Prisma.PromoCodeUpsertWithWhereUniqueWithoutPlanInput
-    | Prisma.PromoCodeUpsertWithWhereUniqueWithoutPlanInput[];
-  createMany?: Prisma.PromoCodeCreateManyPlanInputEnvelope;
-  set?: Prisma.PromoCodeWhereUniqueInput | Prisma.PromoCodeWhereUniqueInput[];
-  disconnect?:
-    | Prisma.PromoCodeWhereUniqueInput
-    | Prisma.PromoCodeWhereUniqueInput[];
-  delete?:
-    | Prisma.PromoCodeWhereUniqueInput
-    | Prisma.PromoCodeWhereUniqueInput[];
-  connect?:
-    | Prisma.PromoCodeWhereUniqueInput
-    | Prisma.PromoCodeWhereUniqueInput[];
-  update?:
-    | Prisma.PromoCodeUpdateWithWhereUniqueWithoutPlanInput
-    | Prisma.PromoCodeUpdateWithWhereUniqueWithoutPlanInput[];
-  updateMany?:
-    | Prisma.PromoCodeUpdateManyWithWhereWithoutPlanInput
-    | Prisma.PromoCodeUpdateManyWithWhereWithoutPlanInput[];
-  deleteMany?:
-    | Prisma.PromoCodeScalarWhereInput
-    | Prisma.PromoCodeScalarWhereInput[];
-};
-
-export type PromoCodeUncheckedUpdateManyWithoutPlanNestedInput = {
-  create?:
-    | Prisma.XOR<
-        Prisma.PromoCodeCreateWithoutPlanInput,
-        Prisma.PromoCodeUncheckedCreateWithoutPlanInput
-      >
-    | Prisma.PromoCodeCreateWithoutPlanInput[]
-    | Prisma.PromoCodeUncheckedCreateWithoutPlanInput[];
-  connectOrCreate?:
-    | Prisma.PromoCodeCreateOrConnectWithoutPlanInput
-    | Prisma.PromoCodeCreateOrConnectWithoutPlanInput[];
-  upsert?:
-    | Prisma.PromoCodeUpsertWithWhereUniqueWithoutPlanInput
-    | Prisma.PromoCodeUpsertWithWhereUniqueWithoutPlanInput[];
-  createMany?: Prisma.PromoCodeCreateManyPlanInputEnvelope;
-  set?: Prisma.PromoCodeWhereUniqueInput | Prisma.PromoCodeWhereUniqueInput[];
-  disconnect?:
-    | Prisma.PromoCodeWhereUniqueInput
-    | Prisma.PromoCodeWhereUniqueInput[];
-  delete?:
-    | Prisma.PromoCodeWhereUniqueInput
-    | Prisma.PromoCodeWhereUniqueInput[];
-  connect?:
-    | Prisma.PromoCodeWhereUniqueInput
-    | Prisma.PromoCodeWhereUniqueInput[];
-  update?:
-    | Prisma.PromoCodeUpdateWithWhereUniqueWithoutPlanInput
-    | Prisma.PromoCodeUpdateWithWhereUniqueWithoutPlanInput[];
-  updateMany?:
-    | Prisma.PromoCodeUpdateManyWithWhereWithoutPlanInput
-    | Prisma.PromoCodeUpdateManyWithWhereWithoutPlanInput[];
-  deleteMany?:
-    | Prisma.PromoCodeScalarWhereInput
-    | Prisma.PromoCodeScalarWhereInput[];
 };
 
 export type PromoCodeCreateNestedOneWithoutUsedByInput = {
@@ -679,121 +514,24 @@ export type PromoCodeUpdateOneWithoutUsedByNestedInput = {
   >;
 };
 
-export type NullableFloatFieldUpdateOperationsInput = {
-  set?: number | null;
-  increment?: number;
-  decrement?: number;
-  multiply?: number;
-  divide?: number;
-};
-
-export type PromoCodeCreateWithoutPlanInput = {
-  id?: string;
-  stripeCouponId: string;
-  code: string;
-  discount?: number | null;
-  freeMonths?: number | null;
-  maxRedemptions?: number | null;
-  expiresAt?: Date | string | null;
-  createdAt?: Date | string;
-  updatedAt?: Date | string;
-  usedBy?: Prisma.UserSubscriptionCreateNestedManyWithoutPromoCodeInput;
-};
-
-export type PromoCodeUncheckedCreateWithoutPlanInput = {
-  id?: string;
-  stripeCouponId: string;
-  code: string;
-  discount?: number | null;
-  freeMonths?: number | null;
-  maxRedemptions?: number | null;
-  expiresAt?: Date | string | null;
-  createdAt?: Date | string;
-  updatedAt?: Date | string;
-  usedBy?: Prisma.UserSubscriptionUncheckedCreateNestedManyWithoutPromoCodeInput;
-};
-
-export type PromoCodeCreateOrConnectWithoutPlanInput = {
-  where: Prisma.PromoCodeWhereUniqueInput;
-  create: Prisma.XOR<
-    Prisma.PromoCodeCreateWithoutPlanInput,
-    Prisma.PromoCodeUncheckedCreateWithoutPlanInput
-  >;
-};
-
-export type PromoCodeCreateManyPlanInputEnvelope = {
-  data:
-    | Prisma.PromoCodeCreateManyPlanInput
-    | Prisma.PromoCodeCreateManyPlanInput[];
-  skipDuplicates?: boolean;
-};
-
-export type PromoCodeUpsertWithWhereUniqueWithoutPlanInput = {
-  where: Prisma.PromoCodeWhereUniqueInput;
-  update: Prisma.XOR<
-    Prisma.PromoCodeUpdateWithoutPlanInput,
-    Prisma.PromoCodeUncheckedUpdateWithoutPlanInput
-  >;
-  create: Prisma.XOR<
-    Prisma.PromoCodeCreateWithoutPlanInput,
-    Prisma.PromoCodeUncheckedCreateWithoutPlanInput
-  >;
-};
-
-export type PromoCodeUpdateWithWhereUniqueWithoutPlanInput = {
-  where: Prisma.PromoCodeWhereUniqueInput;
-  data: Prisma.XOR<
-    Prisma.PromoCodeUpdateWithoutPlanInput,
-    Prisma.PromoCodeUncheckedUpdateWithoutPlanInput
-  >;
-};
-
-export type PromoCodeUpdateManyWithWhereWithoutPlanInput = {
-  where: Prisma.PromoCodeScalarWhereInput;
-  data: Prisma.XOR<
-    Prisma.PromoCodeUpdateManyMutationInput,
-    Prisma.PromoCodeUncheckedUpdateManyWithoutPlanInput
-  >;
-};
-
-export type PromoCodeScalarWhereInput = {
-  AND?: Prisma.PromoCodeScalarWhereInput | Prisma.PromoCodeScalarWhereInput[];
-  OR?: Prisma.PromoCodeScalarWhereInput[];
-  NOT?: Prisma.PromoCodeScalarWhereInput | Prisma.PromoCodeScalarWhereInput[];
-  id?: Prisma.StringFilter<'PromoCode'> | string;
-  stripeCouponId?: Prisma.StringFilter<'PromoCode'> | string;
-  code?: Prisma.StringFilter<'PromoCode'> | string;
-  discount?: Prisma.FloatNullableFilter<'PromoCode'> | number | null;
-  freeMonths?: Prisma.IntNullableFilter<'PromoCode'> | number | null;
-  maxRedemptions?: Prisma.IntNullableFilter<'PromoCode'> | number | null;
-  expiresAt?: Prisma.DateTimeNullableFilter<'PromoCode'> | Date | string | null;
-  planId?: Prisma.StringFilter<'PromoCode'> | string;
-  createdAt?: Prisma.DateTimeFilter<'PromoCode'> | Date | string;
-  updatedAt?: Prisma.DateTimeFilter<'PromoCode'> | Date | string;
-};
-
 export type PromoCodeCreateWithoutUsedByInput = {
   id?: string;
-  stripeCouponId: string;
+  stripeCouponId?: string | null;
   code: string;
-  discount?: number | null;
-  freeMonths?: number | null;
+  freeDays?: number;
   maxRedemptions?: number | null;
   expiresAt?: Date | string | null;
   createdAt?: Date | string;
   updatedAt?: Date | string;
-  plan: Prisma.SubscriptionPlanCreateNestedOneWithoutPromoCodesInput;
 };
 
 export type PromoCodeUncheckedCreateWithoutUsedByInput = {
   id?: string;
-  stripeCouponId: string;
+  stripeCouponId?: string | null;
   code: string;
-  discount?: number | null;
-  freeMonths?: number | null;
+  freeDays?: number;
   maxRedemptions?: number | null;
   expiresAt?: Date | string | null;
-  planId: string;
   createdAt?: Date | string;
   updatedAt?: Date | string;
 };
@@ -828,10 +566,12 @@ export type PromoCodeUpdateToOneWithWhereWithoutUsedByInput = {
 
 export type PromoCodeUpdateWithoutUsedByInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string;
-  stripeCouponId?: Prisma.StringFieldUpdateOperationsInput | string;
+  stripeCouponId?:
+    | Prisma.NullableStringFieldUpdateOperationsInput
+    | string
+    | null;
   code?: Prisma.StringFieldUpdateOperationsInput | string;
-  discount?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null;
-  freeMonths?: Prisma.NullableIntFieldUpdateOperationsInput | number | null;
+  freeDays?: Prisma.IntFieldUpdateOperationsInput | number;
   maxRedemptions?: Prisma.NullableIntFieldUpdateOperationsInput | number | null;
   expiresAt?:
     | Prisma.NullableDateTimeFieldUpdateOperationsInput
@@ -840,78 +580,16 @@ export type PromoCodeUpdateWithoutUsedByInput = {
     | null;
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
-  plan?: Prisma.SubscriptionPlanUpdateOneRequiredWithoutPromoCodesNestedInput;
 };
 
 export type PromoCodeUncheckedUpdateWithoutUsedByInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string;
-  stripeCouponId?: Prisma.StringFieldUpdateOperationsInput | string;
-  code?: Prisma.StringFieldUpdateOperationsInput | string;
-  discount?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null;
-  freeMonths?: Prisma.NullableIntFieldUpdateOperationsInput | number | null;
-  maxRedemptions?: Prisma.NullableIntFieldUpdateOperationsInput | number | null;
-  expiresAt?:
-    | Prisma.NullableDateTimeFieldUpdateOperationsInput
-    | Date
+  stripeCouponId?:
+    | Prisma.NullableStringFieldUpdateOperationsInput
     | string
     | null;
-  planId?: Prisma.StringFieldUpdateOperationsInput | string;
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
-};
-
-export type PromoCodeCreateManyPlanInput = {
-  id?: string;
-  stripeCouponId: string;
-  code: string;
-  discount?: number | null;
-  freeMonths?: number | null;
-  maxRedemptions?: number | null;
-  expiresAt?: Date | string | null;
-  createdAt?: Date | string;
-  updatedAt?: Date | string;
-};
-
-export type PromoCodeUpdateWithoutPlanInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string;
-  stripeCouponId?: Prisma.StringFieldUpdateOperationsInput | string;
   code?: Prisma.StringFieldUpdateOperationsInput | string;
-  discount?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null;
-  freeMonths?: Prisma.NullableIntFieldUpdateOperationsInput | number | null;
-  maxRedemptions?: Prisma.NullableIntFieldUpdateOperationsInput | number | null;
-  expiresAt?:
-    | Prisma.NullableDateTimeFieldUpdateOperationsInput
-    | Date
-    | string
-    | null;
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
-  usedBy?: Prisma.UserSubscriptionUpdateManyWithoutPromoCodeNestedInput;
-};
-
-export type PromoCodeUncheckedUpdateWithoutPlanInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string;
-  stripeCouponId?: Prisma.StringFieldUpdateOperationsInput | string;
-  code?: Prisma.StringFieldUpdateOperationsInput | string;
-  discount?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null;
-  freeMonths?: Prisma.NullableIntFieldUpdateOperationsInput | number | null;
-  maxRedemptions?: Prisma.NullableIntFieldUpdateOperationsInput | number | null;
-  expiresAt?:
-    | Prisma.NullableDateTimeFieldUpdateOperationsInput
-    | Date
-    | string
-    | null;
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
-  usedBy?: Prisma.UserSubscriptionUncheckedUpdateManyWithoutPromoCodeNestedInput;
-};
-
-export type PromoCodeUncheckedUpdateManyWithoutPlanInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string;
-  stripeCouponId?: Prisma.StringFieldUpdateOperationsInput | string;
-  code?: Prisma.StringFieldUpdateOperationsInput | string;
-  discount?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null;
-  freeMonths?: Prisma.NullableIntFieldUpdateOperationsInput | number | null;
+  freeDays?: Prisma.IntFieldUpdateOperationsInput | number;
   maxRedemptions?: Prisma.NullableIntFieldUpdateOperationsInput | number | null;
   expiresAt?:
     | Prisma.NullableDateTimeFieldUpdateOperationsInput
@@ -968,14 +646,11 @@ export type PromoCodeSelect<
     id?: boolean;
     stripeCouponId?: boolean;
     code?: boolean;
-    discount?: boolean;
-    freeMonths?: boolean;
+    freeDays?: boolean;
     maxRedemptions?: boolean;
     expiresAt?: boolean;
-    planId?: boolean;
     createdAt?: boolean;
     updatedAt?: boolean;
-    plan?: boolean | Prisma.SubscriptionPlanDefaultArgs<ExtArgs>;
     usedBy?: boolean | Prisma.PromoCode$usedByArgs<ExtArgs>;
     _count?: boolean | Prisma.PromoCodeCountOutputTypeDefaultArgs<ExtArgs>;
   },
@@ -990,14 +665,11 @@ export type PromoCodeSelectCreateManyAndReturn<
     id?: boolean;
     stripeCouponId?: boolean;
     code?: boolean;
-    discount?: boolean;
-    freeMonths?: boolean;
+    freeDays?: boolean;
     maxRedemptions?: boolean;
     expiresAt?: boolean;
-    planId?: boolean;
     createdAt?: boolean;
     updatedAt?: boolean;
-    plan?: boolean | Prisma.SubscriptionPlanDefaultArgs<ExtArgs>;
   },
   ExtArgs['result']['promoCode']
 >;
@@ -1010,14 +682,11 @@ export type PromoCodeSelectUpdateManyAndReturn<
     id?: boolean;
     stripeCouponId?: boolean;
     code?: boolean;
-    discount?: boolean;
-    freeMonths?: boolean;
+    freeDays?: boolean;
     maxRedemptions?: boolean;
     expiresAt?: boolean;
-    planId?: boolean;
     createdAt?: boolean;
     updatedAt?: boolean;
-    plan?: boolean | Prisma.SubscriptionPlanDefaultArgs<ExtArgs>;
   },
   ExtArgs['result']['promoCode']
 >;
@@ -1026,11 +695,9 @@ export type PromoCodeSelectScalar = {
   id?: boolean;
   stripeCouponId?: boolean;
   code?: boolean;
-  discount?: boolean;
-  freeMonths?: boolean;
+  freeDays?: boolean;
   maxRedemptions?: boolean;
   expiresAt?: boolean;
-  planId?: boolean;
   createdAt?: boolean;
   updatedAt?: boolean;
 };
@@ -1042,11 +709,9 @@ export type PromoCodeOmit<
   | 'id'
   | 'stripeCouponId'
   | 'code'
-  | 'discount'
-  | 'freeMonths'
+  | 'freeDays'
   | 'maxRedemptions'
   | 'expiresAt'
-  | 'planId'
   | 'createdAt'
   | 'updatedAt',
   ExtArgs['result']['promoCode']
@@ -1055,22 +720,17 @@ export type PromoCodeInclude<
   ExtArgs extends runtime.Types.Extensions.InternalArgs =
     runtime.Types.Extensions.DefaultArgs,
 > = {
-  plan?: boolean | Prisma.SubscriptionPlanDefaultArgs<ExtArgs>;
   usedBy?: boolean | Prisma.PromoCode$usedByArgs<ExtArgs>;
   _count?: boolean | Prisma.PromoCodeCountOutputTypeDefaultArgs<ExtArgs>;
 };
 export type PromoCodeIncludeCreateManyAndReturn<
   ExtArgs extends runtime.Types.Extensions.InternalArgs =
     runtime.Types.Extensions.DefaultArgs,
-> = {
-  plan?: boolean | Prisma.SubscriptionPlanDefaultArgs<ExtArgs>;
-};
+> = {};
 export type PromoCodeIncludeUpdateManyAndReturn<
   ExtArgs extends runtime.Types.Extensions.InternalArgs =
     runtime.Types.Extensions.DefaultArgs,
-> = {
-  plan?: boolean | Prisma.SubscriptionPlanDefaultArgs<ExtArgs>;
-};
+> = {};
 
 export type $PromoCodePayload<
   ExtArgs extends runtime.Types.Extensions.InternalArgs =
@@ -1078,19 +738,16 @@ export type $PromoCodePayload<
 > = {
   name: 'PromoCode';
   objects: {
-    plan: Prisma.$SubscriptionPlanPayload<ExtArgs>;
     usedBy: Prisma.$UserSubscriptionPayload<ExtArgs>[];
   };
   scalars: runtime.Types.Extensions.GetPayloadResult<
     {
       id: string;
-      stripeCouponId: string;
+      stripeCouponId: string | null;
       code: string;
-      discount: number | null;
-      freeMonths: number | null;
+      freeDays: number;
       maxRedemptions: number | null;
       expiresAt: Date | null;
-      planId: string;
       createdAt: Date;
       updatedAt: Date;
     },
@@ -1643,20 +1300,6 @@ export interface Prisma__PromoCodeClient<
   GlobalOmitOptions = {},
 > extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: 'PrismaPromise';
-  plan<T extends Prisma.SubscriptionPlanDefaultArgs<ExtArgs> = {}>(
-    args?: Prisma.Subset<T, Prisma.SubscriptionPlanDefaultArgs<ExtArgs>>,
-  ): Prisma.Prisma__SubscriptionPlanClient<
-    | runtime.Types.Result.GetResult<
-        Prisma.$SubscriptionPlanPayload<ExtArgs>,
-        T,
-        'findUniqueOrThrow',
-        GlobalOmitOptions
-      >
-    | Null,
-    Null,
-    ExtArgs,
-    GlobalOmitOptions
-  >;
   usedBy<T extends Prisma.PromoCode$usedByArgs<ExtArgs> = {}>(
     args?: Prisma.Subset<T, Prisma.PromoCode$usedByArgs<ExtArgs>>,
   ): Prisma.PrismaPromise<
@@ -1713,11 +1356,9 @@ export interface PromoCodeFieldRefs {
   readonly id: Prisma.FieldRef<'PromoCode', 'String'>;
   readonly stripeCouponId: Prisma.FieldRef<'PromoCode', 'String'>;
   readonly code: Prisma.FieldRef<'PromoCode', 'String'>;
-  readonly discount: Prisma.FieldRef<'PromoCode', 'Float'>;
-  readonly freeMonths: Prisma.FieldRef<'PromoCode', 'Int'>;
+  readonly freeDays: Prisma.FieldRef<'PromoCode', 'Int'>;
   readonly maxRedemptions: Prisma.FieldRef<'PromoCode', 'Int'>;
   readonly expiresAt: Prisma.FieldRef<'PromoCode', 'DateTime'>;
-  readonly planId: Prisma.FieldRef<'PromoCode', 'String'>;
   readonly createdAt: Prisma.FieldRef<'PromoCode', 'DateTime'>;
   readonly updatedAt: Prisma.FieldRef<'PromoCode', 'DateTime'>;
 }
@@ -2007,10 +1648,6 @@ export type PromoCodeCreateManyAndReturnArgs<
    */
   data: Prisma.PromoCodeCreateManyInput | Prisma.PromoCodeCreateManyInput[];
   skipDuplicates?: boolean;
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.PromoCodeIncludeCreateManyAndReturn<ExtArgs> | null;
 };
 
 /**
@@ -2099,10 +1736,6 @@ export type PromoCodeUpdateManyAndReturnArgs<
    * Limit how many PromoCodes to update.
    */
   limit?: number;
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.PromoCodeIncludeUpdateManyAndReturn<ExtArgs> | null;
 };
 
 /**
