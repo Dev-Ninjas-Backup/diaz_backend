@@ -669,7 +669,6 @@ export const PromoCodeScalarFieldEnum = {
   stripeCouponId: 'stripeCouponId',
   code: 'code',
   freeDays: 'freeDays',
-  discount: 'discount',
   maxRedemptions: 'maxRedemptions',
   expiresAt: 'expiresAt',
   createdAt: 'createdAt',

@@ -89,8 +89,6 @@ model PromoCode {
   code     String @unique
   freeDays Int @default(30)
 
-  discount Float @default(100) // percentage discount (0-100)
-
   maxRedemptions Int? // limit number of uses
   expiresAt      DateTime?
 

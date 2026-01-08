@@ -28,13 +28,11 @@ export type AggregatePromoCode = {
 
 export type PromoCodeAvgAggregateOutputType = {
   freeDays: number | null;
-  discount: number | null;
   maxRedemptions: number | null;
 };
 
 export type PromoCodeSumAggregateOutputType = {
   freeDays: number | null;
-  discount: number | null;
   maxRedemptions: number | null;
 };
 
@@ -43,7 +41,6 @@ export type PromoCodeMinAggregateOutputType = {
   stripeCouponId: string | null;
   code: string | null;
   freeDays: number | null;
-  discount: number | null;
   maxRedemptions: number | null;
   expiresAt: Date | null;
   createdAt: Date | null;
@@ -55,7 +52,6 @@ export type PromoCodeMaxAggregateOutputType = {
   stripeCouponId: string | null;
   code: string | null;
   freeDays: number | null;
-  discount: number | null;
   maxRedemptions: number | null;
   expiresAt: Date | null;
   createdAt: Date | null;
@@ -67,7 +63,6 @@ export type PromoCodeCountAggregateOutputType = {
   stripeCouponId: number;
   code: number;
   freeDays: number;
-  discount: number;
   maxRedemptions: number;
   expiresAt: number;
   createdAt: number;
@@ -77,13 +72,11 @@ export type PromoCodeCountAggregateOutputType = {
 
 export type PromoCodeAvgAggregateInputType = {
   freeDays?: true;
-  discount?: true;
   maxRedemptions?: true;
 };
 
 export type PromoCodeSumAggregateInputType = {
   freeDays?: true;
-  discount?: true;
   maxRedemptions?: true;
 };
 
@@ -92,7 +85,6 @@ export type PromoCodeMinAggregateInputType = {
   stripeCouponId?: true;
   code?: true;
   freeDays?: true;
-  discount?: true;
   maxRedemptions?: true;
   expiresAt?: true;
   createdAt?: true;
@@ -104,7 +96,6 @@ export type PromoCodeMaxAggregateInputType = {
   stripeCouponId?: true;
   code?: true;
   freeDays?: true;
-  discount?: true;
   maxRedemptions?: true;
   expiresAt?: true;
   createdAt?: true;
@@ -116,7 +107,6 @@ export type PromoCodeCountAggregateInputType = {
   stripeCouponId?: true;
   code?: true;
   freeDays?: true;
-  discount?: true;
   maxRedemptions?: true;
   expiresAt?: true;
   createdAt?: true;
@@ -222,7 +212,6 @@ export type PromoCodeGroupByOutputType = {
   stripeCouponId: string | null;
   code: string;
   freeDays: number;
-  discount: number;
   maxRedemptions: number | null;
   expiresAt: Date | null;
   createdAt: Date;
@@ -255,7 +244,6 @@ export type PromoCodeWhereInput = {
   stripeCouponId?: Prisma.StringNullableFilter<'PromoCode'> | string | null;
   code?: Prisma.StringFilter<'PromoCode'> | string;
   freeDays?: Prisma.IntFilter<'PromoCode'> | number;
-  discount?: Prisma.FloatFilter<'PromoCode'> | number;
   maxRedemptions?: Prisma.IntNullableFilter<'PromoCode'> | number | null;
   expiresAt?: Prisma.DateTimeNullableFilter<'PromoCode'> | Date | string | null;
   createdAt?: Prisma.DateTimeFilter<'PromoCode'> | Date | string;
@@ -268,7 +256,6 @@ export type PromoCodeOrderByWithRelationInput = {
   stripeCouponId?: Prisma.SortOrderInput | Prisma.SortOrder;
   code?: Prisma.SortOrder;
   freeDays?: Prisma.SortOrder;
-  discount?: Prisma.SortOrder;
   maxRedemptions?: Prisma.SortOrderInput | Prisma.SortOrder;
   expiresAt?: Prisma.SortOrderInput | Prisma.SortOrder;
   createdAt?: Prisma.SortOrder;
@@ -285,7 +272,6 @@ export type PromoCodeWhereUniqueInput = Prisma.AtLeast<
     OR?: Prisma.PromoCodeWhereInput[];
     NOT?: Prisma.PromoCodeWhereInput | Prisma.PromoCodeWhereInput[];
     freeDays?: Prisma.IntFilter<'PromoCode'> | number;
-    discount?: Prisma.FloatFilter<'PromoCode'> | number;
     maxRedemptions?: Prisma.IntNullableFilter<'PromoCode'> | number | null;
     expiresAt?:
       | Prisma.DateTimeNullableFilter<'PromoCode'>
@@ -304,7 +290,6 @@ export type PromoCodeOrderByWithAggregationInput = {
   stripeCouponId?: Prisma.SortOrderInput | Prisma.SortOrder;
   code?: Prisma.SortOrder;
   freeDays?: Prisma.SortOrder;
-  discount?: Prisma.SortOrder;
   maxRedemptions?: Prisma.SortOrderInput | Prisma.SortOrder;
   expiresAt?: Prisma.SortOrderInput | Prisma.SortOrder;
   createdAt?: Prisma.SortOrder;
@@ -331,7 +316,6 @@ export type PromoCodeScalarWhereWithAggregatesInput = {
     | null;
   code?: Prisma.StringWithAggregatesFilter<'PromoCode'> | string;
   freeDays?: Prisma.IntWithAggregatesFilter<'PromoCode'> | number;
-  discount?: Prisma.FloatWithAggregatesFilter<'PromoCode'> | number;
   maxRedemptions?:
     | Prisma.IntNullableWithAggregatesFilter<'PromoCode'>
     | number
@@ -350,7 +334,6 @@ export type PromoCodeCreateInput = {
   stripeCouponId?: string | null;
   code: string;
   freeDays?: number;
-  discount?: number;
   maxRedemptions?: number | null;
   expiresAt?: Date | string | null;
   createdAt?: Date | string;
@@ -363,7 +346,6 @@ export type PromoCodeUncheckedCreateInput = {
   stripeCouponId?: string | null;
   code: string;
   freeDays?: number;
-  discount?: number;
   maxRedemptions?: number | null;
   expiresAt?: Date | string | null;
   createdAt?: Date | string;
@@ -379,7 +361,6 @@ export type PromoCodeUpdateInput = {
     | null;
   code?: Prisma.StringFieldUpdateOperationsInput | string;
   freeDays?: Prisma.IntFieldUpdateOperationsInput | number;
-  discount?: Prisma.FloatFieldUpdateOperationsInput | number;
   maxRedemptions?: Prisma.NullableIntFieldUpdateOperationsInput | number | null;
   expiresAt?:
     | Prisma.NullableDateTimeFieldUpdateOperationsInput
@@ -399,7 +380,6 @@ export type PromoCodeUncheckedUpdateInput = {
     | null;
   code?: Prisma.StringFieldUpdateOperationsInput | string;
   freeDays?: Prisma.IntFieldUpdateOperationsInput | number;
-  discount?: Prisma.FloatFieldUpdateOperationsInput | number;
   maxRedemptions?: Prisma.NullableIntFieldUpdateOperationsInput | number | null;
   expiresAt?:
     | Prisma.NullableDateTimeFieldUpdateOperationsInput
@@ -416,7 +396,6 @@ export type PromoCodeCreateManyInput = {
   stripeCouponId?: string | null;
   code: string;
   freeDays?: number;
-  discount?: number;
   maxRedemptions?: number | null;
   expiresAt?: Date | string | null;
   createdAt?: Date | string;
@@ -431,7 +410,6 @@ export type PromoCodeUpdateManyMutationInput = {
     | null;
   code?: Prisma.StringFieldUpdateOperationsInput | string;
   freeDays?: Prisma.IntFieldUpdateOperationsInput | number;
-  discount?: Prisma.FloatFieldUpdateOperationsInput | number;
   maxRedemptions?: Prisma.NullableIntFieldUpdateOperationsInput | number | null;
   expiresAt?:
     | Prisma.NullableDateTimeFieldUpdateOperationsInput
@@ -450,7 +428,6 @@ export type PromoCodeUncheckedUpdateManyInput = {
     | null;
   code?: Prisma.StringFieldUpdateOperationsInput | string;
   freeDays?: Prisma.IntFieldUpdateOperationsInput | number;
-  discount?: Prisma.FloatFieldUpdateOperationsInput | number;
   maxRedemptions?: Prisma.NullableIntFieldUpdateOperationsInput | number | null;
   expiresAt?:
     | Prisma.NullableDateTimeFieldUpdateOperationsInput
@@ -471,7 +448,6 @@ export type PromoCodeCountOrderByAggregateInput = {
   stripeCouponId?: Prisma.SortOrder;
   code?: Prisma.SortOrder;
   freeDays?: Prisma.SortOrder;
-  discount?: Prisma.SortOrder;
   maxRedemptions?: Prisma.SortOrder;
   expiresAt?: Prisma.SortOrder;
   createdAt?: Prisma.SortOrder;
@@ -480,7 +456,6 @@ export type PromoCodeCountOrderByAggregateInput = {
 
 export type PromoCodeAvgOrderByAggregateInput = {
   freeDays?: Prisma.SortOrder;
-  discount?: Prisma.SortOrder;
   maxRedemptions?: Prisma.SortOrder;
 };
 
@@ -489,7 +464,6 @@ export type PromoCodeMaxOrderByAggregateInput = {
   stripeCouponId?: Prisma.SortOrder;
   code?: Prisma.SortOrder;
   freeDays?: Prisma.SortOrder;
-  discount?: Prisma.SortOrder;
   maxRedemptions?: Prisma.SortOrder;
   expiresAt?: Prisma.SortOrder;
   createdAt?: Prisma.SortOrder;
@@ -501,7 +475,6 @@ export type PromoCodeMinOrderByAggregateInput = {
   stripeCouponId?: Prisma.SortOrder;
   code?: Prisma.SortOrder;
   freeDays?: Prisma.SortOrder;
-  discount?: Prisma.SortOrder;
   maxRedemptions?: Prisma.SortOrder;
   expiresAt?: Prisma.SortOrder;
   createdAt?: Prisma.SortOrder;
@@ -510,7 +483,6 @@ export type PromoCodeMinOrderByAggregateInput = {
 
 export type PromoCodeSumOrderByAggregateInput = {
   freeDays?: Prisma.SortOrder;
-  discount?: Prisma.SortOrder;
   maxRedemptions?: Prisma.SortOrder;
 };
 
@@ -547,7 +519,6 @@ export type PromoCodeCreateWithoutUsedByInput = {
   stripeCouponId?: string | null;
   code: string;
   freeDays?: number;
-  discount?: number;
   maxRedemptions?: number | null;
   expiresAt?: Date | string | null;
   createdAt?: Date | string;
@@ -559,7 +530,6 @@ export type PromoCodeUncheckedCreateWithoutUsedByInput = {
   stripeCouponId?: string | null;
   code: string;
   freeDays?: number;
-  discount?: number;
   maxRedemptions?: number | null;
   expiresAt?: Date | string | null;
   createdAt?: Date | string;
@@ -602,7 +572,6 @@ export type PromoCodeUpdateWithoutUsedByInput = {
     | null;
   code?: Prisma.StringFieldUpdateOperationsInput | string;
   freeDays?: Prisma.IntFieldUpdateOperationsInput | number;
-  discount?: Prisma.FloatFieldUpdateOperationsInput | number;
   maxRedemptions?: Prisma.NullableIntFieldUpdateOperationsInput | number | null;
   expiresAt?:
     | Prisma.NullableDateTimeFieldUpdateOperationsInput
@@ -621,7 +590,6 @@ export type PromoCodeUncheckedUpdateWithoutUsedByInput = {
     | null;
   code?: Prisma.StringFieldUpdateOperationsInput | string;
   freeDays?: Prisma.IntFieldUpdateOperationsInput | number;
-  discount?: Prisma.FloatFieldUpdateOperationsInput | number;
   maxRedemptions?: Prisma.NullableIntFieldUpdateOperationsInput | number | null;
   expiresAt?:
     | Prisma.NullableDateTimeFieldUpdateOperationsInput
@@ -679,7 +647,6 @@ export type PromoCodeSelect<
     stripeCouponId?: boolean;
     code?: boolean;
     freeDays?: boolean;
-    discount?: boolean;
     maxRedemptions?: boolean;
     expiresAt?: boolean;
     createdAt?: boolean;
@@ -699,7 +666,6 @@ export type PromoCodeSelectCreateManyAndReturn<
     stripeCouponId?: boolean;
     code?: boolean;
     freeDays?: boolean;
-    discount?: boolean;
     maxRedemptions?: boolean;
     expiresAt?: boolean;
     createdAt?: boolean;
@@ -717,7 +683,6 @@ export type PromoCodeSelectUpdateManyAndReturn<
     stripeCouponId?: boolean;
     code?: boolean;
     freeDays?: boolean;
-    discount?: boolean;
     maxRedemptions?: boolean;
     expiresAt?: boolean;
     createdAt?: boolean;
@@ -731,7 +696,6 @@ export type PromoCodeSelectScalar = {
   stripeCouponId?: boolean;
   code?: boolean;
   freeDays?: boolean;
-  discount?: boolean;
   maxRedemptions?: boolean;
   expiresAt?: boolean;
   createdAt?: boolean;
@@ -746,7 +710,6 @@ export type PromoCodeOmit<
   | 'stripeCouponId'
   | 'code'
   | 'freeDays'
-  | 'discount'
   | 'maxRedemptions'
   | 'expiresAt'
   | 'createdAt'
@@ -783,7 +746,6 @@ export type $PromoCodePayload<
       stripeCouponId: string | null;
       code: string;
       freeDays: number;
-      discount: number;
       maxRedemptions: number | null;
       expiresAt: Date | null;
       createdAt: Date;
@@ -1395,7 +1357,6 @@ export interface PromoCodeFieldRefs {
   readonly stripeCouponId: Prisma.FieldRef<'PromoCode', 'String'>;
   readonly code: Prisma.FieldRef<'PromoCode', 'String'>;
   readonly freeDays: Prisma.FieldRef<'PromoCode', 'Int'>;
-  readonly discount: Prisma.FieldRef<'PromoCode', 'Float'>;
   readonly maxRedemptions: Prisma.FieldRef<'PromoCode', 'Int'>;
   readonly expiresAt: Prisma.FieldRef<'PromoCode', 'DateTime'>;
   readonly createdAt: Prisma.FieldRef<'PromoCode', 'DateTime'>;

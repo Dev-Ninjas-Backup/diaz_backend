@@ -111,7 +111,6 @@ export class SubscriptionPlanService implements OnModuleInit {
         data: {
           code: item.code,
           freeDays: item.freeDays,
-          discount: 100,
         },
       });
 
