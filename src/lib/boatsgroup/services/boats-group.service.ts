@@ -24,7 +24,7 @@ export class BoatsGroupService {
 
   constructor(private readonly config: ConfigService) {
     this.apiBoatsKey = this.config.getOrThrow<string>(ENVEnum.API_BOATS_KEY);
-    this.apiBoatsBaseUrl = `https://api.boats.com/inventory/search?key=${this.apiBoatsKey}&sort=LastModificationDate|desc`;
+    this.apiBoatsBaseUrl = `https://api.boats.com/inventory/search?key=${this.apiBoatsKey}&salesstatus=active&sort=LastModificationDate|desc`;
     this.serviceBoatsKey = this.config.getOrThrow<string>(
       ENVEnum.SERVICE_BOATS_KEY,
     );
