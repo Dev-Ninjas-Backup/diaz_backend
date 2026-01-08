@@ -1,3 +1,4 @@
+import { PaginationDto } from '@/common/dto/pagination.dto';
 import { ValidateSuperAdmin } from '@/common/jwt/jwt.decorator';
 import {
   Body,
@@ -9,12 +10,15 @@ import {
   Post,
   Query,
 } from '@nestjs/common';
-import { ApiOperation, ApiTags } from '@nestjs/swagger';
+import { ApiBearerAuth, ApiOperation, ApiTags } from '@nestjs/swagger';
+import { PromoCodeQueryDto } from './dto/promo-code-query.dto';
 import { CreatePromoCodeDto, UpdatePromoCodeDto } from './dto/promo-code.dto';
+import { SubscriptionQueryDto } from './dto/subscription-query.dto';
 import { AdminPromoCodeService } from './services/admin-promo-code.service';
 import { AdminSubscriptionService } from './services/admin-subscription.service';
 
 @ApiTags('Admin -- Subscription Management')
+@ApiBearerAuth()
 @Controller('admin/subscriptions')
 @ValidateSuperAdmin()
 export class AdminSubscriptionController {
@@ -23,15 +27,10 @@ export class AdminSubscriptionController {
     private readonly promoCodeService: AdminPromoCodeService,
   ) {}
 
-  // --- Subscription Endpoints ---
-
   @Get()
   @ApiOperation({ summary: 'Get all user subscriptions' })
-  getAllSubscriptions(
-    @Query('status') status?: string,
-    @Query('userId') userId?: string,
-  ) {
-    return this.subscriptionService.getAllSubscriptions({ status, userId });
+  getAllSubscriptions(@Query() query: SubscriptionQueryDto) {
+    return this.subscriptionService.getAllSubscriptions(query);
   }
 
   @Get(':id')
@@ -42,16 +41,14 @@ export class AdminSubscriptionController {
 
   @Get('plans/all')
   @ApiOperation({ summary: 'Get all subscription plans' })
-  getAllPlans() {
-    return this.subscriptionService.getAllPlans();
+  getAllPlans(@Query() query: PaginationDto) {
+    return this.subscriptionService.getAllPlans(query);
   }
-
-  // --- Promo Code Endpoints ---
 
   @Get('promo-codes/all')
   @ApiOperation({ summary: 'Get all promo codes' })
-  getAllPromoCodes() {
-    return this.promoCodeService.getAllPromoCodes();
+  getAllPromoCodes(@Query() query: PromoCodeQueryDto) {
+    return this.promoCodeService.getAllPromoCodes(query);
   }
 
   @Post('promo-codes')

@@ -8,12 +8,13 @@ import {
 } from 'class-validator';
 
 export class CreatePromoCodeDto {
-  @ApiProperty({ description: 'The promo code string' })
+  @ApiProperty({ description: 'The promo code string', example: 'FREE30' })
   @IsString()
   code: string;
 
   @ApiProperty({
     description: 'Number of free days provided by this code',
+    example: 30,
   })
   @IsNumber()
   @Min(0)
@@ -21,21 +22,20 @@ export class CreatePromoCodeDto {
 
   @ApiPropertyOptional({
     description: 'Maximum number of times this code can be used',
+    example: 100,
   })
   @IsOptional()
   @IsNumber()
   @Min(1)
   maxRedemptions?: number;
 
-  @ApiPropertyOptional({ description: 'Expiration date of the promo code' })
+  @ApiPropertyOptional({
+    description: 'Expiration date of the promo code',
+    example: '2024-12-31T23:59:59Z',
+  })
   @IsOptional()
   @IsDateString()
   expiresAt?: string;
-
-  @ApiPropertyOptional({ description: 'Stripe Coupon ID' })
-  @IsOptional()
-  @IsString()
-  stripeCouponId?: string;
 }
 
 export class UpdatePromoCodeDto extends PartialType(CreatePromoCodeDto) {}
