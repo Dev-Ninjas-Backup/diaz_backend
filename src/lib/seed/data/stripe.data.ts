@@ -64,20 +64,21 @@ export enum PromoCode {
 export const couponSeedData = [
   {
     code: PromoCode.GOLD10,
-    discount: 100,
-    freeMonths: 1,
-    planType: PlanType.GOLD,
+    freeDays: 30,
   },
   {
     code: PromoCode.PLAT20,
-    discount: 100,
-    freeMonths: 2,
-    planType: PlanType.PLATINUM,
+    freeDays: 60,
   },
   {
     code: PromoCode.DIAM30,
-    discount: 100,
-    freeMonths: 2,
-    planType: PlanType.DIAMOND,
+    freeDays: 60,
   },
 ];
+
+export const freeCouponSeedData = [30, 60, 90, 120, 150, 180, 360].map(
+  (days) => ({
+    code: `FREE${days}`,
+    freeDays: days,
+  }),
+);
