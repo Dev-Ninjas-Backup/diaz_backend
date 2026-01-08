@@ -24,7 +24,6 @@ model SubscriptionPlan {
 
   // Relations
   userSubscriptions UserSubscription[]
-  promoCodes        PromoCode[]
   users             User[]
 
   @@map("subscription_plans")
@@ -85,16 +84,13 @@ enum SubscriptionStatus {
 model PromoCode {
   id String @id @default(uuid())
 
-  stripeCouponId String @unique
+  stripeCouponId String? @unique // Stripe coupon id if created in Stripe
 
-  code           String    @unique
-  discount       Float? // Percentage discount
-  freeMonths     Int? // free months applied on subscription
+  code     String @unique
+  freeDays Int @default(30)
+
   maxRedemptions Int? // limit number of uses
   expiresAt      DateTime?
-
-  planId String
-  plan   SubscriptionPlan @relation(fields: [planId], references: [id], onDelete: Cascade)
 
   usedBy UserSubscription[] // Track which users used this code
 

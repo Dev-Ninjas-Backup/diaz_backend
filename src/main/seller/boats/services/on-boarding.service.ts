@@ -48,10 +48,19 @@ export class OnBoardingService {
     const { user, listing } = result;
 
     // Create subscription setup intent
-    const setupIntent = await this.createSubscriptionSetupIntent(user, plan);
+    const setupIntent = await this.createSubscriptionSetupIntent(
+      user,
+      plan,
+      data.promoCode,
+    );
 
     // Persist subscription
-    await this.createPendingSubscription(user.id, plan.id, setupIntent.id);
+    await this.createPendingSubscription(
+      user.id,
+      plan.id,
+      setupIntent.id,
+      data.promoCode,
+    );
 
     // Emit all events
     await this.boatListingHelper.emitAllBoatEvents(
@@ -137,7 +146,11 @@ export class OnBoardingService {
     });
   }
 
-  private async createSubscriptionSetupIntent(user: any, plan: any) {
+  private async createSubscriptionSetupIntent(
+    user: any,
+    plan: any,
+    promoCode?: string,
+  ) {
     return await this.stripe.createSetupIntent({
       type: 'onboarding_subscription',
       userId: user.id,
@@ -148,6 +161,7 @@ export class OnBoardingService {
       priceCents: plan.price * 100,
       stripeProductId: plan.stripeProductId,
       stripePriceId: plan.stripePriceId,
+      promoCode,
     });
   }
 
@@ -155,13 +169,24 @@ export class OnBoardingService {
     userId: string,
     planId: string,
     setupIntentId: string,
+    promoCode?: string,
   ) {
+    // find promo code id if exists
+    let promoCodeId: string | undefined;
+    if (promoCode) {
+      const dbPromo = await this.prisma.client.promoCode.findUnique({
+        where: { code: promoCode },
+      });
+      promoCodeId = dbPromo?.id;
+    }
+
     const subscription = await this.prisma.client.userSubscription.create({
       data: {
         user: { connect: { id: userId } },
         plan: { connect: { id: planId } },
         stripeTransactionId: setupIntentId,
         status: 'PENDING',
+        promoCode: promoCodeId ? { connect: { id: promoCodeId } } : undefined,
       },
     });
 
