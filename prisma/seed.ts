@@ -18,11 +18,14 @@ async function main() {
 
   // Clear existing data (optional - comment out if you want to keep existing data)
   console.log('🧹 Cleaning existing data...');
+  // Delete in proper order to avoid foreign key constraint errors
   await prisma.invoice.deleteMany();
   await prisma.userSubscription.deleteMany();
   await prisma.promoCode.deleteMany();
   await prisma.floridaLead.deleteMany();
   await prisma.contact.deleteMany();
+  await prisma.contactUs.deleteMany();
+  await prisma.contactInfo.deleteMany();
   await prisma.boatImage.deleteMany();
   await prisma.boatEngine.deleteMany();
   await prisma.boats.deleteMany();
@@ -38,6 +41,15 @@ async function main() {
   await prisma.contactPage.deleteMany();
   await prisma.privacyPolicy.deleteMany();
   await prisma.termsOfServices.deleteMany();
+  await prisma.footerSettings.deleteMany();
+  await prisma.emailSubscription.deleteMany();
+  await prisma.fAQ.deleteMany();
+  await prisma.whyUs.deleteMany();
+  await prisma.ourStory.deleteMany();
+  await prisma.missionVision.deleteMany();
+  await prisma.whatSetsUsApart.deleteMany();
+  await prisma.ourTeam.deleteMany();
+  await prisma.category.deleteMany();
   await prisma.setting.deleteMany();
   await prisma.fileInstance.deleteMany();
   await prisma.boatSpecification.deleteMany();
@@ -120,11 +132,9 @@ async function main() {
     data: {
       stripeCouponId: 'coupon_welcome_' + Date.now(),
       code: 'WELCOME10',
-      discount: 10,
-      freeMonths: null,
+      freeDays: 10,
       maxRedemptions: 100,
       expiresAt: new Date(Date.now() + 90 * 24 * 60 * 60 * 1000), // 90 days from now
-      planId: goldPlan.id,
     },
   });
 
@@ -132,11 +142,9 @@ async function main() {
     data: {
       stripeCouponId: 'coupon_trial_' + Date.now(),
       code: 'TRIAL1MONTH',
-      discount: null,
-      freeMonths: 1,
+      freeDays: 30,
       maxRedemptions: 50,
       expiresAt: new Date(Date.now() + 30 * 24 * 60 * 60 * 1000), // 30 days from now
-      planId: platinumPlan.id,
     },
   });
 
@@ -144,11 +152,9 @@ async function main() {
     data: {
       stripeCouponId: 'coupon_diamond_' + Date.now(),
       code: 'DIAMOND20',
-      discount: 20,
-      freeMonths: null,
+      freeDays: 20,
       maxRedemptions: 25,
       expiresAt: new Date(Date.now() + 60 * 24 * 60 * 60 * 1000),
-      planId: diamondPlan.id,
     },
   });
 
@@ -156,11 +162,9 @@ async function main() {
     data: {
       stripeCouponId: 'coupon_summer_' + Date.now(),
       code: 'SUMMER2024',
-      discount: 15,
-      freeMonths: null,
+      freeDays: 15,
       maxRedemptions: 200,
       expiresAt: new Date(Date.now() + 120 * 24 * 60 * 60 * 1000),
-      planId: platinumPlan.id,
     },
   });
 
@@ -1715,7 +1719,7 @@ async function main() {
   await prisma.setting.create({
     data: {
       siteName: 'Diaz Boats',
-      currency: 'USD',
+      currency: 'USD', // This is now an enum value
       maintenanceMode: false,
       logoId: logoFile.id,
       newListingSubmitted: true,
@@ -1878,12 +1882,20 @@ async function main() {
         aboutTitle: 'About Diaz Boats',
         aboutDescription:
           'Your trusted partner in boat sales. We connect buyers and sellers of premium boats and yachts.',
+        mission:
+          'Our mission is to provide the best boat buying and selling experience through our trusted marketplace platform.',
+        vision:
+          'To become the leading platform for boat sales in Florida and beyond, connecting passionate boaters worldwide.',
       },
       {
         site: 'JUPITER',
         aboutTitle: 'About Jupiter Boats',
         aboutDescription:
           'Your trusted partner in boat sales. We connect buyers and sellers of premium boats and yachts.',
+        mission:
+          'Our mission is to provide the best boat buying and selling experience through our trusted marketplace platform.',
+        vision:
+          'To become the leading platform for boat sales in Jupiter and beyond, connecting passionate boaters worldwide.',
       },
     ],
   });
@@ -2066,7 +2078,335 @@ async function main() {
     ],
   });
 
-  // 28. Create Featured Yachts
+  // 28. Create Categories
+  console.log('🏷️ Creating categories...');
+  const category1 = await prisma.category.create({
+    data: {
+      title: 'Sport Boats',
+      imageId: boatImage1.id,
+    },
+  });
+
+  const category2 = await prisma.category.create({
+    data: {
+      title: 'Fishing Boats',
+      imageId: boatImage2.id,
+    },
+  });
+
+  const category3 = await prisma.category.create({
+    data: {
+      title: 'Luxury Yachts',
+      imageId: boatImage3.id,
+    },
+  });
+
+  // 29. Create Our Team Members
+  console.log('👥 Creating team members...');
+  await prisma.ourTeam.createMany({
+    data: [
+      {
+        name: 'John Smith',
+        designation: 'CEO & Founder',
+        imageId: logoFile.id,
+        order: 1,
+        isActive: true,
+      },
+      {
+        name: 'Sarah Johnson',
+        designation: 'Sales Manager',
+        imageId: logoFile.id,
+        order: 2,
+        isActive: true,
+      },
+      {
+        name: 'Mike Davis',
+        designation: 'Marine Specialist',
+        imageId: logoFile.id,
+        order: 3,
+        isActive: true,
+      },
+    ],
+  });
+
+  // 30. Create Footer Settings
+  console.log('🦶 Creating footer settings...');
+  await prisma.footerSettings.createMany({
+    data: [
+      {
+        site: 'FLORIDA',
+        companyName: 'Diaz Boats',
+        companyDescription:
+          'Your trusted partner in finding the perfect boat. We connect buyers and sellers across Florida.',
+        quickLinks: [
+          { label: 'Home', url: '/' },
+          { label: 'Search Boats', url: '/boats' },
+          { label: 'About Us', url: '/about' },
+          { label: 'Contact', url: '/contact' },
+        ],
+        policyLinks: [
+          { label: 'Privacy Policy', url: '/privacy' },
+          { label: 'Terms of Service', url: '/terms' },
+        ],
+        phone: '+1 (555) 123-4567',
+        email: 'info@diazboats.com',
+        socialMediaLinks: [
+          {
+            platform: 'Facebook',
+            url: 'https://facebook.com',
+            icon: 'facebook',
+          },
+          {
+            platform: 'Instagram',
+            url: 'https://instagram.com',
+            icon: 'instagram',
+          },
+          { platform: 'Twitter', url: 'https://twitter.com', icon: 'twitter' },
+        ],
+        copyrightText: '© Copyright 2025 by Diaz Boats. All rights reserved.',
+      },
+      {
+        site: 'JUPITER',
+        companyName: 'Jupiter Marine Sales',
+        companyDescription:
+          'Your trusted partner in finding the perfect boat. We connect buyers and sellers across Jupiter.',
+        quickLinks: [
+          { label: 'Home', url: '/' },
+          { label: 'Search Boats', url: '/boats' },
+          { label: 'About Us', url: '/about' },
+          { label: 'Contact', url: '/contact' },
+        ],
+        policyLinks: [
+          { label: 'Privacy Policy', url: '/privacy' },
+          { label: 'Terms of Service', url: '/terms' },
+        ],
+        phone: '+1 (555) 987-6543',
+        email: 'info@jupitermarinesales.com',
+        socialMediaLinks: [
+          {
+            platform: 'Facebook',
+            url: 'https://facebook.com',
+            icon: 'facebook',
+          },
+          {
+            platform: 'Instagram',
+            url: 'https://instagram.com',
+            icon: 'instagram',
+          },
+          { platform: 'Twitter', url: 'https://twitter.com', icon: 'twitter' },
+        ],
+        copyrightText:
+          '© Copyright 2025 by Jupiter Marine Sales. All rights reserved.',
+      },
+    ],
+  });
+
+  // 31. Create Email Subscriptions (sample data)
+  console.log('📧 Creating email subscriptions...');
+  await prisma.emailSubscription.createMany({
+    data: [
+      {
+        email: 'subscriber1@example.com',
+        site: 'FLORIDA',
+        isActive: true,
+      },
+      {
+        email: 'subscriber2@example.com',
+        site: 'FLORIDA',
+        isActive: true,
+      },
+      {
+        email: 'subscriber3@example.com',
+        site: 'JUPITER',
+        isActive: true,
+      },
+    ],
+  });
+
+  // 32. Create FAQs
+  console.log('❓ Creating FAQs...');
+  await prisma.fAQ.createMany({
+    data: [
+      {
+        site: 'FLORIDA',
+        title: 'Frequently Asked Questions',
+        subtitle:
+          'Find answers to common questions about buying and selling boats',
+        questions: [
+          {
+            question: 'How do I list my boat for sale?',
+            answer:
+              'Simply create a seller account, choose a subscription plan, and submit your boat listing with photos and details.',
+          },
+          {
+            question: 'What payment methods do you accept?',
+            answer:
+              'We accept all major credit cards through our secure Stripe payment gateway.',
+          },
+          {
+            question: 'How long does it take to get approved?',
+            answer:
+              'Most listings are reviewed and approved within 24-48 hours.',
+          },
+        ],
+      },
+      {
+        site: 'JUPITER',
+        title: 'Frequently Asked Questions',
+        subtitle:
+          'Find answers to common questions about buying and selling boats',
+        questions: [
+          {
+            question: 'How do I list my boat for sale?',
+            answer:
+              'Simply create a seller account, choose a subscription plan, and submit your boat listing with photos and details.',
+          },
+          {
+            question: 'What payment methods do you accept?',
+            answer:
+              'We accept all major credit cards through our secure Stripe payment gateway.',
+          },
+          {
+            question: 'How long does it take to get approved?',
+            answer:
+              'Most listings are reviewed and approved within 24-48 hours.',
+          },
+        ],
+      },
+    ],
+  });
+
+  // 33. Create Why Us Section
+  console.log('💡 Creating Why Us section...');
+  await prisma.whyUs.createMany({
+    data: [
+      {
+        site: 'FLORIDA',
+        title: 'Why Choose Diaz Boats',
+        description:
+          'We provide the best platform for buying and selling boats in Florida with unmatched service and expertise.',
+        excellence: '15+ Years',
+        boatsSoldPerYear: '500+',
+        listingViewed: '2M+',
+        buttonText: 'Learn More',
+        buttonLink: '/about',
+        image1Id: boatImage1.id,
+        image2Id: boatImage2.id,
+        image3Id: boatImage3.id,
+      },
+      {
+        site: 'JUPITER',
+        title: 'Why Choose Jupiter Marine Sales',
+        description:
+          'We provide the best platform for buying and selling boats in Jupiter with unmatched service and expertise.',
+        excellence: '15+ Years',
+        boatsSoldPerYear: '500+',
+        listingViewed: '2M+',
+        buttonText: 'Learn More',
+        buttonLink: '/about',
+        image1Id: boatImage4.id,
+        image2Id: boatImage5.id,
+        image3Id: boatImage6.id,
+      },
+    ],
+  });
+
+  // 34. Create Contact Info
+  console.log('📱 Creating contact info...');
+  // Create separate background images for contact info
+  const contactInfoBgFlorida = await prisma.fileInstance.create({
+    data: {
+      filename: 'contact-info-bg-florida.jpg',
+      originalFilename: 'contact-info-bg-florida.jpg',
+      path: '/uploads/contact-info/bg-florida.jpg',
+      url: 'https://example.com/uploads/contact-info/bg-florida.jpg',
+      fileType: 'image',
+      mimeType: 'image/jpeg',
+      size: 204800,
+    },
+  });
+
+  const contactInfoBgJupiter = await prisma.fileInstance.create({
+    data: {
+      filename: 'contact-info-bg-jupiter.jpg',
+      originalFilename: 'contact-info-bg-jupiter.jpg',
+      path: '/uploads/contact-info/bg-jupiter.jpg',
+      url: 'https://example.com/uploads/contact-info/bg-jupiter.jpg',
+      fileType: 'image',
+      mimeType: 'image/jpeg',
+      size: 204800,
+    },
+  });
+
+  await prisma.contactInfo.createMany({
+    data: [
+      {
+        site: 'FLORIDA',
+        address: '123 Marina Drive, Miami, FL 33101',
+        email: 'info@diazboats.com',
+        phone: '+1 (555) 123-4567',
+        workingHours: {
+          monday: '9:00 AM - 6:00 PM',
+          tuesday: '9:00 AM - 6:00 PM',
+          wednesday: '9:00 AM - 6:00 PM',
+          thursday: '9:00 AM - 6:00 PM',
+          friday: '9:00 AM - 6:00 PM',
+          saturday: '10:00 AM - 4:00 PM',
+          sunday: 'Closed',
+        },
+        socialMedia: {
+          facebook: 'https://facebook.com/diazboats',
+          instagram: 'https://instagram.com/diazboats',
+          twitter: 'https://twitter.com/diazboats',
+        },
+        backgroundImageId: contactInfoBgFlorida.id,
+      },
+      {
+        site: 'JUPITER',
+        address: '456 Harbor Boulevard, Jupiter, FL 33458',
+        email: 'info@jupitermarinesales.com',
+        phone: '+1 (555) 987-6543',
+        workingHours: {
+          monday: '9:00 AM - 6:00 PM',
+          tuesday: '9:00 AM - 6:00 PM',
+          wednesday: '9:00 AM - 6:00 PM',
+          thursday: '9:00 AM - 6:00 PM',
+          friday: '9:00 AM - 6:00 PM',
+          saturday: '10:00 AM - 4:00 PM',
+          sunday: 'Closed',
+        },
+        socialMedia: {
+          facebook: 'https://facebook.com/jupitermarinesales',
+          instagram: 'https://instagram.com/jupitermarinesales',
+          twitter: 'https://twitter.com/jupitermarinesales',
+        },
+        backgroundImageId: contactInfoBgJupiter.id,
+      },
+    ],
+  });
+
+  // 35. Create Contact Us Entries (sample data)
+  console.log('💬 Creating contact us entries...');
+  await prisma.contactUs.createMany({
+    data: [
+      {
+        fullName: 'Alex Thompson',
+        phone: '+1555111222',
+        email: 'alex@example.com',
+        boatInformation: 'Interested in 35ft yacht',
+        comments: 'Looking for a family boat for weekend trips.',
+      },
+      {
+        fullName: 'Rachel Green',
+        phone: '+1555333444',
+        email: 'rachel@example.com',
+        boatInformation: 'Need help selling my boat',
+        comments: 'I want to sell my 28ft fishing boat.',
+      },
+    ],
+  });
+
+  // 36. Create Featured Yachts
   console.log('⭐ Creating featured yachts...');
   const activeBoats = await prisma.boats.findMany({
     where: { status: 'ACTIVE' },

@@ -1,7 +1,7 @@
 import { HandleError } from '@/common/error/handle-error.decorator';
 import { TResponse, successResponse } from '@/common/utils/response.util';
 import { PrismaService } from '@/lib/prisma/prisma.service';
-import { Injectable, Logger, NotFoundException } from '@nestjs/common';
+import { Injectable, Logger } from '@nestjs/common';
 import { SiteType } from 'generated/enums';
 
 @Injectable()
@@ -12,11 +12,21 @@ export class FeaturedYachtService {
 
   /**
    * Get the current featured yacht for a site
+   * Always returns minimum 5 boats
    */
   @HandleError('Failed to get featured yacht')
   async getCurrentFeaturedYacht(site: SiteType): Promise<TResponse<any>> {
-    const featuredYacht = await this.prisma.client.featuredYacht.findUnique({
-      where: { site },
+    const now = new Date();
+    const MIN_BOATS = 5;
+
+    // First, get featured yachts that haven't expired
+    const featuredYachts = await this.prisma.client.featuredYacht.findMany({
+      where: {
+        site,
+        expiresAt: {
+          gte: now, // Only return non-expired featured yachts
+        },
+      },
       include: {
         boat: {
           include: {
@@ -37,21 +47,70 @@ export class FeaturedYachtService {
           },
         },
       },
+      orderBy: {
+        featuredAt: 'desc', // Most recently featured first
+      },
     });
 
-    if (!featuredYacht) {
-      throw new NotFoundException(`No featured yacht found for site: ${site}`);
-    }
+    // Extract boat IDs that are already featured
+    const featuredBoatIds = featuredYachts.map((fy) => fy.boatId);
 
-    // Check if featured yacht has expired
-    const now = new Date();
-    if (featuredYacht.expiresAt < now) {
-      this.logger.warn(
-        `Featured yacht for ${site} has expired. Consider running rotation cron job.`,
+    // If we have less than MIN_BOATS, supplement with additional boats
+    let boats: any[] = featuredYachts;
+
+    if (boats.length < MIN_BOATS) {
+      const needed = MIN_BOATS - boats.length;
+
+      this.logger.log(
+        `Only ${boats.length} featured yachts found for ${site}. Fetching ${needed} additional boats to meet minimum of ${MIN_BOATS}.`,
       );
+
+      // Fetch additional active boats that are not already featured
+      const additionalBoats = await this.prisma.client.boats.findMany({
+        where: {
+          status: 'ACTIVE',
+          id: {
+            notIn: featuredBoatIds.length > 0 ? featuredBoatIds : undefined, // Exclude already featured boats
+          },
+        },
+        include: {
+          images: {
+            include: {
+              file: true,
+            },
+          },
+          engines: true,
+          user: {
+            select: {
+              id: true,
+              name: true,
+              email: true,
+              phone: true,
+            },
+          },
+        },
+        orderBy: {
+          createdAt: 'desc', // Most recent boats first
+        },
+        take: needed,
+      });
+
+      // Transform additional boats to match featured yacht structure
+      const transformedBoats = additionalBoats.map((boat) => ({
+        id: null, // Not a featured yacht record
+        boatId: boat.id,
+        site: site,
+        featuredAt: null,
+        expiresAt: null,
+        createdAt: boat.createdAt,
+        updatedAt: boat.updatedAt,
+        boat: boat,
+      }));
+
+      boats = [...boats, ...transformedBoats];
     }
 
-    return successResponse(featuredYacht);
+    return successResponse(boats);
   }
 
   /**

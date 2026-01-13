@@ -12,14 +12,15 @@ export class FeaturedYachtController {
   constructor(private readonly featuredYachtService: FeaturedYachtService) {}
 
   @ApiOperation({
-    summary: 'Get current featured yacht',
-    description: 'Returns the currently featured yacht for a specific site',
+    summary: 'Get current featured yachts',
+    description:
+      'Returns an array of featured yachts for a specific site. Always returns minimum 5 boats. If less than 5 featured yachts available, supplements with additional active boats.',
   })
   @ApiQuery({
     name: 'site',
     enum: ['FLORIDA', 'JUPITER'],
     required: true,
-    description: 'Site to get featured yacht for',
+    description: 'Site to get featured yachts for',
   })
   @Get()
   async getCurrentFeaturedYacht(@Query() query: GetFeaturedYachtDto) {
