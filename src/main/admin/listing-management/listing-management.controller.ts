@@ -1,8 +1,15 @@
-import { GetUser, ValidateSuperAdmin } from '@/common/jwt/jwt.decorator';
+import {
+  GetUser,
+  ValidateAdmin,
+  ValidateSuperAdmin,
+} from '@/common/jwt/jwt.decorator';
 import { FileType, MulterService } from '@/lib/multer/multer.service';
 import { QueueFile } from '@/lib/queue/interface/image-process.payload';
 import { CreateBoatsInfoDto } from '@/main/seller/boats/dto/boats-info.dto';
-import { BoatListingDto } from '@/main/seller/boats/dto/boats.dto';
+import {
+  BoatListingDto,
+  ExtraDetailItemDto,
+} from '@/main/seller/boats/dto/boats.dto';
 import {
   Body,
   Controller,
@@ -25,7 +32,6 @@ import {
   ApiTags,
 } from '@nestjs/swagger';
 import { BoatImageType } from 'generated/enums';
-import { ExtraDetailItemDto } from '@/main/seller/boats/dto/boats.dto';
 import { ListingFilterDto } from './dto/listing-filter.dto';
 import { UpdateListingDto } from './dto/update-listing.dto';
 import { AdminCreateListingService } from './services/admincreate-listing.service';
@@ -79,6 +85,7 @@ export class ListingManagementController {
 
   @ApiBearerAuth()
   @ValidateSuperAdmin()
+  @ValidateAdmin()
   @ApiOperation({ summary: 'Create admin Boat Listing' })
   @ApiConsumes('multipart/form-data')
   @ApiBody({ type: BoatListingDto })
