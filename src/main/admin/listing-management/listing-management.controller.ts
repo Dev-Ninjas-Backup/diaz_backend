@@ -1,8 +1,4 @@
-import {
-  GetUser,
-  ValidateAdmin,
-  ValidateSuperAdmin,
-} from '@/common/jwt/jwt.decorator';
+import { GetUser, ValidateAdmin } from '@/common/jwt/jwt.decorator';
 import { FileType, MulterService } from '@/lib/multer/multer.service';
 import { QueueFile } from '@/lib/queue/interface/image-process.payload';
 import { CreateBoatsInfoDto } from '@/main/seller/boats/dto/boats-info.dto';
@@ -84,7 +80,6 @@ export class ListingManagementController {
   }
 
   @ApiBearerAuth()
-  @ValidateSuperAdmin()
   @ValidateAdmin()
   @ApiOperation({ summary: 'Create admin Boat Listing' })
   @ApiConsumes('multipart/form-data')
@@ -93,13 +88,13 @@ export class ListingManagementController {
     FileFieldsInterceptor(
       [
         { name: 'covers', maxCount: 5 },
-        { name: 'galleries', maxCount: 70 },
+        { name: 'galleries', maxCount: 100 },
       ],
       new MulterService().createMultipleFileOptions({
         destinationFolder: './temp',
         prefix: 'boat_listing',
         fileType: FileType.IMAGE,
-        maxFileCount: 75,
+        maxFileCount: 150,
       }),
     ),
   )
