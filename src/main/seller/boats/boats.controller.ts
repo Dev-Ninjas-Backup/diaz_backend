@@ -143,13 +143,13 @@ export class BoatsController {
     FileFieldsInterceptor(
       [
         { name: 'covers', maxCount: 5 },
-        { name: 'galleries', maxCount: 70 },
+        { name: 'galleries', maxCount: 100 },
       ],
       new MulterService().createMultipleFileOptions({
         destinationFolder: './temp',
         prefix: 'boat_listing',
         fileType: FileType.IMAGE,
-        maxFileCount: 75,
+        maxFileCount: 150,
       }),
     ),
   )
@@ -188,13 +188,13 @@ export class BoatsController {
     FileFieldsInterceptor(
       [
         { name: 'covers', maxCount: 5 },
-        { name: 'galleries', maxCount: 70 },
+        { name: 'galleries', maxCount: 100 },
       ],
       new MulterService().createMultipleFileOptions({
         destinationFolder: './temp',
         prefix: 'boat_listing_update',
         fileType: FileType.IMAGE,
-        maxFileCount: 75,
+        maxFileCount: 150,
       }),
     ),
   )

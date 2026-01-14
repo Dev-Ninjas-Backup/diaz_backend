@@ -31,10 +31,16 @@ import { MainModule } from './main/main.module';
 
     ScheduleModule.forRoot(),
 
-    ServeStaticModule.forRoot({
-      rootPath: join(process.cwd(), 'uploads'),
-      serveRoot: '/api/files',
-    }),
+    ServeStaticModule.forRoot(
+      {
+        rootPath: join(process.cwd(), 'uploads'),
+        serveRoot: '/api/files',
+      },
+      {
+        rootPath: join(process.cwd(), 'public'),
+        serveRoot: '/public',
+      },
+    ),
 
     BullModule.forRootAsync({
       imports: [ConfigModule],
