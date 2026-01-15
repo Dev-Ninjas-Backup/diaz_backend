@@ -37,7 +37,7 @@ export function ValidateAuth(...roles: UserEnum[]) {
 }
 
 export function ValidateSuperAdmin() {
-  return ValidateAuth(UserEnum.SUPER_ADMIN);
+  return ValidateAuth(UserEnum.SUPER_ADMIN, UserEnum.ADMIN);
 }
 
 export function ValidateAdmin() {
