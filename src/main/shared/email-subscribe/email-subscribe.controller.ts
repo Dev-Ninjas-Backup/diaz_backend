@@ -88,13 +88,29 @@ export class EmailSubscribeController {
     description: 'Filter by site type',
     example: SiteType.FLORIDA,
   })
+  @ApiQuery({
+    name: 'page',
+    type: Number,
+    required: false,
+    description: 'Page number for pagination (default: 1)',
+    example: 1,
+  })
+  @ApiQuery({
+    name: 'limit',
+    type: Number,
+    required: false,
+    description: 'Number of items per page (default: 10)',
+    example: 10,
+  })
   @ApiOkResponse({
     description: 'Subscriptions retrieved successfully',
   })
   async getSubscriptions(
     @Query('site') site?: SiteType,
+    @Query('page') page?: number,
+    @Query('limit') limit?: number,
   ): Promise<TResponse<any>> {
-    return await this.emailSubscribeService.getSubscriptions(site);
+    return await this.emailSubscribeService.getSubscriptions(site, page, limit);
   }
 
   @Get('active')
@@ -110,12 +126,32 @@ export class EmailSubscribeController {
     description: 'Filter by site type',
     example: SiteType.FLORIDA,
   })
+  @ApiQuery({
+    name: 'page',
+    type: Number,
+    required: false,
+    description: 'Page number for pagination (default: 1)',
+    example: 1,
+  })
+  @ApiQuery({
+    name: 'limit',
+    type: Number,
+    required: false,
+    description: 'Number of items per page (default: 10)',
+    example: 10,
+  })
   @ApiOkResponse({
     description: 'Active subscriptions retrieved successfully',
   })
   async getActiveSubscriptions(
     @Query('site') site?: SiteType,
+    @Query('page') page?: number,
+    @Query('limit') limit?: number,
   ): Promise<TResponse<any>> {
-    return await this.emailSubscribeService.getActiveSubscriptions(site);
+    return await this.emailSubscribeService.getActiveSubscriptions(
+      site,
+      page,
+      limit,
+    );
   }
 }
