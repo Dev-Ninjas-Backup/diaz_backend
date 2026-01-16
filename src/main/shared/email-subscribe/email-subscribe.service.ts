@@ -1,4 +1,4 @@
-import { TResponse } from '@/common/utils/response.util';
+import { TPaginatedResponse, TResponse } from '@/common/utils/response.util';
 import { PrismaService } from '@/lib/prisma/prisma.service';
 import {
   ConflictException,
@@ -104,41 +104,77 @@ export class EmailSubscribeService {
     };
   }
 
-  async getSubscriptions(site?: SiteType): Promise<TResponse<any>> {
+  async getSubscriptions(
+    site?: SiteType,
+    page?: number,
+    limit?: number,
+  ): Promise<TPaginatedResponse<any>> {
     const where: any = {};
+    const pageNum = page ? Math.max(1, page) : 1;
+    const limitNum = limit ? Math.min(Math.max(1, limit), 100) : 10; // Max 100 items per page
+    const skip = (pageNum - 1) * limitNum;
 
     if (site) {
       where.site = site;
     }
 
-    const subscriptions = await this.prisma.client.emailSubscription.findMany({
-      where,
-      orderBy: { subscribedAt: 'desc' },
-    });
+    const [subscriptions, total] = await Promise.all([
+      this.prisma.client.emailSubscription.findMany({
+        where,
+        orderBy: { subscribedAt: 'desc' },
+        skip,
+        take: limitNum,
+      }),
+      this.prisma.client.emailSubscription.count({ where }),
+    ]);
 
     return {
       success: true,
       message: 'Subscriptions retrieved successfully',
       data: subscriptions,
+      metadata: {
+        page: pageNum,
+        limit: limitNum,
+        total,
+        totalPage: Math.ceil(total / limitNum),
+      },
     };
   }
 
-  async getActiveSubscriptions(site?: SiteType): Promise<TResponse<any>> {
+  async getActiveSubscriptions(
+    site?: SiteType,
+    page?: number,
+    limit?: number,
+  ): Promise<TPaginatedResponse<any>> {
     const where: any = { isActive: true };
+    const pageNum = page ? Math.max(1, page) : 1;
+    const limitNum = limit ? Math.min(Math.max(1, limit), 100) : 10; // Max 100 items per page
+    const skip = (pageNum - 1) * limitNum;
 
     if (site) {
       where.site = site;
     }
 
-    const subscriptions = await this.prisma.client.emailSubscription.findMany({
-      where,
-      orderBy: { subscribedAt: 'desc' },
-    });
+    const [subscriptions, total] = await Promise.all([
+      this.prisma.client.emailSubscription.findMany({
+        where,
+        orderBy: { subscribedAt: 'desc' },
+        skip,
+        take: limitNum,
+      }),
+      this.prisma.client.emailSubscription.count({ where }),
+    ]);
 
     return {
       success: true,
       message: 'Active subscriptions retrieved successfully',
       data: subscriptions,
+      metadata: {
+        page: pageNum,
+        limit: limitNum,
+        total,
+        totalPage: Math.ceil(total / limitNum),
+      },
     };
   }
 }
