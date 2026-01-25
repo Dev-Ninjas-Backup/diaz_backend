@@ -14,18 +14,16 @@ export class AISearchBannerService {
     private readonly s3: S3Service,
   ) {}
 
-  /** CREATE AI SEARCH BANNER */
   @HandleError('Failed to create AI search banner', 'AI Search Banner')
   async create(dto: CreateAISearchBannerDto, file?: Express.Multer.File) {
     try {
-      // Check if a banner already exists for this site
       const existingBanner = await this.prisma.client.aiSearchBanner.findFirst({
-        where: { site: dto.site },
+        where: { site: 'JUPITER' },
       });
 
       if (existingBanner) {
         throw new Error(
-          `AI Search Banner already exists for ${dto.site} site. Only one banner per site is allowed.`,
+          'AI Search Banner already exists for JUPITER site. Only one banner is allowed. Please update the existing banner instead.',
         );
       }
 
@@ -50,7 +48,7 @@ export class AISearchBannerService {
           data: {
             bannerTitle: dto.bannerTitle,
             subtitle: dto.subtitle,
-            site: dto.site,
+            site: 'JUPITER',
             aiSearchBannerId: uploadedFileId,
           },
           include: {
@@ -59,7 +57,7 @@ export class AISearchBannerService {
         });
 
         this.logger.log(
-          `AI Search Banner created successfully: ${banner.id} for site: ${dto.site}`,
+          `AI Search Banner created successfully: ${banner.id} for JUPITER site`,
         );
         return banner;
       } catch (error) {
@@ -78,7 +76,6 @@ export class AISearchBannerService {
     }
   }
 
-  /** UPDATE AI SEARCH BANNER */
   @HandleError('Failed to update AI search banner', 'AI Search Banner')
   async update(
     id: string,
@@ -137,27 +134,36 @@ export class AISearchBannerService {
     }
   }
 
-  /** GET ALL AI SEARCH BANNERS */
-  @HandleError('Failed to get all AI search banners', 'AI Search Banner')
+  @HandleError('Failed to get AI search banner', 'AI Search Banner')
   async findAll() {
     try {
-      const banners = await this.prisma.client.aiSearchBanner.findMany({
+      const banner = await this.prisma.client.aiSearchBanner.findFirst({
+        where: { site: 'JUPITER' },
         include: { aiSearchBanner: true },
-        orderBy: { createdAt: 'desc' },
       });
 
-      this.logger.log(`Retrieved ${banners.length} AI Search Banners`);
-      return banners;
+      if (!banner) {
+        this.logger.log('No AI Search Banner found for JUPITER site');
+        return {
+          message: 'No AI Search Banner found for JUPITER site',
+          data: [],
+        };
+      }
+
+      this.logger.log('Retrieved AI Search Banner for JUPITER site');
+      return {
+        message: 'AI Search Banner retrieved successfully',
+        data: [banner],
+      };
     } catch (error) {
       this.logger.error(
-        `Failed to get all AI Search Banners: ${error.message}`,
+        `Failed to get AI Search Banner: ${error.message}`,
         error.stack,
       );
       throw error;
     }
   }
 
-  /** GET SINGLE AI SEARCH BANNER */
   @HandleError('Failed to get AI search banner', 'AI Search Banner')
   async findOne(id: string) {
     try {
@@ -185,7 +191,6 @@ export class AISearchBannerService {
     }
   }
 
-  /** DELETE AI SEARCH BANNER */
   @HandleError('Failed to delete AI search banner', 'AI Search Banner')
   async remove(id: string) {
     try {

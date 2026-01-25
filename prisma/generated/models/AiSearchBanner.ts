@@ -230,10 +230,10 @@ export type AiSearchBannerOrderByWithRelationInput = {
 export type AiSearchBannerWhereUniqueInput = Prisma.AtLeast<
   {
     id?: string;
+    site?: $Enums.SiteType;
     AND?: Prisma.AiSearchBannerWhereInput | Prisma.AiSearchBannerWhereInput[];
     OR?: Prisma.AiSearchBannerWhereInput[];
     NOT?: Prisma.AiSearchBannerWhereInput | Prisma.AiSearchBannerWhereInput[];
-    site?: Prisma.EnumSiteTypeFilter<'AiSearchBanner'> | $Enums.SiteType;
     bannerTitle?: Prisma.StringFilter<'AiSearchBanner'> | string;
     subtitle?: Prisma.StringNullableFilter<'AiSearchBanner'> | string | null;
     aiSearchBannerId?:
@@ -247,7 +247,7 @@ export type AiSearchBannerWhereUniqueInput = Prisma.AtLeast<
       Prisma.FileInstanceWhereInput
     > | null;
   },
-  'id'
+  'id' | 'site'
 >;
 
 export type AiSearchBannerOrderByWithAggregationInput = {
