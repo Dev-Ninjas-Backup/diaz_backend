@@ -1,13 +1,19 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { IsEnum, IsOptional, IsString } from 'class-validator';
-import { SiteType } from 'generated/enums';
+import { IsOptional, IsString } from 'class-validator';
 
 export class CreateAISearchBannerDto {
-  @ApiProperty()
+  @ApiProperty({
+    description: 'Banner title for AI search section',
+    example: 'Find Your Dream Boat with AI',
+  })
   @IsString()
   bannerTitle: string;
 
-  @ApiProperty({ required: false })
+  @ApiProperty({
+    required: false,
+    description: 'Optional subtitle for the banner',
+    example: 'Smart search powered by artificial intelligence',
+  })
   @IsOptional()
   @IsString()
   subtitle?: string;
@@ -16,16 +22,7 @@ export class CreateAISearchBannerDto {
     type: 'string',
     format: 'binary',
     required: false,
-    description: 'Brand logo file',
+    description: 'AI search banner image (JPEG, PNG, WebP)',
   })
   aisearchBanner?: any;
-
-  @ApiProperty({
-    enum: SiteType,
-    example: SiteType.JUPITER,
-    default: SiteType.JUPITER,
-    required: true,
-  })
-  @IsEnum(SiteType)
-  site: SiteType = SiteType.JUPITER;
 }
