@@ -1,4 +1,3 @@
-import { RoleAuthGuard } from '@/common/guard/role-auth.guard';
 import {
   BadRequestException,
   Body,
@@ -8,7 +7,6 @@ import {
   Patch,
   Post,
   Query,
-  UseGuards,
 } from '@nestjs/common';
 import {
   ApiBody,
@@ -18,7 +16,7 @@ import {
   ApiResponse,
   ApiTags,
 } from '@nestjs/swagger';
-import { UserRole } from 'generated/enums';
+import { ValidateSuperAdminOnly } from '@/common/jwt/jwt.decorator';
 import { AdminUserResponseDto, CreateAdminUserDto } from './dto/admin.dto';
 import { changeRole } from './enum/changerole.enum';
 import { UserPermissionsService } from './user-permissions.services';
@@ -58,7 +56,7 @@ export class UserPermissionsController {
     return this.userPermissionsServices.getAdmins();
   }
 
-  @UseGuards(new RoleAuthGuard([UserRole.SUPER_ADMIN]))
+  @ValidateSuperAdminOnly()
   @Patch(':id')
   @ApiOperation({ summary: 'Change role of a user (SUPER_ADMIN only)' })
   @ApiParam({ name: 'id', description: 'User ID (UUID or number)' })
