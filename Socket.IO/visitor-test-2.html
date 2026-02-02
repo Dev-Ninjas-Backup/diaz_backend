@@ -11,10 +11,30 @@
 
     <script src="https://cdn.socket.io/4.7.2/socket.io.min.js"></script>
     <script>
-      const socket = io('http://localhost:5051', { path: '/ws' });
+      // Connect to the root origin and use the custom Socket.IO path.
+      // Using '/api' in the URL makes Socket.IO treat it as a namespace,
+      // which triggers "Invalid namespace" unless the server created it.
+      const socket = io('https://api.floridayachttrader.com', {
+        path: '/ws',
+        reconnection: true,
+        reconnectionDelay: 1000,
+        reconnectionDelayMax: 5000,
+        reconnectionAttempts: 5,
+        // Uncomment the next line if the environment requires WebSocket-only
+        // transports (some proxies block long-polling):
+        // transports: ['websocket'],
+      });
 
-      // simulate page slug
-      socket.emit('visit:start', { page: '/product/yacht-23' });
+      socket.on('connect', () => {
+        console.log('Connected to server');
+        socket.emit('visit:start', {
+          page: '/search-listing/e7774f6a-4dde-4c0d-9051-e3c1b2396c85',
+        });
+      });
+
+      socket.on('connect_error', (error) => {
+        console.error('Connection error:', error);
+      });
 
       socket.on('visitors:count', (data) => {
         document.getElementById('active').innerText = data.active;
@@ -30,8 +50,13 @@
         console.log('Stats:', data);
       });
 
+      socket.on('disconnect', () => {
+        console.log('Disconnected from server');
+      });
+
       window.addEventListener('beforeunload', () => {
         socket.emit('visit:end');
+        socket.disconnect();
       });
     </script>
   </body>

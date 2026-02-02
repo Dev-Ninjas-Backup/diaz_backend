@@ -40,6 +40,10 @@ export function ValidateSuperAdmin() {
   return ValidateAuth(UserEnum.SUPER_ADMIN, UserEnum.ADMIN);
 }
 
+export function ValidateSuperAdminOnly() {
+  return ValidateAuth(UserEnum.SUPER_ADMIN);
+}
+
 export function ValidateAdmin() {
   return ValidateAuth(UserEnum.ADMIN, UserEnum.SUPER_ADMIN);
 }
