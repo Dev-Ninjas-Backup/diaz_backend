@@ -84,7 +84,7 @@ export class AuthController {
   }
 
   @ApiOperation({ summary: 'Mark notification as read' })
-  @Get('notification/mark-as-read/:notificationId')
+  @Patch('notification/mark-as-read/:notificationId')
   async markAsRead(
     @GetUser('sub') userId: string,
     @Param('notificationId') notificationId: string,
@@ -93,7 +93,7 @@ export class AuthController {
   }
 
   @ApiOperation({ summary: 'Mark all notification as read' })
-  @Get('notification/mark-all-as-read')
+  @Patch('notification/mark-all-as-read')
   async markAllAsRead(@GetUser('sub') userId: string) {
     return this.notificationService.markAllAsRead(userId);
   }
