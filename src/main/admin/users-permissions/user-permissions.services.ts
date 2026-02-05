@@ -33,6 +33,26 @@ export class UserPermissionsService {
           },
         ],
       },
+      select: {
+        id: true,
+        email: true,
+        username: true,
+        name: true,
+        avatarUrl: true,
+        role: true,
+        status: true,
+        isLoggedIn: true,
+        lastLoginAt: true,
+        lastActiveAt: true,
+        isVerified: true,
+        createdAt: true,
+        updatedAt: true,
+        phone: true,
+        country: true,
+        city: true,
+        state: true,
+        zip: true,
+      },
     });
   }
 
