@@ -19,7 +19,11 @@ import {
   ApiTags,
 } from '@nestjs/swagger';
 import { LoginDto } from './dto/login.dto';
-import { ChangePasswordDto } from './dto/password.dto';
+import {
+  ChangePasswordDto,
+  ForgotPasswordDto,
+  ResetPasswordDto,
+} from './dto/password.dto';
 import { UpdateProfileDto } from './dto/update-profile.dto';
 import { AuthLoginService } from './services/auth-login.service';
 import { AuthNotificationService } from './services/auth-notification.service';
@@ -72,6 +76,20 @@ export class AuthController {
     @Body() body: ChangePasswordDto,
   ) {
     return this.authPasswordService.changePassword(userId, body);
+  }
+
+  @ApiOperation({ summary: 'Forgot Password (Public)' })
+  @Public()
+  @Post('forgot-password')
+  async forgotPassword(@Body() dto: ForgotPasswordDto) {
+    return this.authPasswordService.forgotPassword(dto.email);
+  }
+
+  @ApiOperation({ summary: 'Reset Password (Public)' })
+  @Public()
+  @Post('reset-password')
+  async resetPassword(@Body() dto: ResetPasswordDto) {
+    return this.authPasswordService.resetPassword(dto);
   }
 
   @ApiOperation({ summary: 'Get user notification' })
