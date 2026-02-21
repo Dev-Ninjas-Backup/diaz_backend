@@ -100,9 +100,7 @@ export class ListingManagementService {
           },
         },
         images: {
-          include: {
-            file: { select: { id: true, url: true, originalFilename: true } },
-          },
+          include: { file: true },
           orderBy: { createdAt: 'asc' },
         },
         engines: { orderBy: { createdAt: 'asc' } },
@@ -121,8 +119,24 @@ export class ListingManagementService {
         })
       : null;
 
+    const formattedImages = (boat.images ?? []).map((img) => ({
+      id: img.id,
+      fileId: img.fileId,
+      url: img.file?.url ?? null,
+      mimeType: img.file?.mimeType ?? null,
+      originalFilename: img.file?.originalFilename ?? null,
+      imageType: img.imageType,
+      createdAt: img.createdAt,
+    }));
+
+    const { images, ...rest } = boat;
+
     return {
-      ...boat,
+      ...rest,
+      coverImages: formattedImages.filter((img) => img.imageType === 'COVER'),
+      galleryImages: formattedImages.filter(
+        (img) => img.imageType === 'GALLERY',
+      ),
       views: views?._sum?.count ?? 0,
     };
   }
