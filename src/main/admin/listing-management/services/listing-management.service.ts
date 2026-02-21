@@ -100,7 +100,9 @@ export class ListingManagementService {
           },
         },
         images: {
-          include: { file: { select: { id: true, url: true, originalFilename: true } } },
+          include: {
+            file: { select: { id: true, url: true, originalFilename: true } },
+          },
           orderBy: { createdAt: 'asc' },
         },
         engines: { orderBy: { createdAt: 'asc' } },
