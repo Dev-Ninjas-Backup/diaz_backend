@@ -129,10 +129,9 @@ export class ListingManagementService {
       createdAt: img.createdAt,
     }));
 
-    const { images, ...rest } = boat;
-
     return {
-      ...rest,
+      ...boat,
+      images: undefined,
       coverImages: formattedImages.filter((img) => img.imageType === 'COVER'),
       galleryImages: formattedImages.filter(
         (img) => img.imageType === 'GALLERY',
