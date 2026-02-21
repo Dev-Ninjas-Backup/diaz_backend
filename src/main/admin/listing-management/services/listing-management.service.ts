@@ -88,17 +88,46 @@ export class ListingManagementService {
   async getById(id: string) {
     const boat = await this.prisma.client.boats.findUnique({
       where: { id },
+      include: {
+        user: {
+          select: {
+            id: true,
+            name: true,
+            email: true,
+            username: true,
+            phone: true,
+            avatarUrl: true,
+          },
+        },
+        images: {
+          include: { file: { select: { id: true, url: true, originalFilename: true } } },
+          orderBy: { createdAt: 'asc' },
+        },
+        engines: { orderBy: { createdAt: 'asc' } },
+        featuredYachts: {
+          select: { id: true, site: true, featuredAt: true, expiresAt: true },
+        },
+      },
     });
 
     if (!boat) throw new NotFoundException('Listing not found');
 
-    return boat;
+    const views = boat.listingId
+      ? await this.prisma.client.pageView.aggregate({
+          where: { page: boat.listingId },
+          _sum: { count: true },
+        })
+      : null;
+
+    return {
+      ...boat,
+      views: views?._sum?.count ?? 0,
+    };
   }
 
   async update(id: string, dto: UpdateListingDto) {
     await this.getById(id);
 
-    // Transform extraDetails from DTO array to JSON format for Prisma
     const { extraDetails, ...rest } = dto;
     const updateData: Prisma.BoatsUpdateInput = {
       ...rest,
@@ -109,10 +138,12 @@ export class ListingManagementService {
       }),
     };
 
-    return this.prisma.client.boats.update({
+    await this.prisma.client.boats.update({
       where: { id },
       data: updateData,
     });
+
+    return this.getById(id);
   }
 
   async delete(id: string) {
