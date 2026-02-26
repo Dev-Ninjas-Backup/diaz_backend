@@ -47,10 +47,7 @@ export const BOAT_SPECIFICATIONS_SEED: Record<BoatSpecificationType, string[]> =
       'Carbon Fiber',
     ],
 
-    [BoatSpecificationType.CONDITION]: [
-      'NEW',
-      'USED',
-    ],
+    [BoatSpecificationType.CONDITION]: ['NEW', 'USED'],
 
     [BoatSpecificationType.PROP_TYPE]: [
       '2 Blade',

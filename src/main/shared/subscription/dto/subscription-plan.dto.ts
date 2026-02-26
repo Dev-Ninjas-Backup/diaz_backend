@@ -106,6 +106,24 @@ export class CreateSubscriptionPlanDto {
   @IsNumber()
   @Min(1)
   billingPeriodMonths?: number;
+
+  @ApiPropertyOptional({
+    description:
+      'Stripe product ID (for update when linking to existing Stripe product)',
+    example: 'prod_xxx',
+  })
+  @IsOptional()
+  @IsString()
+  stripeProductId?: string;
+
+  @ApiPropertyOptional({
+    description:
+      'Stripe price ID (for update when linking to existing Stripe price)',
+    example: 'price_xxx',
+  })
+  @IsOptional()
+  @IsString()
+  stripePriceId?: string;
 }
 
 export class UpdateSubscriptionPlanDto extends PartialType(
