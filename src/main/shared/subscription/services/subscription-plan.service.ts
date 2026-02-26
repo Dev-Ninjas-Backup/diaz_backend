@@ -55,15 +55,21 @@ export class SubscriptionPlanService {
     const updateData: Prisma.SubscriptionPlanUpdateInput = {};
 
     if (dto.title !== undefined) updateData.title = dto.title;
+    if (dto.planType !== undefined) updateData.planType = dto.planType;
     if (dto.description !== undefined) updateData.description = dto.description;
     if (dto.benefits !== undefined) updateData.benefits = dto.benefits;
     if (dto.picLimit !== undefined) updateData.picLimit = dto.picLimit;
     if (dto.wordLimit !== undefined) updateData.wordLimit = dto.wordLimit;
     if (dto.isBest !== undefined) updateData.isBest = dto.isBest;
     if (dto.isActive !== undefined) updateData.isActive = dto.isActive;
+    if (dto.price !== undefined) updateData.price = dto.price;
     if (dto.currency !== undefined) updateData.currency = dto.currency;
     if (dto.billingPeriodMonths !== undefined)
       updateData.billingPeriodMonths = dto.billingPeriodMonths;
+    if (dto.stripeProductId !== undefined)
+      updateData.stripeProductId = dto.stripeProductId;
+    if (dto.stripePriceId !== undefined)
+      updateData.stripePriceId = dto.stripePriceId;
 
     const updatedPlan = await this.prisma.client.subscriptionPlan.update({
       where: { id },
