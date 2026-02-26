@@ -108,7 +108,8 @@ export class CreateSubscriptionPlanDto {
   billingPeriodMonths?: number;
 
   @ApiPropertyOptional({
-    description: 'Stripe product ID (for update when linking to existing Stripe product)',
+    description:
+      'Stripe product ID (for update when linking to existing Stripe product)',
     example: 'prod_xxx',
   })
   @IsOptional()
@@ -116,7 +117,8 @@ export class CreateSubscriptionPlanDto {
   stripeProductId?: string;
 
   @ApiPropertyOptional({
-    description: 'Stripe price ID (for update when linking to existing Stripe price)',
+    description:
+      'Stripe price ID (for update when linking to existing Stripe price)',
     example: 'price_xxx',
   })
   @IsOptional()
