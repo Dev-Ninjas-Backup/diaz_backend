@@ -50,8 +50,6 @@ export const BOAT_SPECIFICATIONS_SEED: Record<BoatSpecificationType, string[]> =
     [BoatSpecificationType.CONDITION]: [
       'NEW',
       'USED',
-      'REFURBISHED',
-      'FOR_PARTS',
     ],
 
     [BoatSpecificationType.PROP_TYPE]: [
