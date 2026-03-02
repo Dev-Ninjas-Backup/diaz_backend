@@ -2101,7 +2101,7 @@ async function main() {
     },
   });
 
-  // 29. Create Our Team Members
+  // 29. Create Our Team Members (per site)
   console.log('👥 Creating team members...');
   await prisma.ourTeam.createMany({
     data: [
@@ -2111,6 +2111,7 @@ async function main() {
         imageId: logoFile.id,
         order: 1,
         isActive: true,
+        site: 'FLORIDA',
       },
       {
         name: 'Sarah Johnson',
@@ -2118,6 +2119,7 @@ async function main() {
         imageId: logoFile.id,
         order: 2,
         isActive: true,
+        site: 'FLORIDA',
       },
       {
         name: 'Mike Davis',
@@ -2125,6 +2127,23 @@ async function main() {
         imageId: logoFile.id,
         order: 3,
         isActive: true,
+        site: 'FLORIDA',
+      },
+      {
+        name: 'Emily Carter',
+        designation: 'Regional Director',
+        imageId: logoFile.id,
+        order: 1,
+        isActive: true,
+        site: 'JUPITER',
+      },
+      {
+        name: 'Daniel Roberts',
+        designation: 'Senior Broker',
+        imageId: logoFile.id,
+        order: 2,
+        isActive: true,
+        site: 'JUPITER',
       },
     ],
   });

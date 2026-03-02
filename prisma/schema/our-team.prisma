@@ -7,6 +7,8 @@ model OurTeam {
   imageId String?
   image   FileInstance? @relation("OurTeamImage", fields: [imageId], references: [id], onDelete: SetNull)
 
+  site SiteType @default(FLORIDA)
+
   order Int @default(autoincrement())
 
   isActive Boolean @default(true)
@@ -15,4 +17,5 @@ model OurTeam {
   updatedAt DateTime @default(now()) @updatedAt
 
   @@map("our_team")
+  @@index([site])
 }

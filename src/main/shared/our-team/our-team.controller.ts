@@ -9,6 +9,7 @@ import {
   Param,
   Patch,
   Post,
+  Query,
   UploadedFile,
   UseInterceptors,
 } from '@nestjs/common';
@@ -19,9 +20,11 @@ import {
   ApiOkResponse,
   ApiOperation,
   ApiParam,
+  ApiQuery,
   ApiResponse,
   ApiTags,
 } from '@nestjs/swagger';
+import { SiteType } from 'generated/client';
 import * as multer from 'multer';
 import { CreateOurTeamDto } from './dto/create-our-team.dto';
 import { OurTeamResponseDto } from './dto/our-team-response.dto';
@@ -60,15 +63,22 @@ export class OurTeamController {
   @Get()
   @HttpCode(HttpStatus.OK)
   @ApiOperation({
-    summary: 'Get all team members',
-    description: 'Retrieve all active team members ordered by display order',
+    summary: 'Get all team members for a site',
+    description:
+      'Retrieve all active team members for a given site ordered by display order',
+  })
+  @ApiQuery({
+    name: 'site',
+    enum: SiteType,
+    required: false,
+    description: 'Site identifier (FLORIDA or JUPITER). Defaults to FLORIDA.',
   })
   @ApiOkResponse({
     description: 'Team members retrieved successfully',
     type: [OurTeamResponseDto],
   })
-  async findAll(): Promise<TResponse<any>> {
-    return await this.ourTeamService.findAll();
+  async findAll(@Query('site') site?: SiteType): Promise<TResponse<any>> {
+    return await this.ourTeamService.findAll(site);
   }
 
   @Get(':id')
