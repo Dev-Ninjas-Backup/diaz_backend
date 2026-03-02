@@ -1,5 +1,6 @@
 import { ApiPropertyOptional } from '@nestjs/swagger';
 import { IsBoolean, IsOptional, IsString } from 'class-validator';
+import { SiteType } from 'generated/client';
 
 export class UpdateOurTeamDto {
   @ApiPropertyOptional({
@@ -25,6 +26,14 @@ export class UpdateOurTeamDto {
   })
   @IsOptional()
   image?: Express.Multer.File;
+
+  @ApiPropertyOptional({
+    enum: SiteType,
+    example: SiteType.FLORIDA,
+    description: 'Site this team member belongs to (FLORIDA or JUPITER)',
+  })
+  @IsOptional()
+  site?: SiteType;
 
   @ApiPropertyOptional({
     example: true,

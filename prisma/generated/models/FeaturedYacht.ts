@@ -224,18 +224,19 @@ export type FeaturedYachtOrderByWithRelationInput = {
 export type FeaturedYachtWhereUniqueInput = Prisma.AtLeast<
   {
     id?: string;
-    site?: $Enums.SiteType;
+    boatId_site?: Prisma.FeaturedYachtBoatIdSiteCompoundUniqueInput;
     AND?: Prisma.FeaturedYachtWhereInput | Prisma.FeaturedYachtWhereInput[];
     OR?: Prisma.FeaturedYachtWhereInput[];
     NOT?: Prisma.FeaturedYachtWhereInput | Prisma.FeaturedYachtWhereInput[];
     boatId?: Prisma.StringFilter<'FeaturedYacht'> | string;
+    site?: Prisma.EnumSiteTypeFilter<'FeaturedYacht'> | $Enums.SiteType;
     featuredAt?: Prisma.DateTimeFilter<'FeaturedYacht'> | Date | string;
     expiresAt?: Prisma.DateTimeFilter<'FeaturedYacht'> | Date | string;
     createdAt?: Prisma.DateTimeFilter<'FeaturedYacht'> | Date | string;
     updatedAt?: Prisma.DateTimeFilter<'FeaturedYacht'> | Date | string;
     boat?: Prisma.XOR<Prisma.BoatsScalarRelationFilter, Prisma.BoatsWhereInput>;
   },
-  'id' | 'site'
+  'id' | 'boatId_site'
 >;
 
 export type FeaturedYachtOrderByWithAggregationInput = {
@@ -359,6 +360,11 @@ export type FeaturedYachtListRelationFilter = {
 
 export type FeaturedYachtOrderByRelationAggregateInput = {
   _count?: Prisma.SortOrder;
+};
+
+export type FeaturedYachtBoatIdSiteCompoundUniqueInput = {
+  boatId: string;
+  site: $Enums.SiteType;
 };
 
 export type FeaturedYachtCountOrderByAggregateInput = {
