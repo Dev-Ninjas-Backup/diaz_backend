@@ -59,10 +59,17 @@ export class UpdateListingService {
     // Validate image limit
     this.boatListingHelper.validateImageLimit(totalFiles, plan.picLimit);
 
-    // Sync Boats Engines
+    // Sync Boats Engines (map Prisma null to undefined for DTO compatibility)
+    const existingEngines = listing.engines.map((e) => ({
+      ...e,
+      make: e.make ?? undefined,
+      model: e.model ?? undefined,
+      fuelType: e.fuelType ?? undefined,
+      propellerType: e.propellerType ?? undefined,
+    }));
     await this.boatListingHelper.syncBoatsEngines(
       boatId,
-      listing.engines,
+      existingEngines,
       boatInfo?.engines ?? [],
     );
 

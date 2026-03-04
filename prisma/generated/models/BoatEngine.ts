@@ -223,10 +223,10 @@ export type BoatEngineGroupByOutputType = {
   id: string;
   hours: number;
   horsepower: number;
-  make: string;
-  model: string;
-  fuelType: string;
-  propellerType: string;
+  make: string | null;
+  model: string | null;
+  fuelType: string | null;
+  propellerType: string | null;
   boatId: string;
   createdAt: Date;
   updatedAt: Date;
@@ -257,10 +257,10 @@ export type BoatEngineWhereInput = {
   id?: Prisma.StringFilter<'BoatEngine'> | string;
   hours?: Prisma.IntFilter<'BoatEngine'> | number;
   horsepower?: Prisma.IntFilter<'BoatEngine'> | number;
-  make?: Prisma.StringFilter<'BoatEngine'> | string;
-  model?: Prisma.StringFilter<'BoatEngine'> | string;
-  fuelType?: Prisma.StringFilter<'BoatEngine'> | string;
-  propellerType?: Prisma.StringFilter<'BoatEngine'> | string;
+  make?: Prisma.StringNullableFilter<'BoatEngine'> | string | null;
+  model?: Prisma.StringNullableFilter<'BoatEngine'> | string | null;
+  fuelType?: Prisma.StringNullableFilter<'BoatEngine'> | string | null;
+  propellerType?: Prisma.StringNullableFilter<'BoatEngine'> | string | null;
   boatId?: Prisma.StringFilter<'BoatEngine'> | string;
   createdAt?: Prisma.DateTimeFilter<'BoatEngine'> | Date | string;
   updatedAt?: Prisma.DateTimeFilter<'BoatEngine'> | Date | string;
@@ -271,10 +271,10 @@ export type BoatEngineOrderByWithRelationInput = {
   id?: Prisma.SortOrder;
   hours?: Prisma.SortOrder;
   horsepower?: Prisma.SortOrder;
-  make?: Prisma.SortOrder;
-  model?: Prisma.SortOrder;
-  fuelType?: Prisma.SortOrder;
-  propellerType?: Prisma.SortOrder;
+  make?: Prisma.SortOrderInput | Prisma.SortOrder;
+  model?: Prisma.SortOrderInput | Prisma.SortOrder;
+  fuelType?: Prisma.SortOrderInput | Prisma.SortOrder;
+  propellerType?: Prisma.SortOrderInput | Prisma.SortOrder;
   boatId?: Prisma.SortOrder;
   createdAt?: Prisma.SortOrder;
   updatedAt?: Prisma.SortOrder;
@@ -289,10 +289,10 @@ export type BoatEngineWhereUniqueInput = Prisma.AtLeast<
     NOT?: Prisma.BoatEngineWhereInput | Prisma.BoatEngineWhereInput[];
     hours?: Prisma.IntFilter<'BoatEngine'> | number;
     horsepower?: Prisma.IntFilter<'BoatEngine'> | number;
-    make?: Prisma.StringFilter<'BoatEngine'> | string;
-    model?: Prisma.StringFilter<'BoatEngine'> | string;
-    fuelType?: Prisma.StringFilter<'BoatEngine'> | string;
-    propellerType?: Prisma.StringFilter<'BoatEngine'> | string;
+    make?: Prisma.StringNullableFilter<'BoatEngine'> | string | null;
+    model?: Prisma.StringNullableFilter<'BoatEngine'> | string | null;
+    fuelType?: Prisma.StringNullableFilter<'BoatEngine'> | string | null;
+    propellerType?: Prisma.StringNullableFilter<'BoatEngine'> | string | null;
     boatId?: Prisma.StringFilter<'BoatEngine'> | string;
     createdAt?: Prisma.DateTimeFilter<'BoatEngine'> | Date | string;
     updatedAt?: Prisma.DateTimeFilter<'BoatEngine'> | Date | string;
@@ -305,10 +305,10 @@ export type BoatEngineOrderByWithAggregationInput = {
   id?: Prisma.SortOrder;
   hours?: Prisma.SortOrder;
   horsepower?: Prisma.SortOrder;
-  make?: Prisma.SortOrder;
-  model?: Prisma.SortOrder;
-  fuelType?: Prisma.SortOrder;
-  propellerType?: Prisma.SortOrder;
+  make?: Prisma.SortOrderInput | Prisma.SortOrder;
+  model?: Prisma.SortOrderInput | Prisma.SortOrder;
+  fuelType?: Prisma.SortOrderInput | Prisma.SortOrder;
+  propellerType?: Prisma.SortOrderInput | Prisma.SortOrder;
   boatId?: Prisma.SortOrder;
   createdAt?: Prisma.SortOrder;
   updatedAt?: Prisma.SortOrder;
@@ -330,10 +330,22 @@ export type BoatEngineScalarWhereWithAggregatesInput = {
   id?: Prisma.StringWithAggregatesFilter<'BoatEngine'> | string;
   hours?: Prisma.IntWithAggregatesFilter<'BoatEngine'> | number;
   horsepower?: Prisma.IntWithAggregatesFilter<'BoatEngine'> | number;
-  make?: Prisma.StringWithAggregatesFilter<'BoatEngine'> | string;
-  model?: Prisma.StringWithAggregatesFilter<'BoatEngine'> | string;
-  fuelType?: Prisma.StringWithAggregatesFilter<'BoatEngine'> | string;
-  propellerType?: Prisma.StringWithAggregatesFilter<'BoatEngine'> | string;
+  make?:
+    | Prisma.StringNullableWithAggregatesFilter<'BoatEngine'>
+    | string
+    | null;
+  model?:
+    | Prisma.StringNullableWithAggregatesFilter<'BoatEngine'>
+    | string
+    | null;
+  fuelType?:
+    | Prisma.StringNullableWithAggregatesFilter<'BoatEngine'>
+    | string
+    | null;
+  propellerType?:
+    | Prisma.StringNullableWithAggregatesFilter<'BoatEngine'>
+    | string
+    | null;
   boatId?: Prisma.StringWithAggregatesFilter<'BoatEngine'> | string;
   createdAt?: Prisma.DateTimeWithAggregatesFilter<'BoatEngine'> | Date | string;
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<'BoatEngine'> | Date | string;
@@ -343,10 +355,10 @@ export type BoatEngineCreateInput = {
   id?: string;
   hours: number;
   horsepower: number;
-  make: string;
-  model: string;
-  fuelType: string;
-  propellerType: string;
+  make?: string | null;
+  model?: string | null;
+  fuelType?: string | null;
+  propellerType?: string | null;
   createdAt?: Date | string;
   updatedAt?: Date | string;
   boat: Prisma.BoatsCreateNestedOneWithoutEnginesInput;
@@ -356,10 +368,10 @@ export type BoatEngineUncheckedCreateInput = {
   id?: string;
   hours: number;
   horsepower: number;
-  make: string;
-  model: string;
-  fuelType: string;
-  propellerType: string;
+  make?: string | null;
+  model?: string | null;
+  fuelType?: string | null;
+  propellerType?: string | null;
   boatId: string;
   createdAt?: Date | string;
   updatedAt?: Date | string;
@@ -369,10 +381,13 @@ export type BoatEngineUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string;
   hours?: Prisma.IntFieldUpdateOperationsInput | number;
   horsepower?: Prisma.IntFieldUpdateOperationsInput | number;
-  make?: Prisma.StringFieldUpdateOperationsInput | string;
-  model?: Prisma.StringFieldUpdateOperationsInput | string;
-  fuelType?: Prisma.StringFieldUpdateOperationsInput | string;
-  propellerType?: Prisma.StringFieldUpdateOperationsInput | string;
+  make?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  model?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  fuelType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  propellerType?:
+    | Prisma.NullableStringFieldUpdateOperationsInput
+    | string
+    | null;
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   boat?: Prisma.BoatsUpdateOneRequiredWithoutEnginesNestedInput;
@@ -382,10 +397,13 @@ export type BoatEngineUncheckedUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string;
   hours?: Prisma.IntFieldUpdateOperationsInput | number;
   horsepower?: Prisma.IntFieldUpdateOperationsInput | number;
-  make?: Prisma.StringFieldUpdateOperationsInput | string;
-  model?: Prisma.StringFieldUpdateOperationsInput | string;
-  fuelType?: Prisma.StringFieldUpdateOperationsInput | string;
-  propellerType?: Prisma.StringFieldUpdateOperationsInput | string;
+  make?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  model?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  fuelType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  propellerType?:
+    | Prisma.NullableStringFieldUpdateOperationsInput
+    | string
+    | null;
   boatId?: Prisma.StringFieldUpdateOperationsInput | string;
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
@@ -395,10 +413,10 @@ export type BoatEngineCreateManyInput = {
   id?: string;
   hours: number;
   horsepower: number;
-  make: string;
-  model: string;
-  fuelType: string;
-  propellerType: string;
+  make?: string | null;
+  model?: string | null;
+  fuelType?: string | null;
+  propellerType?: string | null;
   boatId: string;
   createdAt?: Date | string;
   updatedAt?: Date | string;
@@ -408,10 +426,13 @@ export type BoatEngineUpdateManyMutationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string;
   hours?: Prisma.IntFieldUpdateOperationsInput | number;
   horsepower?: Prisma.IntFieldUpdateOperationsInput | number;
-  make?: Prisma.StringFieldUpdateOperationsInput | string;
-  model?: Prisma.StringFieldUpdateOperationsInput | string;
-  fuelType?: Prisma.StringFieldUpdateOperationsInput | string;
-  propellerType?: Prisma.StringFieldUpdateOperationsInput | string;
+  make?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  model?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  fuelType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  propellerType?:
+    | Prisma.NullableStringFieldUpdateOperationsInput
+    | string
+    | null;
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
 };
@@ -420,10 +441,13 @@ export type BoatEngineUncheckedUpdateManyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string;
   hours?: Prisma.IntFieldUpdateOperationsInput | number;
   horsepower?: Prisma.IntFieldUpdateOperationsInput | number;
-  make?: Prisma.StringFieldUpdateOperationsInput | string;
-  model?: Prisma.StringFieldUpdateOperationsInput | string;
-  fuelType?: Prisma.StringFieldUpdateOperationsInput | string;
-  propellerType?: Prisma.StringFieldUpdateOperationsInput | string;
+  make?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  model?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  fuelType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  propellerType?:
+    | Prisma.NullableStringFieldUpdateOperationsInput
+    | string
+    | null;
   boatId?: Prisma.StringFieldUpdateOperationsInput | string;
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
@@ -598,10 +622,10 @@ export type BoatEngineCreateWithoutBoatInput = {
   id?: string;
   hours: number;
   horsepower: number;
-  make: string;
-  model: string;
-  fuelType: string;
-  propellerType: string;
+  make?: string | null;
+  model?: string | null;
+  fuelType?: string | null;
+  propellerType?: string | null;
   createdAt?: Date | string;
   updatedAt?: Date | string;
 };
@@ -610,10 +634,10 @@ export type BoatEngineUncheckedCreateWithoutBoatInput = {
   id?: string;
   hours: number;
   horsepower: number;
-  make: string;
-  model: string;
-  fuelType: string;
-  propellerType: string;
+  make?: string | null;
+  model?: string | null;
+  fuelType?: string | null;
+  propellerType?: string | null;
   createdAt?: Date | string;
   updatedAt?: Date | string;
 };
@@ -668,10 +692,10 @@ export type BoatEngineScalarWhereInput = {
   id?: Prisma.StringFilter<'BoatEngine'> | string;
   hours?: Prisma.IntFilter<'BoatEngine'> | number;
   horsepower?: Prisma.IntFilter<'BoatEngine'> | number;
-  make?: Prisma.StringFilter<'BoatEngine'> | string;
-  model?: Prisma.StringFilter<'BoatEngine'> | string;
-  fuelType?: Prisma.StringFilter<'BoatEngine'> | string;
-  propellerType?: Prisma.StringFilter<'BoatEngine'> | string;
+  make?: Prisma.StringNullableFilter<'BoatEngine'> | string | null;
+  model?: Prisma.StringNullableFilter<'BoatEngine'> | string | null;
+  fuelType?: Prisma.StringNullableFilter<'BoatEngine'> | string | null;
+  propellerType?: Prisma.StringNullableFilter<'BoatEngine'> | string | null;
   boatId?: Prisma.StringFilter<'BoatEngine'> | string;
   createdAt?: Prisma.DateTimeFilter<'BoatEngine'> | Date | string;
   updatedAt?: Prisma.DateTimeFilter<'BoatEngine'> | Date | string;
@@ -681,10 +705,10 @@ export type BoatEngineCreateManyBoatInput = {
   id?: string;
   hours: number;
   horsepower: number;
-  make: string;
-  model: string;
-  fuelType: string;
-  propellerType: string;
+  make?: string | null;
+  model?: string | null;
+  fuelType?: string | null;
+  propellerType?: string | null;
   createdAt?: Date | string;
   updatedAt?: Date | string;
 };
@@ -693,10 +717,13 @@ export type BoatEngineUpdateWithoutBoatInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string;
   hours?: Prisma.IntFieldUpdateOperationsInput | number;
   horsepower?: Prisma.IntFieldUpdateOperationsInput | number;
-  make?: Prisma.StringFieldUpdateOperationsInput | string;
-  model?: Prisma.StringFieldUpdateOperationsInput | string;
-  fuelType?: Prisma.StringFieldUpdateOperationsInput | string;
-  propellerType?: Prisma.StringFieldUpdateOperationsInput | string;
+  make?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  model?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  fuelType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  propellerType?:
+    | Prisma.NullableStringFieldUpdateOperationsInput
+    | string
+    | null;
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
 };
@@ -705,10 +732,13 @@ export type BoatEngineUncheckedUpdateWithoutBoatInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string;
   hours?: Prisma.IntFieldUpdateOperationsInput | number;
   horsepower?: Prisma.IntFieldUpdateOperationsInput | number;
-  make?: Prisma.StringFieldUpdateOperationsInput | string;
-  model?: Prisma.StringFieldUpdateOperationsInput | string;
-  fuelType?: Prisma.StringFieldUpdateOperationsInput | string;
-  propellerType?: Prisma.StringFieldUpdateOperationsInput | string;
+  make?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  model?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  fuelType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  propellerType?:
+    | Prisma.NullableStringFieldUpdateOperationsInput
+    | string
+    | null;
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
 };
@@ -717,10 +747,13 @@ export type BoatEngineUncheckedUpdateManyWithoutBoatInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string;
   hours?: Prisma.IntFieldUpdateOperationsInput | number;
   horsepower?: Prisma.IntFieldUpdateOperationsInput | number;
-  make?: Prisma.StringFieldUpdateOperationsInput | string;
-  model?: Prisma.StringFieldUpdateOperationsInput | string;
-  fuelType?: Prisma.StringFieldUpdateOperationsInput | string;
-  propellerType?: Prisma.StringFieldUpdateOperationsInput | string;
+  make?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  model?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  fuelType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  propellerType?:
+    | Prisma.NullableStringFieldUpdateOperationsInput
+    | string
+    | null;
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
 };
@@ -846,10 +879,10 @@ export type $BoatEnginePayload<
       id: string;
       hours: number;
       horsepower: number;
-      make: string;
-      model: string;
-      fuelType: string;
-      propellerType: string;
+      make: string | null;
+      model: string | null;
+      fuelType: string | null;
+      propellerType: string | null;
       boatId: string;
       createdAt: Date;
       updatedAt: Date;

@@ -1,0 +1,5 @@
+-- AlterTable
+ALTER TABLE "boat_engines" ALTER COLUMN "make" DROP NOT NULL,
+ALTER COLUMN "model" DROP NOT NULL,
+ALTER COLUMN "fuelType" DROP NOT NULL,
+ALTER COLUMN "propellerType" DROP NOT NULL;
