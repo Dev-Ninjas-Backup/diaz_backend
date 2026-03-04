@@ -3,6 +3,7 @@ import { TResponse } from '@/common/utils/response.util';
 import { PrismaService } from '@/lib/prisma/prisma.service';
 import { S3Service } from '@/lib/s3/s3.service';
 import { Injectable, Logger, NotFoundException } from '@nestjs/common';
+import { SiteType } from 'generated/client';
 import { CreateOurTeamDto } from './dto/create-our-team.dto';
 import { UpdateOurTeamDto } from './dto/update-our-team.dto';
 
@@ -43,6 +44,7 @@ export class OurTeamService {
           data: {
             name: dto.name,
             designation: dto.designation,
+            site: dto.site || SiteType.FLORIDA,
             imageId: uploadedFileId,
           },
           include: {
@@ -77,10 +79,12 @@ export class OurTeamService {
 
   /** GET ALL TEAM MEMBERS */
   @HandleError('Failed to get all team members', 'Our Team')
-  async findAll(): Promise<TResponse<any>> {
+  async findAll(site?: SiteType): Promise<TResponse<any>> {
+    const siteType = site || SiteType.FLORIDA;
+
     try {
       const teamMembers = await this.prisma.client.ourTeam.findMany({
-        where: { isActive: true },
+        where: { isActive: true, site: siteType },
         include: {
           image: true,
         },
@@ -187,6 +191,7 @@ export class OurTeamService {
           data: {
             name: dto.name ?? undefined,
             designation: dto.designation ?? undefined,
+            site: dto.site ?? undefined,
             imageId: uploadedFileId ?? undefined,
             isActive: dto.isActive ?? undefined,
           },

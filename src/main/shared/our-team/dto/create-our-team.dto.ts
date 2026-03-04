@@ -1,5 +1,6 @@
 import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
 import { IsNotEmpty, IsOptional, IsString } from 'class-validator';
+import { SiteType } from 'generated/client';
 
 export class CreateOurTeamDto {
   @ApiProperty({ example: 'John Doe', description: 'Name of the team member' })
@@ -14,6 +15,14 @@ export class CreateOurTeamDto {
   @IsNotEmpty()
   @IsString()
   designation: string;
+
+  @ApiPropertyOptional({
+    enum: SiteType,
+    example: SiteType.FLORIDA,
+    description: 'Site this team member belongs to (FLORIDA or JUPITER)',
+  })
+  @IsOptional()
+  site?: SiteType;
 
   @ApiPropertyOptional({
     type: 'string',
