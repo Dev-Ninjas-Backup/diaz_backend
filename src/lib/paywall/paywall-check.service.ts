@@ -25,9 +25,9 @@ export class PaywallCheckService {
       );
     }
 
-    // Get active subscription
+    // Get active subscription (ACTIVE or TRIALING both allow posting)
     const activeSub = await this.prisma.client.userSubscription.findFirst({
-      where: { userId, status: 'ACTIVE' },
+      where: { userId, status: { in: ['ACTIVE', 'TRIALING'] } },
     });
 
     if (!activeSub) {

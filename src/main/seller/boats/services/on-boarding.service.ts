@@ -81,6 +81,26 @@ export class OnBoardingService {
     );
   }
 
+  /**
+   * Find a valid promo by code (case-insensitive).
+   * Returns null if not found, expired, or over max redemptions.
+   */
+  private async findValidPromoByCode(code: string) {
+    if (!code?.trim()) return null;
+    const promo = await this.prisma.client.promoCode.findFirst({
+      where: { code: { equals: code.trim(), mode: 'insensitive' } },
+      include: { _count: { select: { usedBy: true } } },
+    });
+    if (!promo) return null;
+    if (promo.expiresAt && new Date() > promo.expiresAt) return null;
+    if (
+      promo.maxRedemptions != null &&
+      (promo._count?.usedBy ?? 0) >= promo.maxRedemptions
+    )
+      return null;
+    return promo;
+  }
+
   private async validatePlan(planId: string) {
     const plan = await this.prisma.client.subscriptionPlan.findUnique({
       where: { id: planId },
@@ -171,13 +191,17 @@ export class OnBoardingService {
     setupIntentId: string,
     promoCode?: string,
   ) {
-    // find promo code id if exists
+    // find promo code id if exists (case-insensitive, validate expiry & max redemptions)
     let promoCodeId: string | undefined;
-    if (promoCode) {
-      const dbPromo = await this.prisma.client.promoCode.findUnique({
-        where: { code: promoCode },
-      });
-      promoCodeId = dbPromo?.id;
+    if (promoCode?.trim()) {
+      const dbPromo = await this.findValidPromoByCode(promoCode.trim());
+      if (dbPromo) {
+        promoCodeId = dbPromo.id;
+      } else {
+        this.logger.warn(
+          `Promo code "${promoCode}" not found, expired, or max redemptions reached`,
+        );
+      }
     }
 
     const subscription = await this.prisma.client.userSubscription.create({
