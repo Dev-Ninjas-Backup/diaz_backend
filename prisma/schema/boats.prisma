@@ -79,11 +79,11 @@ model BoatEngine {
   hours      Int
   horsepower Int
 
-  make  String
-  model String
+  make  String?
+  model String?
 
-  fuelType      String
-  propellerType String
+  fuelType      String?
+  propellerType String?
 
   boatId String
   boat   Boats  @relation(fields: [boatId], references: [id], onDelete: Cascade)
