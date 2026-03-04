@@ -102,8 +102,9 @@ export class BoatsService {
       );
     }
 
-    // Compute if subscription is active
-    const isActive = subscription.status === 'ACTIVE';
+    // Compute if subscription is active (ACTIVE or TRIALING)
+    const isActive =
+      subscription.status === 'ACTIVE' || subscription.status === 'TRIALING';
 
     // Fetch associated boat listings (if any)
     const listing = await this.prisma.client.boats.findFirst({

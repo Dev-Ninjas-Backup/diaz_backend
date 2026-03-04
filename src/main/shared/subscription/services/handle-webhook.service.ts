@@ -103,9 +103,7 @@ export class HandleWebhookService {
       let trialPeriodDays: number | undefined;
 
       if (promoCodeCode) {
-        const promo = await this.prisma.client.promoCode.findUnique({
-          where: { code: promoCodeCode },
-        });
+        const promo = await this.findValidPromoByCode(promoCodeCode);
 
         if (promo) {
           if (
@@ -131,12 +129,17 @@ export class HandleWebhookService {
         trialPeriodDays,
       });
 
+      const subscriptionStatus = trialPeriodDays ? 'TRIALING' : 'ACTIVE';
+      const trialEndsAt = trialPeriodDays
+        ? new Date(Date.now() + trialPeriodDays * 24 * 60 * 60 * 1000)
+        : undefined;
+
       await this.prisma.client.$transaction([
         this.prisma.client.user.update({
           where: { id: subscription.userId },
           data: {
             currentPlan: { connect: { id: subscription.planId } },
-            currentPlanStatus: 'ACTIVE',
+            currentPlanStatus: subscriptionStatus,
             stripeCustomerId: customerId,
           },
         }),
@@ -146,6 +149,14 @@ export class HandleWebhookService {
             status: 'ONBOARDING_PENDING',
           },
           data: { status: 'ACTIVE' },
+        }),
+        this.prisma.client.userSubscription.update({
+          where: { id: subscription.id },
+          data: {
+            stripeSubscriptionId: stripeSub.id,
+            status: subscriptionStatus,
+            trialEndsAt: trialEndsAt ?? undefined,
+          },
         }),
       ]);
 
@@ -216,6 +227,7 @@ export class HandleWebhookService {
 
     // Map stripe->local status
     if (subscription.status === 'active') updates.status = 'ACTIVE';
+    else if (subscription.status === 'trialing') updates.status = 'TRIALING';
     else if (subscription.status === 'past_due') updates.status = 'PAST_DUE';
     else if (
       subscription.status === 'canceled' ||
@@ -237,6 +249,26 @@ export class HandleWebhookService {
         data: updates,
       });
     }
+  }
+
+  /**
+   * Find a valid promo by code (case-insensitive).
+   * Returns null if not found, expired, or over max redemptions.
+   */
+  private async findValidPromoByCode(code: string) {
+    if (!code?.trim()) return null;
+    const promo = await this.prisma.client.promoCode.findFirst({
+      where: { code: { equals: code.trim(), mode: 'insensitive' } },
+      include: { _count: { select: { usedBy: true } } },
+    });
+    if (!promo) return null;
+    if (promo.expiresAt && new Date() > promo.expiresAt) return null;
+    if (
+      promo.maxRedemptions != null &&
+      (promo._count?.usedBy ?? 0) >= promo.maxRedemptions
+    )
+      return null;
+    return promo;
   }
 
   private async handleInvoicePaid(invoice: Stripe.Invoice) {
