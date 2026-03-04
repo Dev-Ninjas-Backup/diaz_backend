@@ -1,0 +1,10 @@
+-- AlterTable
+ALTER TABLE "boat_engines" ALTER COLUMN "hours" DROP NOT NULL,
+ALTER COLUMN "horsepower" DROP NOT NULL;
+
+-- AlterTable
+ALTER TABLE "boats" ALTER COLUMN "material" DROP NOT NULL,
+ALTER COLUMN "beam" DROP NOT NULL,
+ALTER COLUMN "draft" DROP NOT NULL,
+ALTER COLUMN "cabinsNumber" DROP NOT NULL,
+ALTER COLUMN "headsNumber" DROP NOT NULL;
