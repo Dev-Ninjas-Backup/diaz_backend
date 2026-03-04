@@ -16,7 +16,7 @@ model Boats {
   model        String
   fuelType     String
   class        String
-  material     String
+  material     String? // Material
   condition    String
   engineType   String?
   propType     String?
@@ -32,12 +32,12 @@ model Boats {
 
   // numeric dimensions
   length Float // total feet, e.g., 36.5 = 36'6"
-  beam   Float // total feet
-  draft  Float // total feet
+  beam   Float? // total feet (Beam Size)
+  draft  Float? // total feet (Max Draft)
 
   enginesNumber Int
-  cabinsNumber  Int
-  headsNumber   Int
+  cabinsNumber  Int? // Number of Cabins
+  headsNumber   Int? // Number of Heads
 
   // Address
   city  String
@@ -76,13 +76,13 @@ enum BoatListingStatus {
 model BoatEngine {
   id String @id @default(uuid())
 
-  hours      Int
-  horsepower Int
+  hours      Int?  // Hours
+  horsepower Int?  // Total Power (HP)
 
-  make  String?
+  make  String?  // Make (optional)
   model String?
 
-  fuelType      String?
+  fuelType      String?  // Engine Type
   propellerType String?
 
   boatId String

@@ -66,6 +66,8 @@ export class UpdateListingService {
       model: e.model ?? undefined,
       fuelType: e.fuelType ?? undefined,
       propellerType: e.propellerType ?? undefined,
+      hours: e.hours ?? undefined,
+      horsepower: e.horsepower ?? undefined,
     }));
     await this.boatListingHelper.syncBoatsEngines(
       boatId,
