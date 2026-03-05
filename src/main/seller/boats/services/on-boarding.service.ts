@@ -78,10 +78,10 @@ export class OnBoardingService {
       userId: user.id,
       promoApplied: !!appliedPromo,
       freeTrialDays: appliedPromo?.freeDays ?? 0,
+      totalPayable: appliedPromo ? 0 : plan.price,
     };
     if (appliedPromo) {
       responsePayload.promoCode = appliedPromo.code;
-      responsePayload.totalPayable = plan.price;
     }
 
     return successResponse(
