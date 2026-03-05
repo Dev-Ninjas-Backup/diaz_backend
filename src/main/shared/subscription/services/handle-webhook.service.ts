@@ -141,6 +141,7 @@ export class HandleWebhookService {
             currentPlan: { connect: { id: subscription.planId } },
             currentPlanStatus: subscriptionStatus,
             stripeCustomerId: customerId,
+            isVerified: true,
           },
         }),
         this.prisma.client.boats.updateMany({
@@ -323,6 +324,14 @@ export class HandleWebhookService {
           planStartedAt: now,
           planEndedAt: planEnd,
           stripeSubscriptionId: subscriptionId,
+        },
+      }),
+
+      // Ensure the user is marked as verified once an invoice is successfully paid
+      this.prisma.client.user.update({
+        where: { id: userId },
+        data: {
+          isVerified: true,
         },
       }),
 
