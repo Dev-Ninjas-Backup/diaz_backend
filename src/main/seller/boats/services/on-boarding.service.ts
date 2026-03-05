@@ -54,8 +54,8 @@ export class OnBoardingService {
       data.promoCode,
     );
 
-    // Persist subscription
-    await this.createPendingSubscription(
+    // Persist subscription (returns whether a valid promo was applied)
+    const { appliedPromo } = await this.createPendingSubscription(
       user.id,
       plan.id,
       setupIntent.id,
@@ -70,13 +70,22 @@ export class OnBoardingService {
       files,
     );
 
+    // Always include promo fields when a promo code was sent; set promoApplied and freeTrialDays automatically
+    const responsePayload: Record<string, unknown> = {
+      paymentIntentId: setupIntent.id,
+      paymentIntentClientSecret: setupIntent.client_secret,
+      listingPreview: listing,
+      userId: user.id,
+      promoApplied: !!appliedPromo,
+      freeTrialDays: appliedPromo?.freeDays ?? 0,
+    };
+    if (appliedPromo) {
+      responsePayload.promoCode = appliedPromo.code;
+      responsePayload.totalPayable = plan.price;
+    }
+
     return successResponse(
-      {
-        paymentIntentId: setupIntent.id,
-        paymentIntentClientSecret: setupIntent.client_secret,
-        listingPreview: listing,
-        userId: user.id,
-      },
+      responsePayload,
       'Onboarding completed successfully',
     );
   }
@@ -193,10 +202,13 @@ export class OnBoardingService {
   ) {
     // find promo code id if exists (case-insensitive, validate expiry & max redemptions)
     let promoCodeId: string | undefined;
+    let appliedPromo: Awaited<ReturnType<typeof this.findValidPromoByCode>> =
+      null;
     if (promoCode?.trim()) {
       const dbPromo = await this.findValidPromoByCode(promoCode.trim());
       if (dbPromo) {
         promoCodeId = dbPromo.id;
+        appliedPromo = dbPromo;
       } else {
         this.logger.warn(
           `Promo code "${promoCode}" not found, expired, or max redemptions reached`,
@@ -218,6 +230,6 @@ export class OnBoardingService {
       `Created pending subscription record for user ${userId} with plan ${planId} and subscription ID ${subscription.id}`,
     );
 
-    return subscription;
+    return { subscription, appliedPromo };
   }
 }
