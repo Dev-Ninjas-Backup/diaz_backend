@@ -289,7 +289,7 @@ export class HandleWebhookService {
 
     const { userId, planId } = metadata;
 
-    // Fetch local subscription
+    // Fetch local subscription (include promo for plan end extension)
     const localSubscription =
       await this.prisma.client.userSubscription.findFirst({
         where: {
@@ -298,7 +298,7 @@ export class HandleWebhookService {
             { userId: userId, planId: planId },
           ],
         },
-        include: { plan: true },
+        include: { plan: true, promoCode: { select: { freeDays: true } } },
       });
 
     if (!localSubscription) {
@@ -309,10 +309,16 @@ export class HandleWebhookService {
     }
 
     const now = new Date();
-    const planEnd = this.utils.addMonthsToDate(
+    let planEnd = this.utils.addMonthsToDate(
       now,
       localSubscription.plan.billingPeriodMonths || 1,
     );
+
+    // When promo is applied: plan expired date = plan end + promo free days
+    const promoDays = localSubscription.promoCode?.freeDays ?? 0;
+    if (promoDays > 0) {
+      planEnd = new Date(planEnd.getTime() + promoDays * 24 * 60 * 60 * 1000);
+    }
 
     // Run updates in transaction
     await this.prisma.client.$transaction([
@@ -340,7 +346,12 @@ export class HandleWebhookService {
           stripeInvoiceId: invoice.id,
           userId: userId,
           subscriptionId: localSubscription.id,
-          amount: invoice.total,
+          // When promo applied Stripe sends total 0; store plan price as amount (subscription value)
+          amount:
+            localSubscription.promoCodeId &&
+            (invoice.total === 0 || invoice.total === null)
+              ? localSubscription.plan.price
+              : (invoice.total ?? 0),
           currency: invoice.currency,
           status: 'PAID',
           paidAt: now,
