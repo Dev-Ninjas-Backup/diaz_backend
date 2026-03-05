@@ -16,6 +16,7 @@ import {
   CreateSubscriptionPlanDto,
   UpdateSubscriptionPlanDto,
 } from './dto/subscription-plan.dto';
+import { ValidatePromoCodeDto } from './dto/validate-promo.dto';
 import { HandleWebhookService } from './services/handle-webhook.service';
 import { SubscriptionPlanService } from './services/subscription-plan.service';
 import { SubscriptionService } from './services/subscription.service';
@@ -33,6 +34,12 @@ export class SubscriptionController {
   @Get('plans')
   async getAllPlans() {
     return this.subscription.getAllPlans();
+  }
+
+  @ApiOperation({ summary: 'Validate promo code (Public Endpoint)' })
+  @Post('promo/validate')
+  async validatePromo(@Body() dto: ValidatePromoCodeDto) {
+    return this.subscription.validatePromoCode(dto);
   }
 
   @ApiOperation({ summary: 'Get subscription plan by ID' })
