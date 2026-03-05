@@ -12,7 +12,12 @@ export class SellerManagementService {
         role: 'SELLER', // Optional: filter only sellers
         status: 'ACTIVE',
         boats: {
-          some: {}, // Only users who have at least one boat
+          // Only users who have at least one non-inactive boat listing
+          some: {
+            status: {
+              not: 'INACTIVE',
+            },
+          },
         },
       },
       select: {
@@ -28,8 +33,9 @@ export class SellerManagementService {
           select: {
             boats: {
               where: {
+                // Count all non-inactive listings as boats for this seller
                 status: {
-                  in: ['SOLD'], // Only count sold boats
+                  not: 'INACTIVE',
                 },
               },
             },
