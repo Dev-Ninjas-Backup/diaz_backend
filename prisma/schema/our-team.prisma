@@ -4,6 +4,9 @@ model OurTeam {
   name        String
   designation String
 
+  /// Optional short biography for the team member
+  bio String?
+
   imageId String?
   image   FileInstance? @relation("OurTeamImage", fields: [imageId], references: [id], onDelete: SetNull)
 

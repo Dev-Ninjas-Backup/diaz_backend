@@ -7,7 +7,11 @@ import { StripeService } from '@/lib/stripe/stripe.service';
 import { UtilsService } from '@/lib/utils/utils.service';
 import { HttpStatus, Injectable, Logger } from '@nestjs/common';
 import { BoatImageType } from 'generated/client';
-import { SellerOnboardingBodyDto } from '../dto/seller-on-boarding.dto';
+import { SellerInfoOnBoardingDto } from '../dto/seller-info.dto';
+import {
+  OnboardingBoatListingBodyDto,
+  SellerOnboardingBodyDto,
+} from '../dto/seller-on-boarding.dto';
 import { BoatListingHelperService } from './boat-listing-helper.service';
 
 @Injectable()
@@ -87,6 +91,105 @@ export class OnBoardingService {
     return successResponse(
       responsePayload,
       'Onboarding completed successfully',
+    );
+  }
+
+  /**
+   * Step 1: Create Seller Info (registration only, no boats or subscription).
+   */
+  @HandleError('Failed to create seller info', 'Seller')
+  async createSellerInfo(
+    sellerInfo: SellerInfoOnBoardingDto,
+  ): Promise<TResponse<any>> {
+    await this.validateUserUniqueness(sellerInfo.username, sellerInfo.email);
+
+    const user = await this.prisma.client.user.create({
+      data: {
+        username: sellerInfo.username,
+        password: await this.utils.hash(sellerInfo.password),
+        role: 'SELLER',
+        email: sellerInfo.email,
+        phone: sellerInfo.phone,
+        name: sellerInfo.name,
+        country: sellerInfo.country,
+        city: sellerInfo.city,
+        state: sellerInfo.state,
+        zip: sellerInfo.zip,
+      },
+    });
+
+    // We intentionally return minimal user data to the client.
+    const payload = {
+      id: user.id,
+      email: user.email,
+      username: user.username,
+      role: user.role,
+      name: user.name,
+    };
+
+    return successResponse(payload, 'Seller registered successfully');
+  }
+
+  /**
+   * Step 4: Authenticated seller creates boat listing under a selected package.
+   * Listing will remain ONBOARDING_PENDING until payment completes.
+   */
+  @HandleError('Failed to create onboarding boat listing', 'Boats')
+  async createOnboardingBoatListing(
+    userId: string,
+    data: OnboardingBoatListingBodyDto,
+    files: { path: string; type: BoatImageType; originalName: string }[],
+  ): Promise<TResponse<any>> {
+    if (!data.planId || !data.boatInfo) {
+      throw new AppError(HttpStatus.BAD_REQUEST, 'Invalid request body');
+    }
+
+    // Validate that user exists
+    const user = await this.prisma.client.user.findUnique({
+      where: { id: userId },
+    });
+    if (!user) {
+      throw new AppError(HttpStatus.NOT_FOUND, 'User not found');
+    }
+
+    // Validate plan and image limits based on selected package
+    const plan = await this.validatePlan(data.planId);
+    this.boatListingHelper.validateImageLimit(files.length, plan.picLimit);
+
+    // Parse boat info
+    const boatInfo = this.boatListingHelper.parseBoatInfo(data.boatInfo);
+
+    // Create onboarding listing with pending status
+    const listing = await this.prisma.client.$transaction(async (tx) => {
+      return tx.boats.create({
+        data: await this.boatListingHelper.buildBoatCreateData(
+          boatInfo,
+          userId,
+          'ONBOARDING_PENDING',
+          tx,
+        ),
+        include: {
+          engines: true,
+          user: { select: { id: true, username: true, email: true } },
+        },
+      });
+    });
+
+    // Emit all events for boat creation (images, specs, features)
+    await this.boatListingHelper.emitAllBoatEvents(
+      userId,
+      listing.id,
+      boatInfo,
+      files,
+    );
+
+    return successResponse(
+      {
+        listingPreview: listing,
+        userId: userId,
+        planId: data.planId,
+      },
+      'Onboarding boat listing created successfully',
     );
   }
 

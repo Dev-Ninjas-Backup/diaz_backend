@@ -17,6 +17,14 @@ export class CreateOurTeamDto {
   designation: string;
 
   @ApiPropertyOptional({
+    example: 'Seasoned professional with 15+ years in the boating industry.',
+    description: 'Short biography of the team member',
+  })
+  @IsOptional()
+  @IsString()
+  bio?: string;
+
+  @ApiPropertyOptional({
     enum: SiteType,
     example: SiteType.FLORIDA,
     description: 'Site this team member belongs to (FLORIDA or JUPITER)',

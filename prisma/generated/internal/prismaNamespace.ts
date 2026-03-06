@@ -3966,6 +3966,7 @@ export const OurTeamScalarFieldEnum = {
   id: 'id',
   name: 'name',
   designation: 'designation',
+  bio: 'bio',
   imageId: 'imageId',
   site: 'site',
   order: 'order',

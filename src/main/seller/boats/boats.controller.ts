@@ -27,6 +27,7 @@ import { BoatListingDto } from './dto/boats.dto';
 import { GetOwnBoatsDto } from './dto/get-own-boats.dto';
 import { SellerInfoOnBoardingDto } from './dto/seller-info.dto';
 import {
+  OnboardingBoatListingDto,
   SellerOnBoardingDto,
   SellerOnboardingPlanDto,
 } from './dto/seller-on-boarding.dto';
@@ -100,6 +101,69 @@ export class BoatsController {
       })),
     ];
     return this.onBoardingService.sellerOnBoarding(data, mappedFiles);
+  }
+
+  @ApiOperation({
+    summary: 'Step 1 - Create Seller Info (Public)',
+  })
+  @Public()
+  @Post('onboarding/seller-info')
+  async createSellerInfo(@Body() sellerInfo: SellerInfoOnBoardingDto) {
+    return this.onBoardingService.createSellerInfo(sellerInfo);
+  }
+
+  @ApiOperation({
+    summary:
+      'Step 4 - Create onboarding boat listing under selected package (Authenticated)',
+  })
+  @ApiConsumes('multipart/form-data')
+  @ApiBody({ type: () => OnboardingBoatListingDto })
+  @UseInterceptors(
+    FileFieldsInterceptor(
+      [
+        { name: 'covers', maxCount: 5 },
+        { name: 'galleries', maxCount: 70 },
+      ],
+      new MulterService().createMultipleFileOptions({
+        destinationFolder: './temp',
+        prefix: 'boat_onboarding',
+        fileType: FileType.IMAGE,
+        maxFileCount: 75,
+      }),
+    ),
+  )
+  @Post('onboarding/boat')
+  async createOnboardingBoat(
+    @GetUser('sub') userId: string,
+    @Body()
+    data: {
+      planId: SellerOnboardingPlanDto['planId'];
+      boatInfo: CreateBoatsInfoDto;
+    },
+    @UploadedFiles()
+    files: {
+      covers?: Express.Multer.File[];
+      galleries?: Express.Multer.File[];
+    },
+  ) {
+    const mappedFiles: QueueFile[] = [
+      ...(files.covers || []).map((file) => ({
+        path: file.path,
+        type: BoatImageType.COVER,
+        originalName: file.originalname,
+      })),
+      ...(files.galleries || []).map((file) => ({
+        path: file.path,
+        type: BoatImageType.GALLERY,
+        originalName: file.originalname,
+      })),
+    ];
+
+    return this.onBoardingService.createOnboardingBoatListing(
+      userId,
+      data,
+      mappedFiles,
+    );
   }
 
   @ApiOperation({ summary: 'Get Boat Subscription Confirmation (Public)' })
