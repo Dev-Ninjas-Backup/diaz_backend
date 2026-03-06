@@ -61,3 +61,40 @@ export class SellerOnboardingBodyDto extends SellerOnboardingPlanDto {
   @Type(() => SellerInfoOnBoardingDto)
   sellerInfo: SellerInfoOnBoardingDto;
 }
+
+/**
+ * Step 4 of the new onboarding flow:
+ * Authenticated seller creates an onboarding boat listing
+ * under a selected subscription plan (no seller info here).
+ */
+export class OnboardingBoatListingDto extends SellerOnboardingPlanDto {
+  @ApiPropertyOptional({
+    type: 'string',
+    format: 'binary',
+    description:
+      'Cover Images to upload (multipart file). Use this field when uploading files.',
+    isArray: true,
+  })
+  covers?: Express.Multer.File[];
+
+  @ApiPropertyOptional({
+    type: 'string',
+    format: 'binary',
+    description:
+      'Gallery Images to upload (multipart file). Use this field when uploading files.',
+    isArray: true,
+  })
+  galleries?: Express.Multer.File[];
+
+  @ApiProperty({ type: CreateBoatsInfoDto })
+  @ValidateNested()
+  @Type(() => CreateBoatsInfoDto)
+  boatInfo: CreateBoatsInfoDto;
+}
+
+export class OnboardingBoatListingBodyDto extends SellerOnboardingPlanDto {
+  @ApiProperty({ type: CreateBoatsInfoDto })
+  @ValidateNested()
+  @Type(() => CreateBoatsInfoDto)
+  boatInfo: CreateBoatsInfoDto;
+}

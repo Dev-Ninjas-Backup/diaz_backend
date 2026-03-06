@@ -44,6 +44,7 @@ export class OurTeamService {
           data: {
             name: dto.name,
             designation: dto.designation,
+            bio: dto.bio || undefined,
             site: dto.site || SiteType.FLORIDA,
             imageId: uploadedFileId,
           },
@@ -191,6 +192,7 @@ export class OurTeamService {
           data: {
             name: dto.name ?? undefined,
             designation: dto.designation ?? undefined,
+            bio: dto.bio ?? undefined,
             site: dto.site ?? undefined,
             imageId: uploadedFileId ?? undefined,
             isActive: dto.isActive ?? undefined,

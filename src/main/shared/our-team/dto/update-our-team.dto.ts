@@ -20,6 +20,14 @@ export class UpdateOurTeamDto {
   designation?: string;
 
   @ApiPropertyOptional({
+    example: 'Seasoned professional with 15+ years in the boating industry.',
+    description: 'Short biography of the team member',
+  })
+  @IsOptional()
+  @IsString()
+  bio?: string;
+
+  @ApiPropertyOptional({
     type: 'string',
     format: 'binary',
     description: 'Team member image file',

@@ -27,6 +27,11 @@ export class OurTeamResponseDto {
   @ApiProperty()
   designation: string;
 
+  @ApiPropertyOptional({
+    description: 'Short biography of the team member',
+  })
+  bio?: string;
+
   @ApiPropertyOptional({ type: FileInstanceDto })
   image?: FileInstanceDto;
 

@@ -38,6 +38,7 @@ export type OurTeamMinAggregateOutputType = {
   id: string | null;
   name: string | null;
   designation: string | null;
+  bio: string | null;
   imageId: string | null;
   site: $Enums.SiteType | null;
   order: number | null;
@@ -50,6 +51,7 @@ export type OurTeamMaxAggregateOutputType = {
   id: string | null;
   name: string | null;
   designation: string | null;
+  bio: string | null;
   imageId: string | null;
   site: $Enums.SiteType | null;
   order: number | null;
@@ -62,6 +64,7 @@ export type OurTeamCountAggregateOutputType = {
   id: number;
   name: number;
   designation: number;
+  bio: number;
   imageId: number;
   site: number;
   order: number;
@@ -83,6 +86,7 @@ export type OurTeamMinAggregateInputType = {
   id?: true;
   name?: true;
   designation?: true;
+  bio?: true;
   imageId?: true;
   site?: true;
   order?: true;
@@ -95,6 +99,7 @@ export type OurTeamMaxAggregateInputType = {
   id?: true;
   name?: true;
   designation?: true;
+  bio?: true;
   imageId?: true;
   site?: true;
   order?: true;
@@ -107,6 +112,7 @@ export type OurTeamCountAggregateInputType = {
   id?: true;
   name?: true;
   designation?: true;
+  bio?: true;
   imageId?: true;
   site?: true;
   order?: true;
@@ -213,6 +219,7 @@ export type OurTeamGroupByOutputType = {
   id: string;
   name: string;
   designation: string;
+  bio: string | null;
   imageId: string | null;
   site: $Enums.SiteType;
   order: number;
@@ -246,6 +253,7 @@ export type OurTeamWhereInput = {
   id?: Prisma.StringFilter<'OurTeam'> | string;
   name?: Prisma.StringFilter<'OurTeam'> | string;
   designation?: Prisma.StringFilter<'OurTeam'> | string;
+  bio?: Prisma.StringNullableFilter<'OurTeam'> | string | null;
   imageId?: Prisma.StringNullableFilter<'OurTeam'> | string | null;
   site?: Prisma.EnumSiteTypeFilter<'OurTeam'> | $Enums.SiteType;
   order?: Prisma.IntFilter<'OurTeam'> | number;
@@ -262,6 +270,7 @@ export type OurTeamOrderByWithRelationInput = {
   id?: Prisma.SortOrder;
   name?: Prisma.SortOrder;
   designation?: Prisma.SortOrder;
+  bio?: Prisma.SortOrderInput | Prisma.SortOrder;
   imageId?: Prisma.SortOrderInput | Prisma.SortOrder;
   site?: Prisma.SortOrder;
   order?: Prisma.SortOrder;
@@ -279,6 +288,7 @@ export type OurTeamWhereUniqueInput = Prisma.AtLeast<
     NOT?: Prisma.OurTeamWhereInput | Prisma.OurTeamWhereInput[];
     name?: Prisma.StringFilter<'OurTeam'> | string;
     designation?: Prisma.StringFilter<'OurTeam'> | string;
+    bio?: Prisma.StringNullableFilter<'OurTeam'> | string | null;
     imageId?: Prisma.StringNullableFilter<'OurTeam'> | string | null;
     site?: Prisma.EnumSiteTypeFilter<'OurTeam'> | $Enums.SiteType;
     order?: Prisma.IntFilter<'OurTeam'> | number;
@@ -297,6 +307,7 @@ export type OurTeamOrderByWithAggregationInput = {
   id?: Prisma.SortOrder;
   name?: Prisma.SortOrder;
   designation?: Prisma.SortOrder;
+  bio?: Prisma.SortOrderInput | Prisma.SortOrder;
   imageId?: Prisma.SortOrderInput | Prisma.SortOrder;
   site?: Prisma.SortOrder;
   order?: Prisma.SortOrder;
@@ -321,6 +332,7 @@ export type OurTeamScalarWhereWithAggregatesInput = {
   id?: Prisma.StringWithAggregatesFilter<'OurTeam'> | string;
   name?: Prisma.StringWithAggregatesFilter<'OurTeam'> | string;
   designation?: Prisma.StringWithAggregatesFilter<'OurTeam'> | string;
+  bio?: Prisma.StringNullableWithAggregatesFilter<'OurTeam'> | string | null;
   imageId?:
     | Prisma.StringNullableWithAggregatesFilter<'OurTeam'>
     | string
@@ -336,6 +348,7 @@ export type OurTeamCreateInput = {
   id?: string;
   name: string;
   designation: string;
+  bio?: string | null;
   site?: $Enums.SiteType;
   order?: number;
   isActive?: boolean;
@@ -348,6 +361,7 @@ export type OurTeamUncheckedCreateInput = {
   id?: string;
   name: string;
   designation: string;
+  bio?: string | null;
   imageId?: string | null;
   site?: $Enums.SiteType;
   order?: number;
@@ -360,6 +374,7 @@ export type OurTeamUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string;
   name?: Prisma.StringFieldUpdateOperationsInput | string;
   designation?: Prisma.StringFieldUpdateOperationsInput | string;
+  bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
   site?: Prisma.EnumSiteTypeFieldUpdateOperationsInput | $Enums.SiteType;
   order?: Prisma.IntFieldUpdateOperationsInput | number;
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean;
@@ -372,6 +387,7 @@ export type OurTeamUncheckedUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string;
   name?: Prisma.StringFieldUpdateOperationsInput | string;
   designation?: Prisma.StringFieldUpdateOperationsInput | string;
+  bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
   imageId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
   site?: Prisma.EnumSiteTypeFieldUpdateOperationsInput | $Enums.SiteType;
   order?: Prisma.IntFieldUpdateOperationsInput | number;
@@ -384,6 +400,7 @@ export type OurTeamCreateManyInput = {
   id?: string;
   name: string;
   designation: string;
+  bio?: string | null;
   imageId?: string | null;
   site?: $Enums.SiteType;
   order?: number;
@@ -396,6 +413,7 @@ export type OurTeamUpdateManyMutationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string;
   name?: Prisma.StringFieldUpdateOperationsInput | string;
   designation?: Prisma.StringFieldUpdateOperationsInput | string;
+  bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
   site?: Prisma.EnumSiteTypeFieldUpdateOperationsInput | $Enums.SiteType;
   order?: Prisma.IntFieldUpdateOperationsInput | number;
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean;
@@ -407,6 +425,7 @@ export type OurTeamUncheckedUpdateManyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string;
   name?: Prisma.StringFieldUpdateOperationsInput | string;
   designation?: Prisma.StringFieldUpdateOperationsInput | string;
+  bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
   imageId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
   site?: Prisma.EnumSiteTypeFieldUpdateOperationsInput | $Enums.SiteType;
   order?: Prisma.IntFieldUpdateOperationsInput | number;
@@ -429,6 +448,7 @@ export type OurTeamCountOrderByAggregateInput = {
   id?: Prisma.SortOrder;
   name?: Prisma.SortOrder;
   designation?: Prisma.SortOrder;
+  bio?: Prisma.SortOrder;
   imageId?: Prisma.SortOrder;
   site?: Prisma.SortOrder;
   order?: Prisma.SortOrder;
@@ -445,6 +465,7 @@ export type OurTeamMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder;
   name?: Prisma.SortOrder;
   designation?: Prisma.SortOrder;
+  bio?: Prisma.SortOrder;
   imageId?: Prisma.SortOrder;
   site?: Prisma.SortOrder;
   order?: Prisma.SortOrder;
@@ -457,6 +478,7 @@ export type OurTeamMinOrderByAggregateInput = {
   id?: Prisma.SortOrder;
   name?: Prisma.SortOrder;
   designation?: Prisma.SortOrder;
+  bio?: Prisma.SortOrder;
   imageId?: Prisma.SortOrder;
   site?: Prisma.SortOrder;
   order?: Prisma.SortOrder;
@@ -567,6 +589,7 @@ export type OurTeamCreateWithoutImageInput = {
   id?: string;
   name: string;
   designation: string;
+  bio?: string | null;
   site?: $Enums.SiteType;
   order?: number;
   isActive?: boolean;
@@ -578,6 +601,7 @@ export type OurTeamUncheckedCreateWithoutImageInput = {
   id?: string;
   name: string;
   designation: string;
+  bio?: string | null;
   site?: $Enums.SiteType;
   order?: number;
   isActive?: boolean;
@@ -635,6 +659,7 @@ export type OurTeamScalarWhereInput = {
   id?: Prisma.StringFilter<'OurTeam'> | string;
   name?: Prisma.StringFilter<'OurTeam'> | string;
   designation?: Prisma.StringFilter<'OurTeam'> | string;
+  bio?: Prisma.StringNullableFilter<'OurTeam'> | string | null;
   imageId?: Prisma.StringNullableFilter<'OurTeam'> | string | null;
   site?: Prisma.EnumSiteTypeFilter<'OurTeam'> | $Enums.SiteType;
   order?: Prisma.IntFilter<'OurTeam'> | number;
@@ -647,6 +672,7 @@ export type OurTeamCreateManyImageInput = {
   id?: string;
   name: string;
   designation: string;
+  bio?: string | null;
   site?: $Enums.SiteType;
   order?: number;
   isActive?: boolean;
@@ -658,6 +684,7 @@ export type OurTeamUpdateWithoutImageInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string;
   name?: Prisma.StringFieldUpdateOperationsInput | string;
   designation?: Prisma.StringFieldUpdateOperationsInput | string;
+  bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
   site?: Prisma.EnumSiteTypeFieldUpdateOperationsInput | $Enums.SiteType;
   order?: Prisma.IntFieldUpdateOperationsInput | number;
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean;
@@ -669,6 +696,7 @@ export type OurTeamUncheckedUpdateWithoutImageInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string;
   name?: Prisma.StringFieldUpdateOperationsInput | string;
   designation?: Prisma.StringFieldUpdateOperationsInput | string;
+  bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
   site?: Prisma.EnumSiteTypeFieldUpdateOperationsInput | $Enums.SiteType;
   order?: Prisma.IntFieldUpdateOperationsInput | number;
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean;
@@ -680,6 +708,7 @@ export type OurTeamUncheckedUpdateManyWithoutImageInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string;
   name?: Prisma.StringFieldUpdateOperationsInput | string;
   designation?: Prisma.StringFieldUpdateOperationsInput | string;
+  bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
   site?: Prisma.EnumSiteTypeFieldUpdateOperationsInput | $Enums.SiteType;
   order?: Prisma.IntFieldUpdateOperationsInput | number;
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean;
@@ -695,6 +724,7 @@ export type OurTeamSelect<
     id?: boolean;
     name?: boolean;
     designation?: boolean;
+    bio?: boolean;
     imageId?: boolean;
     site?: boolean;
     order?: boolean;
@@ -714,6 +744,7 @@ export type OurTeamSelectCreateManyAndReturn<
     id?: boolean;
     name?: boolean;
     designation?: boolean;
+    bio?: boolean;
     imageId?: boolean;
     site?: boolean;
     order?: boolean;
@@ -733,6 +764,7 @@ export type OurTeamSelectUpdateManyAndReturn<
     id?: boolean;
     name?: boolean;
     designation?: boolean;
+    bio?: boolean;
     imageId?: boolean;
     site?: boolean;
     order?: boolean;
@@ -748,6 +780,7 @@ export type OurTeamSelectScalar = {
   id?: boolean;
   name?: boolean;
   designation?: boolean;
+  bio?: boolean;
   imageId?: boolean;
   site?: boolean;
   order?: boolean;
@@ -763,6 +796,7 @@ export type OurTeamOmit<
   | 'id'
   | 'name'
   | 'designation'
+  | 'bio'
   | 'imageId'
   | 'site'
   | 'order'
@@ -803,6 +837,10 @@ export type $OurTeamPayload<
       id: string;
       name: string;
       designation: string;
+      /**
+       * Optional short biography for the team member
+       */
+      bio: string | null;
       imageId: string | null;
       site: $Enums.SiteType;
       order: number;
@@ -1417,6 +1455,7 @@ export interface OurTeamFieldRefs {
   readonly id: Prisma.FieldRef<'OurTeam', 'String'>;
   readonly name: Prisma.FieldRef<'OurTeam', 'String'>;
   readonly designation: Prisma.FieldRef<'OurTeam', 'String'>;
+  readonly bio: Prisma.FieldRef<'OurTeam', 'String'>;
   readonly imageId: Prisma.FieldRef<'OurTeam', 'String'>;
   readonly site: Prisma.FieldRef<'OurTeam', 'SiteType'>;
   readonly order: Prisma.FieldRef<'OurTeam', 'Int'>;
