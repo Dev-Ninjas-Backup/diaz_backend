@@ -73,8 +73,7 @@ export class SellerManagementController {
       page: page ? Number(page) : 1,
       limit: limit ? Number(limit) : 10,
       search,
-      isVerified:
-        isVerified !== undefined ? isVerified === 'true' : undefined,
+      isVerified: isVerified !== undefined ? isVerified === 'true' : undefined,
       sortBy,
       sortOrder,
     });
