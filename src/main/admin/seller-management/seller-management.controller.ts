@@ -65,7 +65,7 @@ export class SellerManagementController {
     @Query('page') page?: number,
     @Query('limit') limit?: number,
     @Query('search') search?: string,
-    @Query('isVerified') isVerified?: boolean,
+    @Query('isVerified') isVerified?: string,
     @Query('sortBy') sortBy?: string,
     @Query('sortOrder') sortOrder?: 'asc' | 'desc',
   ) {
@@ -74,9 +74,7 @@ export class SellerManagementController {
       limit: limit ? Number(limit) : 10,
       search,
       isVerified:
-        isVerified !== undefined
-          ? isVerified === true || isVerified === 'true'
-          : undefined,
+        isVerified !== undefined ? isVerified === 'true' : undefined,
       sortBy,
       sortOrder,
     });
