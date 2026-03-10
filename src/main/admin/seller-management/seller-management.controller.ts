@@ -29,7 +29,11 @@ export class SellerManagementController {
   @ApiQuery({ name: 'limit', required: false, type: Number, example: 10 })
   @ApiQuery({ name: 'search', required: false, type: String, example: 'john' })
   @ApiQuery({ name: 'isVerified', required: false, type: Boolean })
-  @ApiQuery({ name: 'sortBy', required: false, enum: ['name', 'boatsCount', 'totalSalesValue', 'createdAt'] })
+  @ApiQuery({
+    name: 'sortBy',
+    required: false,
+    enum: ['name', 'boatsCount', 'totalSalesValue', 'createdAt'],
+  })
   @ApiQuery({ name: 'sortOrder', required: false, enum: ['asc', 'desc'] })
   @ApiOkResponse({
     description: 'List of sellers retrieved successfully',
@@ -69,7 +73,10 @@ export class SellerManagementController {
       page: page ? Number(page) : 1,
       limit: limit ? Number(limit) : 10,
       search,
-      isVerified: isVerified !== undefined ? isVerified === true || isVerified === 'true' : undefined,
+      isVerified:
+        isVerified !== undefined
+          ? isVerified === true || isVerified === 'true'
+          : undefined,
       sortBy,
       sortOrder,
     });

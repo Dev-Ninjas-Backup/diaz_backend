@@ -98,7 +98,7 @@ export class SellerManagementService {
     });
 
     // Transform to clean output
-    let result = sellerBoatStats.map((seller) => {
+    const result = sellerBoatStats.map((seller) => {
       const totalSalesValue = seller.boats.reduce(
         (sum, boat) => sum + boat.price,
         0,
