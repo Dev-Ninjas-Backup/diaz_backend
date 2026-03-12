@@ -436,6 +436,7 @@ export const ModelName = {
   OurStory: 'OurStory',
   MissionVision: 'MissionVision',
   WhatSetsUsApart: 'WhatSetsUsApart',
+  DailyLead: 'DailyLead',
   FeaturedYacht: 'FeaturedYacht',
   FeaturedBrands: 'FeaturedBrands',
   FileInstance: 'FileInstance',
@@ -497,6 +498,7 @@ export type TypeMap<
       | 'ourStory'
       | 'missionVision'
       | 'whatSetsUsApart'
+      | 'dailyLead'
       | 'featuredYacht'
       | 'featuredBrands'
       | 'fileInstance'
@@ -2339,6 +2341,82 @@ export type TypeMap<
         };
       };
     };
+    DailyLead: {
+      payload: Prisma.$DailyLeadPayload<ExtArgs>;
+      fields: Prisma.DailyLeadFieldRefs;
+      operations: {
+        findUnique: {
+          args: Prisma.DailyLeadFindUniqueArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DailyLeadPayload> | null;
+        };
+        findUniqueOrThrow: {
+          args: Prisma.DailyLeadFindUniqueOrThrowArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DailyLeadPayload>;
+        };
+        findFirst: {
+          args: Prisma.DailyLeadFindFirstArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DailyLeadPayload> | null;
+        };
+        findFirstOrThrow: {
+          args: Prisma.DailyLeadFindFirstOrThrowArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DailyLeadPayload>;
+        };
+        findMany: {
+          args: Prisma.DailyLeadFindManyArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DailyLeadPayload>[];
+        };
+        create: {
+          args: Prisma.DailyLeadCreateArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DailyLeadPayload>;
+        };
+        createMany: {
+          args: Prisma.DailyLeadCreateManyArgs<ExtArgs>;
+          result: BatchPayload;
+        };
+        createManyAndReturn: {
+          args: Prisma.DailyLeadCreateManyAndReturnArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DailyLeadPayload>[];
+        };
+        delete: {
+          args: Prisma.DailyLeadDeleteArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DailyLeadPayload>;
+        };
+        update: {
+          args: Prisma.DailyLeadUpdateArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DailyLeadPayload>;
+        };
+        deleteMany: {
+          args: Prisma.DailyLeadDeleteManyArgs<ExtArgs>;
+          result: BatchPayload;
+        };
+        updateMany: {
+          args: Prisma.DailyLeadUpdateManyArgs<ExtArgs>;
+          result: BatchPayload;
+        };
+        updateManyAndReturn: {
+          args: Prisma.DailyLeadUpdateManyAndReturnArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DailyLeadPayload>[];
+        };
+        upsert: {
+          args: Prisma.DailyLeadUpsertArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DailyLeadPayload>;
+        };
+        aggregate: {
+          args: Prisma.DailyLeadAggregateArgs<ExtArgs>;
+          result: runtime.Types.Utils.Optional<Prisma.AggregateDailyLead>;
+        };
+        groupBy: {
+          args: Prisma.DailyLeadGroupByArgs<ExtArgs>;
+          result: runtime.Types.Utils.Optional<Prisma.DailyLeadGroupByOutputType>[];
+        };
+        count: {
+          args: Prisma.DailyLeadCountArgs<ExtArgs>;
+          result:
+            | runtime.Types.Utils.Optional<Prisma.DailyLeadCountAggregateOutputType>
+            | number;
+        };
+      };
+    };
     FeaturedYacht: {
       payload: Prisma.$FeaturedYachtPayload<ExtArgs>;
       fields: Prisma.FeaturedYachtFieldRefs;
@@ -3897,6 +3975,20 @@ export const WhatSetsUsApartScalarFieldEnum = {
 export type WhatSetsUsApartScalarFieldEnum =
   (typeof WhatSetsUsApartScalarFieldEnum)[keyof typeof WhatSetsUsApartScalarFieldEnum];
 
+export const DailyLeadScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  name: 'name',
+  email: 'email',
+  product: 'product',
+  status: 'status',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+} as const;
+
+export type DailyLeadScalarFieldEnum =
+  (typeof DailyLeadScalarFieldEnum)[keyof typeof DailyLeadScalarFieldEnum];
+
 export const FeaturedYachtScalarFieldEnum = {
   id: 'id',
   boatId: 'boatId',
@@ -4668,6 +4760,7 @@ export type GlobalOmitConfig = {
   ourStory?: Prisma.OurStoryOmit;
   missionVision?: Prisma.MissionVisionOmit;
   whatSetsUsApart?: Prisma.WhatSetsUsApartOmit;
+  dailyLead?: Prisma.DailyLeadOmit;
   featuredYacht?: Prisma.FeaturedYachtOmit;
   featuredBrands?: Prisma.FeaturedBrandsOmit;
   fileInstance?: Prisma.FileInstanceOmit;

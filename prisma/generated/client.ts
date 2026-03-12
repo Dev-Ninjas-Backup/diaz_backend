@@ -163,6 +163,11 @@ export type MissionVision = Prisma.MissionVisionModel;
  */
 export type WhatSetsUsApart = Prisma.WhatSetsUsApartModel;
 /**
+ * Model DailyLead
+ *
+ */
+export type DailyLead = Prisma.DailyLeadModel;
+/**
  * Model FeaturedYacht
  *
  */
