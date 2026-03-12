@@ -32,6 +32,16 @@ export class OurTeamResponseDto {
   })
   bio?: string;
 
+  @ApiPropertyOptional({
+    description: 'Email address of the team member',
+  })
+  email?: string;
+
+  @ApiPropertyOptional({
+    description: 'Contact/phone number of the team member',
+  })
+  contact?: string;
+
   @ApiPropertyOptional({ type: FileInstanceDto })
   image?: FileInstanceDto;
 

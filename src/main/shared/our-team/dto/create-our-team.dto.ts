@@ -25,6 +25,22 @@ export class CreateOurTeamDto {
   bio?: string;
 
   @ApiPropertyOptional({
+    example: 'john@example.com',
+    description: 'Email address of the team member',
+  })
+  @IsOptional()
+  @IsString()
+  email?: string;
+
+  @ApiPropertyOptional({
+    example: '+1 234 567 8900',
+    description: 'Contact/phone number of the team member',
+  })
+  @IsOptional()
+  @IsString()
+  contact?: string;
+
+  @ApiPropertyOptional({
     enum: SiteType,
     example: SiteType.FLORIDA,
     description: 'Site this team member belongs to (FLORIDA or JUPITER)',
