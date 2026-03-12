@@ -31,6 +31,7 @@ export type * from './models/WhyUs';
 export type * from './models/OurStory';
 export type * from './models/MissionVision';
 export type * from './models/WhatSetsUsApart';
+export type * from './models/DailyLead';
 export type * from './models/FeaturedYacht';
 export type * from './models/FeaturedBrands';
 export type * from './models/FileInstance';

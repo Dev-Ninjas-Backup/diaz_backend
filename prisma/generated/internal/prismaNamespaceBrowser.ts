@@ -78,6 +78,7 @@ export const ModelName = {
   OurStory: 'OurStory',
   MissionVision: 'MissionVision',
   WhatSetsUsApart: 'WhatSetsUsApart',
+  DailyLead: 'DailyLead',
   FeaturedYacht: 'FeaturedYacht',
   FeaturedBrands: 'FeaturedBrands',
   FileInstance: 'FileInstance',
@@ -489,6 +490,20 @@ export const WhatSetsUsApartScalarFieldEnum = {
 
 export type WhatSetsUsApartScalarFieldEnum =
   (typeof WhatSetsUsApartScalarFieldEnum)[keyof typeof WhatSetsUsApartScalarFieldEnum];
+
+export const DailyLeadScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  name: 'name',
+  email: 'email',
+  product: 'product',
+  status: 'status',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+} as const;
+
+export type DailyLeadScalarFieldEnum =
+  (typeof DailyLeadScalarFieldEnum)[keyof typeof DailyLeadScalarFieldEnum];
 
 export const FeaturedYachtScalarFieldEnum = {
   id: 'id',

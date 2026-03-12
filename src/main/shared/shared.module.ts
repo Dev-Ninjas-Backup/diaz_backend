@@ -3,6 +3,7 @@ import { AboutUsModule } from './about-us/about-us.module';
 import { AuthModule } from './auth/auth.module';
 import { BoatsModule } from './boats/boats.module';
 import { ContactModule } from './contact/contact.module';
+import { DailyLeadsModule } from './daily-leads/daily-leads.module';
 import { EmailSubscribeModule } from './email-subscribe/email-subscribe.module';
 import { FaqModule } from './faq/faq.module';
 import { FooterModule } from './footer/footer.module';
@@ -17,6 +18,7 @@ import { WhyUsModule } from './why-us/why-us.module';
     AuthModule,
     BoatsModule,
     ContactModule,
+    DailyLeadsModule,
     EmailSubscribeModule,
     FaqModule,
     FooterModule,
