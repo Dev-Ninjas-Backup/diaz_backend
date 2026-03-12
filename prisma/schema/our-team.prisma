@@ -7,6 +7,12 @@ model OurTeam {
   /// Optional short biography for the team member
   bio String?
 
+  /// Optional email for the team member
+  email String?
+
+  /// Optional contact/phone for the team member
+  contact String?
+
   imageId String?
   image   FileInstance? @relation("OurTeamImage", fields: [imageId], references: [id], onDelete: SetNull)
 
