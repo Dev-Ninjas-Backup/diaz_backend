@@ -1,4 +1,7 @@
-import { ExtraDetailItemDto } from '@/main/seller/boats/dto/boats.dto';
+import {
+  ExtraDetailItemDto,
+  UpdateBoatEngineDto,
+} from '@/main/seller/boats/dto/boats.dto';
 import { ApiPropertyOptional } from '@nestjs/swagger';
 import { Type } from 'class-transformer';
 import {
@@ -157,6 +160,16 @@ export class UpdateListingDto {
   @IsInt()
   @Min(0)
   enginesNumber?: number;
+
+  @ApiPropertyOptional({
+    type: () => [UpdateBoatEngineDto],
+    description: 'Array of boat engines',
+  })
+  @IsOptional()
+  @IsArray()
+  @ValidateNested({ each: true })
+  @Type(() => UpdateBoatEngineDto)
+  engines?: UpdateBoatEngineDto[];
 
   @ApiPropertyOptional({
     example: 3,
