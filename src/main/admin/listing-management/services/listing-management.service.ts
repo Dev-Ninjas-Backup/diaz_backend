@@ -1,15 +1,12 @@
 import { PrismaService } from '@/lib/prisma/prisma.service';
 import { Injectable, NotFoundException } from '@nestjs/common';
-import { BoatListingStatus, Prisma } from 'generated/client';
+import { Prisma } from 'generated/client';
+import { BoatListingStatus } from 'generated/client';
 import { ListingFilterDto } from '../dto/listing-filter.dto';
 import { UpdateListingDto } from '../dto/update-listing.dto';
-import { AdminBoatListingHelperService } from './adminboat-listing-helper.service';
 @Injectable()
 export class ListingManagementService {
-  constructor(
-    private readonly prisma: PrismaService,
-    private readonly helperService: AdminBoatListingHelperService,
-  ) {}
+  constructor(private readonly prisma: PrismaService) {}
 
   async getAll(query: ListingFilterDto) {
     const page = query.page ? Number(query.page) : 1;
@@ -144,9 +141,9 @@ export class ListingManagementService {
   }
 
   async update(id: string, dto: UpdateListingDto) {
-    const boat = await this.getById(id);
+    await this.getById(id);
 
-    const { extraDetails, engines, ...rest } = dto;
+    const { extraDetails, ...rest } = dto;
     const updateData: Prisma.BoatsUpdateInput = {
       ...rest,
       ...(extraDetails !== undefined && {
@@ -156,26 +153,10 @@ export class ListingManagementService {
       }),
     };
 
-    // Update boat data
     await this.prisma.client.boats.update({
       where: { id },
       data: updateData,
     });
-
-    // Sync engines if provided
-    if (engines !== undefined) {
-      const existingEngines = (boat.engines ?? []).map((engine) => ({
-        id: engine.id,
-        hours: engine.hours ?? undefined,
-        horsepower: engine.horsepower ?? undefined,
-        make: engine.make ?? undefined,
-        model: engine.model ?? undefined,
-        fuelType: engine.fuelType ?? undefined,
-        propellerType: engine.propellerType ?? undefined,
-      }));
-
-      await this.helperService.syncBoatsEngines(id, existingEngines, engines);
-    }
 
     return this.getById(id);
   }
