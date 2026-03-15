@@ -164,11 +164,17 @@ export class ListingManagementService {
 
     // Sync engines if provided
     if (engines !== undefined) {
-      await this.helperService.syncBoatsEngines(
-        id,
-        boat.engines || [],
-        engines,
-      );
+      const existingEngines = (boat.engines ?? []).map((engine) => ({
+        id: engine.id,
+        hours: engine.hours ?? undefined,
+        horsepower: engine.horsepower ?? undefined,
+        make: engine.make ?? undefined,
+        model: engine.model ?? undefined,
+        fuelType: engine.fuelType ?? undefined,
+        propellerType: engine.propellerType ?? undefined,
+      }));
+
+      await this.helperService.syncBoatsEngines(id, existingEngines, engines);
     }
 
     return this.getById(id);
