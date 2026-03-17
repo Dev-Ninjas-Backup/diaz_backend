@@ -1,12 +1,15 @@
 import { PrismaService } from '@/lib/prisma/prisma.service';
 import { Injectable, NotFoundException } from '@nestjs/common';
-import { Prisma } from 'generated/client';
-import { BoatListingStatus } from 'generated/client';
+import { BoatListingStatus, Prisma } from 'generated/client';
 import { ListingFilterDto } from '../dto/listing-filter.dto';
 import { UpdateListingDto } from '../dto/update-listing.dto';
+import { AdminBoatListingHelperService } from './adminboat-listing-helper.service';
 @Injectable()
 export class ListingManagementService {
-  constructor(private readonly prisma: PrismaService) {}
+  constructor(
+    private readonly prisma: PrismaService,
+    private readonly adminBoatHelper: AdminBoatListingHelperService,
+  ) {}
 
   async getAll(query: ListingFilterDto) {
     const page = query.page ? Number(query.page) : 1;
@@ -141,9 +144,7 @@ export class ListingManagementService {
   }
 
   async update(id: string, dto: UpdateListingDto) {
-    await this.getById(id);
-
-    const { extraDetails, ...rest } = dto;
+    const { extraDetails, engines, ...rest } = dto;
     const updateData: Prisma.BoatsUpdateInput = {
       ...rest,
       ...(extraDetails !== undefined && {
@@ -157,6 +158,18 @@ export class ListingManagementService {
       where: { id },
       data: updateData,
     });
+
+    if (engines) {
+      const existingEngines = await this.prisma.client.boatEngine.findMany({
+        where: { boatId: id },
+      });
+
+      await this.adminBoatHelper.syncBoatsEngines(
+        id,
+        existingEngines as any,
+        engines as any,
+      );
+    }
 
     return this.getById(id);
   }
