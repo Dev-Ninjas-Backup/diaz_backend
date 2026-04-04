@@ -11,15 +11,15 @@ import { GoogleapisService } from '../googleapis.service';
 @Injectable()
 export class GoogleContentService {
   private readonly logger = new Logger(GoogleContentService.name);
-  private frontendUrl: string;
+  private jmsBaseUrl: string;
 
   constructor(
     private readonly configService: ConfigService,
     private readonly prisma: PrismaService,
     private readonly googleapis: GoogleapisService,
   ) {
-    this.frontendUrl = this.configService.getOrThrow<string>(
-      ENVEnum.PRODUCT_DETAILS_BASE_URL,
+    this.jmsBaseUrl = this.configService.getOrThrow<string>(
+      ENVEnum.JMS_PRODUCT_BASE_URL,
     );
   }
 
@@ -72,7 +72,7 @@ export class GoogleContentService {
       description: listing.description || 'No description available',
 
       // LINKS
-      link: `${this.frontendUrl}/listing/${listing.id}`,
+      link: `${this.jmsBaseUrl}/listing/${listing.id}`,
       imageLink: images[0],
       additionalImageLinks: images.length > 1 ? images.slice(1) : undefined,
 

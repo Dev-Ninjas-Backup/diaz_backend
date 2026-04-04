@@ -1,6 +1,6 @@
 import 'reflect-metadata';
 
-import { ValidationPipe } from '@nestjs/common';
+import { RequestMethod, ValidationPipe } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { NestFactory } from '@nestjs/core';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
@@ -43,7 +43,11 @@ async function bootstrap() {
   app.useGlobalFilters(new AllExceptionsFilter());
 
   // * set global prefix before all routes & swagger
-  app.setGlobalPrefix('api');
+  app.setGlobalPrefix('api', {
+    exclude: [
+      { path: 'search-listing/listing/:id', method: RequestMethod.GET },
+    ],
+  });
 
   // * Swagger config with Bearer Auth
   const config = new DocumentBuilder()
