@@ -1,14 +1,18 @@
+import { GoogleContentService } from '@/lib/googleapis/services/google-content.service';
 import { PrismaService } from '@/lib/prisma/prisma.service';
-import { Injectable, NotFoundException } from '@nestjs/common';
+import { Injectable, Logger, NotFoundException } from '@nestjs/common';
 import { BoatListingStatus, Prisma } from 'generated/client';
 import { ListingFilterDto } from '../dto/listing-filter.dto';
 import { UpdateListingDto } from '../dto/update-listing.dto';
 import { AdminBoatListingHelperService } from './adminboat-listing-helper.service';
 @Injectable()
 export class ListingManagementService {
+  private readonly logger = new Logger(ListingManagementService.name);
+
   constructor(
     private readonly prisma: PrismaService,
     private readonly adminBoatHelper: AdminBoatListingHelperService,
+    private readonly googleContentService: GoogleContentService,
   ) {}
 
   async getAll(query: ListingFilterDto) {
@@ -180,5 +184,31 @@ export class ListingManagementService {
     return this.prisma.client.boats.delete({
       where: { id },
     });
+  }
+
+  async syncOneWithGmc(id: string) {
+    await this.getById(id);
+    await this.googleContentService.syncBoatWithGmc(id);
+    return { message: `Boat ${id} synced to Google Merchant Center` };
+  }
+
+  async syncAllWithGmc() {
+    const boats = await this.prisma.client.boats.findMany({
+      select: { id: true },
+    });
+
+    const results = { success: 0, failed: 0, total: boats.length };
+
+    for (const boat of boats) {
+      try {
+        await this.googleContentService.syncBoatWithGmc(boat.id);
+        results.success++;
+      } catch (err) {
+        this.logger.error(`Failed to sync boat ${boat.id} to GMC`, err);
+        results.failed++;
+      }
+    }
+
+    return results;
   }
 }

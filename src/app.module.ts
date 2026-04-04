@@ -14,6 +14,7 @@ import { JwtStrategy } from './common/jwt/jwt.strategy';
 import { LoggerMiddleware } from './common/middleware/logger.middleware';
 import { LibModule } from './lib/lib.module';
 import { MainModule } from './main/main.module';
+import { RedirectModule } from './redirect/redirect.module';
 
 @Module({
   imports: [
@@ -74,6 +75,7 @@ import { MainModule } from './main/main.module';
 
     LibModule,
     MainModule,
+    RedirectModule,
   ],
   controllers: [AppController],
   providers: [JwtStrategy],

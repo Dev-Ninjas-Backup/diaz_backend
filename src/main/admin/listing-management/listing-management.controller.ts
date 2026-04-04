@@ -135,4 +135,24 @@ export class ListingManagementController {
   delete(@Param('id') id: string) {
     return this.service.delete(id);
   }
+
+  @ApiBearerAuth()
+  @ValidateAdmin()
+  @Post('gmc/sync-all')
+  @ApiOperation({
+    summary: 'Manually sync all boats to Google Merchant Center',
+  })
+  syncAllWithGmc() {
+    return this.service.syncAllWithGmc();
+  }
+
+  @ApiBearerAuth()
+  @ValidateAdmin()
+  @Post(':id/gmc/sync')
+  @ApiOperation({
+    summary: 'Manually sync a single boat to Google Merchant Center',
+  })
+  syncOneWithGmc(@Param('id') id: string) {
+    return this.service.syncOneWithGmc(id);
+  }
 }
