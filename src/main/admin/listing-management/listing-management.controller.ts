@@ -88,13 +88,13 @@ export class ListingManagementController {
     FileFieldsInterceptor(
       [
         { name: 'covers', maxCount: 5 },
-        { name: 'galleries', maxCount: 100 },
+        { name: 'galleries', maxCount: 10000 },
       ],
       new MulterService().createMultipleFileOptions({
         destinationFolder: './temp',
         prefix: 'boat_listing',
         fileType: FileType.IMAGE,
-        maxFileCount: 150,
+        maxFileCount: 10005,
       }),
     ),
   )
