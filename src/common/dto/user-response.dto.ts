@@ -1,5 +1,10 @@
 import { Expose } from 'class-transformer';
-import { SubscriptionStatus, UserRole, UserStatus } from 'generated/client';
+import {
+  SubscriptionStatus,
+  UserPermission,
+  UserRole,
+  UserStatus,
+} from 'generated/client';
 
 export class UserResponseDto {
   @Expose()
@@ -41,6 +46,9 @@ export class UserResponseDto {
   // ===== Settings =====
   @Expose()
   role: UserRole;
+
+  @Expose()
+  permissions: UserPermission[];
 
   @Expose()
   status: UserStatus;
