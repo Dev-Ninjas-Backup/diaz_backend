@@ -22,7 +22,11 @@ import {
   ValidateSuperAdmin,
   ValidateSuperAdminOnly,
 } from '@/common/jwt/jwt.decorator';
-import { AdminUserResponseDto, CreateAdminUserDto } from './dto/admin.dto';
+import {
+  AdminUserResponseDto,
+  CreateAdminUserDto,
+  UpdateAdminPermissionsDto,
+} from './dto/admin.dto';
 import { changeRole } from './enum/changerole.enum';
 import { UserPermissionsService } from './user-permissions.services';
 
@@ -134,5 +138,35 @@ export class UserPermissionsController {
   @ApiResponse({ status: 404, description: 'User not found.' })
   async deleteAdmin(@Param('id') id: string) {
     return this.userPermissionsServices.deleteAdmin(id);
+  }
+
+  @ValidateSuperAdmin()
+  @ApiBearerAuth()
+  @Get(':id/permissions')
+  @ApiOperation({
+    summary: 'Get permissions assigned to an admin (SUPER_ADMIN returns all)',
+  })
+  @ApiParam({ name: 'id', description: 'Admin user ID' })
+  @ApiResponse({ status: 200, description: 'Permissions retrieved.' })
+  @ApiResponse({ status: 404, description: 'Admin not found.' })
+  async getAdminPermissions(@Param('id') id: string) {
+    return this.userPermissionsServices.getAdminPermissions(id);
+  }
+
+  @ValidateSuperAdminOnly()
+  @ApiBearerAuth()
+  @Patch(':id/permissions')
+  @ApiOperation({
+    summary: 'Set permissions for an admin user (SUPER_ADMIN only)',
+  })
+  @ApiParam({ name: 'id', description: 'Admin user ID' })
+  @ApiBody({ type: UpdateAdminPermissionsDto })
+  @ApiResponse({ status: 200, description: 'Permissions updated.' })
+  @ApiResponse({ status: 404, description: 'Admin not found.' })
+  async updateAdminPermissions(
+    @Param('id') id: string,
+    @Body() dto: UpdateAdminPermissionsDto,
+  ) {
+    return this.userPermissionsServices.updateAdminPermissions(id, dto);
   }
 }

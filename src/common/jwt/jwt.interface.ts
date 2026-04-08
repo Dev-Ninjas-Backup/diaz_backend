@@ -4,6 +4,7 @@ export interface JWTPayload {
   sub: string;
   email: string;
   role: string;
+  permissions: string[];
 }
 
 export interface RequestWithUser extends Request {

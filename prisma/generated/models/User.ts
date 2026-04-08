@@ -99,6 +99,7 @@ export type UserCountAggregateOutputType = {
   zip: number;
   role: number;
   status: number;
+  permissions: number;
   isLoggedIn: number;
   lastLoginAt: number;
   lastLogoutAt: number;
@@ -190,6 +191,7 @@ export type UserCountAggregateInputType = {
   zip?: true;
   role?: true;
   status?: true;
+  permissions?: true;
   isLoggedIn?: true;
   lastLoginAt?: true;
   lastLogoutAt?: true;
@@ -300,6 +302,7 @@ export type UserGroupByOutputType = {
   zip: string | null;
   role: $Enums.UserRole;
   status: $Enums.UserStatus;
+  permissions: $Enums.UserPermission[];
   isLoggedIn: boolean;
   lastLoginAt: Date | null;
   lastLogoutAt: Date | null;
@@ -348,6 +351,7 @@ export type UserWhereInput = {
   zip?: Prisma.StringNullableFilter<'User'> | string | null;
   role?: Prisma.EnumUserRoleFilter<'User'> | $Enums.UserRole;
   status?: Prisma.EnumUserStatusFilter<'User'> | $Enums.UserStatus;
+  permissions?: Prisma.EnumUserPermissionNullableListFilter<'User'>;
   isLoggedIn?: Prisma.BoolFilter<'User'> | boolean;
   lastLoginAt?: Prisma.DateTimeNullableFilter<'User'> | Date | string | null;
   lastLogoutAt?: Prisma.DateTimeNullableFilter<'User'> | Date | string | null;
@@ -389,6 +393,7 @@ export type UserOrderByWithRelationInput = {
   zip?: Prisma.SortOrderInput | Prisma.SortOrder;
   role?: Prisma.SortOrder;
   status?: Prisma.SortOrder;
+  permissions?: Prisma.SortOrder;
   isLoggedIn?: Prisma.SortOrder;
   lastLoginAt?: Prisma.SortOrderInput | Prisma.SortOrder;
   lastLogoutAt?: Prisma.SortOrderInput | Prisma.SortOrder;
@@ -429,6 +434,7 @@ export type UserWhereUniqueInput = Prisma.AtLeast<
     zip?: Prisma.StringNullableFilter<'User'> | string | null;
     role?: Prisma.EnumUserRoleFilter<'User'> | $Enums.UserRole;
     status?: Prisma.EnumUserStatusFilter<'User'> | $Enums.UserStatus;
+    permissions?: Prisma.EnumUserPermissionNullableListFilter<'User'>;
     isLoggedIn?: Prisma.BoolFilter<'User'> | boolean;
     lastLoginAt?: Prisma.DateTimeNullableFilter<'User'> | Date | string | null;
     lastLogoutAt?: Prisma.DateTimeNullableFilter<'User'> | Date | string | null;
@@ -471,6 +477,7 @@ export type UserOrderByWithAggregationInput = {
   zip?: Prisma.SortOrderInput | Prisma.SortOrder;
   role?: Prisma.SortOrder;
   status?: Prisma.SortOrder;
+  permissions?: Prisma.SortOrder;
   isLoggedIn?: Prisma.SortOrder;
   lastLoginAt?: Prisma.SortOrderInput | Prisma.SortOrder;
   lastLogoutAt?: Prisma.SortOrderInput | Prisma.SortOrder;
@@ -513,6 +520,7 @@ export type UserScalarWhereWithAggregatesInput = {
   status?:
     | Prisma.EnumUserStatusWithAggregatesFilter<'User'>
     | $Enums.UserStatus;
+  permissions?: Prisma.EnumUserPermissionNullableListFilter<'User'>;
   isLoggedIn?: Prisma.BoolWithAggregatesFilter<'User'> | boolean;
   lastLoginAt?:
     | Prisma.DateTimeNullableWithAggregatesFilter<'User'>
@@ -571,6 +579,7 @@ export type UserCreateInput = {
   zip?: string | null;
   role?: $Enums.UserRole;
   status?: $Enums.UserStatus;
+  permissions?: Prisma.UserCreatepermissionsInput | $Enums.UserPermission[];
   isLoggedIn?: boolean;
   lastLoginAt?: Date | string | null;
   lastLogoutAt?: Date | string | null;
@@ -605,6 +614,7 @@ export type UserUncheckedCreateInput = {
   zip?: string | null;
   role?: $Enums.UserRole;
   status?: $Enums.UserStatus;
+  permissions?: Prisma.UserCreatepermissionsInput | $Enums.UserPermission[];
   isLoggedIn?: boolean;
   lastLoginAt?: Date | string | null;
   lastLogoutAt?: Date | string | null;
@@ -639,6 +649,7 @@ export type UserUpdateInput = {
   zip?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
   role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole;
   status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus;
+  permissions?: Prisma.UserUpdatepermissionsInput | $Enums.UserPermission[];
   isLoggedIn?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   lastLoginAt?:
     | Prisma.NullableDateTimeFieldUpdateOperationsInput
@@ -698,6 +709,7 @@ export type UserUncheckedUpdateInput = {
   zip?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
   role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole;
   status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus;
+  permissions?: Prisma.UserUpdatepermissionsInput | $Enums.UserPermission[];
   isLoggedIn?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   lastLoginAt?:
     | Prisma.NullableDateTimeFieldUpdateOperationsInput
@@ -760,6 +772,7 @@ export type UserCreateManyInput = {
   zip?: string | null;
   role?: $Enums.UserRole;
   status?: $Enums.UserStatus;
+  permissions?: Prisma.UserCreatepermissionsInput | $Enums.UserPermission[];
   isLoggedIn?: boolean;
   lastLoginAt?: Date | string | null;
   lastLogoutAt?: Date | string | null;
@@ -790,6 +803,7 @@ export type UserUpdateManyMutationInput = {
   zip?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
   role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole;
   status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus;
+  permissions?: Prisma.UserUpdatepermissionsInput | $Enums.UserPermission[];
   isLoggedIn?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   lastLoginAt?:
     | Prisma.NullableDateTimeFieldUpdateOperationsInput
@@ -844,6 +858,7 @@ export type UserUncheckedUpdateManyInput = {
   zip?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
   role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole;
   status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus;
+  permissions?: Prisma.UserUpdatepermissionsInput | $Enums.UserPermission[];
   isLoggedIn?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   lastLoginAt?:
     | Prisma.NullableDateTimeFieldUpdateOperationsInput
@@ -902,6 +917,24 @@ export type UserOrderByRelationAggregateInput = {
   _count?: Prisma.SortOrder;
 };
 
+export type EnumUserPermissionNullableListFilter<$PrismaModel = never> = {
+  equals?:
+    | $Enums.UserPermission[]
+    | Prisma.ListEnumUserPermissionFieldRefInput<$PrismaModel>
+    | null;
+  has?:
+    | $Enums.UserPermission
+    | Prisma.EnumUserPermissionFieldRefInput<$PrismaModel>
+    | null;
+  hasEvery?:
+    | $Enums.UserPermission[]
+    | Prisma.ListEnumUserPermissionFieldRefInput<$PrismaModel>;
+  hasSome?:
+    | $Enums.UserPermission[]
+    | Prisma.ListEnumUserPermissionFieldRefInput<$PrismaModel>;
+  isEmpty?: boolean;
+};
+
 export type UserCountOrderByAggregateInput = {
   id?: Prisma.SortOrder;
   email?: Prisma.SortOrder;
@@ -917,6 +950,7 @@ export type UserCountOrderByAggregateInput = {
   zip?: Prisma.SortOrder;
   role?: Prisma.SortOrder;
   status?: Prisma.SortOrder;
+  permissions?: Prisma.SortOrder;
   isLoggedIn?: Prisma.SortOrder;
   lastLoginAt?: Prisma.SortOrder;
   lastLogoutAt?: Prisma.SortOrder;
@@ -1182,12 +1216,21 @@ export type UserUpdateOneRequiredWithoutInvoicesNestedInput = {
   >;
 };
 
+export type UserCreatepermissionsInput = {
+  set: $Enums.UserPermission[];
+};
+
 export type EnumUserRoleFieldUpdateOperationsInput = {
   set?: $Enums.UserRole;
 };
 
 export type EnumUserStatusFieldUpdateOperationsInput = {
   set?: $Enums.UserStatus;
+};
+
+export type UserUpdatepermissionsInput = {
+  set?: $Enums.UserPermission[];
+  push?: $Enums.UserPermission | $Enums.UserPermission[];
 };
 
 export type NullableEnumOtpTypeFieldUpdateOperationsInput = {
@@ -1213,6 +1256,7 @@ export type UserCreateWithoutBoatsInput = {
   zip?: string | null;
   role?: $Enums.UserRole;
   status?: $Enums.UserStatus;
+  permissions?: Prisma.UserCreatepermissionsInput | $Enums.UserPermission[];
   isLoggedIn?: boolean;
   lastLoginAt?: Date | string | null;
   lastLogoutAt?: Date | string | null;
@@ -1246,6 +1290,7 @@ export type UserUncheckedCreateWithoutBoatsInput = {
   zip?: string | null;
   role?: $Enums.UserRole;
   status?: $Enums.UserStatus;
+  permissions?: Prisma.UserCreatepermissionsInput | $Enums.UserPermission[];
   isLoggedIn?: boolean;
   lastLoginAt?: Date | string | null;
   lastLogoutAt?: Date | string | null;
@@ -1307,6 +1352,7 @@ export type UserUpdateWithoutBoatsInput = {
   zip?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
   role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole;
   status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus;
+  permissions?: Prisma.UserUpdatepermissionsInput | $Enums.UserPermission[];
   isLoggedIn?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   lastLoginAt?:
     | Prisma.NullableDateTimeFieldUpdateOperationsInput
@@ -1365,6 +1411,7 @@ export type UserUncheckedUpdateWithoutBoatsInput = {
   zip?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
   role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole;
   status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus;
+  permissions?: Prisma.UserUpdatepermissionsInput | $Enums.UserPermission[];
   isLoggedIn?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   lastLoginAt?:
     | Prisma.NullableDateTimeFieldUpdateOperationsInput
@@ -1426,6 +1473,7 @@ export type UserCreateWithoutNotificationsInput = {
   zip?: string | null;
   role?: $Enums.UserRole;
   status?: $Enums.UserStatus;
+  permissions?: Prisma.UserCreatepermissionsInput | $Enums.UserPermission[];
   isLoggedIn?: boolean;
   lastLoginAt?: Date | string | null;
   lastLogoutAt?: Date | string | null;
@@ -1459,6 +1507,7 @@ export type UserUncheckedCreateWithoutNotificationsInput = {
   zip?: string | null;
   role?: $Enums.UserRole;
   status?: $Enums.UserStatus;
+  permissions?: Prisma.UserCreatepermissionsInput | $Enums.UserPermission[];
   isLoggedIn?: boolean;
   lastLoginAt?: Date | string | null;
   lastLogoutAt?: Date | string | null;
@@ -1520,6 +1569,7 @@ export type UserUpdateWithoutNotificationsInput = {
   zip?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
   role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole;
   status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus;
+  permissions?: Prisma.UserUpdatepermissionsInput | $Enums.UserPermission[];
   isLoggedIn?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   lastLoginAt?:
     | Prisma.NullableDateTimeFieldUpdateOperationsInput
@@ -1578,6 +1628,7 @@ export type UserUncheckedUpdateWithoutNotificationsInput = {
   zip?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
   role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole;
   status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus;
+  permissions?: Prisma.UserUpdatepermissionsInput | $Enums.UserPermission[];
   isLoggedIn?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   lastLoginAt?:
     | Prisma.NullableDateTimeFieldUpdateOperationsInput
@@ -1639,6 +1690,7 @@ export type UserCreateWithoutCurrentPlanInput = {
   zip?: string | null;
   role?: $Enums.UserRole;
   status?: $Enums.UserStatus;
+  permissions?: Prisma.UserCreatepermissionsInput | $Enums.UserPermission[];
   isLoggedIn?: boolean;
   lastLoginAt?: Date | string | null;
   lastLogoutAt?: Date | string | null;
@@ -1672,6 +1724,7 @@ export type UserUncheckedCreateWithoutCurrentPlanInput = {
   zip?: string | null;
   role?: $Enums.UserRole;
   status?: $Enums.UserStatus;
+  permissions?: Prisma.UserCreatepermissionsInput | $Enums.UserPermission[];
   isLoggedIn?: boolean;
   lastLoginAt?: Date | string | null;
   lastLogoutAt?: Date | string | null;
@@ -1751,6 +1804,7 @@ export type UserScalarWhereInput = {
   zip?: Prisma.StringNullableFilter<'User'> | string | null;
   role?: Prisma.EnumUserRoleFilter<'User'> | $Enums.UserRole;
   status?: Prisma.EnumUserStatusFilter<'User'> | $Enums.UserStatus;
+  permissions?: Prisma.EnumUserPermissionNullableListFilter<'User'>;
   isLoggedIn?: Prisma.BoolFilter<'User'> | boolean;
   lastLoginAt?: Prisma.DateTimeNullableFilter<'User'> | Date | string | null;
   lastLogoutAt?: Prisma.DateTimeNullableFilter<'User'> | Date | string | null;
@@ -1784,6 +1838,7 @@ export type UserCreateWithoutUserSubscriptionInput = {
   zip?: string | null;
   role?: $Enums.UserRole;
   status?: $Enums.UserStatus;
+  permissions?: Prisma.UserCreatepermissionsInput | $Enums.UserPermission[];
   isLoggedIn?: boolean;
   lastLoginAt?: Date | string | null;
   lastLogoutAt?: Date | string | null;
@@ -1817,6 +1872,7 @@ export type UserUncheckedCreateWithoutUserSubscriptionInput = {
   zip?: string | null;
   role?: $Enums.UserRole;
   status?: $Enums.UserStatus;
+  permissions?: Prisma.UserCreatepermissionsInput | $Enums.UserPermission[];
   isLoggedIn?: boolean;
   lastLoginAt?: Date | string | null;
   lastLogoutAt?: Date | string | null;
@@ -1878,6 +1934,7 @@ export type UserUpdateWithoutUserSubscriptionInput = {
   zip?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
   role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole;
   status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus;
+  permissions?: Prisma.UserUpdatepermissionsInput | $Enums.UserPermission[];
   isLoggedIn?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   lastLoginAt?:
     | Prisma.NullableDateTimeFieldUpdateOperationsInput
@@ -1936,6 +1993,7 @@ export type UserUncheckedUpdateWithoutUserSubscriptionInput = {
   zip?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
   role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole;
   status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus;
+  permissions?: Prisma.UserUpdatepermissionsInput | $Enums.UserPermission[];
   isLoggedIn?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   lastLoginAt?:
     | Prisma.NullableDateTimeFieldUpdateOperationsInput
@@ -1997,6 +2055,7 @@ export type UserCreateWithoutInvoicesInput = {
   zip?: string | null;
   role?: $Enums.UserRole;
   status?: $Enums.UserStatus;
+  permissions?: Prisma.UserCreatepermissionsInput | $Enums.UserPermission[];
   isLoggedIn?: boolean;
   lastLoginAt?: Date | string | null;
   lastLogoutAt?: Date | string | null;
@@ -2030,6 +2089,7 @@ export type UserUncheckedCreateWithoutInvoicesInput = {
   zip?: string | null;
   role?: $Enums.UserRole;
   status?: $Enums.UserStatus;
+  permissions?: Prisma.UserCreatepermissionsInput | $Enums.UserPermission[];
   isLoggedIn?: boolean;
   lastLoginAt?: Date | string | null;
   lastLogoutAt?: Date | string | null;
@@ -2091,6 +2151,7 @@ export type UserUpdateWithoutInvoicesInput = {
   zip?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
   role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole;
   status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus;
+  permissions?: Prisma.UserUpdatepermissionsInput | $Enums.UserPermission[];
   isLoggedIn?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   lastLoginAt?:
     | Prisma.NullableDateTimeFieldUpdateOperationsInput
@@ -2149,6 +2210,7 @@ export type UserUncheckedUpdateWithoutInvoicesInput = {
   zip?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
   role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole;
   status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus;
+  permissions?: Prisma.UserUpdatepermissionsInput | $Enums.UserPermission[];
   isLoggedIn?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   lastLoginAt?:
     | Prisma.NullableDateTimeFieldUpdateOperationsInput
@@ -2210,6 +2272,7 @@ export type UserCreateManyCurrentPlanInput = {
   zip?: string | null;
   role?: $Enums.UserRole;
   status?: $Enums.UserStatus;
+  permissions?: Prisma.UserCreatepermissionsInput | $Enums.UserPermission[];
   isLoggedIn?: boolean;
   lastLoginAt?: Date | string | null;
   lastLogoutAt?: Date | string | null;
@@ -2239,6 +2302,7 @@ export type UserUpdateWithoutCurrentPlanInput = {
   zip?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
   role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole;
   status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus;
+  permissions?: Prisma.UserUpdatepermissionsInput | $Enums.UserPermission[];
   isLoggedIn?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   lastLoginAt?:
     | Prisma.NullableDateTimeFieldUpdateOperationsInput
@@ -2297,6 +2361,7 @@ export type UserUncheckedUpdateWithoutCurrentPlanInput = {
   zip?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
   role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole;
   status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus;
+  permissions?: Prisma.UserUpdatepermissionsInput | $Enums.UserPermission[];
   isLoggedIn?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   lastLoginAt?:
     | Prisma.NullableDateTimeFieldUpdateOperationsInput
@@ -2355,6 +2420,7 @@ export type UserUncheckedUpdateManyWithoutCurrentPlanInput = {
   zip?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
   role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole;
   status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus;
+  permissions?: Prisma.UserUpdatepermissionsInput | $Enums.UserPermission[];
   isLoggedIn?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   lastLoginAt?:
     | Prisma.NullableDateTimeFieldUpdateOperationsInput
@@ -2487,6 +2553,7 @@ export type UserSelect<
     zip?: boolean;
     role?: boolean;
     status?: boolean;
+    permissions?: boolean;
     isLoggedIn?: boolean;
     lastLoginAt?: boolean;
     lastLogoutAt?: boolean;
@@ -2529,6 +2596,7 @@ export type UserSelectCreateManyAndReturn<
     zip?: boolean;
     role?: boolean;
     status?: boolean;
+    permissions?: boolean;
     isLoggedIn?: boolean;
     lastLoginAt?: boolean;
     lastLogoutAt?: boolean;
@@ -2566,6 +2634,7 @@ export type UserSelectUpdateManyAndReturn<
     zip?: boolean;
     role?: boolean;
     status?: boolean;
+    permissions?: boolean;
     isLoggedIn?: boolean;
     lastLoginAt?: boolean;
     lastLogoutAt?: boolean;
@@ -2599,6 +2668,7 @@ export type UserSelectScalar = {
   zip?: boolean;
   role?: boolean;
   status?: boolean;
+  permissions?: boolean;
   isLoggedIn?: boolean;
   lastLoginAt?: boolean;
   lastLogoutAt?: boolean;
@@ -2632,6 +2702,7 @@ export type UserOmit<
   | 'zip'
   | 'role'
   | 'status'
+  | 'permissions'
   | 'isLoggedIn'
   | 'lastLoginAt'
   | 'lastLogoutAt'
@@ -2699,6 +2770,7 @@ export type $UserPayload<
       zip: string | null;
       role: $Enums.UserRole;
       status: $Enums.UserStatus;
+      permissions: $Enums.UserPermission[];
       isLoggedIn: boolean;
       lastLoginAt: Date | null;
       lastLogoutAt: Date | null;
@@ -3375,6 +3447,7 @@ export interface UserFieldRefs {
   readonly zip: Prisma.FieldRef<'User', 'String'>;
   readonly role: Prisma.FieldRef<'User', 'UserRole'>;
   readonly status: Prisma.FieldRef<'User', 'UserStatus'>;
+  readonly permissions: Prisma.FieldRef<'User', 'UserPermission[]'>;
   readonly isLoggedIn: Prisma.FieldRef<'User', 'Boolean'>;
   readonly lastLoginAt: Prisma.FieldRef<'User', 'DateTime'>;
   readonly lastLogoutAt: Prisma.FieldRef<'User', 'DateTime'>;

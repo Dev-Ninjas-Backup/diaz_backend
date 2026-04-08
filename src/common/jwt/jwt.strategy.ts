@@ -27,10 +27,14 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
   async validate(payload: JWTPayload) {
     const user = await this.prisma.client.user.findUnique({
       where: { id: payload.sub },
+      select: {
+        isLoggedIn: true,
+        role: true,
+        permissions: true,
+      },
     });
 
     if (!user) {
-      // unauthorized because token refers to no user
       throw new UnauthorizedException('User not found');
     }
 
@@ -44,7 +48,11 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
       data: { lastActiveAt: new Date() },
     });
 
-    // return payload — this will be assigned to req.user
-    return payload;
+    // Attach fresh role and permissions from DB so guards are always up-to-date
+    return {
+      ...payload,
+      role: user.role,
+      permissions: user.permissions,
+    };
   }
 }
