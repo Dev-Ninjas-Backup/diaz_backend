@@ -72,7 +72,7 @@ export class GoogleContentService {
       description: listing.description || 'No description available',
 
       // LINKS
-      link: `${this.jmsBaseUrl}/listing/${listing.id}`,
+      link: `${this.jmsBaseUrl}/${listing.id}`,
       imageLink: images[0],
       additionalImageLinks: images.length > 1 ? images.slice(1) : undefined,
 
