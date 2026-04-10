@@ -38,6 +38,7 @@ export class AuthLoginService {
       sub: user.id,
       email: user.email,
       role: user.role,
+      permissions: user.permissions,
     });
 
     return successResponse(

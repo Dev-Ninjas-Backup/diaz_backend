@@ -1,5 +1,7 @@
+import { Permission } from '@/common/enum/permission.enum';
 import { ApiProperty } from '@nestjs/swagger';
 import {
+  IsArray,
   IsBoolean,
   IsEmail,
   IsEnum,
@@ -10,7 +12,7 @@ import {
   MaxLength,
   MinLength,
 } from 'class-validator';
-import { UserRole } from 'generated/enums';
+import { UserPermission, UserRole } from 'generated/enums';
 
 export class GetAdminUsersDto {
   @ApiProperty({ example: '123456789' })
@@ -28,6 +30,27 @@ export class GetAdminUsersDto {
   @ApiProperty({ example: 'ADMIN', enum: UserRole })
   @IsEnum(UserRole)
   role: UserRole;
+
+  @ApiProperty({
+    enum: Permission,
+    isArray: true,
+    example: [Permission.MANAGE_LISTINGS, Permission.VIEW_DASHBOARD],
+  })
+  @IsArray()
+  @IsEnum(Permission, { each: true })
+  permissions: UserPermission[];
+}
+
+export class UpdateAdminPermissionsDto {
+  @ApiProperty({
+    enum: Permission,
+    isArray: true,
+    description: 'List of permissions to assign to the admin',
+    example: [Permission.MANAGE_LISTINGS, Permission.VIEW_DASHBOARD],
+  })
+  @IsArray()
+  @IsEnum(Permission, { each: true })
+  permissions: UserPermission[];
 }
 
 export class CreateAdminUserDto {
@@ -104,6 +127,18 @@ export class CreateAdminUserDto {
   @IsBoolean()
   @IsOptional()
   isVerified?: boolean;
+
+  @ApiProperty({
+    enum: Permission,
+    isArray: true,
+    required: false,
+    description: 'Permissions to assign (only applies when role is ADMIN)',
+    example: [Permission.MANAGE_LISTINGS, Permission.VIEW_DASHBOARD],
+  })
+  @IsArray()
+  @IsEnum(Permission, { each: true })
+  @IsOptional()
+  permissions?: UserPermission[];
 }
 
 export class AdminUserResponseDto {

@@ -323,6 +323,24 @@ export const UserRole = {
 
 export type UserRole = (typeof UserRole)[keyof typeof UserRole];
 
+export const UserPermission = {
+  MANAGE_USERS: 'MANAGE_USERS',
+  MANAGE_LISTINGS: 'MANAGE_LISTINGS',
+  MANAGE_BOATS: 'MANAGE_BOATS',
+  MANAGE_CATEGORIES: 'MANAGE_CATEGORIES',
+  MANAGE_CONTENT: 'MANAGE_CONTENT',
+  MANAGE_BANNERS: 'MANAGE_BANNERS',
+  MANAGE_SUBSCRIPTIONS: 'MANAGE_SUBSCRIPTIONS',
+  MANAGE_SELLERS: 'MANAGE_SELLERS',
+  MANAGE_SETTINGS: 'MANAGE_SETTINGS',
+  VIEW_DASHBOARD: 'VIEW_DASHBOARD',
+  MANAGE_FEATURED_BRANDS: 'MANAGE_FEATURED_BRANDS',
+  MANAGE_CONTACT: 'MANAGE_CONTACT',
+} as const;
+
+export type UserPermission =
+  (typeof UserPermission)[keyof typeof UserPermission];
+
 export const UserStatus = {
   ACTIVE: 'ACTIVE',
   INACTIVE: 'INACTIVE',

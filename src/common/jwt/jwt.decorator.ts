@@ -5,8 +5,10 @@ import {
   SetMetadata,
   UseGuards,
 } from '@nestjs/common';
+import { Permission } from '../enum/permission.enum';
 import { UserEnum } from '../enum/user.enum';
-import { IS_PUBLIC_KEY, ROLES_KEY } from './jwt.constants';
+import { PermissionsGuard } from '../guard/permissions.guard';
+import { IS_PUBLIC_KEY, PERMISSIONS_KEY, ROLES_KEY } from './jwt.constants';
 import { JwtAuthGuard, RolesGuard } from './jwt.guard';
 import { JWTPayload, RequestWithUser } from './jwt.interface';
 
@@ -46,4 +48,15 @@ export function ValidateSuperAdminOnly() {
 
 export function ValidateAdmin() {
   return ValidateAuth(UserEnum.ADMIN, UserEnum.SUPER_ADMIN);
+}
+
+// Permission-based decorator — SUPER_ADMIN passes automatically; ADMIN must have the listed permissions
+export const RequirePermissions = (...permissions: Permission[]) =>
+  SetMetadata(PERMISSIONS_KEY, permissions);
+
+export function ValidatePermission(...permissions: Permission[]) {
+  return applyDecorators(
+    UseGuards(JwtAuthGuard, PermissionsGuard),
+    RequirePermissions(...permissions),
+  );
 }

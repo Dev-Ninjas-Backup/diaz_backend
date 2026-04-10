@@ -730,6 +730,7 @@ export const UserScalarFieldEnum = {
   zip: 'zip',
   role: 'role',
   status: 'status',
+  permissions: 'permissions',
   isLoggedIn: 'isLoggedIn',
   lastLoginAt: 'lastLoginAt',
   lastLogoutAt: 'lastLogoutAt',

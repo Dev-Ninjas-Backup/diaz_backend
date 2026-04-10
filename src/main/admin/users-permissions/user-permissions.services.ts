@@ -1,12 +1,18 @@
+import { ALL_PERMISSIONS } from '@/common/enum/permission.enum';
 import { PrismaService } from '@/lib/prisma/prisma.service';
 import { UtilsService } from '@/lib/utils/utils.service';
-import { ConflictException, Injectable } from '@nestjs/common';
+import {
+  ConflictException,
+  Injectable,
+  NotFoundException,
+} from '@nestjs/common';
 import { Prisma } from 'generated/client';
-import { UserStatus } from 'generated/enums';
+import { UserPermission, UserRole, UserStatus } from 'generated/enums';
 import {
   AdminUserResponseDto,
   CreateAdminUserDto,
   GetAdminUsersDto,
+  UpdateAdminPermissionsDto,
 } from './dto/admin.dto';
 import { changeRole } from './enum/changerole.enum';
 
@@ -21,16 +27,8 @@ export class UserPermissionsService {
     return this.prisma.client.user.findMany({
       where: {
         AND: [
-          {
-            role: {
-              in: ['ADMIN', 'SUPER_ADMIN'],
-            },
-          },
-          {
-            status: {
-              in: ['ACTIVE'],
-            },
-          },
+          { role: { in: ['ADMIN', 'SUPER_ADMIN'] } },
+          { status: { in: ['ACTIVE'] } },
         ],
       },
       select: {
@@ -40,6 +38,7 @@ export class UserPermissionsService {
         name: true,
         avatarUrl: true,
         role: true,
+        permissions: true,
         status: true,
         isLoggedIn: true,
         lastLoginAt: true,
@@ -54,6 +53,44 @@ export class UserPermissionsService {
         zip: true,
       },
     });
+  }
+
+  async getAdminPermissions(
+    id: string,
+  ): Promise<{ permissions: UserPermission[] }> {
+    const user = await this.prisma.client.user.findUnique({
+      where: { id },
+      select: { role: true, permissions: true },
+    });
+
+    if (!user) throw new NotFoundException('Admin not found');
+
+    // SUPER_ADMIN has all permissions
+    if (user.role === UserRole.SUPER_ADMIN) {
+      return { permissions: ALL_PERMISSIONS as UserPermission[] };
+    }
+
+    return { permissions: user.permissions };
+  }
+
+  async updateAdminPermissions(
+    id: string,
+    dto: UpdateAdminPermissionsDto,
+  ): Promise<{ permissions: UserPermission[] }> {
+    const user = await this.prisma.client.user.findUnique({
+      where: { id },
+      select: { role: true },
+    });
+
+    if (!user) throw new NotFoundException('Admin not found');
+
+    const updated = await this.prisma.client.user.update({
+      where: { id },
+      data: { permissions: dto.permissions },
+      select: { permissions: true },
+    });
+
+    return { permissions: updated.permissions };
   }
 
   async addAdmin(
