@@ -36,12 +36,9 @@ lerna-debug.log*
 !.vscode/extensions.json
 
 # dotenv environment variable files
-.env
 .env.development.local
 .env.test.local
 .env.production.local
-.env.local
-.env.production
 
 # temp directory
 .temp
@@ -76,3 +73,6 @@ PRODUCTION_MIGRATION_GUIDE.md
 FEATURED_YACHT_CRON.md
 MANUAL_ROTATE_FEATURED_YACHT.md
 /public/
+temp_auto_push.bat
+temp_interactive_push.bat
+config.bat
