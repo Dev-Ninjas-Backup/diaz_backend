@@ -70,14 +70,24 @@ export class CreateIntentService {
         `User ${user.id} already has a pending payment (${existingPending.stripeTransactionId}).`,
       );
 
-      // Try to fetch the PaymentIntent to return client_secret (optional)
       try {
         const existingIntent = await this.stripeService.retrieveSetupIntent(
           existingPending.stripeTransactionId,
         );
 
-        // If client_secret still available, return it instead of creating a new one
-        if (existingIntent?.client_secret) {
+        if (existingIntent?.status === 'succeeded') {
+          // SetupIntent was already confirmed on Stripe but webhook processing failed
+          // (the subscription record is stuck as PENDING). Cancel it so a fresh
+          // SetupIntent can be issued and the webhook fires again.
+          this.logger.warn(
+            `SetupIntent ${existingIntent.id} already succeeded but subscription ${existingPending.id} is still PENDING — canceling stuck record and issuing fresh intent.`,
+          );
+          await this.prismaService.client.userSubscription.update({
+            where: { id: existingPending.id },
+            data: { status: 'CANCELED' },
+          });
+          // Fall through to create a new SetupIntent
+        } else if (existingIntent?.client_secret) {
           return successResponse(
             {
               setupIntentId: existingIntent.id,
@@ -94,7 +104,7 @@ export class CreateIntentService {
       } catch (err) {
         // retrieving failed: fall through and create a new intent
         this.logger.warn(
-          `Failed to retrieve existing PaymentIntent ${existingPending.stripeTransactionId}: ${err?.message}`,
+          `Failed to retrieve existing SetupIntent ${existingPending.stripeTransactionId}: ${err?.message}`,
         );
       }
     }
