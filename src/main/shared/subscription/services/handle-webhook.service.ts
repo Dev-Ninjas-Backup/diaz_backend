@@ -1,5 +1,4 @@
 import { AppError } from '@/common/error/handle-error.app';
-import { HandleError } from '@/common/error/handle-error.decorator';
 import { PrismaService } from '@/lib/prisma/prisma.service';
 import { StripeService } from '@/lib/stripe/stripe.service';
 import { PaymentMetadata } from '@/lib/stripe/stripe.types';
@@ -17,7 +16,6 @@ export class HandleWebhookService {
     private readonly utils: UtilsService,
   ) {}
 
-  @HandleError('Failed to handle Stripe webhook', 'Subscription')
   async handleWebhook(signature: string, rawBody: Buffer) {
     // 1. Verify webhook signature only
     let event: Stripe.Event;

@@ -82,11 +82,7 @@ export class SubscriptionController {
     @Headers('stripe-signature') signature: string,
     @Body() body: Buffer, // raw body for Stripe verification
   ) {
-    try {
-      await this.handleWebhookService.handleWebhook(signature, body);
-      return { received: true };
-    } catch (error) {
-      return { received: false, error: error.message };
-    }
+    await this.handleWebhookService.handleWebhook(signature, body);
+    return { received: true };
   }
 }
