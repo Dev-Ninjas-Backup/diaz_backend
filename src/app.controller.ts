@@ -216,7 +216,7 @@ export class AppController {
       <span class="link-arrow">↗</span>
     </a>
 
-    <a href="/health" class="link-card">
+    <a href="/api/health" class="link-card">
       <span class="link-icon icon-red">❤️</span>
       Health Check
       <span class="link-arrow">↗</span>
