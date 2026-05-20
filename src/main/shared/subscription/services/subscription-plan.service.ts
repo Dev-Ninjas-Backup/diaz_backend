@@ -103,4 +103,71 @@ export class SubscriptionPlanService {
 
     return successResponse(plan, 'Subscription plan fetched successfully');
   }
+
+  @HandleError(
+    'Failed to sync subscription plans with Stripe',
+    'Subscription Plan',
+  )
+  async syncPlansWithStripe() {
+    const plans = await this.prisma.client.subscriptionPlan.findMany();
+    const results: { plan: string; action: string; stripePriceId: string }[] =
+      [];
+
+    for (const plan of plans) {
+      // Try to find an existing active price in Stripe by lookup key
+      const existingPrice = await this.stripe.getActivePriceByPlanType(
+        plan.planType,
+      );
+
+      if (existingPrice) {
+        // Update DB with the real Stripe IDs from this account
+        const productId =
+          typeof existingPrice.product === 'string'
+            ? existingPrice.product
+            : existingPrice.product.id;
+
+        await this.prisma.client.subscriptionPlan.update({
+          where: { id: plan.id },
+          data: {
+            stripePriceId: existingPrice.id,
+            stripeProductId: productId,
+          },
+        });
+
+        results.push({
+          plan: plan.title,
+          action: 'updated',
+          stripePriceId: existingPrice.id,
+        });
+      } else {
+        // No price found with the lookup key — create product + price in Stripe
+        const { product, stripePrice } =
+          await this.stripe.createProductWithPrice({
+            title: plan.title,
+            description: plan.description || plan.title,
+            price: plan.price,
+            planType: plan.planType,
+          });
+
+        await this.prisma.client.subscriptionPlan.update({
+          where: { id: plan.id },
+          data: {
+            stripePriceId: stripePrice.id,
+            stripeProductId: product.id,
+          },
+        });
+
+        results.push({
+          plan: plan.title,
+          action: 'created',
+          stripePriceId: stripePrice.id,
+        });
+      }
+    }
+
+    return successResponse(
+      results,
+      'Subscription plans synced with Stripe successfully',
+    );
+  }
 }
