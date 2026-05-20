@@ -2,8 +2,13 @@ import js from '@eslint/js';
 import eslintPluginPrettierRecommended from 'eslint-plugin-prettier/recommended';
 import { defineConfig, globalIgnores } from 'eslint/config';
 import globals from 'globals';
+<<<<<<< HEAD
 import { createRequire } from 'module';
 import tseslint from 'typescript-eslint';
+=======
+import tseslint from 'typescript-eslint';
+import { createRequire } from 'module';
+>>>>>>> 193dee456ae44decbf3ad5c058f7c1cf10c79cb0
 
 const require = createRequire(import.meta.url);
 
