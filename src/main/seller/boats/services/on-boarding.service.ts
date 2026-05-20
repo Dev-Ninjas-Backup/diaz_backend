@@ -159,13 +159,22 @@ export class OnBoardingService {
     // Parse boat info
     const boatInfo = this.boatListingHelper.parseBoatInfo(data.boatInfo);
 
-    // Create onboarding listing with pending status
+    // If user already has an active subscription, publish the boat immediately
+    const activeSubscription =
+      await this.prisma.client.userSubscription.findFirst({
+        where: {
+          userId,
+          status: { in: ['ACTIVE', 'TRIALING'] },
+        },
+      });
+    const initialStatus = activeSubscription ? 'ACTIVE' : 'ONBOARDING_PENDING';
+
     const listing = await this.prisma.client.$transaction(async (tx) => {
       return tx.boats.create({
         data: await this.boatListingHelper.buildBoatCreateData(
           boatInfo,
           userId,
-          'ONBOARDING_PENDING',
+          initialStatus,
           tx,
         ),
         include: {
