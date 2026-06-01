@@ -5,7 +5,6 @@ import { ListingForGmc } from '@/lib/queue/interface/sync-boats-with-gmc.payload
 import { Injectable, Logger } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { content_v2_1 } from 'googleapis';
-import { DateTime } from 'luxon';
 import { GoogleapisService } from '../googleapis.service';
 
 @Injectable()
@@ -143,13 +142,8 @@ export class GoogleContentService {
   }
 
   async updateBoatOnGmc(listing: ListingForGmc) {
-    // Calculate 24 hours ago
-    const since = DateTime.now().minus({ hours: 24 }).toJSDate();
-
-    // Build full product
     const fullProduct = this.buildGoogleProduct(listing);
 
-    // Remove offerId for update
     const {
       offerId,
       targetCountry,
@@ -163,12 +157,6 @@ export class GoogleContentService {
       customAttributes,
       updatePayload,
     );
-
-    // Example: check each top-level field
-    if (listing.updatedAt >= since) {
-      this.logger.debug(`Boat ${offerId} was updated in the last 24 hours`);
-      return;
-    }
 
     try {
       const res = await this.googleapis.getClient().products.update({
@@ -188,6 +176,30 @@ export class GoogleContentService {
     }
   }
 
+  async getProductApprovalStatus(offerId: string): Promise<string | null> {
+    try {
+      const res = await this.googleapis.getClient().productstatuses.get({
+        merchantId: this.googleapis.getMerchantId(),
+        productId: this.getGoogleProductId(offerId),
+      });
+      return res.data.creationDate ? (res.data as any).googleExpirationDate ? 'approved' : (res.data.itemLevelIssues?.length ? 'disapproved' : 'pending') : null;
+    } catch {
+      return null;
+    }
+  }
+
+  async requestAccountReview() {
+    try {
+      await this.googleapis.getClient().freelistingsprogram.requestreview({
+        merchantId: this.googleapis.getMerchantId(),
+        requestBody: { regionCode: 'US' },
+      });
+      this.logger.log('Requested GMC free listings account review for US');
+    } catch (err) {
+      this.logger.warn('GMC account review request failed', err?.message);
+    }
+  }
+
   @HandleError('Failed to sync boat with GMC')
   async syncBoatWithGmc(listingId: string) {
     const listing = await this.prisma.client.boats.findUniqueOrThrow({
@@ -200,15 +212,26 @@ export class GoogleContentService {
 
     let res;
     if (!gmcProduct) {
-      // Not uploaded yet → insert
+      // Not in GMC yet → insert (triggers first review automatically)
       res = await this.uploadBoat(listing);
+      this.logger.log(`Boat inserted into GMC, review triggered: ${offerId}`);
     } else {
-      // Already uploaded → update
-      res = await this.updateBoatOnGmc(listing);
+      // Already in GMC → check approval status
+      const approvalStatus = await this.getProductApprovalStatus(offerId);
+
+      if (approvalStatus === 'disapproved') {
+        // Re-insert to force a fresh review cycle with updated data
+        this.logger.log(
+          `Boat ${offerId} is disapproved — re-inserting to trigger re-review`,
+        );
+        res = await this.uploadBoat(listing);
+      } else {
+        // Approved or pending → update in place
+        res = await this.updateBoatOnGmc(listing);
+      }
     }
 
     this.logger.log(`Boat synced with GMC: ${offerId}`, res);
-
     return res;
   }
 
