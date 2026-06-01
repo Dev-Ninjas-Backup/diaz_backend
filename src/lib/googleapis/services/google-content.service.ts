@@ -182,7 +182,13 @@ export class GoogleContentService {
         merchantId: this.googleapis.getMerchantId(),
         productId: this.getGoogleProductId(offerId),
       });
-      return res.data.creationDate ? (res.data as any).googleExpirationDate ? 'approved' : (res.data.itemLevelIssues?.length ? 'disapproved' : 'pending') : null;
+      return res.data.creationDate
+        ? (res.data as any).googleExpirationDate
+          ? 'approved'
+          : res.data.itemLevelIssues?.length
+            ? 'disapproved'
+            : 'pending'
+        : null;
     } catch {
       return null;
     }
