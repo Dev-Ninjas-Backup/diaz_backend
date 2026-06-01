@@ -91,10 +91,16 @@ export class GoogleContentService {
 
       // BRAND + CATEGORY (minimum required)
       brand: listing.make || 'Generic',
-      googleProductCategory: '870', // Boats (GMC Taxonomy ID)
+      // 3362 = "Sporting Goods > Outdoor Recreation > Boating & Water Sports > Boats"
+      // Avoids the "Vehicles & Parts > Vehicles > Watercraft" (870) transport/commercial classification
+      googleProductCategory: '3362',
 
       // CUSTOM CATEGORY (user-defined)
-      productTypes: ['Vehicles > Boats', 'Boats', 'Yachts'],
+      productTypes: [
+        'Sporting Goods > Water Sports > Boats',
+        'Boats',
+        'Yachts',
+      ],
 
       // CUSTOM ATTRIBUTES
       customAttributes,
