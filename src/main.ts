@@ -47,6 +47,7 @@ async function bootstrap() {
     exclude: [
       { path: '', method: RequestMethod.GET },
       { path: 'search-listing/listing/:id', method: RequestMethod.GET },
+      { path: 'share/boat/:id', method: RequestMethod.GET },
     ],
   });
 
