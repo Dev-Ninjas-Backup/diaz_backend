@@ -4,6 +4,8 @@ import { Controller, Get, Headers, Param, Res } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { Response } from 'express';
 
+const SHARE_BASE_URL = 'https://api.floridayachttrader.com';
+
 const CRAWLER_PATTERN =
   /facebookexternalhit|Facebot|Twitterbot|WhatsApp|Telegram/i;
 
@@ -19,14 +21,12 @@ function escapeHtml(value: string | null | undefined): string {
 
 @Controller('share/boat')
 export class ShareController {
-  private readonly baseUrl: string;
   private readonly deepLinkBaseUrl: string;
 
   constructor(
     private readonly prisma: PrismaService,
     private readonly configService: ConfigService,
   ) {
-    this.baseUrl = this.configService.getOrThrow<string>(ENVEnum.BASE_URL);
     this.deepLinkBaseUrl = this.configService.getOrThrow<string>(
       ENVEnum.FYT_DEEP_LINK_BASE_URL,
     );
@@ -51,17 +51,21 @@ export class ShareController {
           );
           const imageUrl = escapeHtml(
             coverImage?.file?.url ??
-              `${this.baseUrl}/public/default-preview.jpg`,
+              `${SHARE_BASE_URL}/public/default-preview.jpg`,
           );
           const title = escapeHtml(`${boat.name} | Florida Yacht Trader`);
+          const lengthFt = boat.length
+            ? `${Math.floor(Number(boat.length))}'`
+            : null;
           const description = escapeHtml(
-            `${boat.buildYear} ${boat.make} ${boat.model} — ${boat.length}ft` +
+            `${boat.buildYear} ${boat.make} ${boat.model}` +
+              (lengthFt ? ` — ${lengthFt}` : '') +
               (boat.price
-                ? ` | Price: $${boat.price.toLocaleString()}`
+                ? ` | Price: $${Number(boat.price).toLocaleString()}`
                 : ' | Contact for price'),
           );
           const canonicalUrl = escapeHtml(
-            `${this.baseUrl}/share/boat/${boatId}`,
+            `${SHARE_BASE_URL}/share/boat/${boatId}`,
           );
 
           res.setHeader('Content-Type', 'text/html; charset=utf-8');
