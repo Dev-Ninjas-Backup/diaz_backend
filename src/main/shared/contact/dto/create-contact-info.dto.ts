@@ -62,6 +62,14 @@ class SocialMediaDto {
   @IsOptional()
   @IsString()
   youtube?: string;
+
+  @ApiPropertyOptional({
+    description: 'Instagram profile URL',
+    example: 'https://instagram.com/yourprofile',
+  })
+  @IsOptional()
+  @IsString()
+  instagram?: string;
 }
 
 export class CreateContactInfoDto {
