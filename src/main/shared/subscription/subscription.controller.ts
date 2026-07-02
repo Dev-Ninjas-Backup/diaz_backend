@@ -75,6 +75,18 @@ export class SubscriptionController {
     return this.subscriptionPlanService.deletePlan(id);
   }
 
+  @ApiOperation({
+    summary: 'Sync subscription plans with Stripe (Admin only)',
+    description:
+      'Looks up each plan by Stripe lookup key and updates the DB stripePriceId/stripeProductId. Creates new Stripe products/prices for any plan not found.',
+  })
+  @ApiBearerAuth()
+  @ValidateSuperAdmin()
+  @Post('plans/sync-stripe')
+  async syncPlansWithStripe() {
+    return this.subscriptionPlanService.syncPlansWithStripe();
+  }
+
   @ApiOperation({ summary: 'Handle Stripe webhook events (Public Endpoint)' })
   @Post('webhook/stripe')
   @HttpCode(HttpStatus.OK)
@@ -82,11 +94,7 @@ export class SubscriptionController {
     @Headers('stripe-signature') signature: string,
     @Body() body: Buffer, // raw body for Stripe verification
   ) {
-    try {
-      await this.handleWebhookService.handleWebhook(signature, body);
-      return { received: true };
-    } catch (error) {
-      return { received: false, error: error.message };
-    }
+    await this.handleWebhookService.handleWebhook(signature, body);
+    return { received: true };
   }
 }

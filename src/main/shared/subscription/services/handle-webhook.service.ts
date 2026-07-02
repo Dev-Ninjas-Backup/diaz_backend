@@ -1,5 +1,4 @@
 import { AppError } from '@/common/error/handle-error.app';
-import { HandleError } from '@/common/error/handle-error.decorator';
 import { PrismaService } from '@/lib/prisma/prisma.service';
 import { StripeService } from '@/lib/stripe/stripe.service';
 import { PaymentMetadata } from '@/lib/stripe/stripe.types';
@@ -17,21 +16,20 @@ export class HandleWebhookService {
     private readonly utils: UtilsService,
   ) {}
 
-  @HandleError('Failed to handle Stripe webhook', 'Subscription')
   async handleWebhook(signature: string, rawBody: Buffer) {
-    // 1. Verify webhook signature
+    // 1. Verify webhook signature only
     let event: Stripe.Event;
     try {
       event = this.stripeService.constructWebhookEvent(rawBody, signature);
-
-      this.logger.log(`Received Stripe event: ${event.type}`);
-
-      // 2. Process the event
-      await this.handleEvent(event);
     } catch (error) {
-      this.logger.error('Webhook  failed', error);
+      this.logger.error('Invalid webhook signature', error);
       throw new AppError(400, 'Invalid webhook signature');
     }
+
+    this.logger.log(`Received Stripe event: ${event.type}`);
+
+    // 2. Process the event (errors here bubble up as 500, not masked as signature errors)
+    await this.handleEvent(event);
   }
 
   private async handleEvent(event: Stripe.Event) {
@@ -333,11 +331,13 @@ export class HandleWebhookService {
         },
       }),
 
-      // Ensure the user is marked as verified once an invoice is successfully paid
       this.prisma.client.user.update({
         where: { id: userId },
         data: {
           isVerified: true,
+          currentPlan: { connect: { id: planId } },
+          currentPlanStatus: 'ACTIVE',
+          stripeCustomerId: invoice.customer as string,
         },
       }),
 

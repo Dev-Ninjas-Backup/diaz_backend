@@ -45,7 +45,9 @@ async function bootstrap() {
   // * set global prefix before all routes & swagger
   app.setGlobalPrefix('api', {
     exclude: [
+      { path: '', method: RequestMethod.GET },
       { path: 'search-listing/listing/:id', method: RequestMethod.GET },
+      { path: 'share/boat/:id', method: RequestMethod.GET },
     ],
   });
 
