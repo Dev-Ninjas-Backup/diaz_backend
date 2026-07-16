@@ -1,78 +1,77 @@
-# compiled output
-/dist
-/node_modules
-/build
-
-# Logs
-logs
-*.log
-npm-debug.log*
-pnpm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-lerna-debug.log*
-
-# OS
-.DS_Store
-
-# Tests
-/coverage
-/.nyc_output
-
-# IDEs and editors
-/.idea
-.project
-.classpath
-.c9/
-*.launch
-.settings/
-*.sublime-workspace
-
-# IDE - VSCode
-.vscode/*
-!.vscode/settings.json
-!.vscode/tasks.json
-!.vscode/launch.json
-!.vscode/extensions.json
-
-# dotenv environment variable files
-.env.development.local
-.env.test.local
-.env.production.local
-
-# temp directory
-.temp
-.tmp
-
-# uploads directory
-uploads
-temp
-
-# Runtime data
-pids
-*.pid
-*.seed
-*.pid.lock
-*.pem
-# Diagnostic reports (https://nodejs.org/api/report.html)
-report.[0-9]*.[0-9]*.[0-9]*.[0-9]*.json
-
-logs
-.pnpm-store
-
-# temp dir
-temp
-tmp
-*.json
-
-bun.lock
-*.pem
-*.key
-MIGRATION_GUIDE.md
-PRODUCTION_MIGRATION_GUIDE.md
-FEATURED_YACHT_CRON.md
-MANUAL_ROTATE_FEATURED_YACHT.md
-/public/
-branch_structure.json
-temp_auto_push.bat
-temp_interactive_push.bat
+# compiled output
+/dist
+/node_modules
+/build
+
+# Logs
+logs
+*.log
+npm-debug.log*
+pnpm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+lerna-debug.log*
+
+# OS
+.DS_Store
+
+# Tests
+/coverage
+/.nyc_output
+
+# IDEs and editors
+/.idea
+.project
+.classpath
+.c9/
+*.launch
+.settings/
+*.sublime-workspace
+
+# IDE - VSCode
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+
+# dotenv environment variable files
+.env.development.local
+.env.test.local
+.env.production.local
+
+# temp directory
+.temp
+.tmp
+
+# uploads directory
+uploads
+temp
+
+# Runtime data
+pids
+*.pid
+*.seed
+*.pid.lock
+*.pem
+# Diagnostic reports (https://nodejs.org/api/report.html)
+report.[0-9]*.[0-9]*.[0-9]*.[0-9]*.json
+
+logs
+.pnpm-store
+
+# temp dir
+temp
+tmp
+*.json
+
+bun.lock
+*.pem
+*.key
+MIGRATION_GUIDE.md
+PRODUCTION_MIGRATION_GUIDE.md
+FEATURED_YACHT_CRON.md
+MANUAL_ROTATE_FEATURED_YACHT.md
+/public/
+config.bat
+.env
