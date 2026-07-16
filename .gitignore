@@ -73,3 +73,6 @@ PRODUCTION_MIGRATION_GUIDE.md
 FEATURED_YACHT_CRON.md
 MANUAL_ROTATE_FEATURED_YACHT.md
 /public/
+branch_structure.json
+temp_auto_push.bat
+temp_interactive_push.bat
