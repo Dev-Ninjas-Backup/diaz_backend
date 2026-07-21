@@ -43,10 +43,15 @@ export class BlogService {
       );
     }
 
+    const cleanDescription = dto.blogDescription?.replace(
+      /&nbsp;|\u00a0/g,
+      ' ',
+    );
+
     return this.prisma.client.blog.create({
       data: {
         blogTitle: dto.blogTitle,
-        blogDescription: dto.blogDescription,
+        blogDescription: cleanDescription,
         postStatus: dto.postStatus,
         sharedLink: sharedLink,
         blogImageId: fileRecord?.id,
@@ -97,11 +102,16 @@ export class BlogService {
       : undefined;
 
     const { blogTitle, blogDescription, postStatus } = dto;
+    const cleanUpdateDescription = blogDescription?.replace(
+      /&nbsp;|\u00a0/g,
+      ' ',
+    );
+
     return this.prisma.client.blog.update({
       where: { id },
       data: {
         blogTitle,
-        blogDescription,
+        blogDescription: cleanUpdateDescription,
         postStatus,
         sharedLink,
         blogImageId: fileRecord?.id,
